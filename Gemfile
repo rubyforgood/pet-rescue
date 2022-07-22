@@ -48,6 +48,9 @@ gem "bootsnap", require: false
 # add bootsrtap gem
 gem 'bootstrap'
 
+# Devise Authentication
+gem 'devise'
+
 # Use Sass to process CSS
 gem "sassc-rails"
 
