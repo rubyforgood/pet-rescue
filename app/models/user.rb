@@ -11,4 +11,9 @@ class User < ApplicationRecord
   def set_default_role
     self.role ||= :adopter
   end
+
+  # this causes an error unknown key :through
+  # belongs_to :organization, through: :staff_accounts
+  
+  has_one :staff_account
 end
