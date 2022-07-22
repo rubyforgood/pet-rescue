@@ -1,4 +1,15 @@
-<p>placeholder text</p>
 
+<% if user_signed_in? %>
+  <p>Hello <%= current_user.first_name %>!</p>
+  <p>
+    You have succesfully authenticated with your Devise account. 
+    You can now interact with Baja Pet Rescue.
+  </p>
 
+<% else %>
+  <p>You are not logged in</p>
+  <%= link_to 'Sign up', new_user_registration_path %><br>
+  <%= link_to 'Log in', new_user_session_path %>
+
+<% end %>
 
