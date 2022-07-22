@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   # this causes an error unknown key :through
   # belongs_to :organization, through: :staff_accounts
-  
+
   has_one :staff_account
+  has_one :adopter_account
+
 end
