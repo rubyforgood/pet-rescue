@@ -3,4 +3,12 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  # User role - default is adopter unless role already exists
+  enum role: %i[adopter staff admin]
+  after_initialize :set_default_role, if: :new_record?
+
+  def set_default_role
+    self.role ||= :adopter
+  end
 end
