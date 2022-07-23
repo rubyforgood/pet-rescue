@@ -1,0 +1,19 @@
+<%# <%= render "form", profile: @adopter_profile %> 
+
+<p>This is the new profile page - form renders here.</p>
+
+<%= form_with model: @adopter_profile do |form| %>
+  <div>
+    <%= form.label :city %><br>
+    <%= form.text_field :city %>
+    <%= form.label :country %><br>
+    <%= form.text_field :country %>
+    <%= form.label :experience %><br>
+    <%= form.text_area :experience %>
+    
+  </div><br />
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

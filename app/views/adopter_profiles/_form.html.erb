@@ -1,0 +1,18 @@
+<%= form_with(model: profile) do |form| %>
+  <div>
+    <%= form.label :city %><br>
+    <%= form.text_field :city %>
+    <%= form.label :country %><br>
+    <%= form.text_field :country %>
+    <%= form.label :experience %><br>
+    <%= form.text_area :experience %>
+    
+    <% adopter_profile.errors.full_messages_for(:name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div><br />
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
