@@ -3,6 +3,7 @@
 <p>This is the new profile page - form renders here.</p>
 
 <%= form_with model: @adopter_profile do |form| %>
+<%= form.hidden_field :adopter_account_id, value: current_user.adopter_account.id %> 
   <div>
     <%= form.label :city %><br>
     <%= form.text_field :city %>

@@ -19,10 +19,10 @@ class AdopterProfilesController < ApplicationController
 
     respond_to do |format|
       if @adopter_profile.save
-        format.html { redirect_to inventory_url(@adopter_profile), notice: "Your profile was successfully created." }
+        format.html { redirect_to @adopter_profile, notice: "Your profile was successfully created." }
         format.json { render :show, status: :created, location: @adopter_profile }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity, notice: 'Error. Try again.' }
         format.json { render json: @adopter_profile.errors, status: :unprocessable_entity }
       end
     end
@@ -35,6 +35,6 @@ class AdopterProfilesController < ApplicationController
   private
 
   def adopter_profile_params
-    params.require(:adopter_profile).permit(:city, :country, :experience)
+    params.require(:adopter_profile).permit(:adopter_account_id, :city, :country, :experience)
   end
 end
