@@ -20,8 +20,6 @@ class User < ApplicationRecord
   end
 
   def create_adopter_account
-    self.adopter_account.nil? ? AdopterAccount.create(user_id: self.id) : return
+    self.adopter? && self.adopter_account.nil? ? AdopterAccount.create(user_id: self.id) : return
   end
-
-
 end

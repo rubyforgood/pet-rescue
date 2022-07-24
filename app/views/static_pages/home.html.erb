@@ -11,7 +11,7 @@
   <% if current_user.adopter? && current_user.adopter_account.adopter_profile == nil %>
     <%= link_to "Profile", new_adopter_profile_path %>
   <% elsif current_user.adopter? %>
-    <%# <%= link_to "Profile", adopter_profile_path %> %>
+    <%= link_to "Profile", adopter_profile_path(id: current_user.adopter_account.adopter_profile.id) %>
   <% end %>
 
 
