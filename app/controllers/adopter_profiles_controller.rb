@@ -28,9 +28,9 @@ class AdopterProfilesController < ApplicationController
     end
   end
 
-  def show
-    @adopter_profile = AdopterProfile.find(params[:id])
-  end
+  # def show
+  #   @adopter_profile = AdopterProfile.find(params[:id])
+  # end
 
   private
 

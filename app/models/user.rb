@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  after_initialize :set_default_role, if: :new_record?
+  after_create :create_adopter_account
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -6,16 +9,19 @@ class User < ApplicationRecord
 
   # User role - default is adopter unless role already exists
   enum role: %i[adopter staff admin]
-  after_initialize :set_default_role, if: :new_record?
+
+  has_one :staff_account
+  has_one :adopter_account
+
+  private
 
   def set_default_role
     self.role ||= :adopter
   end
 
-  # this causes an error unknown key :through
-  # belongs_to :organization, through: :staff_accounts
+  def create_adopter_account
+    self.adopter_account.nil? ? AdopterAccount.create(user_id: self.id) : return
+  end
 
-  has_one :staff_account
-  has_one :adopter_account
 
 end
