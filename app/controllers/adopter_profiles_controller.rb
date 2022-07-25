@@ -8,7 +8,11 @@ class AdopterProfilesController < ApplicationController
   end
 
   def edit
-    @adopter_profile = AdopterProfile.find(current_user.adopter_account.adopter_profile.id)
+    @adopter_profile = AdopterProfile.find(params[:id])
+  end
+
+  def update
+
   end
 
   # make it so profile cannot be created if one already exists.

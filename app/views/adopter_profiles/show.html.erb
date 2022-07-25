@@ -3,3 +3,6 @@
 <p>Country: <%= @adopter_profile.country %></p>
 <p>City: <%= @adopter_profile.city %></p>
 <p>Experience: <%= @adopter_profile.experience %></p>
+
+<%= link_to 'Edit Profile', 
+    edit_adopter_profile_path(current_user.adopter_account.adopter_profile.id) %>

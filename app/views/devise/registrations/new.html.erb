@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Adopter Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -29,6 +29,12 @@
   <div class="field">
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+    <div class='field'>
+    <p>Are you an adopter or staff of an organization registered with this site?</p>
+    <%= f.label :signup_role %>
+    <%= f.select :signup_role, ['Adopt', 'Staff'], { prompt: "Please select" } %>
   </div>
 
   <div class="actions">

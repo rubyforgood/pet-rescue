@@ -8,6 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
                                  :last_name,
                                  :email,
                                  :password,
+                                 :signup_role,
                                  :password_confirmation)
   end
 
@@ -18,6 +19,10 @@ class RegistrationsController < Devise::RegistrationsController
                                  :email,
                                  :password,
                                  :password_confirmation,
+                                 :signup_role,
                                  :current_password)
   end
 end
+
+# see here for setting up redirects after login for each user type
+# https://stackoverflow.com/questions/58296569/how-to-signup-in-two-different-pages-with-devise
