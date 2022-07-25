@@ -1,4 +1,4 @@
-<%= form_with model: profile do |form| %>
+<%= form_with model: profile, :url => profile_path do |form| %>
   <%= form.hidden_field :adopter_account_id, value: current_user.adopter_account.id %> 
   <div>
     <%= form.label :city %><br>

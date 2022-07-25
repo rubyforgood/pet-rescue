@@ -7,14 +7,6 @@ class AdopterProfilesController < ApplicationController
     @adopter_profile = AdopterProfile.new
   end
 
-  def edit
-    @adopter_profile = AdopterProfile.find(params[:id])
-  end
-
-  def update
-
-  end
-
   # make it so profile cannot be created if one already exists.
   # add unique true to user_profile_id in adopter_profile table
   # add Unique true to user_id in adopter_account table
@@ -23,7 +15,7 @@ class AdopterProfilesController < ApplicationController
 
     respond_to do |format|
       if @adopter_profile.save
-        format.html { redirect_to @adopter_profile, notice: "Your profile was successfully created." }
+        format.html { redirect_to profile_path, notice: "Your profile was successfully created." }
         format.json { render :show, status: :created, location: @adopter_profile }
       else
         format.html { render :new, status: :unprocessable_entity, notice: 'Error. Try again.' }
@@ -33,7 +25,23 @@ class AdopterProfilesController < ApplicationController
   end
 
   def show
-    @adopter_profile = AdopterProfile.find(params[:id])
+    @adopter_profile = current_user.adopter_account.adopter_profile
+  end
+
+  def edit
+    @adopter_profile = current_user.adopter_account.adopter_profile
+  end
+
+  def update
+    respond_to do |format|
+      if @inventory.update(inventory_params)
+        format.html { redirect_to inventory_url(@inventory), notice: "Inventory was successfully updated." }
+        format.json { render :show, status: :ok, location: @inventory }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @inventory.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
