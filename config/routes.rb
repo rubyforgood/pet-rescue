@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'profile_reviews/show'
+  
   devise_scope :user do
     get '/users/staff_sign_up' 
   end
