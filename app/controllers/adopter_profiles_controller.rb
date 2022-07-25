@@ -1,6 +1,6 @@
 class AdopterProfilesController < ApplicationController
-# prevent staff and admin from creating adopter_profile, but allow to view
-  # authenticate before all actions
+  before_action :authenticate_user!
+  # prevent staff and admin from creating adopter_profile, but allow to view
 
 
   def new
@@ -15,7 +15,7 @@ class AdopterProfilesController < ApplicationController
 
     respond_to do |format|
       if @adopter_profile.save
-        format.html { redirect_to profile_path, notice: "Your profile was successfully created." }
+        format.html { redirect_to profile_path, notice: 'Your profile was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity, notice: 'Error. Try again.' }
       end
