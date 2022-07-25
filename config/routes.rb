@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 
-  resource :adopter_profile, as: 'profile'
+  resource :adopter_profile, only: [:new, :create, :show, :edit, :update ], as: 'profile'
   resolve('adopter_profile') { [:adopter_profile] }
 end
