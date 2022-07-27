@@ -5,17 +5,10 @@
     You have succesfully authenticated with your Devise account. 
     You can now interact with Baja Pet Rescue.
   </p>
-  <p>You are user type <%= current_user.role %>.</p>
+  <p>You are user type .</p>
 
-  <% if current_user.adopter? %>
-    <p>Adopt a dog now!</p>
-  <% else %>
-    <p>Check for new applications!</p>
-  <% end %>
 
-  <% if current_user.staff? %>
-    <%= link_to 'See User Profile', profile_reviews_show_path(id: 2) %>
-  <% end %>
+  
 
   <%= link_to 'Log out', destroy_user_session_path, data: { turbo_method: "delete" } %>
 
