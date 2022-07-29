@@ -11,7 +11,7 @@ class ProfileReviewsController < ApplicationController
   private
 
   def check_user_role
-    return if current_user.admin? || current_user.staff?
+    return unless current_user.adopter_account
 
     redirect_to root_path, notice: 'You do not have access to this page.'
   end

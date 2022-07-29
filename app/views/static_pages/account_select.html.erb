@@ -1,0 +1,11 @@
+<h4>Please select an account type</h4>
+
+<p>I want to adopt a dog</p>
+<%= link_to 'Adopter', 
+    new_user_registration_path(account_type: 'adopter'), 
+    class: 'btn btn-outline-dark mb-3' %>
+
+<p>I am a staff member of an organization registered on this site</p>
+<%= link_to 'Staff', 
+    new_user_registration_path(account_type: 'staff'),
+    class: 'btn btn-outline-dark mb-3' %>

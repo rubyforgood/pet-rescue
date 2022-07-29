@@ -14,7 +14,7 @@
 
 <% else %>
   <p>You are not logged in</p>
-  <%= link_to 'Sign up', new_user_registration_path %><br>
+  <%= link_to 'Sign up', account_select_path %><br>
   <%= link_to 'Log in', new_user_session_path, method: :get %>
 
 <% end %>
