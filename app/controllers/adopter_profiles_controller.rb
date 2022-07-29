@@ -3,10 +3,6 @@ class AdopterProfilesController < ApplicationController
   # staff and admin cannot create a profile
   before_action :check_user_role, only: [:create, :new, :update]
 
-  # figure out how to allow staff and admin to view profile
-  # separate controller for staff/admin use only that finds user profiles using profile_id?
-  # this gives #show action only.
-
   def new
     @adopter_profile = AdopterProfile.new
   end
@@ -56,7 +52,7 @@ class AdopterProfilesController < ApplicationController
   end
 
   def check_user_role
-    return if current_user.adopter?
+    return if current_user.adopter_account
 
     redirect_to root_path, notice: 'Only adopters can create a profile.'
   end

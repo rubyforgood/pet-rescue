@@ -1,13 +1,23 @@
 <h2>Adopter Sign up</h2>
 
-<% resource.build_staff_account if resource.staff_account.nil? %>
+<% if params[:account_type] == 'staff' %>
+  <% resource.build_staff_account if resource.staff_account.nil? %>
+<% else %>
+  <% resource.build_adopter_account if resource.adopter_account.nil? %>
+<% end %>
+
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-    <%= f.fields_for :staff_account do |fields| %>
-      <%# <%= fields.label :user_id %>
-      <%= fields.hidden_field :user_id %>
-    <% end %> 
+    <% if params[:account_type] == 'staff' %>
+      <%= f.fields_for :staff_account do |fields| %>
+        <%= fields.hidden_field :user_id %>
+      <% end %>
+    <% else %>
+     <%= f.fields_for :adopter_account do |fields| %>
+        <%= fields.hidden_field :user_id %>
+      <% end %>
+    <% end %>
   
   <div class="field">
     <%= f.label :email %><br />

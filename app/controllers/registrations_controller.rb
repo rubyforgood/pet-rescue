@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   
-  # experiment with nested form in User>registration>new for an adopter account
+  # nested form in User>registration>new for an adopter or staff account
   # no attributes need to be accepted, just create new account with user_id reference
   def new
     build_resource({})
@@ -32,6 +32,15 @@ class RegistrationsController < Devise::RegistrationsController
                                  :password_confirmation,
                                  :signup_role,
                                  :current_password)
+  end
+
+  # redirect new registration by adopter to adopter_profiles#new
+  def after_sign_up_path_for(resource)
+    if current_user.adopter_account
+      new_profile_path
+    else
+      root_path
+    end
   end
 end
 

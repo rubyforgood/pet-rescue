@@ -5,5 +5,5 @@ class StaticPagesController < ApplicationController
 
   def account_select
   end
-  
+
 end

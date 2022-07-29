@@ -22,11 +22,11 @@
       <div class="collapse navbar-collapse" id="navbarsExample04">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <% if user_signed_in?%>
-            <%# <% if current_user.adopter? && current_user.adopter_account.adopter_profile == nil %> %>
+            <% if current_user.adopter_account && current_user.adopter_account.adopter_profile == nil %>
               <%= link_to "Profile", new_profile_path, class: 'nav-link active' %>
-            <%# <% elsif current_user.adopter? %> %>
-              <%# <%= link_to "Profile", profile_path, class: 'nav-link active' %> %>
-            <%# <% end %> %>
+            <% elsif current_user.adopter_account %>
+              <%= link_to "Profile", profile_path, class: 'nav-link active' %> %>
+            <% end %>
           <% end %> 
           <li class="nav-item">
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
