@@ -1,0 +1,28 @@
+<%= form_with model: dog do |form|%>
+
+<%= form.hidden_field :organization_id, value: current_user.staff_account.organization_id %>
+
+<div class='form-group mb-3'>
+  <%= form.label :name %><br>
+  <%= form.text_field :name, class: 'form-control form-control-lg' %>
+  <% dog.errors.full_messages_for(:name).each do |message| %>
+
+    <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% end %>
+</div>
+
+<div class='form-group mb-3'>
+  <%= form.label :age %><br>
+  <%= form.number_field :age, class: 'form-control form-control-lg' %>
+  <% dog.errors.full_messages_for(:name).each do |message| %>
+
+    <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% end %>
+</div>
+
+<div class='form-group mt-3'>
+<%= form.submit 'Create Dog', class: 'btn btn-primary' %>
+<%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>
+</div>
+
+<% end %>

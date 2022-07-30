@@ -7,6 +7,10 @@
   </p>
   <p>You are user type .</p>
 
+  <% if current_user.staff_account %>
+    <%= link_to 'Create Dog', new_dog_path %>
+  <% end %>
+
 
   
 
