@@ -1,0 +1,11 @@
+
+<p>Name: <%= @dog.name %></p>
+<p>Age: <%= @dog.age %></p>
+
+<%= link_to 'Edit', edit_dog_path(@dog) %>
+<%= link_to 'Delete', dog_path(@dog), class: 'btn',
+                data: 
+              {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>

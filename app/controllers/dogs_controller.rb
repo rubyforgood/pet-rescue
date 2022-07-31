@@ -3,7 +3,7 @@ class DogsController < ApplicationController
 # before filter for all to check user is staff or admin
 
 def index
-  @dogs = Dog.where(organization_id == current_user.staff_account.organization_id)
+  @dogs = Dog.where(:organization_id == current_user.staff_account.organization_id)
 end
 
 def new

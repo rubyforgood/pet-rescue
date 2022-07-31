@@ -8,7 +8,8 @@
   <p>You are user type .</p>
 
   <% if current_user.staff_account %>
-    <%= link_to 'Create Dog', new_dog_path %>
+    <%= link_to 'Create Dog', new_dog_path %><br>
+    <%= link_to 'Dogs Index', dogs_path %>
   <% end %>
 
 
