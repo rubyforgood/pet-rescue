@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_01_222016) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_01_224047) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_222016) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_adopter_accounts_on_user_id"
+  end
+
+  create_table "adopter_applications", force: :cascade do |t|
+    t.bigint "dog_id", null: false
+    t.bigint "adopter_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
+    t.index ["adopter_account_id"], name: "index_adopter_applications_on_adopter_account_id"
+    t.index ["dog_id"], name: "index_adopter_applications_on_dog_id"
   end
 
   create_table "adopter_profiles", force: :cascade do |t|
@@ -38,16 +48,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_222016) do
     t.datetime "updated_at", null: false
     t.index ["application_id"], name: "index_adoptions_on_application_id"
     t.index ["dog_id"], name: "index_adoptions_on_dog_id"
-  end
-
-  create_table "applications", force: :cascade do |t|
-    t.bigint "dog_id", null: false
-    t.bigint "adopter_account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "status", default: 0, null: false
-    t.index ["adopter_account_id"], name: "index_applications_on_adopter_account_id"
-    t.index ["dog_id"], name: "index_applications_on_dog_id"
   end
 
   create_table "dogs", force: :cascade do |t|
@@ -93,11 +93,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_222016) do
   end
 
   add_foreign_key "adopter_accounts", "users"
+  add_foreign_key "adopter_applications", "adopter_accounts"
+  add_foreign_key "adopter_applications", "dogs"
   add_foreign_key "adopter_profiles", "adopter_accounts"
-  add_foreign_key "adoptions", "applications"
+  add_foreign_key "adoptions", "adopter_applications", column: "application_id"
   add_foreign_key "adoptions", "dogs"
-  add_foreign_key "applications", "adopter_accounts"
-  add_foreign_key "applications", "dogs"
   add_foreign_key "dogs", "organizations"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"

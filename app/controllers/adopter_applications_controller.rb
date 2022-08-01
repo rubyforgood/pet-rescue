@@ -12,7 +12,7 @@ class AdopterApplicationsController < ApplicationController
 
   # only create if an application does not exist
   def create
-    @application = Application.new(application_params)
+    @application = AdopterApplication.new(application_params)
   end
 
   # def edit

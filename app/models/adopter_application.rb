@@ -1,4 +1,4 @@
-class Application < ApplicationRecord
+class AdopterApplication < ApplicationRecord
   belongs_to :dog
   belongs_to :adopter_account
 
