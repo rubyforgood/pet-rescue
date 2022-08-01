@@ -1,0 +1,7 @@
+<% @dogs.each do |dog| %>
+  <div class='card'>
+    <p>Name: <%= dog.name %></p>
+    <p>Age: <%= dog.age %></p>
+    <%= link_to 'View', dog_path(dog) %>
+  </div>
+<% end %>
