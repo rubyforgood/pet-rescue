@@ -11,8 +11,10 @@ class ProfileReviewsController < ApplicationController
   private
 
   def check_user_role
-    return unless current_user.adopter_account
+    return unless user_signed_in? &&
+    current_user.staff_account &&
+    current_user.staff_account.verified
 
-    redirect_to root_path, notice: 'You do not have access to this page.'
+    redirect_to root_path, notice: 'Unauthorized action.'
   end
 end

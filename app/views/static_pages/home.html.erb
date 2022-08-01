@@ -12,8 +12,10 @@
     <%= link_to 'Dogs Index', dogs_path %><br>
   <% end %>
 
+  <% if current_user.adopter_account %>
+    <%= link_to 'View Dogs', adoptable_dogs_path %><br>
+  <% end %>
 
-  
 
   <%= link_to 'Log out', destroy_user_session_path, data: { turbo_method: "delete" } %>
 
