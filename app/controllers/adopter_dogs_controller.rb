@@ -1,2 +1,0 @@
-class AdopterDogsController < ApplicationController
-end
