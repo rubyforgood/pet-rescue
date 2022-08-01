@@ -59,9 +59,11 @@ class OrganizationDogsController < ApplicationController
     params.require(:dog).permit(:organization_id, :name, :age)
   end
 
-  # check before all actions that user has staff account
+  # check before all actions that user is: signed in, staff, verified
   def verified_staff
-    return if current_user.staff_account.verified
+    return if user_signed_in? &&
+              current_user.staff_account &&
+              current_user.staff_account.verified
 
     redirect_to root_path, notice: 'Unauthorized action.'
   end
