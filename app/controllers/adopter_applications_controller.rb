@@ -13,6 +13,12 @@ class AdopterApplicationsController < ApplicationController
   # only create if an application does not exist
   def create
     @application = AdopterApplication.new(application_params)
+
+    if @application.save
+      redirect_to profile_path, notice: 'You have applied to adopt this pooch!'
+    else
+      render :profile_path, status: :unprocessable_entity, notice: 'Error. Try again.'
+    end
   end
 
   # def edit
@@ -34,7 +40,7 @@ class AdopterApplicationsController < ApplicationController
   private
 
   def application_params
-    params.require(:application).permit(:dog_id, :user_id)
+    params.permit(:dog_id, :adopter_account_id)
   end
 
   def adopter_with_profile
