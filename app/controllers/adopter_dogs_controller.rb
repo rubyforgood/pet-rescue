@@ -1,0 +1,2 @@
+class AdopterDogsController < ApplicationController
+end
