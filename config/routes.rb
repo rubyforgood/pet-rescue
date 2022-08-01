@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   resource :adopter_profile, only: [:new, :create, :show, :edit, :update ], as: 'profile'
   resolve('adopter_profile') { [:adopter_profile] }
 
-  resources :dogs
+  resources :dogs, controller: 'organization_dogs'
 end

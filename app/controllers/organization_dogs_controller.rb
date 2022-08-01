@@ -1,4 +1,4 @@
-class DogsController < ApplicationController
+class OrganizationDogsController < ApplicationController
   before_action :verified_staff
 
   def index
