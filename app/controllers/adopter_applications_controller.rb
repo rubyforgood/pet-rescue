@@ -42,5 +42,4 @@ class AdopterApplicationsController < ApplicationController
 
     redirect_to root_path, notice: 'Unauthorized action.'
   end
-
 end
