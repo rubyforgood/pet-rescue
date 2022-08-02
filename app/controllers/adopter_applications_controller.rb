@@ -12,12 +12,16 @@ class AdopterApplicationsController < ApplicationController
 
   # only create if an application does not exist
   def create
-    @application = AdopterApplication.new(application_params)
-
-    if @application.save
-      redirect_to profile_path, notice: 'You have applied to adopt this pooch!'
+    if AdopterApplication.where(adopter_account_id: params[:adopter_account_id], 
+                                dog_id: params[:dog_id]).exists?
+      redirect_to adoptable_dog_path(params[:dog_id]), notice: 'You have already applied to adopt this dog.'
     else
-      render :profile_path, status: :unprocessable_entity, notice: 'Error. Try again.'
+      @application = AdopterApplication.new(application_params)
+      if @application.save
+        redirect_to profile_path, notice: 'You have applied to adopt this pooch!'
+      else
+        render :profile_path, status: :unprocessable_entity, notice: 'Error. Try again.'
+      end
     end
   end
 
