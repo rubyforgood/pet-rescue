@@ -1,0 +1,6 @@
+<% current_user.adopter_account.adopter_applications.each do | app | %>
+  <p>Name: <%= app.dog.name %></p>
+  <p>Status: <%= app.status %></p>
+  <%= link_to 'See dog', adoptable_dog_path(app.dog.id) %>
+  <%= button_to 'Cancel', destroy_adoption_application_path(app.id) %>
+<% end %>
