@@ -1,5 +1,9 @@
 <h2><%= current_user.first_name %>'s Profile</h2>
 
+<% if current_user.adopter_account.adopter_applications.exists? %>
+  <%= render 'applications' %>
+<% end %>
+
 <%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-outline-dark mb-3' %>
 
 <p>Country: <%= @adopter_profile.country %></p>
