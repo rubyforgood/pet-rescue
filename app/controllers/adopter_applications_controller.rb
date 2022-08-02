@@ -5,10 +5,9 @@ class AdopterApplicationsController < ApplicationController
   # only create if an application does not exist
   # this is ugly. Refactor...
   def create
-    if AdopterApplication.where(adopter_account_id: params[:adopter_account_id],
-                                dog_id: params[:dog_id]).exists?
-      redirect_to adoptable_dog_path(params[:dog_id]),
-                  notice: 'Application already exists.'
+    if AdopterApplication.where(dog_id: params[:dog_id],
+                                adopter_account_id: params[:adopter_account_id]).exists?
+      redirect_to adoptable_dog_path(params[:dog_id]), notice: 'Application already exists.'
     else
       @application = AdopterApplication.new(application_params)
       if @application.save
@@ -22,7 +21,13 @@ class AdopterApplicationsController < ApplicationController
   end
 
   def destroy
+    @application = AdopterApplication.find(params[:id])
 
+    if @application.destroy
+      redirect_to profile_path, notice: 'Application withdrawn.'
+    else
+      redirect_to profile_path, notice: 'Error. Please try again.'
+    end
   end
 
   private

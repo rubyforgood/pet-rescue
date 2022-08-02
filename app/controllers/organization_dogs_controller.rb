@@ -49,7 +49,7 @@ class OrganizationDogsController < ApplicationController
     if same_organization?(@dog) && @dog.destroy
       redirect_to dogs_path, status: :see_other
     else
-      redirect_to root_path, notice: 'Error.'
+      redirect_to dogs_path, notice: 'Error.'
     end
   end
 

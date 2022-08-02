@@ -2,6 +2,6 @@
 <p>Age: <%= @dog.age %></p>
 
 <%= button_to 'Apply to Adopt', 
-    create_adoption_application_path(adopter_account_id: current_user.adopter_account.id, 
+    create_adopter_application_path(adopter_account_id: current_user.adopter_account.id, 
                                      dog_id: @dog.id) %><br>
 <%= link_to 'Back', adoptable_dogs_path %>
