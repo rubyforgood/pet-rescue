@@ -1,0 +1,2 @@
+class AdoptionApplicationReviewsController < ApplicationController
+end
