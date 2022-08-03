@@ -1,0 +1,17 @@
+<h3>Search for adoption applications</h3>
+
+   <%= form_with url: '/', method: :get do | f | %>
+
+    <%= f.label :name, 'Dog Name' %>
+    <%= f.collection_select :dog_id, @dogs, :id, :name, { prompt: 'All' } %>
+
+    <%= f.label :status, 'Application Status' %>
+    <%= f.select :status, ['Awaiting review', 
+                           'Review in process', 
+                           'Adoption pending'], { prompt: "All" } %>
+
+    <%= f.submit 'Submit', class: 'button is-info search-button' %>
+
+  <% end %>
+
+  <%= render 'search_results' %>
