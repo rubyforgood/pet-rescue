@@ -9,6 +9,14 @@ class AdoptionApplicationReviewsController < ApplicationController
     @adopter_applications = adopter_applications
   end
 
+  def edit
+    @application = AdopterApplication.find(params[:id])
+  end
+
+  def update
+
+  end
+
   private
 
   # dogs with same organization_id as current staff && have applications && have no adoption
