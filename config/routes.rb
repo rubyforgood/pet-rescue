@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete 'destroy_adopter_application', to: 'adopter_applications#destroy'
 
   resources :dogs, controller: 'organization_dogs'
-  resources :adopter_application, controller: 'adoption_application_reviews'
+  resources :adopter_applications, controller: 'adoption_application_reviews'
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
