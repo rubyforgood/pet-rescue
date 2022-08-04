@@ -4,7 +4,7 @@
   <div class='card'>
     <% dog.adopter_applications.each do |app|%>
     <p>Application Status: <%= app.status%></p>
-    <p>Applicant Profile: <%= app.adopter_account.adopter_profile %>
+    <p>Applicant Profile: <%= link_to 'Adopter Profile', profile_review_path(app.adopter_account.adopter_profile.id) %>
     <%= link_to 'Application', edit_adopter_application_path(app.id) %>
     <% end %>
   </div>

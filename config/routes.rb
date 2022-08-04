@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   get '/account_select', to: 'static_pages#account_select'
-  get '/profile_review', to: 'profile_reviews#show'
+  get '/profile_review/:id', to: 'profile_reviews#show', as: 'profile_review'
 
   get '/adoptable_dogs', to: 'adoptable_dogs#index'
   get '/adoptable_dogs/:id', to: 'adoptable_dogs#show', as: 'adoptable_dog'
