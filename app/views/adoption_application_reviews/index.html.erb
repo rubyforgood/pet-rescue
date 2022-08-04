@@ -1,14 +1,9 @@
-<h3>Search for adoption applications</h3>
+<h5>Filter by dog name</h5>
 
-   <%= form_with url: '/', method: :get do | f | %>
+   <%= form_with url: '/adopter_application', method: :get do | f | %>
 
-    <%= f.label :name, 'Dog Name' %>
+    <%= f.label :dog_id, 'Dog Name' %>
     <%= f.collection_select :dog_id, @dogs, :id, :name, { prompt: 'All' } %>
-
-    <%= f.label :status, 'Application Status' %>
-    <%= f.select :status, ['Awaiting review', 
-                           'Review in process', 
-                           'Adoption pending'], { prompt: "All" } %>
 
     <%= f.submit 'Submit', class: 'button is-info search-button' %>
 
