@@ -1,1 +1,16 @@
-<p>This is the adopter application page</p>
+<p>Name: <%= @application.adopter_account.user.first_name %>
+         <%= @application.adopter_account.user.last_name %> </p>
+
+<%= link_to 'Adopter Profile', profile_review_path(@application.adopter_account.adopter_profile.id) %>
+
+<%= form_with model: @application, :url => edit_adopter_application_path do |form| %>
+    <%= form.label :status %>
+    <%= form.select(:status, AdopterApplication.statuses.keys.map {|status| [status.titleize,status]}) %>
+    <%= form.label :notes %>
+    <%= form.text_area :notes %>
+    
+    <%= form.submit %>
+
+<% end %>
+
+<%# Add nested attributes for adoption %>
