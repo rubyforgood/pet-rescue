@@ -3,7 +3,7 @@
 
 <%= link_to 'Adopter Profile', profile_review_path(@application.adopter_account.adopter_profile.id) %>
 
-<%= form_with model: @application, :url => edit_adopter_application_path do |form| %>
+<%= form_with model: @application, :url => adopter_application_path do |form| %>
     <%= form.label :status %>
     <%= form.select(:status, AdopterApplication.statuses.keys.map {|status| [status.titleize,status]}) %>
     <%= form.label :notes %>
