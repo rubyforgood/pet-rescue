@@ -4,4 +4,5 @@ class AdopterApplication < ApplicationRecord
   has_one :adoption
 
   enum :status, [:awaiting_review, :under_review, :adoption_pending]
+
 end

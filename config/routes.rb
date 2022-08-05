@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   post 'create_adopter_application', to: 'adopter_applications#create'
   delete 'destroy_adopter_application', to: 'adopter_applications#destroy'
 
+  post 'create_adoption', to: 'adoptions#create'
+
   resources :dogs, controller: 'organization_dogs'
   resources :adopter_applications, controller: 'adoption_application_reviews'
 

@@ -8,9 +8,7 @@
     <%= form.select(:status, AdopterApplication.statuses.keys.map {|status| [status.titleize,status]}) %>
     <%= form.label :notes %>
     <%= form.text_area :notes %>
-    
+
     <%= form.submit %>
 
 <% end %>
-
-<%# Add nested attributes for adoption %>

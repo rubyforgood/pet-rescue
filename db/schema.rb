@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_05_040425) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_05_222108) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,10 +44,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_040425) do
 
   create_table "adoptions", force: :cascade do |t|
     t.bigint "dog_id", null: false
-    t.bigint "adopter_application_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["adopter_application_id"], name: "index_adoptions_on_adopter_application_id"
+    t.bigint "adopter_account_id", null: false
+    t.index ["adopter_account_id"], name: "index_adoptions_on_adopter_account_id"
     t.index ["dog_id"], name: "index_adoptions_on_dog_id"
   end
 
@@ -97,7 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_040425) do
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "dogs"
   add_foreign_key "adopter_profiles", "adopter_accounts"
-  add_foreign_key "adoptions", "adopter_applications"
+  add_foreign_key "adoptions", "adopter_accounts"
   add_foreign_key "adoptions", "dogs"
   add_foreign_key "dogs", "organizations"
   add_foreign_key "staff_accounts", "organizations"
