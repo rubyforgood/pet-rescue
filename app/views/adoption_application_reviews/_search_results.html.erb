@@ -8,8 +8,9 @@
       <p>Application Status: <%= app.status %></p>
       <p>Applicant Profile: <%= link_to 'Adopter Profile', profile_review_path(app.adopter_account.adopter_profile.id) %>
       <%= link_to 'Edit Application', edit_adopter_application_path(app.id) %>
-      <%= button_to 'Adoption', create_adoption_path(dog_id: dog.id, 
-                                                     adopter_account_id: app.adopter_account.id) %>
+      <%= link_to 'Adoption', create_adoption_path(dog_id: dog.id, 
+                                                     adopter_account_id: app.adopter_account.id),
+                                                     data: { turbo_method: :post, turbo_confirm: "Click OK to finalize this adoption." } %>
       <% end %>
     </div>
 
@@ -25,7 +26,8 @@
       <p>Applicant Profile: <%= link_to 'Adopter Profile', profile_review_path(app.adopter_account.adopter_profile.id) %>
       <%= link_to 'Edit Application', edit_adopter_application_path(app.id) %>
       <%= button_to 'Adoption', create_adoption_path(dog_id: @dog.id, 
-                                                     adopter_account_id: app.adopter_account.id) %>
+                                                     adopter_account_id: app.adopter_account.id),
+                                                     data: { turbo_method: :post, turbo_confirm: "Click OK to finalize this adoption." } %>
       <% end %>
     </div>
 
