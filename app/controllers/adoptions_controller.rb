@@ -14,7 +14,7 @@ class AdoptionsController < ApplicationController
   end
 
   private
-  
+
   def adoption_params
     params.permit(:dog_id, :adopter_account_id)
   end
