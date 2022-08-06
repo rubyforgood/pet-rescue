@@ -1,0 +1,12 @@
+<h5>Filter by dog name</h5>
+
+   <%= form_with url: '/adopter_applications', method: :get do | f | %>
+
+    <%= f.label :dog_id, 'Dog Name' %>
+    <%= f.collection_select :dog_id, @dogs, :id, :name, { prompt: 'All' } %>
+
+    <%= f.submit 'Submit', class: 'button is-info search-button' %>
+
+  <% end %>
+
+  <%= render 'search_results' %>

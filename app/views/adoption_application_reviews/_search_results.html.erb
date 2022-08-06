@@ -1,0 +1,40 @@
+<%# refactor to get rid of duplication? %>
+
+<% if @dog.nil?%>
+
+  <% @dogs.each do |dog| %>
+    <%= link_to dog.name, dog_path(dog) %>
+    
+    <div class='card'>
+      <% dog.adopter_applications.each do |app|%>
+      <p>Application Status: <%= app.status.titleize %></p>
+      <p>Applicant Profile: <%= link_to 'Adopter Profile', 
+                                        profile_review_path(app.adopter_account.adopter_profile.id) %>
+      <%= link_to 'Edit Application', edit_adopter_application_path(app.id) %>
+      <%= link_to 'Adoption', create_adoption_path(dog_id: dog.id, 
+                                                   adopter_account_id: app.adopter_account.id),
+                                                   data: { turbo_method: :post, 
+                                                           turbo_confirm: "Click OK to finalize this adoption." } %>
+      <% end %>
+    </div>
+
+  <% end %>
+
+<% else %>
+
+  <%= link_to @dog.name, dog_path(@dog) %>
+    
+    <div class='card'>
+      <% @dog.adopter_applications.each do |app|%>
+      <p>Application Status: <%= app.status.titleize %></p>
+      <p>Applicant Profile: <%= link_to 'Adopter Profile', 
+                                        profile_review_path(app.adopter_account.adopter_profile.id) %>
+      <%= link_to 'Edit Application', edit_adopter_application_path(app.id) %>
+      <%= link_to 'Adoption', create_adoption_path(dog_id: @dog.id, 
+                                                     adopter_account_id: app.adopter_account.id),
+                                                     data: { turbo_method: :post, 
+                                                             turbo_confirm: "Click OK to finalize this adoption." } %>
+      <% end %>
+    </div>
+
+<% end %>

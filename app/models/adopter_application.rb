@@ -3,4 +3,5 @@ class AdopterApplication < ApplicationRecord
   belongs_to :adopter_account
 
   enum :status, [:awaiting_review, :under_review, :adoption_pending]
+
 end
