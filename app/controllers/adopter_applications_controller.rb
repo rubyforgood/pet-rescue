@@ -34,6 +34,7 @@ class AdopterApplicationsController < ApplicationController
 
   private
 
+  # check these params are OK. Server output states missing param.
   def application_params
     params.permit(:id, :dog_id, :adopter_account_id, :status, :profile_show)
   end
