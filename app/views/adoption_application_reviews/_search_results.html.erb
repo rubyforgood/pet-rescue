@@ -1,17 +1,19 @@
-<%# refactor to get rid of duplication? %>
+<%# @dog, @dogs are defined in the adoption_application_reviews controller %>
 
-<% if @dog.nil?%>
+<% if @dog.nil? ? @collection = @dogs : @collection = @dog %>
 
-  <% @dogs.each do |dog| %>
+  <% @collection.each do |dog| %>
     <%= link_to dog.name, dog_path(dog) %>
     
     <div class='card mb-4'>
       <% dog.adopter_applications.each do |app|%>
-        <div class="<%= 'fw-bold' if app.status == 'withdrawn' %>"> 
-          Application Status: <%= app.status.titleize%>
+            
+        <div>
+          Name: <%= app.adopter_account.user.first_name %>
+                <%= app.adopter_account.user.last_name %>
         </div>
-    
-        <div class='mb-3'>
+
+        <div>
           <%= link_to 'Adopter Profile', profile_review_path(app.adopter_account.adopter_profile.id) %>
           <%= link_to 'Edit Application', edit_adopter_application_path(app.id) %>
 
@@ -22,26 +24,14 @@
                                                                 turbo_confirm: "Click OK to finalize this adoption." } %>
           <% end %>
         </div>
+
+        <div class="mb-3 <%= 'fw-bold' if app.status == 'withdrawn' %>"> 
+          Application Status: <%= app.status.titleize%>
+        </div>
+
       <% end %>
     </div>
 
   <% end %>
-
-<% else %>
-
-  <%= link_to @dog.name, dog_path(@dog) %>
-    
-    <div class='card'>
-      <% @dog.adopter_applications.each do |app|%>
-      <div class="<%= 'fw-bold' if app.status == 'withdrawn' %>"> Application Status: <%= app.status.titleize%></div>
-      <p>Applicant Profile: <%= link_to 'Adopter Profile', 
-                                        profile_review_path(app.adopter_account.adopter_profile.id) %>
-      <%= link_to 'Edit Application', edit_adopter_application_path(app.id) %>
-      <%= link_to 'Adoption', create_adoption_path(dog_id: @dog.id, 
-                                                     adopter_account_id: app.adopter_account.id),
-                                                     data: { turbo_method: :post, 
-                                                             turbo_confirm: "Click OK to finalize this adoption." } %>
-      <% end %>
-    </div>
 
 <% end %>
