@@ -2,7 +2,9 @@ class OrganizationDogsController < ApplicationController
   before_action :verified_staff
 
   def index
-    @dogs = Dog.where(organization_id: current_user.staff_account.organization_id)
+    @unadopted_dogs = unadopted_dogs
+    @adopted_dogs = adopted_dogs
+    @dog = selected_dog
   end
 
   def new
@@ -73,4 +75,19 @@ class OrganizationDogsController < ApplicationController
     current_user.staff_account.organization_id == dog.organization_id
   end
 
+  def unadopted_dogs
+    Dog.where(organization_id: current_user.staff_account.organization_id)
+       .includes(:adoption).where(adoption: { id: nil })
+  end
+
+  def adopted_dogs
+    Dog.where(organization_id: current_user.staff_account.organization_id)
+       .includes(:adoption).where.not(adoption: { id: nil })
+  end
+
+  def selected_dog
+    return if !params[:dog_id] || params[:dog_id] == ''
+
+    Dog.where(id: params[:dog_id])
+  end
 end
