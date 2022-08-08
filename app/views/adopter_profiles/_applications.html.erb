@@ -3,8 +3,10 @@
     <p>Name: <%= app.dog.name %></p>
     <p>Status: <%= app.status %></p>
     <%= link_to 'See dog', adoptable_dog_path(app.dog.id) %>
-    <%= link_to 'Withdraw', destroy_adopter_application_path(id: app.id),  
-                  data: { turbo_method: "delete",
+    <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, status: 'withdrawn'),  
+                  data: { turbo_method: "patch",
                           turbo_confirm: "Click OK to withdraw this adoption application." } %>
   </div>
 <% end %>
+
+<%# add link to Withdraw that sets the status to 'withdraw' %>

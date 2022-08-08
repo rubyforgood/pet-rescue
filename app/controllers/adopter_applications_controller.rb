@@ -20,20 +20,20 @@ class AdopterApplicationsController < ApplicationController
     end
   end
 
-  def destroy
+  def update
     @application = AdopterApplication.find(params[:id])
 
-    if @application.destroy
+    if @application.update(application_params)
       redirect_to profile_path, notice: 'Application withdrawn.'
     else
-      redirect_to profile_path, notice: 'Error. Please try again.'
+      redirect_to profile_path, notice: 'Error removing application.'
     end
   end
 
   private
 
   def application_params
-    params.permit(:dog_id, :adopter_account_id)
+    params.permit(:dog_id, :adopter_account_id, :status, :profile_show)
   end
 
   def adopter_with_profile
