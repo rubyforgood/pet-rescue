@@ -32,6 +32,7 @@ class AdoptionApplicationReviewsController < ApplicationController
     params.require(:adopter_application).permit(:status, :notes)
   end
 
+  # use where to return a relation for the view
   def selected_dog
     return if !params[:dog_id] || params[:dog_id] == ''
 

@@ -10,6 +10,7 @@
   <% else %>
     <%= form.select(:status, AdopterApplication.statuses.keys.map {|status| [status.titleize,status]}) %>
   <% end %>
+  
   <%= form.label :notes %><br>
   <%= form.text_area :notes %><br>
 
