@@ -1,3 +1,4 @@
+# allows adopter users to create an adoption application and/or update status to 'withdrawn'
 class AdopterApplicationsController < ApplicationController
   before_action :authenticate_user!
   before_action :adopter_with_profile
@@ -20,20 +21,21 @@ class AdopterApplicationsController < ApplicationController
     end
   end
 
+  # update :status to 'withdrawn' or :profile_show to false
   def update
     @application = AdopterApplication.find(params[:id])
 
     if @application.update(application_params)
-      redirect_to profile_path, notice: 'Application withdrawn.'
+      redirect_to profile_path
     else
-      redirect_to profile_path, notice: 'Error removing application.'
+      redirect_to profile_path, notice: 'Error.'
     end
   end
 
   private
 
   def application_params
-    params.permit(:dog_id, :adopter_account_id, :status, :profile_show)
+    params.permit(:id, :dog_id, :adopter_account_id, :status, :profile_show)
   end
 
   def adopter_with_profile
