@@ -1,5 +1,6 @@
 <p>Name: <%= @dog.name %></p>
 <p>Age: <%= @dog.age %></p>
+<p>Organization: <%= @dog.organization.name %><br>
 
 <%= button_to 'Apply to Adopt', 
     create_adopter_application_path(adopter_account_id: current_user.adopter_account.id, 

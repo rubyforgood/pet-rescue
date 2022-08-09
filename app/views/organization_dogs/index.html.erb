@@ -1,15 +1,15 @@
 <%# set @collection to appropriate controller instance variable %>
-<% if params[:dog_id] == '' %> 
-  <% @collection = @unadopted_dogs %>
-<% elsif params[:dog_id]  %>
-  <% @collection = @dog %>
-<% elsif params[:selection] == 'Seeking Adoption' %>
+<% if params[:dog_id] == '' || params[:selection] == 'Seeking Adoption'  %> 
   <% @collection = @unadopted_dogs %>
 <% elsif params[:selection] == 'Adopted' %>
   <% @collection = @adopted_dogs %>
+<% elsif params[:dog_id]  %>
+  <% @collection = @dog %>
 <% else %>
   <% @collection = @unadopted_dogs %>
 <% end %>
+
+<%= link_to 'Create Dog', new_dog_path %><br>
 
 <%= form_with url: '/dogs', method: :get do | f | %>
 
@@ -20,6 +20,7 @@
 
   <% end %>
 
+<%# only show dog name seletion if collection is greater than e.g., 5 dogs? %>
 <%= form_with url: '/dogs', method: :get do | f | %>
 
     <%= f.label :dog_id, 'Filter by name' %>
