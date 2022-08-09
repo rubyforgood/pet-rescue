@@ -58,7 +58,7 @@ class OrganizationDogsController < ApplicationController
   private
 
   def dog_params
-    params.require(:dog).permit(:organization_id, :name, :age)
+    params.require(:dog).permit(:organization_id, :name, :age, images: [])
   end
 
   # check before all actions that user is: signed in, staff, verified
