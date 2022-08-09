@@ -20,6 +20,11 @@
     <% end %>
 </div>
 
+<div class='form-group mb-3'>
+  <%= form.label :images %>
+  <%= form.file_field :images, multiple: true %>
+</div>
+
 <div class='form-group mt-3'>
 <%= form.submit 'Submit', class: 'btn btn-primary' %>
 <%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>

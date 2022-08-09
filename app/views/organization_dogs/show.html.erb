@@ -1,6 +1,14 @@
 
 <p>Name: <%= @dog.name %></p>
 <p>Age: <%= @dog.age %></p>
+<div class='card'>
+  Photos: 
+  <% if @dog.images.attached? %>
+    <% @dog.images.each do |image| %>
+      <%= image_tag image, width: '25%' %>
+    <% end %>
+  <% end %>
+</div>
 
 <%= link_to 'Edit', edit_dog_path(@dog) %>
 <%= link_to 'Delete', dog_path(@dog), class: 'btn',
