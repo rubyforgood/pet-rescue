@@ -1,7 +1,39 @@
-<% @dogs.each do |dog| %>
-  <div class='card'>
-    <p>Name: <%= dog.name %></p>
-    <p>Age: <%= dog.age %></p>
-    <%= link_to 'View', dog_path(dog) %>
-  </div>
+<%# set @collection to appropriate controller instance variable %>
+<% if params[:dog_id] == '' || params[:selection] == 'Seeking Adoption'  %> 
+  <% @collection = @unadopted_dogs %>
+<% elsif params[:selection] == 'Adopted' %>
+  <% @collection = @adopted_dogs %>
+<% elsif params[:dog_id]  %>
+  <% @collection = @dog %>
+<% else %>
+  <% @collection = @unadopted_dogs %>
 <% end %>
+
+<%= link_to 'Create Dog', new_dog_path %><br>
+
+<%= form_with url: '/dogs', method: :get do | f | %>
+
+    <%= f.label :selection, 'Filter by adoption status:' %>
+    <%= f.select :selection, ['Seeking Adoption', 'Adopted'], { prompt: "Select..." } %>
+
+    <%= f.submit 'Submit', class: 'button is-info search-button' %>
+
+  <% end %>
+
+<%# only show dog name seletion if collection is greater than e.g., 5 dogs? %>
+<%= form_with url: '/dogs', method: :get do | f | %>
+
+    <%= f.label :dog_id, 'Filter by name' %>
+    <%= f.collection_select :dog_id, @collection, :id, :name, { prompt: 'All' } %>
+
+    <%= f.submit 'Submit', class: 'button is-info search-button' %>
+
+  <% end %>
+
+  <% @collection.each do |dog| %>
+    <div class='card'>
+      <p>Name: <%= dog.name %></p>
+      <p>Age: <%= dog.age %></p>
+      <%= link_to 'View', dog_path(dog) %>
+    </div>
+  <% end %>

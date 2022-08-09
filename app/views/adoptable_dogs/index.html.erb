@@ -2,6 +2,7 @@
   <div class='card'>
     <p>Name: <%= dog.name %></p>
     <p>Age: <%= dog.age %></p>
+    <p>Organization: <%= dog.organization.name %><br>
     <%= link_to 'View', adoptable_dog_path(dog) %>
   </div>
 <% end %>
