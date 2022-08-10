@@ -14,24 +14,4 @@
  *= require_self
  */
  @import "bootstrap";
- @import "swiper/swiper-bundle";
-
  
-.swiper-slide {
-  height: 250px;
-  display: flex;
-  align-items:center;
-  justify-content: center;
-}
-
-.pink {
-  background-color: lightpink;
-}
-
-.green {
-  background-color: lightgreen;
-}
-
-.blue {
-  background-color: lightblue;
-}
