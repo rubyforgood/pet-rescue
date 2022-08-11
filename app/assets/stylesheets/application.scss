@@ -13,5 +13,51 @@
  *= require_tree .
  *= require_self
  */
+
  @import "bootstrap";
- 
+
+.carousel-inner {
+  height: 550px;
+}
+
+.carousel-item, .carousel-item img {
+  height: 550px;
+  width:100%;
+}
+
+.carousel-item img {
+  object-fit: cover;
+}
+
+//  /* Medium devices (landscape tablets, 768px and up) */
+// @media only screen and (min-width: 768px) and (max-width: 991px) {
+// .carousel-inner {
+//   height: 400px;
+// }
+
+// .carousel-item, .carousel-item img {
+//   height: 400px;
+//   width:100%;
+// }
+
+// .carousel-item img {
+//   object-fit: cover;
+// }
+
+// } 
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 767px) {
+  .carousel-inner {
+  height: 300px;
+}
+
+.carousel-item, .carousel-item img {
+  height: 300px;
+  width:100%
+}
+
+.carousel-item img {
+  object-fit: cover;
+}
+}
