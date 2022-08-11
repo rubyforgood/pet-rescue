@@ -13,7 +13,7 @@
 <div class='form-group mb-3'>
   <%= form.label :age %><br>
   <%= form.number_field :age, class: 'form-control form-control-lg' %>
-  <% dog.errors.full_messages_for(:name).each do |message| %>
+  <% dog.errors.full_messages_for(:age).each do |message| %>
     <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
   <% end %>
 </div>
@@ -21,6 +21,9 @@
 <div class='form-group mb-3'>
   <%= form.label :images %>
   <%= form.file_field :images, multiple: true %>
+  <% dog.errors.full_messages_for(:images).each do |message| %>
+    <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+  <% end %>
 </div>
 
 <div class='form-group mt-3'>

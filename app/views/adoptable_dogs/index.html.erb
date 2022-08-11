@@ -1,11 +1,11 @@
 <% @dogs.each do |dog| %>
   <div class='card'>
+    <% if dog.images.attached? %>
+      <%= image_tag dog.images.first, width: '300px' %>
+    <% end%>
     <p>Name: <%= dog.name %></p>
     <p>Age: <%= dog.age %></p>
     <p>Organization: <%= dog.organization.name %><br>
-    <% if dog.images.attached? %>
-      <%= image_tag dog.images.first, width: '100px' %>
-    <% end%>
     <%= link_to 'View', adoptable_dog_path(dog) %>
   </div>
 <% end %>
