@@ -40,6 +40,9 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  # Allow image uploads to be appended rather than delete all existing on a new upload
+  config.active_storage.replace_on_assign_to_many = false
+
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"

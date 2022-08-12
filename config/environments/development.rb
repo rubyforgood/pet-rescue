@@ -59,6 +59,9 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # Allow image uploads to be appended rather than delete all existing on a new upload
+  config.active_storage.replace_on_assign_to_many = false
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

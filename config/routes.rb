@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   post 'create_adoption', to: 'adoptions#create'
 
+  delete 'attachments/:id/purge', to: 'attachments#purge', as: 'purge_attachment'
+
   resources :dogs, controller: 'organization_dogs'
   resources :adopter_applications, controller: 'adoption_application_reviews'
 

@@ -1,28 +1,44 @@
 <%= form_with model: dog do |form|%>
 
-<%= form.hidden_field :organization_id, value: current_user.staff_account.organization_id %>
-
-<div class='form-group mb-3'>
-  <%= form.label :name %><br>
-  <%= form.text_field :name, class: 'form-control form-control-lg' %>
-  <% dog.errors.full_messages_for(:name).each do |message| %>
-
-    <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+  <%= form.hidden_field :organization_id, value: current_user.staff_account.organization_id %>
+  
+  <div class='form-group mb-3'>
+    <%= form.label :name %><br>
+    <%= form.text_field :name, class: 'form-control form-control-lg' %>
+    <% dog.errors.full_messages_for(:name).each do |message| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
     <% end %>
-</div>
+  </div>
 
-<div class='form-group mb-3'>
-  <%= form.label :age %><br>
-  <%= form.number_field :age, class: 'form-control form-control-lg' %>
-  <% dog.errors.full_messages_for(:name).each do |message| %>
-
-    <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+  <div class='form-group mb-3'>
+    <%= form.label :age %><br>
+    <%= form.number_field :age, class: 'form-control form-control-lg' %>
+    <% dog.errors.full_messages_for(:age).each do |message| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
     <% end %>
-</div>
+  </div>
 
-<div class='form-group mt-3'>
-<%= form.submit 'Submit', class: 'btn btn-primary' %>
-<%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>
-</div>
+  <div class='form-group mb-3'>
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true %>
+    <% dog.errors.full_messages_for(:images).each do |message| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div class='form-group mb-3'>
+    <% if dog.images.attached? %>
+      <strong>Uploaded Images</strong><br>
+        <% dog.images.each do |image| %>
+          <%= image_tag image, width: '75' %>
+          <%= link_to 'Delete', purge_attachment_path(image), data: { turbo_method: "delete" } %>
+        <% end %>
+    <% end %>
+  </div>
+
+  <div class='form-group mt-3'>
+  <%= form.submit 'Submit', class: 'btn btn-primary' %>
+  <%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>
+  </div>
 
 <% end %>
