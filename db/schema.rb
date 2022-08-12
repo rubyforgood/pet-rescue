@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_221720) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_12_185732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,9 +63,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_221720) do
 
   create_table "adopter_profiles", force: :cascade do |t|
     t.bigint "adopter_account_id", null: false
-    t.string "city"
-    t.string "country"
-    t.string "experience"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
