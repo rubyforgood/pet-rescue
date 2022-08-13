@@ -1,6 +1,8 @@
 <%= form_with model: profile, :url => profile_path do |form| %>
   <%= form.hidden_field :adopter_account_id, value: current_user.adopter_account.id %> 
-  <div>
+  <div class='card mt-5'>
+    <h4 class='mt-3'>Administrative details</h4>
+
     <%= form.label :phone_number %>
     <%= form.telephone_field :phone_number %><br>
 
@@ -16,8 +18,58 @@
     <%= form.select :province_state, 
                     grouped_options_for_select(provinces_states), 
                     { prompt: "Please select" } %><br>
+
+    <%= form.label :city_town, 'City/Town' %>
+    <%= form.text_field :city_town %>
     
-  </div><br />
+  </div>
+
+  <div class='card mt-5'>
+    <h4 class='mt-3'>Lifestyle</h4>
+
+    <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %>
+    <%= form.text_area :ideal_dog, placeholder: 'E.g. size, energy level, temperament' %>
+
+    <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %>
+    <%= form.text_area :lifestyle_fit, placeholder: 'E.g. weekday routine, weekend routine' %>
+
+    <%= form.label :activities, 'Briefly describe activities you will do with your dog' %>
+    <%= form.text_area :activities, placeholder: 'E.g. daily walks, hiking, running, dog park etc.' %>
+
+    <div>
+      <p>Approximately how many hours will your dog be left alone on:</p>
+      <%= form.label :alone_weekday, 'Week days:' %>
+      <%= form.select(:alone_weekday, options_for_select(0..10)) %>
+
+      <%= form.label :alone_weekend, 'Weekends:' %>
+      <%= form.select(:alone_weekend, options_for_select(0..10)) %>
+    </div>
+
+  <div class='card mt-5'>
+    <h4 class='mt-3'>Dog Care</h4>
+
+    <%= form.label :experience, 'Briefly describe your experience with dog ownership' %>
+    <%= form.text_area :experience, placeholder: 'E.g. role in past dog ownership, if any.' %>
+
+    <%= form.label :contingency_plan, 'Who will care for your dog if you cannot?' %>
+    <%= form.text_area :contingency_plan, placeholder: 'E.g. during emergency or vacation.' %>
+
+    <div>
+      <p>Will dog ownership be shared with anyone outside the household?</p>
+
+      <%= form.label :shared_ownership, 'Yes', value: 'true' %>
+      <%= form.radio_button :shared_ownership, true %>
+      <%= form.label :shared_ownership, 'No', value: 'false' %>
+      <%= form.radio_button :shared_ownership, false %>
+    </div>
+
+    <div>
+      <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %><br>
+      <%= form.text_area :shared_owner, placeholder: 'E.g. role in past dog ownership, if any.' %>
+    </div>
+  </div>
+
+
 
   <div>
     <%= form.submit %>

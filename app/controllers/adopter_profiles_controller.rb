@@ -83,8 +83,6 @@ class AdopterProfilesController < ApplicationController
                                             :checked_shelter,
                                             :surrendered_pet,
                                             :describe_surrender,
-                                            :annual_cost
-                                           )
+                                            :annual_cost)
   end
-
 end
