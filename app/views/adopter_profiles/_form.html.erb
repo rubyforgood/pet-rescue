@@ -1,12 +1,21 @@
 <%= form_with model: profile, :url => profile_path do |form| %>
   <%= form.hidden_field :adopter_account_id, value: current_user.adopter_account.id %> 
   <div>
-    <%= form.label :city %><br>
-    <%= form.text_field :city %>
+    <%= form.label :phone_number %>
+    <%= form.telephone_field :phone_number %><br>
+
+    <%= form.label :contact_method, 'Preferred contact method:' %>
+    <%= form.select :contact_method, 
+                    ['Phone', 'Email', 'WhatsApp'], { prompt: "Please select" } %><br>
+
     <%= form.label :country %><br>
-    <%= form.text_field :country %>
-    <%= form.label :experience %><br>
-    <%= form.text_area :experience %>
+    <%= form.select :country, 
+                    ['Canada', 'USA'], { prompt: "Please select" } %><br>
+
+    <%= form.label :province_state, 'Province/State:' %>
+    <%= form.select :province_state, 
+                    grouped_options_for_select(provinces_states), 
+                    { prompt: "Please select" } %><br>
     
   </div><br />
 
