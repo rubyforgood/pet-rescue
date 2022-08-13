@@ -47,13 +47,44 @@ class AdopterProfilesController < ApplicationController
     current_user.adopter_account.adopter_profile
   end
 
-  def adopter_profile_params
-    params.require(:adopter_profile).permit(:adopter_account_id, :city, :country, :experience)
-  end
-
   def check_user_role
     return if current_user.adopter_account
 
     redirect_to root_path, notice: 'Only adopters can create a profile.'
   end
+
+  def adopter_profile_params
+    params.require(:adopter_profile).permit(:adopter_account_id, 
+                                            :phone_number,
+                                            :contact_method,
+                                            :country,
+                                            :province_state,
+                                            :city_town,
+                                            :ideal_dog,
+                                            :lifestyle_fit,
+                                            :activities,
+                                            :alone_weekday,
+                                            :alone_weekend,
+                                            :experience,
+                                            :contingency_plan,
+                                            :shared_ownership,
+                                            :shared_owner,
+                                            :housing_type,
+                                            :fenced_access,
+                                            :fenced_alternative,
+                                            :location_day,
+                                            :location_night,
+                                            :do_you_rent,
+                                            :dogs_allowed,
+                                            :adults_in_home,
+                                            :kids_in_home,
+                                            :other_pets,
+                                            :describe_pets,
+                                            :checked_shelter,
+                                            :surrendered_pet,
+                                            :describe_surrender,
+                                            :annual_cost
+                                           )
+  end
+
 end
