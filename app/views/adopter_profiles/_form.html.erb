@@ -10,7 +10,7 @@
     <%= form.select :contact_method, 
                     ['Phone', 'Email', 'WhatsApp'], { prompt: "Please select" } %><br>
 
-    <%= form.label :country %><br>
+    <%= form.label :country %>
     <%= form.select :country, 
                     ['Canada', 'USA'], { prompt: "Please select" } %><br>
 
@@ -27,8 +27,15 @@
   <div class='card mt-5'>
     <h4 class='mt-3'>Lifestyle</h4>
 
-    <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %>
-    <%= form.text_area :ideal_dog, placeholder: 'E.g. size, energy level, temperament' %>
+    <div data-controller='counter'>
+      <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %><br>
+      <%= form.text_area :ideal_dog,
+                         data: { action: "input->counter#count", 
+                                 counter_target: 'input' },
+                         placeholder: 'E.g. size, energy level, temperament' %>
+      
+        <div data-counter-target='output' class='small'></div>
+    </div>
 
     <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %>
     <%= form.text_area :lifestyle_fit, placeholder: 'E.g. weekday routine, weekend routine' %>
@@ -54,25 +61,26 @@
     <%= form.label :contingency_plan, 'Who will care for your dog if you cannot?' %>
     <%= form.text_area :contingency_plan, placeholder: 'E.g. during emergency or vacation.' %>
 
-    <div>
+    <div data-controller='display'>
       <p>Will dog ownership be regularly shared with anyone outside the household?</p>
 
       <%= form.label :shared_ownership, 'Yes', value: 'true' %>
-      <%= form.radio_button :shared_ownership, true %>
+      <%= form.radio_button :shared_ownership, true, data: { action: "input->display#show" } %>
       <%= form.label :shared_ownership, 'No', value: 'false' %>
-      <%= form.radio_button :shared_ownership, false %>
+      <%= form.radio_button :shared_ownership, false, data: { action: "input->display#hide" } %>
+
+      <div data-display-target='smell' class='d-none'>
+        <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %><br>
+        <%= form.text_area :shared_owner, placeholder: 'E.g. how often, their experience with dogs.' %>
+      </div>
     </div>
 
-    <div>
-      <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %><br>
-      <%= form.text_area :shared_owner, placeholder: 'E.g. how often, their experience with dogs.' %>
-    </div>
   </div>
 
-  <div class='card'>
+  <div class='card mt-5'>
     <h4 class='mt-3'>Household Information</h4>
 
-    <%= form.label :housing_type %><br>
+    <%= form.label :housing_type %>
     <%= form.select :housing_type, 
                     ['Acreage', 
                      'Detached',
@@ -125,22 +133,22 @@
     <%= form.label :kids_in_home, 'How many people under 18 years live in your home?' %>
     <%= form.select(:kids_in_home, options_for_select(0..10)) %>
  
-    <div>
+    <div data-controller='display'>
       <p>Are there any other pets in your home?</p>
       <%= form.label :other_pets, 'Yes', value: 'true' %>
-      <%= form.radio_button :other_pets, true %>
+      <%= form.radio_button :other_pets, true, data: { action: "input->display#show" } %>
       <%= form.label :other_pets, 'No', value: 'false' %>
-      <%= form.radio_button :other_pets, false %>
-    </div>
+      <%= form.radio_button :other_pets, false, data: { action: "input->display#hide" } %>
 
-    <div>    
-      <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %><br>
-      <%= form.text_area :describe_pets %>
+       <div data-display-target='smell' class='d-none'>    
+        <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %><br>
+        <%= form.text_area :describe_pets %>
+      </div>
     </div>
 
   </div>
 
-  <div class='card'>
+  <div class='card mt-5'>
     <h4 class='mt-3'>Last but not least</h4>
 
     <div>
@@ -151,18 +159,20 @@
       <%= form.radio_button :checked_shelter, false %>
     </div>
 
-    <div>
+    <div data-controller='display'>
       <p>Have you ever had to surrender or rehome an animal?</p>
       <%= form.label :surrendered_pet, 'Yes', value: 'true' %>
-      <%= form.radio_button :surrendered_pet, true %>
+      <%= form.radio_button :surrendered_pet, true, data: { action: "input->display#show" } %>
       <%= form.label :surrendered_pet, 'No', value: 'false' %>
-      <%= form.radio_button :surrendered_pet, false %>
+      <%= form.radio_button :surrendered_pet, false, data: { action: "input->display#hide" } %>
+
+      <div data-display-target='smell' class='d-none'>
+        <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %><br>
+        <%= form.text_area :describe_surrender %>
+      </div>
     </div>
 
-    <div>
-      <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %><br>
-      <%= form.text_area :describe_surrender %>
-    </div>
+    
 
     <%= form.label :annual_cost, 'How much do you think it will cost to own a dog each year?' %>
     <%= form.text_field :annual_cost, placeholder: 'E.g. $2200' %>
