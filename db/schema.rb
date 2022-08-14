@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_221720) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_12_190121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -63,11 +63,37 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_221720) do
 
   create_table "adopter_profiles", force: :cascade do |t|
     t.bigint "adopter_account_id", null: false
-    t.string "city"
-    t.string "country"
-    t.string "experience"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone_number"
+    t.string "contact_method"
+    t.string "country"
+    t.string "province_state"
+    t.string "city_town"
+    t.text "ideal_dog"
+    t.text "lifestyle_fit"
+    t.text "activities"
+    t.integer "alone_weekday"
+    t.integer "alone_weekend"
+    t.text "experience"
+    t.text "contingency_plan"
+    t.boolean "shared_ownership"
+    t.text "shared_owner"
+    t.string "housing_type"
+    t.boolean "fenced_access"
+    t.text "fenced_alternative"
+    t.text "location_day"
+    t.text "location_night"
+    t.boolean "do_you_rent"
+    t.boolean "dogs_allowed"
+    t.integer "adults_in_home"
+    t.integer "kids_in_home"
+    t.boolean "other_pets"
+    t.text "describe_pets"
+    t.boolean "checked_shelter"
+    t.boolean "surrendered_pet"
+    t.text "describe_surrender"
+    t.string "annual_cost"
     t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
   end
 
