@@ -75,23 +75,23 @@
     <%= form.label :housing_type %><br>
     <%= form.select :housing_type, 
                     ['Acreage', 
-                     'Detached in suburbs',
+                     'Detached',
                      'Duplex',
                      'Apartment', 
                      'Trailer'], 
                     { prompt: "Please select" } %><br>
 
-    <div>
+    <div data-controller='display'>
       <p>Will the dog have access to a fenced yard?</p>
       <%= form.label :fenced_access, 'Yes', value: 'true' %>
-      <%= form.radio_button :fenced_access, true %>
+      <%= form.radio_button :fenced_access, true, data: { action: "input->display#hide" } %>
       <%= form.label :fenced_access, 'No', value: 'false' %>
-      <%= form.radio_button :fenced_access, false %>
-    </div>
-  
-    <div>
-      <%= form.label :fenced_alternative, 'How do you plan to keep the dog on the property?' %><br>
-      <%= form.text_area :fenced_alternative, placeholder: 'E.g. mainly indoors, outdoors on tether.' %>
+      <%= form.radio_button :fenced_access, false, data: { action: "input->display#show" } %>
+    
+      <div data-display-target='smell' class='d-none'>
+        <%= form.label :fenced_alternative, 'How do you plan to keep the dog on the property?' %><br>
+        <%= form.text_area :fenced_alternative, placeholder: 'E.g. mainly indoors, outdoors on tether.' %>
+      </div>
     </div>
 
     <div>
@@ -102,20 +102,20 @@
       <%= form.text_field :location_night, placeholder: 'E.g. crate, kennel' %>
     </div>
 
-    <div>
+    <div data-controller='display'>
       <p>Do you rent your home or live in a strata complex?</p>
       <%= form.label :do_you_rent, 'Yes', value: 'true' %>
-      <%= form.radio_button :do_you_rent, true %>
+      <%= form.radio_button :do_you_rent, true, data: { action: "input->display#show" } %>
       <%= form.label :do_you_rent, 'No', value: 'false' %>
-      <%= form.radio_button :do_you_rent, false %>
-    </div>
+      <%= form.radio_button :do_you_rent, false, data: { action: "input->display#hide" } %>
 
-    <div>
-      <p>Have you confirmed pets are allowed?</p>
-      <%= form.label :dogs_allowed, 'Yes', value: 'true' %>
-      <%= form.radio_button :dogs_allowed, true %>
-      <%= form.label :dogs_allowed, 'No', value: 'false' %>
-      <%= form.radio_button :dogs_allowed, false %>
+      <div data-display-target='smell' class='d-none'>
+        <p>Have you confirmed pets are allowed?</p>
+        <%= form.label :dogs_allowed, 'Yes', value: 'true' %>
+        <%= form.radio_button :dogs_allowed, true %>
+        <%= form.label :dogs_allowed, 'No', value: 'false' %>
+        <%= form.radio_button :dogs_allowed, false %>
+      </div>
     </div>
 
 
