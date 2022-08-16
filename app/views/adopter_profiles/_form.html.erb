@@ -34,14 +34,28 @@
                                  counter_target: 'input' },
                          placeholder: 'E.g. size, energy level, temperament' %>
       
-        <div data-counter-target='output' class='small'></div>
+      <div data-counter-target='output' class='small'></div><br>
     </div>
 
-    <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %>
-    <%= form.text_area :lifestyle_fit, placeholder: 'E.g. weekday routine, weekend routine' %>
+    <div data-controller='counter'>
+      <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %><br>
+      <%= form.text_area :lifestyle_fit,
+                         data: { action: "input->counter#count", 
+                                 counter_target: 'input' },
+                         placeholder: 'E.g. weekday routine, weekend routine' %>
+      
+      <div data-counter-target='output' class='small'></div><br>
+    </div>
 
-    <%= form.label :activities, 'Briefly describe activities you will do with your dog' %>
-    <%= form.text_area :activities, placeholder: 'E.g. daily walks, hiking, running, dog park etc.' %>
+    <div data-controller='counter'>
+      <%= form.label :activities, 'Briefly describe activities you will do with your dog' %>
+      <%= form.text_area :activities,
+                         data: { action: "input->counter#count", 
+                                 counter_target: 'input' },
+                          placeholder: 'E.g. daily walks, hiking, running, dog park etc.' %>
+    
+      <div data-counter-target='output' class='small'></div><br>
+    </div>
 
     <div>
       <p>Approximately how many hours will your dog be left alone on a typical day:</p>
@@ -55,11 +69,25 @@
   <div class='card mt-5'>
     <h4 class='mt-3'>Dog Care</h4>
 
-    <%= form.label :experience, 'Briefly describe your experience with dog ownership' %>
-    <%= form.text_area :experience, placeholder: 'E.g. role in past dog ownership, if any.' %>
+    <div data-controller='counter'>
+      <%= form.label :experience, 'Briefly describe your experience with dog ownership' %>
+      <%= form.text_area :experience,
+                         data: { action: "input->counter#count", 
+                                 counter_target: 'input' },
+                         placeholder: 'E.g. role in past dog ownership, if any.' %>
 
-    <%= form.label :contingency_plan, 'Who will care for your dog if you cannot?' %>
-    <%= form.text_area :contingency_plan, placeholder: 'E.g. during emergency or vacation.' %>
+      <div data-counter-target='output' class='small'></div><br>
+    </div>
+
+    <div data-controller='counter'>
+      <%= form.label :contingency_plan, 'Who will care for your dog if you cannot?' %>
+      <%= form.text_area :contingency_plan,
+                         data: { action: "input->counter#count", 
+                                 counter_target: 'input' },
+                         placeholder: 'E.g. during emergency or vacation.' %>
+    
+      <div data-counter-target='output' class='small'></div><br>
+    </div>
 
     <div data-controller='display'>
       <p>Will dog ownership be regularly shared with anyone outside the household?</p>
@@ -69,9 +97,14 @@
       <%= form.label :shared_ownership, 'No', value: 'false' %>
       <%= form.radio_button :shared_ownership, false, data: { action: "input->display#hide" } %>
 
-      <div data-display-target='smell' class='d-none'>
+      <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %><br>
-        <%= form.text_area :shared_owner, placeholder: 'E.g. how often, their experience with dogs.' %>
+        <%= form.text_area :shared_owner, 
+                           data: { action: "input->counter#count", 
+                                   counter_target: 'input' },
+                           placeholder: 'E.g. how often, their experience with dogs.' %>
+        
+        <div data-counter-target='output' class='small'></div><br>
       </div>
     </div>
 
@@ -96,14 +129,19 @@
       <%= form.label :fenced_access, 'No', value: 'false' %>
       <%= form.radio_button :fenced_access, false, data: { action: "input->display#show" } %>
     
-      <div data-display-target='smell' class='d-none'>
+      <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :fenced_alternative, 'How do you plan to keep the dog on the property?' %><br>
-        <%= form.text_area :fenced_alternative, placeholder: 'E.g. mainly indoors, outdoors on tether.' %>
+        <%= form.text_area :fenced_alternative, 
+                           data: { action: "input->counter#count", 
+                                   counter_target: 'input' },
+                           placeholder: 'E.g. mainly indoors, outdoors on tether.' %>
+
+        <div data-counter-target='output' class='small'></div><br>
       </div>
     </div>
 
     <div>
-    <p>Where on the property will the dog stay at:</p>
+    <p>Where on the property will the dog stay:</p>
       <%= form.label :location_day, 'Day:' %>
       <%= form.text_field :location_day, placeholder: 'E.g. indoors, outdoors' %>
       <%= form.label :location_night, 'Night:' %>
@@ -117,7 +155,7 @@
       <%= form.label :do_you_rent, 'No', value: 'false' %>
       <%= form.radio_button :do_you_rent, false, data: { action: "input->display#hide" } %>
 
-      <div data-display-target='smell' class='d-none'>
+      <div data-display-target='additional' class='d-none'>
         <p>Have you confirmed pets are allowed?</p>
         <%= form.label :dogs_allowed, 'Yes', value: 'true' %>
         <%= form.radio_button :dogs_allowed, true %>
@@ -140,9 +178,12 @@
       <%= form.label :other_pets, 'No', value: 'false' %>
       <%= form.radio_button :other_pets, false, data: { action: "input->display#hide" } %>
 
-       <div data-display-target='smell' class='d-none'>    
+       <div data-display-target='additional' class='d-none' data-controller='counter'>    
         <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %><br>
-        <%= form.text_area :describe_pets %>
+        <%= form.text_area :describe_pets, data: { action: "input->counter#count", 
+                                                   counter_target: 'input' } %>
+
+        <div data-counter-target='output' class='small'></div><br>
       </div>
     </div>
 
@@ -166,9 +207,12 @@
       <%= form.label :surrendered_pet, 'No', value: 'false' %>
       <%= form.radio_button :surrendered_pet, false, data: { action: "input->display#hide" } %>
 
-      <div data-display-target='smell' class='d-none'>
+      <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %><br>
-        <%= form.text_area :describe_surrender %>
+        <%= form.text_area :describe_surrender, data: { action: "input->counter#count", 
+                                                        counter_target: 'input' } %>
+
+        <div data-counter-target='output' class='small'></div><br>
       </div>
     </div>
 

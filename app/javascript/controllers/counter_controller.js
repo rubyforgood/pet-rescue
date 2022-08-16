@@ -3,6 +3,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['input', 'output']
 
+  // connect() {
+  //   console.log(this.inputTarget.value.length)
+  // }
+
   count() {
     const max = 199;
     let output = this.outputTarget;
