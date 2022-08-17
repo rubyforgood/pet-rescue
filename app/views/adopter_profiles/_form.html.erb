@@ -4,23 +4,30 @@
     <h4 class='mt-3'>Administrative details</h4>
 
     <%= form.label :phone_number %>
-    <%= form.telephone_field :phone_number, placeholder: "1-123-456-7890" %><br>
+    <%= form.telephone_field :phone_number, 
+                             placeholder: "1-123-456-7890", 
+                             required:true %><br>
 
     <%= form.label :contact_method, 'Preferred contact method:' %>
     <%= form.select :contact_method, 
-                    ['Phone', 'Email', 'WhatsApp'], { prompt: "Please select" } %><br>
+                    ['Phone', 'Email', 'WhatsApp'], 
+                    { prompt: "Please select" }, 
+                    required:true %><br>
 
     <%= form.label :country %>
     <%= form.select :country, 
-                    ['Canada', 'USA'], { prompt: "Please select" } %><br>
+                    ['Canada', 'USA'], 
+                    { prompt: "Please select" }, 
+                    required:true %><br>
 
     <%= form.label :province_state, 'Province/State:' %>
     <%= form.select :province_state, 
                     grouped_options_for_select(provinces_states), 
-                    { prompt: "Please select" } %><br>
+                    { prompt: "Please select" }, 
+                    required:true %><br>
 
     <%= form.label :city_town, 'City/Town' %>
-    <%= form.text_field :city_town %>
+    <%= form.text_field :city_town, required:true %>
     
   </div>
 
@@ -32,6 +39,7 @@
       <%= form.text_area :ideal_dog,
                          data: { action: "input->counter#count", 
                                  counter_target: 'input' },
+                         required:true,
                          placeholder: 'E.g. size, energy level, temperament' %>
       
       <div data-counter-target='output' class='small'></div><br>
@@ -42,6 +50,7 @@
       <%= form.text_area :lifestyle_fit,
                          data: { action: "input->counter#count", 
                                  counter_target: 'input' },
+                         required:true,
                          placeholder: 'E.g. weekday routine, weekend routine' %>
       
       <div data-counter-target='output' class='small'></div><br>
@@ -52,7 +61,8 @@
       <%= form.text_area :activities,
                          data: { action: "input->counter#count", 
                                  counter_target: 'input' },
-                          placeholder: 'E.g. daily walks, hiking, running, dog park etc.' %>
+                         required:true,
+                         placeholder: 'E.g. daily walks, hiking, running, dog park etc.' %>
     
       <div data-counter-target='output' class='small'></div><br>
     </div>
@@ -60,10 +70,16 @@
     <div>
       <p>Approximately how many hours will your dog be left alone on a typical day:</p>
       <%= form.label :alone_weekday, 'Week day:' %>
-      <%= form.select(:alone_weekday, options_for_select(0..10)) %>
+      <%= form.select(:alone_weekday, 
+                      options_for_select(0..10), 
+                      required:true, 
+                      prompt: '') %>
 
       <%= form.label :alone_weekend, 'Weekend:' %>
-      <%= form.select(:alone_weekend, options_for_select(0..10)) %>
+      <%= form.select(:alone_weekend, 
+                      options_for_select(0..10), 
+                      required:true, 
+                      prompt: '') %>
     </div>
 
   <div class='card mt-5'>
@@ -74,6 +90,7 @@
       <%= form.text_area :experience,
                          data: { action: "input->counter#count", 
                                  counter_target: 'input' },
+                         required: true, 
                          placeholder: 'E.g. role in past dog ownership, if any.' %>
 
       <div data-counter-target='output' class='small'></div><br>
@@ -84,6 +101,7 @@
       <%= form.text_area :contingency_plan,
                          data: { action: "input->counter#count", 
                                  counter_target: 'input' },
+                         required: true,
                          placeholder: 'E.g. during emergency or vacation.' %>
     
       <div data-counter-target='output' class='small'></div><br>
@@ -93,9 +111,15 @@
       <p>Will dog ownership be regularly shared with anyone outside the household?</p>
 
       <%= form.label :shared_ownership, 'Yes', value: 'true' %>
-      <%= form.radio_button :shared_ownership, true, data: { action: "input->display#show" } %>
+      <%= form.radio_button :shared_ownership, 
+                            true, 
+                            required: true,
+                            data: { action: "input->display#show" } %>
       <%= form.label :shared_ownership, 'No', value: 'false' %>
-      <%= form.radio_button :shared_ownership, false, data: { action: "input->display#hide" } %>
+      <%= form.radio_button :shared_ownership, 
+                            false, 
+                            required: true,
+                            data: { action: "input->display#hide" } %>
 
       <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %><br>
@@ -114,20 +138,27 @@
     <h4 class='mt-3'>Household Information</h4>
 
     <%= form.label :housing_type %>
-    <%= form.select :housing_type, 
+    <%= form.select( :housing_type, 
                     ['Acreage', 
                      'Detached',
                      'Duplex',
                      'Apartment', 
-                     'Trailer'], 
-                    { prompt: "Please select" } %><br>
+                     'Trailer'],
+                     required: true, 
+                     prompt: 'Please select') %><br>
 
     <div data-controller='display'>
       <p>Will the dog have access to a fenced yard?</p>
       <%= form.label :fenced_access, 'Yes', value: 'true' %>
-      <%= form.radio_button :fenced_access, true, data: { action: "input->display#hide" } %>
+      <%= form.radio_button :fenced_access, 
+                            true, 
+                            required: true,
+                            data: { action: "input->display#hide" } %>
       <%= form.label :fenced_access, 'No', value: 'false' %>
-      <%= form.radio_button :fenced_access, false, data: { action: "input->display#show" } %>
+      <%= form.radio_button :fenced_access, 
+                            false, 
+                            required: true,
+                            data: { action: "input->display#show" } %>
     
       <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :fenced_alternative, 'How do you plan to keep the dog on the property?' %><br>
@@ -143,17 +174,27 @@
     <div>
     <p>Where on the property will the dog stay:</p>
       <%= form.label :location_day, 'Day:' %>
-      <%= form.text_field :location_day, placeholder: 'E.g. indoors, outdoors' %>
+      <%= form.text_field :location_day, 
+                          required: true,
+                          placeholder: 'E.g. indoors, outdoors' %>
       <%= form.label :location_night, 'Night:' %>
-      <%= form.text_field :location_night, placeholder: 'E.g. crate, kennel' %>
+      <%= form.text_field :location_night, 
+                          required: true,
+                          placeholder: 'E.g. crate, kennel' %>
     </div>
 
     <div data-controller='display'>
       <p>Do you rent your home or live in a strata complex?</p>
       <%= form.label :do_you_rent, 'Yes', value: 'true' %>
-      <%= form.radio_button :do_you_rent, true, data: { action: "input->display#show" } %>
+      <%= form.radio_button :do_you_rent, 
+                            true, 
+                            required: true,
+                            data: { action: "input->display#show" } %>
       <%= form.label :do_you_rent, 'No', value: 'false' %>
-      <%= form.radio_button :do_you_rent, false, data: { action: "input->display#hide" } %>
+      <%= form.radio_button :do_you_rent, 
+                            false, 
+                            required: true,
+                            data: { action: "input->display#hide" } %>
 
       <div data-display-target='additional' class='d-none'>
         <p>Have you confirmed pets are allowed?</p>
@@ -166,17 +207,29 @@
 
 
     <%= form.label :adults_in_home, 'How many people over 18 years live in your home?' %>
-    <%= form.select(:adults_in_home, options_for_select(0..10)) %>
+    <%= form.select(:adults_in_home, 
+                    options_for_select(1..10), 
+                    required: true,
+                    prompt: '') %>
 
     <%= form.label :kids_in_home, 'How many people under 18 years live in your home?' %>
-    <%= form.select(:kids_in_home, options_for_select(0..10)) %>
+    <%= form.select(:kids_in_home, 
+                    options_for_select(0..10), 
+                    required: true,
+                    prompt: '') %>
  
     <div data-controller='display'>
       <p>Are there any other pets in your home?</p>
       <%= form.label :other_pets, 'Yes', value: 'true' %>
-      <%= form.radio_button :other_pets, true, data: { action: "input->display#show" } %>
+      <%= form.radio_button :other_pets, 
+                            true, 
+                            required: true,
+                            data: { action: "input->display#show" } %>
       <%= form.label :other_pets, 'No', value: 'false' %>
-      <%= form.radio_button :other_pets, false, data: { action: "input->display#hide" } %>
+      <%= form.radio_button :other_pets, 
+                            false, 
+                            required: true,
+                            data: { action: "input->display#hide" } %>
 
        <div data-display-target='additional' class='d-none' data-controller='counter'>    
         <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %><br>
@@ -195,17 +248,23 @@
     <div>
       <p>Have you checked your local shelter for available dogs?</p>
       <%= form.label :checked_shelter, 'Yes', value: 'true' %>
-      <%= form.radio_button :checked_shelter, true %>
+      <%= form.radio_button :checked_shelter, true, required: true %>
       <%= form.label :checked_shelter, 'No', value: 'false' %>
-      <%= form.radio_button :checked_shelter, false %>
+      <%= form.radio_button :checked_shelter, false, required: true %>
     </div>
 
     <div data-controller='display'>
       <p>Have you ever had to surrender or rehome an animal?</p>
       <%= form.label :surrendered_pet, 'Yes', value: 'true' %>
-      <%= form.radio_button :surrendered_pet, true, data: { action: "input->display#show" } %>
+      <%= form.radio_button :surrendered_pet, 
+                            true, 
+                            required: true,
+                            data: { action: "input->display#show" } %>
       <%= form.label :surrendered_pet, 'No', value: 'false' %>
-      <%= form.radio_button :surrendered_pet, false, data: { action: "input->display#hide" } %>
+      <%= form.radio_button :surrendered_pet, 
+                            false, 
+                            required: true,
+                            data: { action: "input->display#hide" } %>
 
       <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %><br>
@@ -219,7 +278,9 @@
     
 
     <%= form.label :annual_cost, 'How much do you think it will cost to own a dog each year?' %>
-    <%= form.text_field :annual_cost, placeholder: 'E.g. $2200' %>
+    <%= form.text_field :annual_cost, 
+                        required: true,
+                        placeholder: 'E.g. $2200' %>
   </div>
 
   <div>
