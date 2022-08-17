@@ -1,5 +1,12 @@
 <%= form_with model: profile, :url => profile_path do |form| %>
   <%= form.hidden_field :adopter_account_id, value: current_user.adopter_account.id %> 
+  
+  <% if profile.errors.count > 0 %>
+    <div class="alert alert-danger mt-1" role="alert">
+      <p>Please fix <%= profile.errors.count %> <%= 'error'.pluralize %> highlighted below.</p>
+    </div>
+  <% end %>
+  
   <div class='card mt-5'>
     <h4 class='mt-3'>Administrative details</h4>
 
@@ -362,8 +369,6 @@
         <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
       <% end %>
     </div>
-
-    
 
     <%= form.label :annual_cost, 'How much do you think it will cost to own a dog each year?' %>
     <%= form.text_field :annual_cost, 
