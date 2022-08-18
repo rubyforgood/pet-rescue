@@ -15,6 +15,7 @@ class AdopterProfile < ApplicationRecord
   validates :contingency_plan, presence: true, length: { maximum: 200 }
   validates_inclusion_of :shared_ownership, in: [true, false], message: "can't be blank"
   validates :shared_owner, length: { maximum: 200 }
+  validates :shared_owner, presence: true, if: :shared_owner_true?
   validates :housing_type, presence: true
   validates_inclusion_of :fenced_access, in: [true, false], message: "can't be blank"
   validates :fenced_alternative, length: { maximum: 200 }
@@ -29,4 +30,10 @@ class AdopterProfile < ApplicationRecord
   validates_inclusion_of :surrendered_pet, in: [true, false], message: "can't be blank"
   validates :describe_surrender, length: { maximum: 200 }
   validates :annual_cost, presence: true
+
+  def shared_owner_true?
+    shared_ownership == true
+  end
+
+
 end

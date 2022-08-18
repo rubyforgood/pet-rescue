@@ -1,18 +1,19 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ['additional']
+  static targets = ['additional', 'checked']
 
-  // ensure 'additional' divs are displayed if they have received input
+  // ensure 'additional' divs are displayed if Yes radio is checked
   // i.e. when going back to edit the form
   connect() {    
-    let nodeList = this.additionalTarget.childNodes
+    let nodeList = this.checkedTarget.childNodes
 
     for (let i = 0; i < nodeList.length; i++) {
       let child = nodeList[i];
-      if (child.tagName == 'TEXTAREA' && child.value.length > 0) {
-        this.show()
-      } else if (child.tagName == 'INPUT' && child.checked == true) {
+      console.log(child)
+      if (child.type == 'radio' && 
+          child.value == 'true' && 
+          child.checked == true) {
         this.show()
       }
     }

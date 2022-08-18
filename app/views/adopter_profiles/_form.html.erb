@@ -155,14 +155,16 @@
     <div data-controller='display'>
       <p>Will dog ownership be regularly shared with anyone outside the household?</p>
 
-      <%= form.label :shared_ownership, 'Yes', value: 'true' %>
-      <%= form.radio_button :shared_ownership, 
-                            true, 
-                            data: { action: "input->display#show" } %>
-      <%= form.label :shared_ownership, 'No', value: 'false' %>
-      <%= form.radio_button :shared_ownership, 
-                            false, 
-                            data: { action: "input->display#hide" } %>
+      <div data-display-target='checked'>
+        <%= form.label :shared_ownership, 'Yes', value: 'true' %>
+        <%= form.radio_button :shared_ownership, 
+                              true, 
+                              data: { action: "input->display#show" } %>
+        <%= form.label :shared_ownership, 'No', value: 'false' %>
+        <%= form.radio_button :shared_ownership, 
+                              false, 
+                              data: { action: "input->display#hide" } %>
+      </div>
 
       <% profile.errors.full_messages_for(:shared_ownership).each do |message| %>
         <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -252,14 +254,17 @@
 
     <div data-controller='display'>
       <p>Do you rent your home or live in a strata complex?</p>
-      <%= form.label :do_you_rent, 'Yes', value: 'true' %>
-      <%= form.radio_button :do_you_rent, 
-                            true, 
-                            data: { action: "input->display#show" } %>
-      <%= form.label :do_you_rent, 'No', value: 'false' %>
-      <%= form.radio_button :do_you_rent, 
-                            false, 
-                            data: { action: "input->display#hide" } %>
+
+      <div data-display-target='checked'>
+        <%= form.label :do_you_rent, 'Yes', value: 'true' %>
+        <%= form.radio_button :do_you_rent, 
+                              true, 
+                              data: { action: "input->display#show" } %>
+        <%= form.label :do_you_rent, 'No', value: 'false' %>
+        <%= form.radio_button :do_you_rent, 
+                              false, 
+                              data: { action: "input->display#hide" } %>
+      </div>
 
       <% profile.errors.full_messages_for(:do_you_rent).each do |message| %>
         <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -299,14 +304,17 @@
  
     <div data-controller='display'>
       <p>Are there any other pets in your home?</p>
-      <%= form.label :other_pets, 'Yes', value: 'true' %>
-      <%= form.radio_button :other_pets, 
-                            true, 
-                            data: { action: "input->display#show" } %>
-      <%= form.label :other_pets, 'No', value: 'false' %>
-      <%= form.radio_button :other_pets, 
-                            false, 
-                            data: { action: "input->display#hide" } %>
+
+      <div data-display-target='checked'>
+        <%= form.label :other_pets, 'Yes', value: 'true' %>
+        <%= form.radio_button :other_pets, 
+                              true, 
+                              data: { action: "input->display#show" } %>
+        <%= form.label :other_pets, 'No', value: 'false' %>
+        <%= form.radio_button :other_pets, 
+                              false, 
+                              data: { action: "input->display#hide" } %>
+      </div>
 
       <% profile.errors.full_messages_for(:other_pets).each do |message| %>
         <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -344,14 +352,17 @@
 
     <div data-controller='display'>
       <p>Have you ever had to surrender or rehome an animal?</p>
-      <%= form.label :surrendered_pet, 'Yes', value: 'true' %>
-      <%= form.radio_button :surrendered_pet, 
-                            true,
-                            data: { action: "input->display#show" } %>
-      <%= form.label :surrendered_pet, 'No', value: 'false' %>
-      <%= form.radio_button :surrendered_pet, 
-                            false,
-                            data: { action: "input->display#hide" } %>
+
+      <div data-display-target='checked'>
+        <%= form.label :surrendered_pet, 'Yes', value: 'true' %>
+        <%= form.radio_button :surrendered_pet, 
+                              true,
+                              data: { action: "input->display#show" } %>
+        <%= form.label :surrendered_pet, 'No', value: 'false' %>
+        <%= form.radio_button :surrendered_pet, 
+                              false,
+                              data: { action: "input->display#hide" } %>
+      </div>
       
       <% profile.errors.full_messages_for(:surrendered_pet).each do |message| %>
         <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
