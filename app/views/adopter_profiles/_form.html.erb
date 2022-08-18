@@ -12,7 +12,7 @@
 
     <%= form.label :phone_number %>
     <%= form.telephone_field :phone_number, 
-                             placeholder: "1-123-456-7890"%><br>
+                             placeholder: "10 digit number"%><br>
 
     <% profile.errors.full_messages_for(:phone_number).each do |message| %>
       <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -49,8 +49,8 @@
     <%= form.label :city_town, 'City/Town' %>
     <%= form.text_field :city_town %>
 
-    <% profile.errors.full_messages_for(:city_town).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:city_town).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
     
   </div>
@@ -68,8 +68,8 @@
       <div data-counter-target='output' class='small'></div><br>
     </div>
 
-    <% profile.errors.full_messages_for(:ideal_dog).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:ideal_dog).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
 
     <div data-controller='counter'>
@@ -82,8 +82,8 @@
       <div data-counter-target='output' class='small'></div><br>
     </div>
 
-    <% profile.errors.full_messages_for(:lifestyle_fit).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:lifestyle_fit).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
 
     <div data-controller='counter'>
@@ -96,8 +96,8 @@
       <div data-counter-target='output' class='small'></div><br>
     </div>
 
-    <% profile.errors.full_messages_for(:activities).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:activities).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
 
     <div>
@@ -107,8 +107,8 @@
                       options_for_select(0..10),
                       prompt: '') %>
 
-      <% profile.errors.full_messages_for(:alone_weekday).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:alone_weekday).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
 
       <%= form.label :alone_weekend, 'Weekend:' %>
@@ -116,8 +116,8 @@
                       options_for_select(0..10),
                       prompt: '') %>
 
-      <% profile.errors.full_messages_for(:alone_weekend).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:alone_weekend).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
     </div>
 
@@ -134,8 +134,8 @@
       <div data-counter-target='output' class='small'></div><br>
     </div>
 
-    <% profile.errors.full_messages_for(:experience).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:experience).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
 
     <div data-controller='counter'>
@@ -148,8 +148,8 @@
       <div data-counter-target='output' class='small'></div><br>
     </div>
 
-    <% profile.errors.full_messages_for(:contingency_plan).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:contingency_plan).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
 
     <div data-controller='display'>
@@ -166,8 +166,8 @@
                               data: { action: "input->display#hide" } %>
       </div>
 
-      <% profile.errors.full_messages_for(:shared_ownership).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:shared_ownership).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
 
       <div data-display-target='additional' class='d-none' data-controller='counter'>
@@ -180,8 +180,8 @@
         <div data-counter-target='output' class='small'></div><br>
       </div>
 
-      <% profile.errors.full_messages_for(:shared_owner).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:shared_owner).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
 
     </div>
@@ -218,8 +218,8 @@
                               data: { action: "input->display#show" } %>
       </div>
 
-      <% profile.errors.full_messages_for(:fenced_access).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:fenced_access).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
     
       <div data-display-target='additional' class='d-none' data-controller='counter'>
@@ -232,8 +232,8 @@
         <div data-counter-target='output' class='small'></div><br>
       </div>
 
-      <% profile.errors.full_messages_for(:fenced_alternative).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:fenced_alternative).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
     </div>
 
@@ -247,12 +247,12 @@
                           placeholder: 'E.g. crate, kennel' %>
     </div>
 
-    <% profile.errors.full_messages_for(:location_day).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:location_day).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
 
-    <% profile.errors.full_messages_for(:location_night).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:location_night).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
 
     <div data-controller='display'>
@@ -269,8 +269,8 @@
                               data: { action: "input->display#hide" } %>
       </div>
 
-      <% profile.errors.full_messages_for(:do_you_rent).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:do_you_rent).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
 
       <div data-display-target='additional' class='d-none'>
@@ -281,8 +281,8 @@
         <%= form.radio_button :dogs_allowed, false %>
       </div>
 
-      <% profile.errors.full_messages_for(:dogs_allowed).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:dogs_allowed).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
     </div>
 
@@ -319,8 +319,8 @@
                               data: { action: "input->display#hide" } %>
       </div>
 
-      <% profile.errors.full_messages_for(:other_pets).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:other_pets).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
 
        <div data-display-target='additional' class='d-none' data-controller='counter'>    
@@ -331,8 +331,8 @@
         <div data-counter-target='output' class='small'></div><br>
       </div>
 
-      <% profile.errors.full_messages_for(:describe_pets).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:describe_pets).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
     </div>
 
@@ -349,8 +349,8 @@
       <%= form.radio_button :checked_shelter, false %>
     </div>
 
-    <% profile.errors.full_messages_for(:checked_shelter).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:checked_shelter).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
 
     <div data-controller='display'>
@@ -367,8 +367,8 @@
                               data: { action: "input->display#hide" } %>
       </div>
       
-      <% profile.errors.full_messages_for(:surrendered_pet).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:surrendered_pet).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
 
       <div data-display-target='additional' class='d-none' data-controller='counter'>
@@ -379,8 +379,8 @@
         <div data-counter-target='output' class='small'></div><br>
       </div>
 
-      <% profile.errors.full_messages_for(:describe_surrender).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% profile.custom_messages(:describe_surrender).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
     </div>
 
@@ -388,8 +388,8 @@
     <%= form.text_field :annual_cost, 
                         placeholder: 'E.g. $2200' %>
 
-    <% profile.errors.full_messages_for(:annual_cost).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.errors.full_messages_for(:annual_cost).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
   </div>
 
