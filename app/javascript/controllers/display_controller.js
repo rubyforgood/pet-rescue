@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ['additional', 'checked']
 
-  // ensure 'additional' divs are displayed if Yes radio is checked
+  // ensure 'additional' divs are displayed on form load if certain radio is checked
   // i.e. when going back to edit the form
   connect() {    
     let nodeList = this.checkedTarget.childNodes
@@ -11,10 +11,14 @@ export default class extends Controller {
     for (let i = 0; i < nodeList.length; i++) {
       let child = nodeList[i];
       console.log(child)
-      if (child.type == 'radio' && 
-          child.value == 'true' && 
+      if (child.id == 'adopter_profile_fenced_access_false' &&
           child.checked == true) {
-        this.show()
+          this.show()
+      } else if (child.type == 'radio' &&
+                 child.id != 'adopter_profile_fenced_access_true' &&
+                 child.value == 'true' && 
+                 child.checked == true) {
+                 this.show()
       }
     }
   }

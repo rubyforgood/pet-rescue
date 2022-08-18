@@ -3,7 +3,7 @@
   
   <% if profile.errors.count > 0 %>
     <div class="alert alert-danger mt-1" role="alert">
-      <p>Please fix <%= profile.errors.count %> <%= 'error'.pluralize %> highlighted below.</p>
+      <p>Please fix <%= profile.errors.count %> <%= 'error'.pluralize(profile.errors.count) %> highlighted below.</p>
     </div>
   <% end %>
   
@@ -206,14 +206,17 @@
 
     <div data-controller='display'>
       <p>Will the dog have access to a fenced yard?</p>
-      <%= form.label :fenced_access, 'Yes', value: 'true' %>
-      <%= form.radio_button :fenced_access, 
-                            true, 
-                            data: { action: "input->display#hide" } %>
-      <%= form.label :fenced_access, 'No', value: 'false' %>
-      <%= form.radio_button :fenced_access, 
-                            false, 
-                            data: { action: "input->display#show" } %>
+
+      <div data-display-target='checked'>
+        <%= form.label :fenced_access, 'Yes', value: 'true' %>
+        <%= form.radio_button :fenced_access, 
+                              true, 
+                              data: { action: "input->display#hide" } %>
+        <%= form.label :fenced_access, 'No', value: 'false' %>
+        <%= form.radio_button :fenced_access, 
+                              false, 
+                              data: { action: "input->display#show" } %>
+      </div>
 
       <% profile.errors.full_messages_for(:fenced_access).each do |message| %>
         <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
