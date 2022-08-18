@@ -42,8 +42,8 @@
                     grouped_options_for_select(provinces_states), 
                     { prompt: "Please select" } %><br>
 
-    <% profile.errors.full_messages_for(:province_state).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% profile.custom_messages(:province_state).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
 
     <%= form.label :city_town, 'City/Town' %>
@@ -388,7 +388,7 @@
     <%= form.text_field :annual_cost, 
                         placeholder: 'E.g. $2200' %>
 
-    <% profile.errors.full_messages_for(:annual_cost).each do |error| %>
+    <% profile.custom_messages(:annual_cost).each do |error| %>
       <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
     <% end %>
   </div>

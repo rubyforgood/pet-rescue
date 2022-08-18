@@ -5,30 +5,30 @@ class AdopterProfile < ApplicationRecord
   validates :phone_number, phone: { possible: true }
   validates :contact_method, presence: true
   validates :country, presence: true
-  validates :province_state, presence: true
-  validates :city_town, presence: { message: 'City/town cannot be blank' },
+  validates :province_state, presence: { message: 'Please select a province or state' }
+  validates :city_town, presence: { message: 'Please enter your city or town' },
                         length: { maximum: 50, message: '50 characters maximum' }
-  validates :ideal_dog, presence: { message: 'Fill this field' },
+  validates :ideal_dog, presence: { message: 'Please tell us about your ideal dog' },
                         length: { maximum: 200, message: '200 characters maximum' }
-  validates :lifestyle_fit, presence: { message: 'Fill this field' },
+  validates :lifestyle_fit, presence: { message: 'Please tell us about your lifestyle' },
                             length: { maximum: 200, message: '200 characters maximum' }
-  validates :activities, presence: { message: 'Fill this field' },
+  validates :activities, presence: { message: 'Please tell us about the activities' },
                          length: { maximum: 200, message: '200 characters maximum' }
   validates :alone_weekday, presence: { message: 'This field cannot be blank' }
   validates :alone_weekend, presence: { message: 'This field cannot be blank' }
-  validates :experience, presence: { message: 'Fill this field' },
+  validates :experience, presence: { message: 'Please tell us about your dog experience' },
                          length: { maximum: 200, message: '200 characters maximum' }
-  validates :contingency_plan, presence: { message: 'Fill this field' },
+  validates :contingency_plan, presence: { message: 'Please tell us about your contingencies' },
                                length: { maximum: 200, message: '200 characters maximum' }
   validates_inclusion_of :shared_ownership, in: [true, false],
                                             message: 'Select one'
-  validates :shared_owner, presence: { message: 'Fill this field' },
+  validates :shared_owner, presence: { message: 'Please tell us about the alternate person' },
                            length: { maximum: 200, message: '200 characters maximum' },
                            if: :shared_owner_true?
   validates :housing_type, presence: true
   validates_inclusion_of :fenced_access, in: [true, false],
                                          message: 'Select one'
-  validates :fenced_alternative, presence: { message: 'Fill this field' },
+  validates :fenced_alternative, presence: { message: 'Please fill this field' },
                                  length: { maximum: 200, message: '200 characters maximum' },
                                  if: :fenced_access_false?
   validates :location_day, presence: true, length: { maximum: 50 }
@@ -41,14 +41,14 @@ class AdopterProfile < ApplicationRecord
   validates :kids_in_home, presence: true
   validates_inclusion_of :other_pets, in: [true, false],
                                       message: 'Select one'
-  validates :describe_pets, presence: { message: 'Fill this field' },
+  validates :describe_pets, presence: { message: 'Please tell us about your other pets' },
                             length: { maximum: 200, message: '200 characters maximum' },
                             if: :other_pets?
   validates_inclusion_of :checked_shelter, in: [true, false],
                                            message: 'Select one'
   validates_inclusion_of :surrendered_pet, in: [true, false],
                                            message: 'Select one'
-  validates :describe_surrender, presence: { message: 'Fill this field' },
+  validates :describe_surrender, presence: { message: 'Please fill this field' },
                                  length: { maximum: 200, message: '200 characters maximum' },
                                  if: :surrendered_pet?
   validates :annual_cost, presence: { message: 'Please provide an annual cost estimate' }
