@@ -2,13 +2,11 @@
   <%= render 'applications' %>
 <% end %>
 
-<%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-outline-dark mb-3' %>
-
-
 <div class="container">
   <div class="row justify-content-center">
       <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-          <h2 class="h3 mb-4 page-title"><%= current_user.first_name %>'s Profile</h2>
+          <h2 class="h3 mt-3 page-title"><%= current_user.first_name %>'s Profile</h2>
+          <%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-outline-dark' %>
           <div class="my-4">
               <div class="list-group mb-5 shadow">
                   <div class="list-group-item col">
@@ -26,6 +24,14 @@
                             <strong>Country</strong>
                             <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.country %></p>
                         </div>
+                        <div class="mt-2">
+                            <strong>Province/State</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.province_state %></p>
+                        </div>
+                        <div class="mt-2">
+                            <strong>City/Town</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.city_town %></p>
+                        </div>
                       </div>
                   </div>
 
@@ -33,17 +39,58 @@
                       <div class="row align-items-center">
                         <h5 class="mb-0">Lifestyle</h5>
                         <div class="mt-2">
-                            <strong>Phone Number</strong>
-                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.formatted_phone %></p>
+                            <strong>Ideal dog</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.ideal_dog %></p>
                         </div>
                         <div class="mt-2">
-                            <strong>Contact Method</strong>
-                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.contact_method %></p>
+                            <strong>Lifestyle</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.lifestyle_fit %></p>
                         </div>
                         <div class="mt-2">
-                            <strong>Country</strong>
-                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.country %></p>
+                            <strong>Activities</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.activities %></p>
                         </div>
+                        <div class="mt-2">
+                            <strong>Hours alone on weekends</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.alone_weekend %></p>
+                        </div>
+                        <div class="mt-2">
+                            <strong>Hours alone on week days</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.alone_weekday %></p>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="list-group-item col">
+                      <div class="row align-items-center">
+                        <h5 class="mb-0">Dog Care</h5>
+                        <div class="mt-2">
+                            <strong>Dog Experience</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.experience %></p>
+                        </div>
+                        <div class="mt-2">
+                            <strong>Contingency if you cannot care for the dog</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.contingency_plan %></p>
+                        </div>
+                        <div class="mt-2">
+                            <strong>Activities</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.activities %></p>
+                        </div>
+                        <div class="mt-2">
+                            <strong>Dog ownership be shared with someone outside of household:</strong>
+                            <% if current_user.adopter_account.adopter_profile.shared_ownership == true %>
+                              <p class="text-muted mb-0">Yes</p>
+                            <% else %>
+                              <p class="text-muted mb-0">No</p>
+                            <% end %>
+                        </div>
+
+                        <% unless current_user.adopter_account.adopter_profile.shared_ownership == false %>
+                          <div class="mt-2">
+                              <strong>Details on shared ownership</strong>
+                              <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.shared_owner %></p>
+                          </div>
+                        <% end %>
                       </div>
                   </div>
 
