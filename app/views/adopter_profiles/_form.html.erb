@@ -125,7 +125,7 @@
     <h4 class='mt-3'>Dog Care</h4>
 
     <div data-controller='counter'>
-      <%= form.label :experience, 'Briefly describe your experience with dog ownership' %>
+      <%= form.label :experience, 'Briefly describe your dog care experience' %>
       <%= form.text_area :experience,
                          data: { action: "input->counter#count", 
                                  counter_target: 'input' },
@@ -139,7 +139,7 @@
     <% end %>
 
     <div data-controller='counter'>
-      <%= form.label :contingency_plan, 'Who will care for your dog if you cannot?' %>
+      <%= form.label :contingency_plan, 'Who will care for your dog during emergencies or vacations?' %>
       <%= form.text_area :contingency_plan,
                          data: { action: "input->counter#count", 
                                  counter_target: 'input' },
@@ -223,7 +223,7 @@
       <% end %>
     
       <div data-display-target='additional' class='d-none' data-controller='counter'>
-        <%= form.label :fenced_alternative, 'How do you plan to keep the dog on the property?' %><br>
+        <%= form.label :fenced_alternative, 'How do you plan to care for the dog without a fenced garden?' %><br>
         <%= form.text_area :fenced_alternative, 
                            data: { action: "input->counter#count", 
                                    counter_target: 'input' },
@@ -339,7 +339,7 @@
   </div>
 
   <div class='card mt-5'>
-    <h4 class='mt-3'>Last but not least</h4>
+    <h4 class='mt-3'>Additional Information</h4>
 
     <div>
       <p>Have you checked your local shelter for available dogs?</p>
