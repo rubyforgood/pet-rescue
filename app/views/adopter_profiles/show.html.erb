@@ -1,9 +1,57 @@
-<h2><%= current_user.first_name %>'s Profile</h2>
-
 <% if current_user.adopter_account.adopter_applications.exists? %>
   <%= render 'applications' %>
 <% end %>
 
 <%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-outline-dark mb-3' %>
+
+
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+          <h2 class="h3 mb-4 page-title"><%= current_user.first_name %>'s Profile</h2>
+          <div class="my-4">
+              <div class="list-group mb-5 shadow">
+                  <div class="list-group-item col">
+                      <div class="row align-items-center">
+                        <h5 class="mb-0">Administrative Details</h5>
+                        <div class="mt-2">
+                            <strong>Phone Number</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.formatted_phone %></p>
+                        </div>
+                        <div class="mt-2">
+                            <strong>Contact Method</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.contact_method %></p>
+                        </div>
+                        <div class="mt-2">
+                            <strong>Country</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.country %></p>
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="list-group-item col">
+                      <div class="row align-items-center">
+                        <h5 class="mb-0">Lifestyle</h5>
+                        <div class="mt-2">
+                            <strong>Phone Number</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.formatted_phone %></p>
+                        </div>
+                        <div class="mt-2">
+                            <strong>Contact Method</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.contact_method %></p>
+                        </div>
+                        <div class="mt-2">
+                            <strong>Country</strong>
+                            <p class="text-muted mb-0"><%= current_user.adopter_account.adopter_profile.country %></p>
+                        </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
 
 
