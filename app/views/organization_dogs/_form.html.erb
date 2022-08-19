@@ -80,7 +80,7 @@
 
         <div class='form-group mb-3'>
           <% if dog.images.attached? %>
-            <strong>Uploaded Images</strong><br>
+            <h5>Uploaded Images</h5>
               <% dog.images.each do |image| %>
                 <%= image_tag image, width: '75' %>
                 <%= link_to 'Delete', purge_attachment_path(image), data: { turbo_method: "delete" } %>
