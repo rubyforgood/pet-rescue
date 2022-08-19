@@ -33,7 +33,7 @@ adopter_user_one.save
 adopter_account_one = AdopterAccount.new(user_id: 2)
 adopter_account_one.save
 
-adopter_user_two = User.new(email: 'b@c.com',
+adopter_user_two = User.new(email: 'c@c.com',
                             first_name: 'Kamala',
                             last_name: 'Lollol',
                             password: '123456',
@@ -111,11 +111,13 @@ profile_two = AdopterProfile.new(adopter_account_id: 2,
                                  shared_owner: 'My brother is often taking my dogs when his kids are over
                                               for the weekend as they just love the dogs',
                                  housing_type: 'Detached',
-                                 fenced_access: true,
+                                 fenced_access: false,
+                                 fenced_alternative: 'I plan to always be outside with my dog and walk them at the local park',
                                  location_day: 'In the house',
                                  location_night: 'In the house',
-                                 do_you_rent: false,
-                                 adults_in_home: 2, 
+                                 do_you_rent: true,
+                                 dogs_allowed: true,
+                                 adults_in_home: 2,
                                  kids_in_home: 1,
                                  other_pets: true,
                                  describe_pets: 'I have one cat that does not mind dogs at all',
