@@ -62,7 +62,13 @@
 
         <div class='form-group mb-3'>
           <h5 class=''><%= form.label :description%></h5>
-          <%= form.text_area :description, class: 'form-control form-control-lg' %>
+          <div data-controller='counter'>
+            <%= form.text_area :description, 
+                               data: { action: "input->counter#countLarge", 
+                               counter_target: 'input' },
+                               class: 'form-control form-control-lg' %>
+            <div data-counter-target='output' class='small'></div>
+          </div>
           
           <% dog.errors.full_messages_for(:description).each do |message| %>
             <div class="alert alert-danger mt-1" role="alert"><%= message %></div>

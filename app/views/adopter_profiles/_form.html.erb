@@ -61,7 +61,7 @@
     <div data-controller='counter'>
       <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %><br>
       <%= form.text_area :ideal_dog,
-                         data: { action: "input->counter#count", 
+                         data: { action: "input->counter#countMedium", 
                                  counter_target: 'input' },
                          placeholder: 'E.g. size, energy level, temperament' %>
       
@@ -75,7 +75,7 @@
     <div data-controller='counter'>
       <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %><br>
       <%= form.text_area :lifestyle_fit,
-                         data: { action: "input->counter#count", 
+                         data: { action: "input->counter#countMedium", 
                                  counter_target: 'input' },
                          placeholder: 'E.g. weekday routine, weekend routine' %>
       
@@ -89,7 +89,7 @@
     <div data-controller='counter'>
       <%= form.label :activities, 'Briefly describe activities you will do with your dog' %>
       <%= form.text_area :activities,
-                         data: { action: "input->counter#count", 
+                         data: { action: "input->counter#countMedium", 
                                  counter_target: 'input' },
                          placeholder: 'E.g. daily walks, hiking, running, dog park etc.' %>
     
@@ -127,7 +127,7 @@
     <div data-controller='counter'>
       <%= form.label :experience, 'Briefly describe your dog care experience' %>
       <%= form.text_area :experience,
-                         data: { action: "input->counter#count", 
+                         data: { action: "input->counter#countMedium", 
                                  counter_target: 'input' },
                          placeholder: 'E.g. role in past dog ownership, if any.' %>
 
@@ -141,7 +141,7 @@
     <div data-controller='counter'>
       <%= form.label :contingency_plan, 'Who will care for your dog during emergencies or vacations?' %>
       <%= form.text_area :contingency_plan,
-                         data: { action: "input->counter#count", 
+                         data: { action: "input->counter#countMedium", 
                                  counter_target: 'input' },
                          placeholder: 'E.g. during emergency or vacation.' %>
     
@@ -173,7 +173,7 @@
       <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %><br>
         <%= form.text_area :shared_owner, 
-                           data: { action: "input->counter#count", 
+                           data: { action: "input->counter#countMedium", 
                                    counter_target: 'input' },
                            placeholder: 'E.g. how often, their experience with dogs.' %>
         
@@ -225,7 +225,7 @@
       <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :fenced_alternative, 'How do you plan to care for the dog without a fenced garden?' %><br>
         <%= form.text_area :fenced_alternative, 
-                           data: { action: "input->counter#count", 
+                           data: { action: "input->counter#countMedium", 
                                    counter_target: 'input' },
                            placeholder: 'E.g. mainly indoors, outdoors on tether.' %>
 
@@ -325,7 +325,7 @@
 
        <div data-display-target='additional' class='d-none' data-controller='counter'>    
         <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %><br>
-        <%= form.text_area :describe_pets, data: { action: "input->counter#count", 
+        <%= form.text_area :describe_pets, data: { action: "input->counter#countMedium", 
                                                    counter_target: 'input' } %>
 
         <div data-counter-target='output' class='small'></div><br>
@@ -373,7 +373,7 @@
 
       <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %><br>
-        <%= form.text_area :describe_surrender, data: { action: "input->counter#count", 
+        <%= form.text_area :describe_surrender, data: { action: "input->counter#countMedium", 
                                                         counter_target: 'input' } %>
 
         <div data-counter-target='output' class='small'></div><br>
