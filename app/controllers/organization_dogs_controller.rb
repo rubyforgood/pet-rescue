@@ -65,7 +65,7 @@ class OrganizationDogsController < ApplicationController
                                 :breed,
                                 :size,
                                 :description,
-                                images: [])
+                                append_images: [])
   end
 
   # check before all actions that user is: signed in, staff, verified

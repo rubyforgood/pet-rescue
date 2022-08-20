@@ -14,4 +14,9 @@ class Dog < ApplicationRecord
                      limit: { max: 5, message: 'between one and five allowed' },
                      size: { between: 100.kilobyte..2.megabytes,
                              message: 'file size must be between 100kb and 2Mb' }
+
+  # using.attach per the recommendation in rails server output for appending images
+  def append_images=(attachables)
+    images.attach(attachables)
+  end
 end
