@@ -11,7 +11,12 @@ class Dog < ApplicationRecord
   validates :sex, presence: true
   validates :description, presence: true, length: { maximum: 500 }
   validates :images, content_type: { in: ['image/png', 'image/jpeg'], message: 'must be PNG or JPEG' },
-                     limit: { max: 5, message: 'between one and five allowed' },
+                     limit: { max: 5, message: '- 5 maximum' },
                      size: { between: 100.kilobyte..2.megabytes,
                              message: 'file size must be between 100kb and 2Mb' }
+
+  # using.attach per the recommendation in rails server output for appending images
+  def append_images=(attachables)
+    images.attach(attachables)
+  end
 end

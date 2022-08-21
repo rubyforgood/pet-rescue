@@ -76,21 +76,30 @@
         </div>
 
         <div class='form-group mb-3'>
-          <h5 class=''><%= form.label :images %></h5>
-          <%= form.file_field :images, multiple: true, class: "custom-attachments" %>
+          <h5 class=''><%= form.label :append_images %></h5>
+          <%= form.file_field :append_images, multiple: true, class: "custom-attachments" %>
           
           <% dog.errors.full_messages_for(:images).each do |message| %>
             <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
           <% end %>
         </div>
 
-        <div class='form-group mb-3'>
+        <div class='mb-3'>
           <% if dog.images.attached? %>
             <h5>Uploaded Images</h5>
+            <div class='row row-cols-1 row-cols-md-5 g-6'>
               <% dog.images.each do |image| %>
-                <%= image_tag image, width: '75' %>
-                <%= link_to 'Delete', purge_attachment_path(image), data: { turbo_method: "delete" } %>
+                <% if image.created_at %>
+                  <div class='card'>
+                    <%= image_tag image, width: '75' %>
+                    <%= link_to 'Delete', 
+                                purge_attachment_path(image), 
+                                data: { turbo_method: "delete" },
+                                class: 'small' %>
+                  </div>
+                <% end %>
               <% end %>
+            </div>
           <% end %>
         </div>
 
