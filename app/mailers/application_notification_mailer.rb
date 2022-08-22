@@ -1,2 +1,0 @@
-class ApplicationNotificationMailer < ApplicationMailer
-end
