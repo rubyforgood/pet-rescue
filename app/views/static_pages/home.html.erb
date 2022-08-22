@@ -17,7 +17,8 @@
   <% end %>
 
 
-  <%= link_to 'Log out', destroy_user_session_path, data: { turbo_method: "delete" } %>
+  <%= link_to 'Log out', destroy_user_session_path, data: { turbo_method: "delete" } %><br>
+  <%= link_to 'Account Settings', edit_user_registration_path %>
 
 <% else %>
   <p>You are not logged in</p>
