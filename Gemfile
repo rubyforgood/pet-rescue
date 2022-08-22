@@ -78,6 +78,9 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
+  # view emails in browser in dev 
+  gem "letter_opener", group: :development
+
   # better errors and guard gems
   gem 'better_errors', '~> 2.9', '>= 2.9.1'
   gem 'guard', '~> 2.18'
