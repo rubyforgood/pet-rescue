@@ -30,10 +30,30 @@
 
   <% end %>
 
-  <% @collection.each do |dog| %>
-    <div class='card'>
-      <p>Name: <%= dog.name %></p>
-      <p>Age: <%= dog.age %></p>
-      <%= link_to 'View', dog_path(dog) %>
+ 
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
+      <div class="card-deck">
+        <div class="row">
+          <% @collection.each do |dog| %>    
+            <div class="col-sm-3">
+              <div class="card">
+                <% if dog.images.attached? %>
+                  <%= image_tag dog.images.first, class: "card-img-top" %>
+                <% else %>
+                  <img class="card-img-top" src="https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Card image cap">
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= dog.name %></h5>
+                  <p class="card-text">Age:<%= dog.age %></p>
+                  <%= link_to 'View', dog_path(dog) %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
+  </div>
+</div>

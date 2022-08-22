@@ -10,6 +10,8 @@ class Dog < ApplicationRecord
   validates :breed, presence: true
   validates :sex, presence: true
   validates :description, presence: true, length: { maximum: 500 }
+
+  # active storage validations gem
   validates :images, content_type: { in: ['image/png', 'image/jpeg'], message: 'must be PNG or JPEG' },
                      limit: { max: 5, message: '- 5 maximum' },
                      size: { between: 100.kilobyte..2.megabytes,

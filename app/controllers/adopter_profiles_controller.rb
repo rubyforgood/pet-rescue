@@ -1,40 +1,42 @@
 class AdopterProfilesController < ApplicationController
-  before_action :authenticate_user!
   # staff and admin cannot create a profile
+  before_action :authenticate_user!
   before_action :check_user_role, only: [:create, :new, :update]
 
+  # only allow new profile if one does not exist
   def new
-    @adopter_profile = AdopterProfile.new
+    if profile_nil?
+      @adopter_profile = AdopterProfile.new
+    else
+      redirect_to profile_path
+    end
   end
 
-  # make it so profile cannot be created if one already exists.
-  # add unique true to user_profile_id in adopter_profile table
-  # add Unique true to user_id in adopter_account table
   def create
     @adopter_profile = AdopterProfile.new(adopter_profile_params)
 
     respond_to do |format|
       if @adopter_profile.save
-        format.html { redirect_to profile_path, notice: 'Your profile was successfully created.' }
+        format.html { redirect_to profile_path, notice: 'Profile created' }
       else
-        format.html { render :new, status: :unprocessable_entity, notice: 'Please fix errors.' }
+        format.html { render :new, status: :unprocessable_entity, notice: 'Error' }
       end
     end
   end
 
   def show
-    @adopter_profile = adopter_profile
+    @adopter_profile = current_user.adopter_account.adopter_profile
   end
 
   def edit
-    @adopter_profile = adopter_profile
+    @adopter_profile = current_user.adopter_account.adopter_profile
   end
 
   def update
     @adopter_profile = current_user.adopter_account.adopter_profile
     respond_to do |format|
       if @adopter_profile.update(adopter_profile_params)
-        format.html { redirect_to profile_path, notice: "Your profile was successfully updated." }
+        format.html { redirect_to profile_path, notice: 'Profile updated' }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -43,14 +45,14 @@ class AdopterProfilesController < ApplicationController
 
   private
 
-  def adopter_profile
-    current_user.adopter_account.adopter_profile
+  def profile_nil?
+    AdopterProfile.where(adopter_account_id: current_user.adopter_account.id)[0].nil?
   end
 
   def check_user_role
     return if current_user.adopter_account
 
-    redirect_to root_path, notice: 'Only adopters can create a profile.'
+    redirect_to root_path, notice: 'Profiles are for adopters only'
   end
 
   def adopter_profile_params

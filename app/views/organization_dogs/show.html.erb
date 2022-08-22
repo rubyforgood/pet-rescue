@@ -32,6 +32,10 @@
 
 <p>Name: <%= @dog.name %></p>
 <p>Age: <%= @dog.age %></p>
+<% if @dog.adoption %>
+  <%= link_to 'Adopter Profile', 
+              profile_review_path(@dog.adoption.adopter_account.adopter_profile.id) %>
+<% end %>
 
 <%= link_to 'Edit', edit_dog_path(@dog) %>
 <%= link_to 'Delete', dog_path(@dog), class: 'btn',

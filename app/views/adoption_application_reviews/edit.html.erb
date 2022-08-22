@@ -5,11 +5,8 @@
 
 <%= form_with model: @application, :url => adopter_application_path do |form| %>
   <%= form.label :status %>
-  <% if @application.status == 'withdrawn' %>
-    <p class='fw-bold'><%= @application.status %></p>
-  <% else %>
-    <%= form.select(:status, AdopterApplication.statuses.keys.map {|status| [status.titleize,status]}) %>
-  <% end %>
+  <p class='fw-bold'><%= @application.status %></p>
+  <%= form.select(:status, AdopterApplication.statuses.keys.map {|status| [status.titleize,status]}) %>
   
   <%= form.label :notes %><br>
   <%= form.text_area :notes %><br>
