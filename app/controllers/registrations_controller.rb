@@ -41,6 +41,7 @@ class RegistrationsController < Devise::RegistrationsController
     resource.adopter_account ? new_profile_path : root_path
   end
 
+  # send mail after user is created
   def send_email
     if resource.adopter_account
       SignUpMailer.with(user: resource).adopter_welcome_email.deliver_now
