@@ -13,6 +13,12 @@ class AdopterApplicationsController < ApplicationController
       @application = AdopterApplication.new(application_params)
       if @application.save
         redirect_to profile_path, notice: 'Application submitted.'
+
+        # mailer
+        @dog = Dog.find(params[:dog_id])
+        @organization_staff = organization_staff(@dog)
+        StaffApplicationNotificationMailer.with(dog: @dog, organization_staff: @organization_staff)
+                                          .new_adoption_application.deliver_now
       else
         render adoptable_dog_path(params[:dog_id]),
                status: :unprocessable_entity,
@@ -43,5 +49,9 @@ class AdopterApplicationsController < ApplicationController
               current_user.adopter_account.adopter_profile
 
     redirect_to root_path, notice: 'Unauthorized action.'
+  end
+
+  def organization_staff(dog)
+    User.includes(:staff_account).where(staff_account: { organization_id: dog.organization_id })
   end
 end

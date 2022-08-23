@@ -11,7 +11,8 @@
     <h4 class='mt-3'>Administrative details</h4>
 
     <%= form.label :phone_number %>
-    <%= form.telephone_field :phone_number, 
+    <%= form.telephone_field :phone_number,
+                             autofocus: true,
                              placeholder: "10 digit number"%><br>
 
     <% profile.errors.full_messages_for(:phone_number).each do |message| %>
