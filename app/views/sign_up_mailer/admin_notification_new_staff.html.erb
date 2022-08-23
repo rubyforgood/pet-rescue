@@ -7,15 +7,29 @@
     <h1>New Staff Sign Up</h1>
     
     <p>
-      Please do the following: 
+      Name:
+      <%= @user.first_name %>
+      <%= @user.last_name %>      
+    </p>
+
+    <p>
+      Email: <%= @user.email %>    
+    </p>
+
+    <p>
+      user_id: <%= @user.id %>    
+    </p>
+
+    <p>
+      Admin, please do the following: 
     </p>
 
     <ol>
-      <li>Verify this person is with an organization</li>
+      <li>Verify this person with an organization</li>
       <li>If legitimate, set their staff account to verified</li>
     </ol>
 
-    <p><a href="<%= @url %>">Log in</a></p><br>
+    <p><a href="<%= @url %>">Log in</a></p>
 
     <strong>- Baja Pet Rescue Team</strong>
   </body>

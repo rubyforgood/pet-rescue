@@ -4,11 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <% if @user.first_name %> 
-      <h1> <%= @user.first_name %>, thank you for signing up with Baja Pet Rescue!</h1>
-    <% else %>
-      <h1> Thank you for signing up with Baja Pet Rescue!</h1>
-    <% end %>
+      <h1><%= @user.first_name %>, thank you for signing up with Baja Pet Rescue!</h1>
     
     <p>
       We are a grassroots organization helping to rehome dogs from Baja, Mexico, Mexico to Canada/USA.

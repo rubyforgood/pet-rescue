@@ -16,6 +16,7 @@ class SignUpMailer < ApplicationMailer
 
   def admin_notification_new_staff
     @url = 'http://localhost:3000/'
+    @user = params[:user]
     mail(to: 'wcrwater+bajapetrescue@gmail.com', subject: 'New Staff Account')
   end
 end

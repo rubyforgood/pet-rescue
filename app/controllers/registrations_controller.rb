@@ -46,7 +46,7 @@ class RegistrationsController < Devise::RegistrationsController
       SignUpMailer.with(user: resource).adopter_welcome_email.deliver_now
     else
       SignUpMailer.with(user: resource).staff_welcome_email.deliver_now
-      SignUpMailer.admin_notification_new_staff.deliver_now
+      SignUpMailer.with(user: resource).admin_notification_new_staff.deliver_now
     end
   end
 end
