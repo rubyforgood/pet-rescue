@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= if @user.first_name ? @user.first_name : 'Hello' %>, 
+      welcome to the Baja Pet Rescue team!
+    </h1>
+    
+    <p>
+      All staff accounts need to be verified before receiving authorization to use this 
+      application on behalf of an organization. This process can take 48 hours. Until then,
+      certain areas of the site will not be accessible.
+    </p>
+
+    <p>Once your staff account is approved you will be able to:</p>
+
+    <ul>
+      <li>View all dogs belonging to your organization, including past adopted dogs</li>
+      <li>Create, edit, delete new dogs for adoption, including attach/remove images</li>
+      <li>View all adoption applications and filter by dog name</li>
+      <li>View the adopter profiles of all applicants for initial screening</li>
+      <li>Edit and update adoption applications to set status and keep notes</li>
+    </ul>
+
+    <p>People like you help these dogs live their best life.</p>
+  </body>
+</html>

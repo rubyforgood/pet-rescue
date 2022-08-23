@@ -36,11 +36,12 @@ class RegistrationsController < Devise::RegistrationsController
 
   # redirect new registration by adopter to adopter_profiles#new
   def after_sign_up_path_for(resource)
-    if current_user.adopter_account
+    if resource.adopter_account
       new_profile_path
     else
       root_path
     end
+    # send email
   end
 end
 
