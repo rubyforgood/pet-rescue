@@ -1,5 +1,8 @@
-<%= if @user.first_name ? @user.first_name : 'Hello' %>, 
-thank you for signing up with Baja Pet Rescue!
+<% if @user.first_name %> 
+  <%= @user.first_name %>, thank you for signing up with Baja Pet Rescue!
+<% else %>
+  Thank you for signing up with Baja Pet Rescue!
+<% end %>
 ===============================================
 
 We are a grassroots organization helping to rehome dogs from Baja, Mexico.
@@ -15,3 +18,5 @@ We will contact you for a conversation about you, the dog, and the process
 Still have questions?
 Check out the FAQ page: <%= @url %>
 Again, thank you for signing up! People like you help these dogs live their best life.
+
+- Baja Pet Rescue Team

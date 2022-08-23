@@ -4,9 +4,11 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= if @user.first_name ? @user.first_name : 'Hello' %>, 
-      thank you for signing up with Baja Pet Rescue.
-    </h1>
+    <% if @user.first_name %> 
+      <h1> <%= @user.first_name %>, thank you for signing up with Baja Pet Rescue!</h1>
+    <% else %>
+      <h1> Thank you for signing up with Baja Pet Rescue!</h1>
+    <% end %>
     
     <p>
       We are a grassroots organization helping to rehome dogs from Baja, Mexico.
@@ -14,16 +16,18 @@
       in is a straightforward process:
     </p>
 
-    <ul>
+    <ol>
       <li>Complete your profile</li>
-      <li>Browse available dogs</li>
-      <li>View dogs and click on the 'Apply' button</li>
+      <li>Browse available dogs and find one that is a good fit for you</li>
+      <li>Click on the 'Apply' button on your favourite dog's page</li>
       <li>Check your profile for a summary of your applications</li>
-      <li>We will contact you for a conversation about you, the dog, and the process</li>
-    </ul>
+      <li>Await contact from us for a conversation about you, the dog, and the process</li>
+    </ol>
 
-    <h5>Still have questions?</h5>
-    <p>Check out the <a href="<%= @url %>">FAQ page</a>.</p>
+    <strong>Still have questions?</strong>
+    <p>Check out the <a href=<%= @url %>>FAQ page</a>.</p>
     <p>Again, thank you for signing up! People like you help these dogs live their best life.</p>
+
+    <strong>- Baja Pet Rescue Team</strong>
   </body>
 </html>

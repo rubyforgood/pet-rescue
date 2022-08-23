@@ -1,5 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
-  
+
+  after_action :send_email, only: :create
+
   # nested form in User>registration>new for an adopter or staff account
   # no attributes need to be accepted, just create new account with user_id reference
   def new
@@ -34,14 +36,18 @@ class RegistrationsController < Devise::RegistrationsController
                                  :current_password)
   end
 
-  # redirect new registration by adopter to adopter_profiles#new
+  # redirect new adopter users to adopter_profile#new
   def after_sign_up_path_for(resource)
+    resource.adopter_account ? new_profile_path : root_path
+  end
+
+  def send_email
     if resource.adopter_account
-      new_profile_path
+      SignUpMailer.with(user: resource).adopter_welcome_email.deliver_now
     else
-      root_path
+      SignUpMailer.with(user: resource).staff_welcome_email.deliver_now
+      SignUpMailer.admin_notification_new_staff.deliver_now
     end
-    # send email
   end
 end
 

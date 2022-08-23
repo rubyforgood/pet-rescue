@@ -1,5 +1,5 @@
 class StaffApplicationNotificationMailer < ApplicationMailer
-  
+
   default from: 'bajapetrescue@gmail.com'
 
   def new_adoption_application
@@ -10,6 +10,4 @@ class StaffApplicationNotificationMailer < ApplicationMailer
     emails = @organization_staff.collect(&:email).join(',')
     mail(to: emails, subject: 'New Adoption Application')
   end
-
-  
 end
