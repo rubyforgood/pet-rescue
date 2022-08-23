@@ -1,19 +1,21 @@
 <% current_user.adopter_account.adopter_applications.each do | app | %>
   <% unless app.profile_show == false %>
     <div class='card'>
-      <p>Name: <%= app.dog.name %></p>
-      <p>Status: <%= app.status.titleize %></p>
-      <% unless app.status == 'withdrawn' || app.status == 'adoption_made' %>
-        <%= link_to 'See dog', adoptable_dog_path(app.dog.id) %>
-        <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, status: 'withdrawn'),  
-                      data: { turbo_method: "patch",
-                              turbo_confirm: "If you withdraw you will not be able to reapply for this dog." } %>
-      <% end %>
-      <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
-        <%= link_to 'Remove', update_adopter_application_path(id: app.id, profile_show: false),  
-                      data: { turbo_method: "patch",
-                              turbo_confirm: "Click OK to remove this application." } %>
-      <% end %>
+      <div class='card-body'>
+        <p>Name: <%= app.dog.name %></p>
+        <p>Status: <%= app.status.titleize %></p>
+        <% unless app.status == 'withdrawn' || app.status == 'adoption_made' %>
+          <%= link_to 'See dog', adoptable_dog_path(app.dog.id) %>
+          <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, status: 'withdrawn'),  
+                        data: { turbo_method: "patch",
+                                turbo_confirm: "If you withdraw you will not be able to reapply for this dog." } %>
+        <% end %>
+        <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
+          <%= link_to 'Remove', update_adopter_application_path(id: app.id, profile_show: false),  
+                        data: { turbo_method: "patch",
+                                turbo_confirm: "Click OK to remove this application." } %>
+        <% end %>
+      </div>
     </div>
   <% end %>
 <% end %>

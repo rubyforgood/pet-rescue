@@ -4,7 +4,7 @@ class AdopterProfile < ApplicationRecord
 
   # phonelib gem
   validates :phone_number, phone: { possible: true }
-  
+
   validates :contact_method, presence: true
   validates :country, presence: true
   validates :province_state, presence: { message: 'Please select a province or state' }

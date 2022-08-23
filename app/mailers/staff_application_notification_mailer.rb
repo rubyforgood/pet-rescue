@@ -11,4 +11,5 @@ class StaffApplicationNotificationMailer < ApplicationMailer
     mail(to: emails, subject: 'New Adoption Application')
   end
 
+  
 end
