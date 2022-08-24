@@ -1,10 +1,7 @@
-# allows adopter users to create an adoption application and/or update status to 'withdrawn'
 class AdopterApplicationsController < ApplicationController
   before_action :authenticate_user!, :adopter_with_profile
   before_action :check_for_existing_app, only: :create
 
-  # only create if an application does not exist
-  # this is ugly. Refactor...
   def create
     @application = AdopterApplication.new(application_params)
 
@@ -13,7 +10,7 @@ class AdopterApplicationsController < ApplicationController
 
       # mailer
       @dog = Dog.find(params[:dog_id])
-      @organization_staff = organization_staff(@dog)
+      @organization_staff = User.organization_staff(@dog.organization_id)
       StaffApplicationNotificationMailer.with(dog: @dog, organization_staff: @organization_staff)
                                         .new_adoption_application.deliver_now
     else
@@ -38,10 +35,6 @@ class AdopterApplicationsController < ApplicationController
 
   def application_params
     params.permit(:id, :dog_id, :adopter_account_id, :status, :profile_show)
-  end
-
-  def organization_staff(dog)
-    User.includes(:staff_account).where(staff_account: { organization_id: dog.organization_id })
   end
 
   def check_for_existing_app
