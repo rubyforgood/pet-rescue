@@ -10,4 +10,10 @@ class User < ApplicationRecord
   has_one :adopter_account
 
   accepts_nested_attributes_for :adopter_account, :staff_account
+
+  # get user accounts for staff in a given organization
+  def self.organization_staff(org_id)
+    User.includes(:staff_account)
+        .where(staff_account: { organization_id: org_id })
+  end
 end

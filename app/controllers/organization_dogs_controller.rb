@@ -2,8 +2,8 @@ class OrganizationDogsController < ApplicationController
   before_action :verified_staff
 
   def index
-    @unadopted_dogs = unadopted_dogs
-    @adopted_dogs = adopted_dogs
+    @unadopted_dogs = Dog.unadopted_dogs(current_user.staff_account.organization_id)
+    @adopted_dogs = Dog.adopted_dogs(current_user.staff_account.organization_id)
     @dog = selected_dog
   end
 
@@ -13,16 +13,16 @@ class OrganizationDogsController < ApplicationController
 
   def edit
     @dog = Dog.find(params[:id])
-    return if same_organization?(@dog)
+    return if dog_in_same_organization?(@dog.organization_id)
 
-    redirect_to dogs_path, notice: 'Staff can only interact with dogs in their organization.'
+    redirect_to dogs_path, notice: 'This dog is not in your organization.'
   end
 
   def show
     @dog = Dog.find(params[:id])
-    return if same_organization?(@dog)
+    return if dog_in_same_organization?(@dog.organization_id)
 
-    redirect_to dogs_path, notice: 'Staff can only interact with dogs in their organization.'
+    redirect_to dogs_path, notice: 'This dog is not in your organization.'
   end
 
   def create
@@ -38,7 +38,7 @@ class OrganizationDogsController < ApplicationController
   def update
     @dog = Dog.find(params[:id])
 
-    if same_organization?(@dog) && @dog.update(dog_params)
+    if dog_in_same_organization?(@dog.organization_id) && @dog.update(dog_params)
       redirect_to @dog
     else
       render :edit, status: :unprocessable_entity
@@ -48,7 +48,7 @@ class OrganizationDogsController < ApplicationController
   def destroy
     @dog = Dog.find(params[:id])
 
-    if same_organization?(@dog) && @dog.destroy
+    if dog_in_same_organization?(@dog.organization_id) && @dog.destroy
       redirect_to dogs_path, status: :see_other
     else
       redirect_to dogs_path, notice: 'Error.'
@@ -66,30 +66,6 @@ class OrganizationDogsController < ApplicationController
                                 :size,
                                 :description,
                                 append_images: [])
-  end
-
-  # check before all actions that user is: signed in, staff, verified
-  def verified_staff
-    return if user_signed_in? &&
-              current_user.staff_account &&
-              current_user.staff_account.verified
-
-    redirect_to root_path, notice: 'Unauthorized action.'
-  end
-
-  # use in update and destroy to ensure staff belongs to same org as dog
-  def same_organization?(dog)
-    current_user.staff_account.organization_id == dog.organization_id
-  end
-
-  def unadopted_dogs
-    Dog.where(organization_id: current_user.staff_account.organization_id)
-       .includes(:adoption).where(adoption: { id: nil })
-  end
-
-  def adopted_dogs
-    Dog.where(organization_id: current_user.staff_account.organization_id)
-       .includes(:adoption).where.not(adoption: { id: nil })
   end
 
   def selected_dog
