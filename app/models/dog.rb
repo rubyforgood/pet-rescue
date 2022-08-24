@@ -17,19 +17,29 @@ class Dog < ApplicationRecord
                      size: { between: 100.kilobyte..2.megabytes,
                              message: 'file size must be between 100kb and 2Mb' }
 
-  # using.attach per the recommendation in rails server output for appending images
+  # active storage: using.attach for appending images per rails guide
   def append_images=(attachables)
     images.attach(attachables)
   end
 
-  def self.org_dogs(user_org_id)
-    Dog.where(organization_id: user_org_id)
+  # all dogs under an organization
+  def self.org_dogs(staff_org_id)
+    Dog.where(organization_id: staff_org_id)
   end
 
-  def self.org_dogs_with_apps(user_org_id)
-    Dog.org_dogs(user_org_id).includes(:adopter_applications).where.not(adopter_applications: { id: nil })
-       .includes(:adoption).where(adoption: { id: nil })
+  # all dogs under an organization with applications and no adoptions
+  def self.org_dogs_with_apps(staff_org_id)
+    Dog.org_dogs(staff_org_id).includes(:adopter_applications).where
+       .not(adopter_applications: { id: nil }).includes(:adoption).where(adoption: { id: nil })
   end
 
+  # all unadopted dogs under an organization
+  def self.unadopted_dogs(staff_org_id)
+    Dog.org_dogs(staff_org_id).includes(:adoption).where(adoption: { id: nil })
+  end
 
+  # all adopted dogs under an organization
+  def self.adopted_dogs(staff_org_id)
+    Dog.org_dogs(staff_org_id).includes(:adoption).where.not(adoption: { id: nil })
+  end
 end

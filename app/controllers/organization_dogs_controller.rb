@@ -2,8 +2,8 @@ class OrganizationDogsController < ApplicationController
   before_action :verified_staff
 
   def index
-    @unadopted_dogs = unadopted_dogs
-    @adopted_dogs = adopted_dogs
+    @unadopted_dogs = Dog.unadopted_dogs(current_user.staff_account.organization_id)
+    @adopted_dogs = Dog.adopted_dogs(current_user.staff_account.organization_id)
     @dog = selected_dog
   end
 
@@ -66,16 +66,6 @@ class OrganizationDogsController < ApplicationController
                                 :size,
                                 :description,
                                 append_images: [])
-  end
-
-  def unadopted_dogs
-    Dog.where(organization_id: current_user.staff_account.organization_id)
-       .includes(:adoption).where(adoption: { id: nil })
-  end
-
-  def adopted_dogs
-    Dog.where(organization_id: current_user.staff_account.organization_id)
-       .includes(:adoption).where.not(adoption: { id: nil })
   end
 
   def selected_dog
