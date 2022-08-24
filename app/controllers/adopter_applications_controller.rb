@@ -10,13 +10,14 @@ class AdopterApplicationsController < ApplicationController
 
       # mailer
       @dog = Dog.find(params[:dog_id])
-      @organization_staff = User.organization_staff(@dog.organization_id)
-      StaffApplicationNotificationMailer.with(dog: @dog, organization_staff: @organization_staff)
+      @org_staff = User.organization_staff(@dog.organization_id)
+      StaffApplicationNotificationMailer.with(dog: @dog,
+                                              organization_staff: @org_staff)
                                         .new_adoption_application.deliver_now
     else
       render adoptable_dog_path(params[:dog_id]),
-              status: :unprocessable_entity,
-              notice: 'Error. Please try again.'
+             status: :unprocessable_entity,
+             notice: 'Error. Please try again.'
     end
   end
 
@@ -39,7 +40,8 @@ class AdopterApplicationsController < ApplicationController
 
   def check_for_existing_app
     if AdopterApplication.where(dog_id: params[:dog_id],
-                                adopter_account_id: params[:adopter_account_id]).exists?
+                                adopter_account_id: params[:adopter_account_id])
+                         .exists?
 
       redirect_to adoptable_dog_path(params[:dog_id]),
                   notice: 'Application already exists.'

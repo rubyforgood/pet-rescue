@@ -9,7 +9,7 @@ class AdoptionsController < ApplicationController
       set_statuses_to_adoption_made
       redirect_to adopter_applications_path, notice: 'Dog successfully adopted.'
     else
-      redirect_to adopter_applications_path, notice: 'Error. Adoption not saved.'
+      redirect_to adopter_applications_path, notice: 'Error.'
 
     end
   end
@@ -20,10 +20,9 @@ class AdoptionsController < ApplicationController
     params.permit(:dog_id, :adopter_account_id)
   end
 
-  # refactor this to search for adopter applications using Dog(dog_id)
-  # this currently is at risk of updating the wrong records e.g., multiple simultaneous users
+  # set status on all applications for a dog
   def set_statuses_to_adoption_made
-    @applications = Adoption.last.dog.adopter_applications
+    @applications = Dog.find(params[dog_id]).adopter_applications
     @applications.each do |app|
       unless app.status == 'withdrawn'
         app.status = 'adoption_made'

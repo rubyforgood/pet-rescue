@@ -15,14 +15,14 @@ class OrganizationDogsController < ApplicationController
     @dog = Dog.find(params[:id])
     return if dog_in_same_organization?(@dog.organization_id)
 
-    redirect_to dogs_path, notice: 'Staff can only interact with dogs in their organization.'
+    redirect_to dogs_path, notice: 'This dog is not in your organization.'
   end
 
   def show
     @dog = Dog.find(params[:id])
     return if dog_in_same_organization?(@dog.organization_id)
 
-    redirect_to dogs_path, notice: 'Staff can only interact with dogs in their organization.'
+    redirect_to dogs_path, notice: 'This dog is not in your organization.'
   end
 
   def create

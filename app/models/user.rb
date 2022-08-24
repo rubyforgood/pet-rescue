@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)
-    User.includes(:staff_account).where(staff_account: { organization_id: org_id })
+    User.includes(:staff_account)
+        .where(staff_account: { organization_id: org_id })
   end
 end
