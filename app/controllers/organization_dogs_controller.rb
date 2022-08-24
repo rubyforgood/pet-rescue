@@ -13,14 +13,14 @@ class OrganizationDogsController < ApplicationController
 
   def edit
     @dog = Dog.find(params[:id])
-    return if same_organization?(@dog)
+    return if dog_in_same_organization?(@dog.organization_id)
 
     redirect_to dogs_path, notice: 'Staff can only interact with dogs in their organization.'
   end
 
   def show
     @dog = Dog.find(params[:id])
-    return if same_organization?(@dog)
+    return if dog_in_same_organization?(@dog.organization_id)
 
     redirect_to dogs_path, notice: 'Staff can only interact with dogs in their organization.'
   end
@@ -38,7 +38,7 @@ class OrganizationDogsController < ApplicationController
   def update
     @dog = Dog.find(params[:id])
 
-    if same_organization?(@dog) && @dog.update(dog_params)
+    if dog_in_same_organization?(@dog.organization_id) && @dog.update(dog_params)
       redirect_to @dog
     else
       render :edit, status: :unprocessable_entity
@@ -48,7 +48,7 @@ class OrganizationDogsController < ApplicationController
   def destroy
     @dog = Dog.find(params[:id])
 
-    if same_organization?(@dog) && @dog.destroy
+    if dog_in_same_organization?(@dog.organization_id) && @dog.destroy
       redirect_to dogs_path, status: :see_other
     else
       redirect_to dogs_path, notice: 'Error.'
@@ -66,20 +66,6 @@ class OrganizationDogsController < ApplicationController
                                 :size,
                                 :description,
                                 append_images: [])
-  end
-
-  # check before all actions that user is: signed in, staff, verified
-  def verified_staff
-    return if user_signed_in? &&
-              current_user.staff_account &&
-              current_user.staff_account.verified
-
-    redirect_to root_path, notice: 'Unauthorized action.'
-  end
-
-  # use in update and destroy to ensure staff belongs to same org as dog
-  def same_organization?(dog)
-    current_user.staff_account.organization_id == dog.organization_id
   end
 
   def unadopted_dogs

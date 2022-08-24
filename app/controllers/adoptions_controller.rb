@@ -20,6 +20,8 @@ class AdoptionsController < ApplicationController
     params.permit(:dog_id, :adopter_account_id)
   end
 
+  # refactor this to search for adopter applications using Dog(dog_id)
+  # this currently is at risk of updating the wrong records e.g., multiple simultaneous users
   def set_statuses_to_adoption_made
     @applications = Adoption.last.dog.adopter_applications
     @applications.each do |app|
@@ -28,14 +30,6 @@ class AdoptionsController < ApplicationController
         app.save
       end
     end
-  end
-
-  def verified_staff
-    return if user_signed_in? &&
-              current_user.staff_account &&
-              current_user.staff_account.verified
-
-    redirect_to root_path, notice: 'Unauthorized action.'
   end
 
   def same_organization?

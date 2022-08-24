@@ -1,7 +1,7 @@
 class AdopterProfilesController < ApplicationController
   # staff and admin cannot create a profile
   before_action :authenticate_user!
-  before_action :check_user_role, only: [:create, :new, :update]
+  before_action :check_if_adopter, only: [:new, :create, :update]
 
   # only allow new profile if one does not exist
   def new
@@ -47,12 +47,6 @@ class AdopterProfilesController < ApplicationController
 
   def profile_nil?
     AdopterProfile.where(adopter_account_id: current_user.adopter_account.id)[0].nil?
-  end
-
-  def check_user_role
-    return if current_user.adopter_account
-
-    redirect_to root_path, notice: 'Profiles are for adopters only'
   end
 
   def adopter_profile_params

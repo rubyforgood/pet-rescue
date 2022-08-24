@@ -10,7 +10,7 @@ class AdoptionApplicationReviewsController < ApplicationController
   def edit
     @application = AdopterApplication.find(params[:id])
 
-    return if dog_in_same_organization?(@application)
+    return if dog_in_same_organization?(@application.dog.organization_id)
 
     redirect_to adopter_applications_path,
                 notice: 'Staff can only edit/update applications for their organization dogs.'
@@ -19,7 +19,8 @@ class AdoptionApplicationReviewsController < ApplicationController
   def update
     @application = AdopterApplication.find(params[:id])
 
-    if dog_in_same_organization?(@application) && @application.update(application_params)
+    if dog_in_same_organization?(@application.dog.organization_id) &&
+       @application.update(application_params)
       redirect_to adopter_applications_path
     else
       render :edit, status: :unprocessable_entity
@@ -45,17 +46,4 @@ class AdoptionApplicationReviewsController < ApplicationController
        .includes(:adopter_applications).where.not(adopter_applications: { id: nil })
        .includes(:adoption).where(adoption: { id: nil })
   end
-
-  def dog_in_same_organization?(application)
-    current_user.staff_account.organization_id == application.dog.organization_id
-  end
-
-  def verified_staff
-    return if user_signed_in? &&
-              current_user.staff_account &&
-              current_user.staff_account.verified
-
-    redirect_to root_path, notice: 'Unauthorized action.'
-  end
-
 end
