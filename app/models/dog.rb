@@ -21,4 +21,15 @@ class Dog < ApplicationRecord
   def append_images=(attachables)
     images.attach(attachables)
   end
+
+  def self.org_dogs(user_org_id)
+    Dog.where(organization_id: user_org_id)
+  end
+
+  def self.org_dogs_with_apps(user_org_id)
+    Dog.org_dogs(user_org_id).includes(:adopter_applications).where.not(adopter_applications: { id: nil })
+       .includes(:adoption).where(adoption: { id: nil })
+  end
+
+
 end

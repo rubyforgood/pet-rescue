@@ -3,7 +3,7 @@ class AdoptionApplicationReviewsController < ApplicationController
   before_action :verified_staff
 
   def index
-    @dogs = all_org_dogs_with_apps
+    @dogs = Dog.org_dogs_with_apps(current_user.staff_account.organization_id)
     @dog = selected_dog
   end
 
@@ -38,12 +38,5 @@ class AdoptionApplicationReviewsController < ApplicationController
     return if !params[:dog_id] || params[:dog_id] == ''
 
     Dog.where(id: params[:dog_id])
-  end
-
-  # dogs with same organization_id as current staff && have applications && have no adoption
-  def all_org_dogs_with_apps
-    Dog.where(organization_id: current_user.staff_account.organization_id)
-       .includes(:adopter_applications).where.not(adopter_applications: { id: nil })
-       .includes(:adoption).where(adoption: { id: nil })
   end
 end
