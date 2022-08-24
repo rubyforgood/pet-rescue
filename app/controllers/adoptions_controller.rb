@@ -22,7 +22,7 @@ class AdoptionsController < ApplicationController
 
   # set status on all applications for a dog
   def set_statuses_to_adoption_made
-    @applications = Dog.find(params[dog_id]).adopter_applications
+    @applications = Dog.find(params[:dog_id]).adopter_applications
     @applications.each do |app|
       unless app.status == 'withdrawn'
         app.status = 'adoption_made'

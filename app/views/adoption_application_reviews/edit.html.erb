@@ -5,8 +5,8 @@
 
 <%= form_with model: @application, :url => adopter_application_path do |form| %>
   <%= form.label :status %>
-  <p class='fw-bold'><%= @application.status %></p>
-  <%= form.select(:status, AdopterApplication.statuses.keys.map {|status| [status.titleize,status]}) %>
+  <p class='fw-bold'><%#= @application.status %></p>
+  <%= form.select(:status, AdopterApplication.app_review_statuses) %>
   
   <%= form.label :notes %><br>
   <%= form.text_area :notes %><br>
