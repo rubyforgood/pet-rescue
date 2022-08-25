@@ -21,6 +21,12 @@
   height: 40px;
 }
 
+@media only screen and (max-width: 992px) {
+  .navbar-margin-bottom {
+    margin-bottom: 5px;
+  }
+}
+
  //Carousel in dog show views
 .carousel-inner {
   height: 550px;

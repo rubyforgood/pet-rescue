@@ -26,33 +26,69 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarsExample04">
-          <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <% if user_signed_in?%>
-              <% if current_user.adopter_account && 
-                    current_user.adopter_account.adopter_profile.nil? %>
-                <%= link_to "Profile", new_profile_path, class: 'nav-link active' %>
-              <% elsif current_user.adopter_account %>
-                <%= link_to "Profile", profile_path, class: 'nav-link active' %>
-              <% end %>
-            <% end %> 
+          <ul class="navbar-nav me-auto mb-md-0">
+            
             <li class="nav-item navbar-dark">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" tabindex="-1" 
-                 aria-disabled="true">Disabled</a>
+              <%= link_to 'Dogs', adoptable_dogs_path, 
+                  class: 'nav-link text-white' %>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" 
-                 data-bs-toggle="dropdown" aria-expanded="false">
-                 Dropdown
+              <a class="nav-link dropdown-toggle text-white" href="#" 
+                 id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
+                 About
               </a>
               <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><a class="dropdown-item" href="#">About Us</a></li>
+                <li><a class="dropdown-item" href="#">Adoption Process</a></li>
+                <li><a class="dropdown-item" href="#">Partners</a></li>
+                <li><a class="dropdown-item" href="#">Donate</a></li>
+                <li><a class="dropdown-item" href="#">Contact Us</a></li>
               </ul>
-            </li>
+            </li> 
+          </ul>
+
+          <ul class="navbar-nav mb-md-0">
+            <% unless user_signed_in? %>
+              <li class="nav-item navbar-dark">
+                <%= link_to 'Sign Up', new_user_registration_path, 
+                    class: 'btn-outline-light btn me-3 navbar-margin-bottom' %>
+              </li>
+              <li class="nav-item navbar-dark">
+                <%= link_to 'Log In', new_user_session_path, 
+                    class: 'btn-outline-light btn' %>
+              </li>
+            <% end %>
+
+            <% if user_signed_in? %>
+              <li class="nav-item dropdown me-3 navbar-margin-bottom">
+                <a class="nav-link dropdown-toggle text-white" href="#" 
+                  id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
+                  My Account
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                  <% if current_user.adopter_account && 
+                        current_user.adopter_account.adopter_profile.nil? %>
+                    <li>
+                      <%= link_to "My Profile", new_profile_path, 
+                          class: 'dropdown-item' %>
+                    </li>
+                  <% elsif current_user.adopter_account %>
+                    <li>
+                      <%= link_to "My Profile", profile_path, 
+                          class: 'dropdown-item' %>
+                    </li>
+                  <% end %>
+                  <li>
+                      <%= link_to "Account Settings", edit_user_registration_path, 
+                          class: 'dropdown-item' %>
+                    </li>
+                </ul>
+              </li>
+              <li class="nav-item navbar-dark">
+                <%= link_to 'Log Out', destroy_user_session_path, 
+                    class: 'btn-outline-light btn', data: {turbo_method: 'delete'} %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
