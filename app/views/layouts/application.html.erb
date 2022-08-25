@@ -50,7 +50,7 @@
           <ul class="navbar-nav mb-md-0">
             <% unless user_signed_in? %>
               <li class="nav-item navbar-dark">
-                <%= link_to 'Sign Up', new_user_registration_path, 
+                <%= link_to 'Sign Up', account_select_path, 
                     class: 'btn-outline-light btn me-3 navbar-margin-bottom' %>
               </li>
               <li class="nav-item navbar-dark">
@@ -63,7 +63,7 @@
               <li class="nav-item dropdown me-3 navbar-margin-bottom">
                 <a class="nav-link dropdown-toggle text-white" href="#" 
                   id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
-                  My Account
+                  Staff Links
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown04">
                   <% if current_user.adopter_account && 
@@ -75,6 +75,16 @@
                   <% elsif current_user.adopter_account %>
                     <li>
                       <%= link_to "My Profile", profile_path, 
+                          class: 'dropdown-item' %>
+                    </li>
+                  <% end %>
+                  <% if current_user.staff_account.verified %>
+                    <li>
+                      <%= link_to "Our Dogs", dogs_path, 
+                          class: 'dropdown-item' %>
+                    </li>
+                    <li>
+                      <%= link_to "Applications", adopter_applications_path, 
                           class: 'dropdown-item' %>
                     </li>
                   <% end %>
