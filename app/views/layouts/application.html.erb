@@ -105,11 +105,11 @@
     </nav>
 
     <% if flash[:notice] %>
-      <p class="notice"><%= notice %></p>
+      <p class="alert alert-success"><%= notice %></p>
     <% end %>
 
     <% if flash[:alert] %>
-      <p class="alert"><%= alert %></p>
+      <p class="alert alert-danger"><%= alert %></p>
     <% end%>
 
   <div class='container'>
