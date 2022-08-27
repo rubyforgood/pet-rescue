@@ -39,6 +39,85 @@ body {
   }
 }
 
+// Home page styling
+// masthead //
+header.masthead {
+  padding-top: 10.5rem;
+  padding-bottom: 6rem;
+  text-align: center;
+  color: #fff;
+  background-image: url(image_path('hero.jpg'));
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
+
+header.masthead {
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 3.25rem;
+  margin-bottom: 2rem;
+  margin-bottom: 25px;
+  }
+
+@media (min-width: 768px) {
+  header.masthead {
+  padding-top: 17rem;
+  padding-bottom: 12.5rem;
+  }
+}
+
+//Buttons
+.custom-btn-pink {
+  text-decoration: none;
+  align-items: center;
+  background-color: #AA3440;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.custom-btn-pink:hover,
+.custom-btn-pink:focus { 
+  background-color: #e55a67;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.custom-btn-pink:active {
+  background: #e55a67;
+  color: rgba(255, 255, 255, .7);
+  text-decoration: none;
+}
+
+.custom-btn-pink:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+  text-decoration: none;
+}
+
  //Carousel in dog show views
 .carousel-inner {
   height: 550px;
@@ -52,23 +131,6 @@ body {
 .carousel-item img {
   object-fit: cover;
 }
-
-//  /* Medium devices (landscape tablets, 768px and up) */
-// @media only screen and (min-width: 768px) and (max-width: 991px) {
-// .carousel-inner {
-//   height: 400px;
-// }
-
-// .carousel-item, .carousel-item img {
-//   height: 400px;
-//   width:100%;
-// }
-
-// .carousel-item img {
-//   object-fit: cover;
-// }
-
-// } 
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 767px) {
