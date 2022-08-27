@@ -1,29 +1,78 @@
-
-<% if user_signed_in? %>
-  <p>Hello <%= current_user.first_name %>!</p>
-  <p>
-    You have succesfully authenticated with your Devise account. 
-    You can now interact with Baja Pet Rescue.
-  </p>
-  <p>You are user type .</p>
-
-  <% if current_user.staff_account %>
-    <%= link_to 'Dogs Index', dogs_path %><br>
-    <%= link_to 'Check Applications', adopter_applications_path %><br>
-  <% end %>
-
-  <% if current_user.adopter_account %>
-    <%= link_to 'View Dogs', adoptable_dogs_path %><br>
-  <% end %>
+   <!-- Masthead-->
+    <header class="masthead">
+        <div class="container">
+            <h1>We rescue dogs in Baja, Mexico and rehome them with adopters in North America</h1>
+            <a class="btn btn-primary btn-xl" href="#">Browse dogs</a>
+        </div>
+    </header>
 
 
-  <%= link_to 'Log out', destroy_user_session_path, data: { turbo_method: "delete" } %><br>
-  <%= link_to 'Account Settings', edit_user_registration_path %>
+    <!-- HOW TO APPLY FOR ADOPTION -->
+    <section class="page-section" id="how_to_apply">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">How to apply for adoption</h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <span>
+                        <img src="assets/icons/noun-create-account-2532355.svg" width="200px">
+                    </span>
+                    <h4 class="my-3">1. Sign up</h4>
+                </div>
+                <div class="col-md-3">
+                    <span>
+                        <img src="assets/icons/noun-create-project-2532321.svg" width="200px">
+                    </span>
+                    <h4 class="my-3">2. Complete Adopter Profile</h4>
+                </div>
+                <div class="col-md-3">
+                    <span>
+                        <img src="assets/icons/noun-pets-4442438.svg" width="200px">
+                    </span>
+                    <h4 class="my-3">3. Browse dogs</h4>
+                </div>
+                <div class="col-md-3">
+                    <span>
+                        <img src="assets/icons/noun-click-1039983.svg" width="200px">
+                    </span>
+                    <h4 class="my-3">4. Click apply</h4>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<% else %>
-  <p>You are not logged in</p>
-  <%= link_to 'Sign up', account_select_path %><br>
-  <%= link_to 'Log in', new_user_session_path, method: :get %>
+    <!-- ABOUT US-->
+    <section class="page-section bg-grey" id="about_us">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-heading text-uppercase">About us</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <span>
+                        <img class="img-fluid" src="assets/img/img_homepage/danielle.jpg">
+                    </span>
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <a class="btn btn-secondary btn-xl" href="#">Read more</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<% end %>
+    <!-- CTA -->
+    <section class="page-section" id="cta">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-8 offset-md-2 border p-100">
+                    <h3 class="section-heading">Ready to start adoption process? Want to see our  adoptable dogs?</h3>
+                    <a class="btn btn-xl" href="#">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
