@@ -43,23 +43,18 @@ adopter_user_two.save
 adopter_account_two = AdopterAccount.new(user_id: 3)
 adopter_account_two.save
 
-dog_one = Dog.new(organization_id: 1,
-                  name: 'dog 1',
-                  age: 5,
-                  sex: 'Male',
-                  size: 'Medium (22-57 lb)',
-                  breed: 'Husky mix',
-                  description: 'He just loves a run and a bum scratch at the end of the day')
-dog_one.save
-
-dog_two = Dog.new(organization_id: 1,
-                  name: 'dog 2',
-                  age: 1,
-                  sex: 'Female',
-                  size: 'Medium (22-57 lb)',
-                  breed: 'Pitbull mix',
-                  description: 'He just loves a lay on the couch and to steal your dinner')
-dog_two.save
+i = 1
+until i == 10 do 
+  dog = Dog.new(organization_id: 1,
+                name: "dog #{i}",
+                age: (i + 1),
+                sex: 'Male',
+                size: 'Medium (22-57 lb)',
+                breed: 'Husky mix',
+                description: 'He just loves a run and a bum scratch at the end of the day')
+  dog.save
+  i += 1
+end
 
 profile_one = AdopterProfile.new(adopter_account_id: 1,
                                  phone_number: '250 548 7721',

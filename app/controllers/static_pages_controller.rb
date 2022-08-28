@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
   def about_us
   end
 
-  def process
+  def faq
   end
 
   def partners
