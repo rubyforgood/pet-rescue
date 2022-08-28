@@ -38,14 +38,14 @@ class RegistrationsController < Devise::RegistrationsController
 
   # redirect new adopter users to adopter_profile#new
   def after_sign_up_path_for(resource)
-    if resource.adopter_account &&
-       resource.adopter_account.adopter_profile.nil?
-      new_profile_path
-    else
-      root_path
-    end
+    redirect_to new_profile_path
   end
 
+  def after_sign_in_path_for(resource)
+    redirect_to root_path
+  end
+
+  # currently not working with turbo stream - needs fixing
   def after_sign_out_path_for(resource)
     redirect_to root_path
   end

@@ -28,6 +28,27 @@ body {
   font-family: 'Titillium Web', sans-serif;
 }
 
+// flash
+.flash-notice {
+  display: flex;
+  background-color: #b2f4d2;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  margin-bottom: 0;
+  height: 2em;
+ }
+
+ .flash-alert {
+  display: flex;
+  background-color: #f49d9a;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  margin-bottom: 0;
+  height: 2em;
+ }
+
 //navbar logo
 .logo {
   height: 40px;
