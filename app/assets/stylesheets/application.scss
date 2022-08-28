@@ -26,6 +26,7 @@
 //font
 body {
   font-family: 'Titillium Web', sans-serif;
+  color: #504451
 }
 
 // flash
@@ -58,6 +59,16 @@ body {
   .navbar-margin-bottom {
     margin-bottom: 5px;
   }
+}
+
+// All pages heading underline
+.underline:after {
+  content:"";
+  display:block;
+  width: 6em;
+  max-width:70%;
+  border-bottom: 1px solid #bbadbc;
+  margin: 0.7em auto 0.5em;
 }
 
 // Home page styling
