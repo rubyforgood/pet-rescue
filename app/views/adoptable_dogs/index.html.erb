@@ -1,27 +1,44 @@
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-      <div class="card-deck">
-        <div class="row">
-          <% @dogs.each do |dog| %>    
-            <div class="col-sm-3">
-              <div class="card">
-                <% if dog.images.attached? %>
-                  <%= image_tag dog.images.first, class: "card-img-top" %>
-                <% else %>
-                  <img class="card-img-top" src="https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Card image cap">
+<section class="pt-5 pb-5" id="how_to_apply">
+  <div class="container mb-md-5 mt-md-5">
+      <div class="text-center mb-5">
+        <h2 class="section-heading text-uppercase underline">
+          Up for adoption
+        </h2>
+      </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-10 col-xl-8 mx-auto">
+        <div class="card-deck">
+          <div class="row">
+            <% @dogs.each do |dog| %>    
+              <div class="col-lg-4 col-md-6 p-0">
+                <%= link_to adoptable_dog_path(dog) do %>
+                  <div class="card m-4">
+                    <% if dog.images.attached? %>
+                      <%= image_tag dog.images.first, class: 'card-img-top test' %>
+                    <% else %>
+                      <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
+                    <% end %>
+                    <div class="card-body">
+                      <h5 class="card-title text-decoration-none">
+                        <%= dog.name %>
+                      </h5>
+                      <p class="card-text text-decoration-none m-0">
+                        Age: <%= dog.age %>
+                      </p>
+                      <p class="card-text text-decoration-none">
+                        Breed: <%= dog.breed %>
+                      </p>
+                    </div>
+                  </div>
                 <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= dog.name %></h5>
-                  <p class="card-text">Age:<%= dog.age %></p>
-                  <%= link_to 'View', adoptable_dog_path(dog) %>
-                </div>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</section>
