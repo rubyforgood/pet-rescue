@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   get '/about_us', to: 'static_pages#about_us'
-  get '/process', to: 'static_pages#process'
+  get '/faq', to: 'static_pages#faq'
   get '/partners', to: 'static_pages#partners'
   get '/donate', to: 'static_pages#donate'
   get '/contact_us', to: 'static_pages#contact_us'
