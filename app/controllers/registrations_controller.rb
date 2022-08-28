@@ -38,7 +38,16 @@ class RegistrationsController < Devise::RegistrationsController
 
   # redirect new adopter users to adopter_profile#new
   def after_sign_up_path_for(resource)
-    resource.adopter_account ? new_profile_path : root_path
+    if resource.adopter_account &&
+       resource.adopter_account.adopter_profile.nil?
+      new_profile_path
+    else
+      root_path
+    end
+  end
+
+  def after_sign_out_path_for(resource)
+    redirect_to root_path
   end
 
   # send mail after user is created

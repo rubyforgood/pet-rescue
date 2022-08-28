@@ -67,14 +67,9 @@ header.masthead {
 }
 
 //About Us
-.bg-grey {
-  background-color: #EFEEF1;
-}
-
 .justify {
   text-align: justify;
 }
-
 
 //Buttons
 .custom-btn-pink {
@@ -158,11 +153,13 @@ header.masthead {
 .custom-btn-green:hover,
 .custom-btn-green:focus { 
   background-color: #eddee0;
+  color: #00401F;
   text-decoration: none;
 }
 
 .custom-btn-green:active {
   background: #eddee0;
+  color: #00401F;
   text-decoration: none;
 }
 

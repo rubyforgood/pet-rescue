@@ -63,22 +63,23 @@
               <li class="nav-item dropdown me-3 navbar-margin-bottom">
                 <a class="nav-link dropdown-toggle text-white" href="#" 
                   id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
-                  Staff Links
+                  Dashboard
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown04">
                   <% if current_user.adopter_account && 
                         current_user.adopter_account.adopter_profile.nil? %>
                     <li>
-                      <%= link_to "My Profile", new_profile_path, 
+                      <%= link_to "Adopter Profile", new_profile_path, 
                           class: 'dropdown-item' %>
                     </li>
                   <% elsif current_user.adopter_account %>
                     <li>
-                      <%= link_to "My Profile", profile_path, 
+                      <%= link_to "Adopter Profile", profile_path, 
                           class: 'dropdown-item' %>
                     </li>
                   <% end %>
-                  <% if current_user.staff_account.verified %>
+                  <% if current_user.staff_account &&
+                        current_user.staff_account.verified %>
                     <li>
                       <%= link_to "Our Dogs", dogs_path, 
                           class: 'dropdown-item' %>

@@ -1,12 +1,12 @@
    <!-- Masthead-->
     <header class="masthead">
         <div class="container">
-            <h1>
+            <h1 class='mb-4'>
               We rescue dogs in Baja, Mexico and rehome them with adopters in 
               Canada and America
             </h1>
             <%= link_to "Browse Dogs", adoptable_dogs_path, 
-                class:'custom-btn-pink mt-4' %>
+                class:'custom-btn-pink' %>
         </div>
     </header>
 
@@ -49,7 +49,7 @@
     </section>
 
     <!-- ABOUT US-->
-    <section class="bg-grey pt-5 pb-5" id="about_us">
+    <section class="bg-light pt-5 pb-5" id="about_us">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="section-heading text-uppercase">About us</h2>
@@ -125,14 +125,16 @@
     </section>
 
     <!-- CTA -->
-    <section class="" id="cta">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-8 offset-md-2 border p-100">
-                    <h3 class="section-heading">Ready to start adoption process? Want to see our  adoptable dogs?</h3>
-                    <a class="btn btn-xl" href="#">Sign up</a>
-                </div>
-            </div>
-        </div>
+    <section class="pt-5 pb-5 bg-light" id="cta">
+      <div class="container">
+          <div class="row text-center">
+              <div class="col-md-8 offset-md-2 border p-5 shadow-sm 
+                          rounded bg-white">
+                <h3 class='mb-4'>Become an adopter now!</h3>
+                <%= link_to 'Sign Up', new_user_registration_path , 
+                            class: 'custom-btn-pink' %>
+              </div>
+          </div>
+      </div>
     </section>
 
