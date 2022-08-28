@@ -1,29 +1,142 @@
-
-<% if user_signed_in? %>
-  <p>Hello <%= current_user.first_name %>!</p>
-  <p>
-    You have succesfully authenticated with your Devise account. 
-    You can now interact with Baja Pet Rescue.
-  </p>
-  <p>You are user type .</p>
-
-  <% if current_user.staff_account %>
-    <%= link_to 'Dogs Index', dogs_path %><br>
-    <%= link_to 'Check Applications', adopter_applications_path %><br>
-  <% end %>
-
-  <% if current_user.adopter_account %>
-    <%= link_to 'View Dogs', adoptable_dogs_path %><br>
-  <% end %>
+   <!-- Masthead-->
+    <header class="masthead">
+        <div class="container">
+            <h1 class='mb-4'>
+              We rescue dogs in Baja, Mexico and rehome them with adopters in 
+              Canada and America
+            </h1>
+            <%= link_to "Browse Dogs", adoptable_dogs_path, 
+                class:'custom-btn-pink' %>
+        </div>
+    </header>
 
 
-  <%= link_to 'Log out', destroy_user_session_path, data: { turbo_method: "delete" } %><br>
-  <%= link_to 'Account Settings', edit_user_registration_path %>
+    <!-- HOW TO APPLY FOR ADOPTION -->
+    <section class="pt-5 pb-5" id="how_to_apply">
+        <div class="container mb-md-5 mt-md-5">
+            <div class="text-center mb-5">
+              <h2 class="section-heading text-uppercase underline">
+                How to apply for adoption
+              </h2>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-3 pb-3">
+                    <span>
+                        <%= image_tag('sign_up.svg', width: '100') %>
+                    </span>
+                    <h4 class="my-3">1. Sign up</h4>
+                </div>
+                <div class="col-md-3 pb-3">
+                    <span>
+                        <%= image_tag('profile.svg', width: '100') %>
+                    </span>
+                    <h4 class="my-3">2. Complete Adopter Profile</h4>
+                </div>
+                <div class="col-md-3 pb-3">
+                    <span>
+                        <%= image_tag('dog.svg', width: '100') %>
+                    </span>
+                    <h4 class="my-3">3. Browse dogs</h4>
+                </div>
+                <div class="col-md-3 pb-3">
+                    <span>
+                        <%= image_tag('click.svg', width: '100') %>
+                    </span>
+                    <h4 class="my-3">4. Click apply</h4>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<% else %>
-  <p>You are not logged in</p>
-  <%= link_to 'Sign up', account_select_path %><br>
-  <%= link_to 'Log in', new_user_session_path, method: :get %>
+    <!-- ABOUT US-->
+    <section class="bg-light pt-5 pb-5" id="about_us">
+        <div class="container mb-md-5 mt-md-5">
+            <div class="text-center mb-5">
+                <h2 class="section-heading text-uppercase underline">
+                  About us
+                </h2>
+            </div>
+            <div class="row pb-3">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <span>
+                        <%= image_tag('danielle_2.jpg', 
+                            class: 'rounded-5 w-100 px-4 px-lg-0') %>
+                    </span>
+                </div>
+                <div class="col-lg-4 px-4 order-last order-lg-0">
+                    <p class='justify'>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    <p class='text-center'>
+                      <%= link_to 'Read More', root_path, 
+                          class: 'custom-btn-green' %>
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-6 d-none d-md-block mb-4 mb-lg-0">
+                    <span>
+                        <%= image_tag('danielle_3.jpg', 
+                            class: 'w-100 rounded-5 px-4 px-lg-0') %>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<% end %>
+    <!--Page Highlights-->
+    <section class="pt-5 pb-5" id="how_to_apply">
+        <div class="container mb-md-5 mt-md-5">
+          <div class="row text-center">
+              <div class="col-md-4 p-3">
+                <h3>
+                  Process
+                </h3>
+                <p class='mt-4 mb-4'>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                  sed do eiusmod sed do eiusmod sed do eiusmod
+                </p>
+                <p>
+                  <%= link_to 'Learn more', root_path, class: 'custom-btn-green' %>
+                </p>
+              </div>
+              <div class="col-md-4 p-3">
+                <h3>
+                  Partners
+                </h3>
+                <p class='mt-4 mb-4'>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                  sed do eiusmod sed do eiusmod sed do eiusmod
+                </p>
+                <p>
+                  <%= link_to 'Learn more', root_path, class: 'custom-btn-green' %>
+                </p>
+              </div>
+              <div class="col-md-4 p-3">
+               <h3>
+                  Donate
+                </h3>
+                <p class='mt-4 mb-4'>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                  sed do eiusmod sed do eiusmod sed do eiusmod
+                </p>
+                <p>
+                  <%= link_to 'Learn more', root_path, class: 'custom-btn-green' %>
+                </p>
+              </div>
+          </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="pt-5 pb-5 bg-light" id="cta">
+      <div class="container mb-md-5 mt-md-5">
+          <div class="row text-center">
+              <div class="col-8 offset-2 border p-5 shadow-sm 
+                          rounded bg-white">
+                <h3 class='mb-4'>Become an adopter now!</h3>
+                <%= link_to 'Sign Up', new_user_registration_path , 
+                            class: 'custom-btn-pink' %>
+              </div>
+          </div>
+      </div>
+    </section>
 

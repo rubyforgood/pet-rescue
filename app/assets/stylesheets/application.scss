@@ -26,7 +26,29 @@
 //font
 body {
   font-family: 'Titillium Web', sans-serif;
+  color: #504451
 }
+
+// flash
+.flash-notice {
+  display: flex;
+  background-color: #b2f4d2;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  margin-bottom: 0;
+  height: 2em;
+ }
+
+ .flash-alert {
+  display: flex;
+  background-color: #f49d9a;
+  align-items: center;
+  justify-content: center;
+  height: 1.5em;
+  margin-bottom: 0;
+  height: 2em;
+ }
 
 //navbar logo
 .logo {
@@ -37,6 +59,147 @@ body {
   .navbar-margin-bottom {
     margin-bottom: 5px;
   }
+}
+
+// All pages heading underline
+.underline:after {
+  content:"";
+  display:block;
+  width: 6em;
+  max-width:70%;
+  border-bottom: 1px solid #bbadbc;
+  margin: 0.7em auto 0.5em;
+}
+
+// Home page styling
+// masthead //
+header.masthead {
+  padding-top: 10.5rem;
+  padding-bottom: 6rem;
+  text-align: center;
+  color: #fff;
+  background-image: url(image_path('hero.jpg'));
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: center center;
+  background-size: cover;
+}
+
+header.masthead {
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 3.25rem;
+  }
+
+@media (min-width: 768px) {
+  header.masthead {
+  padding-top: 17rem;
+  padding-bottom: 12.5rem;
+  }
+}
+
+//About Us
+.justify {
+  text-align: justify;
+}
+
+//Buttons
+.custom-btn-pink {
+  text-decoration: none;
+  align-items: center;
+  background-color: #AA3440;
+  border: 0;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.custom-btn-pink:hover,
+.custom-btn-pink:focus { 
+  background-color: #e55a67;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.custom-btn-pink:active {
+  background: #e55a67;
+  color: rgba(255, 255, 255, .7);
+  text-decoration: none;
+}
+
+.custom-btn-pink:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+  text-decoration: none;
+}
+
+.custom-btn-green {
+  text-decoration: none;
+  align-items: center;
+  background-color: #FFF;
+  border: solid 1px #00401F;
+  border-radius: 100px;
+  box-sizing: border-box;
+  color: #00401F;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 20px;
+  max-width: 480px;
+  min-height: 40px;
+  min-width: 0px;
+  overflow: hidden;
+  padding: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+}
+
+.custom-btn-green:hover,
+.custom-btn-green:focus { 
+  background-color: #eddee0;
+  color: #00401F;
+  text-decoration: none;
+}
+
+.custom-btn-green:active {
+  background: #eddee0;
+  color: #00401F;
+  text-decoration: none;
+}
+
+.custom-btn-green:disabled { 
+  cursor: not-allowed;
+  background: rgba(0, 0, 0, .08);
+  color: rgba(0, 0, 0, .3);
+  text-decoration: none;
 }
 
  //Carousel in dog show views
@@ -52,23 +215,6 @@ body {
 .carousel-item img {
   object-fit: cover;
 }
-
-//  /* Medium devices (landscape tablets, 768px and up) */
-// @media only screen and (min-width: 768px) and (max-width: 991px) {
-// .carousel-inner {
-//   height: 400px;
-// }
-
-// .carousel-item, .carousel-item img {
-//   height: 400px;
-//   width:100%;
-// }
-
-// .carousel-item img {
-//   object-fit: cover;
-// }
-
-// } 
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 767px) {
