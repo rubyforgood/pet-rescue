@@ -17,7 +17,7 @@
       <%= form.telephone_field :phone_number,
                               autofocus: true,
                               placeholder: "10 digit number",
-                              class: 'form-control' %><br>
+                              class: 'form-control' %>
 
       <% profile.errors.full_messages_for(:phone_number).each do |message| %>
         <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -27,7 +27,7 @@
     <%= form.select :contact_method, 
                     ['Phone', 'Email', 'WhatsApp'], 
                     { prompt: "Please select" },
-                    class: 'form-control' %><br>
+                    class: 'form-control' %>
 
     <% profile.errors.full_messages_for(:contact_method).each do |message| %>
       <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -37,7 +37,7 @@
     <%= form.select :country, 
                     ['Canada', 'USA'], 
                     { prompt: "Please select" },
-                    class: 'form-control'%><br>
+                    class: 'form-control'%>
 
     <% profile.errors.full_messages_for(:country).each do |message| %>
       <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -48,7 +48,7 @@
     <%= form.select :province_state, 
                     grouped_options_for_select(provinces_states), 
                     { prompt: "Please select" },
-                    class: 'form-control' %><br>
+                    class: 'form-control' %>
 
     <% profile.custom_messages(:province_state).each do |error| %>
       <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
@@ -68,14 +68,14 @@
     <h4>Lifestyle</h4>
 
     <div data-controller='counter'>
-      <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %><br>
+      <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %>
       <%= form.text_area :ideal_dog,
                         data: { action: "input->counter#countMedium", 
                                 counter_target: 'input' },
                       placeholder: 'E.g. size, energy level, temperament',
                       class: 'form-control' %>
       
-      <div data-counter-target='output' class='small'></div><br>
+      <div data-counter-target='output' class='small'></div>
     </div>
 
     <% profile.custom_messages(:ideal_dog).each do |error| %>
@@ -83,14 +83,14 @@
     <% end %>
 
     <div data-controller='counter'>
-      <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %><br>
+      <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %>
       <%= form.text_area :lifestyle_fit,
                         data: { action: "input->counter#countMedium", 
                                 counter_target: 'input' },
                         placeholder: 'E.g. weekday routine, weekend routine',
                         class: 'form-control' %>
       
-      <div data-counter-target='output' class='small'></div><br>
+      <div data-counter-target='output' class='small'></div>
     </div>
 
     <% profile.custom_messages(:lifestyle_fit).each do |error| %>
@@ -105,7 +105,7 @@
                         placeholder: 'E.g. daily walks, hiking, running, dog park etc.',
                         class: 'form-control' %>
     
-      <div data-counter-target='output' class='small'></div><br>
+      <div data-counter-target='output' class='small'></div>
     </div>
 
     <% profile.custom_messages(:activities).each do |error| %>
@@ -115,18 +115,20 @@
     <div>
       <p>Approximately how many hours will your dog be left alone on a typical day:</p>
       <%= form.label :alone_weekday, 'Week day:' %>
-      <%= form.select(:alone_weekday, 
+      <%= form.select :alone_weekday, 
                       options_for_select(0..10),
-                      prompt: '') %>
+                      { prompt: "Please select" },
+                      class: 'form-control' %>
 
       <% profile.custom_messages(:alone_weekday).each do |error| %>
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
 
       <%= form.label :alone_weekend, 'Weekend:' %>
-      <%= form.select(:alone_weekend, 
+      <%= form.select :alone_weekend, 
                       options_for_select(0..10),
-                      prompt: '') %>
+                      { prompt: "Please select" },
+                      class: 'form-control' %>
 
       <% profile.custom_messages(:alone_weekend).each do |error| %>
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
@@ -145,7 +147,7 @@
                         placeholder: 'E.g. role in past dog ownership, if any.',
                         class: 'form-control' %>
 
-      <div data-counter-target='output' class='small'></div><br>
+      <div data-counter-target='output' class='small'></div>
     </div>
 
     <% profile.custom_messages(:experience).each do |error| %>
@@ -160,7 +162,7 @@
                         placeholder: 'E.g. during emergency or vacation.',
                         class: 'form-control' %>
     
-      <div data-counter-target='output' class='small'></div><br>
+      <div data-counter-target='output' class='small'></div>
     </div>
 
     <% profile.custom_messages(:contingency_plan).each do |error| %>
@@ -186,14 +188,14 @@
       <% end %>
 
       <div data-display-target='additional' class='d-none' data-controller='counter'>
-        <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %><br>
+        <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %>
         <%= form.text_area :shared_owner, 
                           data: { action: "input->counter#countMedium", 
                                   counter_target: 'input' },
                           placeholder: 'E.g. how often, their experience with dogs.',
                           class: 'form-control' %>
         
-        <div data-counter-target='output' class='small'></div><br>
+        <div data-counter-target='output' class='small'></div>
       </div>
 
       <% profile.custom_messages(:shared_owner).each do |error| %>
@@ -208,13 +210,14 @@
     <h4>Household Information</h4>
 
     <%= form.label :housing_type %>
-    <%= form.select( :housing_type, 
+    <%= form.select :housing_type, 
                     ['Acreage', 
                     'Detached',
                     'Duplex',
                     'Apartment', 
                     'Trailer'],
-                    prompt: 'Please select') %><br>
+                    { prompt: "Please select" },
+                    class: 'form-control' %>
 
     <% profile.errors.full_messages_for(:housing_type).each do |message| %>
       <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -239,14 +242,14 @@
       <% end %>
     
       <div data-display-target='additional' class='d-none' data-controller='counter'>
-        <%= form.label :fenced_alternative, 'How do you plan to care for the dog without a fenced garden?' %><br>
+        <%= form.label :fenced_alternative, 'How do you plan to care for the dog without a fenced garden?' %>
         <%= form.text_area :fenced_alternative, 
                           data: { action: "input->counter#countMedium", 
                                   counter_target: 'input' },
                           placeholder: 'E.g. mainly indoors, outdoors on tether.',
                           class: 'form-control' %>
 
-        <div data-counter-target='output' class='small'></div><br>
+        <div data-counter-target='output' class='small'></div>
       </div>
 
       <% profile.custom_messages(:fenced_alternative).each do |error| %>
@@ -307,18 +310,20 @@
 
 
     <%= form.label :adults_in_home, 'How many people over 18 years live in your home?' %>
-    <%= form.select(:adults_in_home, 
-                    options_for_select(1..10), 
-                    prompt: '') %>
+    <%= form.select :adults_in_home, 
+                    options_for_select(1..10),
+                    { prompt: "Please select" },
+                    class: 'form-control' %>
 
     <% profile.errors.full_messages_for(:adults_in_home).each do |message| %>
       <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
     <% end %>
 
     <%= form.label :kids_in_home, 'How many people under 18 years live in your home?' %>
-    <%= form.select(:kids_in_home, 
-                    options_for_select(0..10), 
-                    prompt: '') %>
+    <%= form.select :kids_in_home, 
+                    options_for_select(0..10),
+                    { prompt: "Please select" },
+                    class: 'form-control' %>
 
     <% profile.errors.full_messages_for(:kids_in_home).each do |message| %>
       <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -343,12 +348,12 @@
       <% end %>
 
       <div data-display-target='additional' class='d-none' data-controller='counter'>    
-        <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %><br>
+        <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %>
         <%= form.text_area :describe_pets, data: { action: "input->counter#countMedium", 
                                                   counter_target: 'input' },
                            class: 'form-control' %>
 
-        <div data-counter-target='output' class='small'></div><br>
+        <div data-counter-target='output' class='small'></div>
       </div>
 
       <% profile.custom_messages(:describe_pets).each do |error| %>
@@ -392,11 +397,11 @@
       <% end %>
 
       <div data-display-target='additional' class='d-none' data-controller='counter'>
-        <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %><br>
+        <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %>
         <%= form.text_area :describe_surrender, data: { action: "input->counter#countMedium", 
                                                         counter_target: 'input' } %>
 
-        <div data-counter-target='output' class='small'></div><br>
+        <div data-counter-target='output' class='small'></div>
       </div>
 
       <% profile.custom_messages(:describe_surrender).each do |error| %>
