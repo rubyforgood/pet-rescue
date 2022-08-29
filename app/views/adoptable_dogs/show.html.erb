@@ -32,8 +32,21 @@
 <p>Name: <%= @dog.name %></p>
 <p>Age: <%= @dog.age %></p>
 <p>Organization: <%= @dog.organization.name %><br>
+<% if user_signed_in? %>
+  <% if current_user.adopter_account %>
+    <%= button_to 'Apply to Adopt', 
+        create_adopter_application_path(adopter_account_id: current_user.adopter_account.id, 
+                                        dog_id: @dog.id), class: 'custom-btn-pink' %>
+  <% elsif current_user.adopter_account && current_user.adopter_account.adopter_profile.nil? %>
+    <div>
+    <p>Your adopter profile needs to be completed</p>
+    <%= button_to 'Apply to Adopt', 
+        disabled: true, class: 'custom-btn-pink' %>
+  <% end %>
+<% else %>
+  <div>
+  Sign up now
+  </div>
+<% end %>
 
-<%= button_to 'Apply to Adopt', 
-    create_adopter_application_path(adopter_account_id: current_user.adopter_account.id, 
-                                     dog_id: @dog.id) %><br>
 <%= link_to 'Back', adoptable_dogs_path %>
