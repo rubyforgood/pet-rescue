@@ -318,8 +318,19 @@ header.masthead {
   margin-bottom: 6px;
 }
 
-.stepper-item.active {
+.stepper-item.active .step-counter{
   font-weight: bold;
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #00401F;
+  margin-bottom: 6px;
+  color: white;
 }
 
 .stepper-item.completed .step-counter {
