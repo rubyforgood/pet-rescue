@@ -1,5 +1,6 @@
 
-  <h4>Please fill out an adoption profile below</h4>
+  <h4 class="text-center mb-4">Please fill out an adoption profile below</h4>
+
   <%= form_with model: profile, :url => profile_path do |form| %>
   <%= form.hidden_field :adopter_account_id, value: current_user.adopter_account.id %> 
   
@@ -9,18 +10,19 @@
     </div>
   <% end %>
   
-  <div class='card mt-5'>
-    <h4 class='mt-3'>Administrative details</h4>
+  <div class='card p-4 mb-5'>
+    <h4>Administrative details</h4>
 
-    <%= form.label :phone_number %>
-    <%= form.telephone_field :phone_number,
-                            autofocus: true,
-                            placeholder: "10 digit number"%><br>
+      <%= form.label :phone_number %>
+      <%= form.telephone_field :phone_number,
+                              autofocus: true,
+                              placeholder: "10 digit number",
+                              class: 'form-control' %><br>
 
-    <% profile.errors.full_messages_for(:phone_number).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-    <% end %>
-
+      <% profile.errors.full_messages_for(:phone_number).each do |message| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% end %>
+      
     <%= form.label :contact_method, 'Preferred contact method:' %>
     <%= form.select :contact_method, 
                     ['Phone', 'Email', 'WhatsApp'], 
@@ -58,15 +60,15 @@
     
   </div>
 
-  <div class='card mt-5'>
-    <h4 class='mt-3'>Lifestyle</h4>
+  <div class='card p-4 mb-5'>
+    <h4>Lifestyle</h4>
 
     <div data-controller='counter'>
       <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %><br>
       <%= form.text_area :ideal_dog,
                         data: { action: "input->counter#countMedium", 
                                 counter_target: 'input' },
-                        placeholder: 'E.g. size, energy level, temperament' %>
+                      placeholder: 'E.g. size, energy level, temperament' %>
       
       <div data-counter-target='output' class='small'></div><br>
     </div>
@@ -123,9 +125,10 @@
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
     </div>
+  </div>
 
-  <div class='card mt-5'>
-    <h4 class='mt-3'>Dog Care</h4>
+  <div class='card p-4 mb-5'>
+    <h4>Dog Care</h4>
 
     <div data-controller='counter'>
       <%= form.label :experience, 'Briefly describe your dog care experience' %>
@@ -191,8 +194,8 @@
 
   </div>
 
-  <div class='card mt-5'>
-    <h4 class='mt-3'>Household Information</h4>
+  <div class='card p-4 mb-5'>
+    <h4>Household Information</h4>
 
     <%= form.label :housing_type %>
     <%= form.select( :housing_type, 
@@ -341,8 +344,8 @@
 
   </div>
 
-  <div class='card mt-5'>
-    <h4 class='mt-3'>Additional Information</h4>
+  <div class='card p-4 mb-5'>
+    <h4>Additional Information</h4>
 
     <div>
       <p>Have you checked your local shelter for available dogs?</p>

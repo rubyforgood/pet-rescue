@@ -354,3 +354,8 @@ header.masthead {
 .stepper-item:last-child::after {
   content: none;
 }
+
+//form
+label {
+  margin-bottom: 0.5rem;
+}
