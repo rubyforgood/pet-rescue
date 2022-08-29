@@ -1,4 +1,6 @@
-<%= form_with model: profile, :url => profile_path do |form| %>
+
+  <h4>Please fill out an adoption profile below</h4>
+  <%= form_with model: profile, :url => profile_path do |form| %>
   <%= form.hidden_field :adopter_account_id, value: current_user.adopter_account.id %> 
   
   <% if profile.errors.count > 0 %>
@@ -12,8 +14,8 @@
 
     <%= form.label :phone_number %>
     <%= form.telephone_field :phone_number,
-                             autofocus: true,
-                             placeholder: "10 digit number"%><br>
+                            autofocus: true,
+                            placeholder: "10 digit number"%><br>
 
     <% profile.errors.full_messages_for(:phone_number).each do |message| %>
       <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -62,9 +64,9 @@
     <div data-controller='counter'>
       <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %><br>
       <%= form.text_area :ideal_dog,
-                         data: { action: "input->counter#countMedium", 
-                                 counter_target: 'input' },
-                         placeholder: 'E.g. size, energy level, temperament' %>
+                        data: { action: "input->counter#countMedium", 
+                                counter_target: 'input' },
+                        placeholder: 'E.g. size, energy level, temperament' %>
       
       <div data-counter-target='output' class='small'></div><br>
     </div>
@@ -76,9 +78,9 @@
     <div data-controller='counter'>
       <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %><br>
       <%= form.text_area :lifestyle_fit,
-                         data: { action: "input->counter#countMedium", 
-                                 counter_target: 'input' },
-                         placeholder: 'E.g. weekday routine, weekend routine' %>
+                        data: { action: "input->counter#countMedium", 
+                                counter_target: 'input' },
+                        placeholder: 'E.g. weekday routine, weekend routine' %>
       
       <div data-counter-target='output' class='small'></div><br>
     </div>
@@ -90,9 +92,9 @@
     <div data-controller='counter'>
       <%= form.label :activities, 'Briefly describe activities you will do with your dog' %>
       <%= form.text_area :activities,
-                         data: { action: "input->counter#countMedium", 
-                                 counter_target: 'input' },
-                         placeholder: 'E.g. daily walks, hiking, running, dog park etc.' %>
+                        data: { action: "input->counter#countMedium", 
+                                counter_target: 'input' },
+                        placeholder: 'E.g. daily walks, hiking, running, dog park etc.' %>
     
       <div data-counter-target='output' class='small'></div><br>
     </div>
@@ -128,9 +130,9 @@
     <div data-controller='counter'>
       <%= form.label :experience, 'Briefly describe your dog care experience' %>
       <%= form.text_area :experience,
-                         data: { action: "input->counter#countMedium", 
-                                 counter_target: 'input' },
-                         placeholder: 'E.g. role in past dog ownership, if any.' %>
+                        data: { action: "input->counter#countMedium", 
+                                counter_target: 'input' },
+                        placeholder: 'E.g. role in past dog ownership, if any.' %>
 
       <div data-counter-target='output' class='small'></div><br>
     </div>
@@ -142,9 +144,9 @@
     <div data-controller='counter'>
       <%= form.label :contingency_plan, 'Who will care for your dog during emergencies or vacations?' %>
       <%= form.text_area :contingency_plan,
-                         data: { action: "input->counter#countMedium", 
-                                 counter_target: 'input' },
-                         placeholder: 'E.g. during emergency or vacation.' %>
+                        data: { action: "input->counter#countMedium", 
+                                counter_target: 'input' },
+                        placeholder: 'E.g. during emergency or vacation.' %>
     
       <div data-counter-target='output' class='small'></div><br>
     </div>
@@ -174,9 +176,9 @@
       <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %><br>
         <%= form.text_area :shared_owner, 
-                           data: { action: "input->counter#countMedium", 
-                                   counter_target: 'input' },
-                           placeholder: 'E.g. how often, their experience with dogs.' %>
+                          data: { action: "input->counter#countMedium", 
+                                  counter_target: 'input' },
+                          placeholder: 'E.g. how often, their experience with dogs.' %>
         
         <div data-counter-target='output' class='small'></div><br>
       </div>
@@ -195,11 +197,11 @@
     <%= form.label :housing_type %>
     <%= form.select( :housing_type, 
                     ['Acreage', 
-                     'Detached',
-                     'Duplex',
-                     'Apartment', 
-                     'Trailer'],
-                     prompt: 'Please select') %><br>
+                    'Detached',
+                    'Duplex',
+                    'Apartment', 
+                    'Trailer'],
+                    prompt: 'Please select') %><br>
 
     <% profile.errors.full_messages_for(:housing_type).each do |message| %>
       <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -226,9 +228,9 @@
       <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :fenced_alternative, 'How do you plan to care for the dog without a fenced garden?' %><br>
         <%= form.text_area :fenced_alternative, 
-                           data: { action: "input->counter#countMedium", 
-                                   counter_target: 'input' },
-                           placeholder: 'E.g. mainly indoors, outdoors on tether.' %>
+                          data: { action: "input->counter#countMedium", 
+                                  counter_target: 'input' },
+                          placeholder: 'E.g. mainly indoors, outdoors on tether.' %>
 
         <div data-counter-target='output' class='small'></div><br>
       </div>
@@ -305,7 +307,7 @@
     <% profile.errors.full_messages_for(:kids_in_home).each do |message| %>
       <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
     <% end %>
- 
+
     <div data-controller='display'>
       <p>Are there any other pets in your home?</p>
 
@@ -324,10 +326,10 @@
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
 
-       <div data-display-target='additional' class='d-none' data-controller='counter'>    
+      <div data-display-target='additional' class='d-none' data-controller='counter'>    
         <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %><br>
         <%= form.text_area :describe_pets, data: { action: "input->counter#countMedium", 
-                                                   counter_target: 'input' } %>
+                                                  counter_target: 'input' } %>
 
         <div data-counter-target='output' class='small'></div><br>
       </div>
@@ -398,3 +400,7 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+
+
+
