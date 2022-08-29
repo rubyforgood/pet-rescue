@@ -8,7 +8,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-9">
         <!--dog images--> 
         <% if @dog.images.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
@@ -48,7 +48,7 @@
         </div>
       </div>
       <!--button area-->
-      <div class="col-md-4 d-flex align-items-center justify-content-center">
+      <div class="col-md-3 d-flex align-items-center justify-content-center">
         <div class="border p-5 rounded text-center shadow">
 
           <% if user_signed_in? %>
@@ -63,7 +63,7 @@
                   disabled: true, class: 'custom-btn-pink' %>
             <% end %>
             <% else %>
-              <p>Are you ready to start the adoption process?</p>
+              <h4 class="mb-4">Are you ready to start the adoption process?</h4>
               <%= link_to 'Sign Up', new_user_registration_path , 
                   class: 'custom-btn-pink' %>
           <% end %>  
