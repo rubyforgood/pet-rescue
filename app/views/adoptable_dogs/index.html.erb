@@ -14,7 +14,7 @@
           <div class="row">
             <% @dogs.each do |dog| %>    
               <div class="col-lg-4 col-md-6 p-0">
-                <%= link_to adoptable_dog_path(dog) do %>
+                <%= link_to adoptable_dog_path(dog), class: 'text-decoration-none' do %>
                   <div class="card m-4">
                     <% if dog.images.attached? %>
                       <%= image_tag dog.images.first, class: 'card-img-top test' %>
@@ -22,13 +22,13 @@
                       <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
                     <% end %>
                     <div class="card-body">
-                      <h5 class="card-title text-decoration-none">
+                      <h5 class="card-title">
                         <%= dog.name %>
                       </h5>
-                      <p class="card-text text-decoration-none m-0">
+                      <p class="card-text m-0">
                         Age: <%= dog.age %>
                       </p>
-                      <p class="card-text text-decoration-none">
+                      <p class="card-text">
                         Breed: <%= dog.breed %>
                       </p>
                     </div>
