@@ -9,19 +9,21 @@
       <p>Please fix <%= profile.errors.count %> <%= 'error'.pluralize(profile.errors.count) %> highlighted below.</p>
     </div>
   <% end %>
+
+<!--Administrative details section-->
   
   <div class='card p-4 mb-5'>
     <h4>Administrative details</h4>
 
-      <%= form.label :phone_number %>
-      <%= form.telephone_field :phone_number,
-                              autofocus: true,
-                              placeholder: "10 digit number",
-                              class: 'form-control' %>
+    <%= form.label :phone_number %>
+    <%= form.telephone_field :phone_number,
+                            autofocus: true,
+                            placeholder: "10 digit number",
+                            class: 'form-control' %>
 
-      <% profile.errors.full_messages_for(:phone_number).each do |message| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-      <% end %>
+    <% profile.errors.full_messages_for(:phone_number).each do |message| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+    <% end %>
 
     <%= form.label :contact_method, 'Preferred contact method:' %>
     <%= form.select :contact_method, 
@@ -64,6 +66,8 @@
     
   </div>
 
+
+<!--Lifestyle section-->
   <div class='card p-4 mb-5'>
     <h4>Lifestyle</h4>
 
@@ -114,28 +118,36 @@
 
     <div>
       <p>Approximately how many hours will your dog be left alone on a typical day:</p>
-      <%= form.label :alone_weekday, 'Week day:' %>
-      <%= form.select :alone_weekday, 
-                      options_for_select(0..10),
-                      { prompt: "Please select" },
-                      class: 'form-control' %>
 
-      <% profile.custom_messages(:alone_weekday).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-      <% end %>
+      <div class="d-flex gap-4">
+        <div>
+          <%= form.label :alone_weekday, 'Week day:' %>
+          <%= form.select :alone_weekday, 
+                          options_for_select(0..10),
+                          { prompt: "Please select" },
+                          class: 'form-control' %>
 
-      <%= form.label :alone_weekend, 'Weekend:' %>
-      <%= form.select :alone_weekend, 
-                      options_for_select(0..10),
-                      { prompt: "Please select" },
-                      class: 'form-control' %>
+          <% profile.custom_messages(:alone_weekday).each do |error| %>
+            <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+          <% end %>
+        </div>
 
-      <% profile.custom_messages(:alone_weekend).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-      <% end %>
+        <div>
+          <%= form.label :alone_weekend, 'Weekend:' %>
+          <%= form.select :alone_weekend, 
+                          options_for_select(0..10),
+                          { prompt: "Please select" },
+                          class: 'form-control' %>
+
+          <% profile.custom_messages(:alone_weekend).each do |error| %>
+            <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
 
+<!--Dog care section-->
   <div class='card p-4 mb-5'>
     <h4>Dog Care</h4>
 
@@ -206,6 +218,7 @@
 
   </div>
 
+<!--Household information section-->
   <div class='card p-4 mb-5'>
     <h4>Household Information</h4>
 
@@ -363,6 +376,7 @@
 
   </div>
 
+<!--Additional information section-->
   <div class='card p-4 mb-5'>
     <h4>Additional Information</h4>
 
