@@ -1,22 +1,36 @@
+
+
 <% current_user.adopter_account.adopter_applications.each do | app | %>
   <% unless app.profile_show == false %>
-    <div class='card'>
+    <div class='card mb-4'>
       <div class='card-body'>
-        <p>Name: <%= app.dog.name %></p>
-        <p>Status: <%= app.status.titleize %></p>
-        <% unless app.status == 'withdrawn' || app.status == 'adoption_made' %>
-          <%= link_to 'See dog', adoptable_dog_path(app.dog.id) %>
-          <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, status: 'withdrawn'),  
-                        data: { turbo_method: "patch",
-                                turbo_confirm: "If you withdraw you will not be able to reapply for this dog." } %>
-        <% end %>
-        <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
-          <%= link_to 'Remove', update_adopter_application_path(id: app.id, profile_show: false),  
-                        data: { turbo_method: "patch",
-                                turbo_confirm: "Click OK to remove this application." } %>
-        <% end %>
-      </div>
-    </div>
+
+        <!--application info-->
+        <div class="d-md-flex justify-content-between align-items-center px-4">
+          <p>Name: <%= app.dog.name %></p>
+          <p>Status: <%= app.status.titleize %></p>
+          <% unless app.status == 'withdrawn' || app.status == 'adoption_made' %>
+            <%= link_to 'See dog', adoptable_dog_path(app.dog.id) %>
+            <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, 
+                                                                    status: 'withdrawn'),  
+                                    data: { turbo_method: "patch",
+                                    turbo_confirm: "If you withdraw you will 
+                                                    not be able to reapply for 
+                                                    this dog." },
+                                    class: 'btn btn-outline-dark' %>
+          <% end %>
+          <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
+            <%= link_to 'Remove', update_adopter_application_path(id: app.id, 
+                                                                  profile_show: false),  
+                                  data: { turbo_method: "patch",
+                                  turbo_confirm: "Click OK to remove this 
+                                                  application." },
+                                  class: 'btn btn-outline-dark' %>
+          <% end %>
+        </div>
+
+      </div> <!--card body-->
+    </div> <!--card-->
   <% end %>
 <% end %>
 
