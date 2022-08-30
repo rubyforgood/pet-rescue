@@ -15,14 +15,14 @@ class OrganizationDogsController < ApplicationController
     @dog = Dog.find(params[:id])
     return if dog_in_same_organization?(@dog.organization_id)
 
-    redirect_to dogs_path, notice: 'This dog is not in your organization.'
+    redirect_to dogs_path, alert: 'This dog is not in your organization.'
   end
 
   def show
     @dog = Dog.find(params[:id])
     return if dog_in_same_organization?(@dog.organization_id)
 
-    redirect_to dogs_path, notice: 'This dog is not in your organization.'
+    redirect_to dogs_path, alert: 'This dog is not in your organization.'
   end
 
   def create
@@ -51,7 +51,7 @@ class OrganizationDogsController < ApplicationController
     if dog_in_same_organization?(@dog.organization_id) && @dog.destroy
       redirect_to dogs_path, status: :see_other
     else
-      redirect_to dogs_path, notice: 'Error.'
+      redirect_to dogs_path, alert: 'Error.'
     end
   end
 

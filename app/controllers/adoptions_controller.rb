@@ -9,7 +9,7 @@ class AdoptionsController < ApplicationController
       set_statuses_to_adoption_made
       redirect_to adopter_applications_path, notice: 'Dog successfully adopted.'
     else
-      redirect_to adopter_applications_path, notice: 'Error.'
+      redirect_to adopter_applications_path, alert: 'Error.'
 
     end
   end
@@ -35,6 +35,6 @@ class AdoptionsController < ApplicationController
     return if current_user.staff_account.organization_id ==
               Dog.find(params[:dog_id]).organization.id
 
-    redirect_to root_path, notice: 'Unauthorized action.'
+    redirect_to root_path, alert: 'Unauthorized action.'
   end
 end

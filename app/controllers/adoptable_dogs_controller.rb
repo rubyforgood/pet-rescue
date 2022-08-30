@@ -10,6 +10,6 @@ class AdoptableDogsController < ApplicationController
 
     return unless @dog.adoption
 
-    redirect_to adoptable_dogs_path, notice: 'You can only view dogs that need adoption.'
+    redirect_to adoptable_dogs_path, alert: 'You can only view dogs that need adoption.'
   end
 end

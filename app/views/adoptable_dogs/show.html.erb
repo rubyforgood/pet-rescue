@@ -58,31 +58,35 @@
       </div> <!--col-->
 
       <!--button area-->
-      <div class="col-md-4 mx-auto d-flex align-items-center justify-content-center">
-        <div class="border p-5 rounded text-center shadow">
+      
+      <% unless user_signed_in? && current_user.staff_account %>
+        <div class="col-md-4 mx-auto d-flex align-items-center 
+                    justify-content-center">
+          <div class="border p-5 rounded text-center shadow">
 
-          <% if user_signed_in? %>
-            <% if current_user.adopter_account && 
-                  current_user.adopter_account.adopter_profile %>
-              <h4 class="mb-4">Are you ready to apply?</h4>
-              <%= button_to 'Apply to Adopt', 
-                  create_adopter_application_path(adopter_account_id: current_user.adopter_account.id, 
-                                                  dog_id: @dog.id), 
-                                                  class: 'custom-btn-pink' %>
-            <% elsif current_user.adopter_account %>
-              <h4 class='mb-4'>
-                Complete your adopter profile before applying to adopt this dog.
-              </h4>
-              <%= link_to 'Complete my profile', new_profile_path,
-                  class: 'custom-btn-pink' %>
-            <% end %>
-            <% else %>
-              <h4 class="mb-4">Sign up to be able to apply for this dog</h4>
-              <%= link_to 'Sign Up', account_select_path , 
-                  class: 'custom-btn-pink' %>
-          <% end %>  
-        </div>
-      </div> <!--col-->
+            <% if user_signed_in? %>
+              <% if current_user.adopter_account && 
+                    current_user.adopter_account.adopter_profile %>
+                <h4 class="mb-4">In love with this pooch?</h4>
+                <%= button_to 'Apply to Adopt', 
+                    create_adopter_application_path(adopter_account_id: current_user.adopter_account.id, 
+                                                    dog_id: @dog.id), 
+                                                    class: 'custom-btn-pink' %>
+              <% elsif current_user.adopter_account %>
+                <h4 class='mb-4'>
+                  You need to complete your profile before you can apply.
+                </h4>
+                <%= link_to 'Complete my profile', new_profile_path,
+                    class: 'custom-btn-pink' %>
+              <% end %>
+              <% else %>
+                <h4 class="mb-4">Sign up to be able to apply for this dog</h4>
+                <%= link_to 'Sign Up', account_select_path , 
+                    class: 'custom-btn-pink' %>
+            <% end %>  
+          </div>
+        </div> <!--col-->
+      <%end%>
     </div> <!--row-->
   </div> <!--container-->
 

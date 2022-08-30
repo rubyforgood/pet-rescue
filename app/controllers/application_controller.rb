@@ -6,13 +6,13 @@ class ApplicationController < ActionController::Base
     return if current_user.adopter_account && 
               current_user.adopter_account.adopter_profile
 
-    redirect_to root_path, notice: 'Unauthorized action.'
+    redirect_to root_path, alert: 'Unauthorized action.'
   end
 
   def check_if_adopter
     return if current_user.adopter_account
 
-    redirect_to root_path, notice: 'Profiles are for adopters only'
+    redirect_to root_path, alert: 'Profiles are for adopters only'
   end
 
   def verified_staff
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
               current_user.staff_account &&
               current_user.staff_account.verified
 
-    redirect_to root_path, notice: 'Unauthorized action.'
+    redirect_to root_path, alert: 'Unauthorized action.'
   end
 
   def dog_in_same_organization?(org_id)

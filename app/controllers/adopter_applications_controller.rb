@@ -17,7 +17,7 @@ class AdopterApplicationsController < ApplicationController
     else
       render adoptable_dog_path(params[:dog_id]),
              status: :unprocessable_entity,
-             notice: 'Error. Please try again.'
+             alert: 'Error. Please try again.'
     end
   end
 
@@ -28,7 +28,7 @@ class AdopterApplicationsController < ApplicationController
     if @application.update(application_params)
       redirect_to profile_path
     else
-      redirect_to profile_path, notice: 'Error.'
+      redirect_to profile_path, alert: 'Error.'
     end
   end
 
@@ -44,7 +44,7 @@ class AdopterApplicationsController < ApplicationController
                          .exists?
 
       redirect_to adoptable_dog_path(params[:dog_id]),
-                  notice: 'Application already exists.'
+                  alert: 'Application already exists.'
     end
   end
 end

@@ -19,7 +19,7 @@ class AdopterProfilesController < ApplicationController
       if @adopter_profile.save
         format.html { redirect_to profile_path, notice: 'Profile created' }
       else
-        format.html { render :new, status: :unprocessable_entity, notice: 'Error' }
+        format.html { render :new, status: :unprocessable_entity, alert: 'Error' }
       end
     end
   end

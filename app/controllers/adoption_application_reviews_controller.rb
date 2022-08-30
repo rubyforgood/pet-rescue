@@ -13,7 +13,8 @@ class AdoptionApplicationReviewsController < ApplicationController
     return if dog_in_same_organization?(@application.dog.organization_id)
 
     redirect_to adopter_applications_path,
-                notice: 'Staff can only edit/update applications for their organization dogs.'
+                alert: 'Staff can only edit applications for their organization 
+                        dogs.'
   end
 
   def update
