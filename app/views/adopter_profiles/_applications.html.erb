@@ -17,7 +17,8 @@
                                     turbo_confirm: "If you withdraw you will 
                                                     not be able to reapply for 
                                                     this dog." },
-                                    class: 'btn btn-outline-dark' %>
+                                    class: 'btn btn-outline-dark d-block
+                                            mt-3 mt-md-0 mb-3 mb-md-0' %>
           <% end %>
           <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
             <%= link_to 'Remove', update_adopter_application_path(id: app.id, 
