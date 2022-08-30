@@ -1,4 +1,19 @@
-<p>Makes changes then hit 'update'.</p>
 
-<%= render "form", profile: @adopter_profile %>
-<%= link_to 'Back', profile_path, class: 'btn btn-outline-dark mt-3'%>
+<section class="pt-5 pb-5" id="account_select">
+  <div class="container mb-md-5 mt-md-5">
+
+    <!--page heading-->
+    <div class="text-center mb-5">
+      <h4 class="mb-4">
+        <p>Makes changes then hit 'Save my profile'.</p>
+      </h4>
+    </div>
+
+    <!--rendering _form.html.erb--> 
+    <div class="col-md-8 mx-auto">
+        <%= render "form", profile: @adopter_profile %>
+        <%= link_to 'Back', profile_path %>
+    </div>
+
+  </div> <!--container-->
+</section>

@@ -1,6 +1,4 @@
 
-  <h4 class="text-center mb-4">Please fill out an adoption profile below</h4>
-
   <%= form_with model: profile, :url => profile_path do |form| %>
   <%= form.hidden_field :adopter_account_id, value: current_user.adopter_account.id %> 
   
