@@ -1,6 +1,4 @@
 <section class="pt-5 pb-5" id="adoptable_dogs_show">
-
-  <!--page heading-->
   <div class="container mb-md-5 mt-md-5">
     <div class="text-center mb-5">
       <h2 class="section-heading text-uppercase underline">
@@ -11,8 +9,8 @@
 
   <!--dog tile-->
   <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
+    <div class="row g-5">
+      <div class="col-lg-8">
         <!--dog images--> 
         <% if @dog.images.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
@@ -42,52 +40,76 @@
             </button>
           </div>
         <% end %>
-        <!--dog info-->
-        <div class="mb-4">
-          <h3 class="mb-2">Name: <%= @dog.name %></h3>
-          <h4 class="mb-2">Age: <%= @dog.age %></h4>
-          <h4 class="mb-2">Organization: <%= @dog.organization.name %></h4><br>
-          <h4 class="mb-2">Description:</h4>
-          <p>
-            Ut laboris elit deserunt sint. Minim consequat cillum aliqua elit laborum in ipsum id. Velit culpa officia eiusmod laborum Lorem anim voluptate exercitation laborum. Est id ipsum proident dolor qui irure reprehenderit esse adipisicing magna qui aliqua ut. Velit sunt minim velit mollit proident esse laborum ipsum. Id dolore deserunt occaecat irure anim sit ut non exercitation. Ullamco adipisicing sint minim et anim ut.
 
-            Sint ex laboris enim dolore ullamco. Eu labore nulla Lorem occaecat qui ut aliquip excepteur aute incididunt deserunt aute. Deserunt et commodo ullamco in. Elit velit exercitation cupidatat labore eiusmod cupidatat culpa. Anim nulla ad incididunt esse dolor pariatur voluptate dolore voluptate in eu. Et duis sint duis pariatur nulla aute quis non deserunt duis tempor.
-          </p>
-          <%= link_to 'Back', adoptable_dogs_path %>
-        </div>
-      </div> <!--col-->
-
-      <!--button area-->
-      
-      <% unless user_signed_in? && current_user.staff_account %>
-        <div class="col-md-4 mx-auto d-flex align-items-center 
-                    justify-content-center">
-          <div class="border p-5 rounded text-center shadow">
-
-            <% if user_signed_in? %>
-              <% if current_user.adopter_account && 
-                    current_user.adopter_account.adopter_profile %>
-                <h4 class="mb-4">In love with this pooch?</h4>
-                <%= button_to 'Apply to Adopt', 
-                    create_adopter_application_path(adopter_account_id: current_user.adopter_account.id, 
-                                                    dog_id: @dog.id), 
-                                                    class: 'custom-btn-pink' %>
-              <% elsif current_user.adopter_account %>
-                <h4 class='mb-4'>
-                  You need to complete your profile before you can apply.
-                </h4>
-                <%= link_to 'Complete my profile', new_profile_path,
-                    class: 'custom-btn-pink' %>
-              <% end %>
-              <% else %>
-                <h4 class="mb-4">Sign up to be able to apply for this dog</h4>
-                <%= link_to 'Sign Up', account_select_path , 
-                    class: 'custom-btn-pink' %>
-            <% end %>  
+        <div class='row mb-3'>
+          <div class='col-md-3 mb-1'>
+            <h5 style='font-weight: bold;'>Age:</h5>
+            <h5><%= @dog.age %></h5>
           </div>
-        </div> <!--col-->
-      <%end%>
-    </div> <!--row-->
-  </div> <!--container-->
+          <div class='col-md-3 mb-1'>
+            <h5 style='font-weight: bold;'>Sex:</h5>
+            <h5><%= @dog.sex %></h5>
+          </div>
+          <div class='col-md-3 mb-1'>
+            <h5 style='font-weight: bold;'>Breed:</h5>
+            <h5><%= @dog.breed %></h5>
+          </div>
+          <div class='col-md-3 mb-1'>
+            <h5 style='font-weight: bold;'>Size:</h5>
+            <h5> <%= @dog.size %></h5>
+          </div>
+        </div>
+        <h4 style='font-weight: bold;'>
+          About <%= @dog.name %>
+        </h4>
+        <p class='mb-2'>
+          Ut laboris elit deserunt sint. Minim consequat cillum aliqua elit laborum in ipsum id. Velit culpa officia eiusmod laborum Lorem anim voluptate exercitation laborum. Est id ipsum proident dolor qui irure reprehenderit esse adipisicing magna qui aliqua ut. Velit sunt minim velit mollit proident esse laborum ipsum. Id dolore deserunt occaecat irure anim sit ut non exercitation. Ullamco adipisicing sint minim et anim ut.
 
+          Sint ex laboris enim dolore ullamco. Eu labore nulla Lorem occaecat qui ut aliquip excepteur aute incididunt deserunt aute. Deserunt et commodo ullamco in. Elit velit exercitation cupidatat labore eiusmod cupidatat culpa. Anim nulla ad incididunt esse dolor pariatur voluptate dolore voluptate in eu. Et duis sint duis pariatur nulla aute quis non deserunt duis tempor.
+        </p>
+      </div>
+
+      <div class='col-lg-4 border p-5 rounded shadow mt-md-4 mt-lg-5'>
+        <div>
+          <h4>
+            Adoption Process
+          </h4>
+          <p>
+            Please read the <%= link_to 'FAQ', faq_path %> before 
+            applying to adopt.
+          </p>
+        </div>
+        <div>
+          <% unless user_signed_in? && current_user.staff_account %>
+            <div class="">
+              <div class="">
+                <% if user_signed_in? %>
+                  <% if current_user.adopter_account && 
+                        current_user.adopter_account.adopter_profile %>
+                    <h4 class="mb-4">In love with this pooch?</h4>
+                    <%= button_to 'Apply to Adopt', 
+                        create_adopter_application_path(
+                          adopter_account_id: current_user.adopter_account.id, 
+                          dog_id: @dog.id
+                                                       ), 
+                          class: 'custom-btn-pink' %>
+                  <% elsif current_user.adopter_account %>
+                    <h4 class='mb-4'>
+                      You need to complete your profile before you can apply.
+                    </h4>
+                    <%= link_to 'Complete my profile', new_profile_path,
+                        class: 'custom-btn-pink' %>
+                  <% end %>
+                <% else %>
+                    <h4 class="mb-4">Sign up to be able to apply for this dog</h4>
+                    <%= link_to 'Sign Up', account_select_path , 
+                        class: 'custom-btn-pink' %>
+                <% end %>  
+              </div>
+            </div>
+          <%end%>
+        </div>
+      </div>
+    </div> <!-- row -->
+  </div> <!-- container -->
 </section>
