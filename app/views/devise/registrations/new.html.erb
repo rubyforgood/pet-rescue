@@ -1,94 +1,100 @@
 <section class="pt-5 pb-5" id="registration_new">
-        <div class="container mb-md-5 mt-md-5 ">
-            <div class="text-center mb-5">
-              <h1 class="section-heading text-uppercase underline">
-                Sign Up
-              </h1>
-            </div>
-            <div>
-                <div class="stepper-wrapper mb-5">
-                    <div class="stepper-item completed">
-                        <div class="step-counter text-white">1</div>
-                        <div class="step-name">Select account type</div>
-                    </div>
-                    <div class="stepper-item  active">
-                        <div class="step-counter">2</div>
-                        <div class="step-name">Create Account</div>
-                    </div>
-                    <div class="stepper-item">
-                        <div class="step-counter">3</div>
-                        <div class="step-name">Adopter Profile</div>
-                    </div>
-                    </div>
-            </div>
+  <div class="container mb-md-5 mt-md-5 ">  
 
-            <!--form-->
-            <div>
+    <!--page heading-->
+    <div class="text-center mb-5">
+      <h1 class="section-heading text-uppercase underline">
+        Sign Up
+      </h1>
+    </div>
+
+    <!-- pregress bar-->
+    <div>
+      <div class="stepper-wrapper mb-5">
+        <div class="stepper-item completed">
+          <div class="step-counter text-white">1</div>
+          <div class="step-name">Select account type</div>
+        </div>
+        <div class="stepper-item  active">
+          <div class="step-counter">2</div>
+          <div class="step-name">Create Account</div>
+        </div>
+        <div class="stepper-item">
+          <div class="step-counter">3</div>
+          <div class="step-name">Adopter Profile</div>
+        </div>
+      </div>
+    </div>
+
+    <!--form-->
+    <div>
+      <% if params[:account_type] == 'staff' %>
+        <% resource.build_staff_account if resource.staff_account.nil? %>
+      <% else %>
+        <% resource.build_adopter_account if resource.adopter_account.nil? %>
+      <% end %>
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <%= form_for(resource, as: resource_name, 
+                                 url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
               <% if params[:account_type] == 'staff' %>
-                <% resource.build_staff_account if resource.staff_account.nil? %>
-              <% else %>
-                <% resource.build_adopter_account if resource.adopter_account.nil? %>
+                <%= f.fields_for :staff_account do |fields| %>
+                  <%= fields.hidden_field :user_id %>
               <% end %>
-              <div class="row">
-                <div class="col-md-6 mx-auto">
-                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                    <%= render "devise/shared/error_messages", resource: resource %>
-
-                      <% if params[:account_type] == 'staff' %>
-                        <%= f.fields_for :staff_account do |fields| %>
-                          <%= fields.hidden_field :user_id %>
-                      <% end %>
-                      <% else %>
-                      <%= f.fields_for :adopter_account do |fields| %>
-                          <%= fields.hidden_field :user_id %>
-                      <% end %>
-                      <% end %>
-                    
-                    <div class="form-group mb-3">
-                      <%= f.label :email, 'Email*'%><br />
-                      <%= f.email_field :email, 
-                                        autofocus: true,
-                                        required: true,
-                                        autocomplete: "email", class: 'form-control' %>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <%= f.label :first_name, 'First Name*' %><br />
-                      <%= f.text_field :first_name, required: true, class: 'form-control' %>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <%= f.label :last_name, 'Last Name*' %><br />
-                      <%= f.text_field :last_name, required: true, class: 'form-control' %>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <%= f.label :password, 'Password*' %>
-                      <% if @minimum_password_length %>
-                      <em>(<%= @minimum_password_length %> characters minimum)</em>
-                      <% end %><br />
-                      <%= f.password_field :password,
-                                          required: true,
-                                          autocomplete: "new-password", 
-                                          class: 'form-control' %>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <%= f.label :password_confirmation, 'Password Confirmation*' %><br />
-                      <%= f.password_field :password_confirmation,
-                                          required: true,
-                                          autocomplete: "new-password", 
-                                          class: 'form-control' %>
-                    </div>
-
-                    <div class="actions">
-                      <%= f.submit "Sign up", class: 'btn btn-outline-dark mb-3', data: { turbo: false } %>
-                    </div>
-                  <% end %>
-                  <%= render "devise/shared/links" %>
-                </div><!--col-->
-              </div><!--row-->
+              <% else %>
+              <%= f.fields_for :adopter_account do |fields| %>
+                  <%= fields.hidden_field :user_id %>
+              <% end %>
+              <% end %>
+            
+            <div class="form-group mb-3">
+              <%= f.label :email, 'Email*'%><br />
+              <%= f.email_field :email, 
+                                autofocus: true,
+                                required: true,
+                                autocomplete: "email", class: 'form-control' %>
             </div>
-        </div><!--container-->
+
+            <div class="form-group mb-3">
+              <%= f.label :first_name, 'First Name*' %><br />
+              <%= f.text_field :first_name, required: true, class: 'form-control' %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :last_name, 'Last Name*' %><br />
+              <%= f.text_field :last_name, required: true, class: 'form-control' %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :password, 'Password*' %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password,
+                                  required: true,
+                                  autocomplete: "new-password", 
+                                  class: 'form-control' %>
+            </div>
+
+            <div class="form-group mb-3">
+              <%= f.label :password_confirmation, 'Password Confirmation*' %><br />
+              <%= f.password_field :password_confirmation,
+                                  required: true,
+                                  autocomplete: "new-password", 
+                                  class: 'form-control' %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Sign up", class: 'btn btn-outline-dark mb-3', data: { turbo: false } %>
+            </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
+        </div><!--col-->
+      </div><!--row-->
+    </div>
+
+  </div><!--container-->
 </section>
 

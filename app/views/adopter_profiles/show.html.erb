@@ -2,212 +2,259 @@
   <div class="container mb-md-5 mt-md-5">
     
     <!--page heading-->
-      <div class="text-center mb-5">
-        <h1 class="section-heading text-uppercase underline"><%= current_user.first_name %>'s Profile</h1>
-      </div>
+    <div class="text-center mb-5">
+      <h1 class="section-heading text-uppercase underline">
+        <%= current_user.first_name %>'s Profile
+      </h1>
+    </div>
 
     <!--my applications-->
-      <div class="row">
-        <div class="col-md-10 mx-auto border p-5 shadow-sm rounded mb-5">
-          <h2 class="mb-4">My Applications</h2>
-            <% if current_user.adopter_account.adopter_applications.exists? %>
-              <%= render 'applications' %>
-            <% end %>
-        </div>
-      </div> <!--row-->
+    <div class="row">
+      <div class="col-md-10 mx-auto border p-5 shadow-sm rounded mb-5">
+        <h2 class="mb-4">My Applications</h2>
+          <% if current_user.adopter_account.adopter_applications.exists? %>
+            <%= render 'applications' %>
+          <% end %>
+      </div>
+    </div> <!--row-->
 
     <!--adopter profile-->
-      <div class="row">
-        <div class="col-md-10 mx-auto border p-5 shadow-sm rounded">
-          <div class="d-flex gap-4">
-              <h2>My Adopter Profile</h2>
-              <%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-outline-dark' %>
+    <div class="row">
+      <div class="col-md-10 mx-auto border p-5 shadow-sm rounded">
+        <div class="d-flex gap-4">
+            <h2>My Adopter Profile</h2>
+            <%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-outline-dark' %>
+        </div>
+        <div>
+          <h4 class="mb-2 mt-4">Administrative Details</h4>
+          <div>
+            <strong>Phone Number</strong>
+            <p class="text-muted">
+              <%= current_user.adopter_account.adopter_profile.formatted_phone %>
+            </p>
           </div>
           <div>
-            <h4 class="mb-2 mt-4">Administrative Details</h4>
-            <div>
-              <strong>Phone Number</strong>
-              <p class="text-muted"><%= current_user.adopter_account.adopter_profile.formatted_phone %></p>
+            <strong>Contact Method</strong>
+            <p class="text-muted">
+              <%= current_user.adopter_account.adopter_profile.contact_method %>
+            </p>
+          </div>
+          <div>
+            <strong>Country</strong>
+            <p class="text-muted">
+              <%= current_user.adopter_account.adopter_profile.country %>
+            </p>
+          </div>
+          <div>
+            <strong>Province/State</strong>
+            <p class="text-muted">
+              <%= current_user.adopter_account.adopter_profile.province_state %>
+            </p>
+          </div>
+          <div class="mb-4">
+            <strong>City/Town</strong>
+            <p class="text-muted">
+              <%= current_user.adopter_account.adopter_profile.city_town %>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <hr>
+          <h4 class="mb-2 mt-2">Your Lifestyle</h4>
+          <div>
+            <strong>Your ideal dog</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.ideal_dog %>
+              </p>
             </div>
             <div>
-              <strong>Contact Method</strong>
-              <p class="text-muted"><%= current_user.adopter_account.adopter_profile.contact_method %></p>
+              <strong>Your lifestyle</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.lifestyle_fit %>
+              </p>
             </div>
             <div>
-              <strong>Country</strong>
-              <p class="text-muted"><%= current_user.adopter_account.adopter_profile.country %></p>
+              <strong>Activities you will do with your dog</strong>
+                <p class="text-muted">
+                  <%= current_user.adopter_account.adopter_profile.activities %>
+                </p>
             </div>
             <div>
-              <strong>Province/State</strong>
-              <p class="text-muted"><%= current_user.adopter_account.adopter_profile.province_state %></p>
+              <strong>Hours dog will be alone on weekends</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.alone_weekend %>
+              </p>
             </div>
             <div class="mb-4">
-              <strong>City/Town</strong>
-              <p class="text-muted"><%= current_user.adopter_account.adopter_profile.city_town %></p>
+              <strong>Hours dog will be alone on week days</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.alone_weekday %>
+              </p>
             </div>
           </div>
 
           <div>
             <hr>
-            <h4 class="mb-2 mt-2">Your Lifestyle</h4>
+            <h4 class="mb-2 mt-2">Dog Care</h4>
             <div>
-              <strong>Your ideal dog</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.ideal_dog %></p>
-              </div>
-              <div>
-                <strong>Your lifestyle</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.lifestyle_fit %></p>
-              </div>
-              <div>
-                <strong>Activities you will do with your dog</strong>
-                  <p class="text-muted"><%= current_user.adopter_account.adopter_profile.activities %></p>
-              </div>
-              <div>
-                <strong>Hours dog will be alone on weekends</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.alone_weekend %></p>
-              </div>
-              <div class="mb-4">
-                <strong>Hours dog will be alone on week days</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.alone_weekday %></p>
-              </div>
+              <strong>Your dog care experience</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.experience %>
+              </p>
             </div>
-
             <div>
-              <hr>
-              <h4 class="mb-2 mt-2">Dog Care</h4>
-              <div>
-                <strong>Your dog care experience</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.experience %></p>
-              </div>
-              <div>
-                <strong>Dog care plans during emergency or vacation</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.contingency_plan %></p>
-              </div>
-              <div>
-                <strong>Will dog care be shared with someone outside household?</strong>
-                <% if current_user.adopter_account.adopter_profile.shared_ownership == true %>
-                <p class="text-muted">Yes</p>
-                <% else %>
-                <p class="text-muted">No</p>
-                <% end %>
-              </div>
-
-              <% unless current_user.adopter_account.adopter_profile.shared_ownership == false %>
-              <div class="mb-4">
-                <strong>Details on shared dog care</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.shared_owner %></p>
-              </div>
-              <% end %>
+              <strong>Dog care plans during emergency or vacation</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.contingency_plan %>
+              </p>
             </div>
-
             <div>
-              <hr>
-              <h4 class="mb-2 mt-2">Household Information</h4>
-              <div>
-                <strong>Housing type</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.housing_type %></p>
-              </div>
-              <div>
-                <strong>Do you have access to a fenced garden?</strong>
-                <% if current_user.adopter_account.adopter_profile.fenced_access == true %>
-                <p class="text-muted">Yes</p>
-                <% else %>
-                <p class="text-muted">No</p>
-                <% end %>
-              </div>
-                <% unless current_user.adopter_account.adopter_profile.fenced_access == true %>
-              <div>
-                <strong>Your plan to care for the dog without a fenced garden</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.fenced_alternative %></p>
-              </div>
-              <% end %>
-              <div>
-                <strong>Dog's location during the day</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.location_day %></p>
-              </div>
-              <div>
-                <strong>Dog's location at night</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.location_night %></p>
-              </div>
-
-              <div>
-                <strong>Do you rent your home or live on a strata property?</strong>
-                <% if current_user.adopter_account.adopter_profile.do_you_rent == true %>
-                <p class="text-muted">Yes</p>
-                <% else %>
-                <p class="text-muted">No</p>
-                <% end %>
-              </div>
-              <% unless current_user.adopter_account.adopter_profile.do_you_rent == false %>
-              <div>
-                <strong>Have you confirmed dogs are allowed on the property?</strong>
-                <% if current_user.adopter_account.adopter_profile.dogs_allowed == true %>
-                <p class="text-muted">Yes</p>
-                <% else %>
-                <p class="text-muted">No</p>
-                <% end %>
-              </div>
-              <% end %>
-              <div>
-                <strong>Number of adults in home (over 18)</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.adults_in_home %></p>
-              </div>
-              <div>
-                <strong>Number of children in home (under 18)</strong>
-                <% if current_user.adopter_account.adopter_profile.kids_in_home == 0 %>
-                <p class="text-muted">None</p>
-                <% else %>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.kids_in_home %></p>
-                <% end %>
-              </div>
-              <div>
-                <strong>Do you have pets in your home?</strong>
-                <% if current_user.adopter_account.adopter_profile.other_pets == true %>
-                <p class="text-muted">Yes</p>
-                <% else %>
-                <p class="text-muted">No</p>
-                <% end %>
-              </div>
-              <% unless current_user.adopter_account.adopter_profile.other_pets == false %>
-              <div class="mb-4">
-                <strong>Description of pets</strong>
-                <p class="text-muted"><%= current_user.adopter_account.adopter_profile.describe_pets %></p>
-              </div>
-              <% end %>
-            </div>
-
-          <div>
-            <hr>
-            <h4 class="mb-2 mt-2">Additional Information</h4>
-            <div>
-              <strong>Have you checked your local shelter for adoptable dogs?</strong>
-              <% if current_user.adopter_account.adopter_profile.checked_shelter == true %>
+              <strong>Will dog care be shared with someone outside household?</strong>
+              <% if current_user.adopter_account.adopter_profile.shared_ownership == true %>
               <p class="text-muted">Yes</p>
               <% else %>
               <p class="text-muted">No</p>
               <% end %>
             </div>
-            <div>
-              <strong>Have you ever had to surrender a pet?</strong>
-              <% if current_user.adopter_account.adopter_profile.surrendered_pet == true %>
-              <p class="text-muted">Yes</p>
-              <% else %>
-              <p class="text-muted">No</p>
-              <% end %>
-            </div>
-            <% unless current_user.adopter_account.adopter_profile.surrendered_pet == false %>
-            <div>
-              <strong>Details on surrendering the pet</strong>
-              <p class="text-muted"><%= current_user.adopter_account.adopter_profile.describe_surrender %></p>
+
+            <% unless current_user.adopter_account.adopter_profile.shared_ownership == false %>
+            <div class="mb-4">
+              <strong>Details on shared dog care</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.shared_owner %>
+              </p>
             </div>
             <% end %>
-            <div class="mb-4">
-              <strong>Your annual cost estimate for dog care</strong>
-              <p class="text-muted"><%= current_user.adopter_account.adopter_profile.annual_cost %></p>
-            </div>
           </div>
-        </div> <!--col-->
-      </div> <!--row-->
+
+          <div>
+            <hr>
+            <h4 class="mb-2 mt-2">Household Information</h4>
+            <div>
+              <strong>Housing type</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.housing_type %>
+              </p>
+            </div>
+            <div>
+              <strong>Do you have access to a fenced garden?</strong>
+              <% if current_user.adopter_account.adopter_profile.fenced_access == true %>
+              <p class="text-muted">Yes</p>
+              <% else %>
+              <p class="text-muted">No</p>
+              <% end %>
+            </div>
+              <% unless current_user.adopter_account.adopter_profile.fenced_access == true %>
+            <div>
+              <strong>Your plan to care for the dog without a fenced garden</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.fenced_alternative %>
+              </p>
+            </div>
+            <% end %>
+            <div>
+              <strong>Dog's location during the day</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.location_day %>
+              </p>
+            </div>
+            <div>
+              <strong>Dog's location at night</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.location_night %>
+              </p>
+            </div>
+
+            <div>
+              <strong>Do you rent your home or live on a strata property?</strong>
+              <% if current_user.adopter_account.adopter_profile.do_you_rent == true %>
+              <p class="text-muted">Yes</p>
+              <% else %>
+              <p class="text-muted">No</p>
+              <% end %>
+            </div>
+            <% unless current_user.adopter_account.adopter_profile.do_you_rent == false %>
+            <div>
+              <strong>Have you confirmed dogs are allowed on the property?</strong>
+              <% if current_user.adopter_account.adopter_profile.dogs_allowed == true %>
+              <p class="text-muted">Yes</p>
+              <% else %>
+              <p class="text-muted">No</p>
+              <% end %>
+            </div>
+            <% end %>
+            <div>
+              <strong>Number of adults in home (over 18)</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.adults_in_home %>
+              </p>
+            </div>
+            <div>
+              <strong>Number of children in home (under 18)</strong>
+              <% if current_user.adopter_account.adopter_profile.kids_in_home == 0 %>
+              <p class="text-muted">None</p>
+              <% else %>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.kids_in_home %>
+              </p>
+              <% end %>
+            </div>
+            <div>
+              <strong>Do you have pets in your home?</strong>
+              <% if current_user.adopter_account.adopter_profile.other_pets == true %>
+              <p class="text-muted">Yes</p>
+              <% else %>
+              <p class="text-muted">No</p>
+              <% end %>
+            </div>
+            <% unless current_user.adopter_account.adopter_profile.other_pets == false %>
+            <div class="mb-4">
+              <strong>Description of pets</strong>
+              <p class="text-muted">
+                <%= current_user.adopter_account.adopter_profile.describe_pets %>
+              </p>
+            </div>
+            <% end %>
+          </div>
+
+        <div>
+          <hr>
+          <h4 class="mb-2 mt-2">Additional Information</h4>
+          <div>
+            <strong>Have you checked your local shelter for adoptable dogs?</strong>
+            <% if current_user.adopter_account.adopter_profile.checked_shelter == true %>
+            <p class="text-muted">Yes</p>
+            <% else %>
+            <p class="text-muted">No</p>
+            <% end %>
+          </div>
+          <div>
+            <strong>Have you ever had to surrender a pet?</strong>
+            <% if current_user.adopter_account.adopter_profile.surrendered_pet == true %>
+            <p class="text-muted">Yes</p>
+            <% else %>
+            <p class="text-muted">No</p>
+            <% end %>
+          </div>
+          <% unless current_user.adopter_account.adopter_profile.surrendered_pet == false %>
+          <div>
+            <strong>Details on surrendering the pet</strong>
+            <p class="text-muted">
+              <%= current_user.adopter_account.adopter_profile.describe_surrender %>
+            </p>
+          </div>
+          <% end %>
+          <div class="mb-4">
+            <strong>Your annual cost estimate for dog care</strong>
+            <p class="text-muted">
+              <%= current_user.adopter_account.adopter_profile.annual_cost %>
+            </p>
+          </div>
+        </div>
+      </div> <!--col-->
+    </div> <!--row-->
+
   </div> <!--container-->
 </section>
 

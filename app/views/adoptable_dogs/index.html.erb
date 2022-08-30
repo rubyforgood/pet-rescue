@@ -1,12 +1,16 @@
 
 <section class="pt-5 pb-5" id="adoptable_dogs">
+
+  <!--page heading-->
   <div class="container mb-md-5 mt-md-5">
       <div class="text-center mb-5">
         <h2 class="section-heading text-uppercase underline">
           Up for adoption
         </h2>
       </div>
-  </div>
+  </div> <!--container-->
+
+  <!--dog tiles-->
   <div class="container">
       <div class="row">
         <% @dogs.each do |dog| %>    
@@ -34,5 +38,6 @@
           </div>
         <% end %>
       </div>
-  </div>
+  </div> <!--container-->
+  
 </section>

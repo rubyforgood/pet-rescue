@@ -1,28 +1,35 @@
 <section class="pt-5 pb-5" id="account_select">
-        <div class="container mb-md-5 mt-md-5">
-            <div class="text-center mb-5">
-              <h1 class="section-heading text-uppercase underline">
-                Sign Up
-              </h1>
-            </div>
-            <div>
-                <div class="stepper-wrapper mb-5">
-                    <div class="stepper-item completed">
-                        <div class="step-counter">1</div>
-                        <div class="step-name">Select account type</div>
-                    </div>
-                    <div class="stepper-item completed">
-                        <div class="step-counter">2</div>
-                        <div class="step-name">Create Account</div>
-                    </div>
-                    <div class="stepper-item active">
-                        <div class="step-counter">3</div>
-                        <div class="step-name">Adopter Profile</div>
-                    </div>
-                    </div>
-            </div>
-            <div class="col-md-8 mx-auto">
-                <%= render "form", profile: @adopter_profile %>
-            </div> <!--col-->
-        </div>
+  <div class="container mb-md-5 mt-md-5">
+
+    <!--page heading-->
+    <div class="text-center mb-5">
+      <h1 class="section-heading text-uppercase underline">
+        Sign Up
+      </h1>
+    </div>
+
+    <!-- pregress bar-->
+    <div>
+      <div class="stepper-wrapper mb-5">
+          <div class="stepper-item completed">
+              <div class="step-counter">1</div>
+              <div class="step-name">Select account type</div>
+          </div>
+          <div class="stepper-item completed">
+              <div class="step-counter">2</div>
+              <div class="step-name">Create Account</div>
+          </div>
+          <div class="stepper-item active">
+              <div class="step-counter">3</div>
+              <div class="step-name">Adopter Profile</div>
+          </div>
+      </div> <!--wrapper-->
+    </div>
+
+    <!--rendering _form.html.erb-->
+    <div class="col-md-8 mx-auto">
+        <%= render "form", profile: @adopter_profile %>
+    </div>
+
+  </div> <!--container-->
 </section>

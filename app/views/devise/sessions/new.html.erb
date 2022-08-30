@@ -1,48 +1,53 @@
 <section class="pt-5 pb-5" id="login">
-        <div class="container mb-md-5 mt-md-5 ">
-            <div class="text-center mb-5">
-              <h1 class="section-heading text-uppercase underline">
-                Log In
-              </h1>
+  <div class="container mb-md-5 mt-md-5 ">
+
+    <!--page heading-->
+    <div class="text-center mb-5">
+      <h1 class="section-heading text-uppercase underline">
+        Log In
+      </h1>
+    </div>
+
+    <!--form-->
+    <div>
+      <% if params[:account_type] == 'staff' %>
+        <% resource.build_staff_account if resource.staff_account.nil? %>
+      <% else %>
+        <% resource.build_adopter_account if resource.adopter_account.nil? %>
+      <% end %>
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <%= form_for(resource, as: resource_name, 
+                                 url: session_path(resource_name)) do |f| %>
+            <div class="form-group mb-3">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", 
+                  class: 'form-control' %>
             </div>
 
-            <!--form-->
-            <div>
-              <% if params[:account_type] == 'staff' %>
-                <% resource.build_staff_account if resource.staff_account.nil? %>
-              <% else %>
-                <% resource.build_adopter_account if resource.adopter_account.nil? %>
-              <% end %>
-              <div class="row">
-                <div class="col-md-6 mx-auto">
-                  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-                    <div class="form-group mb-3">
-                      <%= f.label :email %><br />
-                      <%= f.email_field :email, autofocus: true, autocomplete: "email", 
-                          class: 'form-control' %>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <%= f.label :password %><br />
-                      <%= f.password_field :password, autocomplete: "current-password", 
-                          class: 'form-control' %>
-                    </div>
-
-                    <% if devise_mapping.rememberable? %>
-                      <div class="form-group mb-3">
-                        <%= f.check_box :remember_me %>
-                        <%= f.label :remember_me %>
-                      </div>
-                    <% end %>
-
-                    <div class="actions">
-                      <%= f.submit "Log in", class: 'btn btn-outline-dark mb-3',data: { turbo: false } %>
-                    </div>
-                  <% end %>
-                  <%= render "devise/shared/links" %>
-                </div><!--col-->
-              </div><!--row-->
+            <div class="form-group mb-3">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "current-password", 
+                  class: 'form-control' %>
             </div>
-        </div><!--container-->
+
+            <% if devise_mapping.rememberable? %>
+              <div class="form-group mb-3">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+
+            <div class="actions">
+              <%= f.submit "Log in", class: 'btn btn-outline-dark mb-3',
+                                     data: { turbo: false } %>
+            </div>
+          <% end %>
+          <%= render "devise/shared/links" %>
+        </div><!--col-->
+      </div><!--row-->
+    </div>
+    
+  </div><!--container-->
 </section>
 
