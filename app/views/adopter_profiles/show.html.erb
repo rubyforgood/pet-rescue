@@ -14,6 +14,8 @@
         <h2 class="mb-4">My Applications</h2>
           <% if current_user.adopter_account.adopter_applications.exists? %>
             <%= render 'applications' %>
+          <% else %>
+            <p>Your adoption applications will be displayed here.
           <% end %>
       </div>
     </div> <!--row-->
