@@ -65,7 +65,7 @@
             <% if current_user.adopter_account && 
                   current_user.adopter_account.adopter_profile %>
               <h4 class="mb-4">Are you ready to apply?</h4>
-              <%= link_to 'Apply to Adopt', 
+              <%= button_to 'Apply to Adopt', 
                   create_adopter_application_path(adopter_account_id: current_user.adopter_account.id, 
                                                   dog_id: @dog.id), 
                                                   class: 'custom-btn-pink' %>
