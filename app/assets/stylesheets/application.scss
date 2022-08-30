@@ -87,12 +87,18 @@
 
 //Buttons
 
+.btn {
+  border-radius: 100px;
+  padding-right: 30px;
+  padding-left: 30px;
+}
+
 .custom-btn-pink {
   text-decoration: none;
   align-items: center;
   background-color: #AA3440;
   border: 0;
-  border-radius: 5px;
+  border-radius: 100px;
   box-sizing: border-box;
   color: #ffffff;
   cursor: pointer;
@@ -106,8 +112,8 @@
   min-width: 0px;
   overflow: hidden;
   padding: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
   text-align: center;
   touch-action: manipulation;
   transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
@@ -141,7 +147,7 @@
   align-items: center;
   background-color: #FFF;
   border: solid 1px #00401F;
-  border-radius: 5px;
+  border-radius: 100px;
   box-sizing: border-box;
   color: #00401F;
   cursor: pointer;
@@ -155,8 +161,8 @@
   min-width: 0px;
   overflow: hidden;
   padding: 0px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
   text-align: center;
   touch-action: manipulation;
   transition: background-color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s, color 0.167s cubic-bezier(0.4, 0, 0.2, 1) 0s;
