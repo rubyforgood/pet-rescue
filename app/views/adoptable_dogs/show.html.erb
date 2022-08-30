@@ -8,7 +8,7 @@
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-lg-9">
+      <div class="col-lg-6">
         <!--dog images--> 
         <% if @dog.images.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
@@ -35,10 +35,11 @@
           </div>
         <% end %>
         <!--dog info-->
-        <div>
-          <h3>Name: <%= @dog.name %></h3>
-          <h4>Age: <%= @dog.age %></h4>
-          <h4>Organization: <%= @dog.organization.name %></h4><br>
+        <div class="mb-4">
+          <h3 class="mb-2">Name: <%= @dog.name %></h3>
+          <h4 class="mb-2">Age: <%= @dog.age %></h4>
+          <h4 class="mb-2">Organization: <%= @dog.organization.name %></h4><br>
+          <h4 class="mb-2">Description:</h4>
           <p>
             Ut laboris elit deserunt sint. Minim consequat cillum aliqua elit laborum in ipsum id. Velit culpa officia eiusmod laborum Lorem anim voluptate exercitation laborum. Est id ipsum proident dolor qui irure reprehenderit esse adipisicing magna qui aliqua ut. Velit sunt minim velit mollit proident esse laborum ipsum. Id dolore deserunt occaecat irure anim sit ut non exercitation. Ullamco adipisicing sint minim et anim ut.
 
@@ -48,23 +49,27 @@
         </div>
       </div>
       <!--button area-->
-      <div class="col-md-3 d-flex align-items-center justify-content-center">
+      <div class="col-md-4 mx-auto d-flex align-items-center justify-content-center">
         <div class="border p-5 rounded text-center shadow">
 
           <% if user_signed_in? %>
-            <% if current_user.adopter_account %>
+            <% if current_user.adopter_account && 
+                  current_user.adopter_account.adopter_profile %>
               <h4 class="mb-4">Are you ready to apply?</h4>
               <%= link_to 'Apply to Adopt', 
                   create_adopter_application_path(adopter_account_id: current_user.adopter_account.id, 
-                                                  dog_id: @dog.id), class: 'custom-btn-pink' %>
-            <% elsif current_user.adopter_account && current_user.adopter_account.adopter_profile.nil? %>
-              <p>Your adopter profile needs to be completed</p>
-              <%= link_to 'Apply to Adopt', 
-                  disabled: true, class: 'custom-btn-pink' %>
+                                                  dog_id: @dog.id), 
+                                                  class: 'custom-btn-pink' %>
+            <% elsif current_user.adopter_account %>
+              <h4 class='mb-4'>
+                Complete your adopter profile before applying to adopt this dog.
+              </h4>
+              <%= link_to 'Complete my profile', new_profile_path,
+                  class: 'custom-btn-pink' %>
             <% end %>
             <% else %>
-              <h4 class="mb-4">Are you ready to start the adoption process?</h4>
-              <%= link_to 'Sign Up', new_user_registration_path , 
+              <h4 class="mb-4">Sign up to be able to apply for this dog</h4>
+              <%= link_to 'Sign Up', account_select_path , 
                   class: 'custom-btn-pink' %>
           <% end %>  
         </div>
