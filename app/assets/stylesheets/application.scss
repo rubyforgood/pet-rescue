@@ -18,7 +18,7 @@
  @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,300;0,400;0,600;1,400&display=swap');
 
 
- * {
+ *, h1, h2, h3, h4, h5, p, a {
   margin: 0;
   padding: 0;
   border: 0;
@@ -53,7 +53,6 @@
     margin-bottom: 0.5rem;
     margin-top: 0.5rem;
   }
-
 
 // flash
   .flash-notice {
