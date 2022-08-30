@@ -1,12 +1,32 @@
-<h5>Filter by dog name</h5>
+<section class="pt-5 pb-5" id="about_us">
+  <div class="container mb-md-5 mt-md-5">
 
-   <%= form_with url: '/adopter_applications', method: :get do | f | %>
+    <!--page heading-->
+    <div class="text-center mb-5">
+      <h1 class="section-heading text-uppercase underline">
+        Applications
+      </h1>
+    </div>
+
+    <!--main section-->
+    <h5>Filter by dog name</h5>
+    <%= form_with url: '/adopter_applications', method: :get do | f | %>
 
     <%= f.label :dog_id, 'Dog Name' %>
-    <%= f.collection_select :dog_id, @dogs, :id, :name, { prompt: 'All' } %>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <%= f.collection_select :dog_id, @dogs, :id, :name, { prompt: 'All' },
+                                class: 'form-control ' %>
+      </div>
+      <div class="col-md-4 mb-3">
+        <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
+      </div>
+    </div> <!--row-->
 
-    <%= f.submit 'Submit', class: 'button is-info search-button' %>
 
-  <% end %>
+    <% end %>
 
-  <%= render 'search_results' %>
+    <%= render 'search_results' %>
+
+  </div> <!--container-->
+</section>

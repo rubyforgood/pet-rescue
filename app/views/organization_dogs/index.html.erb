@@ -29,7 +29,7 @@
             <%= f.select :selection, ['Seeking Adoption', 'Adopted'], 
                           { prompt: "Filter by adoption status" }, 
                           class: 'form-control' %>
-            <%= f.submit 'Submit', class: 'btn btn-outline-primary' %>
+            <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
           </div>
         <% end %>
         
@@ -40,7 +40,7 @@
             <%= f.collection_select :dog_id, @collection, :id, :name, 
                                     { prompt: 'Filter by name' }, 
                                     class: 'form-control' %>
-            <%= f.submit 'Submit', class: 'btn btn-outline-primary' %>
+            <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
           </div>
         <% end %>
 
