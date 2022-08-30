@@ -9,51 +9,76 @@
   <% @collection = @unadopted_dogs %>
 <% end %>
 
-<%= link_to 'Create Dog', new_dog_path %><br>
 
-<%= form_with url: '/dogs', method: :get do | f | %>
+<section class="pt-5 pb-5" id="dogs">
+  <div class="container mb-md-5 mt-md-5">
+    <div class="text-center mb-5">
+      <h2 class="section-heading text-uppercase underline">
+        Our dogs
+      </h2>
+    </div>
+  </div>
 
-    <%= f.label :selection, 'Filter by adoption status:' %>
-    <%= f.select :selection, ['Seeking Adoption', 'Adopted'], { prompt: "Select..." } %>
+  <div class="container mb-md-5 mt-md-5">
+    <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0">
+      <div class ="col-md-6 d-flex flex-column gap-3">
 
-    <%= f.submit 'Submit', class: 'button is-info search-button' %>
+        <!--form1-->
+        <%= form_with url: '/dogs', method: :get do | f | %>
+          <div class="d-flex gap-3">
+            <%= f.select :selection, ['Seeking Adoption', 'Adopted'], 
+                          { prompt: "Filter by adoption status" }, 
+                          class: 'form-control' %>
+            <%= f.submit 'Submit', class: 'btn btn-outline-primary' %>
+          </div>
+        <% end %>
+        
+        <!--form2-->
+        <%# only show dog name seletion if collection is greater than e.g., 5 dogs? %>
+        <%= form_with url: '/dogs', class: 'mb-3 mb-md-0', method: :get do | f | %>
+          <div class="d-flex gap-3">
+            <%= f.collection_select :dog_id, @collection, :id, :name, 
+                                    { prompt: 'Filter by name' }, 
+                                    class: 'form-control' %>
+            <%= f.submit 'Submit', class: 'btn btn-outline-primary' %>
+          </div>
+        <% end %>
 
-  <% end %>
+      </div>
 
-<%# only show dog name seletion if collection is greater than e.g., 5 dogs? %>
-<%= form_with url: '/dogs', method: :get do | f | %>
+      <div class ="col-md-6 d-flex justify-content-center align-items-center">
+         <%= link_to 'Create Dog', new_dog_path, class: 'custom-btn-pink' %><br>
+      </div>
 
-    <%= f.label :dog_id, 'Filter by name' %>
-    <%= f.collection_select :dog_id, @collection, :id, :name, { prompt: 'All' } %>
+    </div> <!--row-->
+  </div> <!--container-->
 
-    <%= f.submit 'Submit', class: 'button is-info search-button' %>
-
-  <% end %>
-
- 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-      <div class="card-deck">
-        <div class="row">
-          <% @collection.each do |dog| %>    
-            <div class="col-sm-3">
-              <div class="card">
-                <% if dog.images.attached? %>
-                  <%= image_tag dog.images.first, class: "card-img-top" %>
-                <% else %>
-                  <img class="card-img-top" src="https://images.pexels.com/photos/58997/pexels-photo-58997.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Card image cap">
-                <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= dog.name %></h5>
-                  <p class="card-text">Age:<%= dog.age %></p>
-                  <%= link_to 'View', dog_path(dog) %>
-                </div>
+  <div class="container">
+    <div class="row">
+      <% @collection.each do |dog| %>    
+        <div class="col-lg-4 col-md-6 p-0">
+          <%= link_to adoptable_dog_path(dog), class: 'text-decoration-none' do %>
+            <div class="card m-4">
+              <% if dog.images.attached? %>
+                <%= image_tag dog.images.first, class: 'card-img-top test' %>
+              <% else %>
+                <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
+              <% end %>
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= dog.name %>
+                </h5>
+                <p class="card-text m-0">
+                  Age: <%= dog.age %>
+                </p>
+                <p class="card-text">
+                  Breed: <%= dog.breed %>
+                </p>
               </div>
             </div>
           <% end %>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+      <% end %>
+    </div> <!--row-->
+  </div> <!--container-->
+</section>
