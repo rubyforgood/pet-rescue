@@ -1,46 +1,76 @@
+<section class="pt-5 pb-5" id="adoptable_dogs_show">
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8">
-      <% if @dog.images.attached? %>
-        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <% @dog.images.each_with_index do |image, index| %>
-              <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= index %>" class="active" aria-current="true" aria-label="Slide <%= index %>"></button>
-            <% end %>
-          </div>
-          <div class="carousel-inner">
-            <% @dog.images.each_with_index do |image, index| %>
-                <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                <%= image_tag image, class: 'd-block w-100' %>
-                </div>
-            <% end %>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
-        </div>
-      <% end %>
+  <!--page heading-->
+  <div class="container mb-md-5 mt-md-5">
+    <div class="text-center mb-5">
+      <h2 class="section-heading text-uppercase underline">
+        <%= @dog.name %>
+      </h2>
     </div>
-  </div>
-</div>
+  </div> <!--container-->
 
-<p>Name: <%= @dog.name %></p>
-<p>Age: <%= @dog.age %></p>
-<% if @dog.adoption %>
-  <%= link_to 'Adopter Profile', 
-              profile_review_path(@dog.adoption.adopter_account.adopter_profile.id) %>
-<% end %>
+  <!--dog tile-->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <!--dog images--> 
+        <% if @dog.images.attached? %>
+          <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <% @dog.images.each_with_index do |image, index| %>
+                <button type="button" data-bs-target="#carouselExampleIndicators" 
+                        data-bs-slide-to="<%= index %>" class="active" aria-current="true" 
+                        aria-label="Slide <%= index %>"></button>
+              <% end %>
+            </div>
+            <div class="carousel-inner">
+              <% @dog.images.each_with_index do |image, index| %>
+                  <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                  <%= image_tag image, class: 'd-block w-100 rounded-5' %>
+                  </div>
+              <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" 
+                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" 
+                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        <% end %>
+        <!--dog info-->
+        <div class="mb-4">
+          <h3 class="mb-2">Name: <%= @dog.name %></h3>
+          <h4 class="mb-2">Age: <%= @dog.age %></h4>
+          <h4 class="mb-2"><%= @dog.sex %></h4>
+          <h4 class="mb-2">Description:</h4>
+          <p>
+            Ut laboris elit deserunt sint. Minim consequat cillum aliqua elit laborum in ipsum id. Velit culpa officia eiusmod laborum Lorem anim voluptate exercitation laborum. Est id ipsum proident dolor qui irure reprehenderit esse adipisicing magna qui aliqua ut. Velit sunt minim velit mollit proident esse laborum ipsum. Id dolore deserunt occaecat irure anim sit ut non exercitation. Ullamco adipisicing sint minim et anim ut.
 
-<%= link_to 'Edit', edit_dog_path(@dog) %>
-<%= link_to 'Delete', dog_path(@dog), class: 'btn',
+            Sint ex laboris enim dolore ullamco. Eu labore nulla Lorem occaecat qui ut aliquip excepteur aute incididunt deserunt aute. Deserunt et commodo ullamco in. Elit velit exercitation cupidatat labore eiusmod cupidatat culpa. Anim nulla ad incididunt esse dolor pariatur voluptate dolore voluptate in eu. Et duis sint duis pariatur nulla aute quis non deserunt duis tempor.
+          </p>
+        </div>
+      </div> <!--col-->
+
+      <!--button area-->
+      
+      <div class="col-md-4 mx-auto d-flex align-items-center 
+                    justify-content-center">
+        <div class="border p-5 rounded text-center shadow">
+          <%= link_to 'Edit dog', edit_dog_path(@dog), 
+                       class: 'custom-btn-green' %>
+          <%= link_to 'Delete', dog_path(@dog), class: 'custom-btn-pink',
                 data: 
-              {
+                      {
                 turbo_method: :delete,
                 turbo_confirm: "Click OK to confirm deleting this dog."
-              } %>
+              } %>        
+        </div>
+      </div> <!--col-->
+    </div> <!--row-->
+  </div> <!--container-->
+</section>

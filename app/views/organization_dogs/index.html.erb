@@ -57,7 +57,7 @@
     <div class="row">
       <% @collection.each do |dog| %>    
         <div class="col-lg-4 col-md-6 p-0">
-          <%= link_to adoptable_dog_path(dog), class: 'text-decoration-none' do %>
+          <%= link_to dog_path(dog), class: 'text-decoration-none' do %>
             <div class="card m-4">
               <% if dog.images.attached? %>
                 <%= image_tag dog.images.first, class: 'card-img-top test' %>
