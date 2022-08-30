@@ -1,38 +1,45 @@
 <section class="pt-5 pb-5" id="account_select">
-        <div class="container mb-md-5 mt-md-5">
-            <div class="text-center mb-5">
-              <h1 class="section-heading text-uppercase underline">
-                Sign Up
-              </h1>
-            </div>
-            <div>
-                <div class="stepper-wrapper mb-5">
-                    <div class="stepper-item active">
-                        <div class="step-counter">1</div>
-                        <div class="step-name">Select account type</div>
-                    </div>
-                    <div class="stepper-item">
-                        <div class="step-counter">2</div>
-                        <div class="step-name">Create Account</div>
-                    </div>
-                    <div class="stepper-item">
-                        <div class="step-counter">3</div>
-                        <div class="step-name">Adopter Profile</div>
-                    </div>
-                    </div>
-            </div>
-            <div class="col-md-6 mx-auto text-center">
-                <h4>Please select an account type</h4>
+  <div class="container mb-md-5 mt-md-5">
+  
+    <!--page heading-->
+    <div class="text-center mb-5">
+      <h1 class="section-heading text-uppercase underline">
+        Sign Up
+      </h1>
+    </div>
 
-                <p>I want to adopt a dog</p>
-                <%= link_to 'Adopter', 
-                    new_user_registration_path(account_type: 'adopter'), 
-                    class: 'btn btn-outline-dark mb-3' %>
-
-                <p>I am a staff member of an organization registered on this site</p>
-                <%= link_to 'Staff', 
-                    new_user_registration_path(account_type: 'staff'),
-                    class: 'btn btn-outline-dark mb-3' %>
-            </div><!--col-->
+    <!--progress diagram-->
+    <div>
+      <div class="stepper-wrapper mb-5">
+        <div class="stepper-item active">
+          <div class="step-counter">1</div>
+          <div class="step-name">Select account type</div>
         </div>
+        <div class="stepper-item">
+          <div class="step-counter">2</div>
+          <div class="step-name">Create Account</div>
+        </div>
+        <div class="stepper-item">
+          <div class="step-counter">3</div>
+          <div class="step-name">Adopter Profile</div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--main section-->
+    <div class="text-center">
+      <h4 class="mb-4">Please select an account type</h4>
+      <p>I want to adopt a dog</p>
+        <%= link_to 'Adopter', 
+            new_user_registration_path(account_type: 'adopter'), 
+            class: 'btn btn-outline-dark mt-3 mb-3' %>
+
+      <p>I am a staff member of an organization registered on this site</p>
+        <%= link_to 'Staff', 
+            new_user_registration_path(account_type: 'staff'),
+            class: 'btn btn-outline-dark mt-3 mb-3' %>
+    </div>
+
+  </div> <!--container-->
 </section>
