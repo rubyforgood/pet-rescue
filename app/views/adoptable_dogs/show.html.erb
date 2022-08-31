@@ -110,49 +110,44 @@
                   shortlisted</li>
               <li>We work hard to match dogs and adopters, so please
                   try again if you are not successful first time round</li>
-              <li>x y z</li>
             </ul>
           </div>
 
           <div class='text-center mt-1'>
             <% unless user_signed_in? && current_user.staff_account %>
-              <div>
-                <div>
-                  <% if user_signed_in? %>
-                    <% if current_user.adopter_account && 
-                          current_user.adopter_account.adopter_profile %>
-                      <% if AdopterApplication.adoption_exists?(
-                                               current_user.adopter_account.id,
-                                               @dog.id
-                                                               ) %>
-                        <div class='d-flex'>
-                          <h4 class="mb-4 me-2">Application submitted </h4>
-                          <%= image_tag('green_check.png', height: '28') %>
-                        </div>
-                      <% else %>   
-                        <h4 class="mb-4">In love with this pooch?</h4>
-                        <%= button_to 'Apply to Adopt', 
-                            create_adopter_application_path(
-                              adopter_account_id: current_user.adopter_account.id, 
-                              dog_id: @dog.id
-                                                          ), 
-                              class: 'custom-btn-pink' %>
-                      <% end %>
-                    <% elsif current_user.adopter_account %>
-                      <h4 class='mb-4'>
-                        You need to complete your profile before you can apply.
-                      </h4>
-                      <%= link_to 'Complete my profile', new_profile_path,
+              <% if user_signed_in? %>
+                <% if current_user.adopter_account && 
+                      current_user.adopter_account.adopter_profile %>
+                  <% if AdopterApplication.adoption_exists?(
+                                            current_user.adopter_account.id,
+                                            @dog.id
+                                                            ) %>
+                    <div class='d-flex mt-3'>
+                      <h4 class="me-2">Application submitted </h4>
+                      <%= image_tag('green_check.png', height: '28') %>
+                    </div>
+                  <% else %>   
+                    <h4 class="mb-4 mt-3">In love with this pooch?</h4>
+                    <%= button_to 'Apply to Adopt', 
+                        create_adopter_application_path(
+                          adopter_account_id: current_user.adopter_account.id, 
+                          dog_id: @dog.id
+                                                      ), 
                           class: 'custom-btn-pink' %>
-                    <% end %>
-                  <% else %>
-                      <h4 class="mb-4">Sign up to be able to apply for this dog</h4>
-                      <%= link_to 'Sign Up', account_select_path , 
-                          class: 'custom-btn-pink' %>
-                  <% end %>  
-                </div>
-              </div>
-            <%end%>
+                  <% end %>
+                <% elsif current_user.adopter_account %>
+                  <h4 class='mb-4 mt-3'>
+                    You need to complete your profile before you can apply.
+                  </h4>
+                  <%= link_to 'Complete my profile', new_profile_path,
+                      class: 'custom-btn-pink' %>
+                <% end %>
+              <% else %>
+                  <h4 class="mb-4 mt-3">Sign up to be able to apply for this dog</h4>
+                  <%= link_to 'Sign Up', account_select_path , 
+                      class: 'custom-btn-pink' %>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
