@@ -4,14 +4,14 @@
     <!--page heading-->
     <div class="text-center mb-5">
       <h1 class="section-heading text-uppercase underline">
-        Edit <%= resource_name.to_s.humanize %>
+        Edit <%= resource_name.to_s.humanize %>'s Account Setting
       </h1>
     </div>
 
     <!--form-->
     <div>
       <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-6 mx-auto card p-5">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
 

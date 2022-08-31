@@ -10,7 +10,7 @@
 
     <!--my applications-->
     <div class="row">
-      <div class="col-md-10 mx-auto border p-5 shadow-sm rounded mb-5">
+      <div class="col-md-10 mx-auto card p-5 mb-5">
         <h2 class="mb-4">My Applications</h2>
           <% if current_user.adopter_account.adopter_applications.exists? %>
             <%= render 'applications' %>
@@ -22,7 +22,7 @@
 
     <!--adopter profile-->
     <div class="row">
-      <div class="col-md-10 mx-auto border p-5 shadow-sm rounded">
+      <div class="col-md-10 mx-auto card p-5">
         <div class="d-flex gap-4">
             <h2>My Adopter Profile</h2>
             <%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-outline-dark' %>
