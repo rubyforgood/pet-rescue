@@ -10,10 +10,9 @@
     </h4>
     
     <div class='card mb-4 p-4'>
-      <div class="row">
+      <% dog.adopter_applications.each do |app|%>
+        <div class="row mb-3">    
 
-        <% dog.adopter_applications.each do |app|%>
-              
           <!--dog name-->
           <div class="col-md-3 d-flex align-items-center">
             <h5>
@@ -55,9 +54,8 @@
             <% end %>
 
 
-
-        <% end %>
-      </div> <!--row-->
+        </div> <!--row-->
+      <% end %>
     </div> <!--card-->
 
   <% end %>
