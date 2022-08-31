@@ -1,25 +1,31 @@
-<section class="pt-5 pb-5" id="about_us">
+<section class="pt-3 pb-5" id="about_us">
   <div class="container mb-md-5 mt-md-5">
 
     <!--page heading-->
     <div class="text-center">
-      <h1 class="h4 mb-4">Edit application</h1>
+      <h1 class="h4 mb-5">Edit personname's application for dogname</h1>
     </div>
 
     <!--main section-->
     <div class="row">
-      <div class="card p-4 col-md-10 shadow mx-auto">
-        <h4>
-          Name: <%= @application.adopter_account.user.first_name %>
-          <%= @application.adopter_account.user.last_name %>
-        </h4>
-        <%= link_to 'Adopter Profile', 
-            profile_review_path(@application.adopter_account.adopter_profile.id) %>
+      <div class="col-md-8 mx-auto card p-5 ">
+
+        <!--name-->
+        <div class="d-flex align-items-center">
+          <h4 class="me-4 mb-4">
+            Name: <%= @application.adopter_account.user.first_name %>
+            <%= @application.adopter_account.user.last_name %>
+          </h4>
+
+          <!--adopter profile link-->
+          <%= link_to 'Adopter Profile', 
+              profile_review_path(@application.adopter_account.adopter_profile.id) %>
+        </div>
 
         <%= form_with model: @application, :url => adopter_application_path do |form| %>
 
-          <div class="form-group">
-            <%= form.label :status %>
+          <div class="form-group d-flex">
+            <%= form.label :status, class: 'me-4' %>
             <p class='fw-bold'><%#= @application.status %></p>
             <%= form.select(:status, AdopterApplication.app_review_statuses) %>
           </div>
@@ -27,7 +33,7 @@
           <div class="form-group">  
             <%= form.label :notes %>
             <%= form.text_area :notes,
-                    class: 'form-control' %>
+                    class: 'form-control mb-4' %>
           </div>
 
           <%= form.submit 'Save', class: 'btn btn-outline-dark mb-3'%>
