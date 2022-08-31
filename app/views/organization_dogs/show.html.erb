@@ -43,6 +43,11 @@
           </div>
         <% end %>
         <!--dog info-->
+        <% if @dog.adoption %>
+          <%= link_to 'Successful Adopter', 
+                      profile_review_path(@dog.adoption.adopter_account.adopter_profile.id) %>
+        <% end %>
+
         <div class="mb-4">
           <h3 class="mb-2">Name: <%= @dog.name %></h3>
           <h4 class="mb-2">Age: <%= @dog.age %></h4>

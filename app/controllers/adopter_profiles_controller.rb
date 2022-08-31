@@ -1,7 +1,7 @@
 class AdopterProfilesController < ApplicationController
   # staff and admin cannot create a profile
   before_action :authenticate_user!
-  before_action :check_if_adopter, only: [:new, :create, :update]
+  before_action :check_if_adopter, only: [:new, :create, :update, :show]
 
   # only allow new profile if one does not exist
   def new
