@@ -2,35 +2,61 @@
 
 <% if @dog.nil? ? @collection = @dogs : @collection = @dog %>
 
+
   <% @collection.each do |dog| %>
-    <%= link_to dog.name, dog_path(dog) %>
+    <!--dog name-->
+    <h4 class="mb-2">
+      <%= link_to dog.name, dog_path(dog) %>
+    </h4>
     
-    <div class='card mb-4'>
+    <div class='card mb-4 p-4'>
       <% dog.adopter_applications.each do |app|%>
-            
-        <div>
-          Name: <%= app.adopter_account.user.first_name %>
-                <%= app.adopter_account.user.last_name %>
-        </div>
+        <div class="row mb-3">    
 
-        <div>
-          <%= link_to 'Adopter Profile', profile_review_path(app.adopter_account.adopter_profile.id) %>
-          <%= link_to 'Edit Application', edit_adopter_application_path(app.id) %>
+          <!--dog name-->
+          <div class="col-md-3 d-flex align-items-center">
+            <h5>
+              Name: <%= app.adopter_account.user.first_name %>
+                    <%= app.adopter_account.user.last_name %>
+            </h5>
+          </div>
 
-          <% if app.status == 'successful_applicant' %>
-            <%= link_to 'Create Adoption', create_adoption_path(dog_id: dog.id, 
-                                                        adopter_account_id: app.adopter_account.id),
-                                                        data: { turbo_method: :post, 
-                                                                turbo_confirm: "Click OK to finalize this adoption." } %>
-          <% end %>
-        </div>
+          <!--application status-->
+          <div class="col-md-3 d-flex align-items-center">
+            <div class="<%= 'fw-bold' if app.status == 'withdrawn' %>"> 
+              Application Status: <%= app.status.titleize%>
+            </div>
+          </div>
 
-        <div class="mb-3 <%= 'fw-bold' if app.status == 'withdrawn' %>"> 
-          Application Status: <%#= app.status.titleize%>
-        </div>
+          <!--adopter profile link-->
+          <div class="col-md-2 d-md-flex align-items-center justify-content-center">
+            <%= link_to 'Adopter Profile', profile_review_path(app.adopter_account.adopter_profile.id) %>
+          </div>
 
+          <!--edit application button-->
+          <div class="col-md-2 d-flex align-items-center justify-content-end">
+            <%= link_to 'Edit Application', edit_adopter_application_path(app.id),
+                                            class: 'btn btn-outline-dark
+                                                    mt-3 mt-md-0 mb-3 mb-md-0' %>
+          </div>
+
+            <% if app.status == 'successful_applicant' %>
+              <!--create adoption button-->
+              <div class="col-md-2 d-flex align-items-center justify-content-end">
+                <%= link_to 'Create Adoption', 
+                            create_adoption_path(dog_id: dog.id, 
+                                                adopter_account_id: app.adopter_account.id),
+                            data: { turbo_method: :post, 
+                                    turbo_confirm: "Click OK to finalize this adoption." },
+                            class: 'custom-btn-pink
+                                    mb-3 mb-md-0' %>
+              </div>
+            <% end %>
+
+
+        </div> <!--row-->
       <% end %>
-    </div>
+    </div> <!--card-->
 
   <% end %>
 

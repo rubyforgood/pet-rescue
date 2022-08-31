@@ -5,27 +5,54 @@
       <div class='card-body'>
 
         <!--application info-->
-        <div class="d-md-flex justify-content-between align-items-center px-4">
-          <p>Name: <%= app.dog.name %></p>
-          <p>Status: <%= app.status.titleize %></p>
+        <div class="row px-4">
+
+          <!--dog name-->
+          <div class="col-md-3 d-flex align-items-center">
+            <h5>Name: <%= app.dog.name %></h5>
+          </div>
+
+          <!--status-->
+          <div class="col-md-3 d-flex align-items-center">
+            <p>Status: <%= app.status.titleize %></p>
+          </div>
+
           <% unless app.status == 'withdrawn' || app.status == 'adoption_made' %>
-            <%= link_to 'See dog', adoptable_dog_path(app.dog.id) %>
-            <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, 
+            
+            <!--see dog link-->
+            <div class="col-md-3 d-md-flex align-items-center justify-content-center">
+              <%= link_to 'See dog', adoptable_dog_path(app.dog.id) %>
+            </div>
+
+            <!--withdraw button-->
+            <div class="col-md-3 d-flex align-items-center justify-content-end  ">
+              <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, 
                                                                     status: 'withdrawn'),  
                                     data: { turbo_method: "patch",
                                     turbo_confirm: "If you withdraw you will 
                                                     not be able to reapply for 
                                                     this dog." },
-                                    class: 'btn btn-outline-dark d-block
+                                    class: 'btn btn-outline-dark
                                             mt-3 mt-md-0 mb-3 mb-md-0' %>
+            </div>
           <% end %>
+
           <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
-            <%= link_to 'Remove', update_adopter_application_path(id: app.id, 
+
+            <!--placeholder for see dog link to keep layout-->
+            <div class="col-md-3 d-md-flex align-items-center justify-content-end">
+            </div>
+
+            <!--remove button-->
+            <div class="col-md-3 d-flex align-items-center justify-content-end">
+              <%= link_to 'Remove', update_adopter_application_path(id: app.id, 
                                                                   profile_show: false),  
                                   data: { turbo_method: "patch",
                                   turbo_confirm: "Click OK to remove this 
                                                   application." },
-                                  class: 'btn btn-outline-dark' %>
+                                  class: 'btn btn-outline-dark
+                                          mt-3 mt-md-0 mb-3 mb-md-0' %>
+            </div>
           <% end %>
         </div>
 

@@ -27,14 +27,14 @@
     </div>
 
     <!--form-->
-    <div>
+    <div></div>
       <% if params[:account_type] == 'staff' %>
         <% resource.build_staff_account if resource.staff_account.nil? %>
       <% else %>
         <% resource.build_adopter_account if resource.adopter_account.nil? %>
       <% end %>
       <div class="row">
-        <div class="col-md-6 mx-auto">
+        <div class="col-md-6 mx-auto card p-5">
           <%= form_for(resource, as: resource_name, 
                                  url: registration_path(resource_name)) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>

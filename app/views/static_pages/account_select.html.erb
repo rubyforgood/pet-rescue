@@ -30,15 +30,27 @@
     <!--main section-->
     <div class="text-center">
       <h4 class="mb-4">Please select an account type</h4>
-      <p>I want to adopt a dog</p>
-        <%= link_to 'Adopter', 
-            new_user_registration_path(account_type: 'adopter'), 
-            class: 'btn btn-outline-dark mt-3 mb-3' %>
+      <div class="row">
+        <div class="col-md-6 mx-auto card p-5">
 
-      <p>I am a staff member of an organization registered on this site</p>
-        <%= link_to 'Staff', 
-            new_user_registration_path(account_type: 'staff'),
-            class: 'btn btn-outline-dark mt-3 mb-3' %>
+          <!--adopter-->
+          <div> 
+            <p>I want to adopt a dog</p>
+              <%= link_to 'Adopter', 
+                  new_user_registration_path(account_type: 'adopter'), 
+                  class: 'btn btn-outline-dark mt-3 mb-3' %>
+          </div>
+
+          <!--staff-->
+          <div>
+            <p>I am a staff member of an organization registered on this site</p>
+              <%= link_to 'Staff', 
+                  new_user_registration_path(account_type: 'staff'),
+                  class: 'btn btn-outline-dark mt-3 mb-3' %>
+          </div>
+
+        </div> <!--col-->
+      </div> <!--row-->
     </div>
 
   </div> <!--container-->
