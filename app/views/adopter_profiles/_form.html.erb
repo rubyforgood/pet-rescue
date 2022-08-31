@@ -320,26 +320,35 @@
       <% end %>
     </div>
 
+    <p>
+      How many people in your home are:
+    </p>
+    
+    <div class="d-flex gap-4">
+      <div>
+        <%= form.label :adults_in_home, 'Over 18' %>
+        <%= form.select :adults_in_home, 
+                        options_for_select(1..10),
+                        { prompt: "Please select" },
+                        class: 'form-control' %>
 
-    <%= form.label :adults_in_home, 'How many people over 18 years live in your home?' %>
-    <%= form.select :adults_in_home, 
-                    options_for_select(1..10),
-                    { prompt: "Please select" },
-                    class: 'form-control' %>
+        <% profile.errors.full_messages_for(:adults_in_home).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
 
-    <% profile.errors.full_messages_for(:adults_in_home).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-    <% end %>
+      <div>
+        <%= form.label :kids_in_home, 'Under 18' %>
+        <%= form.select :kids_in_home, 
+                        options_for_select(0..10),
+                        { prompt: "Please select" },
+                        class: 'form-control' %>
 
-    <%= form.label :kids_in_home, 'How many people under 18 years live in your home?' %>
-    <%= form.select :kids_in_home, 
-                    options_for_select(0..10),
-                    { prompt: "Please select" },
-                    class: 'form-control' %>
-
-    <% profile.errors.full_messages_for(:kids_in_home).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-    <% end %>
+        <% profile.errors.full_messages_for(:kids_in_home).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
+    </div> <!--d-flex-->
 
     <div data-controller='display'>
       <p>Are there any other pets in your home?</p>
@@ -412,7 +421,8 @@
       <div data-display-target='additional' class='d-none' data-controller='counter'>
         <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %>
         <%= form.text_area :describe_surrender, data: { action: "input->counter#countMedium", 
-                                                        counter_target: 'input' } %>
+                                                        counter_target: 'input' },
+                                                class: 'form-control' %>
 
         <div data-counter-target='output' class='small'></div>
       </div>
