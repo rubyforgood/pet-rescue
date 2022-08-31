@@ -1,115 +1,112 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-      <%= form_with model: dog do |form|%>
+<div class="row">
+  <div class="col-md-8 mx-auto card p-5">
+    <%= form_with model: dog do |form|%>
 
-        <%= form.hidden_field :organization_id, value: current_user.staff_account.organization_id %>
+      <%= form.hidden_field :organization_id, value: current_user.staff_account.organization_id %>
+      
+      <div class='form-group'>
+        <%= form.label :name%>
+        <%= form.text_field :name, class: 'form-control' %>
         
-        <div class='form-group mb-3'>
-          <h5 class='mt-5'><%= form.label :name%></h5>
-          <%= form.text_field :name, class: 'form-control form-control-lg' %>
-          
-          <% dog.errors.full_messages_for(:name).each do |message| %>
-            <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-          <% end %>
-        </div>
+        <% dog.errors.full_messages_for(:name).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
 
-        <div class='form-group mb-3'>
-          <h5><%= form.label :age %></h5>
-          <%= form.number_field :age, class: 'form-control form-control-lg' %>
-          
-          <% dog.errors.full_messages_for(:age).each do |message| %>
-            <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-          <% end %>
-        </div>
+      <div class='form-group'>
+        <%= form.label :age %>
+        <%= form.number_field :age, class: 'form-control' %>
+        
+        <% dog.errors.full_messages_for(:age).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
 
-        <div class='form-group mb-3'>
-          <h5><%= form.label :sex %></h5>
-          <%= form.select :sex, 
-                          ['Male', 'Female'],
-                          { prompt: "Please select" },
-                          class: 'form-control form-control-lg' %>
-          
-          <% dog.errors.full_messages_for(:sex).each do |message| %>
-            <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-          <% end %>
-        </div>
+      <div class='form-group'>
+        <%= form.label :sex %>
+        <%= form.select :sex, 
+                        ['Male', 'Female'],
+                        { prompt: "Please select" },
+                        class: 'form-control' %>
+        
+        <% dog.errors.full_messages_for(:sex).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
 
-        <div class='form-group mb-3'>
-          <h5 class=''><%= form.label :breed%></h5>
-          <%= form.text_field :breed, class: 'form-control form-control-lg' %>
-          
-          <% dog.errors.full_messages_for(:breed).each do |message| %>
-            <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-          <% end %>
-        </div>
+      <div class='form-group'>
+        <%= form.label :breed%>
+        <%= form.text_field :breed, class: 'form-control' %>
+        
+        <% dog.errors.full_messages_for(:breed).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
 
-        <div class='form-group mb-3'>
-          <h5 class=''><%= form.label :size%></h5>
-          <%= form.select :size,
-                          ['Toy (<12 lb)', 
-                          'Small (12-22 lb)', 
-                          'Medium (22-57 lb)',
-                          'Large (57-99 lb)',
-                          'Giant (99+ lb)'], 
-                          { prompt: "Please select" },
-                          class: 'form-control form-control-lg' %>
-          
-          <% dog.errors.full_messages_for(:size).each do |message| %>
-            <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-          <% end %>
-        </div>
+      <div class='form-group'>
+        <%= form.label :size%>
+        <%= form.select :size,
+                        ['Toy (<12 lb)', 
+                        'Small (12-22 lb)', 
+                        'Medium (22-57 lb)',
+                        'Large (57-99 lb)',
+                        'Giant (99+ lb)'], 
+                        { prompt: "Please select" },
+                        class: 'form-control' %>
+        
+        <% dog.errors.full_messages_for(:size).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
 
-        <div class='form-group mb-3'>
-          <h5 class=''><%= form.label :description%></h5>
-          <div data-controller='counter'>
-            <%= form.text_area :description, 
-                               data: { action: "input->counter#countLarge", 
-                               counter_target: 'input' },
-                               class: 'form-control form-control-lg' %>
-            <div data-counter-target='output' class='small'></div>
-          </div>
-          
-          <% dog.errors.full_messages_for(:description).each do |message| %>
-            <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-          <% end %>
+      <div class='form-group'>
+        <%= form.label :description%>
+        <div data-controller='counter'>
+          <%= form.text_area :description, 
+                              data: { action: "input->counter#countLarge", 
+                              counter_target: 'input' },
+                              class: 'form-control' %>
+          <div data-counter-target='output' class='small'></div>
         </div>
+        
+        <% dog.errors.full_messages_for(:description).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
 
-        <div class='form-group mb-3'>
-          <h5 class=''><%= form.label :append_images %></h5>
-          <%= form.file_field :append_images, multiple: true, class: "custom-attachments" %>
-          
-          <% dog.errors.full_messages_for(:images).each do |message| %>
-            <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-          <% end %>
-        </div>
+      <div class='form-group my-3'>
+        <%= form.label :append_images, class: 'me-3' %>
+        <%= form.file_field :append_images, multiple: true, class: "custom-attachments" %>
+        
+        <% dog.errors.full_messages_for(:images).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
 
-        <div class='mb-3'>
-          <% if dog.images.attached? %>
-            <h5>Uploaded Images</h5>
-            <div class='row row-cols-1 row-cols-md-5 g-6'>
-              <% dog.images.each do |image| %>
-                <% if image.created_at %>
-                  <div class='card'>
-                    <%= image_tag image, width: '75' %>
-                    <%= link_to 'Delete', 
-                                purge_attachment_path(image), 
-                                data: { turbo_method: "delete" },
-                                class: 'small' %>
-                  </div>
-                <% end %>
+      <div>
+        <% if dog.images.attached? %>
+          Uploaded Images
+          <div class='row row-cols-1 row-cols-md-5 g-6'>
+            <% dog.images.each do |image| %>
+              <% if image.created_at %>
+                <div class='card'>
+                  <%= image_tag image, width: '75' %>
+                  <%= link_to 'Delete', 
+                              purge_attachment_path(image), 
+                              data: { turbo_method: "delete" },
+                              class: 'small' %>
+                </div>
               <% end %>
-            </div>
-          <% end %>
-        </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
 
-        <div class='form-group mt-3'>
-        <%= form.submit 'Submit', class: 'btn btn-primary' %>
-        <%= link_to "Home", root_path, class: 'btn btn-outline-primary' %>
-        </div>
+      <%= form.submit 'Submit', class: 'btn btn-outline-dark mb-3' %>
+      <%= link_to "Home", root_path, class: 'd-block' %>
 
-      <% end %>
 
-    </div>
+    <% end %>
+
   </div>
-</div>
+</div> <!--row-->
