@@ -25,7 +25,7 @@
             </div>
 
             <!--withdraw button-->
-            <div class="col-md-3 d-flex align-items-center justify-content-center">
+            <div class="col-md-3 d-flex align-items-center justify-content-end">
               <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, 
                                                                     status: 'withdrawn'),  
                                     data: { turbo_method: "patch",
@@ -39,12 +39,12 @@
 
           <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
 
-            <!--blank link-->
-            <div class="col-md-3 d-md-flex align-items-center justify-content-center">
+            <!--placeholder for see dog link to keep layout-->
+            <div class="col-md-3 d-md-flex align-items-center justify-content-end">
             </div>
 
             <!--remove button-->
-            <div class="col-md-3 d-flex align-items-center justify-content-center">
+            <div class="col-md-3 d-flex align-items-center justify-content-end">
               <%= link_to 'Remove', update_adopter_application_path(id: app.id, 
                                                                   profile_show: false),  
                                   data: { turbo_method: "patch",
