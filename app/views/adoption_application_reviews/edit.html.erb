@@ -19,8 +19,8 @@
 
         <%= form_with model: @application, :url => adopter_application_path do |form| %>
 
-          <div class="form-group d-flex">
-            <%= form.label :status, 'Application status:', class: 'me-4' %>
+          <div class="form-group">
+            <%= form.label :status, 'Application status:' %>
             <p class='fw-bold'><%#= @application.status %></p>
             <%= form.select(:status, 
                             AdopterApplication.app_review_statuses, 
