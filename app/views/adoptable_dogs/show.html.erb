@@ -24,7 +24,7 @@
             <div class="carousel-inner">
               <% @dog.images.each_with_index do |image, index| %>
                   <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag image, class: 'd-block w-100 rounded-5' %>
+                  <%= image_tag image, class: 'd-block w-100 rounded' %>
                   </div>
               <% end %>
             </div>
@@ -62,52 +62,88 @@
         <h4 style='font-weight: bold;'>
           About <%= @dog.name %>
         </h4>
-        <p class='mb-2'>
-          Ut laboris elit deserunt sint. Minim consequat cillum aliqua elit laborum in ipsum id. Velit culpa officia eiusmod laborum Lorem anim voluptate exercitation laborum. Est id ipsum proident dolor qui irure reprehenderit esse adipisicing magna qui aliqua ut. Velit sunt minim velit mollit proident esse laborum ipsum. Id dolore deserunt occaecat irure anim sit ut non exercitation. Ullamco adipisicing sint minim et anim ut.
+        <p class=''>
+          Ut laboris elit deserunt sint. Minim consequat cillum aliqua elit 
+          laborum in ipsum id. Velit culpa officia eiusmod laborum Lorem anim 
+          voluptate exercitation laborum. Est id ipsum proident dolor qui irure 
+          reprehenderit esse adipisicing magna qui aliqua ut. Velit sunt minim 
+          velit mollit proident esse laborum ipsum. Id dolore deserunt occaecat 
+          irure anim sit ut non exercitation. Ullamco adipisicing sint minim et 
+          anim ut.
 
-          Sint ex laboris enim dolore ullamco. Eu labore nulla Lorem occaecat qui ut aliquip excepteur aute incididunt deserunt aute. Deserunt et commodo ullamco in. Elit velit exercitation cupidatat labore eiusmod cupidatat culpa. Anim nulla ad incididunt esse dolor pariatur voluptate dolore voluptate in eu. Et duis sint duis pariatur nulla aute quis non deserunt duis tempor.
+          Sint ex laboris enim dolore ullamco. Eu labore nulla Lorem occaecat 
+          qui ut aliquip excepteur aute incididunt deserunt aute. Deserunt et 
+          commodo ullamco in. Elit velit exercitation cupidatat labore eiusmod 
+          cupidatat culpa. Anim nulla ad incididunt esse dolor pariatur voluptate 
+          dolore voluptate in eu. Et duis sint duis pariatur nulla aute quis non 
+          deserunt duis tempor.
         </p>
       </div>
 
-      <div class='col-lg-4 border p-5 rounded shadow mt-md-4 mt-lg-5'>
-        <div>
-          <h4>
-            Adoption Process
-          </h4>
-          <p>
-            Please read the <%= link_to 'FAQ', faq_path %> before 
-            applying to adopt.
-          </p>
-        </div>
-        <div>
-          <% unless user_signed_in? && current_user.staff_account %>
-            <div class="">
+      <div class=' col-lg-4 ps-3 pe-3 ps-lg-0 pe-lg-0'>
+        <div class=' border p-5 rounded shadow
+                    d-flex flex-column justify-content-between'>
+          <div>
+            <h4>
+              Adoption Process
+            </h4>
+            <p class='mb-3'>
+              Please read the <%= link_to 'FAQ', faq_path %> before 
+              applying to adopt.
+            </p>
+            <p>Please know that:</p>
+            <ul> 
+              <li>Adopters must be located in Canada or USA</li>
+              <li>There is an adoption fee of $xxx</li>
+              <li>Every dog will be fully vaccinated and have the necessary 
+                  paperwork to enter Canada/USA</li>
+              <li>We can usually arrange transport to adopters west of Alberta or
+                  Nevada only. Adopters further east will need to arrange 
+                  transport</li>
+            </ul>
+
+            <p class='mt-3'>After you apply to adopt:</p>
+            <ul> 
+              <li>Your application history will be shown on your profile page</li>
+              <li>Application reviews generally take X days, depending on volume</li>
+              <li>We will contact you  for further discussion if you are 
+                  shortlisted</li>
+              <li>We work hard to match dogs and adopters, so please
+                  try again if you are not successful first time round</li>
+              <li>x y z</li>
+            </ul>
+          </div>
+
+          <div class='text-center mt-1'>
+            <% unless user_signed_in? && current_user.staff_account %>
               <div class="">
-                <% if user_signed_in? %>
-                  <% if current_user.adopter_account && 
-                        current_user.adopter_account.adopter_profile %>
-                    <h4 class="mb-4">In love with this pooch?</h4>
-                    <%= button_to 'Apply to Adopt', 
-                        create_adopter_application_path(
-                          adopter_account_id: current_user.adopter_account.id, 
-                          dog_id: @dog.id
-                                                       ), 
+                <div class="">
+                  <% if user_signed_in? %>
+                    <% if current_user.adopter_account && 
+                          current_user.adopter_account.adopter_profile %>
+                      <h4 class="mb-4">In love with this pooch?</h4>
+                      <%= button_to 'Apply to Adopt', 
+                          create_adopter_application_path(
+                            adopter_account_id: current_user.adopter_account.id, 
+                            dog_id: @dog.id
+                                                        ), 
+                            class: 'custom-btn-pink' %>
+                    <% elsif current_user.adopter_account %>
+                      <h4 class='mb-4'>
+                        You need to complete your profile before you can apply.
+                      </h4>
+                      <%= link_to 'Complete my profile', new_profile_path,
                           class: 'custom-btn-pink' %>
-                  <% elsif current_user.adopter_account %>
-                    <h4 class='mb-4'>
-                      You need to complete your profile before you can apply.
-                    </h4>
-                    <%= link_to 'Complete my profile', new_profile_path,
-                        class: 'custom-btn-pink' %>
-                  <% end %>
-                <% else %>
-                    <h4 class="mb-4">Sign up to be able to apply for this dog</h4>
-                    <%= link_to 'Sign Up', account_select_path , 
-                        class: 'custom-btn-pink' %>
-                <% end %>  
+                    <% end %>
+                  <% else %>
+                      <h4 class="mb-4">Sign up to be able to apply for this dog</h4>
+                      <%= link_to 'Sign Up', account_select_path , 
+                          class: 'custom-btn-pink' %>
+                  <% end %>  
+                </div>
               </div>
-            </div>
-          <%end%>
+            <%end%>
+          </div>
         </div>
       </div>
     </div> <!-- row -->
