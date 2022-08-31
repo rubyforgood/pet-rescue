@@ -1,6 +1,5 @@
 class AdopterApplicationsController < ApplicationController
   before_action :authenticate_user!, :adopter_with_profile
-  before_action :check_for_existing_app, only: :create
 
   def create
     @application = AdopterApplication.new(application_params)
@@ -36,15 +35,5 @@ class AdopterApplicationsController < ApplicationController
 
   def application_params
     params.permit(:id, :dog_id, :adopter_account_id, :status, :profile_show)
-  end
-
-  def check_for_existing_app
-    if AdopterApplication.where(dog_id: params[:dog_id],
-                                adopter_account_id: params[:adopter_account_id])
-                         .exists?
-
-      redirect_to adoptable_dog_path(params[:dog_id]),
-                  alert: 'Application already exists.'
-    end
   end
 end
