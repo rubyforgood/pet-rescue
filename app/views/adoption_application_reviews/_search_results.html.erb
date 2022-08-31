@@ -34,7 +34,7 @@
           </div>
 
           <!--edit application button-->
-          <div class="col-md-2 d-flex align-items-center justify-content-end">
+          <div class="col-md-2 d-flex align-items-center justify-content-md-center">
             <%= link_to 'Edit Application', edit_adopter_application_path(app.id),
                                             class: 'btn btn-outline-dark
                                                     mt-3 mt-md-0 mb-3 mb-md-0' %>
@@ -42,7 +42,7 @@
 
             <% if app.status == 'successful_applicant' %>
               <!--create adoption button-->
-              <div class="col-md-2 d-flex align-items-center justify-content-end">
+              <div class="col-md-2 d-flex align-items-center justify-content-md-center">
                 <%= link_to 'Create Adoption', 
                             create_adoption_path(dog_id: dog.id, 
                                                 adopter_account_id: app.adopter_account.id),

@@ -20,12 +20,12 @@
           <% unless app.status == 'withdrawn' || app.status == 'adoption_made' %>
             
             <!--see dog link-->
-            <div class="col-md-3 d-md-flex align-items-center justify-content-center">
+            <div class="col-md-3 d-md-flex align-items-center justify-content-md-center">
               <%= link_to 'See dog', adoptable_dog_path(app.dog.id) %>
             </div>
 
             <!--withdraw button-->
-            <div class="col-md-3 d-flex align-items-center justify-content-end  ">
+            <div class="col-md-3 d-flex align-items-center justify-content-md-center">
               <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, 
                                                                     status: 'withdrawn'),  
                                     data: { turbo_method: "patch",
@@ -40,11 +40,11 @@
           <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
 
             <!--placeholder for see dog link to keep layout-->
-            <div class="col-md-3 d-md-flex align-items-center justify-content-end">
+            <div class="col-md-3 d-md-flex align-items-center justify-content-md-center">
             </div>
 
             <!--remove button-->
-            <div class="col-md-3 d-flex align-items-center justify-content-end">
+            <div class="col-md-3 d-flex align-items-center justify-content-md-center">
               <%= link_to 'Remove', update_adopter_application_path(id: app.id, 
                                                                   profile_show: false),  
                                   data: { turbo_method: "patch",
