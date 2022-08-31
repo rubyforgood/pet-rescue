@@ -10,7 +10,8 @@
 
     <!--main section--> 
     <div class="col-md-6 mx-auto card p-5">
-        <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= form_for(resource, as: resource_name, url: password_path(resource_name), 
+                               html: { method: :post }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
         <div class="field">
@@ -20,7 +21,9 @@
         </div>
 
         <div class="actions">
-          <%= f.submit "Send me reset password instructions", class: 'btn btn-outline-dark mb-3 mt-4', data: { turbo: false } %>
+          <%= f.submit "Send me reset password instructions", 
+                       class: 'btn btn-outline-dark mb-3 mt-4', 
+                       data: { turbo: false } %>
         </div>
       <% end %>
 
