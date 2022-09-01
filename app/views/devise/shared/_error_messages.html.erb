@@ -1,4 +1,10 @@
+<%# Add custom message if error is the tos_agreement checkbox %>
 <% if resource.errors.any? %>
+  <% if resource.errors[:tos_agreement] %>
+    <% resource.custom_messages(:tos_agreement).each do |error| %>
+      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+    <% end %>
+  <% else %>
   <div id="error_explanation">
     <%# <h2>
       <%= I18n.t("errors.messages.not_saved",
@@ -14,4 +20,5 @@
       <% end %>
     </ul>
   </div>
+<% end %>
 <% end %>
