@@ -17,4 +17,11 @@ class AdopterApplication < ApplicationRecord
       end
     end.compact!
   end
+
+  # check if an adopter has applied to adopt a dog
+  def self.adoption_exists?(adopter_account_id, dog_id)
+    AdopterApplication.where(adopter_account_id: adopter_account_id,
+                             dog_id: dog_id).exists?
+  end
+
 end

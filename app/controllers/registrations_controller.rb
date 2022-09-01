@@ -5,10 +5,10 @@ class RegistrationsController < Devise::RegistrationsController
   # nested form in User>registration>new for an adopter or staff account
   # no attributes need to be accepted, just create new account with user_id reference
   def new
-    build_resource({})
-    resource.build_adopter_account
-    resource.build_staff_account
-    respond_with self.resource
+      build_resource({})
+      resource.build_adopter_account
+      resource.build_staff_account
+      respond_with self.resource
   end
 
   private
@@ -21,6 +21,7 @@ class RegistrationsController < Devise::RegistrationsController
                                  :password,
                                  :signup_role,
                                  :password_confirmation,
+                                 :tos_agreement,
                                  adopter_account_attributes: [:user_id],
                                  staff_account_attributes: [:user_id])
   end
@@ -50,8 +51,10 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
-  # send mail after user is created
+  # check for id (i.e., record saved) and send mail
   def send_email
+    return unless resource.id
+
     if resource.adopter_account
       SignUpMailer.with(user: resource).adopter_welcome_email.deliver_now
     else

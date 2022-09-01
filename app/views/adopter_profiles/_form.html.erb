@@ -5,7 +5,8 @@
   <% if profile.errors.count > 0 %>
     <div class="alert alert-danger mt-1" role="alert">
       <p>
-        Please fix <%= profile.errors.count %> <%= 'error'.pluralize(profile.errors.count) %> highlighted below.
+        Please fix <%= profile.errors.count %> 
+        <%= 'error'.pluralize(profile.errors.count) %> highlighted below.
       </p>
     </div>
   <% end %>
