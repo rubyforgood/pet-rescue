@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true
+  validates_acceptance_of :tos_agreement, allow_nil: false, on: :create
 
   has_one :staff_account
   has_one :adopter_account

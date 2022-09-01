@@ -79,11 +79,18 @@
             </div>
 
             <div class="form-group mb-3">
-              <%= f.label :password_confirmation, 'Password Confirmation*' %><br />
+              <%= f.label :password_confirmation, 'Password Confirmation*' %>
               <%= f.password_field :password_confirmation,
                                   required: true,
                                   autocomplete: "new-password", 
                                   class: 'form-control' %>
+            </div>
+
+            <div class=" mb-3 d-flex">
+              <%= f.check_box :tos_agreement, required: true %>
+              <%= f.label :tos_agreement, 
+                          'I agree to the' %>
+              <% link_to 'Terms and conditions', terms_and_conditions_path %>
             </div>
 
             <div class="actions">
