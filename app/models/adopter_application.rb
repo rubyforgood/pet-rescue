@@ -24,4 +24,10 @@ class AdopterApplication < ApplicationRecord
                              dog_id: dog_id).exists?
   end
 
+  # check if all applications are set to false for profile_show
+  def self.any_applications_profile_show_true?(adopter_account_id)
+    applications = AdopterApplication.where(adopter_account_id: adopter_account_id)
+    applications.any? { |app| app.profile_show == true }
+  end
+
 end

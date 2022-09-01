@@ -12,7 +12,9 @@
     <div class="row">
       <div class="col-md-10 mx-auto card p-5 mb-5">
         <h2 class="mb-4">My Applications</h2>
-          <% if current_user.adopter_account.adopter_applications.exists? %>
+          <% if AdopterApplication.any_applications_profile_show_true?(
+                                  current_user.adopter_account.id
+                                                                      ) %>
             <%= render 'applications' %>
           <% else %>
             <p>Your adoption applications will be displayed here.
