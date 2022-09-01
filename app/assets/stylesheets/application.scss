@@ -86,7 +86,6 @@
   }
 
 //Buttons
-
 .btn {
   border-radius: 100px;
   padding-right: 30px;
@@ -394,4 +393,25 @@
   }
   .stepper-item:last-child::after {
     content: none;
+  }
+
+  // Application Review page
+  .awaiting-review {
+    background-color: #ebb7f0;
+  }
+
+  .withdrawn {
+    background-color: #cfcbcb;
+  }
+
+  .under-review {
+    background-color: #b9ddca;
+  }
+
+  .adoption-pending {
+    background-color: #eecaa3;
+  }
+
+  .successful-applicant {
+    background-color: rgb(244, 187, 107);
   }

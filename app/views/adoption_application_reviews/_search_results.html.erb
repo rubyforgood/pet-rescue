@@ -2,7 +2,6 @@
 
 <% if @dog.nil? ? @collection = @dogs : @collection = @dog %>
 
-
   <% @collection.each do |dog| %>
     <!--dog name-->
     <h4 class="mb-2">
@@ -11,7 +10,12 @@
     
     <div class='card mb-4 px-4 pt-4 pb-2'>
       <% dog.adopter_applications.each do |app|%>
-        <div class="row mb-3">    
+        <div class="row mb-3 rounded py-2
+                   <%= 'awaiting-review' if app.status == 'awaiting_review' %>
+                   <%= 'withdrawn' if app.status == 'withdrawn' %>
+                   <%= 'under-review' if app.status == 'under_review' %>
+                   <%= 'adoption-pending' if app.status == 'adoption_pending' %>
+                   <%= 'successful-applicant' if app.status == 'successful_applicant' %>">    
 
           <!--dog name-->
           <div class="col-md-3 d-flex align-items-center">
