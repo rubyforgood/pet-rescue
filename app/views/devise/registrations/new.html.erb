@@ -86,23 +86,23 @@
                                   class: 'form-control' %>
             </div>
 
-            <div class=" mb-3 d-flex">
+            <div class="form-group mb-3">
               <%= f.check_box :tos_agreement, required: true,
-                              class: 'me-1' %>
-              <%= f.label :tos_agreement, 'I agree to the', class: 'me-1' %>
-              <%= link_to 'Terms and conditions', terms_and_conditions_path, 
-                  target: '_blank', class: 'text-decoration-none mt-2' %>
+                              class: 'me-2' %>
+              <%= f.label :tos_agreement, '*I agree to the', class: 'me-1' %>
+              <%= link_to 'Terms and Conditions', terms_and_conditions_path, 
+                  target: '_blank', class: 'text-decoration-none' %>
             </div>
 
             <div class="actions">
-              <%= f.submit "Sign up", class: 'btn btn-outline-dark mb-3', data: { turbo: false } %>
+              <%= f.submit "Sign up", class: 'btn btn-outline-dark mb-3', 
+                           data: { turbo: false } %>
             </div>
           <% end %>
           <%= render "devise/shared/links" %>
         </div><!--col-->
       </div><!--row-->
     </div>
-
   </div><!--container-->
 </section>
 

@@ -51,8 +51,10 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
-  # send mail after user is created
+  # check for id (i.e., record saved) and send mail
   def send_email
+    return unless resource.id
+
     if resource.adopter_account
       SignUpMailer.with(user: resource).adopter_welcome_email.deliver_now
     else
