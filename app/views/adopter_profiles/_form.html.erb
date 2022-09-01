@@ -15,108 +15,124 @@
   <div class='card p-5 mb-5'>
     <h4>Administrative details</h4>
 
-    <%= form.label :phone_number %>
-    <%= form.telephone_field :phone_number,
-                            autofocus: true,
-                            placeholder: "10 digit number",
-                            class: 'form-control' %>
+    <div class="form-group">
+      <%= form.label :phone_number %>
+      <%= form.telephone_field :phone_number,
+                              autofocus: true,
+                              placeholder: "10 digit number",
+                              class: 'form-control' %>
 
-    <% profile.errors.full_messages_for(:phone_number).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-    <% end %>
+      <% profile.errors.full_messages_for(:phone_number).each do |message| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% end %>
+    </div>
 
-    <%= form.label :contact_method, 'Preferred contact method:' %>
-    <%= form.select :contact_method, 
-                    ['Phone', 'Email', 'WhatsApp'], 
-                    { prompt: "Please select" },
-                    class: 'form-control' %>
-
-    <% profile.errors.full_messages_for(:contact_method).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-    <% end %>
-
-    <%= form.label :country %>
-    <%= form.select :country, 
-                    ['Canada', 'USA'], 
-                    { prompt: "Please select" },
-                    class: 'form-control'%>
-
-    <% profile.errors.full_messages_for(:country).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-    <% end %>
+    <div class="form-group">
+      <%= form.label :contact_method, 'Preferred contact method:' %>
+      <%= form.select :contact_method, 
+                      ['Phone', 'Email', 'WhatsApp'], 
+                      { prompt: "Please select" },
+                      class: 'form-control' %>
 
 
-    <%= form.label :province_state, 'Province/State:' %>
-    <%= form.select :province_state, 
-                    grouped_options_for_select(provinces_states), 
-                    { prompt: "Please select" },
-                    class: 'form-control' %>
+      <% profile.errors.full_messages_for(:contact_method).each do |message| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% end %>
+    </div>
 
-    <% profile.custom_messages(:province_state).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
+    <div class="form-group">
+      <%= form.label :country %>
+      <%= form.select :country, 
+                      ['Canada', 'USA'], 
+                      { prompt: "Please select" },
+                      class: 'form-control'%>
 
-    <%= form.label :city_town, 'City/Town' %>
-    <%= form.text_field :city_town,
-                        class: 'form-control' %>
+      <% profile.errors.full_messages_for(:country).each do |message| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <% end %>
+    </div>
 
-    <% profile.custom_messages(:city_town).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
+    <div class="form-group">
+      <%= form.label :province_state, 'Province/State:' %>
+      <%= form.select :province_state, 
+                      grouped_options_for_select(provinces_states), 
+                      { prompt: "Please select" },
+                      class: 'form-control' %>
+
+      <% profile.custom_messages(:province_state).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :city_town, 'City/Town' %>
+      <%= form.text_field :city_town,
+                          class: 'form-control' %>
+
+      <% profile.custom_messages(:city_town).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+      <% end %>
+    </div>
     
-  </div>
+  </div> <!--card-->
 
 
   <!--Lifestyle section-->
   <div class='card p-5 mb-5'>
     <h4>Lifestyle</h4>
 
-    <div data-controller='counter'>
-      <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %>
-      <%= form.text_area :ideal_dog,
-                        data: { action: "input->counter#countMedium", 
-                                counter_target: 'input' },
-                      placeholder: 'E.g. size, energy level, temperament',
-                      class: 'form-control' %>
-      
-      <div data-counter-target='output' class='small'></div>
-    </div>
-
-    <% profile.custom_messages(:ideal_dog).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
-
-    <div data-controller='counter'>
-      <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %>
-      <%= form.text_area :lifestyle_fit,
-                        data: { action: "input->counter#countMedium", 
-                                counter_target: 'input' },
-                        placeholder: 'E.g. weekday routine, weekend routine',
+    <div class="form-group">
+      <div data-controller='counter'>
+        <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %>
+        <%= form.text_area :ideal_dog,
+                          data: { action: "input->counter#countMedium", 
+                                  counter_target: 'input' },
+                        placeholder: 'E.g. size, energy level, temperament',
                         class: 'form-control' %>
-      
-      <div data-counter-target='output' class='small'></div>
-    </div>
-
-    <% profile.custom_messages(:lifestyle_fit).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
-
-    <div data-controller='counter'>
-      <%= form.label :activities, 'Briefly describe activities you will do with your dog' %>
-      <%= form.text_area :activities,
-                        data: { action: "input->counter#countMedium", 
-                                counter_target: 'input' },
-                        placeholder: 'E.g. daily walks, hiking, running, dog park etc.',
-                        class: 'form-control' %>
+        
+        <div data-counter-target='output' class='small'></div>
+      </div>
     
-      <div data-counter-target='output' class='small'></div>
+      <% profile.custom_messages(:ideal_dog).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+      <% end %>
     </div>
 
-    <% profile.custom_messages(:activities).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
+    <div class="form-group">
+      <div data-controller='counter'>
+        <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %>
+        <%= form.text_area :lifestyle_fit,
+                          data: { action: "input->counter#countMedium", 
+                                  counter_target: 'input' },
+                          placeholder: 'E.g. weekday routine, weekend routine',
+                          class: 'form-control' %>
+        
+        <div data-counter-target='output' class='small'></div>
+      </div>
 
-    <div>
+      <% profile.custom_messages(:lifestyle_fit).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <div data-controller='counter'>
+        <%= form.label :activities, 'Briefly describe activities you will do with your dog' %>
+        <%= form.text_area :activities,
+                          data: { action: "input->counter#countMedium", 
+                                  counter_target: 'input' },
+                          placeholder: 'E.g. daily walks, hiking, running, dog park etc.',
+                          class: 'form-control' %>
+      
+        <div data-counter-target='output' class='small'></div>
+      </div>
+
+      <% profile.custom_messages(:activities).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
       <p>Approximately how many hours will your dog be left alone on a typical day:</p>
 
       <div class="d-flex gap-4">
@@ -151,297 +167,322 @@
   <div class='card p-5 mb-5'>
     <h4>Dog Care</h4>
 
-    <div data-controller='counter'>
-      <%= form.label :experience, 'Briefly describe your dog care experience' %>
-      <%= form.text_area :experience,
-                        data: { action: "input->counter#countMedium", 
-                                counter_target: 'input' },
-                        placeholder: 'E.g. role in past dog ownership, if any.',
-                        class: 'form-control' %>
-
-      <div data-counter-target='output' class='small'></div>
-    </div>
-
-    <% profile.custom_messages(:experience).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
-
-    <div data-controller='counter'>
-      <%= form.label :contingency_plan, 'Who will care for your dog during emergencies or vacations?' %>
-      <%= form.text_area :contingency_plan,
-                        data: { action: "input->counter#countMedium", 
-                                counter_target: 'input' },
-                        placeholder: 'E.g. during emergency or vacation.',
-                        class: 'form-control' %>
-    
-      <div data-counter-target='output' class='small'></div>
-    </div>
-
-    <% profile.custom_messages(:contingency_plan).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
-
-    <div data-controller='display'>
-      <p>Will dog ownership be regularly shared with anyone outside the household?</p>
-
-      <div data-display-target='checked'>
-        <%= form.label :shared_ownership, 'Yes', value: 'true' %>
-        <%= form.radio_button :shared_ownership, 
-                              true, 
-                              data: { action: "input->display#show" } %>
-        <%= form.label :shared_ownership, 'No', value: 'false' %>
-        <%= form.radio_button :shared_ownership, 
-                              false, 
-                              data: { action: "input->display#hide" } %>
-      </div>
-
-      <% profile.custom_messages(:shared_ownership).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-      <% end %>
-
-      <div data-display-target='additional' class='d-none' data-controller='counter'>
-        <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %>
-        <%= form.text_area :shared_owner, 
+    <div class="form-group">
+      <div data-controller='counter'>
+        <%= form.label :experience, 'Briefly describe your dog care experience' %>
+        <%= form.text_area :experience,
                           data: { action: "input->counter#countMedium", 
                                   counter_target: 'input' },
-                          placeholder: 'E.g. how often, their experience with dogs.',
+                          placeholder: 'E.g. role in past dog ownership, if any.',
                           class: 'form-control' %>
-        
+
         <div data-counter-target='output' class='small'></div>
       </div>
 
-      <% profile.custom_messages(:shared_owner).each do |error| %>
+      <% profile.custom_messages(:experience).each do |error| %>
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
-
     </div>
 
-  </div>
+    <div class="form-group">
+      <div data-controller='counter'>
+        <%= form.label :contingency_plan, 'Who will care for your dog during emergencies or vacations?' %>
+        <%= form.text_area :contingency_plan,
+                          data: { action: "input->counter#countMedium", 
+                                  counter_target: 'input' },
+                          placeholder: 'E.g. during emergency or vacation.',
+                          class: 'form-control' %>
+      
+        <div data-counter-target='output' class='small'></div>
+      </div>
+
+      <% profile.custom_messages(:contingency_plan).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <div data-controller='display'>
+        <p>Will dog ownership be regularly shared with anyone outside the household?</p>
+
+        <div data-display-target='checked'>
+          <%= form.label :shared_ownership, 'Yes', value: 'true' %>
+          <%= form.radio_button :shared_ownership, 
+                                true, 
+                                data: { action: "input->display#show" } %>
+          <%= form.label :shared_ownership, 'No', value: 'false' %>
+          <%= form.radio_button :shared_ownership, 
+                                false, 
+                                data: { action: "input->display#hide" } %>
+        </div>
+
+        <% profile.custom_messages(:shared_ownership).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+
+        <div data-display-target='additional' class='d-none' data-controller='counter'>
+          <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %>
+          <%= form.text_area :shared_owner, 
+                            data: { action: "input->counter#countMedium", 
+                                    counter_target: 'input' },
+                            placeholder: 'E.g. how often, their experience with dogs.',
+                            class: 'form-control' %>
+          
+          <div data-counter-target='output' class='small'></div>
+        </div>
+
+        <% profile.custom_messages(:shared_owner).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+
+      </div>
+    </div>
+
+  </div> <!--card-->
 
   <!--Household information section-->
   <div class='card p-5 mb-5'>
     <h4>Household Information</h4>
 
-    <%= form.label :housing_type %>
-    <%= form.select :housing_type, 
-                    ['Acreage', 
-                    'Detached',
-                    'Duplex',
-                    'Apartment', 
-                    'Trailer'],
-                    { prompt: "Please select" },
-                    class: 'form-control' %>
+    <div class="form-group">
+      <%= form.label :housing_type %>
+      <%= form.select :housing_type, 
+                      ['Acreage', 
+                      'Detached',
+                      'Duplex',
+                      'Apartment', 
+                      'Trailer'],
+                      { prompt: "Please select" },
+                      class: 'form-control' %>
 
-    <% profile.errors.full_messages_for(:housing_type).each do |message| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-    <% end %>
-
-    <div data-controller='display'>
-      <p>Will the dog have access to a fenced yard?</p>
-
-      <div data-display-target='checked'>
-        <%= form.label :fenced_access, 'Yes', value: 'true' %>
-        <%= form.radio_button :fenced_access, 
-                              true, 
-                              data: { action: "input->display#hide" } %>
-        <%= form.label :fenced_access, 'No', value: 'false' %>
-        <%= form.radio_button :fenced_access, 
-                              false, 
-                              data: { action: "input->display#show" } %>
-      </div>
-
-      <% profile.custom_messages(:fenced_access).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-      <% end %>
-    
-      <div data-display-target='additional' class='d-none' data-controller='counter'>
-        <%= form.label :fenced_alternative, 'How do you plan to care for the dog without a fenced garden?' %>
-        <%= form.text_area :fenced_alternative, 
-                          data: { action: "input->counter#countMedium", 
-                                  counter_target: 'input' },
-                          placeholder: 'E.g. mainly indoors, outdoors on tether.',
-                          class: 'form-control' %>
-
-        <div data-counter-target='output' class='small'></div>
-      </div>
-
-      <% profile.custom_messages(:fenced_alternative).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+      <% profile.errors.full_messages_for(:housing_type).each do |message| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
       <% end %>
     </div>
 
-    <div>
-    <p>Where on the property will the dog stay:</p>
-      <%= form.label :location_day, 'Day:' %>
-      <%= form.text_field :location_day, 
-                          placeholder: 'E.g. indoors, outdoors',
-                          class: 'form-control' %>
-      <%= form.label :location_night, 'Night:' %>
-      <%= form.text_field :location_night, 
-                          placeholder: 'E.g. crate, kennel',
-                          class: 'form-control' %>
-    </div>
+    <div class="form-group">
+      <div data-controller='display'>
+        <p>Will the dog have access to a fenced yard?</p>
 
-    <% profile.custom_messages(:location_day).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
+        <div data-display-target='checked'>
+          <%= form.label :fenced_access, 'Yes', value: 'true' %>
+          <%= form.radio_button :fenced_access, 
+                                true, 
+                                data: { action: "input->display#hide" } %>
+          <%= form.label :fenced_access, 'No', value: 'false' %>
+          <%= form.radio_button :fenced_access, 
+                                false, 
+                                data: { action: "input->display#show" } %>
+        </div>
 
-    <% profile.custom_messages(:location_night).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
+        <% profile.custom_messages(:fenced_access).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+      
+        <div data-display-target='additional' class='d-none' data-controller='counter'>
+          <%= form.label :fenced_alternative, 'How do you plan to care for the dog without a fenced garden?' %>
+          <%= form.text_area :fenced_alternative, 
+                            data: { action: "input->counter#countMedium", 
+                                    counter_target: 'input' },
+                            placeholder: 'E.g. mainly indoors, outdoors on tether.',
+                            class: 'form-control' %>
 
-    <div data-controller='display'>
-      <p>Do you rent your home or live in a strata complex?</p>
+          <div data-counter-target='output' class='small'></div>
+        </div>
 
-      <div data-display-target='checked'>
-        <%= form.label :do_you_rent, 'Yes', value: 'true' %>
-        <%= form.radio_button :do_you_rent, 
-                              true, 
-                              data: { action: "input->display#show" } %>
-        <%= form.label :do_you_rent, 'No', value: 'false' %>
-        <%= form.radio_button :do_you_rent, 
-                              false, 
-                              data: { action: "input->display#hide" } %>
-      </div>
-
-      <% profile.custom_messages(:do_you_rent).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-      <% end %>
-
-      <div data-display-target='additional' class='d-none'>
-        <p>Have you confirmed pets are allowed?</p>
-        <%= form.label :dogs_allowed, 'Yes', value: 'true' %>
-        <%= form.radio_button :dogs_allowed, true %>
-        <%= form.label :dogs_allowed, 'No', value: 'false' %>
-        <%= form.radio_button :dogs_allowed, false %>
-      </div>
-
-      <% profile.custom_messages(:dogs_allowed).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-      <% end %>
-    </div>
-
-    <p>
-      How many people in your home are:
-    </p>
-    
-    <div class="d-flex gap-4">
-      <div>
-        <%= form.label :adults_in_home, 'Over 18' %>
-        <%= form.select :adults_in_home, 
-                        options_for_select(1..10),
-                        { prompt: "Please select" },
-                        class: 'form-control' %>
-
-        <% profile.errors.full_messages_for(:adults_in_home).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% profile.custom_messages(:fenced_alternative).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
         <% end %>
       </div>
+    </div>
 
+    <div class="form-group">
       <div>
-        <%= form.label :kids_in_home, 'Under 18' %>
-        <%= form.select :kids_in_home, 
-                        options_for_select(0..10),
-                        { prompt: "Please select" },
-                        class: 'form-control' %>
-
-        <% profile.errors.full_messages_for(:kids_in_home).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-        <% end %>
-      </div>
-    </div> <!--d-flex-->
-
-    <div data-controller='display'>
-      <p>Are there any other pets in your home?</p>
-
-      <div data-display-target='checked'>
-        <%= form.label :other_pets, 'Yes', value: 'true' %>
-        <%= form.radio_button :other_pets, 
-                              true, 
-                              data: { action: "input->display#show" } %>
-        <%= form.label :other_pets, 'No', value: 'false' %>
-        <%= form.radio_button :other_pets, 
-                              false, 
-                              data: { action: "input->display#hide" } %>
+        <p>Where on the property will the dog stay:</p>
+          <%= form.label :location_day, 'Day:' %>
+          <%= form.text_field :location_day, 
+                              placeholder: 'E.g. indoors, outdoors',
+                              class: 'form-control' %>
+          <%= form.label :location_night, 'Night:' %>
+          <%= form.text_field :location_night, 
+                              placeholder: 'E.g. crate, kennel',
+                              class: 'form-control' %>
       </div>
 
-      <% profile.custom_messages(:other_pets).each do |error| %>
+      <% profile.custom_messages(:location_day).each do |error| %>
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
 
-      <div data-display-target='additional' class='d-none' data-controller='counter'>    
-        <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %>
-        <%= form.text_area :describe_pets, data: { action: "input->counter#countMedium", 
-                                                  counter_target: 'input' },
-                           class: 'form-control' %>
-
-        <div data-counter-target='output' class='small'></div>
-      </div>
-
-      <% profile.custom_messages(:describe_pets).each do |error| %>
+      <% profile.custom_messages(:location_night).each do |error| %>
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
     </div>
 
-  </div>
+    <div class="form-group">
+      <div data-controller='display'>
+        <p>Do you rent your home or live in a strata complex?</p>
+
+        <div data-display-target='checked'>
+          <%= form.label :do_you_rent, 'Yes', value: 'true' %>
+          <%= form.radio_button :do_you_rent, 
+                                true, 
+                                data: { action: "input->display#show" } %>
+          <%= form.label :do_you_rent, 'No', value: 'false' %>
+          <%= form.radio_button :do_you_rent, 
+                                false, 
+                                data: { action: "input->display#hide" } %>
+        </div>
+
+        <% profile.custom_messages(:do_you_rent).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+
+        <div data-display-target='additional' class='d-none'>
+          <p>Have you confirmed pets are allowed?</p>
+          <%= form.label :dogs_allowed, 'Yes', value: 'true' %>
+          <%= form.radio_button :dogs_allowed, true %>
+          <%= form.label :dogs_allowed, 'No', value: 'false' %>
+          <%= form.radio_button :dogs_allowed, false %>
+        </div>
+
+        <% profile.custom_messages(:dogs_allowed).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <p>
+        How many people in your home are:
+      </p>
+      
+      <div class="d-flex gap-4">
+        <div>
+          <%= form.label :adults_in_home, 'Over 18' %>
+          <%= form.select :adults_in_home, 
+                          options_for_select(1..10),
+                          { prompt: "Please select" },
+                          class: 'form-control' %>
+
+          <% profile.errors.full_messages_for(:adults_in_home).each do |message| %>
+            <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+          <% end %>
+        </div>
+
+        <div>
+          <%= form.label :kids_in_home, 'Under 18' %>
+          <%= form.select :kids_in_home, 
+                          options_for_select(0..10),
+                          { prompt: "Please select" },
+                          class: 'form-control' %>
+
+          <% profile.errors.full_messages_for(:kids_in_home).each do |message| %>
+            <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+          <% end %>
+        </div>
+      </div> <!--d-flex-->
+    </div>
+
+    <div class="form-group">
+      <div data-controller='display'>
+        <p>Are there any other pets in your home?</p>
+
+        <div data-display-target='checked'>
+          <%= form.label :other_pets, 'Yes', value: 'true' %>
+          <%= form.radio_button :other_pets, 
+                                true, 
+                                data: { action: "input->display#show" } %>
+          <%= form.label :other_pets, 'No', value: 'false' %>
+          <%= form.radio_button :other_pets, 
+                                false, 
+                                data: { action: "input->display#hide" } %>
+        </div>
+
+        <% profile.custom_messages(:other_pets).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+
+        <div data-display-target='additional' class='d-none' data-controller='counter'>    
+          <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %>
+          <%= form.text_area :describe_pets, data: { action: "input->counter#countMedium", 
+                                                    counter_target: 'input' },
+                            class: 'form-control' %>
+
+          <div data-counter-target='output' class='small'></div>
+        </div>
+
+        <% profile.custom_messages(:describe_pets).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+      </div>
+    </div>
+
+  </div> <!--card-->
 
   <!--Additional information section-->
   <div class='card p-5 mb-5'>
     <h4>Additional Information</h4>
 
-    <div>
-      <p>Have you checked your local shelter for available dogs?</p>
-      <%= form.label :checked_shelter, 'Yes', value: 'true' %>
-      <%= form.radio_button :checked_shelter, true %>
-      <%= form.label :checked_shelter, 'No', value: 'false' %>
-      <%= form.radio_button :checked_shelter, false %>
-    </div>
-
-    <% profile.custom_messages(:checked_shelter).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
-
-    <div data-controller='display'>
-      <p>Have you ever had to surrender or rehome an animal?</p>
-
-      <div data-display-target='checked'>
-        <%= form.label :surrendered_pet, 'Yes', value: 'true' %>
-        <%= form.radio_button :surrendered_pet, 
-                              true,
-                              data: { action: "input->display#show" } %>
-        <%= form.label :surrendered_pet, 'No', value: 'false' %>
-        <%= form.radio_button :surrendered_pet, 
-                              false,
-                              data: { action: "input->display#hide" } %>
-      </div>
-      
-      <% profile.custom_messages(:surrendered_pet).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-      <% end %>
-
-      <div data-display-target='additional' class='d-none' data-controller='counter'>
-        <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %>
-        <%= form.text_area :describe_surrender, data: { action: "input->counter#countMedium", 
-                                                        counter_target: 'input' },
-                                                class: 'form-control' %>
-
-        <div data-counter-target='output' class='small'></div>
+    <div class="form-group">
+      <div>
+        <p>Have you checked your local shelter for available dogs?</p>
+        <%= form.label :checked_shelter, 'Yes', value: 'true' %>
+        <%= form.radio_button :checked_shelter, true %>
+        <%= form.label :checked_shelter, 'No', value: 'false' %>
+        <%= form.radio_button :checked_shelter, false %>
       </div>
 
-      <% profile.custom_messages(:describe_surrender).each do |error| %>
+      <% profile.custom_messages(:checked_shelter).each do |error| %>
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
       <% end %>
     </div>
 
-    <%= form.label :annual_cost, 'How much do you think it will cost to own a dog each year?' %>
-    <%= form.text_field :annual_cost, 
-                        placeholder: 'E.g. $2200',
-                        class: 'form-control' %>
+    <div class="form-group">
+      <div data-controller='display'>
+        <p>Have you ever had to surrender or rehome an animal?</p>
 
-    <% profile.custom_messages(:annual_cost).each do |error| %>
-      <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-    <% end %>
-  </div>
+        <div data-display-target='checked'>
+          <%= form.label :surrendered_pet, 'Yes', value: 'true' %>
+          <%= form.radio_button :surrendered_pet, 
+                                true,
+                                data: { action: "input->display#show" } %>
+          <%= form.label :surrendered_pet, 'No', value: 'false' %>
+          <%= form.radio_button :surrendered_pet, 
+                                false,
+                                data: { action: "input->display#hide" } %>
+        </div>
+        
+        <% profile.custom_messages(:surrendered_pet).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+
+        <div data-display-target='additional' class='d-none' data-controller='counter'>
+          <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %>
+          <%= form.text_area :describe_surrender, data: { action: "input->counter#countMedium", 
+                                                          counter_target: 'input' },
+                                                  class: 'form-control' %>
+
+          <div data-counter-target='output' class='small'></div>
+        </div>
+
+        <% profile.custom_messages(:describe_surrender).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :annual_cost, 'How much do you think it will cost to own a dog each year?' %>
+      <%= form.text_field :annual_cost, 
+                          placeholder: 'E.g. $2200',
+                          class: 'form-control' %>
+
+      <% profile.custom_messages(:annual_cost).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+      <% end %>
+    </div>
+
+  </div> <!--card-->
 
   <div>
     <%= form.submit 'Save my profile', class: 'btn btn-outline-dark mb-3' %>

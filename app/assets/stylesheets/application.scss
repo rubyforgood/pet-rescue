@@ -248,6 +248,30 @@
   .carousel-item img {
     object-fit: cover;
   }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+  height: 50px;
+  width: 50px;
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+  .carousel-control-next-icon:after
+  {
+    content: '>';
+    font-size: 30px;
+    font-weight: 900;
+    color: #000;
+  }
+
+  .carousel-control-prev-icon:after {
+    content: '<';
+    font-size: 30px;
+    font-weight: 900;
+    color: #000;
+  }
 
   /* Extra small devices (phones, 700px and down) */
   @media only screen and (max-width: 767px) {
