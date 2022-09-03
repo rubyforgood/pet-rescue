@@ -1,14 +1,18 @@
-<section class="pt-5 pb-5" id="about_us">
-  <div class="container mb-md-5 mt-md-5">
-
-    <!--page heading-->
-    <div class="text-center mb-5">
+<!--page heading-->
+<header class="pt-5 pb-5">
+  <div class="container">
+    <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
         Applications
       </h1>
     </div>
+  </div> <!--container-->
+</header>
 
-    <!--main section-->
+<!--main section-->
+<section class="pb-5" id="about_us">
+  <div class="container">
+
     <h5 class="mb-2">Filter by dog name</h5>
     <%= form_with url: '/adopter_applications', method: :get do | f | %>
 
@@ -22,7 +26,7 @@
           <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
         </div>
     </div>
-    
+
     </div> <!--row-->
 
 
