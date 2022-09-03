@@ -16,18 +16,26 @@
 
           <div class="row mb-2">
             <div class="mb-3 form-group">
-              <%= f.label :name %>
-              <%= f.text_field :name, class: 'form-control ' %>
+              <%= f.label :name, 'Name*' %>
+              <%= f.text_field :name, autofocus: true, 
+                                      class: 'form-control', 
+                                      required: true %>
             </div>
 
             <div class="mb-3 form-group">
-              <%= f.label :email %>
-              <%= f.email_field :email, class: 'form-control ' %>
+                <%= f.label :email, 'Email*' %>
+                <%= f.email_field :email, class: 'form-control', 
+                                          required: true %>
             </div>
 
-            <div class="mb-3 form-group">
-              <%= f.label :message %>
-              <%= f.text_area :message, class: 'form-control ' %>
+            <div class="mb-3 form-group" data-controller='counter'>
+              <%= f.label :message, 'Message*' %>
+              <%= f.text_area :message, class: 'form-control', 
+                                        data: { action: "input->counter#countLarge", 
+                                                counter_target: 'input' },
+                                        placeholder: 'Enter your message...',
+                                        required: true %>
+                <div data-counter-target='output' class='small'></div>
             </div>
             
             <div class="mb-3 form-group">
