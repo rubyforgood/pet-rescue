@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get '/adoptable_dogs', to: 'adoptable_dogs#index'
   get '/adoptable_dogs/:id', to: 'adoptable_dogs#show', as: 'adoptable_dog'
 
+  get '/contacts', to: 'contacts#send_message'
+  get '/contacts/new', to: 'contacts#new'
+
   post 'create_adopter_application', to: 'adopter_applications#create'
   patch 'update_adopter_application', to: 'adopter_applications#update'
 

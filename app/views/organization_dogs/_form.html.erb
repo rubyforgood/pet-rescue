@@ -2,7 +2,8 @@
   <div class="col-md-8 mx-auto card p-5">
     <%= form_with model: dog do |form|%>
 
-      <%= form.hidden_field :organization_id, value: current_user.staff_account.organization_id %>
+      <%= form.hidden_field :organization_id, 
+                            value: current_user.staff_account.organization_id %>
       
       <div class='form-group'>
         <%= form.label :name%>
@@ -76,7 +77,8 @@
 
       <div class='form-group my-3'>
         <%= form.label :append_images, class: 'me-3' %>
-        <%= form.file_field :append_images, multiple: true, class: "custom-attachments" %>
+        <%= form.file_field :append_images, multiple: true, 
+                            class: "custom-attachments" %>
         
         <% dog.errors.full_messages_for(:images).each do |message| %>
           <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
