@@ -37,12 +37,22 @@
                  id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
                  About
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown04">
-                <li><a class="dropdown-item" href="#">About Us</a></li>
-                <li><a class="dropdown-item" href="#">Adoption Process</a></li>
-                <li><a class="dropdown-item" href="#">Partners</a></li>
-                <li><a class="dropdown-item" href="#">Donate</a></li>
-                <li><a class="dropdown-item" href="#">Contact Us</a></li>
+              <ul class="dropdown-menu p-3" aria-labelledby="dropdown04">
+                <li><%= link_to 'About Us', about_us_path,
+                                class: 'text-decoration-none',
+                                style: 'color: #504451' %></li>
+                <li><%= link_to 'FAQ', faq_path,
+                                class: 'text-decoration-none',
+                                style: 'color: #504451' %></li>
+                <li><%= link_to 'Partners', partners_path,
+                                class: 'text-decoration-none',
+                                style: 'color: #504451' %></li>
+                <li><%= link_to 'Donate', donate_path,
+                                class: 'text-decoration-none',
+                                style: 'color: #504451' %></li>
+                <li><%= link_to 'Contact Us', new_contact_path,
+                                class: 'text-decoration-none',
+                                style: 'color: #504451' %></li>
               </ul>
             </li> 
           </ul>
