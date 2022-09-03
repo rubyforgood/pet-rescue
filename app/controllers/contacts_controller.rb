@@ -5,14 +5,15 @@ class ContactsController < ApplicationController
   end
 
   def create
-    redirect_to root_path, alert: 'this works'
-    # make a mailer to handle this then handle outcomes
-    # if sent, notice it was sent else alert there was an error
+    ContactsMailer.with(name: params[:name],
+                        email: params[:email],
+                        message: params[:message])
+                  .send_message.deliver_now
   end
 
   private
 
   def contacts_params
-    params.permit(:name, :email, :message)
+    params.require(:contact).permit(:name, :email, :message)
   end
 end
