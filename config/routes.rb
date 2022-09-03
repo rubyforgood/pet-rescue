@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/faq', to: 'static_pages#faq'
   get '/partners', to: 'static_pages#partners'
   get '/donate', to: 'static_pages#donate'
-  get '/contact_us', to: 'static_pages#contact_us'
+  # get '/contact_us', to: 'static_pages#contact_us'
   get '/privacy_policy', to: 'static_pages#privacy_policy'
   get '/terms_and_conditions', to: 'static_pages#terms_and_conditions'
 
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/adoptable_dogs', to: 'adoptable_dogs#index'
   get '/adoptable_dogs/:id', to: 'adoptable_dogs#show', as: 'adoptable_dog'
 
-  get '/contacts', to: 'contacts#send_message'
+  get '/contacts', to: 'contacts#create'
   get '/contacts/new', to: 'contacts#new'
 
   post 'create_adopter_application', to: 'adopter_applications#create'
