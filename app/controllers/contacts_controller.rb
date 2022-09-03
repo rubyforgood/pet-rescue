@@ -5,10 +5,19 @@ class ContactsController < ApplicationController
   end
 
   def create
-    ContactsMailer.with(name: params[:name],
-                        email: params[:email],
-                        message: params[:message])
-                  .send_message.deliver_now
+    @contact = Contact.new(name: params[:name],
+                           email: params[:email],
+                           message: params[:message])
+
+    if @contact.valid?
+      ContactsMailer.with(name: params[:name],
+                          email: params[:email],
+                          message: params[:message])
+                    .send_message.deliver_now
+      redirect_to root_path, notice: 'Message sent!'
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
