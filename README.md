@@ -3,20 +3,29 @@
 I am a self-taught web developer and this is my first production Ruby on Rails application. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make the process of linking adopters with dogs easier.
 
 **The Problem**
-The dog resuce organization has limited time and resources. They have been using Facebook and Instagram to post new dogs and get interest from adopters. This has been working, but is not ideal because:
-* staff have to create dog posts that conform to the given platform format
-* staff have challenges keeping track of applications for each dog
-* staff have to manage/use a third party adoption application form (Google Forms)
-* staff want a website but have limited time and technical capacity
-* adopters have to fill in a form each time they apply to adopt a dog
+
+The dog rescue organization has limited time and resources. They have been using Facebook and Instagram to post new dogs and get interest from adopters. This has been working, but is not ideal because:
+* staff are forced to use the platform's layout for dog posts
+* staff have a hard time keeping track of applications for each dog
+* staff have to use a third party adoption application form
+* staff have insufficient resources to build/maintain a website
+* there are no free, 'off the shelf' CMS solutions available for this domain
+* there is limited ability to customise or brand online presence and build credibility
+* adopters have to duplicate efforts each time they apply to adopt a dog
 * adopters have no easy way to check the status of their application
-* adopters have to be registered on a platform and know how to navigate it (think non-technical boomer trying to learn instagram)
-* there is limited ability to brand online presence and build credibility
+* adopters have to use a patchwork process comprised of different apps
+* adopters have to be registered on a platform and know how to navigate it (think non-technical boomer trying to learn Instagram)
+
 
 **The Solution**
-After a few meetings with the stakeholder to learn about their challenges and needs I was able to conceptualize a solution that will require minimal technical maintenance by organization staff, and more importantly, make their work more efficient.
 
-I decided that a ruby on rails application would be a suitable technology because it enables rapid development and the required features fit within a RESTful framework. 
+I met with the stakeholder to learn about their challenges and needs and then conceptualized a solution to address the above challenges. This was a great exercise in turning business needs into application logic. 
+
+The solution had to be simple, easy to maintain and manage, and provide a more cohesive flow and experience for both staff and adopters alike. It had to make use of out of the box technology with a low monthly overhead.
+
+I decided that a ruby on rails application would be a suitable technology because it enables rapid development and its REST framework will provide all of the required functionality. I chose to use a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the staging and production applications will be deployed on the Hobby Tier. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail. 
+
+**Features**
 
 The application has the following features:
 * Authentication for two user types - adopters and organization staff
@@ -41,3 +50,27 @@ Front end uses Bootstrap 5 and Stimulus JS.
 * Letter opener
 * Active Storage Validations
 * Phone lib
+
+**Timelines**
+
+
+
+**Contributions**
+
+
+
+**Local Setup**
+
+To set this application up locally:
+* `rails -v` to ensure you have Rails 7.0.3 installed
+* `ruby -v` to ensure you have Ruby version 3.0.3 or later installed
+* `psql --version` to ensure you have PostgreSQL 12.12 installed (make sure you have a user and password)
+* Fork the repository and copy SSH key
+* `git clone <'SSH Key'>` to download application locally
+* `bundle install` to install gems (you may have to change gem 'sassc-rails' to gem 'sassc', "~> 2.1.0")
+* `bundle exec install figaro` 
+* add your PostgreSQL database username and database password to `config/application.yml` as ENV variables
+* `rails db:migrate` to run all migrations
+* `rails db:seed` to load seed data
+* `rails s` to run the local server
+* 'localhost:3000' in browser to access the application
