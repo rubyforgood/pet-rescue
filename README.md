@@ -1,6 +1,6 @@
-# Dog Adoption App
+# Dog Adoption Ruby on Rails Application
 
-I am a self-taught web developer and this is my first production Ruby on Rails application. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make the process of linking adopters with dogs easier.
+I am a self-taught web developer and this is my first production Ruby on Rails application with real users. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make the process of linking adopters with dogs easier.
 
 
 **The Problem**
@@ -32,19 +32,22 @@ I decided that a ruby on rails application would be a suitable technology becaus
 The application has the following features:
 * Authentication for two user types - adopters and organization staff
 * Organization staff can perform CRUD actions on dogs on behalf of an organization
+* Active storage to allow image uploads and a bootstrap carousel for display
 * Adopters can create, read and update their profile, which contains vetting information
 * Adopters can create adoption applications for a dog and view their application history/status
-* Organization staff can review application requests for a dog and set a status
+* Organization staff can review application requests for a dog, set a status, and keep ongoing notes
 * Organization staff can create adoptions linking a dog with an adopter user
 * Organization staff can filter their applications and dogs to make searching easier
 * Mailer sends an email to organization staff for any new adoption requests on their dogs
 * Mailer sends admin an email when a new staff registration occurs
 * Mailer sends new adopters a welcome email
+* Authorizations to control the actions of users i.e. only adopters can apply to adopt dogs and only verified staff can carry out staff actions.
+* Forms make use of Stimulus Javascript framework to provide features like conditional fields and character counters.
 
-The back end uses PostgreSQL, aligned with that used by Heroku for deployment.
-Front end uses Bootstrap 5 and Stimulus JS.
+The whole site is styled using Bootstrap 5.
 
-*Gems*
+**Gems and Installs**
+
 * Devise
 * Figaro
 * Bootstrap CSS
@@ -53,6 +56,7 @@ Front end uses Bootstrap 5 and Stimulus JS.
 * Letter opener
 * Active Storage Validations
 * Phone lib
+* Active storage
 
 
 **Timelines**
