@@ -3,7 +3,7 @@
   <div class="container">
     <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
-        Edit <%= resource_name.to_s.humanize %>'s Account Settings
+        Edit my user settings
       </h1>
     </div>
   </div> <!--container-->
@@ -44,6 +44,12 @@
             </div>
 
             <div class="form-group mb-3">
+              <%= f.label :password_confirmation %><br />
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", 
+                                    class: 'form-control' %>
+            </div>
+
+            <div class="form-group mb-3">
               <%= f.label :first_name %><br />
               <%= f.text_field :first_name, 
                                 class: 'form-control' %>
@@ -56,16 +62,11 @@
             </div>
 
             <div class="form-group mb-3">
-              <%= f.label :password_confirmation %><br />
-              <%= f.password_field :password_confirmation, autocomplete: "new-password", 
-                                    class: 'form-control' %>
-            </div>
-
-            <div class="form-group mb-3">
               <%= f.label :current_password %> 
                           <i>(we need your current password to confirm your changes)</i><br />
               <%= f.password_field :current_password, 
-                                  autocomplete: "current-password", 
+                                  autocomplete: "current-password",
+                                  required: true,
                                   class: 'form-control' %>
             </div>
 
