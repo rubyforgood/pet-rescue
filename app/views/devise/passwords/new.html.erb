@@ -1,20 +1,24 @@
-<section class="pt-3 pb-5" id="account_select">
-  <div class="container mb-md-5 mt-md-5">
-
-    <!--page heading-->
-    <div class="text-center mb-5">
-      <h1 class="h4 mb-5">
+<!--page heading-->
+<header class="pt-5 pb-5">
+  <div class="container">
+    <div class="text-center">
+      <h1 class="h4">
         Forgot your password?
       </h1>
     </div>
+  </div> <!--container-->
+</header>
 
-    <!--main section--> 
+<!--main section--> 
+<section class="pb-5" id="account_select">
+  <div class="container">
+
     <div class="col-md-6 mx-auto card p-5">
         <%= form_for(resource, as: resource_name, url: password_path(resource_name), 
                                html: { method: :post }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <div class="field">
+        <div class="field form-group">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email",
                              class: 'form-control' %>

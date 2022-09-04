@@ -1,16 +1,19 @@
-<section class="pt-3 pb-5" id="about_us">
-  <div class="container mb-md-5 mt-md-5">
-
-    <!--page heading-->
+<!--page heading-->
+<header class="pt-5 pb-5">
+  <div class="container">
     <div class="text-center">
-      <h1 class="h4 mb-5">
+      <h1 class="h4">
         <%= @application.adopter_account.user.first_name %>
         <%= @application.adopter_account.user.last_name %>'s application for
         <%= @application.dog.name %>
       </h1>
     </div>
+  </div> <!--container-->
+</header>
 
-    <!--main section-->
+<!--main section-->
+<section class="pb-5" id="about_us">
+  <div class="container">
     <div class="row">
       <div class="col-md-8 mx-auto card p-5 ">
           <!--adopter profile link-->

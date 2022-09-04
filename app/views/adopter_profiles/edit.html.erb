@@ -1,18 +1,20 @@
-<section class="pt-3 pb-5" id="account_select">
-  <div class="container mb-md-5 mt-md-5">
-
-    <!--page heading-->
-    <div class="text-center mb-5">
-      <h1 class="h4 mb-5">
+<!--page heading-->
+<header class="pt-5 pb-5">
+  <div class="container">
+    <div class="text-center">
+      <h1 class="h4">
         Edit My Adopter Profile
       </h1>
     </div>
+  </div> <!--container-->
+</header>
 
-    <!--rendering _form.html.erb--> 
+<!--rendering _form.html.erb--> 
+<section class="pb-5" id="account_select">
+  <div class="container">
     <div class="col-md-8 mx-auto">
         <%= render "form", profile: @adopter_profile %>
         <%= link_to 'Back', profile_path %>
     </div>
-
   </div> <!--container-->
 </section>
