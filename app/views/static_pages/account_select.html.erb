@@ -17,19 +17,18 @@
         </div>
         <div class="stepper-item">
           <div class="step-counter">2</div>
-          <div class="step-name">Create Account</div>
+          <div class="step-name">Create account</div>
         </div>
         <div class="stepper-item">
           <div class="step-counter">3</div>
-          <div class="step-name">Adopter Profile</div>
+          <div class="step-name">Complete adopter profile</div>
         </div>
       </div>
     </div>
 
-
     <!--main section-->
     <div class="text-center">
-      <h4 class="mb-4">Please select an account type</h4>
+      <h4 class="mb-3">Select an account type</h4>
       <div class="row">
         <div class="col-md-6 mx-auto card p-5">
 
@@ -38,15 +37,15 @@
             <p>I want to adopt a dog</p>
               <%= link_to 'Adopter', 
                   new_user_registration_path(account_type: 'adopter'), 
-                  class: 'btn btn-outline-dark mt-3 mb-3' %>
+                  class: 'btn btn-outline-dark mt-2 mb-3' %>
           </div>
 
           <!--staff-->
           <div>
-            <p>I am a staff member of an organization registered on this site</p>
+            <p>I am a staff member</p>
               <%= link_to 'Staff', 
                   new_user_registration_path(account_type: 'staff'),
-                  class: 'btn btn-outline-dark mt-3 mb-3' %>
+                  class: 'btn btn-outline-dark mt-2 mb-3' %>
           </div>
 
         </div> <!--col-->
