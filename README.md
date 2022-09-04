@@ -2,6 +2,7 @@
 
 I am a self-taught web developer and this is my first production Ruby on Rails application. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make the process of linking adopters with dogs easier.
 
+
 **The Problem**
 
 The dog rescue organization has limited time and resources. They have been using Facebook and Instagram to post new dogs and get interest from adopters. This has been working, but is not ideal because:
@@ -25,6 +26,7 @@ The solution had to be simple, easy to maintain and manage, and provide a more c
 
 I decided that a ruby on rails application would be a suitable technology because it enables rapid development and its REST framework will provide all of the required functionality. I chose to use a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the staging and production applications will be deployed on the Hobby Tier. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail. 
 
+
 **Features**
 
 The application has the following features:
@@ -34,6 +36,7 @@ The application has the following features:
 * Adopters can create adoption applications for a dog and view their application history/status
 * Organization staff can review application requests for a dog and set a status
 * Organization staff can create adoptions linking a dog with an adopter user
+* Organization staff can filter their applications and dogs to make searching easier
 * Mailer sends an email to organization staff for any new adoption requests on their dogs
 * Mailer sends admin an email when a new staff registration occurs
 * Mailer sends new adopters a welcome email
@@ -51,12 +54,22 @@ Front end uses Bootstrap 5 and Stimulus JS.
 * Active Storage Validations
 * Phone lib
 
+
 **Timelines**
 
+The dog adoption process is seasonal and busy times usually run from November to June. As such, we aim to have the MVP running in production by November 1, 2022.
 
 
 **Contributions**
 
+I am currently working with one front-end developer who has done amazing work to create wireframing and prototyping for the application. They are also helping with styling the front-end. 
+
+My desire is to take on more contributors to refactor code and add additional features after the MVP is up and running in November, 2022. If you are a rails dev who would like to contribute to this project, please let me know.
+
+
+**Unit Testing**
+
+I am currently working on writing a test suite. Admittedly, this application was not built with test driven development, and tests are being written after the fact. This is something I would change if I was to do it again, as implementing testing from the start is clearly beneficial and reinforces good code practices.
 
 
 **Local Setup**
