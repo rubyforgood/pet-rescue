@@ -73,7 +73,7 @@ My desire is to take on more contributors to refactor code and add additional fe
 
 **Unit Testing**
 
-I am currently working on writing a test suite. Admittedly, this application was not built with test driven development, and tests are being written after the fact. This is something I would change if I was to do it again, as implementing testing from the start is clearly beneficial and reinforces good code practices.
+I am currently working on writing unit tests for system testing. Admittedly, this application was not built with test driven development, and tests are being written after the fact. This is something I would change if I was to do it again, as implementing testing from the start is clearly beneficial and reinforces good code practices.
 
 
 **Local Setup**
