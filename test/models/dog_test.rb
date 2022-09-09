@@ -5,8 +5,8 @@ class DogTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-  test 'does not save' do
-    dog = Dog.new
-    assert_not dog.save
-  end
+  # test 'does not save' do
+  #   dog = Dog.new
+  #   assert_not dog.save
+  # end
 end
