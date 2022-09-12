@@ -18,7 +18,7 @@ staff_user = User.new(email: 'a@b.com',
                       password_confirmation: '123456',
                       tos_agreement: 1)
 
-                      staff_user.save(validate: false)
+                      staff_user.save()
 
 staff_account = StaffAccount.create!(user_id: 1,
                                  organization_id: 1,
@@ -32,7 +32,7 @@ adopter_user_one = User.new(email: 'b@c.com',
                             password_confirmation: '123456',
                             tos_agreement: 1)
 
-adopter_user_one.save(validate: false)
+adopter_user_one.save()
 
 adopter_account_one = AdopterAccount.create!(user_id: 2)
 # adopter_account_one.save
@@ -44,7 +44,7 @@ adopter_user_two = User.create!(email: 'c@c.com',
                             password_confirmation: '123456',
                             tos_agreement: 1)
 
-adopter_user_two.save(validate: false)
+adopter_user_two.save()
 
 adopter_account_two = AdopterAccount.create!(user_id: 3)
 # adopter_account_two.save
