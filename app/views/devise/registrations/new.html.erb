@@ -31,7 +31,7 @@
   <% end %>
 
     <!--form-->
-    <div></div>
+    <div class='container'>
       <% if params[:account_type] == 'staff' %>
         <% resource.build_staff_account if resource.staff_account.nil? %>
       <% else %>
@@ -106,7 +106,6 @@
           <%= render "devise/shared/links" %>
         </div><!--col-->
       </div><!--row-->
-    </div>
-  </div><!--container-->
+    </div><!--container-->
 </section>
 
