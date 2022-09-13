@@ -35,6 +35,11 @@ class Dog < ApplicationRecord
        .where(adoption: { id: nil })
   end
 
+  # all unadopted dogs under all organizations
+  def self.all_unadopted_dogs
+    Dog.includes(:adoption).where(adoption: { id: nil })
+  end
+
   # all unadopted dogs under an organization
   def self.unadopted_dogs(staff_org_id)
     Dog.org_dogs(staff_org_id).includes(:adoption).where(adoption: { id: nil })
