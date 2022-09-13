@@ -5,8 +5,9 @@
       We rescue dogs in Baja, Mexico and rehome them with adopters in 
       Canada and America
     </h1>
-    <%= link_to "Browse Dogs", adoptable_dogs_path, 
-        class:'custom-btn-pink' %>
+    <%= link_to "Browse #{Dog.all_unadopted_dogs.count} Dogs", 
+                adoptable_dogs_path, 
+                class:'custom-btn-pink h3' %>
   </div>
 </header>
 
