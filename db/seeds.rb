@@ -6,57 +6,63 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first
 
-organization = Organization.new(name: 'placeholder',
+organization = Organization.create!(name: 'placeholder',
                                city: 'baja',
                                country: 'Mexico')
-organization.save
+# organization.save
 
 staff_user = User.new(email: 'a@b.com',
                       first_name: 'Andy',
                       last_name: 'Peters',
                       password: '123456',
-                      password_confirmation: '123456')
-staff_user.save
+                      password_confirmation: '123456',
+                      tos_agreement: 1)
 
-staff_account = StaffAccount.new(user_id: 1,
+                      staff_user.save()
+
+staff_account = StaffAccount.create!(user_id: 1,
                                  organization_id: 1,
                                  verified: true)
-staff_account.save
+# staff_account.save
 
 adopter_user_one = User.new(email: 'b@c.com',
                             first_name: 'Joe',
                             last_name: 'Brandon',
                             password: '123456',
-                            password_confirmation: '123456')
-adopter_user_one.save
+                            password_confirmation: '123456',
+                            tos_agreement: 1)
 
-adopter_account_one = AdopterAccount.new(user_id: 2)
-adopter_account_one.save
+adopter_user_one.save()
 
-adopter_user_two = User.new(email: 'c@c.com',
+adopter_account_one = AdopterAccount.create!(user_id: 2)
+# adopter_account_one.save
+
+adopter_user_two = User.create!(email: 'c@c.com',
                             first_name: 'Kamala',
                             last_name: 'Lollol',
                             password: '123456',
-                            password_confirmation: '123456')
-adopter_user_two.save
+                            password_confirmation: '123456',
+                            tos_agreement: 1)
 
-adopter_account_two = AdopterAccount.new(user_id: 3)
-adopter_account_two.save
+adopter_user_two.save()
+
+adopter_account_two = AdopterAccount.create!(user_id: 3)
+# adopter_account_two.save
 
 i = 1
 until i == 10 do 
-  dog = Dog.new(organization_id: 1,
+  dog = Dog.create!(organization_id: 1,
                 name: "dog #{i}",
                 age: (i + 1),
                 sex: 'Male',
                 size: 'Medium (22-57 lb)',
                 breed: 'Husky mix',
                 description: 'He just loves a run and a bum scratch at the end of the day')
-  dog.save
+  # dog.save
   i += 1
 end
 
-profile_one = AdopterProfile.new(adopter_account_id: 1,
+profile_one = AdopterProfile.create!(adopter_account_id: 1,
                                  phone_number: '250 548 7721',
                                  contact_method: 'phone',
                                  country: 'Canada',
@@ -90,9 +96,9 @@ profile_one = AdopterProfile.new(adopter_account_id: 1,
                                  surrendered_pet: true,
                                  describe_surrender: 'I had to surrender a cat when I was 19 because of university',
                                  annual_cost: '$2,000')
-profile_one.save
+# profile_one.save
 
-profile_two = AdopterProfile.new(adopter_account_id: 2,
+profile_two = AdopterProfile.create!(adopter_account_id: 2,
                                  phone_number: '250 548 7721',
                                  contact_method: 'phone',
                                  country: 'Canada',
@@ -128,4 +134,4 @@ profile_two = AdopterProfile.new(adopter_account_id: 2,
                                  surrendered_pet: true,
                                  describe_surrender: 'I had to surrender a cat when I was 19 because of university',
                                  annual_cost: '$2,000')
-profile_two.save
+# profile_two.save

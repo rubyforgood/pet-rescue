@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+organization_one:
   name: MyString
   city: MyString
   country: MyString
   zipcode: MyString
 
-two:
-  name: MyString
-  city: MyString
-  country: MyString
-  zipcode: MyString
+# two:
+#   name: MyString
+#   city: MyString
+#   country: MyString
+#   zipcode: MyString

@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  dog: one
-  application: one
+adoption_one:
+  dog: dog_one
+  adopter_account: adopter_account_one
 
-two:
-  dog: two
-  application: two
+# two:
+#   dog: two
+#   application: two

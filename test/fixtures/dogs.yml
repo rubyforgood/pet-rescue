@@ -1,7 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  organization: one
+dog_one:
+  organization: organization_one
+  name: Chloe
+  age: 5
+  breed: mix
 
-two:
-  organization: two
+# two:
+#   organization: two
