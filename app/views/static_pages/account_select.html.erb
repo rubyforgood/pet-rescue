@@ -37,15 +37,14 @@
             <p>I want to adopt a dog</p>
               <%= link_to 'Adopter', 
                   new_user_registration_path(account_type: 'adopter'), 
-                  class: 'btn btn-outline-dark mt-2 mb-3' %>
+                  class: 'btn btn-outline-dark mt-2 mb-5' %>
           </div>
 
           <!--staff-->
           <div>
-            <p>I am a staff member</p>
-              <%= link_to 'Staff', 
+              <%= link_to 'Staff Sign Up', 
                   new_user_registration_path(account_type: 'staff'),
-                  class: 'btn btn-outline-dark mt-2 mb-3' %>
+                  class: 'text-decoration-none' %>
           </div>
 
         </div> <!--col-->
