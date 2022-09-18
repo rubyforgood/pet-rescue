@@ -29,9 +29,7 @@
               <%= link_to 'Withdraw', update_adopter_application_path(id: app.id, 
                                                                     status: 'withdrawn'),  
                                     data: { turbo_method: "patch",
-                                    turbo_confirm: "If you withdraw you will 
-                                                    not be able to reapply for 
-                                                    this dog." },
+                                    turbo_confirm: "If you withdraw you will not be able to reapply for this dog." },
                                     class: 'btn btn-outline-dark
                                             mt-3 mt-md-0 mb-3 mb-md-0' %>
             </div>
