@@ -133,17 +133,19 @@
   </div> <!--container-->
 </section>
 
-<!-- CTA -->
-<section class="pt-5 pb-5 bg-light" id="cta">
-  <div class="container mb-md-5 mt-md-5">
-    <div class="row text-center">
-      <div class="col-8 offset-2 border p-5 shadow-sm 
-                  rounded bg-white">
-        <h3 class='mb-4'>Become an adopter now!</h3>
-        <%= link_to 'Sign Up', account_select_path , 
-                    class: 'custom-btn-pink' %>
+<% unless user_signed_in? %>
+  <!-- CTA -->
+  <section class="pt-5 pb-5 bg-light" id="cta">
+    <div class="container mb-md-5 mt-md-5">
+      <div class="row text-center">
+        <div class="col-8 offset-2 border p-5 shadow-sm 
+                    rounded bg-white">
+          <h3 class='mb-4'>Become an adopter now!</h3>
+          <%= link_to 'Sign Up', account_select_path , 
+                      class: 'custom-btn-pink' %>
+        </div>
       </div>
-    </div>
-  </div> <!--container-->
-</section>
+    </div> <!--container-->
+  </section>
+<% end %>
 
