@@ -7,6 +7,12 @@
 staff_account_one:
   user: user_two
   organization: organization_one
+  verified: true
+
+staff_account_two:
+  user: user_three
+  organization: organization_one
+  verified: false
 
 # two: {}
 # column: value

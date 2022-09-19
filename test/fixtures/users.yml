@@ -18,3 +18,10 @@ user_two:
   email: testes@test.com
   encrypted_password: password
   tos_agreement: 1
+
+user_three:
+  first_name: unverified
+  last_name: McStaffface
+  email: testes@testes.com
+  encrypted_password: password
+  tos_agreement: 1
