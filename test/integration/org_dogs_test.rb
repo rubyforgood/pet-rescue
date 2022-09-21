@@ -41,7 +41,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     post "/dogs",
          params: { dog: 
           {
-           organization_id: '1',
+           organization_id: "#{organizations(:organization_one).id}",
            name: 'TestDog',
            age: '3',
            sex: 'Female',
@@ -53,9 +53,9 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
         }
 
     assert_response :redirect
-    # follow_redirect!
-    # assert_equal 'Dog saved successfully.', flash[:notice]
-    # assert_select "h1", "OUR DOGS"
+    follow_redirect!
+    assert_equal 'Dog saved successfully.', flash[:notice]
+    assert_select "h1", "Our dogs"
   end
 
   # failed save

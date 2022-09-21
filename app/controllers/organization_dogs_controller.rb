@@ -28,7 +28,7 @@ class OrganizationDogsController < ApplicationController
   def create
     @dog = Dog.new(dog_params)
 
-    if @dog.save
+    if @dog.save!
       redirect_to dogs_path, notice: 'Dog saved successfully.'
     else
       render :new, status: :unprocessable_entity
