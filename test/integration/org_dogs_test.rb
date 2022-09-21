@@ -1,9 +1,6 @@
 require "test_helper"
 
 class OrgDogsTest < ActionDispatch::IntegrationTest
-  # setup do
-  #   sign_in users(:user_two)
-  # end
 
   test "adopter user cannot access org dogs index" do
     sign_in users(:user_one)
@@ -11,6 +8,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_equal '/', path
+    assert_equal 'Unauthorized action.', flash[:alert]
   end
 
   test "unverified staff cannot access org dogs index" do
@@ -19,6 +17,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_equal '/', path
+    assert_equal 'Unauthorized action.', flash[:alert]
   end
 
   test "verified staff can access org dogs index" do
@@ -36,22 +35,32 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff can create a new dog post" do
     sign_in users(:user_two)
 
+    get "/dogs/new"
+    assert_response :success
+
     post "/dogs",
-      params: { dog: { 
-                        organization_id: '1',
-                        name: "Chloe",
-                        age: '3',
-                        sex: 'female',
-                        breed: 'mix',
-                        size: 'Medium (22-57 lb)',
-                        description: 'A lovely little pooch this one.',
-                        append_images: ['']
-                      }}
-    # debugger
+         params: { dog: 
+          {
+           organization_id: '1',
+           name: 'TestDog',
+           age: '3',
+           sex: 'Female',
+           breed: 'mix',
+           size: 'Medium (22-57 lb)',
+           description: 'A lovely little pooch this one.',
+           append_images: [''] 
+          }
+        }
+
     assert_response :redirect
-    follow_redirect!
-    assert_select "h1", "OUR DOGS"
+    # follow_redirect!
+    # assert_equal 'Dog saved successfully.', flash[:notice]
+    # assert_select "h1", "OUR DOGS"
   end
+
+  # failed save
+
+  # unverified cannot create
 
   # can edit dog
 
