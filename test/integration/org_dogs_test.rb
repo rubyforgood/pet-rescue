@@ -24,18 +24,18 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     sign_in users(:user_three)
 
     post "/dogs",
-         params: { dog:
-          {
-           organization_id: "#{organizations(:organization_one).id}",
-           name: 'TestDog',
-           age: '3',
-           sex: 'Female',
-           breed: 'mix',
-           size: 'Medium (22-57 lb)',
-           description: 'A lovely little pooch this one.',
-           append_images: ['']
-          }
-        }
+      params: { dog:
+      {
+        organization_id: "#{organizations(:organization_one).id}",
+        name: 'TestDog',
+        age: '3',
+        sex: 'Female',
+        breed: 'mix',
+        size: 'Medium (22-57 lb)',
+        description: 'A lovely little pooch this one.',
+        append_images: ['']
+      }
+    }
 
     assert_response :redirect
     follow_redirect!
@@ -58,18 +58,18 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     sign_in users(:user_two)
 
     post "/dogs",
-         params: { dog:
-          {
-           organization_id: "#{organizations(:organization_one).id}",
-           name: 'TestDog',
-           age: '3',
-           sex: 'Female',
-           breed: 'mix',
-           size: 'Medium (22-57 lb)',
-           description: 'A lovely little pooch this one.',
-           append_images: [''] 
-          }
-        }
+      params: { dog:
+      {
+        organization_id: "#{organizations(:organization_one).id}",
+        name: 'TestDog',
+        age: '3',
+        sex: 'Female',
+        breed: 'mix',
+        size: 'Medium (22-57 lb)',
+        description: 'A lovely little pooch this one.',
+        append_images: [''] 
+      }
+    }
 
     assert_response :redirect
     follow_redirect!
@@ -81,24 +81,46 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     sign_in users(:user_two)
 
     patch "/dogs/#{Dog.first.id}",
-         params: { dog:
-          {
-           organization_id: "#{organizations(:organization_one).id}",
-           name: 'TestDog',
-           age: '7',
-           sex: 'Female',
-           breed: 'mix',
-           size: 'Medium (22-57 lb)',
-           description: 'A lovely little pooch this one.',
-           append_images: [''] 
-          }
-        }
+      params: { dog:
+      {
+        organization_id: "#{organizations(:organization_one).id}",
+        name: 'TestDog',
+        age: '7',
+        sex: 'Female',
+        breed: 'mix',
+        size: 'Medium (22-57 lb)',
+        description: 'A lovely little pooch this one.',
+        append_images: [''] 
+      }
+    }
 
     assert_response :redirect
     follow_redirect!
-    assert_select "h1", "Our dogs"
+    assert_equal 'Dog updated successfully.', flash[:notice]
+    assert_select "h1", "#{Dog.first.name}"
   end
 
+  test "verified user can upload an image" do
+    sign_in users(:user_two)
+
+    post "/dogs/#{Dog.first.id}",
+      params: { dog:
+      {
+        organization_id: "#{organizations(:organization_one).id}",
+        name: 'TestDog',
+        age: '7',
+        sex: 'Female',
+        breed: 'mix',
+        size: 'Medium (22-57 lb)',
+        description: 'A lovely little pooch this one.',
+        append_images: fixture_file_upload("test.png", "image/png")
+      }
+    }
+
+    dog = Dog.first
+    assert_equal "TestDog", dog.name
+    assert dog.images.attached?
+  end
 
   # can delete dog
 

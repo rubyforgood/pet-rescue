@@ -39,7 +39,7 @@ class OrganizationDogsController < ApplicationController
     @dog = Dog.find(params[:id])
 
     if dog_in_same_organization?(@dog.organization_id) && @dog.update(dog_params)
-      redirect_to @dog
+      redirect_to @dog, notice: 'Dog updated successfully.'
     else
       render :edit, status: :unprocessable_entity
     end
