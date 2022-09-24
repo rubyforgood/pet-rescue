@@ -1,2 +1,0 @@
-dog_images_blob: <%= ActiveStorage::FixtureSet.blob filename: "test.png", 
-                     service_name: "test_fixtures" %>

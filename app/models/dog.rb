@@ -1,7 +1,7 @@
 class Dog < ApplicationRecord
   belongs_to :organization
-  has_many :adopter_applications
-  has_one :adoption
+  has_many :adopter_applications, dependent: :destroy
+  has_one :adoption, dependent: :destroy
   has_many_attached :images
 
   validates :name, presence: true, uniqueness: true
