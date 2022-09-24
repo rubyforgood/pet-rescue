@@ -49,7 +49,7 @@ class OrganizationDogsController < ApplicationController
     @dog = Dog.find(params[:id])
 
     if dog_in_same_organization?(@dog.organization_id) && @dog.destroy
-      redirect_to dogs_path, status: :see_other
+      redirect_to dogs_path, notice: 'Dog deleted.', status: :see_other
     else
       redirect_to dogs_path, alert: 'Error.'
     end

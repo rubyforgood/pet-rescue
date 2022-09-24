@@ -8,8 +8,8 @@ class User < ApplicationRecord
   validates :tos_agreement, acceptance: { message: 'Please accept the Terms and Conditions' },
                             allow_nil: false, on: :create
 
-  has_one :staff_account
-  has_one :adopter_account
+  has_one :staff_account, dependent: :destroy
+  has_one :adopter_account, dependent: :destroy
 
   accepts_nested_attributes_for :adopter_account, :staff_account
 
