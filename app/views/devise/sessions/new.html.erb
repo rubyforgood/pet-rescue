@@ -20,6 +20,7 @@
         <div class="col-md-6 mx-auto card p-5">
           <%= form_for(resource, as: resource_name, 
                                  url: session_path(resource_name)) do |f| %>
+                                 
             <div class="form-group mb-3">
               <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email", 
