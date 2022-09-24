@@ -20,6 +20,28 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_equal 'Unauthorized action.', flash[:alert]
   end
 
+  test "unverified staff cannot post to org dogs" do
+    sign_in users(:user_three)
+
+    post "/dogs",
+         params: { dog:
+          {
+           organization_id: "#{organizations(:organization_one).id}",
+           name: 'TestDog',
+           age: '3',
+           sex: 'Female',
+           breed: 'mix',
+           size: 'Medium (22-57 lb)',
+           description: 'A lovely little pooch this one.',
+           append_images: ['']
+          }
+        }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Unauthorized action.', flash[:alert]
+  end
+
   test "verified staff can access org dogs index" do
     sign_in users(:user_two)
     get "/dogs/new"
@@ -35,11 +57,8 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff can create a new dog post" do
     sign_in users(:user_two)
 
-    get "/dogs/new"
-    assert_response :success
-
     post "/dogs",
-         params: { dog: 
+         params: { dog:
           {
            organization_id: "#{organizations(:organization_one).id}",
            name: 'TestDog',
@@ -58,11 +77,28 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_select "h1", "Our dogs"
   end
 
-  # failed save
+  test "verified staff can edit a dog post" do 
+    sign_in users(:user_two)
 
-  # unverified cannot create
+    patch "/dogs/#{Dog.first.id}",
+         params: { dog:
+          {
+           organization_id: "#{organizations(:organization_one).id}",
+           name: 'TestDog',
+           age: '7',
+           sex: 'Female',
+           breed: 'mix',
+           size: 'Medium (22-57 lb)',
+           description: 'A lovely little pooch this one.',
+           append_images: [''] 
+          }
+        }
 
-  # can edit dog
+    assert_response :redirect
+    follow_redirect!
+    assert_select "h1", "Our dogs"
+  end
+
 
   # can delete dog
 

@@ -15,7 +15,7 @@ class Dog < ApplicationRecord
   validates :images, content_type: { in: ['image/png', 'image/jpeg'],
                                      message: 'must be PNG or JPEG' },
                      limit: { max: 5, message: '- 5 maximum' },
-                     size: { between: 100.kilobyte..2.megabytes,
+                     size: { between: 10.kilobyte..1.megabytes,
                              message: 'size must be between 100kb and 2Mb' }
 
   # active storage: using.attach for appending images per rails guide
