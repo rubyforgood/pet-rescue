@@ -46,11 +46,6 @@ class RegistrationsController < Devise::RegistrationsController
     redirect_to root_path
   end
 
-  # currently not working with turbo stream - needs fixing
-  def after_sign_out_path_for(resource)
-    redirect_to root_path
-  end
-
   # check for id (i.e., record saved) and send mail
   def send_email
     return unless resource.id
