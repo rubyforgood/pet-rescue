@@ -132,7 +132,8 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_select "h1", "Our dogs"
   end
 
-  # get delete test to pass
-  # fix user account delete double redirect error
+  # get dog delete test to pass
+  # get manual test of user account delete confirm message to show
+  # continue with testing
 
 end
