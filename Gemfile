@@ -60,6 +60,9 @@ gem "sassc-rails"
 # Active storage validations
 gem 'active_storage_validations'
 
+# Amazon Web Service S3 image storage
+gem 'aws-sdk-s3'
+
 # validate adopter phone numbers
 gem "phonelib"
 
