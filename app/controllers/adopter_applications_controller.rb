@@ -6,6 +6,7 @@ class AdopterApplicationsController < ApplicationController
                                              current_user.adopter_account.id)
   end
   
+  # add check if application already exists
   def create
     @application = AdopterApplication.new(application_params)
 
@@ -13,15 +14,14 @@ class AdopterApplicationsController < ApplicationController
       redirect_to adopter_applications_path, notice: 'Application submitted.'
 
       # mailer
-      @dog = Dog.find(params[:dog_id])
+      @dog = Dog.find(params[:application][:dog_id])
       @org_staff = User.organization_staff(@dog.organization_id)
       StaffApplicationNotificationMailer.with(dog: @dog,
                                               organization_staff: @org_staff)
                                         .new_adoption_application.deliver_now
     else
-      render adoptable_dog_path(params[:dog_id]),
-             status: :unprocessable_entity,
-             alert: 'Error. Please try again.'
+      redirect_to adoptable_dog_path(params[:application][:dog_id]),
+                  alert: 'Error. Please try again.'
     end
   end
 
@@ -39,6 +39,6 @@ class AdopterApplicationsController < ApplicationController
   private
 
   def application_params
-    params.permit(:id, :dog_id, :adopter_account_id, :status, :profile_show)
+    params.require(:application).permit(:dog_id, :adopter_account_id, :status, :profile_show)
   end
 end
