@@ -1,11 +1,16 @@
 class AdopterApplicationsController < ApplicationController
   before_action :authenticate_user!, :adopter_with_profile
 
+  def index
+    @applications = AdopterApplication.where(adopter_account_id:
+                                             current_user.adopter_account.id)
+  end
+  
   def create
     @application = AdopterApplication.new(application_params)
 
     if @application.save
-      redirect_to profile_path, notice: 'Application submitted.'
+      redirect_to adopter_applications_path, notice: 'Application submitted.'
 
       # mailer
       @dog = Dog.find(params[:dog_id])
@@ -25,7 +30,7 @@ class AdopterApplicationsController < ApplicationController
     @application = AdopterApplication.find(params[:id])
 
     if @application.update(application_params)
-      redirect_to profile_path
+      redirect_to request.referrer
     else
       redirect_to profile_path, alert: 'Error.'
     end
