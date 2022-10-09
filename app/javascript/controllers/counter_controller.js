@@ -5,7 +5,7 @@ export default class extends Controller {
 
 
   countMedium() {
-    this.count(250)
+    this.count(200)
   }
 
   countLarge() {
