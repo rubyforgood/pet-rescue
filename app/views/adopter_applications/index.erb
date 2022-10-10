@@ -1,3 +1,14 @@
+<!--page heading-->
+<header class="pt-5 pb-3" >
+  <div class="container">
+      <div class="text-center">
+        <h1 class="section-heading text-uppercase underline">
+          <%= current_user.first_name %>'s Applications
+        </h1>
+      </div>
+  </div> <!--container-->
+</header>
+
 <section class="pb-5" id="adopter_profile">
   <div class="container">
     <% @applications.each do | app | %>
@@ -9,8 +20,16 @@
             <div class="row px-4">
 
               <!--dog name-->
+              <div>
+                <% if app.dog.images.attached? %>
+                  <%= image_tag app.dog.images.first, height: '100' %>
+                <% else %>
+                  <%= image_tag('coming_soon.jpg', height: '100') %>
+                <% end %>
+              </div>
+
               <div class="col-md-3 d-flex align-items-center">
-                <h5>Name: <%= app.dog.name %></h5>
+                <h5><%= app.dog.name %></h5>
               </div>
 
               <!--status-->
@@ -27,8 +46,9 @@
 
                 <!--withdraw button-->
                 <div class="col-md-3 d-flex align-items-center justify-content-md-center">
-                  <%= link_to 'Withdraw', adopter_application_path(application: { id: app.id, 
-                                                                                  status: 'withdrawn' }),  
+                  <%= link_to 'Withdraw', 
+                              adopter_application_path(application: { id: app.id, 
+                                                                      status: 'withdrawn' }),  
                               data: { turbo_method: "patch",
                                       turbo_confirm: "If you withdraw you will not be able to reapply for this dog." },
                               class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
@@ -38,13 +58,16 @@
               <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
 
                 <!--placeholder for see dog link to keep layout-->
-                <div class="col-md-3 d-md-flex align-items-center justify-content-md-center">
+                <div class="col-md-3 d-md-flex align-items-center 
+                            justify-content-md-center">
                 </div>
 
                 <!--remove button-->
-                <div class="col-md-3 d-flex align-items-center justify-content-md-center">
-                  <%= link_to 'Remove', adopter_application_path(application: { id: app.id, 
-                                                                                profile_show: false }),  
+                <div class="col-md-3 d-flex align-items-center 
+                            justify-content-md-center">
+                  <%= link_to 'Remove', 
+                              adopter_application_path(application: { id: app.id, 
+                                                                      profile_show: false }),  
                               data: { turbo_method: "patch" },
                               class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
                 </div>
