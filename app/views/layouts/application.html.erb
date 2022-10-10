@@ -84,7 +84,11 @@
                     </li>
                   <% elsif current_user.adopter_account %>
                     <li>
-                      <%= link_to "Adopter Profile", profile_path, 
+                      <%= link_to "My Profile", profile_path, 
+                          class: 'dropdown-item' %>
+                    </li>
+                    <li>
+                      <%= link_to "My Applications", adopter_applications_path, 
                           class: 'dropdown-item' %>
                     </li>
                   <% end %>
