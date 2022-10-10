@@ -11,7 +11,7 @@ class AdopterApplicationsController < ApplicationController
     @application = AdopterApplication.new(application_params)
 
     if @application.save
-      redirect_to adopter_applications_path, notice: 'Application submitted.'
+      redirect_to request.referrer, notice: 'Application submitted! Woof woof.'
 
       # mailer
       @dog = Dog.find(params[:application][:dog_id])
@@ -27,7 +27,7 @@ class AdopterApplicationsController < ApplicationController
 
   # update :status to 'withdrawn' or :profile_show to false
   def update
-    @application = AdopterApplication.find(params[:id])
+    @application = AdopterApplication.find(params[:application][:id])
 
     if @application.update(application_params)
       redirect_to request.referrer
@@ -39,6 +39,10 @@ class AdopterApplicationsController < ApplicationController
   private
 
   def application_params
-    params.require(:application).permit(:dog_id, :adopter_account_id, :status, :profile_show)
+    params.require(:application).permit(:id,
+                                        :dog_id,
+                                        :adopter_account_id,
+                                        :status,
+                                        :profile_show)
   end
 end
