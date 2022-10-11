@@ -13,16 +13,16 @@
   <div class="container">
     <% @applications.each do | app | %>
       <% unless app.profile_show == false %>
-        <div class="row border mb-3 mx-3 p-3">
+        <div class="row border rounded mb-3 mx-3 p-3">
           <div class="col-md-3 mb-4 mb-md-0 d-flex justify-content-center 
                       align-items-center">
             <% if app.dog.images.attached? %>
               <%= link_to adoptable_dog_path(app.dog.id) do %>
-                <%= image_tag app.dog.images.first, height: '150' %>
+                <%= image_tag app.dog.images.first, class: 'app-img rounded' %>
               <% end %>
             <% else %>
               <%= link_to adoptable_dog_path(app.dog.id) do %>
-                <%= image_tag('coming_soon.jpg', height: '150') %>
+                <%= image_tag('coming_soon.jpg', class: 'app-img rounded') %>
               <% end %>
             <% end %>
           </div>
