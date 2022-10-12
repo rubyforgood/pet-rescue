@@ -10,6 +10,11 @@
         </div>
     </div> <!--container-->
 
+    <div class='mb-3 text-center'>
+      Please refer to the <%= link_to 'FAQ', faq_path %> and send us a message 
+      if you still have any questions or comments.
+    </div>
+
     <div class="row">
       <div class="col-md-6 mx-auto card p-5">
         <%= form_with url: '/contacts', method: :get do | f | %>
