@@ -16,7 +16,7 @@
          style='background-color: #00401F;' aria-label="Fourth navbar example">
       <div class="container">
         <div class="navbar-brand">
-          <%= link_to image_tag('logo.png', class: 'logo', alt: 'site logo'),
+          <%= link_to image_tag('logo.png', class: 'logo me-2', alt: 'site logo'),
                       root_path %>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
@@ -29,13 +29,13 @@
           <ul class="navbar-nav me-auto mb-md-0">
             
             <li class="nav-item navbar-dark">
-              <%= link_to 'Dogs', adoptable_dogs_path, 
-                  class: 'nav-link text-white' %>
+              <%= link_to 'Browse Dogs', adoptable_dogs_path, 
+                  class: 'nav-link text-white me-3' %>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" 
+              <a class="nav-link dropdown-toggle text-white me-3" href="#" 
                  id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
-                 About
+                 Info
               </a>
               <ul class="dropdown-menu p-3" aria-labelledby="dropdown04">
                 <li><%= link_to 'About Us', about_us_path,
@@ -50,10 +50,11 @@
                 <li><%= link_to 'Donate', donate_path,
                                 class: 'text-decoration-none',
                                 style: 'color: #504451' %></li>
-                <li><%= link_to 'Contact Us', new_contact_path,
-                                class: 'text-decoration-none',
-                                style: 'color: #504451' %></li>
               </ul>
+            </li>
+            <li>
+              <%= link_to 'Contact', new_contact_path,
+                                class: 'nav-link text-white' %>
             </li> 
           </ul>
 
