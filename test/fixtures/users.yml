@@ -5,6 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 
+# adopter with a profile
 user_one:
   first_name: Ben
   last_name: Jo
@@ -12,6 +13,7 @@ user_one:
   encrypted_password: password
   tos_agreement: 1
 
+# verified staff
 user_two: 
   first_name: Staffy
   last_name: McStaffface
@@ -19,9 +21,18 @@ user_two:
   encrypted_password: password
   tos_agreement: 1
 
+# unverified staff
 user_three:
   first_name: unverified
   last_name: McStaffface
   email: testes@testes.com
+  encrypted_password: password
+  tos_agreement: 1
+
+# adopter without a profile
+user_four:
+  first_name: Billy
+  last_name: Noprofile
+  email: test@test123.com
   encrypted_password: password
   tos_agreement: 1
