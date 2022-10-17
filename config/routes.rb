@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   get '/contacts', to: 'contacts#create'
   get '/contacts/new', to: 'contacts#new', as: 'new_contact'
 
-  post 'create_adopter_application', to: 'adopter_applications#create'
-  patch 'update_adopter_application', to: 'adopter_applications#update'
+  get '/my_applications', to: 'adopter_applications#index'
+  post 'create_my_application', to: 'adopter_applications#create'
+  patch 'my_application', to: 'adopter_applications#update'
 
   post 'create_adoption', to: 'adoptions#create'
 

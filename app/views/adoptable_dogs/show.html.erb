@@ -119,10 +119,10 @@
                   <% else %>   
                     <h4 class="mb-4 mt-3">In love with this pooch?</h4>
                     <%= button_to 'Apply to Adopt', 
-                        create_adopter_application_path(
-                          adopter_account_id: current_user.adopter_account.id, 
-                          dog_id: @dog.id
-                                                      ), 
+                        create_my_application_path(application: { 
+                                                        dog_id: @dog.id, 
+                                                        adopter_account_id: current_user.adopter_account.id}),
+                          
                           class: 'custom-btn-pink' %>
                   <% end %>
                 <% elsif current_user.adopter_account %>
