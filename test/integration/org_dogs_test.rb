@@ -77,10 +77,12 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_select "h1", "Our dogs"
   end
 
+  dog_id = Dog.where(name: 'Deleted')[0].id
+
   test "verified staff can edit a dog post" do 
     sign_in users(:user_two)
 
-    patch "/dogs/#{Dog.first.id}",
+    patch "/dogs/#{dog_id}",
       params: { dog:
       {
         organization_id: "#{organizations(:organization_one).id}",
@@ -97,7 +99,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_equal 'Dog updated successfully.', flash[:notice]
-    assert_select "h1", "#{Dog.first.name}"
+    assert_select "h1", "#{Dog.find(dog_id).name}"
   end
 
   # need to figure out why this image is not becoming an attachment
@@ -125,15 +127,10 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff can delete dog post" do 
     sign_in users(:user_two)
 
-    delete "/dogs/#{Dog.last.id}"
+    delete "/dogs/#{dog_id}"
 
     assert_response :redirect
     follow_redirect!
     assert_select "h1", "Our dogs"
   end
-
-  # get dog delete test to pass
-  # get manual test of user account delete confirm message to show
-  # continue with testing
-
 end
