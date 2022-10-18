@@ -12,33 +12,8 @@
 <section class="pb-5" id="account_select">
   <div class="container mb-md-5 mt-md-5">
 
-    <!-- pregress bar-->
-    <div>
-      <div class="stepper-wrapper mb-5">
-          <div class="stepper-item completed">
-              <div class="step-counter">1</div>
-              <div class="step-name">
-                Select account type
-                <%= image_tag('green_check.png', height: '15') %>
-              </div>
-          </div>
-          <div class="stepper-item completed">
-              <div class="step-counter">2</div>
-              <div class="step-name">
-                Create Account
-                <%= image_tag('green_check.png', height: '15') %>
-              </div>
-          </div>
-          <div class="stepper-item active">
-              <div class="step-counter">3</div>
-              <div class="step-name">Complete adopter profile</div>
-              <div class='d-flex align-items-center'>
-                <%= image_tag('green_check.png', height: '15') %>
-                <p class='ms-1 small'>10 min</p>
-              </div>
-          </div>
-      </div> <!--wrapper-->
-    </div>
+    <!-- progress bar-->
+    <%= render partial: 'shared/progress_bar', locals: { page: 'profile' } %>
 
     <h4 class="text-center mb-4">Please complete your adopter profile</h4>
     

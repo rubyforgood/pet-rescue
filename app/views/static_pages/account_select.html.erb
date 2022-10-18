@@ -12,30 +12,7 @@
 <section class="pb-5" id="account_select">
   <div class="container mb-md-5 md-5">
     <!--progress diagram-->
-    <div>
-      <div class="stepper-wrapper mb-5">
-        <div class="stepper-item active">
-          <div class="step-counter">1</div>
-          <div class="step-name">Select account type</div>
-        </div>
-        <div class="stepper-item">
-          <div class="step-counter">2</div>
-          <div class="step-name">Create account</div>
-          <div class='d-flex align-items-center'>
-            <%= image_tag('timer.png', height: '18') %>
-            <p class='ms-1 small'>2 min</p>
-          </div>
-        </div>
-        <div class="stepper-item">
-          <div class="step-counter">3</div>
-          <div class="step-name">Complete adopter profile</div>
-          <div class='d-flex align-items-center'>
-            <%= image_tag('timer.png', height: '18') %>
-            <p class='ms-1 small'>10 min</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render partial: 'shared/progress_bar', locals: { page: 'select' } %>
 
     <!--main section-->
     <div class="text-center">
