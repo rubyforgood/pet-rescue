@@ -90,7 +90,7 @@
                         placeholder: 'E.g. size, energy level, temperament',
                         class: 'form-control' %>
         
-        <div data-counter-target='output' class='small'></div>
+        <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
       </div>
     
       <% profile.custom_messages(:ideal_dog).each do |error| %>
@@ -107,7 +107,7 @@
                           placeholder: 'E.g. weekday routine, weekend routine',
                           class: 'form-control' %>
         
-        <div data-counter-target='output' class='small'></div>
+        <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
       </div>
 
       <% profile.custom_messages(:lifestyle_fit).each do |error| %>
@@ -124,7 +124,7 @@
                           placeholder: 'E.g. daily walks, hiking, running, dog park etc.',
                           class: 'form-control' %>
       
-        <div data-counter-target='output' class='small'></div>
+        <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
       </div>
 
       <% profile.custom_messages(:activities).each do |error| %>
@@ -176,7 +176,7 @@
                           placeholder: 'E.g. role in past dog ownership, if any.',
                           class: 'form-control' %>
 
-        <div data-counter-target='output' class='small'></div>
+        <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
       </div>
 
       <% profile.custom_messages(:experience).each do |error| %>
@@ -193,7 +193,7 @@
                                   counter_target: 'input' },
                           class: 'form-control' %>
       
-        <div data-counter-target='output' class='small'></div>
+        <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
       </div>
 
       <% profile.custom_messages(:contingency_plan).each do |error| %>
@@ -228,7 +228,7 @@
                             placeholder: 'E.g. how often, their experience with dogs.',
                             class: 'form-control' %>
           
-          <div data-counter-target='output' class='small'></div>
+          <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
         </div>
 
         <% profile.custom_messages(:shared_owner).each do |error| %>
@@ -288,7 +288,7 @@
                             placeholder: 'E.g. mainly indoors, outdoors on tether.',
                             class: 'form-control' %>
 
-          <div data-counter-target='output' class='small'></div>
+          <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
         </div>
 
         <% profile.custom_messages(:fenced_alternative).each do |error| %>
@@ -409,7 +409,7 @@
                                                     counter_target: 'input' },
                             class: 'form-control' %>
 
-          <div data-counter-target='output' class='small'></div>
+          <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
         </div>
 
         <% profile.custom_messages(:describe_pets).each do |error| %>
@@ -463,7 +463,7 @@
                                                           counter_target: 'input' },
                                                   class: 'form-control' %>
 
-          <div data-counter-target='output' class='small'></div>
+          <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
         </div>
 
         <% profile.custom_messages(:describe_surrender).each do |error| %>
