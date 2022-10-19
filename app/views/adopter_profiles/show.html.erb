@@ -3,7 +3,7 @@
   <div class="container">
     <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
-        <%= current_user.first_name %>'s Profile
+        Adopter Profile
       </h1>
     </div>
   </div> <!--container-->
@@ -16,14 +16,14 @@
     <!--adopter profile-->
     <div class="row">
       <div class="col-md-10 mx-auto card p-5">
-        <div class="d-flex gap-4">
-            <h2>My Adopter Profile</h2>
+        <div class="d-flex gap-4 justify-content-between">
+            <h2><%= current_user.first_name %>'s Profile</h2>
             <%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-outline-dark' %>
         </div>
 
         <!--Administrative Details-->
         <div>
-          <h4 class="mb-4 mt-4">Administrative Details</h4>
+          <h4 class="mb-4 mt-4">Contact</h4>
             <div class="row mb-1">
               <p class="col-lg-4"><strong>Phone Number</strong></p>
               <p class="col-lg-6 text-muted">
@@ -59,7 +59,7 @@
         <!--Your Lifestyle-->
         <div>
           <hr>
-          <h4 class="mb-4 mt-4">Your Lifestyle</h4>
+          <h4 class="mb-4 mt-4">Lifestyle</h4>
           <div class="row mb-1">
             <p class="col-lg-4"><strong>Your ideal dog</strong></p>
              <p class="col-lg-6 text-muted">
@@ -140,7 +140,7 @@
         <!--Household Information-->
         <div>
           <hr>
-          <h4 class="mb-4 mt-4">Household Information</h4>
+          <h4 class="mb-4 mt-4">Household</h4>
           <div class="row mb-1">
             <p class="col-lg-4"><strong>Housing type</strong></p>
             <p class="col-lg-6 text-muted">
@@ -231,7 +231,7 @@
         <!--Additional Information-->
         <div>
           <hr>
-          <h4 class="mb-4 mt-4">Additional Information</h4>
+          <h4 class="mb-4 mt-4">Additional Details</h4>
           <div class="row mb-1">
             <p class="col-lg-4"><strong>Have you checked your local shelter for adoptable dogs?</strong></p>
             <% if current_user.adopter_account.adopter_profile.checked_shelter == true %>
