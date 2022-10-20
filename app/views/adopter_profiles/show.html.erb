@@ -62,13 +62,13 @@
           <h4 class="mb-4 mt-4">Lifestyle</h4>
           <div class="row mb-1">
             <p class="col-lg-4"><strong>Your ideal dog</strong></p>
-             <p class="col-lg-6 text-muted" style="white-space: pre-line;">
+             <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.ideal_dog %>
             </p>
           </div>
           <div class="row mb-1">
             <p class="col-lg-4"><strong>Your lifestyle</strong></p>
-             <p class="col-lg-6 text-muted" style="white-space: pre-line;">
+             <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.lifestyle_fit %>
             </p>
           </div>
@@ -76,7 +76,7 @@
             <p class="col-lg-4">
               <strong>Activities you will do with your dog</strong>
             </p>
-             <p class="col-lg-6 text-muted style="white-space: pre-line;"">
+             <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.activities %>
             </p>
           </div>
@@ -104,12 +104,12 @@
           <h4 class="mb-4 mt-4">Dog Care</h4>
           <div class="row mb-1">
             <p class="col-lg-4"><strong>Your dog care experience</strong></p>
-            <p class="col-lg-6 text-muted" style="white-space: pre-line;">
+            <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.experience %>
             </p>
           </div>
           <div class="row mb-1">
-            <p class="col-lg-4" style="white-space: pre-line;">
+            <p class="col-lg-4">
               <strong>Dog care plans during emergency or vacation</strong>
             </p>
             <p class="col-lg-6 text-muted">
@@ -130,7 +130,7 @@
           <% unless current_user.adopter_account.adopter_profile.shared_ownership == false %>
           <div class="row mb-4">
             <p class="col-lg-4"><strong>Details on shared dog care</strong></p>
-            <p class="col-lg-6 text-muted" style="white-space: pre-line;">
+            <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.shared_owner %>
             </p>
           </div>
@@ -251,7 +251,7 @@
           <% unless current_user.adopter_account.adopter_profile.surrendered_pet == false %>
           <div class="row mb-1">
             <p class="col-lg-4"><strong>Details on surrendering the pet</strong></p>
-            <p class="col-lg-6 text-muted" style="white-space: pre-line;">
+            <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.describe_surrender %>
             </p>
           </div>
