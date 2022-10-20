@@ -28,7 +28,7 @@
     <% elsif page == 'account' %>
       <div class="stepper-item completed">
         <div class="step-counter text-white">1</div>
-        <div class="step-name d-flex align-items-center">
+        <div class="step-name d-flex flex-column align-items-center">
           <p class='me-2'>Select account</p>
           <%= image_tag('green_check.png', height: '15') %>
         </div>
@@ -54,7 +54,7 @@
       <div class="stepper-item completed">
           <div class="step-counter">1</div>
           <% if page == 'profile' %>
-            <div class="step-name d-flex align-items-center">
+            <div class="step-name d-flex flex-column align-items-center">
               <p class='me-2'>Select account</p>
               <%= image_tag('green_check.png', height: '15') %>
             </div>
@@ -62,7 +62,7 @@
       </div>
       <div class="stepper-item completed">
           <div class="step-counter">2</div>
-          <div class="step-name d-flex align-items-center">
+          <div class="step-name d-flex flex-column align-items-center">
             <p class='me-2'>Create Account</p>
             <%= image_tag('green_check.png', height: '15') %>
           </div>
