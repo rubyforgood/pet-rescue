@@ -9,7 +9,7 @@ class Dog < ApplicationRecord
   validates :size, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
-  validates :description, presence: true, length: { maximum: 500 }
+  validates :description, presence: true, length: { maximum: 1000 }
 
   # active storage validations gem
   validates :images, content_type: { in: ['image/png', 'image/jpeg'],

@@ -12,6 +12,10 @@ export default class extends Controller {
     this.count(500)
   }
 
+  countExtraLarge() {
+    this.count(1000)
+  }
+
   count(characters) {
     const max = characters - 1;
     let output = this.outputTarget;
