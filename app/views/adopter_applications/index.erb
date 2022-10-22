@@ -12,7 +12,7 @@
 <section class="pb-5" id="adopter_profile">
   <div class="container">
     <% if @applications.empty? %>
-      <p>Your adoption applications will be listed here.</p>
+      <p class='text-center'>Your adoption applications will be listed here.</p>
     <% else %>
       <% @applications.each do | app | %>
         <% unless app.profile_show == false %>
