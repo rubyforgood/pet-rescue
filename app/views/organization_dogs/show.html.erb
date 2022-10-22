@@ -41,12 +41,6 @@
             </button>
           </div>
         <% end %>
-        
-        <!--dog info-->
-        <% if @dog.adoption %>
-          <%= link_to 'Successful Adopter', 
-                      profile_review_path(@dog.adoption.adopter_account.adopter_profile.id) %>
-        <% end %>
           
         <!--dog info-->
         <div class='row mb-3'>
@@ -79,10 +73,19 @@
       <!--button area-->
       <div class="col-lg-4 mx-auto d-flex align-items-center 
                     justify-content-center mt-4">
-        <div class="border p-5 rounded text-center">
-          <%= link_to 'Edit dog', edit_dog_path(@dog), 
-                       class: 'custom-btn-green me-3' %>
-          <%= link_to 'Delete', dog_path(@dog), class: 'custom-btn-pink',
+        <div class="border p-5 rounded text-center d-flex flex-wrap">
+          <%= link_to 'Edit', edit_dog_path(@dog), 
+                       class: 'custom-btn-green me-3 mb-2' %>
+          
+          <% if @dog.adoption %>
+            <%= link_to 'Adopter', 
+                         profile_review_path(@dog.adoption
+                                                 .adopter_account
+                                                 .adopter_profile.id),
+                         class: 'custom-btn-green me-3 mb-2'%>
+          <% end %>
+
+          <%= link_to 'Delete', dog_path(@dog), class: 'custom-btn-pink mb-2',
                 data: 
                       {
                 turbo_method: :delete,
