@@ -42,8 +42,8 @@ class RegistrationsController < Devise::RegistrationsController
     resource.adopter_account ? new_profile_path : root_path
   end
 
-  def after_sign_in_path_for(resource)
-    redirect_to root_path
+  def after_sign_in_path_for
+    root_path
   end
 
   # check for id (i.e., record saved) and send mail
