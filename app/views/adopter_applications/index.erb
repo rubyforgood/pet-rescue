@@ -11,58 +11,62 @@
 
 <section class="pb-5" id="adopter_profile">
   <div class="container">
-    <% @applications.each do | app | %>
-      <% unless app.profile_show == false %>
-        <div class="row border rounded mb-3 mx-3 p-3">
-          <div class="col-md-3 mb-4 mb-md-0 d-flex justify-content-center 
-                      align-items-center">
-            <% if app.dog.images.attached? %>
-              <%= link_to adoptable_dog_path(app.dog.id) do %>
-                <%= image_tag app.dog.images.first, class: 'app-img rounded' %>
+    <% if @applications.empty? %>
+      <p>Your adoption applications will be listed here.</p>
+    <% else %>
+      <% @applications.each do | app | %>
+        <% unless app.profile_show == false %>
+          <div class="row border rounded mb-3 mx-3 p-3">
+            <div class="col-md-3 mb-4 mb-md-0 d-flex justify-content-center 
+                        align-items-center">
+              <% if app.dog.images.attached? %>
+                <%= link_to adoptable_dog_path(app.dog.id) do %>
+                  <%= image_tag app.dog.images.first, class: 'app-img rounded' %>
+                <% end %>
+              <% else %>
+                <%= link_to adoptable_dog_path(app.dog.id) do %>
+                  <%= image_tag('coming_soon.jpg', class: 'app-img rounded') %>
+                <% end %>
               <% end %>
-            <% else %>
-              <%= link_to adoptable_dog_path(app.dog.id) do %>
-                <%= image_tag('coming_soon.jpg', class: 'app-img rounded') %>
-              <% end %>
-            <% end %>
-          </div>
-
-          <div  class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
-                        justify-content-md-start align-items-center">
-            <h3><%= app.dog.name %></h3>
-          </div>
-
-          <div  class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
-                        justify-content-md-start align-items-center">
-            <p>Status: <%= app.status.titleize %></p>
-          </div>
-
-          <% unless app.status == 'withdrawn' || app.status == 'adoption_made' %>
-
-            <!--withdraw button-->
-            <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
-                        justify-content-md-start align-items-center">
-              <%= link_to 'Withdraw', 
-                          my_application_path(application: { id: app.id, 
-                                                                  status: 'withdrawn' }),  
-                          data: { turbo_method: "patch",
-                                  turbo_confirm: "If you withdraw you will not be able to reapply for this dog." },
-                          class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
             </div>
-          <% end %>
 
-            <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
-              <!--remove button-->
+            <div  class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
+                          justify-content-md-start align-items-center">
+              <h3><%= app.dog.name %></h3>
+            </div>
+
+            <div  class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
+                          justify-content-md-start align-items-center">
+              <p>Status: <%= app.status.titleize %></p>
+            </div>
+
+            <% unless app.status == 'withdrawn' || app.status == 'adoption_made' %>
+
+              <!--withdraw button-->
               <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
                           justify-content-md-start align-items-center">
-                <%= link_to 'Remove', 
+                <%= link_to 'Withdraw', 
                             my_application_path(application: { id: app.id, 
-                                                                    profile_show: false }),  
-                            data: { turbo_method: "patch" },
+                                                                    status: 'withdrawn' }),  
+                            data: { turbo_method: "patch",
+                                    turbo_confirm: "If you withdraw you will not be able to reapply for this dog." },
                             class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
               </div>
             <% end %>
-        </div>
+
+              <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
+                <!--remove button-->
+                <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
+                            justify-content-md-start align-items-center">
+                  <%= link_to 'Remove', 
+                              my_application_path(application: { id: app.id, 
+                                                                      profile_show: false }),  
+                              data: { turbo_method: "patch" },
+                              class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
+                </div>
+              <% end %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
