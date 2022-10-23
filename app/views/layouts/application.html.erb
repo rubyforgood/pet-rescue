@@ -113,8 +113,9 @@
                 </ul>
               </li>
               <li class="nav-item navbar-dark">
-                <%= link_to 'Log Out', destroy_user_session_path, 
-                    class: 'btn-outline-light btn', data: {turbo_method: 'delete'} %>
+                <%= button_to 'Log Out', destroy_user_session_path, 
+                    class: 'btn-outline-light btn', data: { turbo: false },
+                    method: 'delete' %>
               </li>
             <% end %>
           </ul>
