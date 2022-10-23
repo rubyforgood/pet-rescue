@@ -2,10 +2,14 @@
   <div class="container">
     <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
-        Internal Server Error
+        500: Internal Server Error
       </h1>
     </div>
-    <%= image_tag('error.jpg') %>
-    <%= link_to 'Take me home!', root_path %>
+    <div class='text-center mt-5 mb-2'>
+      <%= link_to 'Take me home!', root_path %>
+    </div>
+    <div class='text-center'>
+      <%= image_tag('error.jpg', width: '400') %>
+    </div>
   </div> <!--container-->
 </header>
