@@ -45,7 +45,7 @@
               <!--withdraw button-->
               <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
                           justify-content-md-start align-items-center">
-                <%= link_to 'Withdraw', 
+                <%= button_to 'Withdraw', 
                             my_application_path(application: { id: app.id, 
                                                                     status: 'withdrawn' }),  
                             data: { turbo_method: "patch",
@@ -58,7 +58,7 @@
                 <!--remove button-->
                 <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
                             justify-content-md-start align-items-center">
-                  <%= link_to 'Remove', 
+                  <%= button_to 'Remove', 
                               my_application_path(application: { id: app.id, 
                                                                       profile_show: false }),  
                               data: { turbo_method: "patch" },
