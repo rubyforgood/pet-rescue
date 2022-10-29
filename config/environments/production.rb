@@ -69,6 +69,7 @@ Rails.application.configure do
 
   # devise mailer (e.g. reset password)
   config.action_mailer.default_url_options = { host: 'https://obscure-island-90789.herokuapp.com/' }
+  config.action_mailer.default_options = {from: 'bajapetrescue@gmail.com'}
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
