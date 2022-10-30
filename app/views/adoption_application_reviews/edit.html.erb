@@ -35,14 +35,14 @@
           <div class="form-group mt-2">  
             <%= form.label :notes %>
             <%= form.text_area :notes,
-                    class: 'form-control mb-4' %>
+                    class: 'form-control mb-2' %>
           </div>
 
           <% if @application.profile_show == false %>
-            <div class="form-group">
-              <p class='mb-0'>This applicant removed this application from their list.</p>
+            <div class="form-group d-flex align-items-center gap-2 mb-2">
               <%= form.label :profile_show, 'Reinstate application', value: 'true' %>
-              <%= form.radio_button :profile_show, true, class: 'mt-0 mb-4' %>
+              <%= form.radio_button :profile_show, true, class: 'me-2' %>
+              <%= image_tag('question.png', height: '20') %>
             </div>
           <% end %>
 
