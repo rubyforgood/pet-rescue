@@ -39,17 +39,15 @@
           </div>
 
           <% if @application.profile_show == false %>
-            <div class="form-group"
-                 data-controller='reinstate-explanation'>
+            <div class="form-group" data-controller='reinstate-explanation'>
               <div class="d-flex align-items-center gap-2 mb-2">
-                <%= form.label :profile_show, 'Reinstate application', value: 'true' %>
-                <%= form.radio_button :profile_show, true, class: 'me-2' %>
+                <%= form.label 'Reinstate application:' %>
+                <%= form.check_box :profile_show, {}, true, false %>
                 <%= image_tag('question.png', height: '20', 
                               data: { action: "click->reinstate-explanation#show",
-                              reinstate_explanation_target: "icon" }) %>
+                              reinstate_explanation_target: "icon" }, class: 'ms-2') %>
               </div>
-              <p data-reinstate-explanation-target='text'
-                 class='mt-0 mb-4'></p>
+              <p data-reinstate-explanation-target='text' class='mt-0'></p>
             </div>
           <% end %>
 
