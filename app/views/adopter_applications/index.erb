@@ -48,8 +48,8 @@
                 <%= button_to 'Withdraw', 
                             my_application_path(application: { id: app.id, 
                                                                     status: 'withdrawn' }),  
-                            data: { turbo_method: "patch",
-                                    turbo_confirm: "If you withdraw you will not be able to reapply for this dog." },
+                            data: { turbo: "false" },
+                            method: 'patch',
                             class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
               </div>
             <% end %>
@@ -61,7 +61,8 @@
                   <%= button_to 'Remove', 
                               my_application_path(application: { id: app.id, 
                                                                       profile_show: false }),  
-                              data: { turbo_method: "patch" },
+                              data: { turbo: 'false' },
+                              method: 'patch',
                               class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
                 </div>
               <% end %>

@@ -30,7 +30,7 @@ class AdopterApplicationsController < ApplicationController
     @application = AdopterApplication.find(params[:application][:id])
 
     if @application.update(application_params)
-      redirect_to my_applications_path
+      redirect_to request.referrer
     else
       redirect_to profile_path, alert: 'Error.'
     end
