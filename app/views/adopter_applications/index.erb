@@ -31,25 +31,26 @@
             </div>
 
             <div  class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
-                          justify-content-md-start align-items-center">
+                         align-items-center">
               <h3><%= app.dog.name %></h3>
             </div>
 
             <div  class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center
-                          justify-content-md-start align-items-center flex-column">
-              <p>Status: <%= app.status.titleize %></p>
+                         align-items-center flex-column">
+              <p class="fw-bold">Status: <%= app.status.titleize %></p>
 
               <% if app.status == 'awaiting_review' %>
-                <p>We will be in contact with you shortly!</p>
+                <p>We will be in contact with you shortly</p>
               <% elsif app.status == 'under_review' %>
-                <p>Keep an eye on your <%=current_user.adopter_account.adopter_profile.contact_method %></p>
+                <p>Keep an eye on your 
+                  <%=current_user.adopter_account.adopter_profile.contact_method %>
+                </p>
               <% elsif app.status == 'adoption_pending' %>
-                <p>Looks like this pooch may have found a home with someone else.</p>
+                <p>This pooch is almost adopted</p>
               <% elsif app.status == 'adoption_made' %>
-                <p>This pooch has found a home with someone else.</p>
+                <p>This pooch has found a home with someone else</p>
               <% elsif app.status == 'withdrawn' %>
-                <p>If you withdrew by accident, contact us and do not click 'remove'. 
-                   Otherwise click remove to clear it from your list.</p>
+                <p>If you withdrew by accident, <%= link_to 'contact us', contacts_path %></p>
               <% end %>
             </div>
 
@@ -57,7 +58,7 @@
 
               <!--withdraw button-->
               <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
-                          justify-content-md-start align-items-center">
+                          align-items-center">
                 <%= button_to 'Withdraw', 
                             my_application_path(application: { id: app.id, 
                                                                     status: 'withdrawn' }),  

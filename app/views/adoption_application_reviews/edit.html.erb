@@ -40,18 +40,19 @@
 
           <% if @application.profile_show == false %>
             <div class="form-group" data-controller='reinstate-explanation'>
-              <div class="d-flex align-items-center gap-2 mb-2">
+              <div class="d-flex align-items-center gap-2">
                 <%= form.label 'Reinstate application:' %>
                 <%= form.check_box :profile_show, {}, true, false %>
                 <%= image_tag('question.png', height: '20', 
                               data: { action: "click->reinstate-explanation#show",
-                              reinstate_explanation_target: "icon" }, class: 'ms-2') %>
+                              reinstate_explanation_target: "icon" }, 
+                              class: 'ms-2 cursor-hover') %>
               </div>
               <p data-reinstate-explanation-target='text' class='mt-0'></p>
             </div>
           <% end %>
 
-          <%= form.submit 'Save', class: 'btn btn-outline-dark'%>
+          <%= form.submit 'Save', class: 'btn btn-outline-dark mt-2'%>
         <% end %>
       </div> <!--card-->
     </div> <!--row-->
