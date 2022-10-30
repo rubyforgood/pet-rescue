@@ -31,7 +31,7 @@ class AdoptionApplicationReviewsController < ApplicationController
   private
 
   def application_params
-    params.require(:adopter_application).permit(:status, :notes)
+    params.require(:adopter_application).permit(:status, :notes, :profile_show)
   end
 
   # use where to return a relation for the view
