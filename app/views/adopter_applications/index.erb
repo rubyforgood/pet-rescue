@@ -59,10 +59,11 @@
               <!--withdraw button-->
               <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
                           align-items-center">
-                <%= link_to 'Withdraw', 
+                <%= button_to 'Withdraw', 
                             my_application_path(application: { id: app.id, 
                                                                     status: 'withdrawn' }),  
-                            data: { turbo_confirm: 'Are you sure?', turbo_method: :patch },
+                            data: { turbo: "false" },
+                            method: 'patch',
                             class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
               </div>
             <% end %>
