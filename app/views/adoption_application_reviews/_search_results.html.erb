@@ -33,10 +33,12 @@
               </div>
             </div>
 
-            <!--adopter profile link-->
-            <div class="col-md-3 d-md-flex align-items-center justify-content-center">
-              <%= link_to 'Adopter Profile', profile_review_path(app.adopter_account.adopter_profile.id) %>
-            </div>
+            <% unless app.status == 'successful_applicant' %>
+              <!--adopter profile link-->
+              <div class="col-md-3 d-md-flex align-items-center justify-content-center">
+                <%= link_to 'Adopter Profile', profile_review_path(app.adopter_account.adopter_profile.id) %>
+              </div>
+            <% end %>
 
             <!--edit application button-->
             <div class="col-md-3 d-flex align-items-center justify-content-md-center">
@@ -47,14 +49,14 @@
 
               <% if app.status == 'successful_applicant' %>
                 <!--create adoption button-->
-                <div class="col-md-2 d-flex align-items-center justify-content-md-center">
+                <div class="col-md-3 d-flex align-items-center justify-content-md-center">
                   <%= link_to 'Create Adoption', 
                               create_adoption_path(dog_id: dog.id, 
                                                   adopter_account_id: app.adopter_account.id),
                               data: { turbo_method: :post, 
                                       turbo_confirm: "Click OK to finalize this adoption." },
-                              class: 'custom-btn-pink
-                                      mb-3 mb-md-0' %>
+                              class: 'custom-btn-pink mb-3 mb-md-0 
+                                      pt-2 pb-2 ps-4 pe-4' %>
                 </div>
               <% end %>
 

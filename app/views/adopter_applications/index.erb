@@ -36,7 +36,7 @@
             </div>
 
             <div  class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center
-                         align-items-center flex-column">
+                         text-center flex-column">
               <p class="fw-bold">Status: <%= app.status.titleize %></p>
 
               <% if app.status == 'awaiting_review' %>
@@ -59,11 +59,10 @@
               <!--withdraw button-->
               <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
                           align-items-center">
-                <%= button_to 'Withdraw', 
+                <%= link_to 'Withdraw', 
                             my_application_path(application: { id: app.id, 
                                                                     status: 'withdrawn' }),  
-                            data: { turbo: "false" },
-                            method: 'patch',
+                            data: { turbo_confirm: 'Are you sure?', turbo_method: :patch },
                             class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
               </div>
             <% end %>
@@ -71,7 +70,7 @@
               <% if app.status == 'withdrawn' || app.status == 'adoption_made' %>
                 <!--remove button-->
                 <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
-                            justify-content-md-start align-items-center">
+                            align-items-center">
                   <%= button_to 'Remove', 
                               my_application_path(application: { id: app.id, 
                                                                       profile_show: false }),  
