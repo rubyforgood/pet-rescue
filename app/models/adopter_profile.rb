@@ -33,8 +33,8 @@ class AdopterProfile < ApplicationRecord
   validates :fenced_alternative, presence: { message: 'Please fill this field' },
                                  length: { maximum: 200, message: '200 characters maximum' },
                                  if: :fenced_access_false?
-  validates :location_day, presence: true, length: { maximum: 50 }
-  validates :location_night, presence: true, length: { maximum: 50 }
+  validates :location_day, presence: true, length: { maximum: 100 }
+  validates :location_night, presence: true, length: { maximum: 100 }
   validates_inclusion_of :do_you_rent, in: [true, false], message: 'Select one'
   validates_inclusion_of :dogs_allowed, in: [true, false],
                                         message: 'Select one',
