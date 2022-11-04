@@ -31,31 +31,31 @@
             
             <li class="nav-item navbar-dark">
               <%= link_to 'Browse Dogs', adoptable_dogs_path, 
-                  class: 'nav-link text-white me-3' %>
+                  class: 'nav-link text-white me-3 bigger' %>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white me-3" href="#" 
+              <a class="nav-link dropdown-toggle text-white me-3 bigger" href="#" 
                  id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
                  Info
               </a>
               <ul class="dropdown-menu p-3" aria-labelledby="dropdown04">
                 <li><%= link_to 'About Us', about_us_path,
-                                class: 'text-decoration-none',
+                                class: 'text-decoration-none bigger',
                                 style: 'color: #504451' %></li>
                 <li><%= link_to 'FAQ', faq_path,
-                                class: 'text-decoration-none',
+                                class: 'text-decoration-none bigger',
                                 style: 'color: #504451' %></li>
                 <li><%= link_to 'Partners', partners_path,
-                                class: 'text-decoration-none',
+                                class: 'text-decoration-none bigger',
                                 style: 'color: #504451' %></li>
                 <li><%= link_to 'Donate', donate_path,
-                                class: 'text-decoration-none',
+                                class: 'text-decoration-none bigger',
                                 style: 'color: #504451' %></li>
               </ul>
             </li>
             <li>
               <%= link_to 'Contact', new_contact_path,
-                                class: 'nav-link text-white' %>
+                                class: 'nav-link text-white bigger' %>
             </li> 
           </ul>
 
@@ -63,17 +63,17 @@
             <% unless user_signed_in? %>
               <li class="nav-item navbar-dark">
                 <%= link_to 'Create Account', account_select_path, 
-                    class: 'btn-outline-light btn me-3 navbar-margin-bottom' %>
+                    class: 'btn-outline-light btn me-3 navbar-margin-bottom bigger' %>
               </li>
               <li class="nav-item navbar-dark">
                 <%= link_to 'Log In', new_user_session_path, 
-                    class: 'btn-outline-light btn' %>
+                    class: 'btn-outline-light btn bigger' %>
               </li>
             <% end %>
 
             <% if user_signed_in? %>
               <li class="nav-item dropdown me-3 navbar-margin-bottom">
-                <a class="nav-link dropdown-toggle text-white" href="#" 
+                <a class="nav-link dropdown-toggle text-white bigger" href="#" 
                   id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
                   Dashboard
                 </a>
@@ -82,38 +82,39 @@
                         current_user.adopter_account.adopter_profile.nil? %>
                     <li>
                       <%= link_to "Adopter Profile", new_profile_path, 
-                          class: 'dropdown-item' %>
+                          class: 'dropdown-item bigger' %>
                     </li>
                   <% elsif current_user.adopter_account %>
                     <li>
                       <%= link_to "My Profile", profile_path, 
-                          class: 'dropdown-item' %>
+                          class: 'dropdown-item bigger' %>
                     </li>
                     <li>
                       <%= link_to "My Applications", my_applications_path, 
-                          class: 'dropdown-item' %>
+                          class: 'dropdown-item bigger' %>
                     </li>
                   <% end %>
                   <% if current_user.staff_account &&
                         current_user.staff_account.verified %>
                     <li>
                       <%= link_to "Our Dogs", dogs_path, 
-                          class: 'dropdown-item' %>
+                          class: 'dropdown-item bigger' %>
                     </li>
                     <li>
                       <%= link_to "Applications", adopter_applications_path, 
-                          class: 'dropdown-item' %>
+                          class: 'dropdown-item bigger' %>
                     </li>
                   <% end %>
                   <li>
                       <%= link_to "Account Settings", edit_user_registration_path, 
-                          class: 'dropdown-item' %>
+                          class: 'dropdown-item bigger' %>
                     </li>
                 </ul>
               </li>
               <li class="nav-item navbar-dark">
                 <%= button_to 'Log Out', destroy_user_session_path, 
-                    class: 'btn-outline-light btn', data: { turbo: false },
+                    class: 'btn-outline-light btn bigger', 
+                    data: { turbo: false },
                     method: 'delete' %>
               </li>
             <% end %>

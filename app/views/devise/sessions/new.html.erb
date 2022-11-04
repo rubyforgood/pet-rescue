@@ -21,13 +21,13 @@
           <%= form_for(resource, as: resource_name, 
                                  url: session_path(resource_name)) do |f| %>
                                  
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 bigger">
               <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email", 
                   class: 'form-control' %>
             </div>
 
-            <div class="form-group mb-3">
+            <div class="form-group mb-3 bigger">
               <%= f.label :password %><br />
               <%= f.password_field :password, autocomplete: "current-password", 
                   class: 'form-control' %>
@@ -40,7 +40,7 @@
               </div>
             <% end %>
 
-            <div class="actions">
+            <div class="actions bigger">
               <%= f.submit "Log in", class: 'btn btn-outline-dark mb-3',
                                      data: { turbo: false } %>
             </div>
