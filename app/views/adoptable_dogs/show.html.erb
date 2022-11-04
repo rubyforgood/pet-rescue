@@ -127,16 +127,16 @@
                   <% end %>
                 <% elsif current_user.adopter_account %>
                   <h4 class='mb-4 mt-3'>
-                    You need to complete your profile before you can apply
+                    Complete your profile to apply for this dog
                   </h4>
                   <%= link_to 'Complete my profile', new_profile_path,
                       class: 'custom-btn-pink' %>
                 <% end %>
               <% else %>
                   <h4 class="mb-4 mt-3">
-                    Sign up to be able to apply for this dog
+                    Create an account to apply for this dog
                   </h4>
-                  <%= link_to 'Sign Up', account_select_path , 
+                  <%= link_to 'Create Account', account_select_path , 
                       class: 'custom-btn-pink mb-2' %>
                   <p>
                     <%= link_to 'Log in', new_user_session_path %>
