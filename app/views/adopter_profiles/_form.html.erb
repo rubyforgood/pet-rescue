@@ -28,11 +28,11 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :contact_method, 'Preferred contact method' %>
+      <%= form.label :contact_method, 'Preferred contact method', class: 'bigger' %>
       <%= form.select :contact_method, 
                       ['Phone', 'Email', 'WhatsApp'], 
                       { prompt: "Please select" },
-                      class: 'form-control' %>
+                      class: 'form-control bigger' %>
 
 
       <% profile.errors.full_messages_for(:contact_method).each do |message| %>
@@ -41,11 +41,11 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :country %>
+      <%= form.label :country, class: 'bigger' %>
       <%= form.select :country, 
                       ['Canada', 'USA'], 
                       { prompt: "Please select" },
-                      class: 'form-control'%>
+                      class: 'form-control bigger'%>
 
       <% profile.errors.full_messages_for(:country).each do |message| %>
         <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -53,11 +53,11 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :province_state, 'Province/State' %>
+      <%= form.label :province_state, 'Province/State', class: 'bigger' %>
       <%= form.select :province_state, 
                       grouped_options_for_select(provinces_states), 
                       { prompt: "Please select" },
-                      class: 'form-control' %>
+                      class: 'form-control bigger' %>
 
       <% profile.custom_messages(:province_state).each do |error| %>
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
@@ -65,7 +65,7 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :city_town, 'City/Town' %>
+      <%= form.label :city_town, 'City/Town', class: 'bigger' %>
       <%= form.text_field :city_town,
                           class: 'form-control' %>
 
@@ -83,7 +83,7 @@
 
     <div class="form-group">
       <div data-controller='counter'>
-        <%= form.label :ideal_dog, 'Briefly describe your ideal dog' %>
+        <%= form.label :ideal_dog, 'Briefly describe your ideal dog', class: 'bigger' %>
         <%= form.text_area :ideal_dog,
                           data: { action: "input->counter#countMedium", 
                                   counter_target: 'input' },
@@ -100,7 +100,7 @@
 
     <div class="form-group">
       <div data-controller='counter'>
-        <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle' %>
+        <%= form.label :lifestyle_fit, 'Briefly describe your lifestyle', class: 'bigger' %>
         <%= form.text_area :lifestyle_fit,
                           data: { action: "input->counter#countMedium", 
                                   counter_target: 'input' },
@@ -117,7 +117,8 @@
 
     <div class="form-group">
       <div data-controller='counter'>
-        <%= form.label :activities, 'Briefly describe activities you will do with your dog' %>
+        <%= form.label :activities, 
+            'Briefly describe activities you will do with your dog', class: 'bigger' %>
         <%= form.text_area :activities,
                           data: { action: "input->counter#countMedium", 
                                   counter_target: 'input' },
@@ -133,15 +134,15 @@
     </div>
 
     <div class="form-group">
-      <p>Approximately how many hours will your dog be left alone on a typical:</p>
+      <p class="bigger">Approximately how many hours will your dog be left alone on a typical:</p>
 
       <div class="d-flex gap-4">
         <div>
-          <%= form.label :alone_weekday, 'Week day' %>
+          <%= form.label :alone_weekday, 'Week day', class: 'bigger' %>
           <%= form.select :alone_weekday, 
                           options_for_select(0..10),
                           { prompt: "Please select" },
-                          class: 'form-control' %>
+                          class: 'form-control bigger' %>
 
           <% profile.custom_messages(:alone_weekday).each do |error| %>
             <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
@@ -149,11 +150,11 @@
         </div>
 
         <div>
-          <%= form.label :alone_weekend, 'Weekend' %>
+          <%= form.label :alone_weekend, 'Weekend', class: 'bigger' %>
           <%= form.select :alone_weekend, 
                           options_for_select(0..10),
                           { prompt: "Please select" },
-                          class: 'form-control' %>
+                          class: 'form-control bigger' %>
 
           <% profile.custom_messages(:alone_weekend).each do |error| %>
             <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
@@ -169,7 +170,8 @@
 
     <div class="form-group">
       <div data-controller='counter'>
-        <%= form.label :experience, 'Briefly describe your dog care experience' %>
+        <%= form.label :experience, 
+            'Briefly describe your dog care experience', class: 'bigger' %>
         <%= form.text_area :experience,
                           data: { action: "input->counter#countMedium", 
                                   counter_target: 'input' },
@@ -186,8 +188,8 @@
 
     <div class="form-group">
       <div data-controller='counter'>
-        <%= form.label :contingency_plan, 'Who will care for your dog during 
-                                           emergencies or vacations?' %>
+        <%= form.label :contingency_plan, 
+            'Who will care for your dog during emergencies or vacations?', class: 'bigger' %>
         <%= form.text_area :contingency_plan,
                           data: { action: "input->counter#countMedium", 
                                   counter_target: 'input' },
@@ -203,14 +205,16 @@
 
     <div class="form-group">
       <div data-controller='display'>
-        <p>Will dog ownership be regularly shared with anyone outside the household?</p>
+        <p class='bigger'>
+          Will dog ownership be regularly shared with anyone outside the household?
+        </p>
 
         <div data-display-target='checked'>
-          <%= form.label :shared_ownership, 'Yes', value: 'true' %>
+          <%= form.label :shared_ownership, 'Yes', value: 'true', class: 'bigger' %>
           <%= form.radio_button :shared_ownership, 
                                 true, 
                                 data: { action: "input->display#show" } %>
-          <%= form.label :shared_ownership, 'No', value: 'false' %>
+          <%= form.label :shared_ownership, 'No', value: 'false', class: 'ms-3 bigger' %>
           <%= form.radio_button :shared_ownership, 
                                 false, 
                                 data: { action: "input->display#hide" } %>
@@ -221,7 +225,8 @@
         <% end %>
 
         <div data-display-target='additional' class='d-none' data-controller='counter'>
-          <%= form.label :shared_owner, 'Briefly describe who else will share dog ownership' %>
+          <%= form.label :shared_owner,
+              'Briefly describe who else will share dog ownership', class: 'bigger' %>
           <%= form.text_area :shared_owner, 
                             data: { action: "input->counter#countMedium", 
                                     counter_target: 'input' },
@@ -245,7 +250,7 @@
     <h4>Household</h4>
 
     <div class="form-group">
-      <%= form.label :housing_type %>
+      <%= form.label :housing_type, class: 'bigger'%>
       <%= form.select :housing_type, 
                       ['Acreage', 
                       'Detached',
@@ -253,7 +258,7 @@
                       'Apartment', 
                       'Trailer'],
                       { prompt: "Please select" },
-                      class: 'form-control' %>
+                      class: 'form-control bigger' %>
 
       <% profile.errors.full_messages_for(:housing_type).each do |message| %>
         <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -262,14 +267,16 @@
 
     <div class="form-group">
       <div data-controller='display'>
-        <p>Will the dog have access to a fenced yard?</p>
+        <p class='bigger'>
+          Will the dog have access to a fenced yard?
+        </p>
 
         <div data-display-target='checked'>
-          <%= form.label :fenced_access, 'Yes', value: 'true' %>
+          <%= form.label :fenced_access, 'Yes', value: 'true', class: 'bigger' %>
           <%= form.radio_button :fenced_access, 
                                 true, 
                                 data: { action: "input->display#hide" } %>
-          <%= form.label :fenced_access, 'No', value: 'false' %>
+          <%= form.label :fenced_access, 'No', value: 'false', class: 'ms-3 bigger' %>
           <%= form.radio_button :fenced_access, 
                                 false, 
                                 data: { action: "input->display#show" } %>
@@ -280,8 +287,8 @@
         <% end %>
       
         <div data-display-target='additional' class='d-none' data-controller='counter'>
-          <%= form.label :fenced_alternative, 'How do you plan to care for the 
-                                               dog without a fenced garden?' %>
+          <%= form.label :fenced_alternative, 
+              'How do you plan to care for the dog without a fenced garden?', class: 'bigger' %>
           <%= form.text_area :fenced_alternative, 
                             data: { action: "input->counter#countMedium", 
                                     counter_target: 'input' },
@@ -299,12 +306,14 @@
 
     <div class="form-group">
       <div>
-        <p>Where on the property will the dog stay during the: </p>
-          <%= form.label :location_day, 'Day' %>
+        <p class='bigger'>
+          Where on the property will the dog stay during the: 
+        </p>
+          <%= form.label :location_day, 'Day', class: 'bigger' %>
           <%= form.text_field :location_day, 
                               placeholder: 'E.g. indoors, outdoors',
                               class: 'form-control' %>
-          <%= form.label :location_night, 'Night' %>
+          <%= form.label :location_night, 'Night', class: 'bigger' %>
           <%= form.text_field :location_night, 
                               placeholder: 'E.g. crate, kennel',
                               class: 'form-control' %>
@@ -321,14 +330,16 @@
 
     <div class="form-group">
       <div data-controller='display'>
-        <p>Do you rent your home or live in a strata complex?</p>
+        <p class='bigger'>
+          Do you rent your home or live in a strata complex?
+        </p>
 
         <div data-display-target='checked'>
-          <%= form.label :do_you_rent, 'Yes', value: 'true' %>
+          <%= form.label :do_you_rent, 'Yes', value: 'true', class: 'bigger' %>
           <%= form.radio_button :do_you_rent, 
                                 true, 
                                 data: { action: "input->display#show" } %>
-          <%= form.label :do_you_rent, 'No', value: 'false' %>
+          <%= form.label :do_you_rent, 'No', value: 'false', class: 'ms-3 bigger' %>
           <%= form.radio_button :do_you_rent, 
                                 false, 
                                 data: { action: "input->display#hide" } %>
@@ -339,10 +350,12 @@
         <% end %>
 
         <div data-display-target='additional' class='d-none'>
-          <p>Have you confirmed pets are allowed?</p>
-          <%= form.label :dogs_allowed, 'Yes', value: 'true' %>
+          <p class='bigger'>
+            Have you confirmed pets are allowed?
+          </p>
+          <%= form.label :dogs_allowed, 'Yes', value: 'true', class: 'bigger' %>
           <%= form.radio_button :dogs_allowed, true %>
-          <%= form.label :dogs_allowed, 'No', value: 'false' %>
+          <%= form.label :dogs_allowed, 'No', value: 'false', class: 'bigger ms-3' %>
           <%= form.radio_button :dogs_allowed, false %>
         </div>
 
@@ -353,17 +366,17 @@
     </div>
 
     <div class="form-group">
-      <p>
+      <p class='bigger'>
         How many people in your home are:
       </p>
       
       <div class="d-flex gap-4">
         <div>
-          <%= form.label :adults_in_home, 'Over 18' %>
+          <%= form.label :adults_in_home, 'Over 18', class: 'bigger' %>
           <%= form.select :adults_in_home, 
                           options_for_select(1..10),
                           { prompt: "Please select" },
-                          class: 'form-control' %>
+                          class: 'form-control bigger' %>
 
           <% profile.errors.full_messages_for(:adults_in_home).each do |message| %>
             <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -371,11 +384,11 @@
         </div>
 
         <div>
-          <%= form.label :kids_in_home, 'Under 18' %>
+          <%= form.label :kids_in_home, 'Under 18', class: 'bigger' %>
           <%= form.select :kids_in_home, 
                           options_for_select(0..10),
                           { prompt: "Please select" },
-                          class: 'form-control' %>
+                          class: 'form-control bigger' %>
 
           <% profile.errors.full_messages_for(:kids_in_home).each do |message| %>
             <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
@@ -386,14 +399,16 @@
 
     <div class="form-group">
       <div data-controller='display'>
-        <p>Are there any other pets in your home?</p>
+        <p class='bigger'>
+          Are there any other pets in your home?
+        </p>
 
         <div data-display-target='checked'>
-          <%= form.label :other_pets, 'Yes', value: 'true' %>
+          <%= form.label :other_pets, 'Yes', value: 'true', class: 'bigger' %>
           <%= form.radio_button :other_pets, 
                                 true, 
                                 data: { action: "input->display#show" } %>
-          <%= form.label :other_pets, 'No', value: 'false' %>
+          <%= form.label :other_pets, 'No', value: 'false', class: 'ms-3 bigger' %>
           <%= form.radio_button :other_pets, 
                                 false, 
                                 data: { action: "input->display#hide" } %>
@@ -404,7 +419,8 @@
         <% end %>
 
         <div data-display-target='additional' class='d-none' data-controller='counter'>    
-          <%= form.label :describe_pets, 'List pets (include neuter status if dog)' %>
+          <%= form.label :describe_pets, 
+              'List pets (include neuter status if dog)', class: 'bigger' %>
           <%= form.text_area :describe_pets, data: { action: "input->counter#countMedium", 
                                                     counter_target: 'input' },
                             class: 'form-control' %>
@@ -426,10 +442,12 @@
 
     <div class="form-group">
       <div>
-        <p>Have you checked your local shelter for available dogs?</p>
-        <%= form.label :checked_shelter, 'Yes', value: 'true' %>
+        <p class='bigger'>
+          Have you checked your local shelter for available dogs?
+        </p>
+        <%= form.label :checked_shelter, 'Yes', value: 'true', class: 'bigger' %>
         <%= form.radio_button :checked_shelter, true %>
-        <%= form.label :checked_shelter, 'No', value: 'false' %>
+        <%= form.label :checked_shelter, 'No', value: 'false', class: 'ms-3 bigger' %>
         <%= form.radio_button :checked_shelter, false %>
       </div>
 
@@ -440,14 +458,16 @@
 
     <div class="form-group">
       <div data-controller='display'>
-        <p>Have you ever had to surrender or rehome an animal?</p>
+        <p class='bigger'>
+          Have you ever had to surrender or rehome an animal?
+        </p>
 
         <div data-display-target='checked'>
-          <%= form.label :surrendered_pet, 'Yes', value: 'true' %>
+          <%= form.label :surrendered_pet, 'Yes', value: 'true', class: 'bigger' %>
           <%= form.radio_button :surrendered_pet, 
                                 true,
                                 data: { action: "input->display#show" } %>
-          <%= form.label :surrendered_pet, 'No', value: 'false' %>
+          <%= form.label :surrendered_pet, 'No', value: 'false', class: 'ms-3 bigger' %>
           <%= form.radio_button :surrendered_pet, 
                                 false,
                                 data: { action: "input->display#hide" } %>
@@ -458,7 +478,8 @@
         <% end %>
 
         <div data-display-target='additional' class='d-none' data-controller='counter'>
-          <%= form.label :describe_surrender, 'Briefly describe the circumstances around surrenderring or rehoming the pet' %>
+          <%= form.label :describe_surrender, 
+              'Briefly describe the circumstances around surrenderring or rehoming the pet', class: 'bigger' %>
           <%= form.text_area :describe_surrender, data: { action: "input->counter#countMedium", 
                                                           counter_target: 'input' },
                                                   class: 'form-control' %>
@@ -473,8 +494,8 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :annual_cost, 'How much do you think it will cost to own a 
-                                    dog each year?' %>
+      <%= form.label :annual_cost, 
+          'How much do you think it will cost to own a dog each year?', class: 'bigger' %>
       <%= form.text_field :annual_cost, 
                           placeholder: '$',
                           class: 'form-control' %>

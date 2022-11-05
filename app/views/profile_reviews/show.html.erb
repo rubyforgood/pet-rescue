@@ -17,37 +17,37 @@
         <!--Administrative Details-->
         <div>
           <h4 class="mb-4 mt-4">Administrative Details</h4>
-            <div class="row mb-1">
+            <div class="row mb-3 bigger">
               <p class="col-lg-4"><strong>Email</strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.adopter_account.user.email %>
               </p>
             </div>
-            <div class="row mb-1">
+            <div class="row mb-3 bigger">
               <p class="col-lg-4"><strong>Phone Number</strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.formatted_phone %>
               </p>
             </div>
-            <div class="row mb-1">
+            <div class="row mb-3 bigger">
               <p class="col-lg-4"><strong>Contact Method</strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.contact_method %>
               </p>
             </div>
-            <div class="row mb-1">
+            <div class="row mb-3 bigger">
               <p class="col-lg-4"><strong>Country</strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.country %>
               </p>
             </div>
-            <div class="row mb-1">
+            <div class="row mb-3 bigger">
               <p class="col-lg-4"><strong>Province/State</strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.province_state %>
               </p>
             </div>
-            <div class="row mb-4">
+            <div class="row mb-4 bigger">
               <p class="col-lg-4"><strong>City/Town</strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.city_town %>
@@ -59,19 +59,19 @@
         <div>
           <hr>
           <h4 class="mb-4 mt-4">Your Lifestyle</h4>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Your ideal dog</strong></p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.ideal_dog %>
             </p>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Your lifestyle</strong></p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.lifestyle_fit %>
             </p>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4">
               <strong>Activities you will do with your dog</strong>
             </p>
@@ -79,7 +79,7 @@
               <%= @adopter_profile.activities %>
             </p>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4">
               <strong>Hours dog will be alone on weekends</strong>
             </p>
@@ -87,7 +87,7 @@
               <%= @adopter_profile.alone_weekend %>
             </p>
           </div>
-          <div class="row mb-4">
+          <div class="row mb-4 bigger">
             <p class="col-lg-4">
               <strong>Hours dog will be alone on week days</strong>
             </p>
@@ -101,13 +101,13 @@
         <div>
           <hr>
           <h4 class="mb-4 mt-4">Dog Care</h4>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Your dog care experience</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.experience %>
             </p>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4">
               <strong>Dog care plans during emergency or vacation</strong>
             </p>
@@ -115,7 +115,7 @@
               <%= @adopter_profile.contingency_plan %>
             </p>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4">
               <strong>Will dog care be shared with someone outside household?</strong>
             </p>
@@ -127,7 +127,7 @@
           </div>
 
           <% unless @adopter_profile.shared_ownership == false %>
-          <div class="row mb-4">
+          <div class="row mb-4 bigger">
             <p class="col-lg-4"><strong>Details on shared dog care</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.shared_owner %>
@@ -140,13 +140,13 @@
         <div>
           <hr>
           <h4 class="mb-4 mt-4">Household Information</h4>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Housing type</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.housing_type %>
             </p>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Do you have access to a fenced garden?</strong></p>
             <% if @adopter_profile.fenced_access == true %>
             <p class="col-lg-6 text-muted">Yes</p>
@@ -155,27 +155,27 @@
             <% end %>
           </div>
             <% unless @adopter_profile.fenced_access == true %>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Your plan to care for the dog without a fenced garden</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.fenced_alternative %>
             </p>
           </div>
           <% end %>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Dog's location during the day</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.location_day %>
             </p>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Dog's location at night</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.location_night %>
             </p>
           </div>
 
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Do you rent your home or live on a strata property?</strong></p>
             <% if @adopter_profile.do_you_rent == true %>
             <p class="col-lg-6 text-muted">Yes</p>
@@ -184,7 +184,7 @@
             <% end %>
           </div>
           <% unless @adopter_profile.do_you_rent == false %>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Have you confirmed dogs are allowed on the property?</strong></p>
             <% if @adopter_profile.dogs_allowed == true %>
             <p class="col-lg-6 text-muted">Yes</p>
@@ -193,13 +193,13 @@
             <% end %>
           </div>
           <% end %>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Number of adults in home (over 18)</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.adults_in_home %>
             </p>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Number of children in home (under 18)</strong></p>
             <% if @adopter_profile.kids_in_home == 0 %>
             <p class="col-lg-6 text-muted">None</p>
@@ -209,7 +209,7 @@
             </p>
             <% end %>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Do you have pets in your home?</strong></p>
             <% if @adopter_profile.other_pets == true %>
             <p class="col-lg-6 text-muted">Yes</p>
@@ -218,7 +218,7 @@
             <% end %>
           </div>
           <% unless @adopter_profile.other_pets == false %>
-          <div class="row mb-4">
+          <div class="row mb-4 bigger">
             <p class="col-lg-4"><strong>Description of pets</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.describe_pets %>
@@ -231,7 +231,7 @@
         <div>
           <hr>
           <h4 class="mb-4 mt-4">Additional Information</h4>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Have you checked your local shelter for adoptable dogs?</strong></p>
             <% if @adopter_profile.checked_shelter == true %>
             <p class="col-lg-6 text-muted">Yes</p>
@@ -239,7 +239,7 @@
             <p class="col-lg-6 text-muted">No</p>
             <% end %>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Have you ever had to surrender a pet?</strong></p>
             <% if @adopter_profile.surrendered_pet == true %>
             <p class="col-lg-6 text-muted">Yes</p>
@@ -248,14 +248,14 @@
             <% end %>
           </div>
           <% unless @adopter_profile.surrendered_pet == false %>
-          <div class="row mb-1">
+          <div class="row mb-3 bigger">
             <p class="col-lg-4"><strong>Details on surrendering the pet</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.describe_surrender %>
             </p>
           </div>
           <% end %>
-          <div class="row mb-4">
+          <div class="row mb-4 bigger">
             <p class="col-lg-4"><strong>Your annual cost estimate for dog care</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.annual_cost %>
