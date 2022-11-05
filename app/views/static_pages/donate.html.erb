@@ -7,23 +7,25 @@
         Donate
       </h1>
     </div>
-
-    <!--main section-->    
-    <div class='bigger'>
-      <p>
-        Donations are a vital part of keeping our program up and running. While our expenses are certainly much lower than that of a rescue in Canada or the US, it still costs a substantial amount of money to keep things running. 
-      </p>
-      <br>
-      <p>
-        At this time, we accept donations via PayPal or e-transfer. They can be sent to bajapetrescue AT gmail DOT com or you can <%= link_to 'contact us', new_contact_path %> and we would be happy to help you make a donation.
-      </p>
-      <br>
-      <p>
-        No amount is too small, and all donations are greatly appreciated.
-      </p>
-    </div>
-    <div class='text-center'>
-      <%= image_tag('about1.jpg', width: '400', class: 'rounded mt-5') %>
-    </div>
-  </div> <!--container-->
+  
+    <!--main section-->
+    <div class="row pb-md-5">
+      <div class="col-md-4 mb-4 mb-md-0">
+        <%= link_to image_tag('about1.jpg', alt: 'Dog in Mexico', class: 'card-img-top rounded') %>
+      </div>
+      <div class="col-md-8 ps-md-4 bigger pb-5 pb-md-0">
+        <p class=''>
+          Donations are a vital part of keeping our program up and running. While our expenses are certainly much lower than that of a rescue in Canada or the US, it still costs a substantial amount of money to keep things running. 
+        </p>
+        <br>
+        <p class=''>
+          At this time, we accept donations via PayPal or e-transfer. They can be sent to <strong>bajapetrescue AT gmail DOT com</strong> or you can <%= link_to 'contact us', new_contact_path %> and we would be happy to help you make a donation.
+        </p>
+        <br>
+        <p>
+          No amount is too small, and all donations are greatly appreciated.
+        </p>
+      </div>
+    </div> <!--row-->
+  </div> <!-- cotainer >
 </section>
