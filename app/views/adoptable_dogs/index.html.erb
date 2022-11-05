@@ -18,9 +18,9 @@
           <%= link_to adoptable_dog_path(dog), class: 'text-decoration-none' do %>
             <div class="card m-4">
               <% if dog.images.attached? %>
-                <%= image_tag dog.images.first, class: 'card-img-top test' %>
+                <%= image_tag dog.images.first, class: 'card-img-top' %>
               <% else %>
-                <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
+                <%= image_tag('coming_soon.jpg', class: 'card-img-top') %>
               <% end %>
               <div class="card-body">
                 <h3 class="card-title">
