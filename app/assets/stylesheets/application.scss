@@ -249,20 +249,24 @@
   }
 
   .carousel-item img {
-    object-fit: cover;
+    object-fit: contain;
+    margin: auto;
+    width: auto; 
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
   }
   
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
-  height: 50px;
-  width: 50px;
-  background-size: 100%, 100%;
-  border-radius: 50%;
-  background-color: #fff;
-}
+    height: 50px;
+    width: 50px;
+    background-size: 100%, 100%;
+    border-radius: 50%;
+    background-color: #fff;
+  }
 
-  .carousel-control-next-icon:after
-  {
+  .carousel-control-next-icon:after {
     content: '>';
     font-size: 30px;
     font-weight: 900;
@@ -278,18 +282,23 @@
 
   /* Extra small devices (phones, 700px and down) */
   @media only screen and (max-width: 767px) {
-    .carousel-inner {
-    height: 500px;
-  }
+      .carousel-inner {
+      height: 500px;
+    }
 
-  .carousel-item, .carousel-item img {
-    height: 500px;
-    width:100%
-  }
+    .carousel-item, .carousel-item img {
+      height: 500px;
+      width:100%
+    }
 
-  .carousel-item img {
-    object-fit: cover;
-  }
+    .carousel-item img {
+      object-fit: contain;
+      margin: auto;
+      width: auto; 
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 10px;
+    }
   }
 
 // Attachments input on new dog form partial
