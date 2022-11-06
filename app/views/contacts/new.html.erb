@@ -10,9 +10,9 @@
         </div>
     </div> <!--container-->
 
-    <div class='mb-3 text-center'>
+    <div class='mb-3 text-center bigger'>
       Please refer to the <%= link_to 'FAQ', faq_path %> and send us a message 
-      if you still have any questions or comments.
+      if you still have questions/comments.
     </div>
 
     <div class="row">
@@ -21,20 +21,20 @@
 
           <div class="row mb-2">
             <div class="mb-3 form-group">
-              <%= f.label :name, 'Name*' %>
+              <%= f.label :name, 'Name*', class: 'bigger' %>
               <%= f.text_field :name, autofocus: true, 
                                       class: 'form-control', 
                                       required: true %>
             </div>
 
             <div class="mb-3 form-group">
-                <%= f.label :email, 'Email*' %>
+                <%= f.label :email, 'Email*', class: 'bigger' %>
                 <%= f.email_field :email, class: 'form-control', 
                                           required: true %>
             </div>
 
             <div class="mb-3 form-group" data-controller='counter'>
-              <%= f.label :message, 'Message*' %>
+              <%= f.label :message, 'Message*', class: 'bigger' %>
               <%= f.text_area :message, class: 'form-control', 
                                         data: { action: "input->counter#countLarge", 
                                                 counter_target: 'input' },
