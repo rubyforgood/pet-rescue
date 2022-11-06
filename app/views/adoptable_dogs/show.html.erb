@@ -26,7 +26,7 @@
             <div class="carousel-inner">
               <% @dog.images.each_with_index do |image, index| %>
                   <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag image, class: 'd-block w-100 rounded' %>
+                  <%= image_tag image, class: 'd-block' %>
                   </div>
               <% end %>
             </div>
