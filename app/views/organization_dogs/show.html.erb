@@ -18,14 +18,14 @@
             <div class="carousel-indicators">
               <% @dog.images.each_with_index do |image, index| %>
                 <button type="button" data-bs-target="#carouselExampleIndicators" 
-                        data-bs-slide-to="<%= index %>" class="active" aria-current="true" 
-                        aria-label="Slide <%= index %>"></button>
+                        data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"
+                        aria-current="true" aria-label="Slide <%= index %>"></button>
               <% end %>
             </div>
             <div class="carousel-inner">
               <% @dog.images.each_with_index do |image, index| %>
                   <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag image, class: 'd-block w-100 rounded' %>
+                  <%= image_tag image, class: 'd-block' %>
                   </div>
               <% end %>
             </div>
@@ -44,19 +44,19 @@
           
         <!--dog info-->
         <div class='row mb-3'>
-          <div class='col-md-3 mb-1'>
+          <div class='col-md-2 mb-1'>
             <h5 style='font-weight: bold;'>Age:</h5>
             <h5><%= @dog.age %></h5>
           </div>
-          <div class='col-md-3 mb-1'>
+          <div class='col-md-2 mb-1'>
             <h5 style='font-weight: bold;'>Sex:</h5>
             <h5><%= @dog.sex %></h5>
           </div>
-          <div class='col-md-3 mb-1'>
+          <div class='col-md-4 mb-1'>
             <h5 style='font-weight: bold;'>Breed:</h5>
             <h5><%= @dog.breed %></h5>
           </div>
-          <div class='col-md-3 mb-1'>
+          <div class='col-md-4 mb-1'>
             <h5 style='font-weight: bold;'>Size:</h5>
             <h5> <%= @dog.size %></h5>
           </div>

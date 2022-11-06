@@ -254,7 +254,6 @@
     width: auto; 
     max-width: 100%;
     max-height: 100%;
-    border-radius: 10px;
   }
   
   .carousel-control-prev-icon,
@@ -263,21 +262,19 @@
     width: 50px;
     background-size: 100%, 100%;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #00401F;
   }
 
-  .carousel-control-next-icon:after {
-    content: '>';
-    font-size: 30px;
-    font-weight: 900;
-    color: #000;
+  .carousel-indicators {
+    background: rgba(0,64,31,0.6);
+    width: 200px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-radius: 100px;
   }
 
-  .carousel-control-prev-icon:after {
-    content: '<';
-    font-size: 30px;
-    font-weight: 900;
-    color: #000;
+  .carousel-indicators .active {
+    background-color: white;
   }
 
   /* Extra small devices (phones, 700px and down) */
@@ -297,7 +294,6 @@
       width: auto; 
       max-width: 100%;
       max-height: 100%;
-      border-radius: 10px;
     }
   }
 
