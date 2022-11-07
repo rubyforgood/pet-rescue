@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/donate', to: 'static_pages#donate'
   get '/privacy_policy', to: 'static_pages#privacy_policy'
   get '/terms_and_conditions', to: 'static_pages#terms_and_conditions'
+  get '/cookies_policy', to: 'static_pages#cookies_policy'
 
   get '/account_select', to: 'static_pages#account_select'
   get '/profile_review/:id', to: 'profile_reviews#show', as: 'profile_review'
