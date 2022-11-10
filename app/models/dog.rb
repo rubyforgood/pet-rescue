@@ -17,6 +17,10 @@ class Dog < ApplicationRecord
                      limit: { max: 5, message: '- 5 maximum' },
                      size: { between: 10.kilobyte..1.megabytes,
                              message: 'size must be between 100kb and 2Mb' }
+  
+  enum :pause_reason, [:not_paused,
+                       :opening_soon,
+                       :paused_until_further_notice]
 
   # active storage: using.attach for appending images per rails guide
   def append_images=(attachables)
