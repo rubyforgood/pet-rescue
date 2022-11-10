@@ -1,5 +1,6 @@
 class OrganizationDogsController < ApplicationController
   before_action :verified_staff
+  after_action :set_reason_paused_to_none, only: [:update]
 
   def index
     @unadopted_dogs = Dog.unadopted_dogs(current_user.staff_account.organization_id)
@@ -72,5 +73,15 @@ class OrganizationDogsController < ApplicationController
     return if !params[:dog_id] || params[:dog_id] == ''
 
     Dog.where(id: params[:dog_id])
+  end
+
+  # update Dog pause_reason to not paused if applications resumed
+  def set_reason_paused_to_none
+    dog = Dog.find(params[:dog_id])
+
+    return unless dog.application_paused == 'false'
+
+    dog.pause_reason = 0
+    dog.save!
   end
 end
