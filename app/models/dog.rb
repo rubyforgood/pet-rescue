@@ -22,6 +22,13 @@ class Dog < ApplicationRecord
                        :opening_soon,
                        :paused_until_further_notice]
 
+  # remove adoption_made status as not necessary for staff
+  def self.app_pause_reasons
+    Dog.pause_reasons.keys.map do |reason|
+      [reason.titleize, reason]
+    end
+  end
+
   # active storage: using.attach for appending images per rails guide
   def append_images=(attachables)
     images.attach(attachables)

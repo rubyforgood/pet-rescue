@@ -66,6 +66,8 @@ class OrganizationDogsController < ApplicationController
                                 :breed,
                                 :size,
                                 :description,
+                                :application_paused,
+                                :pause_reason,
                                 append_images: [])
   end
 
@@ -77,9 +79,9 @@ class OrganizationDogsController < ApplicationController
 
   # update Dog pause_reason to not paused if applications resumed
   def set_reason_paused_to_none
-    dog = Dog.find(params[:dog_id])
+    dog = Dog.find(params[:id])
 
-    return unless dog.application_paused == 'false'
+    return unless dog.application_paused == false
 
     dog.pause_reason = 0
     dog.save!
