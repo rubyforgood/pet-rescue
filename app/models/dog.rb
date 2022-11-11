@@ -22,10 +22,12 @@ class Dog < ApplicationRecord
                        :opening_soon,
                        :paused_until_further_notice]
 
-  # remove adoption_made status as not necessary for staff
+  # remove not_paused status as not necessary for staff
   def self.app_pause_reasons
     Dog.pause_reasons.keys.map do |reason|
-      [reason.titleize, reason]
+      unless reason == 'not_paused'
+        [reason.titleize, reason]
+      end
     end
   end
 
