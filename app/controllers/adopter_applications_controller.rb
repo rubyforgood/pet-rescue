@@ -1,5 +1,6 @@
 class AdopterApplicationsController < ApplicationController
   before_action :authenticate_user!, :adopter_with_profile
+  before_action :check_dog_app_status, only: [:create]
 
   def index
     @applications = AdopterApplication.where(adopter_account_id:
@@ -44,5 +45,13 @@ class AdopterApplicationsController < ApplicationController
                                         :adopter_account_id,
                                         :status,
                                         :profile_show)
+  end
+
+  def check_dog_app_status
+    dog = Dog.find(params[:dog_id])
+
+    return if dog.application_paused == false
+
+    redirect_to request.referrer, alert: 'Applications are paused for this dog'
   end
 end
