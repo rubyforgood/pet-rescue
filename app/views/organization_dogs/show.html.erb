@@ -104,24 +104,26 @@
 
         <div class="border p-3 mt-2 rounded text-center d-flex flex-wrap bigger">
           <%= form_with model: @dog do |form|%>
-            <div class='d-flex form-group' data-display-target='checked'>
-              <p class='me-2'>Pause Applications?</p>
-              <%= form.label :application_paused, 'Yes', value: 'true', class: 'me-2' %>
-              <%= form.radio_button :application_paused, 
-                                    true, 
-                                    data: { action: "input->display#show" } %>
-              <%= form.label :application_paused, 'No', value: 'false', class: 'ms-3 me-2' %>
-              <%= form.radio_button :application_paused, 
-                                    false, 
-                                    data: { action: "input->display#hide" } %>
-            </div>
+            <div data-controller='display'>
+              <div class='d-flex form-group' data-display-target='checked'>
+                <p class='me-2'>Pause Applications?</p>
+                <%= form.label :application_paused, 'Yes', value: 'true', class: 'me-2' %>
+                <%= form.radio_button :application_paused, 
+                                      true, 
+                                      data: { action: "input->display#show" } %>
+                <%= form.label :application_paused, 'No', value: 'false', class: 'ms-3 me-2' %>
+                <%= form.radio_button :application_paused, 
+                                      false, 
+                                      data: { action: "input->display#hide" } %>
+              </div>
 
-            <div class="d-flex">
-              <%= form.label :status, 'Why?', class: 'me-2' %>
-              <%= form.select(:status, 
-                              Dog.app_pause_reasons, 
-                              {}, 
-                              {:class => "form-control"}) %>
+              <div data-display-target='additional' class="d-flex d-none">
+                <%= form.label :status, 'Why?', class: 'me-2' %>
+                <%= form.select(:status, 
+                                Dog.app_pause_reasons, 
+                                {}, 
+                                {:class => "form-control"}) %>
+              </div>
             </div>
             <%= form.submit 'Save', class: 'btn btn-outline-dark mb-3 mt-4' %>
           <% end %>
