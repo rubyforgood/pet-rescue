@@ -12,6 +12,26 @@
     <div class="row">
       <div class="col-lg-8">
 
+        <div class="p-2 text-center d-flex flex-wrap">
+            <%= link_to 'Edit', edit_dog_path(@dog), 
+                        class: 'custom-btn-green me-3 mb-2' %>
+            
+            <% if @dog.adoption %>
+              <%= link_to 'Adopter', 
+                          profile_review_path(@dog.adoption
+                                                  .adopter_account
+                                                  .adopter_profile.id),
+                          class: 'custom-btn-green me-3 mb-2'%>
+            <% end %>
+
+            <%= link_to 'Delete', dog_path(@dog), class: 'custom-btn-pink ms-3 mb-2',
+                  data: 
+                        {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure you want to delete this dog?"
+                } %>        
+          </div>
+
         <!--dog images--> 
         <% if @dog.images.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
@@ -72,25 +92,41 @@
 
       <!--button area-->
       <div class="col-lg-4 mx-auto d-flex align-items-center 
-                    justify-content-center mt-4">
+                    justify-content-center mt-4">        
         <div class="border p-5 rounded text-center d-flex flex-wrap">
-          <%= link_to 'Edit', edit_dog_path(@dog), 
-                       class: 'custom-btn-green me-3 mb-2' %>
           
-          <% if @dog.adoption %>
-            <%= link_to 'Adopter', 
-                         profile_review_path(@dog.adoption
-                                                 .adopter_account
-                                                 .adopter_profile.id),
-                         class: 'custom-btn-green me-3 mb-2'%>
-          <% end %>
+          <div class='d-flex'>
+            <h4>
+              Applications are
+              <%= @dog.application_paused == true ? 'paused' : 'active' %>
+            </h4>
+            <%= @dog.application_paused == true ? image_tag('favicon.png', height: '20'): image_tag('green_check.png', height: '20')%>
+          </div>
 
-          <%= link_to 'Delete', dog_path(@dog), class: 'custom-btn-pink mb-2',
-                data: 
-                      {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure you want to delete this dog?"
-              } %>        
+          <%= form_with model: @dog do |form|%>
+            <div data-display-target='checked'>
+              <div class = d-flex>
+                <p class='bigger me-2'>Pause Applications?</p>
+                <%= form.label :application_paused, 'Yes', value: 'true', class: 'bigger me-2' %>
+                <%= form.radio_button :application_paused, 
+                                      true, 
+                                      data: { action: "input->display#show" } %>
+                <%= form.label :application_paused, 'No', value: 'false', class: 'ms-3 bigger me-2' %>
+                <%= form.radio_button :application_paused, 
+                                      false, 
+                                      data: { action: "input->display#hide" } %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :status, 'Application status', class: 'bigger' %>
+              <%= form.select(:status, 
+                              Dog.app_pause_reasons, 
+                              {}, 
+                              {:class => "form-control"}) %>
+            </div>
+            <%= form.submit 'Save', class: 'btn btn-outline-dark mb-3 mt-4' %>
+          <% end %>
         </div>
       </div> <!--col-->
     </div> <!--row-->
