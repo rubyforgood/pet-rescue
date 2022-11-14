@@ -67,11 +67,11 @@
                 <h5 class="card-title">
                   <%= dog.name %>
                 </h5>
-                <p class="card-text m-0">
-                  Age: <%= dog.age %>
-                </p>
                 <p class="card-text">
                   Breed: <%= dog.breed %>
+                </p>
+                <p class="card-text">
+                  Applications: <%= dog.application_paused == false ? 'active' : 'paused' %>
                 </p>
               </div>
             </div>
