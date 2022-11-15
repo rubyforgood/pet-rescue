@@ -25,10 +25,12 @@ class Dog < ApplicationRecord
   # remove not_paused status as not necessary for staff
   def self.app_pause_reasons
     Dog.pause_reasons.keys.map do |reason|
-      unless reason == 'not_paused'
         [reason.titleize, reason]
-      end
-    end
+    end.drop(1)
+  end
+
+  def get_dog_app_status
+    return 2
   end
 
   # active storage: using.attach for appending images per rails guide

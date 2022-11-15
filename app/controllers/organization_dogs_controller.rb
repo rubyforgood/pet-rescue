@@ -21,6 +21,7 @@ class OrganizationDogsController < ApplicationController
 
   def show
     @dog = Dog.find(params[:id])
+    @pause_reason = @dog.pause_reason
     return if dog_in_same_organization?(@dog.organization_id)
 
     redirect_to dogs_path, alert: 'This dog is not in your organization.'

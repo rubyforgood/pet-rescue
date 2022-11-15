@@ -99,7 +99,8 @@
               Applications are
               <%= @dog.application_paused == true ? 'paused' : 'active' %>
             </h3>
-            <%= @dog.application_paused == true ? image_tag('favicon.png', height: '20'): image_tag('green_check.png', height: '20')%>
+            <%= @dog.application_paused == true ? image_tag('pause.png', height: '25'): 
+                                                  image_tag('green_check.png', height: '25')%>
         </div>
 
         <div class="border p-3 mt-2 rounded text-center d-flex flex-wrap bigger">
@@ -118,11 +119,11 @@
               </div>
 
               <div data-display-target='additional' class="d-flex d-none">
-                <%= form.label :status, 'Why?', class: 'me-2' %>
-                <%= form.select(:status, 
+                <%= form.label :pause_reason, 'Why?', class: 'me-2' %>
+                <%= form.select(:pause_reason, 
                                 Dog.app_pause_reasons, 
-                                {}, 
-                                {:class => "form-control"}) %>
+                                { selected: @pause_reason }, 
+                                { class: "form-control"}) %>
               </div>
             </div>
             <%= form.submit 'Save', class: 'btn btn-outline-dark mb-3 mt-4' %>
