@@ -10,7 +10,6 @@ export default class extends Controller {
 
     for (let i = 0; i < nodeList.length; i++) {
       let child = nodeList[i];
-      console.log(child)
       if (child.id == 'adopter_profile_fenced_access_false' &&
           child.checked == true) {
           this.show()

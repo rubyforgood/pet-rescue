@@ -1,5 +1,6 @@
 class OrganizationDogsController < ApplicationController
   before_action :verified_staff
+  after_action :set_reason_paused_to_none, only: [:update]
 
   def index
     @unadopted_dogs = Dog.unadopted_dogs(current_user.staff_account.organization_id)
@@ -20,6 +21,7 @@ class OrganizationDogsController < ApplicationController
 
   def show
     @dog = Dog.find(params[:id])
+    @pause_reason = @dog.pause_reason
     return if dog_in_same_organization?(@dog.organization_id)
 
     redirect_to dogs_path, alert: 'This dog is not in your organization.'
@@ -65,6 +67,8 @@ class OrganizationDogsController < ApplicationController
                                 :breed,
                                 :size,
                                 :description,
+                                :application_paused,
+                                :pause_reason,
                                 append_images: [])
   end
 
@@ -72,5 +76,15 @@ class OrganizationDogsController < ApplicationController
     return if !params[:dog_id] || params[:dog_id] == ''
 
     Dog.where(id: params[:dog_id])
+  end
+
+  # update Dog pause_reason to not paused if applications resumed
+  def set_reason_paused_to_none
+    dog = Dog.find(params[:id])
+
+    return unless dog.application_paused == false
+
+    dog.pause_reason = 0
+    dog.save!
   end
 end

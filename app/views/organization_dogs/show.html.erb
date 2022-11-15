@@ -12,6 +12,26 @@
     <div class="row">
       <div class="col-lg-8">
 
+        <div class="p-2 text-center d-flex flex-wrap">
+            <%= link_to 'Edit', edit_dog_path(@dog), 
+                        class: 'custom-btn-green me-3 mb-2' %>
+            
+            <% if @dog.adoption %>
+              <%= link_to 'Adopter', 
+                          profile_review_path(@dog.adoption
+                                                  .adopter_account
+                                                  .adopter_profile.id),
+                          class: 'custom-btn-green me-3 mb-2'%>
+            <% end %>
+
+            <%= link_to 'Delete', dog_path(@dog), class: 'custom-btn-pink ms-3 mb-2',
+                  data: 
+                        {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure you want to delete this dog?"
+                } %>        
+          </div>
+
         <!--dog images--> 
         <% if @dog.images.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
@@ -71,26 +91,43 @@
       </div> <!--col-->
 
       <!--button area-->
-      <div class="col-lg-4 mx-auto d-flex align-items-center 
+      <div class="col-lg-4 mx-auto d-flex flex-column align-items-center 
                     justify-content-center mt-4">
-        <div class="border p-5 rounded text-center d-flex flex-wrap">
-          <%= link_to 'Edit', edit_dog_path(@dog), 
-                       class: 'custom-btn-green me-3 mb-2' %>
-          
-          <% if @dog.adoption %>
-            <%= link_to 'Adopter', 
-                         profile_review_path(@dog.adoption
-                                                 .adopter_account
-                                                 .adopter_profile.id),
-                         class: 'custom-btn-green me-3 mb-2'%>
-          <% end %>
 
-          <%= link_to 'Delete', dog_path(@dog), class: 'custom-btn-pink mb-2',
-                data: 
-                      {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure you want to delete this dog?"
-              } %>        
+        <div class='d-flex align-items-center'>
+            <h3 class='me-2'>
+              Applications are
+              <%= @dog.application_paused == true ? 'paused' : 'active' %>
+            </h3>
+            <%= @dog.application_paused == true ? image_tag('pause.png', height: '25'): 
+                                                  image_tag('green_check.png', height: '25')%>
+        </div>
+
+        <div class="border p-3 mt-2 rounded text-center d-flex flex-wrap bigger">
+          <%= form_with model: @dog do |form|%>
+            <div data-controller='display'>
+              <div class='d-flex form-group' data-display-target='checked'>
+                <p class='me-2'>Pause Applications?</p>
+                <%= form.label :application_paused, 'Yes', value: 'true', class: 'me-2' %>
+                <%= form.radio_button :application_paused, 
+                                      true, 
+                                      data: { action: "input->display#show" } %>
+                <%= form.label :application_paused, 'No', value: 'false', class: 'ms-3 me-2' %>
+                <%= form.radio_button :application_paused, 
+                                      false, 
+                                      data: { action: "input->display#hide" } %>
+              </div>
+
+              <div data-display-target='additional' class="d-flex d-none">
+                <%= form.label :pause_reason, 'Why?', class: 'me-2' %>
+                <%= form.select(:pause_reason, 
+                                Dog.app_pause_reasons, 
+                                { selected: @pause_reason }, 
+                                { class: "form-control"}) %>
+              </div>
+            </div>
+            <%= form.submit 'Save', class: 'btn btn-outline-dark mb-3 mt-4' %>
+          <% end %>
         </div>
       </div> <!--col-->
     </div> <!--row-->
