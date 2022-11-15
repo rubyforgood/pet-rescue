@@ -95,7 +95,8 @@
                   <%= image_tag image, class: 'uploaded-image rounded mt-2 mb-2' %>
                   <%= link_to image_tag('delete.png', height: '20'), 
                               purge_attachment_path(image), 
-                              data: { turbo_method: "delete" },
+                              data: { turbo: false },
+                              method: 'delete',
                               class: 'small text-decoration-none text-danger' %>
                 </div>
               <% end %>
