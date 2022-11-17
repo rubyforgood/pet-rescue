@@ -48,7 +48,7 @@ class AdopterApplicationsController < ApplicationController
   end
 
   def check_dog_app_status
-    dog = Dog.find(params[:dog_id])
+    dog = Dog.find(params[:application][:dog_id])
 
     return if dog.application_paused == false
 
