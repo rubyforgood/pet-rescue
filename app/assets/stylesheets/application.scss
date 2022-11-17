@@ -318,6 +318,27 @@
     object-fit: cover;
   }
 
+//dogs/edit delete image button
+  .delete-button {
+    text-decoration: none;
+    align-items: center;
+    background-color:rgba(240, 37, 37, 0.878);
+    border-radius: 100px;
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 25px;
+    max-width: 100px;
+    min-width: 0px;
+    padding: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
 //dog image on adopter applications
   .app-img {
     width: 150px;
