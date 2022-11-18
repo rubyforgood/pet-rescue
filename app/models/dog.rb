@@ -19,11 +19,11 @@ class Dog < ApplicationRecord
                      size: { between: 10.kilobyte..1.megabytes,
                              message: 'size must be between 100kb and 1Mb' }
 
+  enum :age_unit, [:months, :years]
+
   enum :pause_reason, [:not_paused,
                        :opening_soon,
                        :paused_until_further_notice]
-  
-  enum :age_unit, [:months, :years]
 
   # remove not_paused status as not necessary for staff
   def self.app_pause_reasons
@@ -32,8 +32,8 @@ class Dog < ApplicationRecord
     end.drop(1)
   end
 
-  def self.age_units
-    Dog.age_units.keys.map do |unit|
+  def self.list_age_units
+    Dog.age_units.keys.map do |unit| 
       [unit.titleize, unit]
     end
   end
