@@ -32,6 +32,12 @@ class Dog < ApplicationRecord
     end.drop(1)
   end
 
+  def self.age_units
+    Dog.age_units.keys.map do |unit|
+      [unit.titleize, unit]
+    end
+  end
+
   # active storage: using.attach for appending images per rails guide
   def append_images=(attachables)
     images.attach(attachables)
