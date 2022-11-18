@@ -6,6 +6,7 @@ class Dog < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
   validates :age, presence: true
+  validates :age_unit, presence: true
   validates :size, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
@@ -21,6 +22,8 @@ class Dog < ApplicationRecord
   enum :pause_reason, [:not_paused,
                        :opening_soon,
                        :paused_until_further_notice]
+  
+  enum :age_unit, [:months, :years]
 
   # remove not_paused status as not necessary for staff
   def self.app_pause_reasons
