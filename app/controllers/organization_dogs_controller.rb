@@ -63,6 +63,7 @@ class OrganizationDogsController < ApplicationController
     params.require(:dog).permit(:organization_id,
                                 :name,
                                 :age,
+                                :age_unit,
                                 :sex,
                                 :breed,
                                 :size,
