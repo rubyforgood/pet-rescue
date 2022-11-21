@@ -88,10 +88,13 @@
               <span>& </span>
               <%= link_to 'Privacy Policy', privacy_policy_path, 
                   target: '_blank', class: 'text-decoration-none' %>
+                  <span>& </span>
+              <%= link_to 'Cookie Policy', cookie_policy_path, 
+                  target: '_blank', class: 'text-decoration-none' %>
             </div>
 
             <div class="actions">
-              <%= f.submit "Create Account", class: 'btn btn-outline-dark mb-3', 
+              <%= f.submit "Create Account", class: 'btn btn-outline-dark mb-3 bigger', 
                            data: { turbo: false } %>
             </div>
           <% end %>
