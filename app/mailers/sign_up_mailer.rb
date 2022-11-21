@@ -4,18 +4,21 @@ class SignUpMailer < ApplicationMailer
 
   def adopter_welcome_email
     @user = params[:user]
-    @url = 'http://localhost:3000/'
+    @home_url = 'https://www.bajapetrescue.com'
+    @faq_url = 'https://www.bajapetrescue.com/faq'
     mail(to: @user.email, subject: 'Welcome to Baja Pet Rescue')
   end
 
   def staff_welcome_email
     @user = params[:user]
-    @url = 'http://localhost:3000/'
+    @home_url = 'https://www.bajapetrescue.com'
+    @faq_url = 'https://www.bajapetrescue.com/faq'
     mail(to: @user.email, subject: 'Welcome to Baja Pet Rescue')
   end
 
   def admin_notification_new_staff
-    @url = 'http://localhost:3000/'
+    @home_url = 'https://www.bajapetrescue.com'
+    @faq_url = 'https://www.bajapetrescue.com/faq'
     @user = params[:user]
     mail(to: 'wcrwater@gmail.com', subject: 'New Staff Account')
   end
