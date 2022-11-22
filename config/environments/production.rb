@@ -68,7 +68,7 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # devise mailer (e.g. reset password)
-  config.action_mailer.default_url_options = { host: 'https://obscure-island-90789.herokuapp.com/' }
+  config.action_mailer.default_url_options = { host: 'https://www.bajapetrescue.com/' }
   config.action_mailer.default_options = {from: 'bajapetrescue@gmail.com'}
 
   # Ignore bad email addresses and do not raise email delivery errors.
