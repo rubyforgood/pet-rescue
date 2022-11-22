@@ -7,6 +7,6 @@ class ContactsMailer < ApplicationMailer
     @email = params[:email]
     @message = params[:message]
     @url = 'https://www.bajapetrescue.com'
-    mail(to: 'bajapetrescue@gmail.com', subject: 'New Message via Website')
+    mail(to: 'bajapetrescue+contact@gmail.com', subject: 'New Message via Website')
   end
 end
