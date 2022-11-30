@@ -3,5 +3,8 @@
 adopter_account_one:
   user: user_one
 
+adopter_account_two:
+  user: user_four
+
 # two:
 #   user: two
