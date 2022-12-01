@@ -77,11 +77,11 @@
                   id="dropdown04" data-bs-toggle="dropdown" aria-expanded="false">
                   Dashboard
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdown04">
+                <ul class="dropdown-menu" aria-labelledby="dropdown05">
                   <% if current_user.adopter_account && 
                         current_user.adopter_account.adopter_profile.nil? %>
                     <li>
-                      <%= link_to "Adopter Profile", new_profile_path, 
+                      <%= link_to "My Profile", new_profile_path, 
                           class: 'dropdown-item bigger' %>
                     </li>
                   <% elsif current_user.adopter_account %>
