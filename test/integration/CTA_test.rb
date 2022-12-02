@@ -1,6 +1,6 @@
 require "test_helper"
 
-class NavbarTest < ActionDispatch::IntegrationTest
+class CTATest < ActionDispatch::IntegrationTest
 
   test "homepage CTA section above footer exists when unauthenticated" do
     get '/'
