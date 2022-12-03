@@ -103,7 +103,7 @@
             </ul>
           </div>
 
-          <div class='text-center mt-1'>
+          <div class='text-center d-flex flex-column align-items-center mt-1'>
             <% unless user_signed_in? && current_user.staff_account %>
               <% if user_signed_in? %>
                 <% if current_user.adopter_account && 
@@ -115,6 +115,12 @@
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2">Application submitted</h4>
                       <%= image_tag('green_check.png', height: '21') %>
+                    </div>
+                  <% elsif @dog.application_paused == true %>
+                    <div class='d-flex align-items-center mt-3'>
+                      <h3 class="me-2 text-danger">
+                        Applications <%= @dog.pause_reason.titleize %>
+                      </h3>
                     </div>
                   <% else %>   
                     <h4 class="mb-4 mt-3">In love with this pooch?</h4>

@@ -41,6 +41,56 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
     assert_select 'form', count: 1
   end
 
+  test "if dog status is paused and reason is opening soon this is displayed" do
+    sign_in users(:user_two)
+
+    put "/dogs/#{@dog_id}",
+      params: { dog:
+      {
+        organization_id: "#{organizations(:organization_one).id}",
+        name: 'TestDog',
+        age: '7',
+        sex: 'Female',
+        breed: 'mix',
+        size: 'Medium (22-57 lb)',
+        description: 'A lovely little pooch this one.',
+        append_images: [''],
+        application_paused: true,
+        pause_reason: 'opening_soon'
+      }
+    }
+
+    logout
+    sign_in users(:user_one)
+    get "/adoptable_dogs/#{@dog_id}"
+    assert_select "h3", "Applications Opening Soon"  
+  end
+
+  test "if dog status is paused and reason is paused until further notice this is displayed" do
+    sign_in users(:user_two)
+
+    put "/dogs/#{@dog_id}",
+      params: { dog:
+      {
+        organization_id: "#{organizations(:organization_one).id}",
+        name: 'TestDog',
+        age: '7',
+        sex: 'Female',
+        breed: 'mix',
+        size: 'Medium (22-57 lb)',
+        description: 'A lovely little pooch this one.',
+        append_images: [''],
+        application_paused: true,
+        pause_reason: 'paused_until_further_notice'
+      }
+    }
+
+    logout
+    sign_in users(:user_one)
+    get "/adoptable_dogs/#{@dog_id}"
+    assert_select "h3", "Applications Paused Until Further Notice"  
+  end
+
   # https://stackoverflow.com/questions/7098499/how-to-use-assert-select-to-test-for-presence-of-a-given-link
   # test "adopter with a profile sees button to apply to adopt" do
   #   sign_in users(:user_four)

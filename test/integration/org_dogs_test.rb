@@ -2,6 +2,8 @@ require "test_helper"
 
 class OrgDogsTest < ActionDispatch::IntegrationTest
 
+  dog_id = Dog.where(name: 'Deleted')[0].id
+
   test "adopter user cannot access org dogs index" do
     sign_in users(:user_one)
     get "/dogs/new"
@@ -77,8 +79,6 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_select "h1", "Our dogs"
   end
 
-  dog_id = Dog.where(name: 'Deleted')[0].id
-
   test "verified staff can edit a dog post" do 
     sign_in users(:user_two)
 
@@ -133,4 +133,6 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select "h1", "Our dogs"
   end
+
+  # add tests to pause applications
 end
