@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UserTest < ActionDispatch::IntegrationTest
+class UserAccountTest < ActionDispatch::IntegrationTest
 
   test "Adopter user can sign up with an associated adopter account" do
     post "/users",
