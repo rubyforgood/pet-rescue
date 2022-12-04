@@ -17,7 +17,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "authenticated adopter without profile does not see My Applications link" do
+  test "authenticated adopter without profile does not see Applications link" do
     sign_in users(:user_four)
     get '/'
     assert_select 'a', 'Dashboard'
@@ -26,6 +26,14 @@ class NavbarTest < ActionDispatch::IntegrationTest
     assert_select 'a', { count: 0, text: 'My Applications' }
     assert_select 'a', { count: 0, text: 'Our Dogs' }
     assert_select 'a', { count: 0, text: 'Applications' }
+  end
+
+  test "authenticated adopter without profile is directed to new profile by My Profile link" do
+    sign_in users(:user_four)
+    get '/'
+    assert_select 'a', 'Dashboard'
+    assert_select 'a', 'Account Settings'
+    assert_select 'a[href=?]', new_profile_path, { text: 'My Profile' }
   end
 
   test "authenticated adopter with profile sees My Applications link" do
