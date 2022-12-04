@@ -6,6 +6,13 @@ organization_one:
   country: testistan
   zipcode: t35t
 
+# use this organization to test staff sign up, don't save any dogs under it
+organization_two:
+  name: for_staff_sign_up
+  city: testville
+  country: testistan
+  zipcode: t35t
+
 # two:
 #   name: MyString
 #   city: MyString

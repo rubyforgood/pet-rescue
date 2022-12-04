@@ -71,19 +71,18 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
 
     put "/dogs/#{@dog_id}",
       params: { dog:
-      {
-        organization_id: "#{organizations(:organization_one).id}",
-        name: 'TestDog',
-        age: '7',
-        sex: 'Female',
-        breed: 'mix',
-        size: 'Medium (22-57 lb)',
-        description: 'A lovely little pooch this one.',
-        append_images: [''],
-        application_paused: true,
-        pause_reason: 'paused_until_further_notice'
-      }
-    }
+        {
+          organization_id: "#{organizations(:organization_one).id}",
+          name: 'TestDog',
+          age: '7',
+          sex: 'Female',
+          breed: 'mix',
+          size: 'Medium (22-57 lb)',
+          description: 'A lovely little pooch this one.',
+          append_images: [''],
+          application_paused: true,
+          pause_reason: 'paused_until_further_notice'
+        } }
 
     logout
     sign_in users(:user_one)
