@@ -64,16 +64,16 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     post '/users',
     params: { user: 
       {
-        adopter_account_attributes: { 
-          user_id: '' 
-          }, 
+        adopter_account_attributes: {
+          user_id: ''
+          },
         email: '',
         first_name: '',
         last_name: '',
         password: '',
         password_confirmation: '',
         tos_agreement: '0'
-      }, 
+      },
       commit: 'Create Account'
     }
 

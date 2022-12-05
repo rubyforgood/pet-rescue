@@ -63,4 +63,30 @@ class AdopterProfileTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert', "Please provide an annual cost estimate"
   end
 
+  test "Phone number with less than 8 digits is invalid" do
+    post '/adopter_profile',
+    params: { adopter_profile: 
+      {
+        adopter_account_id: adopter_account_id,
+        phone_number: '1234567'
+      },
+      commit: 'Save profile'
+    }
+
+    assert_select 'div.alert', 'Phone number is invalid'
+  end
+
+  test "Phone number with more than 10 digits is invalid" do
+    post '/adopter_profile',
+    params: { adopter_profile: 
+      {
+        adopter_account_id: adopter_account_id,
+        phone_number: '123456789101112'
+      },
+      commit: 'Save profile'
+    }
+
+    assert_select 'div.alert', 'Phone number is invalid'
+  end
+
 end
