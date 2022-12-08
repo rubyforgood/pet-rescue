@@ -54,10 +54,12 @@
 
     <div class="form-group">
       <%= form.label :province_state, 'Province/State', class: 'bigger' %>
-      <%= form.select :province_state, 
+      <%# <%= form.select :province_state, 
                       grouped_options_for_select(provinces_states), 
                       { prompt: "Please select" },
                       class: 'form-control bigger' %>
+      <%= form.text_field :province_state,
+                          class: 'form-control' %>
 
       <% profile.custom_messages(:province_state).each do |error| %>
         <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>

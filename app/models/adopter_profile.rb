@@ -7,7 +7,8 @@ class AdopterProfile < ApplicationRecord
 
   validates :contact_method, presence: true
   validates :country, presence: true
-  validates :province_state, presence: { message: 'Please select a province or state' }
+  validates :province_state, presence: { message: 'Please enter a province or state' },
+                             length: { maximum: 50, message: '50 characters maximum' }
   validates :city_town, presence: { message: 'Please enter your city or town' },
                         length: { maximum: 50, message: '50 characters maximum' }
   validates :ideal_dog, presence: { message: 'Please tell us about your ideal dog' },
