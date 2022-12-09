@@ -59,7 +59,7 @@ class AdopterProfile < ApplicationRecord
                                            message: 'Select one'
   validates :visit_dates, presence: { message: 'Please fill this field' },
                           length: { maximum: 50, message: '50 characters maximum' },
-                          if: :surrendered_pet?
+                          if: :visiting_laventana?
   validates :referral_source, presence: { message: 'Please tell us how you heard about us' },
                               length: { maximum: 50, message: '50 characters maximum' }
 

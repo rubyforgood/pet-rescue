@@ -79,6 +79,9 @@ class AdopterProfilesController < ApplicationController
                                             :checked_shelter,
                                             :surrendered_pet,
                                             :describe_surrender,
-                                            :annual_cost)
+                                            :annual_cost,
+                                            :visit_laventana,
+                                            :visit_dates,
+                                            :referral_source)
   end
 end

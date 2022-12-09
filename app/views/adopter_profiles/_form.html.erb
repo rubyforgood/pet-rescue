@@ -507,6 +507,51 @@
       <% end %>
     </div>
 
+    <div class="form-group">
+      <div data-controller='display'>
+        <p class='bigger'>
+          Will you or a friend be in La Ventana in person to pick up the dog?
+        </p>
+
+        <div data-display-target='checked'>
+          <%= form.label :visit_laventana, 'Yes', value: 'true', class: 'bigger' %>
+          <%= form.radio_button :visit_laventana, 
+                                true, 
+                                data: { action: "input->display#show" } %>
+          <%= form.label :visit_laventana, 'No', value: 'false', class: 'ms-3 bigger' %>
+          <%= form.radio_button :visit_laventana, 
+                                false, 
+                                data: { action: "input->display#hide" } %>
+        </div>
+
+        <% profile.custom_messages(:visit_laventana).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+      
+        <div data-display-target='additional' class='d-none' data-controller='counter'>
+          <%= form.label :visit_dates, 
+              'What dates will you be in La Ventana?', class: 'bigger' %>
+          <%= form.text_field :visit_dates, class: 'form-control' %>
+
+          <div data-counter-target='output' class='small d-flex flex-row-reverse'></div>
+        </div>
+
+        <% profile.custom_messages(:visit_dates).each do |error| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :referral_source, 
+          'How did you find out about Baja Pet Rescue?', class: 'bigger' %>
+      <%= form.text_field :referral_source, class: 'form-control' %>
+
+      <% profile.custom_messages(:referral_source).each do |error| %>
+        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+      <% end %>
+    </div>
+
   </div> <!--card-->
 
   <div>
