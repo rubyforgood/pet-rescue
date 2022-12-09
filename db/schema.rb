@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_18_032604) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_09_213122) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_18_032604) do
     t.boolean "surrendered_pet"
     t.text "describe_surrender"
     t.string "annual_cost"
+    t.boolean "visit_laventana"
+    t.text "visit_dates"
+    t.text "referral_source"
     t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
   end
 
