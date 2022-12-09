@@ -95,7 +95,9 @@ profile_one = AdopterProfile.create!(adopter_account_id: 1,
                                  checked_shelter: true,
                                  surrendered_pet: true,
                                  describe_surrender: 'I had to surrender a cat when I was 19 because of university',
-                                 annual_cost: '$2,000')
+                                 annual_cost: '$2,000',
+                                 visit_laventana: false,
+                                 referral_source: 'my friends friend')
 # profile_one.save
 
 profile_two = AdopterProfile.create!(adopter_account_id: 2,
@@ -133,5 +135,8 @@ profile_two = AdopterProfile.create!(adopter_account_id: 2,
                                  checked_shelter: true,
                                  surrendered_pet: true,
                                  describe_surrender: 'I had to surrender a cat when I was 19 because of university',
-                                 annual_cost: '$2,000')
+                                 annual_cost: '$2,000',
+                                 visit_laventana: true,
+                                 visit_dates: 'April 2 to May 7 2023',
+                                 referral_source: 'my friends friend')
 # profile_two.save

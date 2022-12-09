@@ -2,6 +2,7 @@ require "test_helper"
 
 class NavbarTest < ActionDispatch::IntegrationTest
 
+  debugger
   test "unauthenticated users see create account and log in links and no dashboard" do
     get '/'
     assert_select 'a', 'Create Account'
