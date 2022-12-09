@@ -261,6 +261,29 @@
               <%= @adopter_profile.annual_cost %>
             </p>
           </div>
+            <div class="row mb-3 bigger">
+            <p class="col-lg-4"><strong>Will you or a friend be in La Ventana in person to pick up the dog?</strong></p>
+            <% if @adopter_profile.visit_laventana == true %>
+            <p class="col-lg-6 bigger text-danger">Yes</p>
+            <% else %>
+            <p class="col-lg-6 text-muted">No</p>
+            <% end %>
+          </div>
+          <% unless @adopter_profile.visit_laventana == false %>
+          <div class="row mb-3 bigger">
+            <p class="col-lg-4"><strong>What dates will you be in La Ventana?</strong></p>
+            <p class="col-lg-6 text-muted">
+              <%= @adopter_profile.visit_dates %>
+            </p>
+          </div>
+          <% end %>
+          <div class="row mb-4 bigger">
+            <p class="col-lg-4"><strong>How did you find out about Baja Pet Rescue?</strong></p>
+            <p class="col-lg-6 text-muted">
+              <%= @adopter_profile.referral_source %>
+            </p>
+          </div>
+
         </div>
       </div> <!--col-->
     </div> <!--row-->
