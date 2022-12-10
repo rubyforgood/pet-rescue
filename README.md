@@ -91,3 +91,12 @@ To set this application up locally:
 * `rails db:seed` to load seed data
 * `rails s` to run the local server
 * 'localhost:3000' in browser to access the application
+
+A user account is associated with either an adopter account or staff account. 
+Staff accounts by default are `verified: false` and belong to `organization_id: 1`
+Therefore, you will need to do the following things in `rails console` before you can access the full funcationality of staff. 
+1) Create an organization `Organization.new(name: 'Placeholder')`
+2) Create a staff account via the app UI
+3) Find that user account by finding the `user_id` e.g., `User.find_by(email: 'enter email here')`
+4) Find that staff account using the `user_id` e.g., `a = StaffAccount.find_by(user_id: '#')`
+5) Then set the staff account verified to true `a.verified = true`, `a.save`
