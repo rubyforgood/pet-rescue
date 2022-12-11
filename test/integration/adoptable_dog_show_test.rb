@@ -89,15 +89,4 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
     get "/adoptable_dogs/#{@dog_id}"
     assert_select "h3", "Applications Paused Until Further Notice"  
   end
-
-  # https://stackoverflow.com/questions/7098499/how-to-use-assert-select-to-test-for-presence-of-a-given-link
-  # test "adopter with a profile sees button to apply to adopt" do
-  #   sign_in users(:user_four)
-  #   adopter_account_id = users(:user_four).adopter_account.id
-  #   get "/adoptable_dogs/#{@dog_id}"
-  #   assert_response :success
-  #   assert_select 'form[action=?]', create_my_application_path(application: { 
-  #     dog_id: @dog_id, 
-  #     adopter_account_id: adopter_account_id})
-  # end
 end

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AdopterProfileTest < ActionDispatch::IntegrationTest
+class AdopterProfileFormTest < ActionDispatch::IntegrationTest
 
   setup do
     sign_in users(:user_four)
@@ -8,7 +8,7 @@ class AdopterProfileTest < ActionDispatch::IntegrationTest
 
   adopter_account_id = User.find_by(email: 'test@test123.com').adopter_account.id
 
-  test "All 24 errors and their custom messages appear on blank form submission" do
+  test "All errors and their custom messages appear on blank form submission" do
     post '/adopter_profile',
     params: { adopter_profile: 
       {
@@ -56,7 +56,7 @@ class AdopterProfileTest < ActionDispatch::IntegrationTest
     end
     assert_select 'div.alert', 'Phone number is invalid'
     assert_select 'div.alert', "Contact method can't be blank"
-    assert_select 'div.alert', "Country can't be blank"
+    assert_select 'div.alert', "Please enter a country"
     assert_select 'div.alert', "Please enter a province or state"
     assert_select 'div.alert', "Please enter your city or town"
     assert_select 'div.alert', "Please tell us about your ideal dog"
