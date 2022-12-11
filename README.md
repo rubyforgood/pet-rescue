@@ -94,8 +94,8 @@ To set this application up locally:
 
 A user account is associated with either an adopter account or staff account. 
 Staff accounts by default are `verified: false` and belong to `organization_id: 1`
-Therefore, you will need to do the following things in `rails console` before you can access the full funcationality of staff. 
-1) Create an organization `Organization.new(name: 'Placeholder')`
+Therefore, you will need to do the following things in `rails console` before you can access the full functionality of staff. 
+1) Create an organization `a = Organization.new(name: 'Placeholder')` `a.save`
 2) Create a staff account via the app UI
 3) Find that user account by finding the `user_id` e.g., `User.find_by(email: 'enter email here')`
 4) Find that staff account using the `user_id` e.g., `a = StaffAccount.find_by(user_id: '#')`
