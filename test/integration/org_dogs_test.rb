@@ -124,7 +124,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   #   assert dog.images.attached?
   # end
 
-  test "verified staff can delete dog post" do 
+  test "verified staff can delete dog post" do
     sign_in users(:user_two)
 
     delete "/dogs/#{dog_id}"
@@ -135,4 +135,5 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   # add tests to pause applications
+  # add test to check filters works for adoption status and name
 end

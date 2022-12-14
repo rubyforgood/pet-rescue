@@ -15,7 +15,7 @@ The dog rescue organization has limited time and resources. They have been using
 * adopters have to duplicate efforts each time they apply to adopt a dog
 * adopters have no easy way to check the status of their application
 * adopters have to use a patchwork process comprised of different apps
-* adopters have to be registered on a platform and know how to navigate it (think non-technical boomer trying to learn Instagram)
+* adopters have to be registered on a social media platform and know how to navigate it (think non-technical boomer trying to learn Instagram)
 
 
 **The Solution**
@@ -24,7 +24,7 @@ I met with the stakeholder to learn about their challenges and needs and then co
 
 The solution had to be simple, easy to maintain and manage, and provide a more cohesive flow and experience for both staff and adopters alike. It had to make use of out of the box technology with a low monthly overhead.
 
-I decided that a ruby on rails application would be a suitable technology because it enables rapid development and its REST framework will provide all of the required functionality. I chose to use a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the staging and production applications will be deployed on the Hobby Tier. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail. 
+I decided that a ruby on rails application would be a suitable technology because it enables rapid development and its REST framework will provide all of the required functionality. I chose to use a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the staging and production applications will be deployed on the Hobby Tier. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail, and Amazon S3 for image hosting.
 
 
 **Features**
@@ -32,19 +32,21 @@ I decided that a ruby on rails application would be a suitable technology becaus
 The application has the following features:
 * Authentication for two user types - adopters and organization staff
 * Organization staff can perform CRUD actions on dogs on behalf of an organization
-* Active storage to allow image uploads and a bootstrap carousel for display
+* Active storage for image uploads
+* Amazon S3 for uploaded image hosting
 * Adopters can create, read and update their profile, which contains vetting information
-* Adopters can create adoption applications for a dog and view their application history/status
-* Organization staff can review application requests for a dog, set a status, and keep ongoing notes
+* Adopters can create adoption applications for a dog and view their application history/status and withdraw from an application
+* Organization staff can review application requests for a dog, set a status, keep ongoing notes, and revert a withdrawn application to active
 * Organization staff can create adoptions linking a dog with an adopter user
-* Organization staff can filter their applications and dogs to make searching easier
+* Organization staff can filter their dogs by name or application status to make searching easier
 * Mailer sends an email to organization staff for any new adoption requests on their dogs
 * Mailer sends admin an email when a new staff registration occurs
 * Mailer sends new adopters a welcome email
+* Mailer handles the contact form on the website
 * Authorizations to control the actions of users i.e. only adopters can apply to adopt dogs and only verified staff can carry out staff actions.
 * Forms make use of Stimulus Javascript framework to provide features like conditional fields and character counters.
-
-The whole site is styled using Bootstrap 5.
+* Styling is achieved using Bootstrap 5
+* Model associations and tables allow for scalability such that multiple organizations could operate under this application, each with control over their own dogs.
 
 **Gems and Installs**
 
@@ -61,19 +63,16 @@ The whole site is styled using Bootstrap 5.
 
 **Timelines**
 
-The dog adoption process is seasonal and busy times usually run from November to June. As such, we aim to have the MVP running in production by November 1, 2022.
+The application went live in late November, 2022, and has received good feedback from all user types.
 
 
 **Contributions**
 
-I am currently working with one front-end developer who has done amazing work to create wireframing and prototyping for the application. They are also helping with styling the front-end. 
+I worked with one front-end developer who did amazing work to create wireframing and prototyping for the application. They also helped with styling the front-end. 
 
-My desire is to take on more contributors to refactor code and add additional features after the MVP is up and running in November, 2022. If you are a rails dev who would like to contribute to this project, please let me know.
+I am also accepting contributions from other developers, and currently working with a fellow student of The Odin Project. 
 
-
-**Unit Testing**
-
-I am currently working on writing unit tests for system testing. Admittedly, this application was not built with test driven development, and tests are being written after the fact. This is something I would change if I was to do it again, as implementing testing from the start is clearly beneficial and reinforces good code practices.
+See the Issues tab for more information on the work that needs to be done!
 
 
 **Local Setup**
