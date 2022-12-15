@@ -3,7 +3,7 @@
 I am a self-taught web developer and this is my first production Ruby on Rails application with real users. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make the process of linking adopters with dogs easier.
 
 
-**The Problem**
+### The Problem
 
 The dog rescue organization has limited time and resources. They have been using Facebook and Instagram to post new dogs and get interest from adopters. This has been working, but is not ideal because:
 * staff are forced to use the platform's layout for dog posts
@@ -18,7 +18,7 @@ The dog rescue organization has limited time and resources. They have been using
 * adopters have to be registered on a social media platform and know how to navigate it (think non-technical boomer trying to learn Instagram)
 
 
-**The Solution**
+### The Solution
 
 I met with the stakeholder to learn about their challenges and needs and then conceptualized a solution to address the above challenges. This was a great exercise in turning business needs into application logic. 
 
@@ -27,7 +27,7 @@ The solution had to be simple, easy to maintain and manage, and provide a more c
 I decided that a ruby on rails application would be a suitable technology because it enables rapid development and its REST framework will provide all of the required functionality. I chose to use a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the staging and production applications will be deployed on the Hobby Tier. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail, and Amazon S3 for image hosting.
 
 
-**Features**
+#### Features
 
 The application has the following features:
 * Authentication for two user types - adopters and organization staff
@@ -61,18 +61,14 @@ The application has the following features:
 * Active storage
 
 
-**Timelines**
 
-The application went live in late November, 2022, and has received good feedback from all user types.
-
-
-**Contributions**
+### Contributions
 
 This project has benefited from contributions on front end development so far, and would benefit from additional contributions. 
 
 Picking up an issue:
-* Check the Issues tab for a list of work that needs completing. 
-* If you are interested in an issue and it is unassigned, leave a comment on the issue to claim it, then I will assign it to you. 
+* check the Issues tab for a list of work that needs completing. 
+* if you are interested in an issue and it is unassigned, leave a comment on the issue to claim it, then I will assign it to you. 
 
 Before you make a pull request: 
 * make sure the changes you have made are specific to the scope of work in the issue.
@@ -83,7 +79,7 @@ Before you make a pull request:
 A pull request will be reviewed and there may be feedback or questions related to changes, so please be perpared to follow up on those. A pull request will be merged once it looks good, and passes the test suite in the Github Actions pipeline.
 
 
-**Local Setup**
+### Local Setup
 
 To set this application up locally:
 * `rails -v` to ensure you have Rails 7.0.3 installed
@@ -98,7 +94,7 @@ To set this application up locally:
 * `rails db:migrate` to run all migrations
 * `rails db:seed` to load seed data
 * `rails s` to run the local server
-* 'localhost:3000' in browser to access the application
+* `localhost:3000` in web browser to access the application
 
 A user account is associated with either an adopter account or staff account. 
 Staff accounts by default are `verified: false` and belong to `organization_id: 1`
