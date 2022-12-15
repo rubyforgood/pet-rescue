@@ -68,11 +68,19 @@ The application went live in late November, 2022, and has received good feedback
 
 **Contributions**
 
-I worked with one front-end developer who did amazing work to create wireframing and prototyping for the application. They also helped with styling the front-end. 
+This project has benefited from contributions on front end development so far, and would benefit from additional contributions. 
 
-I am also accepting contributions from other developers, and currently working with a fellow student of The Odin Project. 
+Picking up an issue:
+* Check the Issues tab for a list of work that needs completing. 
+* If you are interested in an issue and it is unassigned, leave a comment on the issue to claim it, then I will assign it to you. 
 
-See the Issues tab for more information on the work that needs to be done!
+Before you make a pull request: 
+* make sure the changes you have made are specific to the scope of work in the issue.
+* make sure the acceptance criteria stated in the issue are met. 
+* only commit relevant files with your intended changes. Do not commit any files that may have changed e.g., if you had to change the gemfile to run the application locally.
+* make sure the test suite passes `rails test`
+
+A pull request will be reviewed and there may be feedback or questions related to changes, so please be perpared to follow up on those. A pull request will be merged once it looks good, and passes the test suite in the Github Actions pipeline.
 
 
 **Local Setup**
@@ -81,6 +89,7 @@ To set this application up locally:
 * `rails -v` to ensure you have Rails 7.0.3 installed
 * `ruby -v` to ensure you have Ruby version 3.0.3 or later installed
 * `psql --version` to ensure you have PostgreSQL 12.12 installed (make sure you have a user and password)
+* If you need more information on setting up PostgreSQL with rails, see here: https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql
 * Fork the repository and copy SSH key
 * `git clone <'SSH Key'>` to download application locally
 * `bundle install` to install gems (you may have to change gem 'sassc-rails' to gem 'sassc', "~> 2.1.0")
