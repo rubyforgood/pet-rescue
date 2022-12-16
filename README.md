@@ -76,7 +76,7 @@ Before you make a pull request:
 * only commit relevant files with your intended changes. Do not commit any files that may have changed e.g., if you had to change the gemfile to run the application locally.
 * make sure the test suite passes `rails test`
 
-A pull request will be reviewed and there may be feedback or questions related to changes, so please be perpared to follow up on those. A pull request will be merged once it looks good, and passes the test suite in the Github Actions pipeline.
+A pull request will be reviewed and there may be feedback or questions related to changes, so please be prepared to follow up on those. A pull request will be merged once it looks good, and passes the test suite in the Github Actions pipeline.
 
 
 ### Local Setup

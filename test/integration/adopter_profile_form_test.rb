@@ -2,13 +2,10 @@ require "test_helper"
 
 class AdopterProfileFormTest < ActionDispatch::IntegrationTest
 
-  setup do
-    sign_in users(:user_four)
-  end
-
   adopter_account_id = User.find_by(email: 'test@test123.com').adopter_account.id
 
   test "All errors and their custom messages appear on blank form submission" do
+    sign_in users(:user_four)
     post '/adopter_profile',
     params: { adopter_profile: 
       {
@@ -75,7 +72,8 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
   end
 
   test "Phone number with less than 8 digits is invalid" do
-    post '/adopter_profile',
+    sign_in users(:user_one)
+    put '/adopter_profile',
     params: { adopter_profile: 
       {
         adopter_account_id: adopter_account_id,
@@ -88,7 +86,8 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
   end
 
   test "Phone number with more than 10 digits is invalid" do
-    post '/adopter_profile',
+    sign_in users(:user_one)
+    put '/adopter_profile',
     params: { adopter_profile: 
       {
         adopter_account_id: adopter_account_id,
@@ -99,5 +98,4 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
 
     assert_select 'div.alert', 'Phone number is invalid'
   end
-
 end
