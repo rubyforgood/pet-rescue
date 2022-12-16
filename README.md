@@ -15,7 +15,7 @@ The dog rescue organization has limited time and resources. They have been using
 * adopters have to duplicate efforts each time they apply to adopt a dog
 * adopters have no easy way to check the status of their application
 * adopters have to use a patchwork process comprised of different apps
-* adopters have to be registered on a social media platform and know how to navigate it (think non-technical boomer trying to learn Instagram)
+* adopters have to be registered on a social media platform and know how to navigate it
 
 
 ### The Solution
