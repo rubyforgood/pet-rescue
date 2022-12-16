@@ -20,7 +20,7 @@ The dog rescue organization has limited time and resources. They have been using
 
 ### The Solution
 
-I met with the stakeholder to learn about their challenges and needs and then conceptualized a solution to address the above challenges. This was a great exercise in turning business needs into application logic. 
+I met with the stakeholders to learn about their challenges and needs and then conceptualized a solution to address the above challenges. This was a great exercise in turning business needs into application logic. 
 
 The solution had to be simple, easy to maintain and manage, and provide a more cohesive flow and experience for both staff and adopters alike. It had to make use of out of the box technology with a low monthly overhead.
 
