@@ -2,14 +2,16 @@ require "test_helper"
 
 class AdopterProfileFormTest < ActionDispatch::IntegrationTest
 
-  adopter_account_id = User.find_by(email: 'test@test123.com').adopter_account.id
+  setup do
+    @adopter_account_id = users(:user_four).adopter_account.id
+  end
 
   test "All errors and their custom messages appear on blank form submission" do
     sign_in users(:user_four)
     post '/adopter_profile',
     params: { adopter_profile: 
       {
-        adopter_account_id: adopter_account_id,
+        adopter_account_id: @adopter_account_id,
         phone_number: '',
         contact_method: '',
         country: '',
@@ -76,7 +78,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
     put '/adopter_profile',
     params: { adopter_profile: 
       {
-        adopter_account_id: adopter_account_id,
+        adopter_account_id: @adopter_account_id,
         phone_number: '1234567'
       },
       commit: 'Save profile'
@@ -90,7 +92,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
     put '/adopter_profile',
     params: { adopter_profile: 
       {
-        adopter_account_id: adopter_account_id,
+        adopter_account_id: @adopter_account_id,
         phone_number: '123456789101112'
       },
       commit: 'Save profile'
