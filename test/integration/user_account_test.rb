@@ -76,6 +76,30 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert', "Last name can't be blank"
   end
 
+  test 'user cannot update their profile with invalid password and should see error message' do
+    sign_in users(:user_four)
+
+    put '/users',
+    params: { user:
+              {
+                email: 'test@test123.com',
+                first_name: 'Billy',
+                last_name: 'Noprofile',
+                password: '',
+                password_confirmation: '',
+                current_password: 'badpass'
+              },
+      commit: 'Update'
+    }
+
+    assert_response :success
+    assert_select 'div.alert', count: 1
+    assert_select 'div.alert', 'Current password is invalid'
+
+    users(:user_four).reload
+    assert users(:user_four).valid_password?('password'), 'Password updated without proper authorization'
+  end
+
   test "user can delete their account" do
     sign_in users(:user_four)
     assert(User.find_by(email: 'test@test123.com'))
