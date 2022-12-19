@@ -15,12 +15,12 @@ The dog rescue organization has limited time and resources. They have been using
 * adopters have to duplicate efforts each time they apply to adopt a dog
 * adopters have no easy way to check the status of their application
 * adopters have to use a patchwork process comprised of different apps
-* adopters have to be registered on a social media platform and know how to navigate it (think non-technical boomer trying to learn Instagram)
+* adopters have to be registered on a social media platform and know how to navigate it
 
 
 ### The Solution
 
-I met with the stakeholder to learn about their challenges and needs and then conceptualized a solution to address the above challenges. This was a great exercise in turning business needs into application logic. 
+I met with the stakeholders to learn about their challenges and needs and then conceptualized a solution to address the above challenges. This was a great exercise in turning business needs into application logic. 
 
 The solution had to be simple, easy to maintain and manage, and provide a more cohesive flow and experience for both staff and adopters alike. It had to make use of out of the box technology with a low monthly overhead.
 
