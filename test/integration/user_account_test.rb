@@ -100,6 +100,29 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     assert users(:user_four).valid_password?('password'), 'Password updated without proper authorization'
   end
 
+  test 'user can update their password and see success flash' do
+    sign_in users(:user_four)
+
+    put '/users',
+    params: { user:
+              {
+                email: 'test@test123.com',
+                first_name: 'Billy',
+                last_name: 'Noprofile',
+                password: 'newpassword',
+                password_confirmation: 'newpassword',
+                current_password: 'password'
+              },
+      commit: 'Update'
+    }
+
+    assert_response :redirect
+    assert_equal 'Your account has been updated successfully.', flash[:notice]
+
+    users(:user_four).reload
+    assert users(:user_four).valid_password?('newpassword'), 'Updated password is not valid'
+  end
+
   test "user can delete their account" do
     sign_in users(:user_four)
     assert(User.find_by(email: 'test@test123.com'))
