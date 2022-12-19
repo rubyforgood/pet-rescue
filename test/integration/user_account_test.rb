@@ -53,6 +53,29 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     assert(StaffAccount.find_by(organization_id: 1))
   end
 
+  test 'error messages should appear if edit profile form is submitted without data' do
+    sign_in users(:user_four)
+
+    put '/users',
+    params: { user:
+              {
+                email: '',
+                first_name: '',
+                last_name: '',
+                password: '',
+                password_confirmation: '',
+                current_password: 'password'
+              },
+      commit: 'Update'
+    }
+
+    assert_response :success
+    assert_select 'div.alert', count: 3
+    assert_select 'div.alert', "Email can't be blank"
+    assert_select 'div.alert', "First name can't be blank"
+    assert_select 'div.alert', "Last name can't be blank"
+  end
+
   test "user can delete their account" do
     sign_in users(:user_four)
     assert(User.find_by(email: 'test@test123.com'))
