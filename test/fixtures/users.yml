@@ -10,7 +10,7 @@ user_one:
   first_name: Ben
   last_name: Jo
   email: test@test.com
-  encrypted_password: password
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
 
 # verified staff
@@ -18,7 +18,7 @@ user_two:
   first_name: Staffy
   last_name: McStaffface
   email: testes@test.com
-  encrypted_password: password
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
 
 # unverified staff
@@ -26,7 +26,7 @@ user_three:
   first_name: unverified
   last_name: McStaffface
   email: testes@testes.com
-  encrypted_password: password
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
 
 # adopter without a profile
@@ -34,5 +34,5 @@ user_four:
   first_name: Billy
   last_name: Noprofile
   email: test@test123.com
-  encrypted_password: password
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
