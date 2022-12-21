@@ -18,8 +18,11 @@ class UserAccountTest < ActionDispatch::IntegrationTest
         },
         commit: 'Create Account' }
 
-    mail = ActionMailer::Base.deliveries
-    assert_equal mail[0].from[0], 'bajapetrescue@gmail.com', 'from email is incorrect'
+    mail = ActionMailer::Base.deliveries[0]
+    assert_equal mail.from.join, 'bajapetrescue@gmail.com', 'from email is incorrect'
+    assert_equal mail.to.join, 'foo@bar.baz', 'to email is incorrect'
+    assert_equal mail.subject, 'Welcome to Baja Pet Rescue', 'subject is incorrect'
+    ActionMailer::Base.deliveries = []
 
     assert_response :redirect
     follow_redirect!
@@ -50,8 +53,18 @@ class UserAccountTest < ActionDispatch::IntegrationTest
         },
         commit: 'Create Account' }
 
+    mail = ActionMailer::Base.deliveries
+    assert_equal mail[0].from.join, 'bajapetrescue@gmail.com', 'from email is incorrect'
+    assert_equal mail[0].to.join, 'abc@123.com', 'to email is incorrect'
+    assert_equal mail[0].subject, 'Welcome to Baja Pet Rescue', 'subject is incorrect'
+    assert_equal mail[1].from.join, 'bajapetrescue@gmail.com', 'from email is incorrect'
+    assert_equal mail[1].to.join, 'wcrwater@gmail.com', 'to email is incorrect'
+    assert_equal mail[1].subject, 'New Staff Account', 'subject is incorrect'
+    ActionMailer::Base.deliveries = []
+
     assert_response :redirect
     follow_redirect!
+
     assert_equal 'Welcome! You have signed up successfully.', flash[:notice]
     assert(User.find_by(first_name: 'Ima'))
     assert(StaffAccount.find_by(organization_id: 1))
