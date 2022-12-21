@@ -2,8 +2,9 @@ require "test_helper"
 
 class OrgDogsTest < ActionDispatch::IntegrationTest
 
-  dog_id = Dog.where(name: 'Deleted')[0].id
-
+  setup do
+    @dog_id = Dog.find_by(name: 'Deleted').id
+  end
   test "adopter user cannot access org dogs index" do
     sign_in users(:user_one)
     get "/dogs/new"
@@ -82,7 +83,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff can edit a dog post" do 
     sign_in users(:user_two)
 
-    patch "/dogs/#{dog_id}",
+    patch "/dogs/#{@dog_id}",
       params: { dog:
       {
         organization_id: "#{organizations(:organization_one).id}",
@@ -99,7 +100,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_equal 'Dog updated successfully.', flash[:notice]
-    assert_select "h1", "#{Dog.find(dog_id).name}"
+    assert_select "h1", "#{Dog.find(@dog_id).name}"
   end
 
   # need to figure out why this image is not becoming an attachment
@@ -127,7 +128,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff can delete dog post" do
     sign_in users(:user_two)
 
-    delete "/dogs/#{dog_id}"
+    delete "/dogs/#{@dog_id}"
 
     assert_response :redirect
     follow_redirect!
