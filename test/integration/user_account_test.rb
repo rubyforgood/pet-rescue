@@ -2,7 +2,7 @@ require "test_helper"
 
 class UserAccountTest < ActionDispatch::IntegrationTest
 
-  test "Adopter user can sign up with an associated adopter account and sees success flash" do
+  test "Adopter user can sign up with an associated adopter account and sees success flash and welcome mail is sent" do
     post "/users",
       params: { user:
         {
@@ -18,8 +18,15 @@ class UserAccountTest < ActionDispatch::IntegrationTest
         },
         commit: 'Create Account' }
 
+    mail = ActionMailer::Base.deliveries[0]
+    assert_equal mail.from.join, 'bajapetrescue@gmail.com', 'from email is incorrect'
+    assert_equal mail.to.join, 'foo@bar.baz', 'to email is incorrect'
+    assert_equal mail.subject, 'Welcome to Baja Pet Rescue', 'subject is incorrect'
+    ActionMailer::Base.deliveries = []
+
     assert_response :redirect
     follow_redirect!
+
     assert_equal 'Welcome! You have signed up successfully.', flash[:notice]
     assert(User.find_by(first_name: 'Foo'))
     assert_equal AdopterAccount.last.user_id, User.last.id
@@ -46,8 +53,18 @@ class UserAccountTest < ActionDispatch::IntegrationTest
         },
         commit: 'Create Account' }
 
+    mail = ActionMailer::Base.deliveries
+    assert_equal mail[0].from.join, 'bajapetrescue@gmail.com', 'from email is incorrect'
+    assert_equal mail[0].to.join, 'abc@123.com', 'to email is incorrect'
+    assert_equal mail[0].subject, 'Welcome to Baja Pet Rescue', 'subject is incorrect'
+    assert_equal mail[1].from.join, 'bajapetrescue@gmail.com', 'from email is incorrect'
+    assert_equal mail[1].to.join, 'wcrwater@gmail.com', 'to email is incorrect'
+    assert_equal mail[1].subject, 'New Staff Account', 'subject is incorrect'
+    ActionMailer::Base.deliveries = []
+
     assert_response :redirect
     follow_redirect!
+
     assert_equal 'Welcome! You have signed up successfully.', flash[:notice]
     assert(User.find_by(first_name: 'Ima'))
     assert(StaffAccount.find_by(organization_id: 1))
@@ -143,8 +160,8 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     assert_equal 'Your account has been updated successfully.', flash[:notice]
 
     users(:user_four).reload
-    assert_equal 'Etzio',  users(:user_four).first_name
-    assert_equal 'Auditore',  users(:user_four).last_name
+    assert_equal 'Etzio', users(:user_four).first_name
+    assert_equal 'Auditore', users(:user_four).last_name
   end
 
   test "user can delete their account" do

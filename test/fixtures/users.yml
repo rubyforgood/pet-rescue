@@ -36,3 +36,11 @@ user_four:
   email: test@test123.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
+
+# verified staff
+user_five:
+  first_name: Jimmy
+  last_name: Hendrix
+  email: purple@haze.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  tos_agreement: 1

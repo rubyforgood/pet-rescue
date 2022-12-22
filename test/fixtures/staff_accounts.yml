@@ -11,8 +11,13 @@ staff_account_one:
 
 staff_account_two:
   user: user_three
-  organization: organization_one
+  organization: organization_three
   verified: false
+
+staff_account_three:
+  user: user_five
+  organization: organization_one
+  verified: true
 
 # two: {}
 # column: value
