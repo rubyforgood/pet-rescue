@@ -53,6 +53,7 @@ class AdopterApplicationsController < ApplicationController
 
     return if dog.application_paused == false
 
-    redirect_to request.referrer, alert: 'Applications are paused for this dog'
+    redirect_to adoptable_dog_path(params[:application][:dog_id]),
+                alert: 'Applications are paused for this dog'
   end
 end
