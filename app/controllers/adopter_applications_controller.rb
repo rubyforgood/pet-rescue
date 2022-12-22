@@ -12,7 +12,8 @@ class AdopterApplicationsController < ApplicationController
     @application = AdopterApplication.new(application_params)
 
     if @application.save
-      redirect_to request.referrer, notice: 'Application submitted! Woof woof.'
+      redirect_to adoptable_dog_path(params[:application][:dog_id]),
+                  notice: 'Application submitted! Woof woof.'
 
       # mailer
       @dog = Dog.find(params[:application][:dog_id])
