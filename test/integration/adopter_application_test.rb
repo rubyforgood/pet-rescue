@@ -3,17 +3,18 @@ require "test_helper"
 class AdopterApplicationTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog_id = Dog.find_by(name: 'Deleted').id
+    @dog_id = Dog.find_by(name: 'Applications').id
+    @paused_dog_id = Dog.find_by(name: 'Paused').id
   end
 
-  test "adopter user without profile sees flash error if they apply for a dog" do
-    count_before = AdopterApplication.all.count
+  test "adopter user without profile cannot apply for dog and sees flash error" do
     sign_in users(:user_four)
+    before_count = AdopterApplication.all.count
 
     post '/create_my_application',
     params: { application:
       {
-        adopter_account_id: users(:user_four).id,
+        adopter_account_id: adopter_accounts(:adopter_account_two).id,
         dog_id: @dog_id
       }
     }
@@ -22,21 +23,36 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_equal 'Unauthorized action.', flash[:alert]
 
-    count_after = AdopterApplication.all.count
-    assert_equal count_before, count_after
+    assert_equal before_count, AdopterApplication.all.count
   end
 
   test "staff user sees flash error if they apply for a dog" do
-  end
-
-  test "adopter user with profile can apply for a dog and staff receive email" do
-    count_before = AdopterApplication.all.count
-    sign_in users(:user_one)
+    sign_in users(:user_two)
+    before_count = AdopterApplication.all.count
 
     post '/create_my_application',
     params: { application:
       {
-        adopter_account_id: users(:user_one).id,
+        adopter_account_id: nil,
+        dog_id: @dog_id
+      }
+    }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Unauthorized action.', flash[:alert]
+
+    assert_equal before_count, AdopterApplication.all.count
+  end
+
+  test "adopter user with profile can apply for a dog and staff receive email" do
+    sign_in users(:user_one)
+    before_count = AdopterApplication.all.count
+
+    post '/create_my_application',
+    params: { application:
+      {
+        adopter_account_id: adopter_accounts(:adopter_account_one).id,
         dog_id: @dog_id
       }
     }
@@ -44,12 +60,31 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_equal 'Application submitted! Woof woof.', flash[:notice]
+    assert_equal AdopterApplication.all.count, before_count + 1
 
-    
-   #  assert_equal 2, AdopterApplication.all.count
+    mail = ActionMailer::Base.deliveries
+    assert_equal mail[0].from.join, 'bajapetrescue@gmail.com', 'from email is incorrect'
+    assert_equal mail[0].to.join(' '), 'testes@test.com purple@haze.com', 'to email is incorrect'
+    assert_equal mail[0].subject, 'New Adoption Application', 'subject is incorrect'
   end
 
-  test "adopter user with profile sees flash error if they apply for a paused dog" do
+  test "adopter user with profile cannot apply for a paused dog and sees flash error" do
+    sign_in users(:user_one)
+    before_count = AdopterApplication.all.count
+
+    post '/create_my_application',
+    params: { application:
+      {
+        adopter_account_id: adopter_accounts(:adopter_account_one).id,
+        dog_id: @paused_dog_id
+      }
+    }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Applications are paused for this dog', flash[:alert]
+
+    assert_equal before_count, AdopterApplication.all.count
   end
 
 end

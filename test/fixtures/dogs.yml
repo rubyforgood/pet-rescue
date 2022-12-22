@@ -18,5 +18,13 @@ dog_three:
   age: 4
   breed: mix
 
+dog_four:
+  organization: organization_one
+  name: Paused
+  age: 4
+  breed: mix
+  application_paused: true
+  
+
 # two:
 #   organization: two
