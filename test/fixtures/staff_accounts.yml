@@ -11,7 +11,7 @@ staff_account_one:
 
 staff_account_two:
   user: user_three
-  organization: organization_two
+  organization: organization_three
   verified: false
 
 staff_account_three:

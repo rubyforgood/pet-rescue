@@ -6,10 +6,17 @@ organization_one:
   country: testistan
   zipcode: t35t
 
-# use this as default organization for staff sign up, don't save any dogs under it
+# this fixture is used for new staff sign up in user_account_test, do not use otherwise
 organization_two:
   name: for_staff_sign_up
   city: testville
+  country: testistan
+  zipcode: t35t
+
+# default organization for unverified staff, dogs do not belong to this org
+organization_three:
+  name: default
+  city: default
   country: testistan
   zipcode: t35t
 
