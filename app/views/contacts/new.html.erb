@@ -19,18 +19,34 @@
       <div class="col-md-6 mx-auto card p-5">
         <%= form_with url: '/contacts', method: :get do | f | %>
 
+          <% if @contact.errors.count > 0 %>
+            <div class="alert alert-danger mt-1" role="alert">
+              <p>
+              Please fix <%= @contact.errors.count %> <%= 'error'.pluralize(@contact.errors.count) %> highlighted below.
+              </p>
+            </div>
+          <% end %>
+
           <div class="row mb-2">
             <div class="mb-3 form-group">
               <%= f.label :name, 'Name*', class: 'bigger' %>
               <%= f.text_field :name, autofocus: true, 
                                       class: 'form-control', 
                                       required: true %>
+
+              <% @contact.errors.full_messages_for(:name).each do |message| %>
+                <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+              <% end %>
             </div>
 
             <div class="mb-3 form-group">
                 <%= f.label :email, 'Email*', class: 'bigger' %>
                 <%= f.email_field :email, class: 'form-control', 
                                           required: true %>
+
+                <% @contact.errors.full_messages_for(:email).each do |message| %>
+                  <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+                <% end %>
             </div>
 
             <div class="mb-3 form-group" data-controller='counter'>
@@ -41,6 +57,10 @@
                                         placeholder: 'Enter your message...',
                                         required: true %>
                 <div data-counter-target='output' class='small'></div>
+
+                <% @contact.errors.full_messages_for(:message).each do |message| %>
+                  <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+                <% end %>
             </div>
             
             <div class="form-group">
