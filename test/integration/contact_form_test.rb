@@ -18,16 +18,18 @@ class ContactFormTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert', "Message can't be blank", count: 1
   end
 
-  test 'should redirect and display flash notice upon successful submission' do
+  test 'should successfully submit form' do
     sign_in users(:user_four)
 
-    get '/contacts',
-         params: {
-           name: 'Samuel',
-           email: 'samuel@jackson.com',
-           message: 'Example help message.',
-           commit: 'Submit'
-         }
+    assert_emails 1 do
+      get '/contacts',
+        params: {
+          name: 'Samuel',
+          email: 'samuel@jackson.com',
+          message: 'Example help message.',
+          commit: 'Submit'
+        }
+    end
 
     assert_response :redirect
     follow_redirect!
