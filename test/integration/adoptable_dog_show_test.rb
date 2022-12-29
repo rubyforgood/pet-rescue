@@ -6,8 +6,6 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
     @dog_id = Dog.find_by(name: 'Applications').id
   end
 
-  debugger
-
   test "unauthenticated users see create account prompt and link" do
     get "/adoptable_dogs/#{@dog_id}"
     assert_response :success
