@@ -4,6 +4,6 @@ adopter_application_one:
   dog: dog_one
   adopter_account: adopter_account_one
 
-# two:
-#   dog: two
-#   adopter_account: two
+adopter_application_one:
+  dog: dog_five
+  adopter_account: adopter_account_one

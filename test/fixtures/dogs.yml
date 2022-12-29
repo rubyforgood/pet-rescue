@@ -24,7 +24,12 @@ dog_four:
   age: 4
   breed: mix
   application_paused: true
-  
+
+dog_five:
+  organization: organization_one
+  name: AppTest
+  age: 4
+  breed: mix  
 
 # two:
 #   organization: two
