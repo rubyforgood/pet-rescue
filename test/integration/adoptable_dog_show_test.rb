@@ -3,7 +3,7 @@ require "test_helper"
 class AdoptableDogShowTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog_id = Dog.where(name: 'Applications')[0].id
+    @dog_id = Dog.find_by(name: 'Applications').id
   end
 
   test "unauthenticated users see create account prompt and link" do
