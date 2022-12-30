@@ -29,6 +29,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     assert_select 'form' do
       assert_select 'button', 'Withdraw'
     end
+    assert_select 'h3', 'AppTest'
   end
 
   test "Adopter with account can withdraw an application and see remove button" do
