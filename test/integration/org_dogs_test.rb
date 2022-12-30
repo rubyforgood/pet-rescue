@@ -5,6 +5,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   setup do
     @dog_id = Dog.find_by(name: 'Deleted').id
   end
+
   test "adopter user cannot access org dogs index" do
     sign_in users(:user_one)
     get "/dogs/new"
@@ -101,6 +102,80 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_equal 'Dog updated successfully.', flash[:notice]
     assert_select "h1", "#{Dog.find(@dog_id).name}"
+  end
+
+  test "verified staff can pause dog and pause reason is selected in dropdown" do 
+    sign_in users(:user_two)
+
+    patch "/dogs/#{@dog_id}",
+      params: { dog:
+      {
+        organization_id: "#{organizations(:organization_one).id}",
+        name: 'TestDog',
+        age: '7',
+        sex: 'Female',
+        breed: 'mix',
+        size: 'Medium (22-57 lb)',
+        description: 'A lovely little pooch this one.',
+        application_paused: true,
+        pause_reason: 'paused_until_further_notice'
+      }
+    }
+
+    dog = Dog.find(@dog_id)
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Dog updated successfully.', flash[:notice]
+    assert_equal dog.pause_reason, 'paused_until_further_notice'
+    assert_equal dog.application_paused, true
+    assert_select 'form' do
+      assert_select 'option[selected="selected"]', 'Paused Until Further Notice'
+    end
+  end
+
+  test "verified staff can unpause a dog and pause reason reverts to not paused" do
+    sign_in users(:user_two)
+
+    patch "/dogs/#{@dog_id}",
+      params: { dog:
+      {
+        organization_id: "#{organizations(:organization_one).id}",
+        name: 'TestDog',
+        age: '7',
+        sex: 'Female',
+        breed: 'mix',
+        size: 'Medium (22-57 lb)',
+        description: 'A lovely little pooch this one.',
+        application_paused: 'false',
+        pause_reason: 'paused_until_further_notice'
+      }
+    }
+
+    dog = Dog.find(@dog_id)
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Dog updated successfully.', flash[:notice]
+    assert_equal dog.application_paused, false
+    assert_equal dog.pause_reason, 'not_paused'
+
+    # patch "/dogs/#{@dog_id}",
+    #   params: { dog:
+    #   {
+    #     name: 'TestDog',
+    #     age: '7',
+    #     sex: 'Female',
+    #     breed: 'mix',
+    #     size: 'Medium (22-57 lb)',
+    #     description: 'A lovely little pooch this one.',
+    #     application_paused: 'false',
+    #     pause_reason: 'paused_until_further_notice'
+    #   }
+    # }
+
+    # assert_response :redirect
+    # follow_redirect!
+    # assert_equal 'Dog updated successfully.', flash[:notice]
+    # assert_equal dog.pause_reason, 'not_paused'
   end
 
   # need to figure out why this image is not becoming an attachment
