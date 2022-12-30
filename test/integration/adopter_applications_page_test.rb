@@ -103,4 +103,42 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select 'p', 'Status: Adoption Pending'
   end
+
+  test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
+    sign_in users(:user_one)
+
+    get '/my_applications'
+    assert_response :success
+    assert_select 'form', { count: 3 }
+
+    # withdraw and remove in one request
+    patch '/my_application',
+    params: { application:
+      {
+        id: @application_id,
+        status: 'withdrawn',
+        profile_show: false
+      }
+    }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_select 'form', { count: 2 }
+    logout
+
+    sign_in users(:user_two)
+    patch "/adopter_applications/#{@application_id}",
+    params: { adopter_application:
+      {
+        status: 'adoption_pending',
+        profile_show: 'true'
+      }
+    }
+
+    logout
+    sign_in users(:user_one)
+    get '/my_applications'
+    assert_response :success
+    assert_select 'form', { count: 3 }
+  end
 end
