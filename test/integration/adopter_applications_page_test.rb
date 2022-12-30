@@ -80,10 +80,27 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adoption status changes when staff change the application status" do
-    # log in as adopter and check status is awaiting review
-    # log out
-    # log in as staff and change status to under review
-    # log our
-    # log in as adopter and check status is under review
+    sign_in users(:user_one)
+
+    get '/my_applications'
+    assert_response :success
+    assert_select 'p', 'Status: Awaiting Review'
+
+    logout
+    sign_in users(:user_two)
+
+    patch "/adopter_applications/#{@application_id}",
+    params: { adopter_application:
+      {
+        status: 'adoption_pending'
+      }
+    }
+
+    logout
+    sign_in users(:user_one)
+
+    get '/my_applications'
+    assert_response :success
+    assert_select 'p', 'Status: Adoption Pending'
   end
 end
