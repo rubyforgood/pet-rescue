@@ -6,6 +6,11 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     @dog_id = Dog.find_by(name: 'Deleted').id
   end
 
+  def after_teardown
+    super
+    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+  end
+
   test "adopter user cannot access org dogs index" do
     sign_in users(:user_one)
     get "/dogs/new"
@@ -29,17 +34,17 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
 
     post "/dogs",
       params: { dog:
-      {
-        organization_id: "#{organizations(:organization_one).id}",
-        name: 'TestDog',
-        age: '3',
-        sex: 'Female',
-        breed: 'mix',
-        size: 'Medium (22-57 lb)',
-        description: 'A lovely little pooch this one.',
-        append_images: ['']
+        {
+          organization_id: "#{organizations(:organization_one).id}",
+          name: 'TestDog',
+          age: '3',
+          sex: 'Female',
+          breed: 'mix',
+          size: 'Medium (22-57 lb)',
+          description: 'A lovely little pooch this one.',
+          append_images: ['']
+        }
       }
-    }
 
     assert_response :redirect
     follow_redirect!
@@ -63,17 +68,17 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
 
     post "/dogs",
       params: { dog:
-      {
-        organization_id: "#{organizations(:organization_one).id}",
-        name: 'TestDog',
-        age: '3',
-        sex: 'Female',
-        breed: 'mix',
-        size: 'Medium (22-57 lb)',
-        description: 'A lovely little pooch this one.',
-        append_images: [''] 
+        {
+          organization_id: "#{organizations(:organization_one).id}",
+          name: 'TestDog',
+          age: '3',
+          sex: 'Female',
+          breed: 'mix',
+          size: 'Medium (22-57 lb)',
+          description: 'A lovely little pooch this one.',
+          append_images: [''] 
+        }
       }
-    }
 
     assert_response :redirect
     follow_redirect!
@@ -86,17 +91,17 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
 
     patch "/dogs/#{@dog_id}",
       params: { dog:
-      {
-        organization_id: "#{organizations(:organization_one).id}",
-        name: 'TestDog',
-        age: '7',
-        sex: 'Female',
-        breed: 'mix',
-        size: 'Medium (22-57 lb)',
-        description: 'A lovely little pooch this one.',
-        append_images: [''] 
+        {
+          organization_id: "#{organizations(:organization_one).id}",
+          name: 'TestDog',
+          age: '7',
+          sex: 'Female',
+          breed: 'mix',
+          size: 'Medium (22-57 lb)',
+          description: 'A lovely little pooch this one.',
+          append_images: [''] 
+        }
       }
-    }
 
     assert_response :redirect
     follow_redirect!
@@ -109,18 +114,18 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
 
     patch "/dogs/#{@dog_id}",
       params: { dog:
-      {
-        organization_id: "#{organizations(:organization_one).id}",
-        name: 'TestDog',
-        age: '7',
-        sex: 'Female',
-        breed: 'mix',
-        size: 'Medium (22-57 lb)',
-        description: 'A lovely little pooch this one.',
-        application_paused: true,
-        pause_reason: 'paused_until_further_notice'
+        {
+          organization_id: "#{organizations(:organization_one).id}",
+          name: 'TestDog',
+          age: '7',
+          sex: 'Female',
+          breed: 'mix',
+          size: 'Medium (22-57 lb)',
+          description: 'A lovely little pooch this one.',
+          application_paused: true,
+          pause_reason: 'paused_until_further_notice'
+        }
       }
-    }
 
     dog = Dog.find(@dog_id)
     assert_response :redirect
@@ -133,7 +138,56 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "verified staff can unpause a dog and pause reason reverts to not paused" do
+  test "verified staff can unpause a paused dog and the pause reason reverts to not paused" do
+    sign_in users(:user_two)
+
+    patch "/dogs/#{@dog_id}",
+      params: { dog:
+        {
+          organization_id: "#{organizations(:organization_one).id}",
+          name: 'TestDog',
+          age: '7',
+          sex: 'Female',
+          breed: 'mix',
+          size: 'Medium (22-57 lb)',
+          description: 'A lovely little pooch this one.',
+          application_paused: 'true',
+          pause_reason: 'paused_until_further_notice'
+        }
+      }
+
+    dog_paused = Dog.find(@dog_id)
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Dog updated successfully.', flash[:notice]
+    assert_equal dog_paused.application_paused, true
+    assert_equal dog_paused.pause_reason, 'paused_until_further_notice'
+
+    patch "/dogs/#{@dog_id}",
+      params: { dog:
+        {
+          organization_id: "#{organizations(:organization_one).id}",
+          name: 'TestDog',
+          age: '7',
+          sex: 'Female',
+          breed: 'mix',
+          size: 'Medium (22-57 lb)',
+          description: 'A lovely little pooch this one.',
+          application_paused: 'false',
+          pause_reason: 'paused_until_further_notice'
+        }
+      }
+
+    dog_not_paused = Dog.find(@dog_id)
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Dog updated successfully.', flash[:notice]
+    assert_equal dog_not_paused.application_paused, false
+    assert_equal dog_not_paused.pause_reason, 'not_paused'
+  end
+
+  # need to figure out why this image is not becoming an attachment
+  test "verified user can upload multiple image attachments on dog" do
     sign_in users(:user_two)
 
     patch "/dogs/#{@dog_id}",
@@ -146,59 +200,17 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
         breed: 'mix',
         size: 'Medium (22-57 lb)',
         description: 'A lovely little pooch this one.',
-        application_paused: 'false',
-        pause_reason: 'paused_until_further_notice'
+        append_images:
+        [
+          fixture_file_upload("test.png", "image/png"),
+          fixture_file_upload("test2.png", "image/png")
+        ]
       }
     }
 
     dog = Dog.find(@dog_id)
-    assert_response :redirect
-    follow_redirect!
-    assert_equal 'Dog updated successfully.', flash[:notice]
-    assert_equal dog.application_paused, false
-    assert_equal dog.pause_reason, 'not_paused'
-
-    # patch "/dogs/#{@dog_id}",
-    #   params: { dog:
-    #   {
-    #     name: 'TestDog',
-    #     age: '7',
-    #     sex: 'Female',
-    #     breed: 'mix',
-    #     size: 'Medium (22-57 lb)',
-    #     description: 'A lovely little pooch this one.',
-    #     application_paused: 'false',
-    #     pause_reason: 'paused_until_further_notice'
-    #   }
-    # }
-
-    # assert_response :redirect
-    # follow_redirect!
-    # assert_equal 'Dog updated successfully.', flash[:notice]
-    # assert_equal dog.pause_reason, 'not_paused'
+    assert_equal dog.images_attachments.length, 2
   end
-
-  # need to figure out why this image is not becoming an attachment
-  # test "verified user can upload an image" do
-  #   sign_in users(:user_two)
-
-  #   patch "/dogs/#{Dog.first.id}",
-  #     params: { dog:
-  #     {
-  #       organization_id: "#{organizations(:organization_one).id}",
-  #       name: 'TestDog',
-  #       age: '7',
-  #       sex: 'Female',
-  #       breed: 'mix',
-  #       size: 'Medium (22-57 lb)',
-  #       description: 'A lovely little pooch this one.',
-  #       append_images: fixture_file_upload("test.png", "image/png")
-  #     }
-  #   }
-
-  #   dog = Dog.first
-  #   assert dog.images.attached?
-  # end
 
   test "verified staff can delete dog post" do
     sign_in users(:user_two)
@@ -209,7 +221,4 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select "h1", "Our dogs"
   end
-
-  # add tests to pause applications
-  # add test to check filters works for adoption status and name
 end
