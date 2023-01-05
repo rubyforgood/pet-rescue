@@ -185,7 +185,6 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_equal dog_not_paused.pause_reason, 'not_paused'
   end
 
-  # need to figure out why this image is not becoming an attachment
   test "verified user can upload multiple images and delete one of the images" do
     sign_in users(:user_two)
 
@@ -233,5 +232,3 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_select "h1", "Our dogs"
   end
 end
-
-# FIGURE OUT HOW TO PURGE ACTIVE STORAGE EACH TIME. TRY CREATING A DEDICATED FILE PER RAILS GUIDE.
