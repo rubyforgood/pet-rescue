@@ -6,9 +6,8 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     @dog_id = Dog.find_by(name: 'Deleted').id
   end
 
-  def after_teardown
-    super
-    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+  teardown do
+    :after_teardown
   end
 
   test "adopter user cannot access org dogs index" do
@@ -234,3 +233,5 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_select "h1", "Our dogs"
   end
 end
+
+# FIGURE OUT HOW TO PURGE ACTIVE STORAGE EACH TIME. TRY CREATING A DEDICATED FILE PER RAILS GUIDE.
