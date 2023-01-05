@@ -185,7 +185,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_equal dog_not_paused.pause_reason, 'not_paused'
   end
 
-  test "verified user can upload multiple images and delete one of the images" do
+  test "verified staff can upload multiple images and delete one of the images" do
     sign_in users(:user_two)
 
     patch "/dogs/#{@dog_id}",
@@ -220,6 +220,42 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
 
     dog_again = Dog.find(@dog_id)
     assert_equal dog_again.images_attachments.length, 1
+  end
+
+  test "user that is not verified staff cannot delete an image attachment" do
+    sign_in users(:user_two)
+
+    patch "/dogs/#{@dog_id}",
+      params: { dog:
+        {
+          organization_id: "#{organizations(:organization_one).id}",
+          name: 'TestDog',
+          age: '7',
+          sex: 'Female',
+          breed: 'mix',
+          size: 'Medium (22-57 lb)',
+          description: 'A lovely little pooch this one.',
+          append_images:
+          [
+            fixture_file_upload("test.png", "image/png"),
+            fixture_file_upload("test2.png", "image/png")
+          ]
+        }
+      }
+
+    dog = Dog.find(@dog_id)
+    assert_equal dog.images_attachments.length, 2
+    images = dog.images_attachments
+    logout
+
+    sign_in users(:user_one)
+    delete "/attachments/#{images[1].id}/purge",
+      params: { id: "#{images[1].id}" },
+      headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog_id}" }
+
+    follow_redirect!
+    assert_equal '/', path
+    assert_equal 'Unauthorized action.', flash[:alert]
   end
 
   test "verified staff can delete dog post" do
