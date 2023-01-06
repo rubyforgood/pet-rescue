@@ -5,18 +5,21 @@ dog_one:
   name: Deleted
   age: 5
   breed: mix
+  application_paused: false
 
 dog_two:
   organization: organization_one
   name: Adopted
   age: 4
   breed: mix
+  application_paused: false
 
 dog_three:
   organization: organization_one
   name: Applications
   age: 4
   breed: mix
+  application_paused: false
 
 dog_four:
   organization: organization_one
@@ -29,7 +32,8 @@ dog_five:
   organization: organization_one
   name: AppTest
   age: 4
-  breed: mix  
+  breed: mix
+  application_paused: false
 
 # two:
 #   organization: two

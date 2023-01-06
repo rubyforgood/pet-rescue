@@ -17,7 +17,7 @@ class Dog < ApplicationRecord
                                      message: 'must be PNG or JPEG' },
                      limit: { max: 5, message: '- 5 maximum' },
                      size: { between: 10.kilobyte..1.megabytes,
-                             message: 'size must be between 100kb and 1Mb' }
+                             message: 'size must be between 10kb and 1Mb' }
 
   enum :age_unit, [:months, :years]
 
