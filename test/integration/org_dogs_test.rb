@@ -267,4 +267,37 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select "h1", "Our dogs"
   end
+
+  # test org dogs index page filter for adoption status
+  test "verified staff accessing org dogs index without selection param see all unadopted dogs" do
+    sign_in users(:user_two)
+    org_id = users(:user_two).staff_account.organization_id
+
+    get "/dogs"
+    assert_response :success
+    assert_select 'div.col-lg-4', { count: Dog.unadopted_dogs(org_id).count }
+  end
+
+  test "verified staff accessing org dogs index with selection param seeking adoption see all unadopted dogs" do
+    sign_in users(:user_two)
+    get "/dogs",
+    params: { selection: 'Seeking Adoption' }
+    assert_response :success
+    assert_select 'div.col-lg-4', { count: 4 }
+  end
+
+  test "verified staff accessing org dogs index with selection param adopted see all adopted dogs" do
+    sign_in users(:user_two)
+    get "/dogs",
+    params: { selection: 'Adopted' }
+    assert_response :success
+    assert_select 'div.col-lg-4', { count: 1 }
+  end
+
+  # test org dogs index page filter for dog name
+  test "verified staff accessing org dogs index with a dog id see that dog only" do
+    sign_in users(:user_two)
+    get "/dogs/"
+    assert_response :success
+  end
 end
