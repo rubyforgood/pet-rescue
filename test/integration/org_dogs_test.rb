@@ -4,6 +4,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
 
   setup do
     @dog_id = Dog.find_by(name: 'Deleted').id
+    @org_id = users(:user_two).staff_account.organization_id
   end
 
   teardown do
@@ -271,11 +272,10 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   # test org dogs index page filter for adoption status
   test "verified staff accessing org dogs index without selection param see all unadopted dogs" do
     sign_in users(:user_two)
-    org_id = users(:user_two).staff_account.organization_id
 
     get "/dogs"
     assert_response :success
-    assert_select 'div.col-lg-4', { count: Dog.unadopted_dogs(org_id).count }
+    assert_select 'div.col-lg-4', { count: Dog.unadopted_dogs(@org_id).count }
   end
 
   test "verified staff accessing org dogs index with selection param seeking adoption see all unadopted dogs" do
@@ -283,7 +283,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     get "/dogs",
     params: { selection: 'Seeking Adoption' }
     assert_response :success
-    assert_select 'div.col-lg-4', { count: 4 }
+    assert_select 'div.col-lg-4', { count: Dog.unadopted_dogs(@org_id).count }
   end
 
   test "verified staff accessing org dogs index with selection param adopted see all adopted dogs" do
@@ -291,13 +291,16 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     get "/dogs",
     params: { selection: 'Adopted' }
     assert_response :success
-    assert_select 'div.col-lg-4', { count: 1 }
+    assert_select 'div.col-lg-4', { count: Dog.adopted_dogs(@org_id).count }
   end
 
   # test org dogs index page filter for dog name
   test "verified staff accessing org dogs index with a dog id see that dog only" do
     sign_in users(:user_two)
-    get "/dogs/"
+    get "/dogs",
+    params: { dog_id: @dog_id }
     assert_response :success
+    assert_select 'div.col-lg-4', { count: 1 }
+    assert_select 'h5', "Deleted"
   end
 end
