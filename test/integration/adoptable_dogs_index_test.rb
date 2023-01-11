@@ -3,7 +3,9 @@ require "test_helper"
 class AdoptableDogsIndexTest < ActionDispatch::IntegrationTest
 
   # all unadopted dogs under all organizations
-  dog_count = Dog.includes(:adoption).where(adoption: { id: nil }).length
+  setup do
+    @dog_count = Dog.includes(:adoption).where(adoption: { id: nil }).length
+  end
 
   test "unauthenticated user can access adoptable dogs index" do
     get "/adoptable_dogs"
@@ -13,7 +15,7 @@ class AdoptableDogsIndexTest < ActionDispatch::IntegrationTest
 
   test "all unadopted dogs show on the dog_index page" do
     get '/adoptable_dogs'
-    assert_select 'img.card-img-top', { count: dog_count }
+    assert_select 'img.card-img-top', { count: @dog_count }
   end
 
 end
