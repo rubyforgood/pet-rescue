@@ -12,4 +12,12 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       count: AdopterApplication.count, text: 'Edit Application'
     }
   end
+
+  test "unverified staff cannot access the page" do
+    sign_in users(:user_three)
+
+    get '/adopter_applications'
+
+    assert_response :redirect
+  end
 end
