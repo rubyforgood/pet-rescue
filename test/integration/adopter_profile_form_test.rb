@@ -100,4 +100,25 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
 
     assert_select 'div.alert', 'Phone number is invalid'
   end
+
+  # select dropdown options and selected value are tested in system test
+  test "Radio buttons are pre-populated with adopter selection on edit form" do
+    sign_in users(:user_one)
+    get '/adopter_profile/edit'
+
+    a = assert_select 'form input[type=radio][id=adopter_profile_shared_ownership_false]'
+    assert_equal a[0].attributes["checked"].value, "checked"
+    a = assert_select 'form input[type=radio][id=adopter_profile_fenced_access_true]'
+    assert_equal a[0].attributes["checked"].value, "checked"
+    a = assert_select 'form input[type=radio][id=adopter_profile_do_you_rent_false]'
+    assert_equal a[0].attributes["checked"].value, "checked"
+    a = assert_select 'form input[type=radio][id=adopter_profile_other_pets_false]'
+    assert_equal a[0].attributes["checked"].value, "checked"
+    a = assert_select 'form input[type=radio][id=adopter_profile_checked_shelter_true]'
+    assert_equal a[0].attributes["checked"].value, "checked"
+    a = assert_select 'form input[type=radio][id=adopter_profile_surrendered_pet_false]'
+    assert_equal a[0].attributes["checked"].value, "checked"
+    a = assert_select 'form input[type=radio][id=adopter_profile_visit_laventana_false]'
+    assert_equal a[0].attributes["checked"].value, "checked"
+  end
 end
