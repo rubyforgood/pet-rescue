@@ -5,12 +5,12 @@ class AdopterProfileFormsTest < ApplicationSystemTestCase
   setup do
     sign_in users(:user_one)
     visit profile_path
-
     click_on "Edit Profile"
-    assert_selector "h1", text: "EDIT PROFILE"
   end
 
   test "Text areas appear after radio check and all text areas have character counter and text areas disappear after radio check" do
+    assert_selector "h1", text: "EDIT PROFILE"
+
     fill_in "Briefly describe your ideal dog", with: "Big and fluffy."
     fill_in "Briefly describe your lifestyle", with: "Big and fluffy."
     fill_in "Briefly describe activities you will do with your dog", with: "Big and fluffy."
