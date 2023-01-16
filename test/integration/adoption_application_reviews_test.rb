@@ -2,6 +2,11 @@ require "test_helper"
 
 class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
+  setup do
+    @adopter_application = adopter_applications(:adopter_application_one)
+    @adopter = @adopter_application.adopter_account.user
+  end
+
   test "verified staff can see all applications" do
     sign_in users(:user_two)
 
@@ -9,7 +14,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select 'a', {
-      count: AdopterApplication.count, text: 'Edit Application'
+      count: Dog.org_dogs_with_apps(users(:user_two).staff_account.organization_id).count, text: 'Adopter Profile'
     }
   end
 
@@ -28,9 +33,9 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     get '/adopter_applications'
 
-    assert_select 'a', AdopterApplication.first.dog.name
-    assert_select 'p', "Applicant: #{AdopterApplication.first.adopter_account.user.first_name}
-                      #{AdopterApplication.first.adopter_account.user.last_name}"
+    assert_select 'a', @adopter_application.dog.name
+    assert_select 'p', "Applicant: #{@adopter.first_name}
+                      #{@adopter.last_name}"
     assert_select 'a', 'Adopter Profile'
     assert_select 'a', 'Edit Application'
   end
