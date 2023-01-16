@@ -7,3 +7,9 @@ adopter_application_one:
 adopter_application_two:
   dog: dog_five
   adopter_account: adopter_account_one
+
+adopter_application_three:
+  dog: dog_two
+  adopter_account: adopter_account_one
+  profile_show: false
+  status: 3

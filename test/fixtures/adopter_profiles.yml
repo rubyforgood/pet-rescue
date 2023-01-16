@@ -14,7 +14,7 @@ adopter_profile_one:
   alone_weekend: 3
   experience: Tons
   contingency_plan: Friends
-  shared_owner: False
+  shared_ownership: false
   housing_type: Detached
   fenced_access: true
   location_day: house

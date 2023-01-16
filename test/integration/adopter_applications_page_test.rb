@@ -3,7 +3,7 @@ require "test_helper"
 class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
 
   setup do
-    @application_id = AdopterApplication.first.id
+    @application_id = adopter_applications(:adopter_application_one).id
   end
 
   test "Adopter without profile cannot access adopter applications route" do
