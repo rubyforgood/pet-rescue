@@ -19,6 +19,8 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     get '/adopter_applications'
 
     assert_response :redirect
+    follow_redirect!
+    assert_equal 'Unauthorized action.', flash[:alert]
   end
 
   test "all expected elements of an application are shown" do
