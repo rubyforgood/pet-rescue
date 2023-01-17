@@ -54,4 +54,21 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select 'div', 'Status: Under Review'
   end
+
+  test "verified staff can add notes to an application" do
+    sign_in users(:user_two)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'under_review', notes: 'some notes'
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    assert_response :redirect
+
+    get "/adopter_applications/#{@adopter_application.id}/edit"
+
+    assert_select 'textarea', 'some notes'
+  end
 end
