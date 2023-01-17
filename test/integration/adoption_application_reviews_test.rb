@@ -39,4 +39,19 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     assert_select 'a', 'Adopter Profile'
     assert_select 'a', 'Edit Application'
   end
+
+  test "verified staff can edit an adoption application status" do
+    sign_in users(:user_two)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'under_review', notes: ''
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_select 'div', 'Status: Under Review'
+  end
 end
