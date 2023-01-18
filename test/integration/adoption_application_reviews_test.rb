@@ -84,4 +84,19 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     assert_select 'textarea', 'some notes'
   end
+
+  test "unverified staff cannot add notes to an application" do
+    sign_in users(:user_three)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'under_review', notes: 'some notes'
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Unauthorized action.', flash[:alert]
+  end
 end
