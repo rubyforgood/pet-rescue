@@ -53,6 +53,21 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "unverified staff cannot edit an adoption application status" do
+    sign_in users(:user_three)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+    params: { adopter_application:
+      {
+        status: 'under_review', notes: ''
+      }, commit: 'Save', id: @adopter_application.id
+    }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Unauthorized action.', flash[:alert]
+  end
+
   test "verified staff can add notes to an application" do
     sign_in users(:user_two)
 
