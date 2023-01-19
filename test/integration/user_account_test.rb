@@ -33,11 +33,6 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "Staff user can sign up with an unverified staff account belonging to organization id 1 and see success flash" do
-    # set org id to 1 to match db default value. Cannot pass org_id as it's not permitted param.
-    organization = organizations(:organization_two)
-    organization.id = 1
-    organization.save
-
     post "/users",
       params: { user:
         {
