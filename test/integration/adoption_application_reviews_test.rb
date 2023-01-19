@@ -43,7 +43,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   test "verified staff can edit an adoption application status" do
     sign_in users(:user_two)
 
-    assert_changes 'AdopterApplication.find(@adopter_application.id).status' do
+    assert_changes 'AdopterApplication.find(@adopter_application.id).status', from: 'awaiting_review', to: 'under_review' do
       put "/adopter_applications/#{@adopter_application.id}",
         params: { adopter_application:
           {
