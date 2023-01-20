@@ -3,7 +3,7 @@ require "test_helper"
 class OrgDogsTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog_id = Dog.find_by(name: 'Deleted').id
+    @dog = dogs(:dog_one)
     @org_id = users(:user_two).staff_account.organization_id
   end
 
@@ -89,7 +89,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff can edit a dog post" do 
     sign_in users(:user_two)
 
-    patch "/dogs/#{@dog_id}",
+    patch "/dogs/#{@dog.id}",
       params: { dog:
         {
           organization_id: "#{organizations(:organization_one).id}",
@@ -106,13 +106,13 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_equal 'Dog updated successfully.', flash[:notice]
-    assert_select "h1", "#{Dog.find(@dog_id).name}"
+    assert_select "h1", "TestDog"
   end
 
   test "verified staff can pause dog and pause reason is selected in dropdown" do 
     sign_in users(:user_two)
 
-    patch "/dogs/#{@dog_id}",
+    patch "/dogs/#{@dog.id}",
       params: { dog:
         {
           organization_id: "#{organizations(:organization_one).id}",
@@ -127,12 +127,12 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
         }
       }
 
-    dog = Dog.find(@dog_id)
     assert_response :redirect
     follow_redirect!
     assert_equal 'Dog updated successfully.', flash[:notice]
-    assert_equal dog.pause_reason, 'paused_until_further_notice'
-    assert_equal dog.application_paused, true
+    @dog.reload
+    assert_equal @dog.pause_reason, 'paused_until_further_notice'
+    assert_equal @dog.application_paused, true
     assert_select 'form' do
       assert_select 'option[selected="selected"]', 'Paused Until Further Notice'
     end
@@ -141,7 +141,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff can unpause a paused dog and the pause reason reverts to not paused" do
     sign_in users(:user_two)
 
-    patch "/dogs/#{@dog_id}",
+    patch "/dogs/#{@dog.id}",
       params: { dog:
         {
           organization_id: "#{organizations(:organization_one).id}",
@@ -156,14 +156,14 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
         }
       }
 
-    dog_paused = Dog.find(@dog_id)
     assert_response :redirect
     follow_redirect!
     assert_equal 'Dog updated successfully.', flash[:notice]
-    assert_equal dog_paused.application_paused, true
-    assert_equal dog_paused.pause_reason, 'paused_until_further_notice'
+    @dog.reload
+    assert_equal @dog.application_paused, true
+    assert_equal @dog.pause_reason, 'paused_until_further_notice'
 
-    patch "/dogs/#{@dog_id}",
+    patch "/dogs/#{@dog.id}",
       params: { dog:
         {
           organization_id: "#{organizations(:organization_one).id}",
@@ -178,18 +178,18 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
         }
       }
 
-    dog_not_paused = Dog.find(@dog_id)
     assert_response :redirect
     follow_redirect!
     assert_equal 'Dog updated successfully.', flash[:notice]
-    assert_equal dog_not_paused.application_paused, false
-    assert_equal dog_not_paused.pause_reason, 'not_paused'
+    @dog.reload
+    assert_equal @dog.application_paused, false
+    assert_equal @dog.pause_reason, 'not_paused'
   end
 
   test "verified staff can upload multiple images and delete one of the images" do
     sign_in users(:user_two)
 
-    patch "/dogs/#{@dog_id}",
+    patch "/dogs/#{@dog.id}",
       params: { dog:
         {
           organization_id: "#{organizations(:organization_one).id}",
@@ -207,26 +207,25 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
         }
       }
 
-    dog = Dog.find(@dog_id)
-    assert_equal dog.images_attachments.length, 2
-    images = dog.images_attachments
+    assert_equal @dog.images_attachments.length, 2
+    images = @dog.images_attachments
 
     delete "/attachments/#{images[1].id}/purge",
       params: { id: "#{images[1].id}" },
-      headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog_id}" }
+      headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }
 
     assert_response :redirect
     follow_redirect!
     assert_equal 'Attachment removed', flash[:notice]
 
-    dog_again = Dog.find(@dog_id)
-    assert_equal dog_again.images_attachments.length, 1
+    @dog.reload
+    assert_equal @dog.images_attachments.length, 1
   end
 
   test "user that is not verified staff cannot delete an image attachment" do
     sign_in users(:user_two)
 
-    patch "/dogs/#{@dog_id}",
+    patch "/dogs/#{@dog.id}",
       params: { dog:
         {
           organization_id: "#{organizations(:organization_one).id}",
@@ -244,15 +243,14 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
         }
       }
 
-    dog = Dog.find(@dog_id)
-    assert_equal dog.images_attachments.length, 2
-    images = dog.images_attachments
+    assert_equal @dog.images_attachments.length, 2
+    images = @dog.images_attachments
     logout
 
     sign_in users(:user_one)
     delete "/attachments/#{images[1].id}/purge",
       params: { id: "#{images[1].id}" },
-      headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog_id}" }
+      headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }
 
     follow_redirect!
     assert_equal '/', path
@@ -262,7 +260,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff can delete dog post" do
     sign_in users(:user_two)
 
-    delete "/dogs/#{@dog_id}"
+    delete "/dogs/#{@dog.id}"
 
     assert_response :redirect
     follow_redirect!
@@ -298,7 +296,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff accessing org dogs index with a dog id see that dog only" do
     sign_in users(:user_two)
     get "/dogs",
-    params: { dog_id: @dog_id }
+    params: { dog_id: @dog.id }
     assert_response :success
     assert_select 'div.col-lg-4', { count: 1 }
     assert_select 'h5', "Deleted"

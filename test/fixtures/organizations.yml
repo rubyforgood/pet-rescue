@@ -8,6 +8,7 @@ organization_one:
 
 # this fixture is used for new staff sign up in user_account_test, do not use otherwise
 organization_two:
+  id: 1
   name: for_staff_sign_up
   city: testville
   country: testistan

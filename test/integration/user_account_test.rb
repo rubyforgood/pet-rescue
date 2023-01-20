@@ -33,11 +33,6 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "Staff user can sign up with an unverified staff account belonging to organization id 1 and see success flash" do
-    # set org id to 1 to match db default value. Cannot pass org_id as it's not permitted param.
-    organization = Organization.find_by(name: 'for_staff_sign_up')
-    organization.id = 1
-    organization.save
-
     post "/users",
       params: { user:
         {
@@ -166,7 +161,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
 
   test "user can delete their account" do
     sign_in users(:user_four)
-    assert(User.find_by(email: 'test@test123.com'))
+    assert(users(:user_four))
     delete '/users'
     assert_nil(User.find_by(email: 'test@test123.com'))
   end
