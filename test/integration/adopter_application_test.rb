@@ -3,8 +3,8 @@ require "test_helper"
 class AdopterApplicationTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog_id = Dog.find_by(name: 'Applications').id
-    @paused_dog_id = Dog.find_by(name: 'Paused').id
+    @dog_id = dogs(:dog_three).id
+    @paused_dog_id = dogs(:dog_four).id
   end
 
   test "adopter user without profile cannot apply for dog and sees flash error" do

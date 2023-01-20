@@ -39,4 +39,64 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     assert_select 'a', 'Adopter Profile'
     assert_select 'a', 'Edit Application'
   end
+
+  test "verified staff can edit an adoption application status" do
+    sign_in users(:user_two)
+
+    assert_changes 'AdopterApplication.find(@adopter_application.id).status', from: 'awaiting_review', to: 'under_review' do
+      put "/adopter_applications/#{@adopter_application.id}",
+        params: { adopter_application:
+          {
+            status: 'under_review', notes: ''
+          }, commit: 'Save', id: @adopter_application.id
+        }
+    end
+  end
+
+  test "unverified staff cannot edit an adoption application status" do
+    sign_in users(:user_three)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+    params: { adopter_application:
+      {
+        status: 'under_review', notes: ''
+      }, commit: 'Save', id: @adopter_application.id
+    }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Unauthorized action.', flash[:alert]
+  end
+
+  test "verified staff can add notes to an application" do
+    sign_in users(:user_two)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'under_review', notes: 'some notes'
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    assert_response :redirect
+
+    get "/adopter_applications/#{@adopter_application.id}/edit"
+
+    assert_select 'textarea', 'some notes'
+  end
+
+  test "unverified staff cannot add notes to an application" do
+    sign_in users(:user_three)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'under_review', notes: 'some notes'
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Unauthorized action.', flash[:alert]
+  end
 end
