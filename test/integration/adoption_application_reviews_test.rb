@@ -99,4 +99,18 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_equal 'Unauthorized action.', flash[:alert]
   end
+
+  test "when Successful Applicant is selected, button to Create Adoption shows" do
+    sign_in users(:user_two)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'successful_applicant', notes: ''
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    follow_redirect!
+    assert_select 'a', 'Create Adoption'
+  end
 end
