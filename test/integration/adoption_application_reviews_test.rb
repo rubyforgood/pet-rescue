@@ -133,4 +133,13 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       count: 0, text: dogs(:dog_five).name
     }
   end
+
+  test "after making the http request to create an adoption, a new Adoption is created" do
+    sign_in users(:user_two)
+
+    assert_changes 'Adoption.count', from: 1, to: 2 do
+      post '/create_adoption',
+        params: { adopter_account_id: adopter_accounts(:adopter_account_one).id, dog_id: dogs(:dog_five).id }
+    end
+  end
 end
