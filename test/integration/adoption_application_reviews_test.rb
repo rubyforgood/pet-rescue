@@ -3,8 +3,10 @@ require "test_helper"
 class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   setup do
-    @adopter_application = adopter_applications(:adopter_application_one)
+    @adopter_application = adopter_applications(:adopter_application_two)
     @adopter = @adopter_application.adopter_account.user
+    @dog = dogs(:dog_five)
+    @adopter_account_id = adopter_accounts(:adopter_account_one).id
   end
 
   test "verified staff can see all applications" do
@@ -125,12 +127,11 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       }
 
     post '/create_adoption',
-      params: { adopter_account_id: adopter_accounts(:adopter_account_one).id, dog_id: dogs(:dog_five).id }
+      params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
 
     follow_redirect!
-
     assert_select 'a', {
-      count: 0, text: dogs(:dog_five).name
+      count: 0, text: @dog.name
     }
   end
 
@@ -139,7 +140,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     assert_changes 'Adoption.count', from: 1, to: 2 do
       post '/create_adoption',
-        params: { adopter_account_id: adopter_accounts(:adopter_account_one).id, dog_id: dogs(:dog_five).id }
+        params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
     end
   end
 end
