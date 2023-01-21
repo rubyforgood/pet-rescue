@@ -143,4 +143,43 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
         params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
     end
   end
+
+  test "an adopter can withdraw and remove an application and a staff can subsequently set the adoption application from withdrawn to another status and the application reappears on the adopter's applications page" do
+    sign_in users(:user_one)
+
+    patch '/my_application',
+      params: { application:
+        {
+          id: @adopter_application.id, status: 'withdrawn'
+        }
+      }
+
+    patch '/my_application',
+      params: { application:
+        {
+          id: @adopter_application.id, profile_show: 'false'
+        }
+      }
+
+    assert_select 'h3', {
+      count: 0, text: @dog.name
+    }
+
+    sign_in users(:user_two)
+
+    patch "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'under_review', notes: '', profile_show: 'true'
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    sign_in users(:user_one)
+
+    get '/my_applications'
+
+    assert_select 'h3', {
+      count: 1, text: @dog.name
+    }
+  end
 end
