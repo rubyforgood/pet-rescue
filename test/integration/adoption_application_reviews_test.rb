@@ -113,4 +113,24 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_select 'a', 'Create Adoption'
   end
+
+  test "after making the http request to create an adoption, the application disappears" do
+    sign_in users(:user_two)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'successful_applicant', notes: ''
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    post '/create_adoption',
+      params: { adopter_account_id: adopter_accounts(:adopter_account_one).id, dog_id: dogs(:dog_five).id }
+
+    follow_redirect!
+
+    assert_select 'a', {
+      count: 0, text: dogs(:dog_five).name
+    }
+  end
 end
