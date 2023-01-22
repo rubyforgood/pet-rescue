@@ -50,23 +50,23 @@ The application has the following features:
 
 #### To Do
 
-* Achieve test for all features and user flows via integration and system tests. **Currently under way**
+* Achieve test for all features and user flows via integration and system tests. **Currently under way.**
 * Add the [SimpleCov Gem](https://github.com/simplecov-ruby/simplecov) to get more insight on test coverage.
-* Refactor controllers and models to have code that is bettwe organized. 
+* Refactor controllers and models to have code that is bettwe organized. This app was recently reviewed by Jason Swett on his live meetup, and he provided many recommendations for consideration. Thank you, Jason! 
 * Build out the *Successes* page, which will have an interactive map (Google Maps API) showing pins of all adopted dogs in their new hometown. [See Project](https://github.com/users/kasugaijin/projects/1/settings)
 
 
 **Gems and Installs**
 
-* Devise
-* Figaro
-* Bootstrap CSS
-* Better errors
-* Guard and Guard live reload
-* Letter opener
-* Active Storage Validations
-* Phone lib
-* Active storage
+* Devise (User authentication)
+* Figaro (Environment variable management)
+* Bootstrap CSS (Styling)
+* Better errors (Error messaging in development)
+* Guard and Guard live reload (Automatically reloads browser when view files change in development)
+* Letter opener (Preview mail in the browser in development)
+* Active Storage Validations (Validate attachments e.g., file type and size)
+* Phone lib (Validate and format international phone numbers)
+* Active storage (Enable file attachments)
 
 
 
