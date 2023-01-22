@@ -182,4 +182,15 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       count: 1, text: @dog.name
     }
   end
+
+  test "unverified staff cannot create an adoption" do
+    sign_in users(:user_three)
+
+    post '/create_adoption',
+      params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Unauthorized action.', flash[:alert]
+  end
 end
