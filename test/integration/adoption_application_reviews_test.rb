@@ -129,7 +129,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
 
     get '/adopter_applications'
-    
+
     assert_select 'a', {
       count: 0, text: @dog.name
     }
@@ -144,7 +144,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "an adopter can withdraw and remove an application and a staff can subsequently set the adoption application from withdrawn to another status and the application reappears on the adopter's applications page" do
+  test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
     sign_in users(:user_one)
 
     patch '/my_application',
