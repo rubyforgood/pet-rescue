@@ -1,6 +1,6 @@
 # Dog Adoption Ruby on Rails Application
 
-I am a self-taught web developer and this is my first production Ruby on Rails application with real users. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make the process of linking adopters with dogs easier.
+A self-taught web developer, and this is my first production Ruby on Rails application with a real user base. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make their process of linking adopters with dogs easier.
 
 
 ### The Problem
@@ -48,23 +48,31 @@ The application has the following features:
 * Styling is achieved using Bootstrap 5
 * Model associations and tables allow for scalability such that multiple organizations could operate under this application, each with control over their own dogs.
 
+#### To Do
+
+* Achieve test for all features and user flows via integration and system tests. **Currently under way.**
+* Add the [SimpleCov Gem](https://github.com/simplecov-ruby/simplecov) to get more insight on test coverage.
+* Refactor controllers and models to have code that is bettwe organized. This app was recently reviewed by Jason Swett on his live meetup, and he provided many recommendations for consideration. Thank you, Jason! 
+* Build out the *Successes* page, which will have an interactive map (Google Maps API) showing pins of all adopted dogs in their new hometown. [See Project](https://github.com/users/kasugaijin/projects/1/settings)
+
+
 **Gems and Installs**
 
-* Devise
-* Figaro
-* Bootstrap CSS
-* Better errors
-* Guard and Guard live reload
-* Letter opener
-* Active Storage Validations
-* Phone lib
-* Active storage
+* Devise (User authentication)
+* Figaro (Environment variable management)
+* Bootstrap CSS (Styling)
+* Better errors (Error messaging in development)
+* Guard and Guard live reload (Automatically reloads browser when view files change in development)
+* Letter opener (Preview mail in the browser in development)
+* Active Storage Validations (Validate attachments e.g., file type and size)
+* Phone lib (Validate and format international phone numbers)
+* Active storage (Enable file attachments)
 
 
 
 ### Contributions
 
-This project has benefited from contributions on front end development so far, and would benefit from additional contributions. 
+This project has benefited from front and back end contributions, and more contributors are welcome! 
 
 Picking up an issue:
 * check the Issues tab for a list of work that needs completing. 
@@ -74,7 +82,7 @@ Before you make a pull request:
 * make sure the changes you have made are specific to the scope of work in the issue.
 * make sure the acceptance criteria stated in the issue are met. 
 * only commit relevant files with your intended changes. Do not commit any files that may have changed e.g., if you had to change the gemfile to run the application locally.
-* make sure the test suite passes `rails test`
+* make sure the test suite passes by running both `rails test` and `rails test test/system`
 
 A pull request will be reviewed and there may be feedback or questions related to changes, so please be prepared to follow up on those. A pull request will be merged once it looks good, and passes the test suite in the Github Actions pipeline.
 
