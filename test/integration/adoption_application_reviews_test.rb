@@ -128,6 +128,8 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     post '/create_adoption',
       params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
 
+    assert_equal 'Dog successfully adopted.', flash[:notice]
+
     get '/adopter_applications'
 
     assert_select 'a', {
