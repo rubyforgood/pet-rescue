@@ -3,8 +3,10 @@ require "test_helper"
 class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   setup do
-    @adopter_application = adopter_applications(:adopter_application_one)
+    @adopter_application = adopter_applications(:adopter_application_two)
     @adopter = @adopter_application.adopter_account.user
+    @dog = dogs(:dog_five)
+    @adopter_account_id = adopter_accounts(:adopter_account_one).id
   end
 
   test "verified staff can see all applications" do
@@ -94,6 +96,100 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
           status: 'under_review', notes: 'some notes'
         }, commit: 'Save', id: @adopter_application.id
       }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Unauthorized action.', flash[:alert]
+  end
+
+  test "when Successful Applicant is selected, button to Create Adoption shows" do
+    sign_in users(:user_two)
+
+    put "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'successful_applicant', notes: ''
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    follow_redirect!
+    assert_select 'a', 'Create Adoption'
+  end
+
+  test "after making the http request to create an adoption, the application disappears" do
+    sign_in users(:user_two)
+
+    get '/adopter_applications'
+
+    assert_select 'a', {
+      count: 1, text: @dog.name
+    }
+
+    post '/create_adoption',
+      params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
+
+    assert_equal 'Dog successfully adopted.', flash[:notice]
+
+    get '/adopter_applications'
+
+    assert_select 'a', {
+      count: 0, text: @dog.name
+    }
+  end
+
+  test "after making the http request to create an adoption, a new Adoption is created" do
+    sign_in users(:user_two)
+
+    assert_changes 'Adoption.count', from: 1, to: 2 do
+      post '/create_adoption',
+        params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
+    end
+  end
+
+  test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
+    sign_in users(:user_one)
+
+    patch '/my_application',
+      params: { application:
+        {
+          id: @adopter_application.id, status: 'withdrawn'
+        }
+      }
+
+    patch '/my_application',
+      params: { application:
+        {
+          id: @adopter_application.id, profile_show: 'false'
+        }
+      }
+
+    assert_select 'h3', {
+      count: 0, text: @dog.name
+    }
+
+    sign_in users(:user_two)
+
+    patch "/adopter_applications/#{@adopter_application.id}",
+      params: { adopter_application:
+        {
+          status: 'under_review', notes: '', profile_show: 'true'
+        }, commit: 'Save', id: @adopter_application.id
+      }
+
+    sign_in users(:user_one)
+
+    get '/my_applications'
+
+    assert_select 'h3', {
+      count: 1, text: @dog.name
+    }
+  end
+
+  test "unverified staff cannot create an adoption" do
+    sign_in users(:user_three)
+
+    post '/create_adoption',
+      params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
 
     assert_response :redirect
     follow_redirect!
