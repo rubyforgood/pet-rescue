@@ -2,6 +2,10 @@ require "test_helper"
 
 class UserAccountTest < ActionDispatch::IntegrationTest
 
+  setup do
+    @email = users(:user_four).email
+  end
+
   test "Adopter user can sign up with an associated adopter account and sees success flash and welcome mail is sent" do
     post "/users",
       params: { user:
@@ -195,14 +199,14 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     post '/users/password',
     params: { user:
       {
-        email: 'test@test123.com'
+        email: @email
       },
       commit: 'Send me reset password instructions'
     }
 
     mail = ActionMailer::Base.deliveries[0]
     assert_equal mail.from.join, 'please-change-me-at-config-initializers-devise@example.com', 'from email is incorrect'
-    assert_equal mail.to.join, 'test@test123.com', 'to email is incorrect'
+    assert_equal mail.to.join, @email, 'to email is incorrect'
     assert_equal mail.subject, 'Reset password instructions', 'subject is incorrect'
     ActionMailer::Base.deliveries = []
   end
