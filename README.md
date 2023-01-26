@@ -76,7 +76,8 @@ This project has benefited from front and back end contributions, and more contr
 
 Picking up an issue:
 * check the Issues tab for a list of work that needs completing. 
-* if you are interested in an issue and it is unassigned, leave a comment on the issue to claim it, then I will assign it to you. 
+* if you are interested in an issue and it is unassigned, leave a comment on the issue to claim it, then I will assign it to you.
+* please take only one issue at a time i.e., pick up the next issue after your current PR is merged. 
 
 Before you make a pull request:
 * merge main branch into your branch and run `bundle install` to make sure you have the latest changes.
@@ -85,7 +86,7 @@ Before you make a pull request:
 * only commit relevant files with your intended changes. Do not commit any files that may have changed e.g., if you had to change the gemfile to run the application locally.
 * make sure the full test suite passes by running `rails test:all`.
 
-A pull request will be reviewed and there may be feedback or questions related to changes, so please be prepared to follow up on those. A pull request will be merged once it looks good, and passes the test suite in the Github Actions pipeline.
+A pull request will be reviewed and there may be feedback or questions related to changes, so please be prepared to follow up on those. Pull requests are usually reviewed daily. A pull request will be merged once it looks good, and passes the test suite in the Github Actions pipeline.
 
 
 ### Local Setup
@@ -104,6 +105,7 @@ To set this application up locally:
 * `rails db:seed` to load seed data
 * `rails s` to run the local server
 * `localhost:3000` in web browser to access the application
+
 
 **Setting Up Staff Users**
 
