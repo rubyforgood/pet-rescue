@@ -22,6 +22,15 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     assert_equal 'Signed in successfully.', flash[:notice]
   end
 
+  test "user gets redirected to root page after sign out" do
+    sign_in users(:user_one)
+
+    delete destroy_user_session_path
+
+    assert_redirected_to root_path
+    assert_equal 'Signed out successfully.', flash[:notice]
+  end
+
   test "Adopter user can sign up with an associated adopter account and sees success flash and welcome mail is sent" do
     post "/users",
       params: { user:
