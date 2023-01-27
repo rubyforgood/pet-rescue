@@ -7,8 +7,6 @@ class AdoptableDogsController < ApplicationController
 
   def show
     @dog = Dog.find(params[:id])
-    # @application = AdopterApplication.new
-    # @application.dog_id = @dog.id
 
     return unless @dog.adoption
 

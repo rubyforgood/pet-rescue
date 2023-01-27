@@ -32,3 +32,6 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore SimpleCov test coverage metrics
+/coverage
