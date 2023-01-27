@@ -6,6 +6,22 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     @email = users(:user_four).email
   end
 
+  test "user gets redirected to root page after sign in" do
+    user = users(:user_one)
+
+    post '/users/sign_in',
+      params: { user:
+                {
+                  email: user.email,
+                  password: 'password'
+                },
+                commit: 'Log in'
+      }
+
+    assert_redirected_to root_path
+    assert_equal 'Signed in successfully.', flash[:notice]
+  end
+
   test "Adopter user can sign up with an associated adopter account and sees success flash and welcome mail is sent" do
     post "/users",
       params: { user:
