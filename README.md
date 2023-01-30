@@ -2,6 +2,8 @@
 
 A self-taught web developer, and this is my first production Ruby on Rails application with a real user base. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make their process of linking adopters with dogs easier.
 
+This application was reviewed by Jason Swett from Code with Jason on his live webinar in Jan, 2023. Thank you Jason! It was a great experience to learn from you and others on the call about how the code could be refactored for improvement. See the [video](https://youtu.be/0Otyx30pfzY) on his YouTube.
+
 
 ### The Problem
 
