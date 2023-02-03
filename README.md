@@ -28,8 +28,11 @@ The solution had to be simple, easy to maintain and manage, and provide a more c
 
 I decided that a ruby on rails application would be a suitable technology because it enables rapid development and its REST framework will provide all of the required functionality. I chose to use a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the staging and production applications will be deployed on the Hobby Tier. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail, and Amazon S3 for image hosting.
 
-You can view the database schema [here](https://lucid.app/lucidchart/a915c03c-3c09-454d-837b-f3d2768f5722/edit?viewport_loc=-25%2C-973%2C3565%2C2341%2C0_0&invitationId=inv_85cf2967-7b33-4030-903f-9655e767cbbf) to learn how the tables and models relate to each other in this application.
-
+#### Preparation Work (Before code)
+These are just some of the documents put together before writing any code:
+* Slide deck to pitch idea to client: [here](https://docs.google.com/presentation/d/1d4gjzADk7BcxmQEVZlesheGUen9d1E3RzrVvskMhVxo/edit?usp=sharing)
+* Figma site design: [here](https://www.figma.com/file/x3iM31l8csY7mT0VwKykhT/BPR---Wireframes---Ami?node-id=530186%3A154&t=mgRlseVd2LTKPX4o-1)
+* Model association diagram: [here](https://lucid.app/lucidchart/a915c03c-3c09-454d-837b-f3d2768f5722/edit?viewport_loc=-25%2C-973%2C3565%2C2341%2C0_0&invitationId=inv_85cf2967-7b33-4030-903f-9655e767cbbf)
 
 #### Features
 
@@ -99,7 +102,7 @@ To set this application up locally:
 * `rails -v` to ensure you have Rails 7.0.3 installed
 * `ruby -v` to ensure you have Ruby version 3.0.3 or later installed
 * `psql --version` to ensure you have PostgreSQL 12.12 installed (make sure you have a user and password)
-* If you need more information on setting up PostgreSQL with rails, see here: https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql
+* If you need more information on setting up PostgreSQL with rails, see [here](https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql)
 * Fork the repository and copy SSH key
 * `git clone <'SSH Key'>` to download application locally
 * `bundle install` to install gems (you may have to change gem 'sassc-rails' to gem 'sassc', "~> 2.1.0")
