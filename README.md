@@ -1,6 +1,8 @@
-# Dog Adoption Ruby on Rails Application
+# Baja Pet Rescue Dog Adoption Application
 
-A self-taught web developer, and this is my first production Ruby on Rails application with a real user base. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make their process of linking adopters with dogs easier.
+I am a self-taught web developer and this is my first production Ruby on Rails application with a real user base. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make their process of linking adopters with dogs easier.
+
+This codebase has been very successful so far, enabling 20 adoptions within its first ten weeks. However, I still have a lot to learn and always appreciate feedback. My curiosity for learning led me to provide this codebase to Jason Swett from Code with Jason to review on his live webinar in Jan, 2023. Thank you Jason! It was a great experience to learn from you and others on the call about how the code could be refactored for improvement. See the [video](https://youtu.be/0Otyx30pfzY) on his YouTube.
 
 
 ### The Problem
@@ -24,8 +26,13 @@ I met with the stakeholders to learn about their challenges and needs and then c
 
 The solution had to be simple, easy to maintain and manage, and provide a more cohesive flow and experience for both staff and adopters alike. It had to make use of out of the box technology with a low monthly overhead.
 
-I decided that a ruby on rails application would be a suitable technology because it enables rapid development and its REST framework will provide all of the required functionality. I chose to use a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the staging and production applications will be deployed on the Hobby Tier. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail, and Amazon S3 for image hosting.
+I decided that a ruby on rails application would be a suitable technology because it enables rapid development and its REST framework provides all of the required functionality. I chose a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the production application lives. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail, and Amazon S3 for image hosting.
 
+#### Preparation Work (Before code)
+These are just some of the documents put together before writing any code:
+* Slide deck to pitch idea to client: [here](https://docs.google.com/presentation/d/1d4gjzADk7BcxmQEVZlesheGUen9d1E3RzrVvskMhVxo/edit?usp=sharing)
+* Figma site design: [here](https://www.figma.com/file/x3iM31l8csY7mT0VwKykhT/BPR---Wireframes---Ami?node-id=530186%3A154&t=mgRlseVd2LTKPX4o-1)
+* Model association diagram: [here](https://lucid.app/lucidchart/a915c03c-3c09-454d-837b-f3d2768f5722/edit?viewport_loc=-25%2C-973%2C3565%2C2341%2C0_0&invitationId=inv_85cf2967-7b33-4030-903f-9655e767cbbf)
 
 #### Features
 
@@ -50,12 +57,12 @@ The application has the following features:
 
 #### To Do
 
-* Achieve test for all features and user flows via integration and system tests. **Currently under way.**
-* Refactor controllers and models to have code that is better organized. This app was recently reviewed by Jason Swett on his live meetup, and he provided many recommendations for consideration. Thank you, Jason! 
-* Build out the *Successes* page, which will have an interactive map (Google Maps API) showing pins of all adopted dogs in their new hometown. [See Project](https://github.com/users/kasugaijin/projects/1/settings)
+* Achieve 95%+ test coverage for all features and user flows via integration and system tests. **Currently under way**
+* Refactor controllers and models to better organize code based on the live code review by Jason Swett. 
+* Build out the *Successes* page, an interactive map (using Google Maps API) showing pins of all adopted dogs in their new hometown. [See Project](https://github.com/users/kasugaijin/projects/1/settings)
 
 
-**Gems and Installs**
+**Dependencies**
 
 * Devise (User authentication)
 * Figaro (Environment variable management)
@@ -66,13 +73,14 @@ The application has the following features:
 * Active Storage Validations (Validate attachments e.g., file type and size)
 * Phone lib (Validate and format international phone numbers)
 * Active storage (Enable file attachments)
-* SimleCov (generate test coverage metrics)
+* SimpleCov (Generate test coverage metrics)
+* Active Admin (Admin dashboard to easily verify new staff)
 
 
 
 ### Contributions
 
-This project has benefited from front and back end contributions, and more contributors are welcome! 
+This project has benefited from front and back end contributions. More contributors of all skill levels are welcome. 
 
 Picking up an issue:
 * check the Issues tab for a list of work that needs completing. 
@@ -95,7 +103,7 @@ To set this application up locally:
 * `rails -v` to ensure you have Rails 7.0.3 installed
 * `ruby -v` to ensure you have Ruby version 3.0.3 or later installed
 * `psql --version` to ensure you have PostgreSQL 12.12 installed (make sure you have a user and password)
-* If you need more information on setting up PostgreSQL with rails, see here: https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql
+* If you need more information on setting up PostgreSQL with rails, see [here](https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql)
 * Fork the repository and copy SSH key
 * `git clone <'SSH Key'>` to download application locally
 * `bundle install` to install gems (you may have to change gem 'sassc-rails' to gem 'sassc', "~> 2.1.0")
