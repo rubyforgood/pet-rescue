@@ -27,7 +27,7 @@ staff_account = StaffAccount.create!(user_id: 1,
 
 adopter_user_one = User.new(email: 'b@c.com',
                             first_name: 'Joe',
-                            last_name: 'Brandon',
+                            last_name: 'Brando',
                             password: '123456',
                             password_confirmation: '123456',
                             tos_agreement: 1)
@@ -39,7 +39,7 @@ adopter_account_one = AdopterAccount.create!(user_id: 2)
 
 adopter_user_two = User.create!(email: 'c@c.com',
                             first_name: 'Kamala',
-                            last_name: 'Lollol',
+                            last_name: 'Lolsworth',
                             password: '123456',
                             password_confirmation: '123456',
                             tos_agreement: 1)
@@ -103,9 +103,9 @@ profile_one = AdopterProfile.create!(adopter_account_id: 1,
 profile_two = AdopterProfile.create!(adopter_account_id: 2,
                                  phone_number: '250 548 7721',
                                  contact_method: 'phone',
-                                 country: 'Canada',
-                                 province_state: 'Alberta',
-                                 city_town: 'Canmore',
+                                 country: 'USA',
+                                 province_state: 'Nevada',
+                                 city_town: 'Reno',
                                  ideal_dog: 'I love a dog with energy and a gentle spirit. 
                                             One that snuggles on the couch in the evening.',
                                  lifestyle_fit: 'I work from home during the week and am always

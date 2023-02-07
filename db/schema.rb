@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_29_023038) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_06_003148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -152,6 +152,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_023038) do
     t.index ["organization_id"], name: "index_dogs_on_organization_id"
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.bigint "adopter_profile_id", null: false
+    t.string "country"
+    t.string "city_town"
+    t.string "province_state"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adopter_profile_id"], name: "index_locations_on_adopter_profile_id"
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.string "city"
@@ -195,6 +207,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_023038) do
   add_foreign_key "adoptions", "adopter_accounts"
   add_foreign_key "adoptions", "dogs"
   add_foreign_key "dogs", "organizations"
+  add_foreign_key "locations", "adopter_profiles"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
 end
