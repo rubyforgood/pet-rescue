@@ -140,3 +140,4 @@ profile_two = AdopterProfile.create!(adopter_account_id: 2,
                                  visit_dates: 'April 2 to May 7 2023',
                                  referral_source: 'my friends friend')
 # profile_two.save
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
