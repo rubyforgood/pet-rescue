@@ -89,4 +89,11 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
     get "/adoptable_dogs/#{@dog_id}"
     assert_select "h3", "Applications Paused Until Further Notice"  
   end
+
+  test "dog name shows adoption pending if it has any applications with that status" do 
+    @dog_id = dogs(:dog_one).id
+    get "/adoptable_dogs/#{@dog_id}"
+    assert_select 'h1', "#{dogs(:dog_one).name} (Adoption Pending)"
+  end
+
 end
