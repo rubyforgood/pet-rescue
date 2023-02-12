@@ -25,6 +25,11 @@ class Dog < ApplicationRecord
                        :opening_soon,
                        :paused_until_further_notice]
 
+  # check if dog has any applications with adoption pending status
+  def has_adoption_pending?
+    self.adopter_applications.any? { |app| app.status == "adoption_pending" }
+  end
+  
   # remove not_paused status as not necessary for staff
   def self.app_pause_reasons
     Dog.pause_reasons.keys.map do |reason|

@@ -2,7 +2,11 @@
   <div class="container">
     <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
-        <%= @dog.name %>
+        <% if @dog.has_adoption_pending? %>
+          <%= @dog.name %> (Adoption Pending)
+        <% else %>
+          <%= @dog.name %>
+        <% end %>
       </h1>
     </div>
   </div> <!--container-->

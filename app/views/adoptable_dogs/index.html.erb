@@ -23,9 +23,13 @@
                 <%= image_tag('coming_soon.jpg', class: 'card-img-top') %>
               <% end %>
               <div class="card-body">
-                <h3 class="card-title">
-                  <%= dog.name %>
-                </h3>
+                  <h3 class="card-title">
+                    <% if dog.has_adoption_pending? %>
+                      <%= dog.name %> (Adoption Pending)
+                    <% else %>
+                      <%= dog.name %>
+                    <% end %>
+                  </h3>
                 <p class="card-text m-0 bigger">
                   Age: <%= "#{dog.age}" " #{dog.age_unit}" %>
                 </p>
