@@ -1,17 +1,15 @@
 class AdopterProfile < ApplicationRecord
   belongs_to :adopter_account
+  has_one :location, dependent: :destroy
+  accepts_nested_attributes_for :location
+  validates_associated :location
+
   before_save :normalize_phone
 
   # phonelib gem
   validates :phone_number, phone: { possible: true }
 
   validates :contact_method, presence: true
-  validates :country, presence: { message: 'Please enter a country' },
-                      length: { maximum: 50, message: '50 characters maximum' }
-  validates :province_state, presence: { message: 'Please enter a province or state' },
-                             length: { maximum: 50, message: '50 characters maximum' }
-  validates :city_town, presence: { message: 'Please enter your city or town' },
-                        length: { maximum: 50, message: '50 characters maximum' }
   validates :ideal_dog, presence: { message: 'Please tell us about your ideal dog' },
                         length: { maximum: 200, message: '200 characters maximum' }
   validates :lifestyle_fit, presence: { message: 'Please tell us about your lifestyle' },
