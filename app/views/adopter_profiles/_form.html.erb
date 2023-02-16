@@ -5,8 +5,7 @@
   <% if profile.errors.count > 0 %>
     <div class="alert alert-danger mt-1" role="alert">
       <p>
-        Please fix <%= profile.errors.count %> 
-        <%= 'error'.pluralize(profile.errors.count) %> highlighted below.
+        Please fix the errors highlighted below.
       </p>
     </div>
   <% end %>
@@ -40,34 +39,28 @@
       <% end %>
     </div>
 
-    <div class="form-group">
-      <%= form.label :country, class: 'bigger' %>
-      <%= form.text_field :country, class: 'form-control bigger'%>
+    <%# nested form for locations table %>
+    <div class="form-group bigger">
+      <%= form.fields_for :location do |location| %>
+          <%= location.label :country %>
+          <%= location.text_field :country, class: 'form-control' %>
+          <% profile.location.custom_messages(:country).each do |error| %>
+            <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+          <% end %>
 
-      <% profile.custom_messages(:country).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+          <%= location.label :province_state, 'Province/State' %>
+          <%= location.text_field :province_state, class: 'form-control' %>
+          <% profile.location.custom_messages(:province_state).each do |error| %>
+            <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+          <% end %>
+
+          <%= location.label :city_town, 'City/Town' %>
+          <%= location.text_field :city_town, class: 'form-control' %>
+          <% profile.location.custom_messages(:city_town).each do |error| %>
+            <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+          <% end %>
       <% end %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :province_state, 'Province/State', class: 'bigger' %>
-      <%= form.text_field :province_state, class: 'form-control' %>
-
-      <% profile.custom_messages(:province_state).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-      <% end %>
-    </div>
-
-    <div class="form-group">
-      <%= form.label :city_town, 'City/Town', class: 'bigger' %>
-      <%= form.text_field :city_town,
-                          class: 'form-control' %>
-
-      <% profile.custom_messages(:city_town).each do |error| %>
-        <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-      <% end %>
-    </div>
-    
+    </div>    
   </div> <!--card-->
 
 
