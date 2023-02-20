@@ -23,7 +23,6 @@ class AdopterProfilesController < ApplicationController
         format.html { redirect_to profile_path, notice: 'Profile created' }
       else
         format.html { render :new, status: :unprocessable_entity, alert: 'Error' }
-        @adopter_profile.build_location
       end
     end
   end
@@ -84,6 +83,6 @@ class AdopterProfilesController < ApplicationController
                                             :visit_laventana,
                                             :visit_dates,
                                             :referral_source,
-                                            location_attributes: [:city_town, :country, :province_state])
+                                            location_attributes: [:city_town, :country, :province_state, :id])
   end
 end
