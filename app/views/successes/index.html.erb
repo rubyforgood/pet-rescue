@@ -1,5 +1,4 @@
-<%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDITU19TesTn3dHdfwyJsmL3CZy7RX2g_c&region=US&callback=initMap",
-    defer: true %>
+<script async defer src=<%="https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLEAPI']}&region=US&callback=initMap"%> type="text/javascript"></script>
 
 <section class="pt-5 pb-5" id="adopter_profile">
   <div class="container mb-md-5 mt-md-5">
