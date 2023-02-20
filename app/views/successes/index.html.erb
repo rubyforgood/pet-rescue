@@ -1,16 +1,28 @@
 <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyDITU19TesTn3dHdfwyJsmL3CZy7RX2g_c&region=US&callback=initMap",
     defer: true %>
 
-<div data-controller="google-map" data-action="MapLoaded@window->google-map#initGoogle">
-  <% @adoption_all.each do |adoption| %>
-    <ul data-google-map-target="listings">
-      <% unless adoption.adopter_account.adopter_profile.location.latitude == nil %>
-        <li data-lat="<%= adoption.adopter_account.adopter_profile.location.latitude %>"
-            data-lon="<%= adoption.adopter_account.adopter_profile.location.longitude %>"
-            data-name="<%= adoption.dog.name %>">
-        </li>
-      <% end %>
-    </ul>
-  <% end %>
-  <div data-google-map-target="map" class="map container rounded"></div>
-</div>
+<section class="pt-5 pb-5" id="adopter_profile">
+  <div class="container mb-md-5 mt-md-5">
+    <div class="text-center mb-5">
+      <h1 class="section-heading text-uppercase underline">
+        Successes
+      </h1>
+    </div>
+    <div data-controller="google-map" data-action="MapLoaded@window->google-map#initGoogle">
+    <% @adoption_all.each do |adoption| %>
+      <ul data-google-map-target="listings" class="coordinates">
+        <% unless adoption.adopter_account.adopter_profile.location.latitude == nil %>
+          <li data-lat="<%= adoption.adopter_account.adopter_profile.location.latitude %>"
+              data-lon="<%= adoption.adopter_account.adopter_profile.location.longitude %>"
+              data-name="<%= adoption.dog.name %>">
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+    <div data-google-map-target="map" class="map container rounded"></div>
+  </div>
+
+  <div class="bigger text-center mt-4">
+    The <%= Adoption.all.count %> pins on this map represent each dog who has found a new home since the launch of this website in November, 2022. 
+  </div>
+</section>

@@ -469,6 +469,11 @@
     cursor: pointer;
   }
 
+  // google map container
   .map {
     height: 450px;
+  }
+
+  .coordinates {
+    list-style-type: none;
   }

@@ -10,6 +10,7 @@ export default class extends Controller {
     }
   }
 
+  // this also executes when the custom event is triggered by google api callback param
   initGoogle() {
     const map = new google.maps.Map(this.mapTarget, {
       zoom: 4,
