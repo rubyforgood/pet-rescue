@@ -207,5 +207,11 @@ until i == 10 do
   i += 1
 end
 
+# create an adoption
+Adoption.create!(
+  dog_id: Dog.first.id,
+  adopter_account_id: @adopter_account_one.id
+)
+
 # active admin seed
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
