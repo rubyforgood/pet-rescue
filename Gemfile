@@ -66,8 +66,11 @@ gem 'aws-sdk-s3'
 # validate adopter phone numbers
 gem "phonelib"
 
-# active admin 
+# active admin
 gem 'activeadmin'
+
+# geocoder creates lat/long for success page map
+gem 'geocoder'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

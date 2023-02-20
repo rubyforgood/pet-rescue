@@ -15,9 +15,12 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
         phone_number: '',
         contact_method: '',
         country: '',
-        province_state: '',
-        city_town: '',
-        ideal_dog: '',
+        location_attributes: {
+          province_state: '',
+          city_town: '',
+          ideal_dog: '',
+          id: ''
+        },
         lifestyle_fit: '',
         activities: '',
         alone_weekday: '',
@@ -50,14 +53,13 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
 
     assert_select 'div.alert', { count: 27 }
     assert_select 'div.alert' do 
-    assert_select 'p', 'Please fix 26 
-        errors highlighted below.'
+      assert_select 'p', 'Please fix the errors highlighted below.'
     end
     assert_select 'div.alert', 'Phone number is invalid'
     assert_select 'div.alert', "Contact method can't be blank"
     assert_select 'div.alert', "Please enter a country"
     assert_select 'div.alert', "Please enter a province or state"
-    assert_select 'div.alert', "Please enter your city or town"
+    assert_select 'div.alert', "Please enter a city or town"
     assert_select 'div.alert', "Please tell us about your ideal dog"
     assert_select 'div.alert', "Please tell us about your lifestyle"
     assert_select 'div.alert', "Please tell us about the activities"

@@ -4,9 +4,12 @@ class AdopterProfilesController < ApplicationController
   before_action :check_if_adopter, only: [:new, :create, :update, :show]
 
   # only allow new profile if one does not exist
+  # has_one for location provides new method build_location
+  # https://guides.rubyonrails.org/association_basics.html#has-one-association-reference
   def new
     if profile_nil?
       @adopter_profile = AdopterProfile.new
+      @adopter_profile.build_location
     else
       redirect_to profile_path
     end
@@ -53,9 +56,6 @@ class AdopterProfilesController < ApplicationController
     params.require(:adopter_profile).permit(:adopter_account_id, 
                                             :phone_number,
                                             :contact_method,
-                                            :country,
-                                            :province_state,
-                                            :city_town,
                                             :ideal_dog,
                                             :lifestyle_fit,
                                             :activities,
@@ -82,6 +82,7 @@ class AdopterProfilesController < ApplicationController
                                             :annual_cost,
                                             :visit_laventana,
                                             :visit_dates,
-                                            :referral_source)
+                                            :referral_source,
+                                            location_attributes: [:city_town, :country, :province_state, :id])
   end
 end
