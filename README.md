@@ -108,7 +108,8 @@ To set this application up locally:
 * `git clone <'SSH Key'>` to download application locally
 * `bundle install` to install gems (you may have to change gem 'sassc-rails' to gem 'sassc', "~> 2.1.0")
 * `bundle exec figaro install`
-* Add your PostgreSQL database username and database password to `config/application.yml` as ENV variables
+* Add your PostgreSQL database username and database password to `config/application.yml` as ENV variables e.g., `DATABASE_USERNAME: "username"` `DATABASE_PASSWORD: "password`
+* `rails db:create` to create the database
 * `rails db:migrate` to run all migrations
 * `rails db:seed` to load seed data
 * `rails s` to run the local server

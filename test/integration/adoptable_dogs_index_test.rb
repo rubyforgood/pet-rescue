@@ -18,4 +18,8 @@ class AdoptableDogsIndexTest < ActionDispatch::IntegrationTest
     assert_select 'img.card-img-top', { count: @dog_count }
   end
 
+  test "dog name shows adoption pending if it has any applications with that status" do 
+    get '/adoptable_dogs'
+    assert_select 'h3', "#{dogs(:dog_one).name} (Adoption Pending)"
+  end
 end

@@ -4,6 +4,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
 
   setup do
     @dog_id = dogs(:dog_three).id
+    @adopted_dog_id = dogs(:dog_two).id
   end
 
   test "unauthenticated users see create account prompt and link" do
@@ -89,4 +90,18 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
     get "/adoptable_dogs/#{@dog_id}"
     assert_select "h3", "Applications Paused Until Further Notice"  
   end
+
+  test "dog name shows adoption pending if it has any applications with that status" do 
+    @dog_id = dogs(:dog_one).id
+    get "/adoptable_dogs/#{@dog_id}"
+    assert_select 'h1', "#{dogs(:dog_one).name} (Adoption Pending)"
+  end
+  
+  test "an adopted dog can't be shown as an adoptable dog" do
+    get "/adoptable_dogs/#{@adopted_dog_id}"
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'You can only view dogs that need adoption.', flash[:alert]
+  end
+
 end
