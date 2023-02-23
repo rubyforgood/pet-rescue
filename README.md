@@ -2,7 +2,9 @@
 
 I am a self-taught web developer and this is my first production Ruby on Rails application with a real user base. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make their process of linking adopters with dogs easier.
 
-This codebase has been very successful so far, enabling 20 adoptions within its first ten weeks. However, I still have a lot to learn and always appreciate feedback. My curiosity for learning led me to provide this codebase to Jason Swett from Code with Jason to review on his live webinar in Jan, 2023. Thank you Jason! It was a great experience to learn from you and others on the call about how the code could be refactored for improvement. See the [video](https://youtu.be/0Otyx30pfzY) on his YouTube.
+This application has been very successful so far, enabling 28 adoptions within its first fourteen weeks. However, I still have a lot to learn and always appreciate feedback. My curiosity for learning led me to provide this codebase to Jason Swett from Code with Jason to review on his live webinar in Jan, 2023. Thank you Jason! It was a great experience to learn from you and others on the call about how the code could be refactored for improvement. See the [video](https://youtu.be/0Otyx30pfzY) on his YouTube.
+
+Live: [Baja Pet Rescue](https://www.bajapetrescue.com)
 
 
 ### The Problem
