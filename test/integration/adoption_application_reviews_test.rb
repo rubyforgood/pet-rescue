@@ -195,4 +195,25 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_equal 'Unauthorized action.', flash[:alert]
   end
+
+  test "the filter works to show applications for a given dog and for all dogs" do 
+    sign_in users(:user_two)
+
+    get '/adopter_applications'
+    assert_select 'div.card',
+      # count of all unadopted dogs with an application for a given org
+      { count: Dog.org_dogs_with_apps(users(:user_two).staff_account.organization_id).count }
+
+    get '/adopter_applications',
+      params: {dog_id: dogs(:dog_one).id }
+    
+    assert_select 'div.card', { count: 1 }
+    assert_select 'h4', "#{dogs(:dog_one).name}"
+
+    get '/adopter_applications',
+      params: { dog_id: "" }
+    
+    assert_select 'div.card',
+    { count: Dog.org_dogs_with_apps(users(:user_two).staff_account.organization_id).count }
+  end
 end
