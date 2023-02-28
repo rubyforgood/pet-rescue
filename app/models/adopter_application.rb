@@ -29,4 +29,10 @@ class AdopterApplication < ApplicationRecord
     applications = AdopterApplication.where(adopter_account_id: adopter_account_id)
     applications.any? { |app| app.profile_show == true }
   end
+
+  # set application status to withdrawn e.g. if reverting an adoption
+  def set_status_to_withdrawn(adopter_application)
+    adopter_application.status = :withdrawn
+    adopter_application.save
+  end
 end

@@ -14,6 +14,19 @@ class AdoptionsController < ApplicationController
     end
   end
 
+  def delete
+    @adoption = Adoption.find_by(dog_id: params[:dog_id])
+
+    @successful_application = @adoption.adopter_account.adopter_applications.find_by(dog_id: params[:dog_id])
+    AdopterApplication.set_status_to_withdrawn(@successful_adoption_application)
+
+    if @adoption.destroy
+      redirect_to dog_path(params[:dog_id]), notice: 'Adoption Reverted'
+    else
+      redirect_to dog_path(params[:dog_id]), alert 'Failed to revert adoption'
+    end
+  end
+
   private
 
   def adoption_params
