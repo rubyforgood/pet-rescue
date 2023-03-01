@@ -31,7 +31,7 @@ class AdopterApplication < ApplicationRecord
   end
 
   # set application status to withdrawn e.g. if reverting an adoption
-  def set_status_to_withdrawn(adopter_application)
+  def self.set_status_to_withdrawn(adopter_application)
     adopter_application.status = :withdrawn
     adopter_application.save
   end
