@@ -21,7 +21,7 @@ class AdoptionsController < ApplicationController
     AdopterApplication.set_status_to_withdrawn(@successful_application)
 
     if @adoption.destroy
-      redirect_to dogs_path, notice: "Adoption Reverted & application set to 'Withdrawn'"
+      redirect_to dogs_path, notice: "Adoption reverted & application set to 'Withdrawn'"
     else
       redirect_to dogs_path, alert: 'Failed to revert adoption'
     end
@@ -44,12 +44,15 @@ class AdoptionsController < ApplicationController
     end
   end
 
-  def same_organization?
-    params[:adoption_id]? @dog_id = Adoption.find(params[:adoption_id]).dog_id :
-                          @dog_id = params[:dog_id]
+  def get_dog_id
+    return params[:dog_id] if params[:dog_id]
 
-    return if current_user.staff_account.organization_id ==
-              Dog.find(@dog_id).organization.id
+    Adoption.find(params[:adoption_id]).id
+  end
+  
+  # staff and dog in the same org?
+  def same_organization?
+    return if current_user.staff_account.organization_id == Dog.find(get_dog_id).organization.id
 
     redirect_to root_path, alert: 'Unauthorized action.'
   end
