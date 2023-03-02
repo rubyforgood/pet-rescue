@@ -47,7 +47,7 @@ class AdoptionsController < ApplicationController
   def get_dog_id
     return params[:dog_id] if params[:dog_id]
 
-    Adoption.find(params[:adoption_id]).id
+    Adoption.find(params[:adoption_id]).dog_id
   end
   
   # staff and dog in the same org?
