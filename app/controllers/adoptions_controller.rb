@@ -17,7 +17,9 @@ class AdoptionsController < ApplicationController
   def delete
     @adoption = Adoption.find(params[:adoption_id])
 
-    @successful_application = @adoption.adopter_account.adopter_applications.find_by(dog_id: @adoption.dog_id)
+    @successful_application = @adoption.adopter_account
+                                       .adopter_applications
+                                       .where(dog_id: @adoption.dog_id)[0]
     AdopterApplication.set_status_to_withdrawn(@successful_application)
 
     if @adoption.destroy
