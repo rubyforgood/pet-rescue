@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   match '/500', to: 'errors#internal_server_error', via: :all
 
   root 'static_pages#home'
-
   get '/about_us', to: 'static_pages#about_us'
   get '/faq', to: 'static_pages#faq'
   get '/partners', to: 'static_pages#partners'
@@ -31,6 +30,7 @@ Rails.application.routes.draw do
   patch 'my_application', to: 'adopter_applications#update'
 
   post 'create_adoption', to: 'adoptions#create'
+  delete 'revoke_adoption', to: 'adoptions#delete'
 
   delete 'attachments/:id/purge', to: 'attachments#purge', as: 'purge_attachment'
 
