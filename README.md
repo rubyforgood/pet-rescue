@@ -103,7 +103,7 @@ A pull request will be reviewed and there may be feedback or questions related t
 
 To set this application up locally:
 * `rails -v` to ensure you have Rails 7.0.3 installed
-* `ruby -v` to ensure you have Ruby version 3.0.3 or later installed
+* Run `rbenv versions` or `rvm list rubies` and confirm that Ruby 3.1.1 is installed
 * `psql --version` to ensure you have PostgreSQL 12.12 installed (make sure you have a user and password)
 * If you need more information on setting up PostgreSQL with rails, see [here](https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql)
 * Fork the repository and copy SSH key
@@ -111,9 +111,7 @@ To set this application up locally:
 * `bundle install` to install gems (you may have to change gem 'sassc-rails' to gem 'sassc', "~> 2.1.0")
 * `bundle exec figaro install`
 * Add your PostgreSQL database username and database password to `config/application.yml` as ENV variables e.g., `DATABASE_USERNAME: "username"` `DATABASE_PASSWORD: "password`
-* `rails db:create` to create the database
-* `rails db:migrate` to run all migrations
-* `rails db:seed` to load seed data
+* `rails db:setup` to create the database, load the schema, and load seed data
 * `rails s` to run the local server
 * `localhost:3000` in web browser to access the application
 
