@@ -4,25 +4,34 @@ class RevokeAdoptionTest < ActionDispatch::IntegrationTest
 
   setup do 
     sign_in users(:user_two)
+    @dog = dogs(:dog_two)
+    @adoption_id = Adoption.find_by(dog_id: @dog.id).id
+    @successful_application = adopter_applications(:adopter_application_three)
   end
 
-  # go to org dogs show page for an adopted dog
-  test "staff can revoke adoption and dog becomes adoptable and application is set to withdrawn" do
-    get "/dogs/#{dogs(:dog_two).id}"
+  test "staff can revoke adoption and dog becomes adoptable and successful application set to withdrawn" do
+    get "/adoptable_dogs"
+    assert_select "h3", { text: "#{@dog.name}", count: 0 }
 
-    # assert no pause app box
+    get "/dogs/#{@dog.id}"
     assert_select "p", { text: "Pause Applications?", count: 0 }
-    # assert revoke adoption button
     assert_select "a", "Revoke Adoption"
     
+    delete "/revoke_adoption",
+      params: { adoption_id: @adoption_id }
+    
+    assert_response :redirect
+    follow_redirect!
+    assert_equal "Adoption reverted & application set to 'Withdrawn'", flash[:notice]
 
-  # submit the request to revoke the adoption
-  # assert flash stating adoption was revoked
-  # assert no revoke adoption button
-  # assert pause app box
+    get "/dogs/#{@dog.id}"
+    assert_select "p", "Pause Applications?"
+    assert_select "a", { text: "Revoke Adoption", count: 0 }
 
-  # check successful app status was set to withdrawn
+    assert_equal "withdrawn", @successful_application.status
 
+    get "/adoptable_dogs"
+    assert_select "h3", "#{@dog.name}"
   end
 
 end
