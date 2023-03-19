@@ -56,12 +56,13 @@ The application has the following features:
 * Forms make use of Stimulus Javascript framework to provide features like conditional fields and character counters.
 * Styling is achieved using Bootstrap 5
 * Model associations and tables allow for scalability such that multiple organizations could operate under this application, each with control over their own dogs.
+* Successes page that uses Google Map API to display an interactive map with a pin for each adopted dog's new home around the world. [See Project](https://github.com/users/kasugaijin/projects/1/settings)
+* 95% test coverage
 
 #### To Do
 
-* Achieve 95%+ test coverage for all features and user flows via integration and system tests. **Currently under way**
 * Refactor controllers and models to better organize code based on the live code review by Jason Swett. 
-* Build out the *Successes* page, an interactive map (using Google Maps API) showing pins of all adopted dogs in their new hometown. [See Project](https://github.com/users/kasugaijin/projects/1/settings)
+* Integrate PayPal API on the `/donate` page to allow easy donations via web form natively
 
 
 **Dependencies**
@@ -90,13 +91,15 @@ Picking up an issue:
 * please take only one issue at a time i.e., pick up the next issue after your current PR is merged. 
 
 Before you make a pull request:
-* merge main branch into your branch and run `bundle install` to make sure you have the latest changes.
+* merge main branch into your branch: `git checkout main` + `git pull` + `git checkout <your branch name>` + `git merge main`
+* fix any conflicts.
+* run `bundle install` to make sure you have the latest dependencies.
 * make sure the changes you have made are specific to the scope of work in the issue.
 * make sure the acceptance criteria stated in the issue are met. 
-* only commit relevant files with your intended changes. Do not commit any files that may have changed e.g., if you had to change the gemfile to run the application locally.
+* only commit relevant files related to your scope of work.
 * make sure the full test suite passes by running `rails test:all`.
 
-A pull request will be reviewed and there may be feedback or questions related to changes, so please be prepared to follow up on those. Pull requests are usually reviewed daily. A pull request will be merged once it looks good, and passes the test suite in the Github Actions pipeline.
+When you make a pull request, the GitHub Actions pipeline will run the test suite against your changes and will notify you of pass or fail. You can check the logs for errors, if any. Once the pipeline passes, your pull request will be reviewed and there may be feedback or questions related to your code, so please be prepared to follow up on those. Pull requests are usually reviewed daily.
 
 
 ### Local Setup
