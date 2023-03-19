@@ -92,6 +92,7 @@ Picking up an issue:
 
 Before you make a pull request:
 * merge main branch into your branch: `git checkout main` + `git pull` + `git checkout <your branch name>` + `git merge main`
+* fix any conflicts.
 * run `bundle install` to make sure you have the latest dependencies.
 * make sure the changes you have made are specific to the scope of work in the issue.
 * make sure the acceptance criteria stated in the issue are met. 
