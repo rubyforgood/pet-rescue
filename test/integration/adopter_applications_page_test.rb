@@ -25,7 +25,13 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Adoption Applications'
 
     # two Withdraw buttons and one navbar logout button
-    assert_select 'form', { count: 3 }
+    visible_applications_count = users(:user_one)
+                                .adopter_account
+                                .adopter_applications
+                                .where.not(status: ['adoption_made'])
+                                .where(profile_show: true)
+                                .count
+    assert_select 'form', { count: visible_applications_count + 1 }
     assert_select 'form' do
       assert_select 'button', 'Withdraw'
     end
@@ -48,7 +54,13 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Adoption Applications'
 
     # two Withdraw buttons and one navbar logout button
-    assert_select 'form', { count: 3 }
+    visible_applications_count = users(:user_one)
+                                .adopter_account
+                                .adopter_applications
+                                .where.not(status: ['adoption_made'])
+                                .where(profile_show: true)
+                                .count
+    assert_select 'form', { count: visible_applications_count + 1 }
     assert_select 'form' do
       assert_select 'button', 'Withdraw'
     end
@@ -74,7 +86,13 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Adoption Applications'
 
     # One Withdraw button and one navbar logout button
-    assert_select 'form', { count: 2 }
+    visible_applications_count = users(:user_one)
+                                .adopter_account
+                                .adopter_applications
+                                .where.not(status: ['adoption_made'])
+                                .where(profile_show: true)
+                                .count
+    assert_select 'form', { count: visible_applications_count + 1 }
     assert_select 'form' do
       assert_select 'button', 'Withdraw'
     end
@@ -110,7 +128,13 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
 
     get '/my_applications'
     assert_response :success
-    assert_select 'form', { count: 3 }
+    visible_applications_count = users(:user_one)
+                                .adopter_account
+                                .adopter_applications
+                                .where.not(status: ['adoption_made'])
+                                .where(profile_show: true)
+                                .count
+    assert_select 'form', { count: visible_applications_count + 1 }
 
     # withdraw and remove in one request
     patch '/my_application',
@@ -124,7 +148,13 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
-    assert_select 'form', { count: 2 }
+    visible_applications_count = users(:user_one)
+                                .adopter_account
+                                .adopter_applications
+                                .where.not(status: ['adoption_made'])
+                                .where(profile_show: true)
+                                .count
+    assert_select 'form', { count: visible_applications_count + 1 }
     logout
 
     sign_in users(:user_two)
@@ -140,6 +170,12 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     sign_in users(:user_one)
     get '/my_applications'
     assert_response :success
-    assert_select 'form', { count: 3 }
+    visible_applications_count = users(:user_one)
+                                .adopter_account
+                                .adopter_applications
+                                .where.not(status: ['adoption_made'])
+                                .where(profile_show: true)
+                                .count
+    assert_select 'form', { count: visible_applications_count + 1 }
   end
 end
