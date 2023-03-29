@@ -31,8 +31,4 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
       assert_select 'li[data-lon]', { value: "-115.3481135", count: adoption_count_before + 1 }
     end
   end
-
-  # make an adoption and test one more list
-  # changes lat/lon and test changed lat lon
-
 end
