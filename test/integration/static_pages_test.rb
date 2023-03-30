@@ -63,4 +63,10 @@ class StaticPagesTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Cookie Policy'
   end
 
+  test "successes page can be accessed" do
+    get "/successes"
+    assert_response :success
+    assert_select 'h1', 'Successes'
+  end
+
 end
