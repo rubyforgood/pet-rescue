@@ -55,8 +55,12 @@
             </li>
             <li>
               <%= link_to 'Contact', new_contact_path,
-                                class: 'nav-link text-white bigger' %>
-            </li> 
+                                class: 'nav-link text-white bigger me-3' %>
+            </li>
+            <li class="nav-item navbar-dark">
+              <%= link_to 'Successes', successes_path, 
+                  class: 'nav-link text-white bigger' %>
+            </li>
           </ul>
 
           <ul class="navbar-nav mb-md-0">
