@@ -1,16 +1,18 @@
 class SuccessesController
 	# class to retrieve and prepare coordinates for Google Map API, used by successes controller
 	class GoogleMapCoordinates
-		attr_reader :map_collection
+		attr_reader :map_collection, :raw_collection
 
-		def initialize
-			@raw_collection = []
+		def initialize(raw_collection=[])
+			@raw_collection = raw_collection
 			@duplicate_locations = []
 			@map_collection = []
 		end
 
+		# if not init with a raw collection arg
 		def create_raw_collection
 			Adoption.all.each do |adoption|
+
 				lat = adoption.adopter_account.adopter_profile.location.latitude
 				lon = adoption.adopter_account.adopter_profile.location.longitude
 	
@@ -18,6 +20,7 @@ class SuccessesController
 					@raw_collection << {latitude: lat, longitude: lon}
 				end
 			end
+			@raw_collection
 		end
 
 		def find_duplicate_locations
