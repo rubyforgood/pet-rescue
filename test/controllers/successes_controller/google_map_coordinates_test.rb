@@ -56,4 +56,11 @@ class SuccessesController::GoogleMapCoordinatesTest < ActiveSupport::TestCase
 		assert_equal modified_locations.length, @raw_dataset.length
 		assert_equal modified_locations, modified_locations.uniq
 	end
+
+	test "generate coordinates method returns array of unique coordinates" do 
+		instance = SuccessesController::GoogleMapCoordinates.new(@raw_dataset)
+		output = instance.generate_coordinates
+		assert_equal output.length, @raw_dataset.length
+		assert_equal output, output.uniq
+	end
 end

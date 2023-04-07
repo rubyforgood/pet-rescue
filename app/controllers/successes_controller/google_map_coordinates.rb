@@ -9,7 +9,6 @@ class SuccessesController
 			@map_collection = []
 		end
 
-		# if not init with a raw collection arg
 		def create_raw_collection
 			Adoption.all.each do |adoption|
 
@@ -45,19 +44,11 @@ class SuccessesController
 			modified_collection.uniq
 		end
 
-		def duplicate_locations_empty?
-			@duplicate_locations.empty?
-		end
-
 		def generate_coordinates
-			create_raw_collection
+			create_raw_collection if @raw_collection.empty?
 			find_duplicate_locations
-
-			if duplicate_locations_empty?
-				@map_collection = @raw_collection
-			else
-				@map_collection = modify_duplicate_locations
-			end
+			@duplicate_locations.empty? ? @map_collection = @raw_collection :
+																		@map_collection = modify_duplicate_locations
 			@map_collection
 		end
 	end
