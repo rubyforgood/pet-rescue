@@ -9,13 +9,11 @@
     </div>
     <div data-controller="google-map" data-action="MapLoaded@window->google-map#initGoogle">
       <ul data-google-map-target="listings" class="coordinates">
-        <% @adoption_all.each do |adoption| %>
-          <% unless adoption.adopter_account.adopter_profile.location.latitude == nil %>
-            <li data-lat="<%= adoption.adopter_account.adopter_profile.location.latitude %>"
-                data-lon="<%= adoption.adopter_account.adopter_profile.location.longitude %>"
-                data-name="<%= adoption.dog.name %>">
+        <% @map_collection.each do |location| %>
+            <li data-lat="<%= location[:latitude] %>"
+                data-lon="<%= location[:longitude] %>"
+            >
             </li>
-          <% end %>
         <% end %>
       </ul>
     <div data-google-map-target="map" class="map container rounded"></div>

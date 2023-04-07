@@ -1,7 +1,6 @@
 class SuccessesController < ApplicationController
-
-  def index
-    @adoption_all = Adoption.all
+  def index 
+    coordinates_retriever = GoogleMapCoordinates.new
+    @map_collection = coordinates_retriever.generate_coordinates
   end
-
 end
