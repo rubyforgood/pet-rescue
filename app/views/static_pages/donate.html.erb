@@ -1,3 +1,5 @@
+<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+
 <section class="pt-5 pb-5" id="donate">
   <div class="container mb-md-5 mt-md-5">
 
@@ -15,16 +17,26 @@
       </div>
       <div class="col-md-8 ps-md-4 bigger pb-5 pb-md-0">
         <p class=''>
-          Donations are a vital part of keeping our program up and running. While our expenses are certainly much lower than that of a rescue in Canada or the US, it still costs a substantial amount of money to keep things running. 
+          Donations are a vital part of keeping our program up and running. While our expenses are certainly much lower than that of a rescue in Canada or the US, it still costs a substantial amount of money to keep things running. No amount is too small, and all donations are greatly appreciated.
         </p>
-        <br>
-        <p class=''>
-          At this time, we accept donations via PayPal or e-transfer. They can be sent to <strong>bajapetrescue AT gmail DOT com</strong> or you can <%= link_to 'contact us', new_contact_path %> and we would be happy to help you make a donation.
-        </p>
-        <br>
-        <p>
-          No amount is too small, and all donations are greatly appreciated.
-        </p>
+
+        <div id="paypal-donate-button-container" class="text-center mt-5">
+          <script>
+            PayPal.Donation.Button({
+              env: 'production',
+              // hosted_button_id: 'YOUR_SANDBOX_HOSTED_BUTTON_ID',
+              business: 'business_value_here',
+              image: {
+                src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
+                title: 'PayPal - The safer, easier way to pay online!',
+                alt: 'Donate with PayPal button'
+              },
+              onComplete: function (params) {
+                console.log(params)
+              },
+            }).render('#paypal-donate-button-container');
+          </script>
+        </div>
       </div>
     </div> <!--row-->
 
