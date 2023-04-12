@@ -20,23 +20,37 @@
           Donations are a vital part of keeping our program up and running. While our expenses are certainly much lower than that of a rescue in Canada or the US, it still costs a substantial amount of money to keep things running. No amount is too small, and all donations are greatly appreciated.
         </p>
 
-        <div id="paypal-donate-button-container" class="text-center mt-5">
-          <script>
-            PayPal.Donation.Button({
-              env: 'production',
-              // hosted_button_id: 'YOUR_SANDBOX_HOSTED_BUTTON_ID',
-              business: 'business_value_here',
-              image: {
-                src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
-                title: 'PayPal - The safer, easier way to pay online!',
-                alt: 'Donate with PayPal button'
-              },
-              onComplete: function (params) {
-                console.log(params)
-              },
-            }).render('#paypal-donate-button-container');
-          </script>
+      <div class="row text-center mt-5">
+        <div class="col-8 offset-2 border p-5 shadow-sm 
+                    rounded bg-white">
+          <h3 class='mb-4'>Donate via Paypal</h3>
+          <div id="paypal-donate-button-container" class="text-center mt-2">
+            <script>
+              PayPal.Donation.Button({
+                env: 'sandbox',
+                // hosted_button_id: 'YOUR_SANDBOX_HOSTED_BUTTON_ID',
+                business: 'ID',
+                image: {
+                  src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
+                  title: 'PayPal - The safer, easier way to pay online!',
+                  alt: 'Donate with PayPal button'
+                },
+                onComplete: function (params) {
+                  console.log(params)
+                },
+              }).render('#paypal-donate-button-container');
+            </script>
+
+          <%# Test values work with ENV vars %>
+          <%# Test with sandbox %>
+          <%# Check onComplete returns params and execute controller to save to db %>
+          <%# <input type="hidden" name="business" value="LETUBLN4NQKDG" /> %>
+          <%# To test, log into developer with normal credentials, go to sandbox accounts, and then log into sandbox with account, create a button, add the ID above, and then pay using another sandbox account %>
+
+          </div>
         </div>
+      </div>
+        
       </div>
     </div> <!--row-->
 
