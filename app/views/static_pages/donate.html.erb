@@ -24,15 +24,17 @@
         <div class="col-8 offset-2 border p-5 shadow-sm 
                     rounded bg-white">
           <h3 class='mb-4'>Donate via Paypal</h3>
+
           <div id="paypal-donate-button-container" class="text-center mt-2">
-            <script>
+            <script data-text=<%= "#{ENV['PAYPAL_BUSINESS']}" %>>
+              const business_id = document.querySelector('script[data-text]').dataset.text
               PayPal.Donation.Button({
                 env: 'sandbox',
                 // hosted_button_id: 'YOUR_SANDBOX_HOSTED_BUTTON_ID',
-                business: 'ID',
+                business: business_id,
                 image: {
                   src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
-                  title: 'PayPal - The safer, easier way to pay online!',
+                  title: 'Donate to Baja Pet Rescue via Paypal.',
                   alt: 'Donate with PayPal button'
                 },
                 onComplete: function (params) {
@@ -40,13 +42,11 @@
                 },
               }).render('#paypal-donate-button-container');
             </script>
-
           <%# Test values work with ENV vars %>
           <%# Test with sandbox %>
           <%# Check onComplete returns params and execute controller to save to db %>
           <%# <input type="hidden" name="business" value="LETUBLN4NQKDG" /> %>
           <%# To test, log into developer with normal credentials, go to sandbox accounts, and then log into sandbox with account, create a button, add the ID above, and then pay using another sandbox account %>
-
           </div>
         </div>
       </div>
