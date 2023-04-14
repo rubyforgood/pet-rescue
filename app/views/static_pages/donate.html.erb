@@ -38,21 +38,24 @@
                   alt: 'Donate with PayPal button'
                 },
                 onComplete: function (params) {
-                  console.log(params)
+                  params["source"] = "Paypal"
+									const csrfToken = document.querySelector('[name="csrf-token"]').content
+
+                  fetch('http://localhost:3000/donations', {
+										method: 'POST',
+										headers: {
+											'Content-Type': 'application/json',
+											'Accept': 'application/json',
+											'X-CSRF-Token': csrfToken
+										},
+										body: JSON.stringify(params)
+									});
                 },
               }).render('#paypal-donate-button-container');
             </script>
-          <%# Test values work with ENV vars %>
-          <%# Test with sandbox %>
-          <%# Check onComplete returns params and execute controller to save to db %>
-          <%# <input type="hidden" name="business" value="LETUBLN4NQKDG" /> %>
-          <%# To test, log into developer with normal credentials, go to sandbox accounts, and then log into sandbox with account, create a button, add the ID above, and then pay using another sandbox account %>
           </div>
         </div>
-      </div>
-        
-      </div>
+      </div>        
     </div> <!--row-->
-
   </div> <!--container-->
 </section>
