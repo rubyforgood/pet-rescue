@@ -28,7 +28,8 @@
           <div id="paypal-donate-button-container" class="text-center mt-2">
             <script data-text=<%= "#{ENV['PAYPAL_BUSINESS']}" %>>
               const business_id = document.querySelector('script[data-text]').dataset.text
-              PayPal.Donation.Button({
+              
+							PayPal.Donation.Button({
                 env: 'sandbox',
                 // hosted_button_id: 'YOUR_SANDBOX_HOSTED_BUTTON_ID',
                 business: business_id,
@@ -43,13 +44,13 @@
 
                   fetch('http://localhost:3000/donations', {
 										method: 'POST',
-										headers: {
+                    headers: {
 											'Content-Type': 'application/json',
 											'Accept': 'application/json',
 											'X-CSRF-Token': csrfToken
-										},
-										body: JSON.stringify(params)
-									});
+                    },
+                    body: JSON.stringify(params)
+                	});
                 },
               }).render('#paypal-donate-button-container');
             </script>
