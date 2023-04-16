@@ -1,24 +1,24 @@
 <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
 
 <section class="pt-5 pb-5" id="donate">
-  <div class="container mb-md-5 mt-md-5">
+	<div class="container mb-md-5 mt-md-5">
 
-    <!--page heading-->
-    <div class="text-center mb-5">
-      <h1 class="section-heading text-uppercase underline">
-        Donate
-      </h1>
-    </div>
-  
-    <!--main section-->
-    <div class="row pb-md-5">
-      <div class="col-md-4 mb-4 mb-md-0">
-        <%= link_to image_tag('about1.jpg', alt: 'Dog in Mexico', class: 'card-img-top rounded') %>
-      </div>
-      <div class="col-md-8 ps-md-4 bigger pb-5 pb-md-0">
-        <p>
-          We rely heavily on donations to keep our program up and running. Even though things are generally cheaper in Mexico, the cost of rescuing each dog mounts up quickly.
-        </p>
+		<!--page heading-->
+		<div class="text-center mb-5">
+			<h1 class="section-heading text-uppercase underline">
+				Donate
+			</h1>
+		</div>
+	
+		<!--main section-->
+		<div class="row pb-md-5">
+			<div class="col-md-4 mb-4 mb-md-0">
+				<%= link_to image_tag('about1.jpg', alt: 'Dog in Mexico', class: 'card-img-top rounded') %>
+			</div>
+			<div class="col-md-8 ps-md-4 bigger pb-5 pb-md-0">
+				<p>
+					We rely heavily on donations to keep our program up and running. Even though things are generally cheaper in Mexico, the cost of rescuing each dog mounts up quickly.
+				</p>
 				<br/>
 				<p>
 					Please consider donating today so we can continue giving these dogs a chance at a healthier, happier life.
@@ -47,7 +47,7 @@
 										fetch('https://www.bajapetrescue.com/donations', {
 											method: 'POST',
 											headers: {
-											  'Content-Type': 'application/json',
+												'Content-Type': 'application/json',
 												'Accept': 'application/json',
 												'X-CSRF-Token': csrfToken
 											},
@@ -60,6 +60,6 @@
 					</div>
 				</div>
 			</div>
-    </div> <!--row-->
-  </div> <!--container-->
+		</div> <!--row-->
+	</div> <!--container-->
 </section>
