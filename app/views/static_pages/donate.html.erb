@@ -16,47 +16,50 @@
         <%= link_to image_tag('about1.jpg', alt: 'Dog in Mexico', class: 'card-img-top rounded') %>
       </div>
       <div class="col-md-8 ps-md-4 bigger pb-5 pb-md-0">
-        <p class=''>
-          Donations are a vital part of keeping our program up and running. While our expenses are certainly much lower than that of a rescue in Canada or the US, it still costs a substantial amount of money to keep things running. No amount is too small, and all donations are greatly appreciated.
+        <p>
+          We rely heavily on donations to keep our program up and running. Even though things are generally cheaper in Mexico, the cost of rescuing each dog mounts up quickly.
         </p>
+				<br/>
+				<p>
+					Please consider donating today so we can continue giving these dogs a chance at a healthier, happier life.
+				</p>	
+				<div class="row text-center mt-5">
+					<div class="col-8 offset-2 border p-5 shadow-sm 
+											rounded bg-white">
+						<h3 class='mb-4'>Donate now via Paypal</h3>
 
-      <div class="row text-center mt-5">
-        <div class="col-8 offset-2 border p-5 shadow-sm 
-                    rounded bg-white">
-          <h3 class='mb-4'>Donate via Paypal</h3>
+						<div id="paypal-donate-button-container" class="text-center mt-2">
+							<script data-text=<%= "#{ENV['PAYPAL_BUSINESS']}" %>>
+								const business_id = document.querySelector('script[data-text]').dataset.text
+								
+								PayPal.Donation.Button({
+									env: 'production',
+									business: business_id,
+									image: {
+										src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
+										title: 'Donate to Baja Pet Rescue via Paypal.',
+										alt: 'Donate with PayPal button'
+									},
+									onComplete: function (params) {
+										params["source"] = "Paypal"
+										const csrfToken = document.querySelector('[name="csrf-token"]').content
 
-          <div id="paypal-donate-button-container" class="text-center mt-2">
-            <script data-text=<%= "#{ENV['PAYPAL_BUSINESS']}" %>>
-              const business_id = document.querySelector('script[data-text]').dataset.text
-              
-							PayPal.Donation.Button({
-                env: 'sandbox',
-                // hosted_button_id: 'YOUR_SANDBOX_HOSTED_BUTTON_ID',
-                business: business_id,
-                image: {
-                  src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
-                  title: 'Donate to Baja Pet Rescue via Paypal.',
-                  alt: 'Donate with PayPal button'
-                },
-                onComplete: function (params) {
-                  params["source"] = "Paypal"
-									const csrfToken = document.querySelector('[name="csrf-token"]').content
-
-                  fetch('http://localhost:3000/donations', {
-										method: 'POST',
-                    headers: {
-											'Content-Type': 'application/json',
-											'Accept': 'application/json',
-											'X-CSRF-Token': csrfToken
-                    },
-                    body: JSON.stringify(params)
-                	});
-                },
-              }).render('#paypal-donate-button-container');
-            </script>
-          </div>
-        </div>
-      </div>        
+										fetch('https://www.bajapetrescue.com/donations', {
+											method: 'POST',
+											headers: {
+												'Content-Type': 'application/json',
+												'Accept': 'application/json',
+												'X-CSRF-Token': csrfToken
+											},
+											body: JSON.stringify(params)
+										});
+									},
+								}).render('#paypal-donate-button-container');
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
     </div> <!--row-->
   </div> <!--container-->
 </section>
