@@ -38,6 +38,13 @@ class DonationTest < ActionDispatch::IntegrationTest
 		
 	end
 
-	test "post request with failed status does not create a new donation record" do 
+	test "post request with failed status does not create a new donation record" do
+    donation_count_before = Donation.all.length
+
+    post '/donations', 
+			params: @failed_paypal_response
+		
+		donation_count_after = Donation.all.length
+		assert_equal donation_count_after, donation_count_before
 	end
 end
