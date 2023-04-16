@@ -1,9 +1,1 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  amount: MyString
-  currency: MyString
-
-two:
-  amount: MyString
-  currency: MyString
