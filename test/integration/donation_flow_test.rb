@@ -1,6 +1,6 @@
 require "test_helper"
 
-class DonationTest < ActionDispatch::IntegrationTest
+class DonationFlowTest < ActionDispatch::IntegrationTest
     
   setup do
 		@completed_paypal_response = {
