@@ -9,6 +9,10 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    
+    <% if content_for?(:head) %>
+      <%= yield(:head) %>
+    <% end %>
   </head>
 
   <body class='d-flex flex-column min-vh-100'>
