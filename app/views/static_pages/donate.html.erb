@@ -1,4 +1,10 @@
-<script async defer src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+<%# set header to ensure full page reload to enable PayPal SDK to work properly %>
+<%# see: https://turbo.hotwired.dev/handbook/drive#ensuring-specific-pages-trigger-a-full-reload %>
+<% content_for :head do %>
+  <meta name="turbo-visit-control" content="reload">
+<% end %>
+
+<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
 
 <section class="pt-5 pb-5" id="donate">
 	<div class="container mb-md-5 mt-md-5">
@@ -29,8 +35,8 @@
 						<h3 class='mb-4'>Donate now via Paypal</h3>
 
 						<div id="paypal-donate-button-container" class="text-center mt-2">
-							<script data-text=<%= "#{ENV['PAYPAL_BUSINESS']}" %>>
-								const business_id = document.querySelector('script[data-text]').dataset.text
+							<script>
+								const business_id = '<%= ENV['PAYPAL_BUSINESS'] %>';
 								
 								PayPal.Donation.Button({
 									env: 'production',
