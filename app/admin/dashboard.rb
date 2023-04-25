@@ -21,6 +21,18 @@ ActiveAdmin.register_page "Dashboard" do
             end
           end
         end
+        panel "Donations" do
+          ul do
+            li do
+              "# Donations: #{Donation.all.count}"
+            end
+            Donation.sum_donations_by_currency.each do |k,v|
+              li do 
+                "#{k}: $#{v}"
+              end
+            end
+          end
+        end
       end
     end
   end
