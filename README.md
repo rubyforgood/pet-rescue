@@ -90,17 +90,21 @@ Picking up an issue:
 * if you are interested in an issue and it is unassigned, leave a comment on the issue to claim it, then I will assign it to you.
 * please take only one issue at a time i.e., pick up the next issue after your current PR is merged. 
 
-Before you make a pull request:
-* merge main branch into your branch: `git checkout main` + `git pull` + `git checkout <your branch name>` + `git merge main`
-* fix any conflicts.
-* run `bundle install` to make sure you have the latest dependencies.
-* make sure the changes you have made are specific to the scope of work in the issue.
-* make sure the acceptance criteria stated in the issue are met. 
-* only commit relevant files related to your scope of work.
-* make sure the full test suite passes by running `rails test:all`.
+Making Pull Requests:
+* Fork this repo to your own GitHub account
+* Clone your forked repo to your local machine `git clone <ssh or https url>`
+* Set the upstream remote so you can stay synced with this repo `git remote add upstream <ssh or https url>`
+* Create a branch on your forked repo `git checkout -b <branch name>`
+* Add commits of discreet units of code along with descriptive commit messages
+* Sync your forked repo and branch with this repo periodically following [this flow](https://www.theodinproject.com/lessons/ruby-using-git-in-the-real-world#ongoing-workflow)
+* Push your branch to your forked repo `git push origin <branch name>`
+* Go to your forked repo on GitHub and make a pull request.
+* Ensure the description of the PR explains what your code does. If it is a UI change, include a screenshot. 
+* Only commit relevant code/files i.e., do not commit lint changes nor `Gemfile.lock` changes.
+* Make sure the full test suite passes by running `rails test:all`.
 
 When you make a pull request, the GitHub Actions pipeline will run the test suite against your changes and will notify you of pass or fail. You can check the logs for errors, if any. Once the pipeline passes, your pull request will be reviewed and there may be feedback or questions related to your code, so please be prepared to follow up on those. Pull requests are usually reviewed daily.
-
+add bullets to the beginning of this set of instructions for an open source github repo for making contributions, and make sure the bullets achieve the
 
 ### Local Setup
 
