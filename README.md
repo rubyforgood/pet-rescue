@@ -65,9 +65,7 @@ The application has the following features:
 
 #### To Do
 
-* Refactor controllers and models to better organize code based on the live code review by Jason Swett. 
-* Integrate PayPal API on the `/donate` page to allow easy donations via web form natively
-
+* See [issues tab](https://github.com/kasugaijin/baja-pet-rescue/issues). 
 
 **Dependencies**
 
