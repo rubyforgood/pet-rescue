@@ -77,9 +77,11 @@ The application has the following features:
 * Letter opener (Preview mail in the browser in development)
 * Active Storage Validations (Validate attachments e.g., file type and size)
 * Phone lib (Validate and format international phone numbers)
-* Active storage (Enable file attachments)
+* Active sorage validations (easy validations for file uploads)
 * SimpleCov (Generate test coverage metrics)
 * Active Admin (Admin dashboard to easily verify new staff)
+* Geocoder (Generate coordinates from adopter location for successes map)
+* aws-sdk-s3 (integration with AWS to use image buckets)
 
 
 
