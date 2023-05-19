@@ -14,16 +14,16 @@ Live Site: [Baja Pet Rescue](https://www.bajapetrescue.com)
 ### The Problem
 
 The dog rescue organization has limited time and resources. They have been using Facebook and Instagram to post new dogs and get interest from adopters. This has been working, but is not ideal because:
-* staff are forced to use the platform's layout for dog posts
-* staff have a hard time keeping track of applications for each dog
-* staff have to use a third party adoption application form
-* staff have insufficient resources to build/maintain a website
-* there are no free, 'off the shelf' CMS solutions available for this domain
-* there is limited ability to customise or brand online presence and build credibility
-* adopters have to duplicate efforts each time they apply to adopt a dog
-* adopters have no easy way to check the status of their application
-* adopters have to use a patchwork process comprised of different apps
-* adopters have to be registered on a social media platform and know how to navigate it
+* Staff are forced to use the platform's layout for dog posts
+* Staff have a hard time keeping track of applications for each dog
+* Staff have to use a third party adoption application form
+* Staff have insufficient resources to build/maintain a website
+* There are no free, 'off the shelf' CMS solutions available for this domain
+* There is limited ability to customise or brand online presence and build credibility
+* Adopters have to duplicate efforts each time they apply to adopt a dog
+* Adopters have no easy way to check the status of their application
+* Adopters have to use a patchwork process comprised of different apps
+* Adopters have to be registered on a social media platform and know how to navigate it
 
 
 ### The Solution
@@ -32,7 +32,7 @@ I met with the stakeholders to learn about their challenges and needs and then c
 
 The solution had to be simple, easy to maintain and manage, and provide a more cohesive flow and experience for both staff and adopters alike. It had to make use of out of the box technology with a low monthly overhead.
 
-I decided that a ruby on rails application would be a suitable technology because it enables rapid development and its REST framework provides all of the required functionality. I chose a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the production application lives. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail, and Amazon S3 for image hosting.
+I decided that a Ruby on Rails application would be a suitable technology because it enables rapid development and its REST framework provides all of the required functionality. I chose a PostgreSQL database because it is robust and works readily with Ruby on Rails and Heroku, where the production application lives. Last, I opted to use the SendGrid app on Heroku to manage SMTP for mail, and Amazon S3 for image hosting.
 
 #### Preparation Work (Before code)
 These are just some of the documents put together before writing any code:
@@ -45,7 +45,7 @@ These are just some of the documents put together before writing any code:
 The application has the following features:
 * Authentication for two user types - adopters and organization staff
 * Organization staff can perform CRUD actions on dogs on behalf of an organization
-* Active storage for image uploads
+* Active Storage for image uploads
 * Amazon S3 for uploaded image hosting
 * Adopters can create, read and update their profile, which contains vetting information
 * Adopters can create adoption applications for a dog and view their application history/status and withdraw from an application
@@ -57,7 +57,7 @@ The application has the following features:
 * Mailer sends new adopters a welcome email
 * Mailer handles the contact form on the website
 * Authorizations to control the actions of users i.e. only adopters can apply to adopt dogs and only verified staff can carry out staff actions.
-* Forms make use of Stimulus Javascript framework to provide features like conditional fields and character counters.
+* Forms make use of Stimulus JavaScript framework to provide features like conditional fields and character counters.
 * Styling is achieved using Bootstrap 5
 * Model associations and tables allow for scalability such that multiple organizations could operate under this application, each with control over their own dogs.
 * Successes page that uses Google Map API to display an interactive map with a pin for each adopted dog's new home around the world. [See Project](https://github.com/users/kasugaijin/projects/1/settings)
@@ -90,9 +90,9 @@ The application has the following features:
 This project has benefited from front and back end contributions. More contributors of all skill levels are welcome. 
 
 Picking up an issue:
-* check the Issues tab for a list of work that needs completing. 
-* if you are interested in an issue and it is unassigned, leave a comment on the issue to claim it, then I will assign it to you.
-* please take only one issue at a time i.e., pick up the next issue after your current PR is merged. 
+* Check the Issues tab for a list of work that needs completing.
+* If you are interested in an issue and it is unassigned, leave a comment on the issue to claim it, then I will assign it to you.
+* Please take only one issue at a time i.e., pick up the next issue after your current PR is merged.
 
 Making Pull Requests:
 * Fork this repo to your own GitHub account
