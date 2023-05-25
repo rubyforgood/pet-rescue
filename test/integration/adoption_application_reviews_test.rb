@@ -10,13 +10,13 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can see all applications" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     get '/adopter_applications'
 
     assert_response :success
     assert_select 'a', {
-      count: Dog.org_dogs_with_apps(users(:user_two).staff_account.organization_id).count, text: 'Adopter Profile'
+      count: Dog.org_dogs_with_apps(users(:verified_staff_one).staff_account.organization_id).count, text: 'Adopter Profile'
     }
   end
 
@@ -31,7 +31,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "all expected elements of an application are shown" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     get '/adopter_applications'
 
@@ -43,7 +43,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can edit an adoption application status" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     assert_changes 'AdopterApplication.find(@adopter_application.id).status', from: 'awaiting_review', to: 'under_review' do
       put "/adopter_applications/#{@adopter_application.id}",
@@ -71,7 +71,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can add notes to an application" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     put "/adopter_applications/#{@adopter_application.id}",
       params: { adopter_application:
@@ -103,7 +103,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "when Successful Applicant is selected, button to Create Adoption shows" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     put "/adopter_applications/#{@adopter_application.id}",
       params: { adopter_application:
@@ -117,7 +117,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "after making the http request to create an adoption, the application disappears" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     get '/adopter_applications'
 
@@ -138,7 +138,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "after making the http request to create an adoption, a new Adoption is created" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     assert_changes 'Adoption.count', from: 1, to: 2 do
       post '/create_adoption',
@@ -167,7 +167,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       count: 0, text: @dog.name
     }
 
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     patch "/adopter_applications/#{@adopter_application.id}",
       params: { adopter_application:
@@ -197,12 +197,12 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "the filter works to show applications for a given dog and for all dogs" do 
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     get '/adopter_applications'
     assert_select 'div.card',
       # count of all unadopted dogs with an application for a given org
-      { count: Dog.org_dogs_with_apps(users(:user_two).staff_account.organization_id).count }
+      { count: Dog.org_dogs_with_apps(users(:verified_staff_one).staff_account.organization_id).count }
 
     get '/adopter_applications',
       params: {dog_id: dogs(:dog_one).id }
@@ -214,6 +214,6 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       params: { dog_id: "" }
     
     assert_select 'div.card',
-    { count: Dog.org_dogs_with_apps(users(:user_two).staff_account.organization_id).count }
+    { count: Dog.org_dogs_with_apps(users(:verified_staff_one).staff_account.organization_id).count }
   end
 end

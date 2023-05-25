@@ -7,7 +7,7 @@ class AdopterProfileReviewTest < ActionDispatch::IntegrationTest
   end
 
   test "Verified staff can access an adopter profile" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     get "/profile_review/#{@adopter_profile.id}"
 

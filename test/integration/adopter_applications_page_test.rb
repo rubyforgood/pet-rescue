@@ -93,7 +93,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     assert_select 'p', 'Status: Awaiting Review'
 
     logout
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     patch "/adopter_applications/#{@application_id}",
     params: { adopter_application:
@@ -132,7 +132,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     assert_select 'form', { count: @visible_applications.reload.count + 1 }
     logout
 
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     patch "/adopter_applications/#{@application_id}",
     params: { adopter_application:
       {

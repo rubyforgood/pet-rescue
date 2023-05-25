@@ -33,7 +33,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
   end
 
   test "staff do not see an adopt button only log out button" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     get "/adoptable_dogs/#{@dog_id}"
     assert_response :success
     assert_select 'form' do
@@ -43,7 +43,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
   end
 
   test "if dog status is paused and reason is opening soon this is displayed" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     put "/dogs/#{@dog_id}",
       params: { dog:
@@ -68,7 +68,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
   end
 
   test "if dog status is paused and reason is paused until further notice this is displayed" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     put "/dogs/#{@dog_id}",
       params: { dog:

@@ -48,7 +48,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   end
 
   test "authenticated staff sees dashboard with Our Dogs and Applications links" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     get '/'
     assert_select 'a', 'Dashboard'
     assert_select 'a', 'Account Settings'

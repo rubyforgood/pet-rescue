@@ -5,7 +5,7 @@
 # below each fixture, per the syntax in the comments below
 #
 staff_account_one:
-  user: user_two
+  user: verified_staff_one
   organization: organization_one
   verified: true
 

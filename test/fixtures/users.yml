@@ -14,7 +14,7 @@ adopter_with_profile:
   tos_agreement: 1
 
 # verified staff
-user_two: 
+verified_staff_one:
   first_name: Staffy
   last_name: McStaffface
   email: testes@test.com

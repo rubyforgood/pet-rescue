@@ -27,7 +27,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "staff user sees flash error if they apply for a dog" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     before_count = AdopterApplication.all.count
 
     post '/create_my_application',

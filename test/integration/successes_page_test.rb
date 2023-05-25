@@ -18,7 +18,7 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
   end
 
   test "An additional list element is created when a new adoption is made" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     adoption_count_before = @adoptions.count
 
     post '/create_adoption',
