@@ -4,7 +4,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
 
   setup do
     @application_id = adopter_applications(:adopter_application_one).id
-    @visible_applications = users(:user_one)
+    @visible_applications = users(:adopter_with_profile)
                             .adopter_account
                             .adopter_applications
                             .where.not(status: ['adoption_made'])
@@ -22,7 +22,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adopter with profile can access adopter applications route and see applications" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
 
     get '/my_applications'
 
@@ -38,7 +38,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adopter with account can withdraw an application and see remove button" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
 
     patch '/my_application',
     params: { application:
@@ -63,7 +63,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adopter with account can remove an application from the page" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
 
     patch '/my_application',
     params: { application:
@@ -86,7 +86,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adoption status changes when staff change the application status" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
 
     get '/my_applications'
     assert_response :success
@@ -103,7 +103,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     }
 
     logout
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
 
     get '/my_applications'
     assert_response :success
@@ -111,7 +111,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
 
     get '/my_applications'
     assert_response :success
@@ -142,7 +142,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     }
 
     logout
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get '/my_applications'
     assert_response :success
     assert_select 'form', { count: @visible_applications.reload.count + 1 }

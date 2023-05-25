@@ -7,7 +7,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "user gets redirected to root page after sign in" do
-    user = users(:user_one)
+    user = users(:adopter_with_profile)
 
     post '/users/sign_in',
       params: { user:
@@ -23,7 +23,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "user gets redirected to root page after sign out" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
 
     delete destroy_user_session_path
 

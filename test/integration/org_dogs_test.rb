@@ -12,7 +12,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter user cannot access org dogs index" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get "/dogs/new"
     assert_response :redirect
     follow_redirect!
@@ -247,7 +247,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     images = @dog.images_attachments
     logout
 
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     delete "/attachments/#{images[1].id}/purge",
       params: { id: "#{images[1].id}" },
       headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }

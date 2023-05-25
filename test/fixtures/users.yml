@@ -6,7 +6,7 @@
 #
 
 # adopter with a profile
-user_one:
+adopter_with_profile:
   first_name: Ben
   last_name: Jo
   email: test@test.com

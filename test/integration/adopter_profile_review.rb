@@ -12,8 +12,8 @@ class AdopterProfileReviewTest < ActionDispatch::IntegrationTest
     get "/profile_review/#{@adopter_profile.id}"
 
     assert_response :success
-    assert_select 'h1', "#{users(:user_one).first_name} 
-        #{users(:user_one).last_name}'s Profile"
+    assert_select 'h1', "#{users(:adopter_with_profile).first_name}
+        #{users(:adopter_with_profile).last_name}'s Profile"
   end
 
   test "unverified staff cannot access an adopter profile" do

@@ -3,7 +3,7 @@ require "application_system_test_case"
 class AdopterProfileFormsTest < ApplicationSystemTestCase
 
   setup do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     visit profile_path
     click_on "Edit Profile"
   end

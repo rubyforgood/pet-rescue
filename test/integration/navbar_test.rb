@@ -10,7 +10,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   end
 
   test "authenticated user sees log out button" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get '/'
     assert_select 'form' do
       assert_select 'button', 'Log Out'
@@ -37,7 +37,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   end
 
   test "authenticated adopter with profile sees My Applications link" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get '/'
     assert_select 'a', 'Dashboard'
     assert_select 'a', 'Account Settings'

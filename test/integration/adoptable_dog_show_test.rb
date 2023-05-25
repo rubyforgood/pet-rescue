@@ -23,7 +23,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter with a profile sees love this pooch question and apply button" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get "/adoptable_dogs/#{@dog_id}"
     assert_response :success
     assert_select "h4", "In love with this pooch?"
@@ -62,7 +62,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
     }
 
     logout
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get "/adoptable_dogs/#{@dog_id}"
     assert_select "h3", "Applications Opening Soon"  
   end
@@ -86,7 +86,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
         } }
 
     logout
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get "/adoptable_dogs/#{@dog_id}"
     assert_select "h3", "Applications Paused Until Further Notice"  
   end

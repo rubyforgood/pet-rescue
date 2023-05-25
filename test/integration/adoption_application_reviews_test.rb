@@ -147,7 +147,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
 
     patch '/my_application',
       params: { application:
@@ -176,7 +176,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
         }, commit: 'Save', id: @adopter_application.id
       }
 
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
 
     get '/my_applications'
 
