@@ -10,7 +10,7 @@ staff_account_one:
   verified: true
 
 staff_account_two:
-  user: user_three
+  user: unverified_staff
   organization: organization_three
   verified: false
 

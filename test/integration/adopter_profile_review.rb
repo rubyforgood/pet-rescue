@@ -17,7 +17,7 @@ class AdopterProfileReviewTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot access an adopter profile" do
-    sign_in users(:user_three)
+    sign_in users(:unverified_staff)
 
     get "/profile_review/#{@adopter_profile.id}"
 

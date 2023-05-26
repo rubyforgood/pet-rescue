@@ -21,7 +21,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot access org dogs index" do
-    sign_in users(:user_three)
+    sign_in users(:unverified_staff)
     get "/dogs/new"
     assert_response :redirect
     follow_redirect!
@@ -30,7 +30,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot post to org dogs" do
-    sign_in users(:user_three)
+    sign_in users(:unverified_staff)
 
     post "/dogs",
       params: { dog:

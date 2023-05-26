@@ -21,7 +21,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot access the page" do
-    sign_in users(:user_three)
+    sign_in users(:unverified_staff)
 
     get '/adopter_applications'
 
@@ -56,7 +56,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot edit an adoption application status" do
-    sign_in users(:user_three)
+    sign_in users(:unverified_staff)
 
     put "/adopter_applications/#{@adopter_application.id}",
     params: { adopter_application:
@@ -88,7 +88,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot add notes to an application" do
-    sign_in users(:user_three)
+    sign_in users(:unverified_staff)
 
     put "/adopter_applications/#{@adopter_application.id}",
       params: { adopter_application:
@@ -186,7 +186,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot create an adoption" do
-    sign_in users(:user_three)
+    sign_in users(:unverified_staff)
 
     post '/create_adoption',
       params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }

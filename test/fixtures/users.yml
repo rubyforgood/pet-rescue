@@ -22,7 +22,7 @@ verified_staff_one:
   tos_agreement: 1
 
 # unverified staff
-user_three:
+unverified_staff:
   first_name: unverified
   last_name: McStaffface
   email: testes@testes.com
