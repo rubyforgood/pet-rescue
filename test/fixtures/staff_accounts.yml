@@ -15,7 +15,7 @@ staff_account_two:
   verified: false
 
 staff_account_three:
-  user: user_five
+  user: verified_staff_two
   organization: organization_one
   verified: true
 
