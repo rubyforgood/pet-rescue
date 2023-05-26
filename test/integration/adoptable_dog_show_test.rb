@@ -15,7 +15,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter without a profile sees complete my profile prompt and link" do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
     get "/adoptable_dogs/#{@dog_id}"
     assert_response :success
     assert_select "h4", "Complete your profile to apply for this dog"

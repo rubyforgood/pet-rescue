@@ -3,7 +3,7 @@ require "test_helper"
 class UserAccountTest < ActionDispatch::IntegrationTest
 
   setup do
-    @email = users(:user_four).email
+    @email = users(:adopter_without_profile).email
   end
 
   test "user gets redirected to root page after sign in" do
@@ -95,7 +95,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test 'error messages should appear if edit profile form is submitted without data' do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
 
     put '/users',
     params: { user:
@@ -118,7 +118,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test 'user cannot update their profile with invalid password and should see error message' do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
 
     put '/users',
     params: { user:
@@ -137,12 +137,12 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert', count: 1
     assert_select 'div.alert', 'Current password is invalid'
 
-    users(:user_four).reload
-    assert users(:user_four).valid_password?('password'), 'Password updated without proper authorization'
+    users(:adopter_without_profile).reload
+    assert users(:adopter_without_profile).valid_password?('password'), 'Password updated without proper authorization'
   end
 
   test 'user can update their password and see success flash' do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
 
     put '/users',
     params: { user:
@@ -160,12 +160,12 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_equal 'Your account has been updated successfully.', flash[:notice]
 
-    users(:user_four).reload
-    assert users(:user_four).valid_password?('newpassword'), 'Updated password is not valid'
+    users(:adopter_without_profile).reload
+    assert users(:adopter_without_profile).valid_password?('newpassword'), 'Updated password is not valid'
   end
 
   test 'user can update their first name and see success flash' do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
 
     put '/users',
     params: { user:
@@ -183,14 +183,14 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_equal 'Your account has been updated successfully.', flash[:notice]
 
-    users(:user_four).reload
-    assert_equal 'Etzio', users(:user_four).first_name
-    assert_equal 'Auditore', users(:user_four).last_name
+    users(:adopter_without_profile).reload
+    assert_equal 'Etzio', users(:adopter_without_profile).first_name
+    assert_equal 'Auditore', users(:adopter_without_profile).last_name
   end
 
   test "user can delete their account" do
-    sign_in users(:user_four)
-    assert(users(:user_four))
+    sign_in users(:adopter_without_profile)
+    assert(users(:adopter_without_profile))
     delete '/users'
     assert_nil(User.find_by(email: 'test@test123.com'))
   end

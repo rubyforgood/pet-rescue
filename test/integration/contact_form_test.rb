@@ -2,7 +2,7 @@ require "test_helper"
 
 class ContactFormTest < ActionDispatch::IntegrationTest
   test 'All errors and custom messages appear on blank form submission' do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
 
     get '/contacts',
 			params: {
@@ -19,7 +19,7 @@ class ContactFormTest < ActionDispatch::IntegrationTest
   end
 
   test 'should successfully submit form' do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
 
     assert_emails 1 do
       get '/contacts',

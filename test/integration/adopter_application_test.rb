@@ -8,7 +8,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter user without profile cannot apply for dog and sees flash error" do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
     before_count = AdopterApplication.all.count
 
     post '/create_my_application',

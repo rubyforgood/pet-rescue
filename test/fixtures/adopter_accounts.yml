@@ -4,7 +4,7 @@ adopter_account_one:
   user: adopter_with_profile
 
 adopter_account_two:
-  user: user_four
+  user: adopter_without_profile
 
 # two:
 #   user: two

@@ -3,11 +3,11 @@ require "test_helper"
 class AdopterProfileFormTest < ActionDispatch::IntegrationTest
 
   setup do
-    @adopter_account_id = users(:user_four).adopter_account.id
+    @adopter_account_id = users(:adopter_without_profile).adopter_account.id
   end
 
   test "All errors and their custom messages appear on blank form submission" do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
     post '/adopter_profile',
     params: { adopter_profile: 
       {

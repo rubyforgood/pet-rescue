@@ -30,7 +30,7 @@ unverified_staff:
   tos_agreement: 1
 
 # adopter without a profile
-user_four:
+adopter_without_profile:
   first_name: Billy
   last_name: Noprofile
   email: test@test123.com

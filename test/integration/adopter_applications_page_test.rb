@@ -12,7 +12,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adopter without profile cannot access adopter applications route" do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
 
     get '/my_applications'
 
