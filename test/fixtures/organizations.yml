@@ -13,9 +13,3 @@ unverified_staff_default:
   city: default
   country: testistan
   zipcode: t35t
-
-# two:
-#   name: MyString
-#   city: MyString
-#   country: MyString
-#   zipcode: MyString
