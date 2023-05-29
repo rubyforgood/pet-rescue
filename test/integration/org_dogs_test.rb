@@ -35,7 +35,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     post "/dogs",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '3',
           sex: 'Female',
@@ -69,7 +69,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     post "/dogs",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '3',
           sex: 'Female',
@@ -92,7 +92,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -115,7 +115,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -144,7 +144,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -166,7 +166,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -192,7 +192,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -228,7 +228,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',

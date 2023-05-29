@@ -1,35 +1,35 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  organization: organization_one
+  organization: one
   name: Applications
   age: 4
   breed: mix
   application_paused: false
 
 pending_adoption_one:
-  organization: organization_one
+  organization: one
   name: Deleted
   age: 5
   breed: mix
   application_paused: false
 
 adopted_dog:
-  organization: organization_one
+  organization: one
   name: Adopted
   age: 4
   breed: mix
   application_paused: false
 
 paused_application:
-  organization: organization_one
+  organization: one
   name: Paused
   age: 4
   breed: mix
   application_paused: true
 
 pending_adoption_two:
-  organization: organization_one
+  organization: one
   name: AppTest
   age: 4
   breed: mix

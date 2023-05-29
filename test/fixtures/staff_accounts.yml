@@ -6,7 +6,7 @@
 #
 staff_account_one:
   user: verified_staff_one
-  organization: organization_one
+  organization: one
   verified: true
 
 staff_account_two:
@@ -16,7 +16,7 @@ staff_account_two:
 
 staff_account_three:
   user: verified_staff_two
-  organization: organization_one
+  organization: one
   verified: true
 
 # two: {}
