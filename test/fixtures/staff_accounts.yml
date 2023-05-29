@@ -11,7 +11,7 @@ staff_account_one:
 
 staff_account_two:
   user: unverified_staff
-  organization: unverified_staff_default
+  organization_id: 1
   verified: false
 
 staff_account_three:
