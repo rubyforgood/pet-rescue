@@ -3,7 +3,7 @@ require "test_helper"
 class OrgDogsTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog = dogs(:dog_one)
+    @dog = dogs(:pending_adoption_one)
     @org_id = users(:verified_staff_one).staff_account.organization_id
   end
 

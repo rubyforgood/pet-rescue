@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 adopter_application_one:
-  dog: dog_one
+  dog: pending_adoption_one
   adopter_account: adopter_account_one
   status: 2
 

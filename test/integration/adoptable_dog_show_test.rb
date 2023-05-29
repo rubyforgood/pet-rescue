@@ -92,9 +92,9 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
   end
 
   test "dog name shows adoption pending if it has any applications with that status" do 
-    @dog_id = dogs(:dog_one).id
+    @dog_id = dogs(:pending_adoption_one).id
     get "/adoptable_dogs/#{@dog_id}"
-    assert_select 'h1', "#{dogs(:dog_one).name} (Adoption Pending)"
+    assert_select 'h1', "#{dogs(:pending_adoption_one).name} (Adoption Pending)"
   end
   
   test "an adopted dog can't be shown as an adoptable dog" do

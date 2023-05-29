@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-dog_one:
+pending_adoption_one:
   organization: organization_one
   name: Deleted
   age: 5

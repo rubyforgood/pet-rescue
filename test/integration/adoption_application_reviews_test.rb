@@ -205,10 +205,10 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       { count: Dog.org_dogs_with_apps(users(:verified_staff_one).staff_account.organization_id).count }
 
     get '/adopter_applications',
-      params: {dog_id: dogs(:dog_one).id }
+      params: {dog_id: dogs(:pending_adoption_one).id }
     
     assert_select 'div.card', { count: 1 }
-    assert_select 'h4', "#{dogs(:dog_one).name}"
+    assert_select 'h4', "#{dogs(:pending_adoption_one).name}"
 
     get '/adopter_applications',
       params: { dog_id: "" }
