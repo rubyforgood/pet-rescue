@@ -4,7 +4,7 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
 
   setup do 
     @adopter_account = adopter_accounts(:adopter_account_one)
-    @dog = dogs(:dog_three)
+    @dog = dogs(:one)
     @adoptions = Adoption.all
   end
 
