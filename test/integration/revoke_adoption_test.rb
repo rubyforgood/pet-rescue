@@ -4,7 +4,7 @@ class RevokeAdoptionTest < ActionDispatch::IntegrationTest
 
   setup do 
     sign_in users(:verified_staff_one)
-    @dog = dogs(:dog_two)
+    @dog = dogs(:adopted_dog)
     @adoption_id = Adoption.find_by(dog_id: @dog.id).id
     @successful_application = adopter_applications(:adopter_application_three)
   end

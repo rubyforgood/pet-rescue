@@ -4,7 +4,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
 
   setup do
     @dog_id = dogs(:dog_three).id
-    @adopted_dog_id = dogs(:dog_two).id
+    @adopted_dog_id = dogs(:adopted_dog).id
   end
 
   test "unauthenticated users see create account prompt and link" do

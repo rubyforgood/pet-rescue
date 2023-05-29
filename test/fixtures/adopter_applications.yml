@@ -10,7 +10,7 @@ adopter_application_two:
   adopter_account: adopter_account_one
 
 adopter_application_three:
-  dog: dog_two
+  dog: adopted_dog
   adopter_account: adopter_account_one
   profile_show: false
   status: 3     # withdrawn

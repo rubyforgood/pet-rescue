@@ -7,7 +7,7 @@ pending_adoption_one:
   breed: mix
   application_paused: false
 
-dog_two:
+adopted_dog:
   organization: organization_one
   name: Adopted
   age: 4
