@@ -5,6 +5,3 @@ adopter_account_one:
 
 adopter_account_two:
   user: adopter_without_profile
-
-# two:
-#   user: two
