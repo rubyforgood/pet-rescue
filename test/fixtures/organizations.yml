@@ -15,7 +15,7 @@ organization_two:
   zipcode: t35t
 
 # default organization for unverified staff, dogs do not belong to this org
-organization_three:
+unverified_staff_default:
   name: default
   city: default
   country: testistan
