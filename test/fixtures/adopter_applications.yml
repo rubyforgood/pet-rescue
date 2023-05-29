@@ -6,7 +6,7 @@ adopter_application_one:
   status: 2
 
 adopter_application_two:
-  dog: dog_five
+  dog: pending_adoption_two
   adopter_account: adopter_account_one
 
 adopter_application_three:

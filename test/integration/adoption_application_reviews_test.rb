@@ -5,7 +5,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   setup do
     @adopter_application = adopter_applications(:adopter_application_two)
     @adopter = @adopter_application.adopter_account.user
-    @dog = dogs(:dog_five)
+    @dog = dogs(:pending_adoption_two)
     @adopter_account_id = adopter_accounts(:adopter_account_one).id
   end
 

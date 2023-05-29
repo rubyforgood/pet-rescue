@@ -28,7 +28,7 @@ paused_application:
   breed: mix
   application_paused: true
 
-dog_five:
+pending_adoption_two:
   organization: organization_one
   name: AppTest
   age: 4
