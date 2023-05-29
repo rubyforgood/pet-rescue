@@ -34,6 +34,3 @@ pending_adoption_two:
   age: 4
   breed: mix
   application_paused: false
-
-# two:
-#   organization: two
