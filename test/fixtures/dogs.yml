@@ -21,7 +21,7 @@ adopted_dog:
   breed: mix
   application_paused: false
 
-dog_four:
+paused_application:
   organization: organization_one
   name: Paused
   age: 4
