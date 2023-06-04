@@ -8,7 +8,7 @@ class CTATest < ActionDispatch::IntegrationTest
   end
 
   test "homepage CTA section above footer does not exists when authenticated" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get '/'
     assert_select 'section#cta', false
   end

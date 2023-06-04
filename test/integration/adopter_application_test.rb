@@ -3,12 +3,12 @@ require "test_helper"
 class AdopterApplicationTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog_id = dogs(:dog_three).id
-    @paused_dog_id = dogs(:dog_four).id
+    @dog_id = dogs(:one).id
+    @paused_dog_id = dogs(:paused_application).id
   end
 
   test "adopter user without profile cannot apply for dog and sees flash error" do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
     before_count = AdopterApplication.all.count
 
     post '/create_my_application',
@@ -27,7 +27,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "staff user sees flash error if they apply for a dog" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     before_count = AdopterApplication.all.count
 
     post '/create_my_application',
@@ -46,7 +46,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter user with profile can apply for a dog and staff receive email" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     before_count = AdopterApplication.all.count
 
     post '/create_my_application',
@@ -69,7 +69,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter user with profile cannot apply for a paused dog and sees flash error" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     before_count = AdopterApplication.all.count
 
     post '/create_my_application',

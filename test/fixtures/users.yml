@@ -3,42 +3,36 @@
 # This model initially had no columns defined. If you add columns to the
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
-#
 
-# adopter with a profile
-user_one:
+adopter_with_profile:
   first_name: Ben
   last_name: Jo
   email: test@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
 
-# verified staff
-user_two: 
+verified_staff_one:
   first_name: Staffy
   last_name: McStaffface
   email: testes@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
 
-# unverified staff
-user_three:
+unverified_staff:
   first_name: unverified
   last_name: McStaffface
   email: testes@testes.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
 
-# adopter without a profile
-user_four:
+adopter_without_profile:
   first_name: Billy
   last_name: Noprofile
   email: test@test123.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
 
-# verified staff
-user_five:
+verified_staff_two:
   first_name: Jimmy
   last_name: Hendrix
   email: purple@haze.com

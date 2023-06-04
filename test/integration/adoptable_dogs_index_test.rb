@@ -20,6 +20,6 @@ class AdoptableDogsIndexTest < ActionDispatch::IntegrationTest
 
   test "dog name shows adoption pending if it has any applications with that status" do 
     get '/adoptable_dogs'
-    assert_select 'h3', "#{dogs(:dog_one).name} (Adoption Pending)"
+    assert_select 'h3', "#{dogs(:pending_adoption_one).name} (Adoption Pending)"
   end
 end

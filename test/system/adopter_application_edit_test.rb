@@ -4,7 +4,7 @@ class AdopterApplicationEditTest < ApplicationSystemTestCase
 
   setup do
     @application_id = adopter_applications(:adopter_application_three).id
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     visit edit_adopter_application_path(@application_id)
   end
 

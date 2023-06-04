@@ -3,21 +3,18 @@
 # This model initially had no columns defined. If you add columns to the
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
-#
+
 staff_account_one:
-  user: user_two
-  organization: organization_one
+  user: verified_staff_one
+  organization: one
   verified: true
 
 staff_account_two:
-  user: user_three
-  organization: organization_three
+  user: unverified_staff
+  organization_id: 1
   verified: false
 
 staff_account_three:
-  user: user_five
-  organization: organization_one
+  user: verified_staff_two
+  organization: one
   verified: true
-
-# two: {}
-# column: value

@@ -1,28 +1,15 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-organization_one:
+one:
   name: test
   city: testville
   country: testistan
   zipcode: t35t
 
-# this fixture is used for new staff sign up in user_account_test, do not use otherwise
-organization_two:
-  id: 1
-  name: for_staff_sign_up
-  city: testville
-  country: testistan
-  zipcode: t35t
-
 # default organization for unverified staff, dogs do not belong to this org
-organization_three:
+unverified_staff_default:
+  id: 1
   name: default
   city: default
   country: testistan
   zipcode: t35t
-
-# two:
-#   name: MyString
-#   city: MyString
-#   country: MyString
-#   zipcode: MyString

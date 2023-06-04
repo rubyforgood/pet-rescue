@@ -10,7 +10,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   end
 
   test "authenticated user sees log out button" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get '/'
     assert_select 'form' do
       assert_select 'button', 'Log Out'
@@ -18,7 +18,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   end
 
   test "authenticated adopter without profile does not see Applications link" do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
     get '/'
     assert_select 'a', 'Dashboard'
     assert_select 'a', 'Account Settings'
@@ -29,7 +29,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   end
 
   test "authenticated adopter without profile is directed to new profile by My Profile link" do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
     get '/'
     assert_select 'a', 'Dashboard'
     assert_select 'a', 'Account Settings'
@@ -37,7 +37,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   end
 
   test "authenticated adopter with profile sees My Applications link" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get '/'
     assert_select 'a', 'Dashboard'
     assert_select 'a', 'Account Settings'
@@ -48,7 +48,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   end
 
   test "authenticated staff sees dashboard with Our Dogs and Applications links" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     get '/'
     assert_select 'a', 'Dashboard'
     assert_select 'a', 'Account Settings'

@@ -3,11 +3,11 @@ require "test_helper"
 class AdopterProfileFormTest < ActionDispatch::IntegrationTest
 
   setup do
-    @adopter_account_id = users(:user_four).adopter_account.id
+    @adopter_account_id = users(:adopter_without_profile).adopter_account.id
   end
 
   test "All errors and their custom messages appear on blank form submission" do
-    sign_in users(:user_four)
+    sign_in users(:adopter_without_profile)
     post '/adopter_profile',
     params: { adopter_profile: 
       {
@@ -76,7 +76,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
   end
 
   test "Phone number with less than 8 digits is invalid" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     put '/adopter_profile',
     params: { adopter_profile: 
       {
@@ -90,7 +90,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
   end
 
   test "Phone number with more than 10 digits is invalid" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     put '/adopter_profile',
     params: { adopter_profile: 
       {
@@ -105,7 +105,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
 
   # select dropdown options and selected value are tested in system test
   test "Radio buttons are pre-populated with adopter selection on edit form" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get '/adopter_profile/edit'
 
     a = assert_select 'form input[type=radio][id=adopter_profile_shared_ownership_false]'

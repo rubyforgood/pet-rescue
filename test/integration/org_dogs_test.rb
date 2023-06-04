@@ -3,8 +3,8 @@ require "test_helper"
 class OrgDogsTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog = dogs(:dog_one)
-    @org_id = users(:user_two).staff_account.organization_id
+    @dog = dogs(:pending_adoption_one)
+    @org_id = users(:verified_staff_one).staff_account.organization_id
   end
 
   teardown do
@@ -12,7 +12,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter user cannot access org dogs index" do
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     get "/dogs/new"
     assert_response :redirect
     follow_redirect!
@@ -21,7 +21,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot access org dogs index" do
-    sign_in users(:user_three)
+    sign_in users(:unverified_staff)
     get "/dogs/new"
     assert_response :redirect
     follow_redirect!
@@ -30,12 +30,12 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot post to org dogs" do
-    sign_in users(:user_three)
+    sign_in users(:unverified_staff)
 
     post "/dogs",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '3',
           sex: 'Female',
@@ -52,24 +52,24 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can access org dogs index" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     get "/dogs/new"
     assert_response :success
   end
 
   test "verified staff can access dog/new" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     get "/dogs/new"
     assert_response :success
   end
 
   test "verified staff can create a new dog post" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     post "/dogs",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '3',
           sex: 'Female',
@@ -87,12 +87,12 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can edit a dog post" do 
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -110,12 +110,12 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can pause dog and pause reason is selected in dropdown" do 
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -139,12 +139,12 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can unpause a paused dog and the pause reason reverts to not paused" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -166,7 +166,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -187,12 +187,12 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can upload multiple images and delete one of the images" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -223,12 +223,12 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "user that is not verified staff cannot delete an image attachment" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:organization_one).id}",
+          organization_id: "#{organizations(:one).id}",
           name: 'TestDog',
           age: '7',
           sex: 'Female',
@@ -247,7 +247,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     images = @dog.images_attachments
     logout
 
-    sign_in users(:user_one)
+    sign_in users(:adopter_with_profile)
     delete "/attachments/#{images[1].id}/purge",
       params: { id: "#{images[1].id}" },
       headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }
@@ -258,7 +258,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can delete dog post" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     delete "/dogs/#{@dog.id}"
 
@@ -269,7 +269,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
 
   # test org dogs index page filter for adoption status
   test "verified staff accessing org dogs index without selection param see all unadopted dogs" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
 
     get "/dogs"
     assert_response :success
@@ -277,7 +277,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff accessing org dogs index with selection param seeking adoption see all unadopted dogs" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     get "/dogs",
     params: { selection: 'Seeking Adoption' }
     assert_response :success
@@ -285,7 +285,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff accessing org dogs index with selection param adopted see all adopted dogs" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     get "/dogs",
     params: { selection: 'Adopted' }
     assert_response :success
@@ -294,7 +294,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
 
   # test org dogs index page filter for dog name
   test "verified staff accessing org dogs index with a dog id see that dog only" do
-    sign_in users(:user_two)
+    sign_in users(:verified_staff_one)
     get "/dogs",
     params: { dog_id: @dog.id }
     assert_response :success
