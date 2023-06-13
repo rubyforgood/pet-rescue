@@ -3,7 +3,7 @@ require "test_helper"
 class OrgDogsTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog = dogs(:pending_adoption_one)
+    @dog = dogs(:one)
     @org_id = users(:verified_staff_one).staff_account.organization_id
   end
 
@@ -299,6 +299,6 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     params: { dog_id: @dog.id }
     assert_response :success
     assert_select 'div.col-lg-4', { count: 1 }
-    assert_select 'h5', "Deleted"
+    assert_select 'h5', "Applications"
   end
 end
