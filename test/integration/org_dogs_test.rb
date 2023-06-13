@@ -109,19 +109,29 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_select "h1", "TestDog"
   end
 
-  test "verified staff can pause dog and pause reason is selected in dropdown" do 
+  test "verified staff can pause dog" do
+    sign_in users(:verified_staff_one)
+
+    patch "/dogs/#{@dog.id}",
+      params: { dog: {
+          application_paused: true
+        }
+      }
+
+    assert_response :redirect
+    follow_redirect!
+    assert_equal 'Dog updated successfully.', flash[:notice]
+    @dog.reload
+
+    assert @dog.application_paused
+  end
+
+  test 'in dropdown, pause reason is selected for paused dog' do
     sign_in users(:verified_staff_one)
 
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:one).id}",
-          name: 'TestDog',
-          age: '7',
-          sex: 'Female',
-          breed: 'mix',
-          size: 'Medium (22-57 lb)',
-          description: 'A lovely little pooch this one.',
           application_paused: true,
           pause_reason: 'paused_until_further_notice'
         }
@@ -130,9 +140,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     follow_redirect!
     assert_equal 'Dog updated successfully.', flash[:notice]
-    @dog.reload
-    assert_equal @dog.pause_reason, 'paused_until_further_notice'
-    assert_equal @dog.application_paused, true
+
     assert_select 'form' do
       assert_select 'option[selected="selected"]', 'Paused Until Further Notice'
     end
