@@ -146,43 +146,16 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "verified staff can unpause a paused dog and the pause reason reverts to not paused" do
+  test "verified staff can unpause a paused dog" do
+    @dog = dogs(:paused_application)
     sign_in users(:verified_staff_one)
 
-    patch "/dogs/#{@dog.id}",
-      params: { dog:
-        {
-          organization_id: "#{organizations(:one).id}",
-          name: 'TestDog',
-          age: '7',
-          sex: 'Female',
-          breed: 'mix',
-          size: 'Medium (22-57 lb)',
-          description: 'A lovely little pooch this one.',
-          application_paused: 'true',
-          pause_reason: 'paused_until_further_notice'
-        }
-      }
-
-    assert_response :redirect
-    follow_redirect!
-    assert_equal 'Dog updated successfully.', flash[:notice]
-    @dog.reload
-    assert_equal @dog.application_paused, true
-    assert_equal @dog.pause_reason, 'paused_until_further_notice'
+    assert @dog.application_paused
 
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:one).id}",
-          name: 'TestDog',
-          age: '7',
-          sex: 'Female',
-          breed: 'mix',
-          size: 'Medium (22-57 lb)',
-          description: 'A lovely little pooch this one.',
           application_paused: 'false',
-          pause_reason: 'paused_until_further_notice'
         }
       }
 
@@ -190,7 +163,8 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_equal 'Dog updated successfully.', flash[:notice]
     @dog.reload
-    assert_equal @dog.application_paused, false
+
+    assert_not @dog.application_paused
     assert_equal @dog.pause_reason, 'not_paused'
   end
 
