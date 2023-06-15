@@ -202,26 +202,11 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   end
 
   test "user that is not verified staff cannot delete an image attachment" do
-    sign_in users(:verified_staff_one)
-
-    patch "/dogs/#{@dog.id}",
-      params: { dog:
-        {
-          append_images:
-          [
-            fixture_file_upload("test.png", "image/png"),
-            fixture_file_upload("test2.png", "image/png")
-          ]
-        }
-      }
-
-    assert_equal @dog.images_attachments.length, 2
-    images = @dog.images_attachments
-    logout
-
     sign_in users(:adopter_with_profile)
-    delete "/attachments/#{images[1].id}/purge",
-      params: { id: "#{images[1].id}" },
+    dog_image = @dog.images_attachments.first
+
+    delete "/attachments/#{dog_image.id}/purge",
+      params: { id: "#{dog_image.id}" },
       headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }
 
     follow_redirect!
