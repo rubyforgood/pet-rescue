@@ -168,7 +168,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_equal @dog.pause_reason, 'not_paused'
   end
 
-  test "verified staff can upload multiple images and delete one of the images" do
+  test "verified staff can upload multiple images" do
     sign_in users(:verified_staff_one)
 
     patch "/dogs/#{@dog.id}",
@@ -183,10 +183,14 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
       }
 
     assert_equal @dog.images_attachments.length, 2
-    images = @dog.images_attachments
+  end
 
-    delete "/attachments/#{images[1].id}/purge",
-      params: { id: "#{images[1].id}" },
+  test "verified staff can delete an image" do
+    sign_in users(:verified_staff_one)
+    dog_image = @dog.images_attachments.first
+
+    delete "/attachments/#{dog_image.id}/purge",
+      params: { id: "#{dog_image.id}" },
       headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }
 
     assert_response :redirect
@@ -194,7 +198,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     assert_equal 'Attachment removed', flash[:notice]
 
     @dog.reload
-    assert_equal @dog.images_attachments.length, 1
+    assert_equal @dog.images_attachments.length, 0
   end
 
   test "user that is not verified staff cannot delete an image attachment" do
