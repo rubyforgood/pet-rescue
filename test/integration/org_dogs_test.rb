@@ -182,7 +182,7 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
         }
       }
 
-    assert_equal @dog.images_attachments.length, 2
+    assert_equal @dog.images_attachments.length, 3
   end
 
   test "verified staff can delete an image" do
