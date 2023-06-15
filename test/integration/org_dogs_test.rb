@@ -174,13 +174,6 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:one).id}",
-          name: 'TestDog',
-          age: '7',
-          sex: 'Female',
-          breed: 'mix',
-          size: 'Medium (22-57 lb)',
-          description: 'A lovely little pooch this one.',
           append_images:
           [
             fixture_file_upload("test.png", "image/png"),
@@ -210,13 +203,6 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     patch "/dogs/#{@dog.id}",
       params: { dog:
         {
-          organization_id: "#{organizations(:one).id}",
-          name: 'TestDog',
-          age: '7',
-          sex: 'Female',
-          breed: 'mix',
-          size: 'Medium (22-57 lb)',
-          description: 'A lovely little pooch this one.',
           append_images:
           [
             fixture_file_upload("test.png", "image/png"),
