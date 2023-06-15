@@ -1,0 +1,4 @@
+dog_one_image:
+  name: images
+  record: one (Dog)
+  blob: dog_one_image_blob
