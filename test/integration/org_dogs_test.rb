@@ -189,29 +189,34 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
     sign_in users(:verified_staff_one)
     dog_image = @dog.images_attachments.first
 
-    delete "/attachments/#{dog_image.id}/purge",
-      params: { id: "#{dog_image.id}" },
-      headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }
+    assert_difference '@dog.images_attachments.length', -1 do
+      delete "/attachments/#{dog_image.id}/purge",
+        params: { id: "#{dog_image.id}" },
+        headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }
 
-    assert_response :redirect
-    follow_redirect!
-    assert_equal 'Attachment removed', flash[:notice]
+      assert_response :redirect
+      follow_redirect!
+      assert_equal 'Attachment removed', flash[:notice]
 
-    @dog.reload
-    assert_equal @dog.images_attachments.length, 0
+      @dog.reload
+    end
   end
 
   test "user that is not verified staff cannot delete an image attachment" do
     sign_in users(:adopter_with_profile)
     dog_image = @dog.images_attachments.first
 
-    delete "/attachments/#{dog_image.id}/purge",
-      params: { id: "#{dog_image.id}" },
-      headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }
+    assert_no_difference '@dog.images_attachments.length' do
+      delete "/attachments/#{dog_image.id}/purge",
+        params: { id: "#{dog_image.id}" },
+        headers: { "HTTP_REFERER" => "http://www.example.com/dogs/#{@dog.id}" }
 
-    follow_redirect!
-    assert_equal '/', path
-    assert_equal 'Unauthorized action.', flash[:alert]
+      follow_redirect!
+      assert_equal '/', path
+      assert_equal 'Unauthorized action.', flash[:alert]
+
+      @dog.reload
+    end
   end
 
   test "verified staff can delete dog post" do
