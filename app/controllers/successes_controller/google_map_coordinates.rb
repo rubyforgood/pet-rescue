@@ -8,7 +8,7 @@ class SuccessesController
     end
 
     def genarate_map_data
-      generate_map_data_from_adoptions if map_data.empty?
+      generate_map_data_from_adoptions
     end
 
     def generate_map_data_from_adoptions
