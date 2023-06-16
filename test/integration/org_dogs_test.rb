@@ -171,18 +171,20 @@ class OrgDogsTest < ActionDispatch::IntegrationTest
   test "verified staff can upload multiple images" do
     sign_in users(:verified_staff_one)
 
-    patch "/dogs/#{@dog.id}",
-      params: { dog:
-        {
-          append_images:
-          [
-            fixture_file_upload("test.png", "image/png"),
-            fixture_file_upload("test2.png", "image/png")
-          ]
+    assert_difference '@dog.images_attachments.length', 2 do
+      patch "/dogs/#{@dog.id}",
+        params: { dog:
+                  {
+                    append_images:
+                    [
+                      fixture_file_upload("test.png", "image/png"),
+                      fixture_file_upload("test2.png", "image/png")
+                    ]
+                  }
         }
-      }
 
-    assert_equal @dog.images_attachments.length, 3
+      @dog.reload
+    end
   end
 
   test "verified staff can delete an image" do
