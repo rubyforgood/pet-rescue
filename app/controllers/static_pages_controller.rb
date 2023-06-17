@@ -27,7 +27,7 @@ class StaticPagesController < ApplicationController
   def terms_and_conditions
   end
 
-  def cookies_policy
+  def cookie_policy
   end
 
 end
