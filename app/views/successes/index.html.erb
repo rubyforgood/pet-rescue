@@ -9,7 +9,7 @@
     </div>
     <div data-controller="google-map" data-action="MapLoaded@window->google-map#initGoogle">
       <ul data-google-map-target="listings" class="coordinates">
-        <% @map_collection.each do |location| %>
+        <% @google_map_metadata.each do |location| %>
             <li data-lat="<%= location[:latitude] %>"
                 data-lon="<%= location[:longitude] %>"
             >
