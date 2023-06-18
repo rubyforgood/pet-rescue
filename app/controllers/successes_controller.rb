@@ -1,6 +1,6 @@
 class SuccessesController < ApplicationController
   def index
-    google_maps_coordinates = GoogleMapCoordinates.new
-    @map_collection = google_maps_coordinates.genarate_map_data
+    adoptions = Adoption.includes(:dog, adopter_account: { adopter_profile: :location })
+    @map_collection = GoogleMap.call(adoptions:).metadata
   end
 end
