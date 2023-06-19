@@ -18,9 +18,6 @@ class StaticPagesController < ApplicationController
   def donate
   end
 
-  def contact_us
-  end
-
   def privacy_policy
   end
 
