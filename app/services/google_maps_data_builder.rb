@@ -1,13 +1,16 @@
-# Generates metadata for Google Map with dog name, breed, and location.
-class GoogleMap < Actor
-  input :adoptions
-  output :metadata, default: []
+# Generates metadata for Google Maps with dog name, breed, and location.
+class GoogleMapsDataBuilder
+  attr_accessor :location, :adoptions
 
-  attr_accessor :location
-
-  def call
-    self.metadata = generate_map_data_from_adoptions
+  def initialize(adoptions)
+    @adoptions = adoptions
   end
+
+  def data
+    generate_map_data_from_adoptions
+  end
+
+  private
 
   def generate_map_data_from_adoptions
     adoptions.map do |adoption|
