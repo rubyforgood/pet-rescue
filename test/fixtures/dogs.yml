@@ -5,6 +5,9 @@ one:
   name: Applications
   age: 4
   breed: mix
+  size: Medium (22-57 lb)
+  sex: Female
+  description: A lovely little pooch this one.
   application_paused: false
 
 pending_adoption_one:
@@ -26,6 +29,9 @@ paused_application:
   name: Paused
   age: 4
   breed: mix
+  size: Medium (22-57 lb)
+  sex: Male
+  description: Another lovely little pooch.
   application_paused: true
 
 pending_adoption_two:
