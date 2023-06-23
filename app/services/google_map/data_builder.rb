@@ -2,7 +2,7 @@
 
 module GoogleMap
   # Generates metadata for Google Maps with dog name, breed, and location.
-  class GoogleMapsDataBuilder
+  class DataBuilder
     def initialize(adoptions)
       @adoptions = adoptions
     end
