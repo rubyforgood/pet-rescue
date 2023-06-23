@@ -104,7 +104,7 @@ Making Pull Requests:
 * Push your branch to your forked repo `git push origin <branch name>`
 * Go to your forked repo on GitHub and make a pull request.
 * Ensure the description of the PR explains what your code does. If it is a UI change, include a screenshot. 
-* Only commit relevant code/files i.e., do not commit lint changes nor `Gemfile.lock` changes.
+* Only commit relevant code/files.
 * Make sure the full test suite passes by running `rails test:all`.
 
 When you make a pull request, the GitHub Actions pipeline will run the test suite against your changes and will notify you of pass or fail. You can check the logs for errors, if any. Once the pipeline passes, your pull request will be reviewed and there may be feedback or questions related to your code, so please be prepared to follow up on those. Pull requests are usually reviewed daily.
