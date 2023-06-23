@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
 
   # authorization checks
 
+  private
+
   def adopter_with_profile
     return if current_user.adopter_account && 
               current_user.adopter_account.adopter_profile

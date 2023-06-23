@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   delete 'attachments/:id/purge', to: 'attachments#purge', as: 'purge_attachment'
 
   resources :dogs, controller: 'organization_dogs'
-  resources :adopter_applications, controller: 'adoption_application_reviews'
+  resources :adopter_applications, only: [:index, :edit, :update], controller: 'adoption_application_reviews'
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
