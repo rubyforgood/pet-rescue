@@ -339,6 +339,8 @@ GEM
     thor (1.2.1)
     tilt (2.0.10)
     timeout (0.3.0)
+    traceroute (0.8.1)
+      rails (>= 3.0.0)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -393,6 +395,7 @@ DEPENDENCIES
   simplecov
   sprockets-rails
   stimulus-rails
+  traceroute
   turbo-rails
   tzinfo-data
   web-console
