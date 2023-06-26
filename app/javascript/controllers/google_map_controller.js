@@ -14,7 +14,7 @@ export default class extends Controller {
   initGoogle() {
     const map = new google.maps.Map(this.mapTarget, {
       zoom: 4,
-      // this lat and lng is the centers Canada and US in the map
+      // this lat and lng centers Canada and US in the map
       center: { lat: 44.368888, lng: -99.996246 },
     });
     this.addMarkers(map);
