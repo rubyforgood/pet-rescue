@@ -92,7 +92,9 @@ This project has benefited from front and back end contributions. More contribut
 Picking up an issue:
 * Check the Issues tab for a list of work that needs completing.
 * If you are interested in an issue and it is unassigned, leave a comment on the issue to claim it, then I will assign it to you.
-* Please take only one issue at a time i.e., pick up the next issue after your current PR is merged.
+* Please take only one issue at a time i.e., pick up the next issue after your current PR is merged and the issue is closed.
+* If you are working on tests, refer to [this issue](https://github.com/kasugaijin/baja-pet-rescue/issues/149), particularly the May 17 comment
+for details on some testing best practice. These are not laws, but should be good guidance.
 
 Making Pull Requests:
 * Fork this repo to your own GitHub account
