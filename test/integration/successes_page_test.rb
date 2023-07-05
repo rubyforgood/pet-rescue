@@ -8,13 +8,16 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
     @adoptions = Adoption.all
   end
 
-  test "A list element for each adopted dog with lat lon data attributes is created" do
+  test "location lat and lon are deviated by google maps data builder" do
     get '/successes'
-    assert_select 'ul.coordinates' do
-      assert_select 'li', { count: @adoptions.count }
-      assert_select 'li[data-lat]', { value: "51.0866897" }
-      assert_select 'li[data-lon]', { value: "-115.3481135" }
-    end
+
+    list_element = css_select('li[data-lat]').first
+    lat_value = list_element['data-lat'].to_f
+    list_element = css_select('li[data-lon]').first
+    lon_value = list_element['data-lon'].to_f
+
+    assert_not_equal(lat_value, locations(:locations_one).latitude)
+    assert_not_equal(lon_value, locations(:locations_one).longitude)
   end
 
   test "An additional list element is created when a new adoption is made" do
@@ -27,8 +30,8 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
     get '/successes'
     assert_select 'ul.coordinates' do
       assert_select 'li', { count: adoption_count_before + 1 }
-      assert_select 'li[data-lat]', { value: "51.0866897", count: adoption_count_before + 1 }
-      assert_select 'li[data-lon]', { value: "-115.3481135", count: adoption_count_before + 1 }
+      assert_select 'li[data-lat]', { count: adoption_count_before + 1 }
+      assert_select 'li[data-lon]', { count: adoption_count_before + 1 }
     end
   end
 end
