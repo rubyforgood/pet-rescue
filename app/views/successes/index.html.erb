@@ -12,6 +12,8 @@
         <% @google_map_metadata.each do |location| %>
             <li data-lat="<%= location[:latitude] %>"
                 data-lon="<%= location[:longitude] %>"
+                data-name="<%= location[:dog_name] %>"
+                data-breed="<%= location[:breed] %>"
             >
             </li>
         <% end %>
