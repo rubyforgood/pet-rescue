@@ -15,9 +15,13 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
     lat_value = list_element['data-lat'].to_f
     list_element = css_select('li[data-lon]').first
     lon_value = list_element['data-lon'].to_f
+    name_value = list_element['data-name']
+    breed_value = list_element['data-breed']
 
     assert_not_equal(lat_value, locations(:locations_one).latitude)
     assert_not_equal(lon_value, locations(:locations_one).longitude)
+    assert_equal(name_value, dogs(:adopted_dog).name)
+    assert_equal(breed_value, dogs(:adopted_dog).breed)
   end
 
   test "An additional list element is created when a new adoption is made" do
