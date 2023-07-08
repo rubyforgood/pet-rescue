@@ -10,6 +10,7 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
 
   test "location lat and lon are deviated by google maps data builder" do
     get '/successes'
+    assert_response :success
 
     list_element = css_select('li[data-lat]').first
     lat_value = list_element['data-lat'].to_f
