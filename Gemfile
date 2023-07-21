@@ -109,4 +109,5 @@ group :test do
   gem 'simplecov', require: false
 end
 
+# Add chartkick for charts generation
 gem "chartkick", "~> 5.0"
