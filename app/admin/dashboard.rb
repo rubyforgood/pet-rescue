@@ -33,6 +33,21 @@ ActiveAdmin.register_page "Dashboard" do
             end
           end
         end
+        # Chartkick charts here
+        panel "Adoptions Over Time" do
+          line_chart Adoption.all.group_by { |adp| adp.created_at.beginning_of_month }
+                                 .map { |date, adps| [date, adps.count] }.to_h
+        end
+
+        panel "Donations Over Time" do
+          line_chart Donation.all.group_by { |donation| donation.created_at.beginning_of_month }
+                                 .map { |date, donations| [date, donations.count] }.to_h
+        end
+
+        panel "User Sign Ups Over Time" do
+          line_chart User.all.group_by { |user| user.created_at.beginning_of_month }
+                              .map { |date, users| [date, users.count] }.to_h
+        end
       end
     end
   end
