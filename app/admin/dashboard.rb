@@ -41,12 +41,12 @@ ActiveAdmin.register_page "Dashboard" do
 
         panel "Donations Over Time" do
           line_chart Donation.all.group_by { |donation| donation.created_at.beginning_of_month }
-                                 .map { |date, donations| [date, donations.count] }.to_h
+                                 .map { |date, donations| [date, donations.sum { |donation| donation.amount.to_f }] }.to_h
         end
 
         panel "User Sign Ups Over Time" do
           line_chart User.all.group_by { |user| user.created_at.beginning_of_month }
-                              .map { |date, users| [date, users.count] }.to_h
+                             .map { |date, users| [date, users.count] }.to_h
         end
       end
     end
