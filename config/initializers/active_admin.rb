@@ -4,6 +4,9 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
+  # Load the Google API JS library
+  config.register_javascript 'https://www.google.com/jsapi'
+
   config.site_title = "Baja Pet Rescue"
 
   # Set the link url for the title. For example, to take
