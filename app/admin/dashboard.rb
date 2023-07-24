@@ -14,7 +14,7 @@ ActiveAdmin.register_page "Dashboard" do
               "# Adopter Accounts: #{AdopterAccount.all.count} accounts"
             end
             li do
-              "# Unadopted Dogs: #{Dog.where.missing(:adoption).count}"
+              "# Unadopted Pets: #{Pet.where.missing(:adoption).count}"
             end
             li do
               "# Adoptions: #{Adoption.all.count}"
