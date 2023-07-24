@@ -13,13 +13,13 @@
 <section class="pb-5" id="about_us">
   <div class="container">
 
-    <h5 class="mb-2">Filter by dog name</h5>
+    <h5 class="mb-2">Filter by pet name</h5>
     <%= form_with url: '/adopter_applications', method: :get do | f | %>
 
     <div class="form-group">
       <div class="row mb-2">
         <div class="col-md-4 mb-3">
-          <%= f.collection_select :dog_id, @dogs, :id, :name, { prompt: 'All' },
+          <%= f.collection_select :pet_id, @pets, :id, :name, { prompt: 'All' },
                                   class: 'form-control bigger' %>
         </div>
         <div class="col-md-4 mb-3">

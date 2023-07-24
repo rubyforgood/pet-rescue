@@ -9,32 +9,32 @@
   </div> <!--container-->
 </header>
 
-<!--dog tiles-->
-<section class="pb-5" id="adoptable_dogs">
+<!--pet tiles-->
+<section class="pb-5" id="adoptable_pets">
   <div class="container">
     <div class="row">
-      <% @dogs.each do |dog| %>    
+      <% @pets.each do |pet| %>    
         <div class="col-lg-4 col-md-6 p-0">
-          <%= link_to adoptable_dog_path(dog), class: 'text-decoration-none' do %>
+          <%= link_to adoptable_pet_path(pet), class: 'text-decoration-none' do %>
             <div class="card m-4">
-              <% if dog.images.attached? %>
-                <%= image_tag dog.images.first, class: 'card-img-top' %>
+              <% if pet.images.attached? %>
+                <%= image_tag pet.images.first, class: 'card-img-top' %>
               <% else %>
                 <%= image_tag('coming_soon.jpg', class: 'card-img-top') %>
               <% end %>
               <div class="card-body">
                   <h3 class="card-title">
-                    <% if dog.has_adoption_pending? %>
-                      <%= dog.name %> (Adoption Pending)
+                    <% if pet.has_adoption_pending? %>
+                      <%= pet.name %> (Adoption Pending)
                     <% else %>
-                      <%= dog.name %>
+                      <%= pet.name %>
                     <% end %>
                   </h3>
                 <p class="card-text m-0 bigger">
-                  Age: <%= "#{dog.age}" " #{dog.age_unit}" %>
+                  Age: <%= "#{pet.age}" " #{pet.age_unit}" %>
                 </p>
                 <p class="card-text bigger">
-                  Breed: <%= dog.breed %>
+                  Breed: <%= pet.breed %>
                 </p>
               </div>
             </div>

@@ -1,29 +1,29 @@
-<section class="pt-5 pb-5" id="adoptable_dogs_show">
+<section class="pt-5 pb-5" id="adoptable_pets_show">
   <div class="container mb-md-5 mt-md-5">
 
     <!--page heading-->
     <div class="text-center mb-5">
       <h1 class="section-heading text-uppercase underline">
-        <%= @dog.name %>
+        <%= @pet.name %>
       </h1>
     </div>
 
-    <!--dog tile-->
+    <!--pet tile-->
     <div class="row">
       <div class="col-lg-8">
 
-        <!--dog images--> 
-        <% if @dog.images.attached? %>
+        <!--pet images--> 
+        <% if @pet.images.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
             <div class="carousel-indicators">
-              <% @dog.images.each_with_index do |image, index| %>
+              <% @pet.images.each_with_index do |image, index| %>
                 <button type="button" data-bs-target="#carouselExampleIndicators" 
                         data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"
                         aria-current="true" aria-label="Slide <%= index %>"></button>
               <% end %>
             </div>
             <div class="carousel-inner">
-              <% @dog.images.each_with_index do |image, index| %>
+              <% @pet.images.each_with_index do |image, index| %>
                   <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
                   <%= image_tag image, class: 'd-block' %>
                   </div>
@@ -42,49 +42,49 @@
           </div>
         <% end %>
           
-        <!--dog info-->
+        <!--pet info-->
         <div class='row mb-3'>
           <div class='col-md-2 mb-1'>
             <h5 style='font-weight: bold;'>Age:</h5>
-            <h5><%= "#{@dog.age}" " #{@dog.age_unit}" %></h5>
+            <h5><%= "#{@pet.age}" " #{@pet.age_unit}" %></h5>
           </div>
           <div class='col-md-2 mb-1'>
             <h5 style='font-weight: bold;'>Sex:</h5>
-            <h5><%= @dog.sex %></h5>
+            <h5><%= @pet.sex %></h5>
           </div>
           <div class='col-md-4 mb-1'>
             <h5 style='font-weight: bold;'>Breed:</h5>
-            <h5><%= @dog.breed %></h5>
+            <h5><%= @pet.breed %></h5>
           </div>
           <div class='col-md-4 mb-1'>
             <h5 style='font-weight: bold;'>Size:</h5>
-            <h5> <%= @dog.size %></h5>
+            <h5> <%= @pet.size %></h5>
           </div>
         </div>
 
         <h4 style='font-weight: bold;' class=''>
-          About <%= @dog.name %>
+          About <%= @pet.name %>
         </h4>
         <p style="white-space: pre-line;">
-          <%= @dog.description %>
+          <%= @pet.description %>
         </p>
       </div> <!--col-->
 
       <!--button area-->
       <div class="col-lg-4 mx-auto d-flex flex-column align-items-center 
                   justify-content-center mt-5">
-        <% unless @dog.adoption %>
+        <% unless @pet.adoption %>
           <div class='d-flex align-items-center'>
               <h3 class='me-2'>
                 Applications are
-                <%= @dog.application_paused == true ? 'paused' : 'active' %>
+                <%= @pet.application_paused == true ? 'paused' : 'active' %>
               </h3>
-              <%= @dog.application_paused == true ? image_tag('pause.png', height: '25'): 
+              <%= @pet.application_paused == true ? image_tag('pause.png', height: '25'): 
                                                     image_tag('green_check.png', height: '25')%>
           </div>
 
           <div class="border p-3 mt-2 rounded text-center d-flex flex-wrap bigger mb-3">
-            <%= form_with model: @dog do |form|%>
+            <%= form_with model: @pet do |form|%>
               <div data-controller='display'>
                 <div class='d-flex form-group' data-display-target='checked'>
                   <p class='me-2'>Pause Applications?</p>
@@ -101,7 +101,7 @@
                 <div data-display-target='additional' class="d-flex d-none">
                   <%= form.label :pause_reason, 'Why?', class: 'me-2' %>
                   <%= form.select(:pause_reason, 
-                                  Dog.app_pause_reasons, 
+                                  Pet.app_pause_reasons, 
                                   { selected: @pause_reason }, 
                                   { class: "form-control"}) %>
                 </div>
@@ -112,20 +112,20 @@
         <% end %>
 
         <div class="p-2 d-flex flex-column">
-            <%= link_to 'Edit Dog', edit_dog_path(@dog), 
+            <%= link_to 'Edit Pet', edit_pet_path(@pet), 
                         class: 'custom-btn-green mb-2' %>
             
-            <% if @dog.adoption %>
+            <% if @pet.adoption %>
               <%= link_to 'View Adopter', 
-                          profile_review_path(@dog.adoption
+                          profile_review_path(@pet.adoption
                                                   .adopter_account
                                                   .adopter_profile.id),
                           class: 'custom-btn-green mb-2'%>
             <% end %>
         </div>
         <div class="p-2 d-flex flex-column">
-            <% if @dog.adoption %>
-              <%= link_to 'Revoke Adoption', revoke_adoption_path(adoption_id: @dog.adoption.id), 
+            <% if @pet.adoption %>
+              <%= link_to 'Revoke Adoption', revoke_adoption_path(adoption_id: @pet.adoption.id), 
                   class: 'custom-btn-pink mb-2',
                   data: {
                     turbo_method: :delete,
@@ -133,11 +133,11 @@
                   } %> 
             <% end %>
 
-            <%= link_to 'Delete', dog_path(@dog), class: 'custom-btn-pink mb-2',
+            <%= link_to 'Delete', pet_path(@pet), class: 'custom-btn-pink mb-2',
                   data: 
                         {
                   turbo_method: :delete,
-                  turbo_confirm: "Are you sure you want to delete this dog?"
+                  turbo_confirm: "Are you sure you want to delete this pet?"
                 } %>        
         </div>
       </div> <!--col-->

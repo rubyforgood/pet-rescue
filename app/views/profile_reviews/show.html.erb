@@ -60,9 +60,9 @@
           <hr>
           <h4 class="mb-4 mt-4">Your Lifestyle</h4>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Your ideal dog</strong></p>
+            <p class="col-lg-4"><strong>Your ideal pet</strong></p>
              <p class="col-lg-6 text-muted">
-              <%= @adopter_profile.ideal_dog %>
+              <%= @adopter_profile.ideal_pet %>
             </p>
           </div>
           <div class="row mb-3 bigger">
@@ -73,7 +73,7 @@
           </div>
           <div class="row mb-3 bigger">
             <p class="col-lg-4">
-              <strong>Activities you will do with your dog</strong>
+              <strong>Activities you will do with your pet</strong>
             </p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.activities %>
@@ -81,7 +81,7 @@
           </div>
           <div class="row mb-3 bigger">
             <p class="col-lg-4">
-              <strong>Hours dog will be alone on weekends</strong>
+              <strong>Hours pet will be alone on weekends</strong>
             </p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.alone_weekend %>
@@ -89,7 +89,7 @@
           </div>
           <div class="row mb-4 bigger">
             <p class="col-lg-4">
-              <strong>Hours dog will be alone on week days</strong>
+              <strong>Hours pet will be alone on week days</strong>
             </p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.alone_weekday %>
@@ -97,19 +97,19 @@
           </div>
         </div>
 
-        <!--Dog Care-->
+        <!--Pet Care-->
         <div>
           <hr>
-          <h4 class="mb-4 mt-4">Dog Care</h4>
+          <h4 class="mb-4 mt-4">Pet Care</h4>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Your dog care experience</strong></p>
+            <p class="col-lg-4"><strong>Your pet care experience</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.experience %>
             </p>
           </div>
           <div class="row mb-3 bigger">
             <p class="col-lg-4">
-              <strong>Dog care plans during emergency or vacation</strong>
+              <strong>Pet care plans during emergency or vacation</strong>
             </p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.contingency_plan %>
@@ -117,7 +117,7 @@
           </div>
           <div class="row mb-3 bigger">
             <p class="col-lg-4">
-              <strong>Will dog care be shared with someone outside household?</strong>
+              <strong>Will pet care be shared with someone outside household?</strong>
             </p>
             <% if @adopter_profile.shared_ownership == true %>
             <p class="col-lg-6 text-muted">Yes</p>
@@ -128,7 +128,7 @@
 
           <% unless @adopter_profile.shared_ownership == false %>
           <div class="row mb-4 bigger">
-            <p class="col-lg-4"><strong>Details on shared dog care</strong></p>
+            <p class="col-lg-4"><strong>Details on shared pet care</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.shared_owner %>
             </p>
@@ -156,20 +156,20 @@
           </div>
             <% unless @adopter_profile.fenced_access == true %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Your plan to care for the dog without a fenced garden</strong></p>
+            <p class="col-lg-4"><strong>Your plan to care for the pet without a fenced garden</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.fenced_alternative %>
             </p>
           </div>
           <% end %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Dog's location during the day</strong></p>
+            <p class="col-lg-4"><strong>Pet's location during the day</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.location_day %>
             </p>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Dog's location at night</strong></p>
+            <p class="col-lg-4"><strong>Pet's location at night</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.location_night %>
             </p>
@@ -185,8 +185,8 @@
           </div>
           <% unless @adopter_profile.do_you_rent == false %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Have you confirmed dogs are allowed on the property?</strong></p>
-            <% if @adopter_profile.dogs_allowed == true %>
+            <p class="col-lg-4"><strong>Have you confirmed pets are allowed on the property?</strong></p>
+            <% if @adopter_profile.pets_allowed == true %>
             <p class="col-lg-6 text-muted">Yes</p>
             <% else %>
             <p class="col-lg-6 text-muted">No</p>
@@ -232,7 +232,7 @@
           <hr>
           <h4 class="mb-4 mt-4">Additional Information</h4>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Have you checked your local shelter for adoptable dogs?</strong></p>
+            <p class="col-lg-4"><strong>Have you checked your local shelter for adoptable pets?</strong></p>
             <% if @adopter_profile.checked_shelter == true %>
             <p class="col-lg-6 text-muted">Yes</p>
             <% else %>
@@ -256,13 +256,13 @@
           </div>
           <% end %>
           <div class="row mb-4 bigger">
-            <p class="col-lg-4"><strong>Your annual cost estimate for dog care</strong></p>
+            <p class="col-lg-4"><strong>Your annual cost estimate for pet care</strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.annual_cost %>
             </p>
           </div>
             <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Will you or a friend be in La Ventana in person to pick up the dog?</strong></p>
+            <p class="col-lg-4"><strong>Will you or a friend be in La Ventana in person to pick up the pet?</strong></p>
             <% if @adopter_profile.visit_laventana == true %>
             <p class="col-lg-6 bigger text-danger">Yes</p>
             <% else %>

@@ -1,22 +1,22 @@
 <%# set @collection to appropriate controller instance variable %>
-<% if params[:dog_id] == '' || params[:selection] == 'Seeking Adoption'  %> 
-  <% @collection = @unadopted_dogs %>
+<% if params[:pet_id] == '' || params[:selection] == 'Seeking Adoption'  %> 
+  <% @collection = @unadopted_pets %>
 <% elsif params[:selection] == 'Adopted' %>
-  <% @collection = @adopted_dogs %>
-<% elsif params[:dog_id]  %>
-  <% @collection = @dog %>
+  <% @collection = @adopted_pets %>
+<% elsif params[:pet_id]  %>
+  <% @collection = @pet %>
 <% else %>
-  <% @collection = @unadopted_dogs %>
+  <% @collection = @unadopted_pets %>
 <% end %>
 
 
-<section class="pt-5 pb-5" id="dogs">
+<section class="pt-5 pb-5" id="pets">
   <div class="container mb-md-5 mt-md-5">
 
     <!--page heading-->
     <div class="text-center mb-5">
       <h1 class="section-heading text-uppercase underline">
-        Our dogs
+        Our pets
       </h1>
     </div>
 
@@ -25,7 +25,7 @@
       <div class ="col-md-6 d-flex flex-column gap-3">
 
         <!--form1-->
-        <%= form_with url: '/dogs', method: :get do | f | %>
+        <%= form_with url: '/pets', method: :get do | f | %>
           <div class="d-flex gap-3 form-group">
             <%= f.select :selection, ['Seeking Adoption', 'Adopted'], 
                           { prompt: "Filter by adoption status" }, 
@@ -35,10 +35,10 @@
         <% end %>
         
         <!--form2-->
-        <%# only show dog name seletion if collection is greater than e.g., 5 dogs? %>
-        <%= form_with url: '/dogs', class: 'mb-3 mb-md-0', method: :get do | f | %>
+        <%# only show pet name seletion if collection is greater than e.g., 5 pets? %>
+        <%= form_with url: '/pets', class: 'mb-3 mb-md-0', method: :get do | f | %>
           <div class="d-flex gap-3 form-group">
-            <%= f.collection_select :dog_id, @collection, :id, :name, 
+            <%= f.collection_select :pet_id, @collection, :id, :name, 
                                     { prompt: 'Filter by name' }, 
                                     class: 'form-control' %>
             <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
@@ -48,30 +48,30 @@
       </div>
 
       <div class ="col-md-6 d-flex justify-content-center align-items-center">
-         <%= link_to 'Create Dog', new_dog_path, class: 'custom-btn-pink' %><br>
+         <%= link_to 'Create Pet', new_pet_path, class: 'custom-btn-pink' %><br>
       </div>
     </div> <!--row-->
 
-    <!--dog tile section-->
+    <!--pet tile section-->
     <div class="row">
-      <% @collection.each do |dog| %>    
+      <% @collection.each do |pet| %>    
         <div class="col-lg-4 col-md-6 p-0">
-          <%= link_to dog_path(dog), class: 'text-decoration-none' do %>
+          <%= link_to pet_path(pet), class: 'text-decoration-none' do %>
             <div class="card m-4">
-              <% if dog.images.attached? %>
-                <%= image_tag dog.images.first, class: 'card-img-top test' %>
+              <% if pet.images.attached? %>
+                <%= image_tag pet.images.first, class: 'card-img-top test' %>
               <% else %>
                 <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
               <% end %>
               <div class="card-body">
                 <h5 class="card-title">
-                  <%= dog.name %>
+                  <%= pet.name %>
                 </h5>
                 <p class="card-text">
-                  Breed: <%= dog.breed %>
+                  Breed: <%= pet.breed %>
                 </p>
                 <p class="card-text">
-                  Applications: <%= dog.application_paused == false ? 'active' : 'paused' %>
+                  Applications: <%= pet.application_paused == false ? 'active' : 'paused' %>
                 </p>
               </div>
             </div>
