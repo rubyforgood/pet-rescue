@@ -5,7 +5,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   setup do
     @adopter_application = adopter_applications(:adopter_application_two)
     @adopter = @adopter_application.adopter_account.user
-    @dog = dogs(:pending_adoption_two)
+    @pet = pets(:pending_adoption_two)
     @adopter_account_id = adopter_accounts(:adopter_account_one).id
   end
 
@@ -16,7 +16,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select 'a', {
-      count: Dog.org_dogs_with_apps(users(:verified_staff_one).staff_account.organization_id).count, text: 'Adopter Profile'
+      count: Pet.org_pets_with_apps(users(:verified_staff_one).staff_account.organization_id).count, text: 'Adopter Profile'
     }
   end
 
@@ -35,7 +35,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     get '/adopter_applications'
 
-    assert_select 'a', @adopter_application.dog.name
+    assert_select 'a', @adopter_application.pet.name
     assert_select 'p', "Applicant: #{@adopter.first_name}
                       #{@adopter.last_name}"
     assert_select 'a', 'Adopter Profile'
@@ -122,18 +122,18 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     get '/adopter_applications'
 
     assert_select 'a', {
-      count: 1, text: @dog.name
+      count: 1, text: @pet.name
     }
 
     post '/create_adoption',
-      params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
+      params: { adopter_account_id: @adopter_account_id, pet_id: @pet.id }
 
-    assert_equal 'Dog successfully adopted.', flash[:notice]
+    assert_equal 'Pet successfully adopted.', flash[:notice]
 
     get '/adopter_applications'
 
     assert_select 'a', {
-      count: 0, text: @dog.name
+      count: 0, text: @pet.name
     }
   end
 
@@ -142,7 +142,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     assert_changes 'Adoption.count', from: 1, to: 2 do
       post '/create_adoption',
-        params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
+        params: { adopter_account_id: @adopter_account_id, pet_id: @pet.id }
     end
   end
 
@@ -164,7 +164,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       }
 
     assert_select 'h3', {
-      count: 0, text: @dog.name
+      count: 0, text: @pet.name
     }
 
     sign_in users(:verified_staff_one)
@@ -181,7 +181,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     get '/my_applications'
 
     assert_select 'h3', {
-      count: 1, text: @dog.name
+      count: 1, text: @pet.name
     }
   end
 
@@ -189,31 +189,31 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     sign_in users(:unverified_staff)
 
     post '/create_adoption',
-      params: { adopter_account_id: @adopter_account_id, dog_id: @dog.id }
+      params: { adopter_account_id: @adopter_account_id, pet_id: @pet.id }
 
     assert_response :redirect
     follow_redirect!
     assert_equal 'Unauthorized action.', flash[:alert]
   end
 
-  test "the filter works to show applications for a given dog and for all dogs" do 
+  test "the filter works to show applications for a given pet and for all pets" do 
     sign_in users(:verified_staff_one)
 
     get '/adopter_applications'
     assert_select 'div.card',
-      # count of all unadopted dogs with an application for a given org
-      { count: Dog.org_dogs_with_apps(users(:verified_staff_one).staff_account.organization_id).count }
+      # count of all unadopted pets with an application for a given org
+      { count: Pet.org_pets_with_apps(users(:verified_staff_one).staff_account.organization_id).count }
 
     get '/adopter_applications',
-      params: {dog_id: dogs(:pending_adoption_one).id }
+      params: {pet_id: pets(:pending_adoption_one).id }
     
     assert_select 'div.card', { count: 1 }
-    assert_select 'h4', "#{dogs(:pending_adoption_one).name}"
+    assert_select 'h4', "#{pets(:pending_adoption_one).name}"
 
     get '/adopter_applications',
-      params: { dog_id: "" }
+      params: { pet_id: "" }
     
     assert_select 'div.card',
-    { count: Dog.org_dogs_with_apps(users(:verified_staff_one).staff_account.organization_id).count }
+    { count: Pet.org_pets_with_apps(users(:verified_staff_one).staff_account.organization_id).count }
   end
 end

@@ -1,4 +1,4 @@
-dog_one_image:
+pet_one_image:
   name: images
-  record: one (Dog)
-  blob: dog_one_image_blob
+  record: one (Pet)
+  blob: pet_one_image_blob

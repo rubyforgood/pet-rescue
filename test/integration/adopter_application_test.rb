@@ -3,11 +3,11 @@ require "test_helper"
 class AdopterApplicationTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog_id = dogs(:one).id
-    @paused_dog_id = dogs(:paused_application).id
+    @pet_id = pets(:one).id
+    @paused_pet_id = pets(:paused_application).id
   end
 
-  test "adopter user without profile cannot apply for dog and sees flash error" do
+  test "adopter user without profile cannot apply for pet and sees flash error" do
     sign_in users(:adopter_without_profile)
     before_count = AdopterApplication.all.count
 
@@ -15,7 +15,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     params: { application:
       {
         adopter_account_id: adopter_accounts(:adopter_account_two).id,
-        dog_id: @dog_id
+        pet_id: @pet_id
       }
     }
 
@@ -26,7 +26,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     assert_equal before_count, AdopterApplication.all.count
   end
 
-  test "staff user sees flash error if they apply for a dog" do
+  test "staff user sees flash error if they apply for a pet" do
     sign_in users(:verified_staff_one)
     before_count = AdopterApplication.all.count
 
@@ -34,7 +34,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     params: { application:
       {
         adopter_account_id: nil,
-        dog_id: @dog_id
+        pet_id: @pet_id
       }
     }
 
@@ -45,7 +45,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     assert_equal before_count, AdopterApplication.all.count
   end
 
-  test "adopter user with profile can apply for a dog and staff receive email" do
+  test "adopter user with profile can apply for a pet and staff receive email" do
     sign_in users(:adopter_with_profile)
     before_count = AdopterApplication.all.count
 
@@ -53,7 +53,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     params: { application:
       {
         adopter_account_id: adopter_accounts(:adopter_account_one).id,
-        dog_id: @dog_id
+        pet_id: @pet_id
       }
     }
 
@@ -68,7 +68,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     assert_equal mail[0].subject, 'New Adoption Application', 'subject is incorrect'
   end
 
-  test "adopter user with profile cannot apply for a paused dog and sees flash error" do
+  test "adopter user with profile cannot apply for a paused pet and sees flash error" do
     sign_in users(:adopter_with_profile)
     before_count = AdopterApplication.all.count
 
@@ -76,13 +76,13 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     params: { application:
       {
         adopter_account_id: adopter_accounts(:adopter_account_one).id,
-        dog_id: @paused_dog_id
+        pet_id: @paused_pet_id
       }
     }
 
     assert_response :redirect
     follow_redirect!
-    assert_equal 'Applications are paused for this dog', flash[:alert]
+    assert_equal 'Applications are paused for this pet', flash[:alert]
 
     assert_equal before_count, AdopterApplication.all.count
   end

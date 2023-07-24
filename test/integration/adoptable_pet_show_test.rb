@@ -1,30 +1,30 @@
 require "test_helper"
 
-class AdoptableDogShowTest < ActionDispatch::IntegrationTest
+class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
   setup do
-    @dog_id = dogs(:one).id
-    @adopted_dog_id = dogs(:adopted_dog).id
+    @pet_id = pets(:one).id
+    @adopted_pet_id = pets(:adopted_pet).id
   end
 
   test "unauthenticated users see create account prompt and link" do
-    get "/adoptable_dogs/#{@dog_id}"
+    get "/adoptable_pets/#{@pet_id}"
     assert_response :success
-    assert_select "h4", "Create an account to apply for this dog"
+    assert_select "h4", "Create an account to apply for this pet"
     assert_select "a", "Create Account"
   end
 
   test "adopter without a profile sees complete my profile prompt and link" do
     sign_in users(:adopter_without_profile)
-    get "/adoptable_dogs/#{@dog_id}"
+    get "/adoptable_pets/#{@pet_id}"
     assert_response :success
-    assert_select "h4", "Complete your profile to apply for this dog"
+    assert_select "h4", "Complete your profile to apply for this pet"
     assert_select "a", "Complete my profile"
   end
 
   test "adopter with a profile sees love this pooch question and apply button" do
     sign_in users(:adopter_with_profile)
-    get "/adoptable_dogs/#{@dog_id}"
+    get "/adoptable_pets/#{@pet_id}"
     assert_response :success
     assert_select "h4", "In love with this pooch?"
     assert_select 'form' do
@@ -34,7 +34,7 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
 
   test "staff do not see an adopt button only log out button" do
     sign_in users(:verified_staff_one)
-    get "/adoptable_dogs/#{@dog_id}"
+    get "/adoptable_pets/#{@pet_id}"
     assert_response :success
     assert_select 'form' do
       assert_select 'button', 'Log Out'
@@ -42,14 +42,14 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
     assert_select 'form', count: 1
   end
 
-  test "if dog status is paused and reason is opening soon this is displayed" do
+  test "if pet status is paused and reason is opening soon this is displayed" do
     sign_in users(:verified_staff_one)
 
-    put "/dogs/#{@dog_id}",
-      params: { dog:
+    put "/pets/#{@pet_id}",
+      params: { pet:
       {
         organization_id: "#{organizations(:one).id}",
-        name: 'TestDog',
+        name: 'TestPet',
         age: '7',
         sex: 'Female',
         breed: 'mix',
@@ -63,18 +63,18 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
 
     logout
     sign_in users(:adopter_with_profile)
-    get "/adoptable_dogs/#{@dog_id}"
+    get "/adoptable_pets/#{@pet_id}"
     assert_select "h3", "Applications Opening Soon"  
   end
 
-  test "if dog status is paused and reason is paused until further notice this is displayed" do
+  test "if pet status is paused and reason is paused until further notice this is displayed" do
     sign_in users(:verified_staff_one)
 
-    put "/dogs/#{@dog_id}",
-      params: { dog:
+    put "/pets/#{@pet_id}",
+      params: { pet:
         {
           organization_id: "#{organizations(:one).id}",
-          name: 'TestDog',
+          name: 'TestPet',
           age: '7',
           sex: 'Female',
           breed: 'mix',
@@ -87,21 +87,21 @@ class AdoptableDogShowTest < ActionDispatch::IntegrationTest
 
     logout
     sign_in users(:adopter_with_profile)
-    get "/adoptable_dogs/#{@dog_id}"
+    get "/adoptable_pets/#{@pet_id}"
     assert_select "h3", "Applications Paused Until Further Notice"  
   end
 
-  test "dog name shows adoption pending if it has any applications with that status" do 
-    @dog_id = dogs(:pending_adoption_one).id
-    get "/adoptable_dogs/#{@dog_id}"
-    assert_select 'h1', "#{dogs(:pending_adoption_one).name} (Adoption Pending)"
+  test "pet name shows adoption pending if it has any applications with that status" do 
+    @pet_id = pets(:pending_adoption_one).id
+    get "/adoptable_pets/#{@pet_id}"
+    assert_select 'h1', "#{pets(:pending_adoption_one).name} (Adoption Pending)"
   end
   
-  test "an adopted dog can't be shown as an adoptable dog" do
-    get "/adoptable_dogs/#{@adopted_dog_id}"
+  test "an adopted pet can't be shown as an adoptable pet" do
+    get "/adoptable_pets/#{@adopted_pet_id}"
     assert_response :redirect
     follow_redirect!
-    assert_equal 'You can only view dogs that need adoption.', flash[:alert]
+    assert_equal 'You can only view pets that need adoption.', flash[:alert]
   end
 
 end

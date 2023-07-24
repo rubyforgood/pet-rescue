@@ -4,7 +4,7 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
 
   setup do 
     @adopter_account = adopter_accounts(:adopter_account_one)
-    @dog = dogs(:one)
+    @pet = pets(:one)
     @adoptions = Adoption.all
   end
 
@@ -21,8 +21,8 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
 
     assert_not_equal(lat_value, locations(:locations_one).latitude)
     assert_not_equal(lon_value, locations(:locations_one).longitude)
-    assert_equal(name_value, dogs(:adopted_dog).name)
-    assert_equal(breed_value, dogs(:adopted_dog).breed)
+    assert_equal(name_value, pets(:adopted_pet).name)
+    assert_equal(breed_value, pets(:adopted_pet).breed)
   end
 
   test "An additional list element is created when a new adoption is made" do
@@ -30,7 +30,7 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
     adoption_count_before = @adoptions.count
 
     post '/create_adoption',
-      params: { adopter_account_id: @adopter_account.id, dog_id: @dog.id }
+      params: { adopter_account_id: @adopter_account.id, pet_id: @pet.id }
     
     get '/successes'
     assert_select 'ul.coordinates' do

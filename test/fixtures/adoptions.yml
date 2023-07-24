@@ -1,5 +1,5 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 adoption_one:
-  dog: adopted_dog
+  pet: adopted_pet
   adopter_account: adopter_account_one
