@@ -4,7 +4,7 @@ class StaffApplicationNotificationMailer < ApplicationMailer
 
   def new_adoption_application
     @organization_staff = params[:organization_staff]
-    @dog = params[:dog]
+    @pet = params[:pet]
     @url = 'https://www.bajapetrescue.com/users/sign_in'
 
     emails = @organization_staff.collect(&:email).join(',')
