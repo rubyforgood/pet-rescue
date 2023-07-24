@@ -10,7 +10,7 @@ class AdopterProfile < ApplicationRecord
   validates :phone_number, phone: { possible: true }
 
   validates :contact_method, presence: true
-  validates :ideal_dog, presence: { message: 'Please tell us about your ideal dog' },
+  validates :ideal_pet, presence: { message: 'Please tell us about your ideal pet' },
                         length: { maximum: 200, message: '200 characters maximum' }
   validates :lifestyle_fit, presence: { message: 'Please tell us about your lifestyle' },
                             length: { maximum: 200, message: '200 characters maximum' }
@@ -18,7 +18,7 @@ class AdopterProfile < ApplicationRecord
                          length: { maximum: 200, message: '200 characters maximum' }
   validates :alone_weekday, presence: { message: 'This field cannot be blank' }
   validates :alone_weekend, presence: { message: 'This field cannot be blank' }
-  validates :experience, presence: { message: 'Please tell us about your dog experience' },
+  validates :experience, presence: { message: 'Please tell us about your pet experience' },
                          length: { maximum: 200, message: '200 characters maximum' }
   validates :contingency_plan, presence: { message: 'Please tell us about your contingencies' },
                                length: { maximum: 200, message: '200 characters maximum' }
@@ -36,7 +36,7 @@ class AdopterProfile < ApplicationRecord
   validates :location_day, presence: true, length: { maximum: 100 }
   validates :location_night, presence: true, length: { maximum: 100 }
   validates_inclusion_of :do_you_rent, in: [true, false], message: 'Select one'
-  validates_inclusion_of :dogs_allowed, in: [true, false],
+  validates_inclusion_of :pets_allowed, in: [true, false],
                                         message: 'Select one',
                                         if: :do_you_rent?
   validates :adults_in_home, presence: true
