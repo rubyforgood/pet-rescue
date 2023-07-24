@@ -11,20 +11,20 @@ class AdopterProfileFormsTest < ApplicationSystemTestCase
   test "Text areas appear after radio check and all text areas have character counter and text areas disappear after radio check" do
     assert_selector "h1", text: "EDIT PROFILE"
 
-    fill_in "Briefly describe your ideal dog", with: "Big and fluffy."
+    fill_in "Briefly describe your ideal pet", with: "Big and fluffy."
     fill_in "Briefly describe your lifestyle", with: "Big and fluffy."
-    fill_in "Briefly describe activities you will do with your dog", with: "Big and fluffy."
-    fill_in "Briefly describe your dog care experience", with: "Big and fluffy."
-    fill_in "Who will care for your dog during emergencies or vacations?", with: "Big and fluffy."
+    fill_in "Briefly describe activities you will do with your pet", with: "Big and fluffy."
+    fill_in "Briefly describe your pet care experience", with: "Big and fluffy."
+    fill_in "Who will care for your pet during emergencies or vacations?", with: "Big and fluffy."
 
     find("label[for=adopter_profile_other_pets_true]").click
     find("label[for=adopter_profile_shared_ownership_true]").click
     find("label[for=adopter_profile_fenced_access_false]").click
     find("label[for=adopter_profile_surrendered_pet_true]").click
 
-    fill_in "How do you plan to care for the dog without a fenced garden?", with: "Big and fluffy."
-    fill_in "List pets (include neuter status if dog)", with: "Big and fluffy."
-    fill_in "Briefly describe who else will share dog ownership", with: "Big and fluffy."
+    fill_in "How do you plan to care for the pet without a fenced garden?", with: "Big and fluffy."
+    fill_in "List pets (include neuter status if pet)", with: "Big and fluffy."
+    fill_in "Briefly describe who else will share pet ownership", with: "Big and fluffy."
     fill_in "Briefly describe the circumstances around surrenderring or rehoming the pet", with: "Big and fluffy."
 
     assert_selector "div.small", text: "15/200", count: 9

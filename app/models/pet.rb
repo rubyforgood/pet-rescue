@@ -1,4 +1,4 @@
-class Dog < ApplicationRecord
+class Pet < ApplicationRecord
   belongs_to :organization
   has_many :adopter_applications, dependent: :destroy
   has_one :adoption, dependent: :destroy
@@ -25,20 +25,20 @@ class Dog < ApplicationRecord
                        :opening_soon,
                        :paused_until_further_notice]
 
-  # check if dog has any applications with adoption pending status
+  # check if pet has any applications with adoption pending status
   def has_adoption_pending?
     self.adopter_applications.any? { |app| app.status == "adoption_pending" }
   end
   
   # remove not_paused status as not necessary for staff
   def self.app_pause_reasons
-    Dog.pause_reasons.keys.map do |reason|
+    Pet.pause_reasons.keys.map do |reason|
       [reason.titleize, reason]
     end.drop(1)
   end
 
   def self.list_age_units
-    Dog.age_units.keys.map do |unit| 
+    Pet.age_units.keys.map do |unit| 
       [unit.titleize, unit]
     end
   end
@@ -48,31 +48,31 @@ class Dog < ApplicationRecord
     images.attach(attachables)
   end
 
-  # all dogs under an organization
-  def self.org_dogs(staff_org_id)
-    Dog.where(organization_id: staff_org_id)
+  # all pets under an organization
+  def self.org_pets(staff_org_id)
+    Pet.where(organization_id: staff_org_id)
   end
 
-  # all dogs under an organization with applications and no adoptions
-  def self.org_dogs_with_apps(staff_org_id)
-    Dog.org_dogs(staff_org_id).includes(:adopter_applications).where
+  # all pets under an organization with applications and no adoptions
+  def self.org_pets_with_apps(staff_org_id)
+    Pet.org_pets(staff_org_id).includes(:adopter_applications).where
        .not(adopter_applications: { id: nil }).includes(:adoption)
        .where(adoption: { id: nil })
   end
 
-  # all unadopted dogs under all organizations
-  def self.all_unadopted_dogs
-    Dog.includes(:adoption).where(adoption: { id: nil })
+  # all unadopted pets under all organizations
+  def self.all_unadopted_pets
+    Pet.includes(:adoption).where(adoption: { id: nil })
   end
 
-  # all unadopted dogs under an organization
-  def self.unadopted_dogs(staff_org_id)
-    Dog.org_dogs(staff_org_id).includes(:adoption).where(adoption: { id: nil })
+  # all unadopted pets under an organization
+  def self.unadopted_pets(staff_org_id)
+    Pet.org_pets(staff_org_id).includes(:adoption).where(adoption: { id: nil })
   end
 
-  # all adopted dogs under an organization
-  def self.adopted_dogs(staff_org_id)
-    Dog.org_dogs(staff_org_id).includes(:adoption)
+  # all adopted pets under an organization
+  def self.adopted_pets(staff_org_id)
+    Pet.org_pets(staff_org_id).includes(:adoption)
        .where.not(adoption: { id: nil })
   end
 end

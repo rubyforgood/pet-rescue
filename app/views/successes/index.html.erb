@@ -12,7 +12,7 @@
         <% @google_map_metadata.each do |location| %>
             <li data-lat="<%= location[:latitude] %>"
                 data-lon="<%= location[:longitude] %>"
-                data-name="<%= location[:dog_name] %>"
+                data-name="<%= location[:pet_name] %>"
                 data-breed="<%= location[:breed] %>"
             >
             </li>
@@ -22,6 +22,6 @@
   </div>
 
   <div class="bigger text-center mt-4">
-    The <%= Adoption.all.count %> pins on this map represent each dog who has found a new home since the launch of this website in November, 2022. 
+    The <%= Adoption.all.count %> pins on this map represent each pet who has found a new home since the launch of this website in November, 2022. 
   </div>
 </section>

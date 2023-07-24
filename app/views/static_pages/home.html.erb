@@ -2,11 +2,11 @@
 <header class="masthead">
   <div class="container">
     <h1 class='mb-4'>
-      We rescue dogs in Baja, Mexico and rehome them with adopters in 
+      We rescue pets in Baja, Mexico and rehome them with adopters in 
       Canada and America
     </h1>
-    <%= link_to "Browse #{Dog.all_unadopted_dogs.count} Dogs", 
-                adoptable_dogs_path, 
+    <%= link_to "Browse #{Pet.all_unadopted_pets.count} Pets", 
+                adoptable_pets_path, 
                 class:'custom-btn-pink' %>
   </div>
 </header>
@@ -40,7 +40,7 @@
         <span>
             <%= image_tag('dog.svg', width: '100') %>
         </span>
-        <h4 class="my-3">3. Browse dogs</h4>
+        <h4 class="my-3">3. Browse pets</h4>
       </div>
       <div class="col-md-3 pb-3">
         <span>
@@ -102,7 +102,7 @@
           Process
         </h3>
         <p class='mb-4 bigger'>
-          Before applying to adopt a dog it is important you read and understand how our process works.
+          Before applying to adopt a pet it is important you read and understand how our process works.
         </p>
         <p>
           <%= link_to 'Learn more', faq_path, class: 'custom-btn-green' %>
@@ -113,7 +113,7 @@
           Partners
         </h3>
         <p class='mb-4 bigger'>
-          We have some amazing partners here in La Ventana who help in our dog rescue efforts.
+          We have some amazing partners here in La Ventana who help in our pet rescue efforts.
         </p>
         <p>
           <%= link_to 'Learn more', partners_path, class: 'custom-btn-green' %>
@@ -124,7 +124,7 @@
           Donate
         </h3>
         <p class='mb-4 bigger'>
-          Donations help us to rescue, treat and adopt more dogs. Click here to learn how you can donate. 
+          Donations help us to rescue, treat and adopt more pets. Click here to learn how you can donate. 
         </p>
         <p>
           <%= link_to 'Learn more', donate_path, class: 'custom-btn-green' %>

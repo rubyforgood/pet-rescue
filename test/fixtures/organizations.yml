@@ -6,7 +6,7 @@ one:
   country: testistan
   zipcode: t35t
 
-# default organization for unverified staff, dogs do not belong to this org
+# default organization for unverified staff, pets do not belong to this org
 unverified_staff_default:
   id: 1
   name: default

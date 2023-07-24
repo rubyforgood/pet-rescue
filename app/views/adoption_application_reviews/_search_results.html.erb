@@ -1,16 +1,16 @@
-<%# @dog, @dogs are defined in the adoption_application_reviews controller %>
+<%# @pet, @pets are defined in the adoption_application_reviews controller %>
 
-<% if @dog.nil? ? @collection = @dogs : @collection = @dog %>
+<% if @pet.nil? ? @collection = @pets : @collection = @pet %>
 
-  <% @collection.each do |dog| %>
-    <!--dog name-->
+  <% @collection.each do |pet| %>
+    <!--pet name-->
     <div class='card px-4 mt-5'>
       <h4 class="mt-2 text-center">
-        <%= link_to dog.name, dog_path(dog), class: 'text-decoration-none' %>
+        <%= link_to pet.name, pet_path(pet), class: 'text-decoration-none' %>
       </h4>
       
       <div class='p-2'>
-        <% dog.adopter_applications.each do |app|%>
+        <% pet.adopter_applications.each do |app|%>
           <div class="row mb-3 rounded py-2
             <%= 'awaiting-review' if app.status == 'awaiting_review' %>
             <%= 'withdrawn' if app.status == 'withdrawn' %>
@@ -18,7 +18,7 @@
             <%= 'adoption-pending' if app.status == 'adoption_pending' %>
             <%= 'successful-applicant' if app.status == 'successful_applicant' %>">    
 
-            <!--dog name-->
+            <!--pet name-->
             <div class="col-md-3 d-flex align-items-center">
               <p class='bigger'>
                 Applicant: <%= app.adopter_account.user.first_name %>
@@ -51,7 +51,7 @@
                 <!--create adoption button-->
                 <div class="col-md-3 d-flex align-items-center justify-content-md-center">
                   <%= link_to 'Create Adoption', 
-                              create_adoption_path(dog_id: dog.id, 
+                              create_adoption_path(pet_id: pet.id, 
                                                   adopter_account_id: app.adopter_account.id),
                               data: { turbo_method: :post, 
                                       turbo_confirm: "Click OK to finalize this adoption." },

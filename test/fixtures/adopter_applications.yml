@@ -1,16 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 adopter_application_one:
-  dog: pending_adoption_one
+  pet: pending_adoption_one
   adopter_account: adopter_account_one
   status: 2
 
 adopter_application_two:
-  dog: pending_adoption_two
+  pet: pending_adoption_two
   adopter_account: adopter_account_one
 
 adopter_application_three:
-  dog: adopted_dog
+  pet: adopted_pet
   adopter_account: adopter_account_one
   profile_show: false
-  status: 3     # withdrawn
+  status: 3 # withdrawn

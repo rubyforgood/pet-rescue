@@ -4,16 +4,16 @@ class RevokeAdoptionTest < ActionDispatch::IntegrationTest
 
   setup do 
     sign_in users(:verified_staff_one)
-    @dog = dogs(:adopted_dog)
-    @adoption_id = Adoption.find_by(dog_id: @dog.id).id
+    @pet = pets(:adopted_pet)
+    @adoption_id = Adoption.find_by(pet_id: @pet.id).id
     @successful_application = adopter_applications(:adopter_application_three)
   end
 
-  test "staff can revoke adoption and dog becomes adoptable and successful application set to withdrawn" do
-    get "/adoptable_dogs"
-    assert_select "h3", { text: "#{@dog.name}", count: 0 }
+  test "staff can revoke adoption and pet becomes adoptable and successful application set to withdrawn" do
+    get "/adoptable_pets"
+    assert_select "h3", { text: "#{@pet.name}", count: 0 }
 
-    get "/dogs/#{@dog.id}"
+    get "/pets/#{@pet.id}"
     assert_select "p", { text: "Pause Applications?", count: 0 }
     assert_select "a", "Revoke Adoption"
     
@@ -24,14 +24,14 @@ class RevokeAdoptionTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_equal "Adoption reverted & application set to 'Withdrawn'", flash[:notice]
 
-    get "/dogs/#{@dog.id}"
+    get "/pets/#{@pet.id}"
     assert_select "p", "Pause Applications?"
     assert_select "a", { text: "Revoke Adoption", count: 0 }
 
     assert_equal "withdrawn", @successful_application.status
 
-    get "/adoptable_dogs"
-    assert_select "h3", "#{@dog.name}"
+    get "/adoptable_pets"
+    assert_select "h3", "#{@pet.name}"
   end
 
 end

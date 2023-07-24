@@ -5,7 +5,7 @@ class AddColumnsToAdopterProfiles < ActiveRecord::Migration[7.0]
     add_column :adopter_profiles, :country, :string
     add_column :adopter_profiles, :province_state, :string
     add_column :adopter_profiles, :city_town, :string
-    add_column :adopter_profiles, :ideal_dog, :text
+    add_column :adopter_profiles, :ideal_pet, :text
     add_column :adopter_profiles, :lifestyle_fit, :text
     add_column :adopter_profiles, :activities, :text
     add_column :adopter_profiles, :alone_weekday, :integer
@@ -20,7 +20,7 @@ class AddColumnsToAdopterProfiles < ActiveRecord::Migration[7.0]
     add_column :adopter_profiles, :location_day, :text
     add_column :adopter_profiles, :location_night, :text
     add_column :adopter_profiles, :do_you_rent, :boolean
-    add_column :adopter_profiles, :dogs_allowed, :boolean
+    add_column :adopter_profiles, :pets_allowed, :boolean
     add_column :adopter_profiles, :adults_in_home, :integer
     add_column :adopter_profiles, :kids_in_home, :integer
     add_column :adopter_profiles, :other_pets, :boolean

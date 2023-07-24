@@ -2,33 +2,33 @@
   <div class="container">
     <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
-        <% if @dog.has_adoption_pending? %>
-          <%= @dog.name %> (Adoption Pending)
+        <% if @pet.has_adoption_pending? %>
+          <%= @pet.name %> (Adoption Pending)
         <% else %>
-          <%= @dog.name %>
+          <%= @pet.name %>
         <% end %>
       </h1>
     </div>
   </div> <!--container-->
 </header>
 
-<!--dog tile-->
-<section class="pb-5" id="adoptable_dogs_show">
+<!--pet tile-->
+<section class="pb-5" id="adoptable_pets_show">
   <div class="container">
     <div class="row g-5">
       <div class="col-lg-8">
-        <!--dog images--> 
-        <% if @dog.images.attached? %>
+        <!--pet images--> 
+        <% if @pet.images.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
             <div class="carousel-indicators">
-              <% @dog.images.each_with_index do |image, index| %>
+              <% @pet.images.each_with_index do |image, index| %>
                 <button type="button" data-bs-target="#carouselExampleIndicators" 
                         data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"
                         aria-current="true" aria-label="Slide <%= index %>"></button>
               <% end %>
             </div>
             <div class="carousel-inner">
-              <% @dog.images.each_with_index do |image, index| %>
+              <% @pet.images.each_with_index do |image, index| %>
                   <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
                   <%= image_tag image, class: 'd-block' %>
                   </div>
@@ -50,27 +50,27 @@
         <div class='row mb-3'>
           <div class='col-md-2 mb-1'>
             <h5 style='font-weight: bold;'>Age:</h5>
-            <h5><%= "#{@dog.age}" " #{@dog.age_unit}" %></h5>
+            <h5><%= "#{@pet.age}" " #{@pet.age_unit}" %></h5>
           </div>
           <div class='col-md-2 mb-1'>
             <h5 style='font-weight: bold;'>Sex:</h5>
-            <h5><%= @dog.sex %></h5>
+            <h5><%= @pet.sex %></h5>
           </div>
           <div class='col-md-4 mb-1'>
             <h5 style='font-weight: bold;'>Breed:</h5>
-            <h5><%= @dog.breed %></h5>
+            <h5><%= @pet.breed %></h5>
           </div>
           <div class='col-md-4 mb-1'>
             <h5 style='font-weight: bold;'>Size:</h5>
-            <h5> <%= @dog.size %></h5>
+            <h5> <%= @pet.size %></h5>
           </div>
         </div>
 
         <h4 style='font-weight: bold;' class="">
-          About <%= @dog.name %>
+          About <%= @pet.name %>
         </h4>
         <p class='bigger' style="white-space: pre-line;">
-          <%= @dog.description %>
+          <%= @pet.description %>
         </p>
       </div>
 
@@ -89,7 +89,7 @@
             <ul class='bigger'> 
               <li>Adopters must be located in Canada, USA or Mexico</li>
               <li>There is an adoption fee of $175 USD</li>
-              <li>Every dog will be fully vaccinated and have the necessary 
+              <li>Every pet will be fully vaccinated and have the necessary 
                   paperwork to enter Canada/USA</li>
               <li>We can usually arrange transport to adopters west of Alberta or
                   Nevada only. Adopters further east will need to arrange 
@@ -102,7 +102,7 @@
               <li>Application reviews generally take 4-6 days, depending on volume</li>
               <li>We will contact you  for further discussion if you are 
                   shortlisted</li>
-              <li>We work hard to match dogs and adopters, so please
+              <li>We work hard to match pets and adopters, so please
                   try again if you are not successful first time round</li>
             </ul>
           </div>
@@ -114,37 +114,37 @@
                       current_user.adopter_account.adopter_profile %>
                   <% if AdopterApplication.adoption_exists?(
                                             current_user.adopter_account.id,
-                                            @dog.id
+                                            @pet.id
                                                             ) %>
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2">Application submitted</h4>
                       <%= image_tag('green_check.png', height: '21') %>
                     </div>
-                  <% elsif @dog.application_paused == true %>
+                  <% elsif @pet.application_paused == true %>
                     <div class='d-flex align-items-center mt-3'>
                       <h3 class="me-2 text-danger">
-                        Applications <%= @dog.pause_reason.titleize %>
+                        Applications <%= @pet.pause_reason.titleize %>
                       </h3>
                     </div>
                   <% else %>   
                     <h4 class="mb-4 mt-3">In love with this pooch?</h4>
                     <%= button_to 'Apply to Adopt', 
                         create_my_application_path(application: { 
-                                                        dog_id: @dog.id, 
+                                                        pet_id: @pet.id, 
                                                         adopter_account_id: current_user.adopter_account.id}),
                           
                           class: 'custom-btn-pink' %>
                   <% end %>
                 <% elsif current_user.adopter_account %>
                   <h4 class='mb-4 mt-3'>
-                    Complete your profile to apply for this dog
+                    Complete your profile to apply for this pet
                   </h4>
                   <%= link_to 'Complete my profile', new_profile_path,
                       class: 'custom-btn-pink' %>
                 <% end %>
               <% else %>
                   <h4 class="mb-4 mt-3">
-                    Create an account to apply for this dog
+                    Create an account to apply for this pet
                   </h4>
                   <%= link_to 'Create Account', account_select_path , 
                       class: 'custom-btn-pink mb-2' %>

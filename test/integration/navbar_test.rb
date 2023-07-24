@@ -24,7 +24,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
     assert_select 'a', 'Account Settings'
     assert_select 'a', 'My Profile'
     assert_select 'a', { count: 0, text: 'My Applications' }
-    assert_select 'a', { count: 0, text: 'Our Dogs' }
+    assert_select 'a', { count: 0, text: 'Our Pets' }
     assert_select 'a', { count: 0, text: 'Applications' }
   end
 
@@ -43,16 +43,16 @@ class NavbarTest < ActionDispatch::IntegrationTest
     assert_select 'a', 'Account Settings'
     assert_select 'a', 'My Profile'
     assert_select 'a', 'My Applications'
-    assert_select 'a', { count: 0, text: 'Our Dogs' }
+    assert_select 'a', { count: 0, text: 'Our Pets' }
     assert_select 'a', { count: 0, text: 'Applications' }
   end
 
-  test "authenticated staff sees dashboard with Our Dogs and Applications links" do
+  test "authenticated staff sees dashboard with Our Pets and Applications links" do
     sign_in users(:verified_staff_one)
     get '/'
     assert_select 'a', 'Dashboard'
     assert_select 'a', 'Account Settings'
-    assert_select 'a', 'Our Dogs'
+    assert_select 'a', 'Our Pets'
     assert_select 'a', 'Applications'
     assert_select 'a', { count: 0, text: 'My Applications' }
     assert_select 'a', { count: 0, text: 'My Profile' }

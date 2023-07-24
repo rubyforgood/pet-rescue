@@ -18,7 +18,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
         location_attributes: {
           province_state: '',
           city_town: '',
-          ideal_dog: '',
+          ideal_pet: '',
           id: ''
         },
         lifestyle_fit: '',
@@ -35,7 +35,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
         location_day: '',
         location_night: '',
         do_you_rent: '',
-        dogs_allowed: '',
+        pets_allowed: '',
         adults_in_home: '',
         kids_in_home: '',
         other_pets: '',
@@ -60,11 +60,11 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
     assert_select 'div.alert', "Please enter a country"
     assert_select 'div.alert', "Please enter a province or state"
     assert_select 'div.alert', "Please enter a city or town"
-    assert_select 'div.alert', "Please tell us about your ideal dog"
+    assert_select 'div.alert', "Please tell us about your ideal pet"
     assert_select 'div.alert', "Please tell us about your lifestyle"
     assert_select 'div.alert', "Please tell us about the activities"
     assert_select 'div.alert', "This field cannot be blank", { count: 2}
-    assert_select 'div.alert', "Please tell us about your dog experience"
+    assert_select 'div.alert', "Please tell us about your pet experience"
     assert_select 'div.alert', "Please tell us about your contingencies"
     assert_select 'div.alert', "Select one", { count: 7 }
     assert_select 'div.alert', "Housing type can't be blank"

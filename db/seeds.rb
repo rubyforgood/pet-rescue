@@ -58,21 +58,21 @@ StaffAccount.create!(
   adopter_account_id: @adopter_account_one.id,
   phone_number: '250 548 7721',
   contact_method: 'phone',
-  ideal_dog: 'I love a dog with energy and a gentle spirit. 
+  ideal_pet: 'I love a pet with energy and a gentle spirit. 
               One that snuggles on the couch in the evening.',
   lifestyle_fit: 'I work from home during the week and am always
                   at home. On weekends I do a lot of hiking.',
-  activities: 'We will go to the dog park, daily walks x 2, and
-              see friends with dogs regularly',
+  activities: 'We will go to the pet park, daily walks x 2, and
+              see friends with pets regularly',
   alone_weekday: 2,
   alone_weekend: 1,
-  experience: 'I have owned many dogs an currently have three rescue
-              dogs and one foster dog',
+  experience: 'I have owned many pets an currently have three rescue
+              pets and one foster pet',
   contingency_plan: 'My neighbour is a good friend and has looked after
-                    my dogs multiple times and they get along very well',
+                    my pets multiple times and they get along very well',
   shared_ownership: true,
-  shared_owner: 'My brother is often taking my dogs when his kids are over
-                for the weekend as they just love the dogs',
+  shared_owner: 'My brother is often taking my pets when his kids are over
+                for the weekend as they just love the pets',
   housing_type: 'Detached',
   fenced_access: true,
   location_day: 'In the house',
@@ -81,7 +81,7 @@ StaffAccount.create!(
   adults_in_home: 2, 
   kids_in_home: 1,
   other_pets: true,
-  describe_pets: 'I have one cat that does not mind dogs at all',
+  describe_pets: 'I have one cat that does not mind pets at all',
   checked_shelter: true,
   surrendered_pet: true,
   describe_surrender: 'I had to surrender a cat when I was 19 because of university',
@@ -103,32 +103,32 @@ Location.create!(
   adopter_account_id: @adopter_account_two.id,
   phone_number: '250 548 7721',
   contact_method: 'phone',
-  ideal_dog: 'I love a dog with energy and a gentle spirit. 
+  ideal_pet: 'I love a pet with energy and a gentle spirit. 
               One that snuggles on the couch in the evening.',
   lifestyle_fit: 'I work from home during the week and am always
                   at home. On weekends I do a lot of hiking.',
-  activities: 'We will go to the dog park, daily walks x 2, and
-              see friends with dogs regularly',
+  activities: 'We will go to the pet park, daily walks x 2, and
+              see friends with pets regularly',
   alone_weekday: 2,
   alone_weekend: 1,
-  experience: 'I have owned many dogs an currently have three rescue
-              dogs and one foster dog',
+  experience: 'I have owned many pets an currently have three rescue
+              pets and one foster pet',
   contingency_plan: 'My neighbour is a good friend and has looked after
-                    my dogs multiple times and they get along very well',
+                    my pets multiple times and they get along very well',
   shared_ownership: true,
-  shared_owner: 'My brother is often taking my dogs when his kids are over
-                for the weekend as they just love the dogs',
+  shared_owner: 'My brother is often taking my pets when his kids are over
+                for the weekend as they just love the pets',
   housing_type: 'Detached',
   fenced_access: false,
-  fenced_alternative: 'I plan to always be outside with my dog and walk them at the local park',
+  fenced_alternative: 'I plan to always be outside with my pet and walk them at the local park',
   location_day: 'In the house',
   location_night: 'In the house',
   do_you_rent: true,
-  dogs_allowed: true,
+  pets_allowed: true,
   adults_in_home: 2,
   kids_in_home: 1,
   other_pets: true,
-  describe_pets: 'I have one cat that does not mind dogs at all',
+  describe_pets: 'I have one cat that does not mind pets at all',
   checked_shelter: true,
   surrendered_pet: true,
   describe_surrender: 'I had to surrender a cat when I was 19 because of university',
@@ -150,32 +150,32 @@ Location.create!(
   adopter_account_id: @adopter_account_three.id,
   phone_number: '250 548 7721',
   contact_method: 'phone',
-  ideal_dog: 'I love a dog with energy and a gentle spirit. 
+  ideal_pet: 'I love a pet with energy and a gentle spirit. 
               One that snuggles on the couch in the evening.',
   lifestyle_fit: 'I work from home during the week and am always
                   at home. On weekends I do a lot of hiking.',
-  activities: 'We will go to the dog park, daily walks x 2, and
-              see friends with dogs regularly',
+  activities: 'We will go to the pet park, daily walks x 2, and
+              see friends with pets regularly',
   alone_weekday: 2,
   alone_weekend: 1,
-  experience: 'I have owned many dogs an currently have three rescue
-              dogs and one foster dog',
+  experience: 'I have owned many pets an currently have three rescue
+              pets and one foster pet',
   contingency_plan: 'My neighbour is a good friend and has looked after
-                    my dogs multiple times and they get along very well',
+                    my pets multiple times and they get along very well',
   shared_ownership: true,
-  shared_owner: 'My brother is often taking my dogs when his kids are over
-                for the weekend as they just love the dogs',
+  shared_owner: 'My brother is often taking my pets when his kids are over
+                for the weekend as they just love the pets',
   housing_type: 'Detached',
   fenced_access: false,
-  fenced_alternative: 'I plan to always be outside with my dog and walk them at the local park',
+  fenced_alternative: 'I plan to always be outside with my pet and walk them at the local park',
   location_day: 'In the house',
   location_night: 'In the house',
   do_you_rent: true,
-  dogs_allowed: true,
+  pets_allowed: true,
   adults_in_home: 2,
   kids_in_home: 1,
   other_pets: true,
-  describe_pets: 'I have one cat that does not mind dogs at all',
+  describe_pets: 'I have one cat that does not mind pets at all',
   checked_shelter: true,
   surrendered_pet: true,
   describe_surrender: 'I had to surrender a cat when I was 19 because of university',
@@ -192,12 +192,12 @@ Location.create!(
   city_town: 'Nonsense'
 )
 
-# create 10 dogs
+# create 10 pets
 i = 1
 until i == 10 do
-  Dog.create!(
+  Pet.create!(
     organization_id: 1,
-    name: "dog #{i}",
+    name: "pet #{i}",
     age: (i + 1),
     sex: 'Male',
     size: 'Medium (22-57 lb)',
@@ -209,7 +209,7 @@ end
 
 # create an adoption
 Adoption.create!(
-  dog_id: Dog.first.id,
+  pet_id: Pet.first.id,
   adopter_account_id: @adopter_account_one.id
 )
 

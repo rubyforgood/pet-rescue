@@ -1,5 +1,5 @@
 class AdopterApplication < ApplicationRecord
-  belongs_to :dog
+  belongs_to :pet
   belongs_to :adopter_account
 
   enum :status, [:awaiting_review, 
@@ -18,10 +18,10 @@ class AdopterApplication < ApplicationRecord
     end.compact!
   end
 
-  # check if an adopter has applied to adopt a dog
-  def self.adoption_exists?(adopter_account_id, dog_id)
+  # check if an adopter has applied to adopt a pet
+  def self.adoption_exists?(adopter_account_id, pet_id)
     AdopterApplication.where(adopter_account_id: adopter_account_id,
-                             dog_id: dog_id).exists?
+                             pet_id: pet_id).exists?
   end
 
   # check if any applications are set to profile_show: true

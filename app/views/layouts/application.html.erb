@@ -34,7 +34,7 @@
           <ul class="navbar-nav me-auto mb-md-0">
             
             <li class="nav-item navbar-dark">
-              <%= link_to 'Browse Dogs', adoptable_dogs_path, 
+              <%= link_to 'Browse Pets', adoptable_pets_path, 
                   class: 'nav-link text-white me-3 bigger' %>
             </li>
             <li class="nav-item dropdown">
@@ -105,7 +105,7 @@
                   <% if current_user.staff_account &&
                         current_user.staff_account.verified %>
                     <li>
-                      <%= link_to "Our Dogs", dogs_path, 
+                      <%= link_to "Our Pets", pets_path, 
                           class: 'dropdown-item bigger' %>
                     </li>
                     <li>

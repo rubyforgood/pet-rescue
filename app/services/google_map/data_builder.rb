@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GoogleMap
-  # Generates metadata for Google Maps with dog name, breed, and location.
+  # Generates metadata for Google Maps with pet name, breed, and location.
   class DataBuilder
     def initialize(adoptions)
       @adoptions = adoptions
@@ -18,7 +18,7 @@ module GoogleMap
     def generate_map_data_from_adoptions
       adoptions.map do |adoption|
         lat, lon = deviate_coordinates if valid_location?(adoption)
-        { latitude: lat, longitude: lon, dog_name: adoption.dog.name, breed: adoption.dog.breed }
+        { latitude: lat, longitude: lon, pet_name: adoption.pet.name, breed: adoption.pet.breed }
       end
     end
 
