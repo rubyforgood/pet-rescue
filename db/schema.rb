@@ -76,7 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
   end
 
   create_table "adopter_applications", force: :cascade do |t|
-    t.bigint "dog_id", null: false
+    t.bigint "pet_id", null: false
     t.bigint "adopter_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -84,7 +84,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
     t.text "notes"
     t.boolean "profile_show", default: true
     t.index ["adopter_account_id"], name: "index_adopter_applications_on_adopter_account_id"
-    t.index ["dog_id"], name: "index_adopter_applications_on_dog_id"
+    t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
   create_table "adopter_profiles", force: :cascade do |t|
@@ -96,7 +96,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
     t.string "country"
     t.string "province_state"
     t.string "city_town"
-    t.text "ideal_dog"
+    t.text "ideal_pet"
     t.text "lifestyle_fit"
     t.text "activities"
     t.integer "alone_weekday"
@@ -111,7 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
     t.text "location_day"
     t.text "location_night"
     t.boolean "do_you_rent"
-    t.boolean "dogs_allowed"
+    t.boolean "pets_allowed"
     t.integer "adults_in_home"
     t.integer "kids_in_home"
     t.boolean "other_pets"
@@ -127,15 +127,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
   end
 
   create_table "adoptions", force: :cascade do |t|
-    t.bigint "dog_id", null: false
+    t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "adopter_account_id", null: false
     t.index ["adopter_account_id"], name: "index_adoptions_on_adopter_account_id"
-    t.index ["dog_id"], name: "index_adoptions_on_dog_id"
+    t.index ["pet_id"], name: "index_adoptions_on_pet_id"
   end
 
-  create_table "dogs", force: :cascade do |t|
+  create_table "pets", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.integer "age"
     t.datetime "created_at", null: false
@@ -148,8 +148,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
     t.boolean "application_paused", default: false
     t.integer "pause_reason", default: 0
     t.integer "age_unit", default: 0
-    t.index ["name"], name: "index_dogs_on_name", unique: true
-    t.index ["organization_id"], name: "index_dogs_on_organization_id"
+    t.index ["name"], name: "index_pets_on_name", unique: true
+    t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
   create_table "donations", force: :cascade do |t|
@@ -209,11 +209,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "adopter_accounts", "users"
   add_foreign_key "adopter_applications", "adopter_accounts"
-  add_foreign_key "adopter_applications", "dogs"
+  add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_profiles", "adopter_accounts"
   add_foreign_key "adoptions", "adopter_accounts"
-  add_foreign_key "adoptions", "dogs"
-  add_foreign_key "dogs", "organizations"
+  add_foreign_key "adoptions", "pets"
+  add_foreign_key "pets", "organizations"
   add_foreign_key "locations", "adopter_profiles"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
