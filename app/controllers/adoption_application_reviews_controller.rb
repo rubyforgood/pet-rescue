@@ -3,24 +3,24 @@ class AdoptionApplicationReviewsController < ApplicationController
   before_action :verified_staff
 
   def index
-    @dogs = Dog.org_dogs_with_apps(current_user.staff_account.organization_id)
-    @dog = selected_dog
+    @pets = Pet.org_pets_with_apps(current_user.staff_account.organization_id)
+    @pet = selected_pet
   end
 
   def edit
     @application = AdopterApplication.find(params[:id])
 
-    return if dog_in_same_organization?(@application.dog.organization_id)
+    return if pet_in_same_organization?(@application.pet.organization_id)
 
     redirect_to adopter_applications_path,
                 alert: 'Staff can only edit applications for their organization 
-                        dogs.'
+                        pets.'
   end
 
   def update
     @application = AdopterApplication.find(params[:id])
 
-    if dog_in_same_organization?(@application.dog.organization_id) &&
+    if pet_in_same_organization?(@application.pet.organization_id) &&
        @application.update(application_params)
       redirect_to adopter_applications_path
     else
@@ -35,9 +35,9 @@ class AdoptionApplicationReviewsController < ApplicationController
   end
 
   # use where to return a relation for the view
-  def selected_dog
-    return if !params[:dog_id] || params[:dog_id] == ''
+  def selected_pet
+    return if !params[:pet_id] || params[:pet_id] == ''
 
-    Dog.where(id: params[:dog_id])
+    Pet.where(id: params[:pet_id])
   end
 end

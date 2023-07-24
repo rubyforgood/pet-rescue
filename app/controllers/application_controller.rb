@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: 'Unauthorized action.'
   end
 
-  def dog_in_same_organization?(org_id)
+  def pet_in_same_organization?(org_id)
     current_user.staff_account.organization_id == org_id
   end
 
