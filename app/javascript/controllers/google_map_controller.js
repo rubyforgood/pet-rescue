@@ -27,7 +27,7 @@ export default class extends Controller {
           lat: parseFloat(listing.dataset.lat),
           lng: parseFloat(listing.dataset.lon),
         },
-        dog: {
+        pet: {
           name: listing.dataset.name,
           breed: listing.dataset.breed,
         },
@@ -42,8 +42,8 @@ export default class extends Controller {
     marker.addListener("click", () => {
       const infoWindow = new google.maps.InfoWindow({
         content: `
-              <h3>${marker.dog.name}</h3>
-              <p>${marker.dog.breed}</p>
+              <h3>${marker.pet.name}</h3>
+              <p>${marker.pet.breed}</p>
               `,
       });
       infoWindow.open(map, marker);
