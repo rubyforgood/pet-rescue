@@ -238,7 +238,7 @@
   }
 
 
-//Carousel in dog show views
+//Carousel in pet show views
   .carousel-inner {
     height: 700px;
   }
@@ -297,28 +297,28 @@
     }
   }
 
-// Attachments input on new dog form partial
+// Attachments input on new pet form partial
   .custom-attachments {
     border-radius: 5px;
     height: 2.5rem;
     border: solid, 1px, rgb(236, 230, 230);
   }
 
-//dog cards on dog indexes
+//pet cards on pet indexes
   .card-img-top {
     width: 100%;
     height: 400px;
     object-fit: cover;
   }
 
-//uploaded images in org-dogs/edit
+//uploaded images in org-pets/edit
   .uploaded-image {
     width: 100px;
     height: 100px;
     object-fit: cover;
   }
 
-//dogs/edit delete image button
+//pets/edit delete image button
   .delete-button {
     text-decoration: none;
     align-items: center;
@@ -339,7 +339,7 @@
     vertical-align: middle;
   }
 
-//dog image on adopter applications
+//pet image on adopter applications
   .app-img {
     width: 150px;
     height: 150px;
