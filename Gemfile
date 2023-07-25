@@ -102,8 +102,7 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  gem "cuprite"
 
   # Code coverage analysis [https://github.com/simplecov-ruby/simplecov]
   gem 'simplecov', require: false
