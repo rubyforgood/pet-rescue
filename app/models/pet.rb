@@ -1,3 +1,30 @@
+# == Schema Information
+#
+# Table name: pets
+#
+#  id                 :bigint           not null, primary key
+#  age                :integer
+#  age_unit           :integer          default("months")
+#  application_paused :boolean          default(FALSE)
+#  breed              :string
+#  description        :text
+#  name               :string
+#  pause_reason       :integer          default("not_paused")
+#  sex                :string
+#  size               :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  organization_id    :bigint           not null
+#
+# Indexes
+#
+#  index_pets_on_name             (name) UNIQUE
+#  index_pets_on_organization_id  (organization_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (organization_id => organizations.id)
+#
 class Pet < ApplicationRecord
   belongs_to :organization
   has_many :adopter_applications, dependent: :destroy
