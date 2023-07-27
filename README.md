@@ -1,4 +1,4 @@
-# Baja Pet Rescue Dog Adoption Application
+# Pet Rescue Adoption Application
 
 I am a self-taught web developer and this is my first production Ruby on Rails application with a real user base. I love coding, and I love my dog. So, I wanted to give back to the grassroots organization where I adopted my dog from in Mexico by building them a web application to make their process of linking adopters with dogs easier.
 
