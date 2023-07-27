@@ -121,11 +121,12 @@ To set this application up locally:
 * If you need more information on setting up PostgreSQL with rails, see [here](https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql)
 * Fork the repository and copy SSH key
 * `git clone <'SSH Key'>` to download application locally
-* `bundle install` to install gems (you may have to change gem 'sassc-rails' to gem 'sassc', "~> 2.1.0")
+* `bundle install` to install gems 
 * `bundle exec figaro install`
 * Add your PostgreSQL database username and database password to `config/application.yml` as ENV variables e.g., `DATABASE_USERNAME: "username"` `DATABASE_PASSWORD: "password`
 * `rails db:setup` to create the database, load the schema, and load seed data
-* `rails s` to run the local server
+* `gem install foreman` to handle processes
+* `bin/dev` to run the local server
 * `localhost:3000` in web browser to access the application
 
 
