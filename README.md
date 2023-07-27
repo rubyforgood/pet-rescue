@@ -19,7 +19,7 @@ These are just some of the documents put together before writing any code:
 * Model association diagram: [here](https://lucid.app/lucidchart/a915c03c-3c09-454d-837b-f3d2768f5722/edit?viewport_loc=-25%2C-973%2C3565%2C2341%2C0_0&invitationId=inv_85cf2967-7b33-4030-903f-9655e767cbbf)
 
 ---
-**Dependencies**
+**Dependencies (useful skills)**
 
 * Devise (User authentication)
 * Figaro (Environment variable management)
@@ -34,6 +34,8 @@ These are just some of the documents put together before writing any code:
 * Active Admin (Admin dashboard to easily verify new staff)
 * Geocoder (Generate coordinates from adopter location for successes map)
 * aws-sdk-s3 (integration with AWS to use image buckets)
+* hotwired / Stimulus 
+* cloud66 and azure
 
 ### Local Setup
 
@@ -42,7 +44,6 @@ To set this application up locally:
 * Run `rbenv versions` or `rvm list rubies` and confirm that Ruby 3.1.1 is installed
 * `psql --version` to ensure you have PostgreSQL 12.12 installed (make sure you have a user and password)
 * If you need more information on setting up PostgreSQL with rails, see [here](https://www.theodinproject.com/lessons/ruby-on-rails-installing-postgresql)
-* Fork the repository and copy SSH key
 * `git clone <'SSH Key'>` to download application locally
 * `bundle install` to install gems 
 * `bundle exec figaro install`
@@ -53,7 +54,16 @@ To set this application up locally:
 * `localhost:3000` in web browser to access the application
 
 
-**Setting Up Staff Users**
+**Test Accounts**
+
+Adopter
+- email: `b@c.com`
+- password: `123456`
+
+Staff
+- email: `a@b.com`
+- password: `123456`
+
 
 A user account is associated with either an adopter account or staff account. 
 Staff accounts by default are `verified: false` and belong to a placeholder organization, `organization_id: 1`.
