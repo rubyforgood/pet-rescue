@@ -80,6 +80,9 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    acts_as_tenant (0.6.1)
+      rails (>= 5.2)
+      request_store (>= 1.0.5)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     annotate (3.2.0)
@@ -311,6 +314,8 @@ GEM
     regexp_parser (2.5.0)
     reline (0.3.1)
       io-console (~> 0.5)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -387,6 +392,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations
   activeadmin
+  acts_as_tenant
   annotate
   aws-sdk-s3
   better_errors (~> 2.9, >= 2.9.1)
