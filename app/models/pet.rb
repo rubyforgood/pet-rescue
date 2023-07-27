@@ -26,12 +26,15 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Pet < ApplicationRecord
+  acts_as_tenant(:organization)
+
   belongs_to :organization
   has_many :adopter_applications, dependent: :destroy
   has_one :adoption, dependent: :destroy
   has_many_attached :images
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
+  validates_uniqueness_to_tenant :name
   validates :age, presence: true
   validates :age_unit, presence: true
   validates :size, presence: true
