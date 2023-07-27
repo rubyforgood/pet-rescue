@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: donations
+#
+#  id         :bigint           not null, primary key
+#  amount     :string
+#  currency   :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 class Donation < ApplicationRecord
 	validates :amount, presence: true
 	validates :currency, presence: true

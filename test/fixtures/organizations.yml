@@ -1,4 +1,15 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: organizations
+#
+#  id         :bigint           not null, primary key
+#  city       :string
+#  country    :string
+#  name       :string
+#  zipcode    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 
 one:
   name: test
