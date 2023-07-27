@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_210215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -161,6 +161,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
     t.string "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subdomain"
   end
 
   create_table "pets", force: :cascade do |t|
