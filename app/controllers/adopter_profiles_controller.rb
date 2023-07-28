@@ -20,9 +20,9 @@ class AdopterProfilesController < ApplicationController
 
     respond_to do |format|
       if @adopter_profile.save
-        format.html { redirect_to profile_path, notice: 'Profile created' }
+        format.html { redirect_to profile_path, notice: "Profile created" }
       else
-        format.html { render :new, status: :unprocessable_entity, alert: 'Error' }
+        format.html { render :new, status: :unprocessable_entity, alert: "Error" }
       end
     end
   end
@@ -39,7 +39,7 @@ class AdopterProfilesController < ApplicationController
     @adopter_profile = current_user.adopter_account.adopter_profile
     respond_to do |format|
       if @adopter_profile.update(adopter_profile_params)
-        format.html { redirect_to profile_path, notice: 'Profile updated' }
+        format.html { redirect_to profile_path, notice: "Profile updated" }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -53,36 +53,36 @@ class AdopterProfilesController < ApplicationController
   end
 
   def adopter_profile_params
-    params.require(:adopter_profile).permit(:adopter_account_id, 
-                                            :phone_number,
-                                            :contact_method,
-                                            :ideal_pet,
-                                            :lifestyle_fit,
-                                            :activities,
-                                            :alone_weekday,
-                                            :alone_weekend,
-                                            :experience,
-                                            :contingency_plan,
-                                            :shared_ownership,
-                                            :shared_owner,
-                                            :housing_type,
-                                            :fenced_access,
-                                            :fenced_alternative,
-                                            :location_day,
-                                            :location_night,
-                                            :do_you_rent,
-                                            :pets_allowed,
-                                            :adults_in_home,
-                                            :kids_in_home,
-                                            :other_pets,
-                                            :describe_pets,
-                                            :checked_shelter,
-                                            :surrendered_pet,
-                                            :describe_surrender,
-                                            :annual_cost,
-                                            :visit_laventana,
-                                            :visit_dates,
-                                            :referral_source,
-                                            location_attributes: [:city_town, :country, :province_state, :id])
+    params.require(:adopter_profile).permit(:adopter_account_id,
+      :phone_number,
+      :contact_method,
+      :ideal_pet,
+      :lifestyle_fit,
+      :activities,
+      :alone_weekday,
+      :alone_weekend,
+      :experience,
+      :contingency_plan,
+      :shared_ownership,
+      :shared_owner,
+      :housing_type,
+      :fenced_access,
+      :fenced_alternative,
+      :location_day,
+      :location_night,
+      :do_you_rent,
+      :pets_allowed,
+      :adults_in_home,
+      :kids_in_home,
+      :other_pets,
+      :describe_pets,
+      :checked_shelter,
+      :surrendered_pet,
+      :describe_surrender,
+      :annual_cost,
+      :visit_laventana,
+      :visit_dates,
+      :referral_source,
+      location_attributes: [:city_town, :country, :province_state, :id])
   end
 end

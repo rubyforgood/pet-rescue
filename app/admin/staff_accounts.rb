@@ -21,5 +21,4 @@ ActiveAdmin.register StaffAccount do
     end
     f.actions
   end
-
 end

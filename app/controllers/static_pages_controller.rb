@@ -1,5 +1,4 @@
 class StaticPagesController < ApplicationController
-
   def home
   end
 
@@ -26,5 +25,4 @@ class StaticPagesController < ApplicationController
 
   def cookie_policy
   end
-
 end

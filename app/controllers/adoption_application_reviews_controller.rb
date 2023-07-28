@@ -1,5 +1,4 @@
 class AdoptionApplicationReviewsController < ApplicationController
-
   before_action :verified_staff
 
   def index
@@ -13,7 +12,7 @@ class AdoptionApplicationReviewsController < ApplicationController
     return if pet_in_same_organization?(@application.pet.organization_id)
 
     redirect_to adopter_applications_path,
-                alert: 'Staff can only edit applications for their organization 
+      alert: 'Staff can only edit applications for their organization
                         pets.'
   end
 
@@ -21,7 +20,7 @@ class AdoptionApplicationReviewsController < ApplicationController
     @application = AdopterApplication.find(params[:id])
 
     if pet_in_same_organization?(@application.pet.organization_id) &&
-       @application.update(application_params)
+        @application.update(application_params)
       redirect_to adopter_applications_path
     else
       render :edit, status: :unprocessable_entity
@@ -36,7 +35,7 @@ class AdoptionApplicationReviewsController < ApplicationController
 
   # use where to return a relation for the view
   def selected_pet
-    return if !params[:pet_id] || params[:pet_id] == ''
+    return if !params[:pet_id] || params[:pet_id] == ""
 
     Pet.where(id: params[:pet_id])
   end

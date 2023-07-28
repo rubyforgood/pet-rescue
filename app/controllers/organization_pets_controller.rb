@@ -16,7 +16,7 @@ class OrganizationPetsController < ApplicationController
     @pet = Pet.find(params[:id])
     return if pet_in_same_organization?(@pet.organization_id)
 
-    redirect_to pets_path, alert: 'This pet is not in your organization.'
+    redirect_to pets_path, alert: "This pet is not in your organization."
   end
 
   def show
@@ -24,14 +24,14 @@ class OrganizationPetsController < ApplicationController
     @pause_reason = @pet.pause_reason
     return if pet_in_same_organization?(@pet.organization_id)
 
-    redirect_to pets_path, alert: 'This pet is not in your organization.'
+    redirect_to pets_path, alert: "This pet is not in your organization."
   end
 
   def create
     @pet = Pet.new(pet_params)
 
     if @pet.save
-      redirect_to pets_path, notice: 'Pet saved successfully.'
+      redirect_to pets_path, notice: "Pet saved successfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class OrganizationPetsController < ApplicationController
     @pet = Pet.find(params[:id])
 
     if pet_in_same_organization?(@pet.organization_id) && @pet.update(pet_params)
-      redirect_to @pet, notice: 'Pet updated successfully.'
+      redirect_to @pet, notice: "Pet updated successfully."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -51,9 +51,9 @@ class OrganizationPetsController < ApplicationController
     @pet = Pet.find(params[:id])
 
     if pet_in_same_organization?(@pet.organization_id) && @pet.destroy
-      redirect_to pets_path, notice: 'Pet deleted.', status: :see_other
+      redirect_to pets_path, notice: "Pet deleted.", status: :see_other
     else
-      redirect_to pets_path, alert: 'Error.'
+      redirect_to pets_path, alert: "Error."
     end
   end
 
@@ -61,20 +61,20 @@ class OrganizationPetsController < ApplicationController
 
   def pet_params
     params.require(:pet).permit(:organization_id,
-                                :name,
-                                :age,
-                                :age_unit,
-                                :sex,
-                                :breed,
-                                :size,
-                                :description,
-                                :application_paused,
-                                :pause_reason,
-                                append_images: [])
+      :name,
+      :age,
+      :age_unit,
+      :sex,
+      :breed,
+      :size,
+      :description,
+      :application_paused,
+      :pause_reason,
+      append_images: [])
   end
 
   def selected_pet
-    return if !params[:pet_id] || params[:pet_id] == ''
+    return if !params[:pet_id] || params[:pet_id] == ""
 
     Pet.where(id: params[:pet_id])
   end

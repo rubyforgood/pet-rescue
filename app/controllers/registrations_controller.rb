@@ -1,40 +1,39 @@
 class RegistrationsController < Devise::RegistrationsController
-
   after_action :send_email, only: :create
 
   # nested form in User>registration>new for an adopter or staff account
   # no attributes need to be accepted, just create new account with user_id reference
   def new
-      build_resource({})
-      resource.build_adopter_account
-      resource.build_staff_account
-      respond_with self.resource
+    build_resource({})
+    resource.build_adopter_account
+    resource.build_staff_account
+    respond_with resource
   end
 
   private
 
   def sign_up_params
     params.require(:user).permit(:username,
-                                 :first_name,
-                                 :last_name,
-                                 :email,
-                                 :password,
-                                 :signup_role,
-                                 :password_confirmation,
-                                 :tos_agreement,
-                                 adopter_account_attributes: [:user_id],
-                                 staff_account_attributes: [:user_id])
+      :first_name,
+      :last_name,
+      :email,
+      :password,
+      :signup_role,
+      :password_confirmation,
+      :tos_agreement,
+      adopter_account_attributes: [:user_id],
+      staff_account_attributes: [:user_id])
   end
 
   def account_update_params
     params.require(:user).permit(:username,
-                                 :first_name,
-                                 :last_name,
-                                 :email,
-                                 :password,
-                                 :password_confirmation,
-                                 :signup_role,
-                                 :current_password)
+      :first_name,
+      :last_name,
+      :email,
+      :password,
+      :password_confirmation,
+      :signup_role,
+      :current_password)
   end
 
   # redirect new adopter users to adopter_profile#new
