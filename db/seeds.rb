@@ -1,3 +1,4 @@
+require 'faker'
 # Seed data
 
 @organization = Organization.create!(
