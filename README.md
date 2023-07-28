@@ -39,6 +39,20 @@ bin/dev
 
 You should now be able to access the application at [http://localhost:3000](http://localhost:3000).
 
+## Accessing Roles
+
+You can use the following login credentials to access the following roles:
+
+Adopter
+- email: `adopter1@example.com`
+- password: `123456`
+
+Staff
+- email: `staff@example.com`
+- password: `123456`
+
+You are also able to register an account.
+
 ## Development
 
 ### Running Tests
@@ -54,20 +68,6 @@ We use Standard for linting. It provides a command for auto-fixing errors:
 ```sh
 rails standard:fix
 ```
-
-## Accessing Roles
-
-You can use the following login credentials to access the following roles:
-
-Adopter
-- email: `adopter1@example.com`
-- password: `123456`
-
-Staff
-- email: `staff@example.com`
-- password: `123456`
-
-You are also able to register an account.
 
 # 📖 About
 
