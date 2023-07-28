@@ -38,3 +38,10 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# IDE
+.idea
+.vscode
+
+# OS
+.DS_Store
