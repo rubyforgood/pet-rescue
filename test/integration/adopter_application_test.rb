@@ -59,7 +59,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
-    assert_equal 'Application submitted! Woof woof.', flash[:notice]
+    assert flash[:notice].include?('Application submitted!')
     assert_equal AdopterApplication.all.count, before_count + 1
 
     mail = ActionMailer::Base.deliveries

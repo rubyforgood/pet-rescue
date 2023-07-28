@@ -13,7 +13,7 @@ class AdopterApplicationsController < ApplicationController
 
     if @application.save
       redirect_to adoptable_pet_path(params[:application][:pet_id]),
-                  notice: 'Application submitted! Woof woof.'
+                  notice: "Application submitted! #{MessagesHelper.affirmations.sample}"
 
       # mailer
       @pet = Pet.find(params[:application][:pet_id])
