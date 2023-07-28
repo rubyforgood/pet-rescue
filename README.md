@@ -53,6 +53,22 @@ Staff
 
 You are also able to register an account.
 
+## Development
+
+### Running Tests
+
+```sh
+rails test
+```
+
+### Running [Standard](https://github.com/standardrb/standard)
+
+We use Standard for linting. It provides a command for auto-fixing errors:
+
+```sh
+rails standard:fix
+```
+
 # 📖 About
 
 ## Ruby for Good
