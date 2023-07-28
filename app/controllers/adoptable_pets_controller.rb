@@ -2,7 +2,7 @@ class AdoptablePetsController < ApplicationController
 
   # outer left join on Pet and Adoption
   def index
-    @pets = Pet.where.missing(:adoption)
+    @pets = Pet.includes(:adopter_applications, images_attachments: :blob).where.missing(:adoption)
   end
 
   def show
