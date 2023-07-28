@@ -1,5 +1,4 @@
 class AdoptionsController < ApplicationController
-
   before_action :verified_staff, :same_organization?
 
   def create
@@ -7,9 +6,9 @@ class AdoptionsController < ApplicationController
 
     if @adoption.save
       set_statuses_to_adoption_made
-      redirect_to adopter_applications_path, notice: 'Pet successfully adopted.'
+      redirect_to adopter_applications_path, notice: "Pet successfully adopted."
     else
-      redirect_to adopter_applications_path, alert: 'Error.'
+      redirect_to adopter_applications_path, alert: "Error."
 
     end
   end
@@ -18,14 +17,14 @@ class AdoptionsController < ApplicationController
     @adoption = Adoption.find(params[:adoption_id])
 
     @successful_application = @adoption.adopter_account
-                                       .adopter_applications
-                                       .where(pet_id: @adoption.pet_id)[0]
+      .adopter_applications
+      .where(pet_id: @adoption.pet_id)[0]
     AdopterApplication.set_status_to_withdrawn(@successful_application)
 
     if @adoption.destroy
       redirect_to pets_path, notice: "Adoption reverted & application set to 'Withdrawn'"
     else
-      redirect_to pets_path, alert: 'Failed to revert adoption'
+      redirect_to pets_path, alert: "Failed to revert adoption"
     end
   end
 
@@ -39,8 +38,8 @@ class AdoptionsController < ApplicationController
   def set_statuses_to_adoption_made
     @applications = Pet.find(params[:pet_id]).adopter_applications
     @applications.each do |app|
-      unless app.status == 'withdrawn'
-        app.status = 'adoption_made'
+      unless app.status == "withdrawn"
+        app.status = "adoption_made"
         app.save
       end
     end
@@ -51,11 +50,11 @@ class AdoptionsController < ApplicationController
 
     Adoption.find(params[:adoption_id]).pet_id
   end
-  
+
   # staff and pet in the same org?
   def same_organization?
     return if current_user.staff_account.organization_id == Pet.find(get_pet_id).organization.id
 
-    redirect_to root_path, alert: 'Unauthorized action.'
+    redirect_to root_path, alert: "Unauthorized action."
   end
 end

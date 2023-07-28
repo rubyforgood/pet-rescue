@@ -1,7 +1,7 @@
 module MessagesHelper
   def self.affirmations
     [
-      'Woof woof.'
+      "Woof woof."
     ]
   end
 end

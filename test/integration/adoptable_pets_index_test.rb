@@ -1,10 +1,9 @@
 require "test_helper"
 
 class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
-
   # all unadopted pets under all organizations
   setup do
-    @pet_count = Pet.includes(:adoption).where(adoption: { id: nil }).length
+    @pet_count = Pet.includes(:adoption).where(adoption: {id: nil}).length
   end
 
   test "unauthenticated user can access adoptable pets index" do
@@ -14,12 +13,12 @@ class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
   end
 
   test "all unadopted pets show on the pet_index page" do
-    get '/adoptable_pets'
-    assert_select 'img.card-img-top', { count: @pet_count }
+    get "/adoptable_pets"
+    assert_select "img.card-img-top", {count: @pet_count}
   end
 
-  test "pet name shows adoption pending if it has any applications with that status" do 
-    get '/adoptable_pets'
-    assert_select 'h3', "#{pets(:pending_adoption_one).name} (Adoption Pending)"
+  test "pet name shows adoption pending if it has any applications with that status" do
+    get "/adoptable_pets"
+    assert_select "h3", "#{pets(:pending_adoption_one).name} (Adoption Pending)"
   end
 end
