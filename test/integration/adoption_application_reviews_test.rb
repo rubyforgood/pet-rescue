@@ -199,7 +199,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       params: {pet_id: pets(:pending_adoption_one).id}
 
     assert_select "div.card", {count: 1}
-    assert_select "h4", "#{pets(:pending_adoption_one).name}"
+    assert_select "h4", pets(:pending_adoption_one).name.to_s
 
     get "/adopter_applications",
       params: {pet_id: ""}

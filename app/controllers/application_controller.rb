@@ -12,8 +12,7 @@ class ApplicationController < ActionController::Base
   private
 
   def adopter_with_profile
-    return if current_user.adopter_account &&
-      current_user.adopter_account.adopter_profile
+    return if current_user.adopter_account&.adopter_profile
 
     redirect_to root_path, alert: "Unauthorized action."
   end

@@ -34,7 +34,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     post "/pets",
       params: {pet:
         {
-          organization_id: "#{organizations(:one).id}",
+          organization_id: organizations(:one).id.to_s,
           name: "TestPet",
           age: "3",
           sex: "Female",
@@ -67,7 +67,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     post "/pets",
       params: {pet:
         {
-          organization_id: "#{organizations(:one).id}",
+          organization_id: organizations(:one).id.to_s,
           name: "TestPet",
           age: "3",
           sex: "Female",
@@ -89,7 +89,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     patch "/pets/#{@pet.id}",
       params: {pet:
         {
-          organization_id: "#{organizations(:one).id}",
+          organization_id: organizations(:one).id.to_s,
           name: "TestPet",
           age: "7",
           sex: "Female",
@@ -185,7 +185,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
     assert_difference "@pet.images_attachments.length", -1 do
       delete "/attachments/#{pet_image.id}/purge",
-        params: {id: "#{pet_image.id}"},
+        params: {id: pet_image.id.to_s},
         headers: {"HTTP_REFERER" => "http://www.example.com/pets/#{@pet.id}"}
 
       assert_response :redirect
@@ -202,7 +202,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
     assert_no_difference "@pet.images_attachments.length" do
       delete "/attachments/#{pet_image.id}/purge",
-        params: {id: "#{pet_image.id}"},
+        params: {id: pet_image.id.to_s},
         headers: {"HTTP_REFERER" => "http://www.example.com/pets/#{@pet.id}"}
 
       follow_redirect!

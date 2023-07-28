@@ -10,7 +10,7 @@ class RevokeAdoptionTest < ActionDispatch::IntegrationTest
 
   test "staff can revoke adoption and pet becomes adoptable and successful application set to withdrawn" do
     get "/adoptable_pets"
-    assert_select "h3", {text: "#{@pet.name}", count: 0}
+    assert_select "h3", {text: @pet.name.to_s, count: 0}
 
     get "/pets/#{@pet.id}"
     assert_select "p", {text: "Pause Applications?", count: 0}
@@ -30,6 +30,6 @@ class RevokeAdoptionTest < ActionDispatch::IntegrationTest
     assert_equal "withdrawn", @successful_application.status
 
     get "/adoptable_pets"
-    assert_select "h3", "#{@pet.name}"
+    assert_select "h3", @pet.name.to_s
   end
 end

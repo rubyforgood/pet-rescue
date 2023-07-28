@@ -47,7 +47,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     put "/pets/#{@pet_id}",
       params: {pet:
       {
-        organization_id: "#{organizations(:one).id}",
+        organization_id: organizations(:one).id.to_s,
         name: "TestPet",
         age: "7",
         sex: "Female",
@@ -71,7 +71,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     put "/pets/#{@pet_id}",
       params: {pet:
         {
-          organization_id: "#{organizations(:one).id}",
+          organization_id: organizations(:one).id.to_s,
           name: "TestPet",
           age: "7",
           sex: "Female",
