@@ -216,7 +216,7 @@ Location.create!(
 
 10.times do
   Pet.create!(
-    organization: [@organization_one, @organization_two].sample,
+    organization: Organization.all.sample,
     name: Faker::Creature::Dog.name,
     age: Faker::Number.within(range: 1..10),
     sex: Faker::Creature::Dog.gender,
@@ -230,6 +230,16 @@ Adoption.create!(
   pet_id: Pet.first.id,
   adopter_account_id: @adopter_account_one.id
 )
+
+10.times do
+  AdopterApplication.create!(
+    notes: Faker::Lorem.paragraph,
+    profile_show: true,
+    status: rand(0..5),
+    adopter_account: AdopterAccount.all.sample,
+    pet: Pet.all.sample
+  )
+end
 
 # active admin seed
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
