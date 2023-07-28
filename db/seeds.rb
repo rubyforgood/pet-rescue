@@ -1,12 +1,22 @@
 # Seed data
 
-@organization = Organization.create!(
-  name: 'placeholder',
-  city: 'baja',
-  country: 'Mexico'
+@organization_one = Organization.create!(
+  name: 'Alta Pet Rescue',
+  city: 'Alta',
+  country: 'Mexico',
+  zipcode: '12345',
+  subdomain: 'alta'
 )
 
-@user_one = User.create!(
+@organization_two = Organization.create!(
+  name: 'Ruby for Good Pet Rescue',
+  city: 'Washington, DC',
+  country: 'USA',
+  zipcode: '12345',
+  subdomain: 'rubyforgood'
+)
+
+@user_staff_one = User.create!(
   email: 'staff@example.com',
   first_name: 'Andy',
   last_name: 'Peters',
@@ -16,12 +26,27 @@
 )
 
 StaffAccount.create!(
-  user_id: @user_one.id,
-  organization_id: @organization.id,
+  user_id: @user_staff_one.id,
+  organization_id: @organization_one.id,
   verified: true
 )
 
-@user_two = User.create!(
+@user_staff_two = User.create!(
+  email: 'staff2@example.com',
+  first_name: 'Randy',
+  last_name: 'Peterson',
+  password: '123456',
+  password_confirmation: '123456',
+  tos_agreement: 1
+)
+
+StaffAccount.create!(
+  user_id: @user_staff_two.id,
+  organization_id: @organization_two.id,
+  verified: true
+)
+
+@user_adopter_one = User.create!(
   email: 'adopter1@example.com',
   first_name: 'Joe',
   last_name: 'Brando',
@@ -30,9 +55,9 @@ StaffAccount.create!(
   tos_agreement: 1
 )
 
-@adopter_account_one = AdopterAccount.create!(user_id: @user_two.id)
+@adopter_account_one = AdopterAccount.create!(user_id: @user_adopter_one.id)
 
-@user_three = User.create!(
+@user_adopter_two = User.create!(
   email: 'adopter2@example.com',
   first_name: 'Kamala',
   last_name: 'Lolsworth',
@@ -41,9 +66,9 @@ StaffAccount.create!(
   tos_agreement: 1
 )
 
-@adopter_account_two = AdopterAccount.create!(user_id: @user_three.id)
+@adopter_account_two = AdopterAccount.create!(user_id: @user_adopter_two.id)
 
-@user_four = User.create!(
+@user_adopter_three = User.create!(
   email: 'adopter3@example.com',
   first_name: 'Bad',
   last_name: 'Address',
@@ -52,7 +77,7 @@ StaffAccount.create!(
   tos_agreement: 1
 )
 
-@adopter_account_three = AdopterAccount.create!(user_id: @user_four.id)
+@adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
 
 @adopter_profile_one = AdopterProfile.create!(
   adopter_account_id: @adopter_account_one.id,
@@ -90,7 +115,6 @@ StaffAccount.create!(
   referral_source: 'my friends friend'
 )
 
-# user_id: 2 location 
 Location.create!(
   adopter_profile_id: @adopter_profile_one.id,
   country: 'Canada',
@@ -98,7 +122,6 @@ Location.create!(
   city_town: 'Canmore'
 )
 
-# user_id: 3, staff_account_id: 2, adopter_profile_id: 2
 @adopter_profile_two = AdopterProfile.create!(
   adopter_account_id: @adopter_account_two.id,
   phone_number: '250 548 7721',
@@ -145,7 +168,6 @@ Location.create!(
   city_town: 'Reno'
 )
 
-# user_id: 4, staff_account_id: 3, adopter_profile_id: 3
 @adopter_profile_three = AdopterProfile.create!(
   adopter_account_id: @adopter_account_three.id,
   phone_number: '250 548 7721',
@@ -192,11 +214,9 @@ Location.create!(
   city_town: 'Nonsense'
 )
 
-# create 10 pets
-
-10.times  do
+10.times do
   Pet.create!(
-    organization_id: 1,
+    organization: [@organization_one, @organization_two].sample,
     name: Faker::Creature::Dog.name,
     age: Faker::Number.within(range: 1..10),
     sex: Faker::Creature::Dog.gender,
@@ -204,10 +224,8 @@ Location.create!(
     breed: Faker::Creature::Dog.breed,
     description: 'He just loves a run and a bum scratch at the end of the day'
   )
-
 end
 
-# create an adoption
 Adoption.create!(
   pet_id: Pet.first.id,
   adopter_account_id: @adopter_account_one.id
