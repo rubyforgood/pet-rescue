@@ -67,4 +67,4 @@ jobs:
         with:
           bundler-cache: true
       - name: Run Brakeman
-        run: brakeman
+        run: bundle exec brakeman
