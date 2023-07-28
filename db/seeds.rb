@@ -7,7 +7,7 @@
 )
 
 @user_one = User.create!(
-  email: 'a@b.com',
+  email: 'adopter1@example.com',
   first_name: 'Andy',
   last_name: 'Peters',
   password: '123456',
@@ -22,7 +22,7 @@ StaffAccount.create!(
 )
 
 @user_two = User.create!(
-  email: 'b@c.com',
+  email: 'adopter2@example.com',
   first_name: 'Joe',
   last_name: 'Brando',
   password: '123456',
@@ -33,7 +33,7 @@ StaffAccount.create!(
 @adopter_account_one = AdopterAccount.create!(user_id: @user_two.id)
 
 @user_three = User.create!(
-  email: 'c@c.com',
+  email: 'adopter3@example.com',
   first_name: 'Kamala',
   last_name: 'Lolsworth',
   password: '123456',
@@ -44,7 +44,7 @@ StaffAccount.create!(
 @adopter_account_two = AdopterAccount.create!(user_id: @user_three.id)
 
 @user_four = User.create!(
-  email: 'd@c.com',
+  email: 'adopter4@example.com',
   first_name: 'Bad',
   last_name: 'Address',
   password: '123456',
@@ -193,18 +193,18 @@ Location.create!(
 )
 
 # create 10 pets
-i = 1
-until i == 10 do
+
+10.times  do
   Pet.create!(
     organization_id: 1,
-    name: "pet #{i}",
-    age: (i + 1),
-    sex: 'Male',
-    size: 'Medium (22-57 lb)',
-    breed: 'Husky mix',
+    name: Faker::Creature::Dog.name,
+    age: Faker::Number.within(range: 1..10),
+    sex: Faker::Creature::Dog.gender,
+    size: Faker::Creature::Dog.size,
+    breed: Faker::Creature::Dog.breed,
     description: 'He just loves a run and a bum scratch at the end of the day'
   )
-  i += 1
+
 end
 
 # create an adoption
