@@ -39,6 +39,22 @@ bin/dev
 
 You should now be able to access the application at [http://localhost:3000](http://localhost:3000).
 
+## Development
+
+### Running Tests
+
+```sh
+rails test
+```
+
+### Running [Standard](https://github.com/standardrb/standard)
+
+We use Standard for linting. It provides a command for auto-fixing errors:
+
+```sh
+rails standard:fix
+```
+
 ## Accessing Roles
 
 You can use the following login credentials to access the following roles:
