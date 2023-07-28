@@ -38,7 +38,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
   # Store uploaded files on amazon.
-  config.active_storage.service = :amazon
+  config.active_storage.service = :azure
 
   # Per the deprecation warning in rails server output re this config, set it to true
   config.active_storage.replace_on_assign_to_many = true
