@@ -20,7 +20,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class StaffAccount < ApplicationRecord
-  belongs_to :organization
+  acts_as_tenant(:organization)
   belongs_to :user
 
   # Active Admin getter methods
