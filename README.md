@@ -57,11 +57,11 @@ To set this application up locally:
 **Test Accounts**
 
 Adopter
-- email: `b@c.com`
+- email: `adopter1@example.com`
 - password: `123456`
 
 Staff
-- email: `a@b.com`
+- email: `staff@example.com`
 - password: `123456`
 
 

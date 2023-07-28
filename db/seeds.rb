@@ -7,7 +7,7 @@
 )
 
 @user_one = User.create!(
-  email: 'adopter1@example.com',
+  email: 'staff@example.com',
   first_name: 'Andy',
   last_name: 'Peters',
   password: '123456',
@@ -22,7 +22,7 @@ StaffAccount.create!(
 )
 
 @user_two = User.create!(
-  email: 'adopter2@example.com',
+  email: 'adopter1@example.com',
   first_name: 'Joe',
   last_name: 'Brando',
   password: '123456',
@@ -33,7 +33,7 @@ StaffAccount.create!(
 @adopter_account_one = AdopterAccount.create!(user_id: @user_two.id)
 
 @user_three = User.create!(
-  email: 'adopter3@example.com',
+  email: 'adopter2@example.com',
   first_name: 'Kamala',
   last_name: 'Lolsworth',
   password: '123456',
@@ -44,7 +44,7 @@ StaffAccount.create!(
 @adopter_account_two = AdopterAccount.create!(user_id: @user_three.id)
 
 @user_four = User.create!(
-  email: 'adopter4@example.com',
+  email: 'adopter3@example.com',
   first_name: 'Bad',
   last_name: 'Address',
   password: '123456',
