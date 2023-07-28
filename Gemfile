@@ -86,6 +86,9 @@ group :development, :test do
   # Add annotation to models to make it easier to navigate in the codebase
   # and the database structure
   gem 'annotate'
+
+  # Linting
+  gem "standard"
 end
 
 group :development do
