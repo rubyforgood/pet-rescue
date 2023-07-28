@@ -89,6 +89,9 @@ group :development, :test do
 
   # Linting
   gem "standard"
+
+  # Analysis for security vulnerabilities
+  gem "brakeman"
 end
 
 group :development do
