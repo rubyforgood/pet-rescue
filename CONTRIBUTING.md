@@ -6,6 +6,8 @@
 We ♥ contributors! By participating in this project, you agree to abide by the
 Ruby for Good [code of conduct].
 
+If you need help with any steps in the process, feel free to slap a Help Wanted label on your issue or pull request and we'll try to provide assistance.
+
 Here are the basic steps to submit a pull request. Make sure that you're working
 on an [open issue]–if the relevant issue doesn't exist, open it!
 
@@ -45,3 +47,7 @@ Some things that will increase the chance that your pull request is accepted:
 * Include tests that fail without your code, and pass with it
 * Update the documentation, the surrounding one, examples elsewhere, guides,
   whatever is affected by your contribution
+
+#### 8. Merge your code
+
+If your PR gains an approval ✅ then you're free to merge it yourself! After doing a little celebratory dance, please resolve any merge conflicts that may have arisen, and merge into `main`!
