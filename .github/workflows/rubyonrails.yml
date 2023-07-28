@@ -43,9 +43,9 @@ jobs:
         run: bundle exec rails dartsass:build
       # Add or replace test runners here
       - name: Run unit tests
-        run: rails test
+        run: bundle exec rails test
       - name: Run system tests
-        run: rails test:system
+        run: bundle exec rails test:system
   standard:
     name: Standard
     runs-on: ubuntu-latest
