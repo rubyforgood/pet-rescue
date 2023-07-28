@@ -44,12 +44,12 @@ You should now be able to access the application at [http://localhost:3000](http
 You can use the following login credentials to access the following roles:
 
 Adopter
-email: b@c.com
-password: 123456
+- email: `adopter1@example.com`
+- password: `123456`
 
 Staff
-email: a@b.com
-password: 123456
+- email: `staff@example.com`
+- password: `123456`
 
 You are also able to register an account.
 
