@@ -34,7 +34,6 @@ class Pet < ApplicationRecord
   has_many_attached :images
 
   validates :name, presence: true
-  validates_uniqueness_to_tenant :name
   validates :age, presence: true
   validates :age_unit, presence: true
   validates :size, presence: true
