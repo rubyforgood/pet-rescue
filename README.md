@@ -49,6 +49,7 @@ Add the following line:
 127.0.0.1  pet-rescue.local alta.pet-rescue.local rubyforgood.pet-rescue.local
 ```
 This will maps the two seed Orgs with the correct subdomains
+
 ## Accessing Roles
 
 You can use the following login credentials to access the following roles:
