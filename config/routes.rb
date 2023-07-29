@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :checklist_templates
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   match "/404", to: "errors#not_found", via: :all
@@ -29,8 +30,8 @@ Rails.application.routes.draw do
   post "create_my_application", to: "adopter_applications#create"
   patch "my_application", to: "adopter_applications#update"
 
-  post "create_adoption", to: "adoptions#create"
-  delete "revoke_adoption", to: "adoptions#delete"
+  post "create_adoption", to: "matches#create"
+  delete "revoke_adoption", to: "matches#delete"
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 

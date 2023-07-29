@@ -4,7 +4,7 @@ class RevokeAdoptionTest < ActionDispatch::IntegrationTest
   setup do
     sign_in users(:verified_staff_one)
     @pet = pets(:adopted_pet)
-    @adoption_id = Adoption.find_by(pet_id: @pet.id).id
+    @match_id = Match.find_by(pet_id: @pet.id).id
     @successful_application = adopter_applications(:adopter_application_three)
   end
 
@@ -17,7 +17,7 @@ class RevokeAdoptionTest < ActionDispatch::IntegrationTest
     assert_select "a", "Revoke Adoption"
 
     delete "/revoke_adoption",
-      params: {adoption_id: @adoption_id}
+      params: {match_id: @match_id}
 
     assert_response :redirect
     follow_redirect!

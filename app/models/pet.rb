@@ -18,7 +18,6 @@
 #
 # Indexes
 #
-#  index_pets_on_name             (name) UNIQUE
 #  index_pets_on_organization_id  (organization_id)
 #
 # Foreign Keys
@@ -28,9 +27,8 @@
 class Pet < ApplicationRecord
   acts_as_tenant(:organization)
 
-  belongs_to :organization
   has_many :adopter_applications, dependent: :destroy
-  has_one :adoption, dependent: :destroy
+  has_one :match, dependent: :destroy
   has_many_attached :images
 
   validates :name, presence: true
@@ -85,23 +83,23 @@ class Pet < ApplicationRecord
   # all pets under an organization with applications and no adoptions
   def self.org_pets_with_apps(staff_org_id)
     Pet.org_pets(staff_org_id).includes(:adopter_applications).where
-      .not(adopter_applications: {id: nil}).includes(:adoption)
-      .where(adoption: {id: nil})
+      .not(adopter_applications: {id: nil}).includes(:match)
+      .where(match: {id: nil})
   end
 
   # all unadopted pets under all organizations
   def self.all_unadopted_pets
-    Pet.includes(:adoption).where(adoption: {id: nil})
+    Pet.includes(:match).where(match: {id: nil})
   end
 
   # all unadopted pets under an organization
   def self.unadopted_pets(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:adoption).where(adoption: {id: nil})
+    Pet.org_pets(staff_org_id).includes(:match).where(match: {id: nil})
   end
 
   # all adopted pets under an organization
   def self.adopted_pets(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:adoption)
-      .where.not(adoption: {id: nil})
+    Pet.org_pets(staff_org_id).includes(:match)
+      .where.not(match: {id: nil})
   end
 end

@@ -15,10 +15,10 @@ ActiveAdmin.register_page "Dashboard" do
               "# Adopter Accounts: #{AdopterAccount.all.count} accounts"
             end
             li do
-              "# Unadopted Pets: #{Pet.where.missing(:adoption).count}"
+              "# Unadopted Pets: #{Pet.where.missing(:match).count}"
             end
             li do
-              "# Adoptions: #{Adoption.all.count}"
+              "# Adoptions: #{Match.all.count}"
             end
           end
         end
@@ -36,7 +36,7 @@ ActiveAdmin.register_page "Dashboard" do
         end
         # Chartkick charts here
         panel "Adoptions Over Time" do
-          line_chart Adoption.all.group_by { |adp| adp.created_at.beginning_of_month }
+          line_chart Match.all.group_by { |adp| adp.created_at.beginning_of_month }
             .map { |date, adps| [date, adps.count] }.to_h
         end
 

@@ -26,13 +26,16 @@ default: &default
 
 development:
   <<: *default
-  database: baja_pet_rescue_development
+  database: pet_rescue_development
+  # The following line comes from:
+  #   https://stackoverflow.com/questions/59089991/ruby-2-6-5-and-postgresql-pg-gem-segmentation-fault
+  gssencmode: disable
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
   # the same name as the operating system user running Rails.
-  #username: baja_pet_rescue
+  #username: pet_rescue
 
   # The password associated with the postgres role (username).
   #password:
@@ -60,7 +63,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: baja_pet_rescue_test
+  database: pet_rescue_test
+  # The following line comes from:
+  #   https://stackoverflow.com/questions/59089991/ruby-2-6-5-and-postgresql-pg-gem-segmentation-fault
+  gssencmode: disable
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -84,6 +90,6 @@ test:
 #
 production:
   <<: *default
-  database: baja_pet_rescue_production
+  database: pet_rescue_production
   username: <%= ENV['database_username'] %>
   password: <%= ENV['database_password'] %>

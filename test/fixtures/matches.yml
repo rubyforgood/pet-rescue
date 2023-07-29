@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: adoptions
+# Table name: matches
 #
 #  id                 :bigint           not null, primary key
 #  created_at         :datetime         not null
@@ -10,8 +10,8 @@
 #
 # Indexes
 #
-#  index_adoptions_on_adopter_account_id  (adopter_account_id)
-#  index_adoptions_on_pet_id              (pet_id)
+#  index_matches_on_adopter_account_id  (adopter_account_id)
+#  index_matches_on_pet_id              (pet_id)
 #
 # Foreign Keys
 #

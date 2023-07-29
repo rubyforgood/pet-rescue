@@ -12,10 +12,10 @@ class ContactFormTest < ActionDispatch::IntegrationTest
         commit: "Submit"
       }
 
-    assert_select "div.alert", "Please fix 3 errors highlighted below.", count: 1
-    assert_select "div.alert", "Name can't be blank", count: 1
-    assert_select "div.alert", "Email can't be blank", count: 1
-    assert_select "div.alert", "Message can't be blank", count: 1
+    assert_select "div.alert", "Please fix 3 errors highlighted below.", 1
+    assert_select "div.alert", "Name can't be blank", 1
+    assert_select "div.alert", "Email can't be blank", 1
+    assert_select "div.alert", "Message can't be blank", 1
   end
 
   test "should successfully submit form" do

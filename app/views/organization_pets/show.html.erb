@@ -73,7 +73,7 @@
       <!--button area-->
       <div class="col-lg-4 mx-auto d-flex flex-column align-items-center 
                   justify-content-center mt-5">
-        <% unless @pet.adoption %>
+        <% unless @pet.match %>
           <div class='d-flex align-items-center'>
               <h3 class='me-2'>
                 Applications are
@@ -115,17 +115,17 @@
             <%= link_to 'Edit Pet', edit_pet_path(@pet), 
                         class: 'custom-btn-green mb-2' %>
             
-            <% if @pet.adoption %>
+            <% if @pet.match %>
               <%= link_to 'View Adopter', 
-                          profile_review_path(@pet.adoption
+                          profile_review_path(@pet.match
                                                   .adopter_account
                                                   .adopter_profile.id),
                           class: 'custom-btn-green mb-2'%>
             <% end %>
         </div>
         <div class="p-2 d-flex flex-column">
-            <% if @pet.adoption %>
-              <%= link_to 'Revoke Adoption', revoke_adoption_path(adoption_id: @pet.adoption.id), 
+            <% if @pet.match %>
+              <%= link_to 'Revoke Adoption', revoke_adoption_path(match_id: @pet.match.id),
                   class: 'custom-btn-pink mb-2',
                   data: {
                     turbo_method: :delete,
