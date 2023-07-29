@@ -1,0 +1,2 @@
+class ChecklistTemplate < ApplicationRecord
+end

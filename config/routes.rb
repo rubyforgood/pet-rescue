@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :checklist_templates
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   match "/404", to: "errors#not_found", via: :all
@@ -44,3 +45,4 @@ Rails.application.routes.draw do
 
   post "/donations", to: "donations#create"
 end
+  
