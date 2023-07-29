@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_174234) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_29_182638) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -126,6 +126,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_174234) do
     t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
   end
 
+<<<<<<< Updated upstream
+=======
+  create_table "adoptions", force: :cascade do |t|
+    t.bigint "pet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "adopter_account_id", null: false
+    t.index ["adopter_account_id"], name: "index_adoptions_on_adopter_account_id"
+    t.index ["pet_id"], name: "index_adoptions_on_pet_id"
+  end
+
+  create_table "checklist_template_items", force: :cascade do |t|
+    t.bigint "checklist_template_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.integer "expected_duration_days", null: false
+    t.boolean "required", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_template_id"], name: "index_checklist_template_items_on_checklist_template_id"
+  end
+
+>>>>>>> Stashed changes
   create_table "checklist_templates", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -218,6 +241,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_174234) do
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_profiles", "adopter_accounts"
+<<<<<<< Updated upstream
+=======
+  add_foreign_key "adoptions", "adopter_accounts"
+  add_foreign_key "adoptions", "pets"
+  add_foreign_key "checklist_template_items", "checklist_templates"
+>>>>>>> Stashed changes
   add_foreign_key "locations", "adopter_profiles"
   add_foreign_key "matches", "adopter_accounts"
   add_foreign_key "matches", "pets"

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :checklist_template_items
   resources :checklist_templates
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
