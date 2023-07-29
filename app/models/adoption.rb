@@ -21,4 +21,10 @@
 class Adoption < ApplicationRecord
   belongs_to :pet
   belongs_to :adopter_account
+
+  after_create_commit :send_checklist_reminder
+
+  def send_checklist_reminder
+    MatchMailer.checklist_reminder(self).deliver_later
+  end
 end
