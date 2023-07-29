@@ -37,19 +37,6 @@ To run the app locally, use:
 bin/dev
 ```
 
-## Subdomain Setup
-
-The app will work OK with no subdomains, but to really test out the multi-tenant capabilities, you will need to configure subdomains. Every `Organization` has a subdomain field, and that Org will be accessible via `ApplicationController#current_tenant`. 
-
-To configure your local dev env to test subdomains, you will need to [edit your `/etc/hosts` file](https://linuxize.com/post/how-to-edit-your-hosts-file/)
-
-Add the following line:
-
-```text
-127.0.0.1  pet-rescue.local alta.pet-rescue.local rubyforgood.pet-rescue.local
-```
-This will maps the two seed Orgs with the correct subdomains
-
 ## Accessing Roles
 
 You can use the following login credentials to access the following roles:
@@ -63,6 +50,19 @@ Staff
 - password: `123456`
 
 You are also able to register an account.
+
+## Subdomain Setup
+
+The app will work OK with no subdomains, but to really test out the multi-tenant capabilities, you will need to configure subdomains. Every `Organization` has a subdomain field, and that Org will be accessible via `ApplicationController#current_tenant`.
+
+To configure your local dev env to test subdomains, you will need to [edit your `/etc/hosts` file](https://linuxize.com/post/how-to-edit-your-hosts-file/)
+
+Add the following line:
+
+```text
+127.0.0.1  pet-rescue.local alta.pet-rescue.local rubyforgood.pet-rescue.local
+```
+This will maps the two seed Orgs with the correct subdomains
 
 # 📖 About
 
