@@ -115,6 +115,10 @@ group :test do
   gem "capybara"
   gem "cuprite"
 
+  # Uses configuration based on Evil Martian's blog post:
+  # https://evilmartians.com/chronicles/system-of-a-test-setting-up-end-to-end-rails-testing
+  gem "evil_systems", "~> 1.1"
+
   # Code coverage analysis [https://github.com/simplecov-ruby/simplecov]
   gem "simplecov", require: false
 end

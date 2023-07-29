@@ -158,6 +158,9 @@ GEM
       http_parser.rb (~> 0)
     erubi (1.10.0)
     eventmachine (1.2.7)
+    evil_systems (1.1.5)
+      capybara
+      zeitwerk (>= 2)
     execjs (2.8.1)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
@@ -445,6 +448,7 @@ DEPENDENCIES
   dartsass-rails
   debug
   devise
+  evil_systems (~> 1.1)
   faker
   figaro
   geocoder

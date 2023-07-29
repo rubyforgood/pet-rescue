@@ -53,6 +53,28 @@ Staff
 
 You are also able to register an account.
 
+# 🧪 Running Tests
+
+Run unit tests only
+```
+./bin/rails test
+```
+
+Run system tests only (Headless)
+```
+./bin/rails test:system
+```
+
+Run system tests only (Not-Headless)
+```
+CI=false ./bin/rails test:system
+```
+
+Run ALL tests:
+```
+./bin/rails test:all
+```
+
 # 📖 About
 
 ## Ruby for Good
