@@ -26,5 +26,6 @@ class ActiveSupport::TestCase
   def after_teardown
     super
     FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+    FileUtils.rm_rf(ActiveStorage::Blob.services.fetch(:test_fixtures).root)
   end
 end
