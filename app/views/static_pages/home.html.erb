@@ -2,9 +2,9 @@
 <header class="masthead">
   <div class="container">
     <h1 class='mb-4'>
-      We rescue pets in Baja, Mexico and rehome them with adopters in Canada and America
+      We rescue pets in <%=current_tenant.city %>, <%=current_tenant.country %> and rehome them with adopters in Canada and America
     </h1>
-    <%= link_to "Browse #{Pet.all_unadopted_pets.count} Pets", 
+    <%= link_to "Browse #{Pet.unadopted_pets(current_tenant).count} Pets",
                 adoptable_pets_path, 
                 class:'custom-btn-pink' %>
   </div>
@@ -71,7 +71,7 @@
         </div>
         <div class="col-lg-4 px-4 order-last order-lg-0">
             <p class='justify bigger'>
-              Baja Pet Rescue was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.
+              <%=current_tenant.name %>> was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.
             </p>
             <br>
             <p class='justify bigger'>
