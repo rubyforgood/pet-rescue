@@ -53,17 +53,30 @@ Staff
 
 You are also able to register an account.
 
-## Development
+# 🧪 Running Tests
 
-### Running Tests
-
-```sh
-rails test
+Run unit tests only
+```
+./bin/rails test
 ```
 
-### Running [Standard](https://github.com/standardrb/standard)
+Run system tests only (Headless)
+```
+./bin/rails test:system
+```
 
-We use Standard for linting. It provides a command for auto-fixing errors:
+Run system tests only (Not-Headless)
+```
+CI=false ./bin/rails test:system
+```
+
+Run ALL tests:
+```
+./bin/rails test:all
+
+# 💅 Linting 
+
+We use [standard](https://github.com/standardrb/standard) for linting. It provides a command for auto-fixing errors:
 
 ```sh
 rails standard:fix

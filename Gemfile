@@ -116,8 +116,12 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  gem "cuprite"
+
+  # Uses configuration based on Evil Martian's blog post:
+  # https://evilmartians.com/chronicles/system-of-a-test-setting-up-end-to-end-rails-testing
+  gem "evil_systems", "~> 1.1"
+
   # Code coverage analysis [https://github.com/simplecov-ruby/simplecov]
   gem "simplecov", require: false
 end

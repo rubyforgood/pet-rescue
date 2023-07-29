@@ -42,8 +42,10 @@ jobs:
       - name: Precompile assets
         run: bundle exec rails dartsass:build
       # Add or replace test runners here
-      - name: Run tests
-        run: bin/rake
+      - name: Run unit tests
+        run: bundle exec rails test
+      - name: Run system tests
+        run: bundle exec rails test:system
   standard:
     name: Standard
     runs-on: ubuntu-latest
