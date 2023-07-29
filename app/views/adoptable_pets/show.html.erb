@@ -110,15 +110,19 @@
           <div class='text-center d-flex flex-column align-items-center mt-1'>
             <% unless user_signed_in? && current_user.staff_account %>
               <% if user_signed_in? %>
-                <% if current_user.adopter_account && 
-                      current_user.adopter_account.adopter_profile %>
-                  <% if AdopterApplication.adoption_exists?(
-                                            current_user.adopter_account.id,
-                                            @pet.id
-                                                            ) %>
+                <% if current_user.adopter_account && current_user.adopter_account.adopter_profile %>
+                  <% if AdopterApplication.adoption_exists?(current_user.adopter_account.id, @pet.id) %>
                     <div class='d-flex align-items-center mt-3'>
-                      <h4 class="me-2">Application submitted</h4>
+                      <h4 class="me-2">
+                        Application <%= @adoption_application.status.titleize || " submitted" %>
+                      </h4>
+                      <% if %w[under_review adoption_pending].include?(@adoption_application.status) %>
+                        <%= image_tag('pause.png', height: '21') %>
+                      <% elsif 'withdrawn' == @adoption_application.status %>
+                        <%= image_tag('red_no.png', height: '21') %>
+                      <% else %>
                       <%= image_tag('green_check.png', height: '21') %>
+                      <% end %>
                     </div>
                   <% elsif @pet.application_paused == true %>
                     <div class='d-flex align-items-center mt-3'>

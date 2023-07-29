@@ -6,6 +6,10 @@ class AdoptablePetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    if AdopterApplication.adoption_exists?(current_user&.adopter_account&.id, @pet.id)
+      @adoption_application = AdopterApplication.where(pet_id: @pet.id,
+        adopter_account_id: current_user.adopter_account.id).first
+    end
 
     return unless @pet.match
 
