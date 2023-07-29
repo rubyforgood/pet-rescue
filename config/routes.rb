@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   resources :pets, controller: "organization_pets"
   resources :adopter_applications, only: [:index, :edit, :update], controller: "adoption_application_reviews" do
     resource :chat, only: [:show], module: :adopter_applications
+    resource :message, only: [:create], module: :adopter_applications
   end
 
   devise_for :users, controllers: {registrations: "registrations"}

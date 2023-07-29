@@ -1,0 +1,9 @@
+<%= turbo_frame_tag 'chat', class: 'chat' do %>
+  <% local_assigns[:messages].each do |m| %>
+    <div class="chat-message my-2">
+      <div class="message text-start">
+        <strong><%= m.sender.first_name %>:</strong> <%= m.message %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

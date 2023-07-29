@@ -24,7 +24,7 @@
 class AdopterApplication < ApplicationRecord
   belongs_to :pet
   belongs_to :adopter_account
-  has_many :messages, dependent: :destroy
+  has_many :messages, -> { order('created_at ASC') }, dependent: :destroy
 
   enum :status, [:awaiting_review,
     :under_review,

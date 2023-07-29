@@ -1,0 +1,6 @@
+<%= turbo_frame_tag 'message-input' do %>
+  <%= form_with(url: adopter_application_message_path(local_assigns[:match]), method: 'post', class: 'input-group') do |form| %>
+    <%= form.text_field :message, class: 'form-control', placeholder: 'Type your message...' %>
+    <%= form.submit 'Send', class: 'btn btn-primary' %>
+  <% end %>
+<% end %>

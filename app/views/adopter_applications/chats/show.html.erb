@@ -1,3 +1,5 @@
+<%= turbo_stream_from @match %>
+
 <div class='d-flex container mt-5' style='min-height: 80vh'>
   <div class='w-25'>
     Dog details
@@ -9,30 +11,10 @@
         <div class="col-md-8 offset-md-2">
           <div class="card">
             <div class="card-body">
-              <div class="chat">
-                <div class="chat-message">
-                  <div class="message text-start">
-                    <strong>John:</strong> Hi there!
-                  </div>
-                </div>
-                <div class="chat-message">
-                  <div class="message text-end">
-                    <strong>Jane:</strong> Hello!
-                  </div>
-                </div>
-                <div class="chat-message">
-                  <div class="message text-start">
-                    <strong>John:</strong> How are you doing?
-                  </div>
-                </div>
-                <!-- Add more chat messages here -->
-              </div>
+              <%= render partial: 'messages', locals: { messages: @match.messages } %>
             </div>
             <div class="card-footer">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Type your message...">
-                <button class="btn btn-primary">Send</button>
-              </div>
+              <%= render partial: 'message_input', locals: { match: @match } %>
             </div>
           </div>
         </div>

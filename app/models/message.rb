@@ -15,4 +15,6 @@
 #  fk_rails_...  (sender_id => users.id)
 #
 class Message < ApplicationRecord
+  belongs_to :sender, class_name: "User"
+
 end
