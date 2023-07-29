@@ -35,3 +35,13 @@
 
 # Ignore SimpleCov test coverage metrics
 /coverage
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+# IDE
+.idea
+.vscode
+
+# OS
+.DS_Store

@@ -1,7 +1,6 @@
 require "test_helper"
 
 class AdopterProfileReviewTest < ActionDispatch::IntegrationTest
-
   setup do
     @adopter_profile = adopter_profiles(:adopter_profile_one)
   end
@@ -12,7 +11,7 @@ class AdopterProfileReviewTest < ActionDispatch::IntegrationTest
     get "/profile_review/#{@adopter_profile.id}"
 
     assert_response :success
-    assert_select 'h1', "#{users(:adopter_with_profile).first_name}
+    assert_select "h1", "#{users(:adopter_with_profile).first_name}
         #{users(:adopter_with_profile).last_name}'s Profile"
   end
 
@@ -22,6 +21,6 @@ class AdopterProfileReviewTest < ActionDispatch::IntegrationTest
     get "/profile_review/#{@adopter_profile.id}"
 
     assert_response :redirect
-    assert_equal 'Unauthorized action.', flash[:alert]
+    assert_equal "Unauthorized action.", flash[:alert]
   end
 end

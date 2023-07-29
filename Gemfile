@@ -10,7 +10,7 @@ gem "rails", "~> 7.0.3"
 gem "sprockets-rails"
 
 # figaro to handle ENV variables for postgresql
-gem 'figaro'
+gem "figaro"
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -40,44 +40,58 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
 # add bootstrap gem
-gem 'bootstrap'
+gem "bootstrap"
 
 # Devise Authentication
-gem 'devise'
+gem "devise"
 
 # Use Sass to process CSS
-gem "sassc-rails"
+gem "dartsass-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
 # Active storage validations
-gem 'active_storage_validations'
+gem "active_storage_validations"
 
 # Amazon Web Service S3 image storage
-gem 'aws-sdk-s3'
+gem "aws-sdk-s3"
 
 # validate adopter phone numbers
 gem "phonelib"
 
 # active admin
-gem 'activeadmin'
+gem "activeadmin"
 
 # geocoder creates lat/long for success page map
-gem 'geocoder'
+gem "geocoder"
 
 # a rake task that helps find dead routes and unused actions
-gem 'traceroute'
+gem "traceroute"
+
+# facilitates multi-tenancy, allowing database records to be associated with organizations
+gem "acts_as_tenant"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "faker"
+
+  # Add annotation to models to make it easier to navigate in the codebase
+  # and the database structure
+  gem "annotate"
+
+  # Linting
+  gem "standard"
+
+  # Analysis for security vulnerabilities
+  gem "brakeman"
 end
 
 group :development do
@@ -90,13 +104,13 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-  # view emails in browser in dev 
+  # view emails in browser in dev
   gem "letter_opener", group: :development
 
   # better errors and guard gems
-  gem 'better_errors', '~> 2.9', '>= 2.9.1'
-  gem 'guard', '~> 2.18'
-  gem 'guard-livereload', '~> 2.5', '>= 2.5.2', require: false
+  gem "better_errors", "~> 2.9", ">= 2.9.1"
+  gem "guard", "~> 2.18"
+  gem "guard-livereload", "~> 2.5", ">= 2.5.2", require: false
 end
 
 group :test do
@@ -104,9 +118,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-
   # Code coverage analysis [https://github.com/simplecov-ruby/simplecov]
-  gem 'simplecov', require: false
+  gem "simplecov", require: false
 end
 
 # Add chartkick for charts generation

@@ -18,7 +18,7 @@ module GoogleMap
     def generate_map_data_from_adoptions
       adoptions.map do |adoption|
         lat, lon = deviate_coordinates if valid_location?(adoption)
-        { latitude: lat, longitude: lon, pet_name: adoption.pet.name, breed: adoption.pet.breed }
+        {latitude: lat, longitude: lon, pet_name: adoption.pet.name, breed: adoption.pet.breed}
       end
     end
 

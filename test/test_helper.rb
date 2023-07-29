@@ -1,11 +1,11 @@
 # # Per SimpleCov documentation, start gem before application
 if ENV["COVERAGE"]
-  require 'simplecov'
+  require "simplecov"
   SimpleCov.start do
     add_group "Model", "app/models"
     add_group "Controller", "app/controllers"
     add_group "Mailer", "app/mailers"
-  end 
+  end
 end
 
 ENV["RAILS_ENV"] ||= "test"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_27_210215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -135,23 +135,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
     t.index ["pet_id"], name: "index_adoptions_on_pet_id"
   end
 
-  create_table "pets", force: :cascade do |t|
-    t.bigint "organization_id", null: false
-    t.integer "age"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "size"
-    t.string "breed"
-    t.text "description"
-    t.string "sex"
-    t.string "name"
-    t.boolean "application_paused", default: false
-    t.integer "pause_reason", default: 0
-    t.integer "age_unit", default: 0
-    t.index ["name"], name: "index_pets_on_name", unique: true
-    t.index ["organization_id"], name: "index_pets_on_organization_id"
-  end
-
   create_table "donations", force: :cascade do |t|
     t.string "amount"
     t.string "currency"
@@ -178,6 +161,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
     t.string "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subdomain"
+  end
+
+  create_table "pets", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.integer "age"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "size"
+    t.string "breed"
+    t.text "description"
+    t.string "sex"
+    t.string "name"
+    t.boolean "application_paused", default: false
+    t.integer "pause_reason", default: 0
+    t.integer "age_unit", default: 0
+    t.index ["name"], name: "index_pets_on_name", unique: true
+    t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
   create_table "staff_accounts", force: :cascade do |t|
@@ -213,8 +214,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_024411) do
   add_foreign_key "adopter_profiles", "adopter_accounts"
   add_foreign_key "adoptions", "adopter_accounts"
   add_foreign_key "adoptions", "pets"
-  add_foreign_key "pets", "organizations"
   add_foreign_key "locations", "adopter_profiles"
+  add_foreign_key "pets", "organizations"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
 end

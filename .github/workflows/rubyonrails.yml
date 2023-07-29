@@ -39,6 +39,32 @@ jobs:
         run: bin/rails db:schema:load
       - name: Load test fixtures
         run: bin/rails db:fixtures:load
+      - name: Precompile assets
+        run: bundle exec rails dartsass:build
       # Add or replace test runners here
       - name: Run tests
         run: bin/rake
+  standard:
+    name: Standard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+        with:
+          bundler-cache: true
+      - name: Run Standard
+        run: bundle exec standardrb
+  brakeman:
+    name: Brakeman
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+        with:
+          bundler-cache: true
+      - name: Run Brakeman
+        run: bundle exec brakeman
