@@ -1,0 +1,7 @@
+<%= turbo_frame_tag local_assigns[:message] do %>
+  <div class="chat-message my-2" data-controller='chat-message'>
+    <div class="message text-start">
+      <strong><%= local_assigns[:message].sender.first_name %>:</strong> <%= local_assigns[:message].message %>
+    </div>
+  </div>
+<% end %>

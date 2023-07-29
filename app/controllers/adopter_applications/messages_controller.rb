@@ -8,12 +8,13 @@ class AdopterApplications::MessagesController < ApplicationController
       message: message_params[:message]
     })
 
+
     if message.save
-      Turbo::StreamsChannel.broadcast_replace_to(
+      Turbo::StreamsChannel.broadcast_append_to(
         @adopter_application,
-        target: "chat",
-        partial: "adopter_applications/chats/messages",
-        locals: { messages: @adopter_application.messages }
+        target: "messages",
+        partial: "adopter_applications/chats/message",
+        locals: { message: message }
       )
 
       render turbo_stream: [

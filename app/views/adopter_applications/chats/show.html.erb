@@ -1,21 +1,17 @@
 <%= turbo_stream_from @match %>
 
 <div class='d-flex container mt-5' style='min-height: 80vh'>
-  <div class='w-25'>
-    Dog details
-  </div>
+  <div class='w-100'>
+    <div class="row">
+      <div class='px-5'>
+        <h1 class='mb-3'>Let's talk about <%= @match.pet.name %></h1>
 
-  <div class='w-75'>
-    <div class="container mt-5">
-      <div class="row">
-        <div class="col-md-8 offset-md-2">
-          <div class="card">
-            <div class="card-body">
-              <%= render partial: 'messages', locals: { messages: @match.messages } %>
-            </div>
-            <div class="card-footer">
-              <%= render partial: 'message_input', locals: { match: @match } %>
-            </div>
+        <div class="card">
+          <div class="card-body" style='height: 400px; overflow-y:scroll'>
+            <%= render partial: 'messages', locals: { messages: @match.messages } %>
+          </div>
+          <div class="card-footer">
+            <%= render partial: 'message_input', locals: { match: @match } %>
           </div>
         </div>
       </div>
