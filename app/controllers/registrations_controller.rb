@@ -6,7 +6,6 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     build_resource({})
     resource.build_adopter_account
-    resource.build_staff_account
     respond_with resource
   end
 
