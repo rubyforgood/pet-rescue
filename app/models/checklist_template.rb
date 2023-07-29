@@ -9,5 +9,5 @@
 #  updated_at  :datetime         not null
 #
 class ChecklistTemplate < ApplicationRecord
-    has_many :items, class_name: "ChecklistTemplateItem", dependent: :destroy
+  has_many :items, class_name: "ChecklistTemplateItem", dependent: :destroy
 end

@@ -17,7 +17,7 @@ class ChecklistTemplateItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create checklist_template_item" do
     assert_difference("ChecklistTemplateItem.count") do
-      post checklist_template_items_url, params: { checklist_template_item: { checklist_template_id: @checklist_template_item.checklist_template_id, description: @checklist_template_item.description, expected_duration_days: @checklist_template_item.expected_duration_days, name: @checklist_template_item.name, required: @checklist_template_item.required } }
+      post checklist_template_items_url, params: {checklist_template_item: {checklist_template_id: @checklist_template_item.checklist_template_id, description: @checklist_template_item.description, expected_duration_days: @checklist_template_item.expected_duration_days, name: @checklist_template_item.name, required: @checklist_template_item.required}}
     end
 
     assert_redirected_to checklist_template_item_url(ChecklistTemplateItem.last)
@@ -34,7 +34,7 @@ class ChecklistTemplateItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update checklist_template_item" do
-    patch checklist_template_item_url(@checklist_template_item), params: { checklist_template_item: { checklist_template_id: @checklist_template_item.checklist_template_id, description: @checklist_template_item.description, expected_duration_days: @checklist_template_item.expected_duration_days, name: @checklist_template_item.name, required: @checklist_template_item.required } }
+    patch checklist_template_item_url(@checklist_template_item), params: {checklist_template_item: {checklist_template_id: @checklist_template_item.checklist_template_id, description: @checklist_template_item.description, expected_duration_days: @checklist_template_item.expected_duration_days, name: @checklist_template_item.name, required: @checklist_template_item.required}}
     assert_redirected_to checklist_template_item_url(@checklist_template_item)
   end
 
