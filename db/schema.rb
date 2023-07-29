@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_27_210215) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_29_141917) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -177,7 +177,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_210215) do
     t.boolean "application_paused", default: false
     t.integer "pause_reason", default: 0
     t.integer "age_unit", default: 0
-    t.index ["name"], name: "index_pets_on_name", unique: true
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 

@@ -18,7 +18,6 @@
 #
 # Indexes
 #
-#  index_pets_on_name             (name) UNIQUE
 #  index_pets_on_organization_id  (organization_id)
 #
 # Foreign Keys
