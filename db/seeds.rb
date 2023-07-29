@@ -243,5 +243,19 @@ Match.create!(
   )
 end
 
+@checklist_template = ChecklistTemplate.create!(
+  name: "vaccinations",
+  description: "Get your dog vaccinated"
+)
+
+5.times do
+  @checklist_template.items.create!(
+    name: Faker::Verb.base,
+    description: Faker::Quote.famous_last_words,
+    expected_duration_days: rand(1..10),
+    required: [true, false].sample
+  )
+end
+
 # active admin seed
 AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password") if Rails.env.development?
