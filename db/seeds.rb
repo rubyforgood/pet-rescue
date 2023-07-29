@@ -218,7 +218,7 @@ path = Rails.root.join("app", "assets", "images", "hero.jpg")
 10.times do
   pet = Pet.create!(
     organization: Organization.all.sample,
-    name: Faker::Creature::Dog.name,
+    name: Faker::Creature::Dog.unique.name,
     age: Faker::Number.within(range: 1..10),
     sex: Faker::Creature::Dog.gender,
     size: Faker::Creature::Dog.size,
