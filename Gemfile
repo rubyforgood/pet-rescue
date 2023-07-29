@@ -124,6 +124,11 @@ group :test do
 
   # Code coverage analysis [https://github.com/simplecov-ruby/simplecov]
   gem "simplecov", require: false
+
+  # Adds really common matchers you can use in tests to add
+  # test coverage easily
+  gem "shoulda", "~> 4.0"
+  gem "shoulda-matchers"
 end
 
 # Add chartkick for charts generation
