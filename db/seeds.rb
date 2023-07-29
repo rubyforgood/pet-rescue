@@ -18,8 +18,8 @@
 
 @user_staff_one = User.create!(
   email: "staff@example.com",
-  first_name: "Andy",
-  last_name: "Peters",
+  # first_name: "Andy",
+  # last_name: "Peters",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -33,8 +33,8 @@ StaffAccount.create!(
 
 @user_staff_two = User.create!(
   email: "staff2@example.com",
-  first_name: "Randy",
-  last_name: "Peterson",
+  # first_name: "Randy",
+  # last_name: "Peterson",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -48,8 +48,8 @@ StaffAccount.create!(
 
 @user_adopter_one = User.create!(
   email: "adopter1@example.com",
-  first_name: "Joe",
-  last_name: "Brando",
+  # first_name: "Joe",
+  # last_name: "Brando",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -59,8 +59,8 @@ StaffAccount.create!(
 
 @user_adopter_two = User.create!(
   email: "adopter2@example.com",
-  first_name: "Kamala",
-  last_name: "Lolsworth",
+  # first_name: "Kamala",
+  # last_name: "Lolsworth",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -70,8 +70,8 @@ StaffAccount.create!(
 
 @user_adopter_three = User.create!(
   email: "adopter3@example.com",
-  first_name: "Bad",
-  last_name: "Address",
+  # first_name: "Bad",
+  # last_name: "Address",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
