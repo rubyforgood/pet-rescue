@@ -8,7 +8,7 @@ class AdopterProfilesController < ApplicationController
   # https://guides.rubyonrails.org/association_basics.html#has-one-association-reference
   def new
     if profile_nil?
-      @adopter_profile = AdopterProfile.new
+      @adopter_profile = Person.new
       @adopter_profile.build_location
     else
       redirect_to profile_path
@@ -49,7 +49,7 @@ class AdopterProfilesController < ApplicationController
   private
 
   def profile_nil?
-    AdopterProfile.where(adopter_account_id: current_user.adopter_account.id)[0].nil?
+    Person.where(adopter_account_id: current_user.adopter_account.id)[0].nil?
   end
 
   def adopter_profile_params

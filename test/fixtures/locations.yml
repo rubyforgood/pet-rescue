@@ -18,10 +18,10 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (person_id => persons.id)
+#  fk_rails_...  (person_id => adopter_account.id)
 #
 locations_one:
-  adopter_profile: adopter_profile_one
+  person_profile: person_profile_one
   country: Canada
   province_state: BC
   city_town: Victoria

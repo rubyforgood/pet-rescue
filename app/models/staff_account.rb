@@ -2,12 +2,16 @@
 #
 # Table name: staff_accounts
 #
-#  id              :bigint           not null, primary key
-#  verified        :boolean          default(FALSE), not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  organization_id :bigint           default(1), not null
-#  user_id         :bigint           default(0), not null
+#  id                :bigint           not null, primary key
+#  emergency_contact :string
+#  first_name        :string
+#  last_name         :string
+#  phone_number      :string
+#  verified          :boolean          default(FALSE), not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  organization_id   :bigint           default(1), not null
+#  user_id           :bigint           default(0), not null
 #
 # Indexes
 #
@@ -20,7 +24,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class StaffAccount < ApplicationRecord
-  belongs_to :organization
+  acts_as_tenant(:organization)
   belongs_to :user
 
   # Active Admin getter methods

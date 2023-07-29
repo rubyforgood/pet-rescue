@@ -53,6 +53,40 @@ Staff
 
 You are also able to register an account.
 
+# 🧪 Running Tests
+
+Run unit tests only
+```
+./bin/rails test
+```
+
+Run system tests only (Headless)
+```
+./bin/rails test:system
+```
+
+Run system tests only (Not-Headless)
+```
+CI=false ./bin/rails test:system
+```
+
+Run ALL tests:
+```
+./bin/rails test:all
+```
+
+# 💅 Linting 
+
+We use [standard](https://github.com/standardrb/standard) for linting. It provides a command for auto-fixing errors:
+
+```sh
+rails standard:fix
+```
+
+# 🔨 Tools
+
+This [google sheets](https://docs.google.com/spreadsheets/d/1kPDeLicDu1IFkjWEXrWpwT36jtvoMVopEBiX-5L-r1A/edit?usp=sharing) contains a list of tools, their purposes, and who has access to grant permissions.
+
 # 📖 About
 
 ## Ruby for Good
@@ -70,3 +104,4 @@ These are just some of the documents put together before writing any code:
 * Slide deck to pitch idea to client: [here](https://docs.google.com/presentation/d/1d4gjzADk7BcxmQEVZlesheGUen9d1E3RzrVvskMhVxo/edit?usp=sharing)
 * Figma site design: [here](https://www.figma.com/file/x3iM31l8csY7mT0VwKykhT/BPR---Wireframes---Ami?node-id=530186%3A154&t=mgRlseVd2LTKPX4o-1)
 * Model association diagram: [here](https://lucid.app/lucidchart/a915c03c-3c09-454d-837b-f3d2768f5722/edit?viewport_loc=-25%2C-973%2C3565%2C2341%2C0_0&invitationId=inv_85cf2967-7b33-4030-903f-9655e767cbbf)
+

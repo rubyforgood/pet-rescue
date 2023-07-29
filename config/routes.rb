@@ -29,8 +29,8 @@ Rails.application.routes.draw do
   post "create_my_application", to: "adopter_applications#create"
   patch "my_application", to: "adopter_applications#update"
 
-  post "create_adoption", to: "adoptions#create"
-  delete "revoke_adoption", to: "adoptions#delete"
+  post "create_match", to: "matches#create"
+  delete "revoke_match", to: "matches#delete"
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 
@@ -43,6 +43,4 @@ Rails.application.routes.draw do
   resolve("adopter_profile") { [:adopter_profile] }
 
   post "/donations", to: "donations#create"
-
-  get "/adoptions", to: "adoptions#index"
 end

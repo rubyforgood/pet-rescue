@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_145609) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_29_183841) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,47 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_145609) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "adopter_account", force: :cascade do |t|
+    t.bigint "adopter_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "phone_number"
+    t.string "contact_method"
+    t.string "country"
+    t.string "province_state"
+    t.string "city_town"
+    t.text "ideal_pet"
+    t.text "lifestyle_fit"
+    t.text "activities"
+    t.integer "alone_weekday"
+    t.integer "alone_weekend"
+    t.text "experience"
+    t.text "contingency_plan"
+    t.boolean "shared_ownership"
+    t.text "shared_owner"
+    t.string "housing_type"
+    t.boolean "fenced_access"
+    t.text "fenced_alternative"
+    t.text "location_day"
+    t.text "location_night"
+    t.boolean "do_you_rent"
+    t.boolean "pets_allowed"
+    t.integer "adults_in_home"
+    t.integer "kids_in_home"
+    t.boolean "other_pets"
+    t.text "describe_pets"
+    t.boolean "checked_shelter"
+    t.boolean "surrendered_pet"
+    t.text "describe_surrender"
+    t.string "annual_cost"
+    t.boolean "visit_laventana"
+    t.text "visit_dates"
+    t.text "referral_source"
+    t.string "first_name"
+    t.string "last_name"
+    t.index ["adopter_account_id"], name: "index_adopter_account_on_adopter_account_id"
   end
 
   create_table "adopter_accounts", force: :cascade do |t|
@@ -125,47 +166,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_145609) do
     t.string "subdomain"
   end
 
-  create_table "people", force: :cascade do |t|
-    t.bigint "adopter_account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "phone_number"
-    t.string "contact_method"
-    t.string "country"
-    t.string "province_state"
-    t.string "city_town"
-    t.text "ideal_pet"
-    t.text "lifestyle_fit"
-    t.text "activities"
-    t.integer "alone_weekday"
-    t.integer "alone_weekend"
-    t.text "experience"
-    t.text "contingency_plan"
-    t.boolean "shared_ownership"
-    t.text "shared_owner"
-    t.string "housing_type"
-    t.boolean "fenced_access"
-    t.text "fenced_alternative"
-    t.text "location_day"
-    t.text "location_night"
-    t.boolean "do_you_rent"
-    t.boolean "pets_allowed"
-    t.integer "adults_in_home"
-    t.integer "kids_in_home"
-    t.boolean "other_pets"
-    t.text "describe_pets"
-    t.boolean "checked_shelter"
-    t.boolean "surrendered_pet"
-    t.text "describe_surrender"
-    t.string "annual_cost"
-    t.boolean "visit_laventana"
-    t.text "visit_dates"
-    t.text "referral_source"
-    t.string "first_name"
-    t.string "last_name"
-    t.index ["adopter_account_id"], name: "index_people_on_adopter_account_id"
-  end
-
   create_table "pets", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.integer "age"
@@ -179,8 +179,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_145609) do
     t.boolean "application_paused", default: false
     t.integer "pause_reason", default: 0
     t.integer "age_unit", default: 0
-    t.index ["name"], name: "index_pets_on_name", unique: true
     t.index ["organization_id"], name: "index_pets_on_organization_id"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.bigint "organization_id"
+    t.bigint "staff_account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_positions_on_organization_id"
+    t.index ["staff_account_id"], name: "index_positions_on_staff_account_id"
   end
 
   create_table "staff_accounts", force: :cascade do |t|
@@ -189,6 +197,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_145609) do
     t.bigint "organization_id", default: 1, null: false
     t.boolean "verified", default: false, null: false
     t.bigint "user_id", default: 0, null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "phone_number"
+    t.string "emergency_contact"
     t.index ["organization_id"], name: "index_staff_accounts_on_organization_id"
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
   end
@@ -202,19 +214,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_145609) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "tos_agreement"
+    t.integer "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "adopter_account", "adopter_accounts"
   add_foreign_key "adopter_accounts", "users"
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
-  add_foreign_key "locations", "people"
+  add_foreign_key "locations", "adopter_account", column: "person_id"
   add_foreign_key "matches", "adopter_accounts"
   add_foreign_key "matches", "pets"
-  add_foreign_key "people", "adopter_accounts"
   add_foreign_key "pets", "organizations"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"

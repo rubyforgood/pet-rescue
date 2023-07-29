@@ -8,6 +8,7 @@
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :integer
 #  tos_agreement          :boolean
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
@@ -27,7 +28,9 @@ class User < ApplicationRecord
 
   has_one :staff_account, dependent: :destroy
   has_one :adopter_account, dependent: :destroy
+  enum role: [:admin, :staff, :adopter]
 
+  #potentially change adopter account or accepts nested
   accepts_nested_attributes_for :adopter_account, :staff_account
 
   # get user accounts for staff in a given organization

@@ -122,6 +122,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.5, < 3)
       sassc-rails (>= 2.0.0)
+    brakeman (6.0.1)
     builder (3.2.4)
     capybara (3.37.1)
       addressable
@@ -133,10 +134,12 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     chartkick (5.0.2)
-    childprocess (4.1.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    cuprite (0.14.3)
+      capybara (~> 3.0)
+      ferrum (~> 0.13.0)
     dartsass-rails (0.5.0)
       railties (>= 6.0.0)
       sass-embedded (~> 1.63)
@@ -156,9 +159,17 @@ GEM
       http_parser.rb (~> 0)
     erubi (1.10.0)
     eventmachine (1.2.7)
+    evil_systems (1.1.5)
+      capybara
+      zeitwerk (>= 2)
     execjs (2.8.1)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
+    ferrum (0.13)
+      addressable (~> 2.5)
+      concurrent-ruby (~> 1.1)
+      webrick (~> 1.7)
+      websocket-driver (>= 0.6, < 0.8)
     ffi (1.15.5)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
@@ -352,7 +363,6 @@ GEM
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    rubyzip (2.3.2)
     sass-embedded (1.64.1)
       google-protobuf (~> 3.23)
       rake (>= 13.0.0)
@@ -364,11 +374,6 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.3.0)
-      childprocess (>= 0.5, < 5.0)
-      rexml (~> 3.2, >= 3.2.5)
-      rubyzip (>= 1.2.2, < 3.0)
-      websocket (~> 1.0)
     shellany (0.0.1)
     simplecov (0.22.0)
       docile (~> 1.1)
@@ -417,11 +422,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webdrivers (5.0.0)
-      nokogiri (~> 1.6)
-      rubyzip (>= 1.3.0)
-      selenium-webdriver (~> 4.0)
-    websocket (1.2.9)
+    webrick (1.8.1)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -443,11 +444,14 @@ DEPENDENCIES
   better_errors (~> 2.9, >= 2.9.1)
   bootsnap
   bootstrap
+  brakeman
   capybara
   chartkick (~> 5.0)
+  cuprite
   dartsass-rails
   debug
   devise
+  evil_systems (~> 1.1)
   faker
   figaro
   geocoder
@@ -461,7 +465,6 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.3)
   rolify
-  selenium-webdriver
   simplecov
   sprockets-rails
   standard
@@ -470,7 +473,6 @@ DEPENDENCIES
   turbo-rails
   tzinfo-data
   web-console
-  webdrivers
 
 RUBY VERSION
    ruby 3.1.1p18

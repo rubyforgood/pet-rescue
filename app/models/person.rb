@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: persons
+# Table name: people
 #
 #  id                 :bigint           not null, primary key
 #  activities         :text
@@ -43,7 +43,7 @@
 #
 # Indexes
 #
-#  index_persons_on_adopter_account_id  (adopter_account_id)
+#  index_people_on_adopter_account_id  (adopter_account_id)
 #
 # Foreign Keys
 #

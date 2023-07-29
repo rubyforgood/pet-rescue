@@ -1,4 +1,8 @@
 # Seed data
+AdminUser.destroy_all
+AdopterAccount.destroy_all
+AdopterProfile.destroy_all
+User.destroy_all
 
 @organization_one = Organization.create!(
   name: "Alta Pet Rescue",
@@ -220,8 +224,9 @@ Location.create!(
   city_town: "Nonsense"
 )
 
+path = Rails.root.join("app", "assets", "images", "hero.jpg")
 10.times do
-  Pet.create!(
+  pet = Pet.create!(
     organization: Organization.all.sample,
     name: Faker::Creature::Dog.name,
     age: Faker::Number.within(range: 1..10),
@@ -230,12 +235,13 @@ Location.create!(
     breed: Faker::Creature::Dog.breed,
     description: "He just loves a run and a bum scratch at the end of the day"
   )
+  pet.images.attach(io: File.open(path), filename: "hero.jpg")
 end
 
-Match.create!(
-  pet_id: Pet.first.id,
-  adopter_account_id: @adopter_account_one.id
-)
+# Match.create!(
+#   pet_id: Pet.first.id,
+#   adopter_account_id: @adopter_account_one.id
+# )
 
 10.times do
   AdopterApplication.create!(
@@ -249,3 +255,5 @@ end
 
 # active admin seed
 AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password") if Rails.env.development?
+
+#randomize user email plz

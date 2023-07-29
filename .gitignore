@@ -39,5 +39,9 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
-#JetBrains IDE config (RubyMine, Idea, etc)
+# IDE
 .idea
+.vscode
+
+# OS
+.DS_Store

@@ -18,7 +18,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (person_id => persons.id)
+#  fk_rails_...  (person_id => adopter_account.id)
 #
 class Location < ApplicationRecord
   belongs_to :person

@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: positions
+#
+#  id               :bigint           not null, primary key
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  organization_id  :bigint
+#  staff_account_id :bigint
+#
+# Indexes
+#
+#  index_positions_on_organization_id   (organization_id)
+#  index_positions_on_staff_account_id  (staff_account_id)
+#
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the "{}" from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value
