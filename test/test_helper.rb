@@ -27,4 +27,15 @@ class ActiveSupport::TestCase
     super
     FileUtils.rm_rf(ActiveStorage::Blob.service.root)
   end
+
+  #
+  # Sets up shoulda matcher configuration
+  # https://github.com/thoughtbot/shoulda-matchers
+  #
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :minitest
+      with.library :rails
+    end
+  end
 end
