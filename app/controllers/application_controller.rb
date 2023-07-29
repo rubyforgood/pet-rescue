@@ -1,13 +1,17 @@
 class ApplicationController < ActionController::Base
-  set_current_tenant_through_filter if Rails.env.development?
-  before_action :set_organization, if: proc { Rails.env.development? }
+  before_action :debug_request
+  set_current_tenant_through_filter
+  before_action :set_tenant
 
-  set_current_tenant_by_subdomain(:organization, :subdomain)
-
-  def set_organization
-    set_current_tenant(Organization.first)
+  def debug_request
+    logger.debug("SUBDOMAIN: #{request.subdomain}")
+    logger.debug("TENANT: #{ActsAsTenant.current_tenant}")
   end
-  # authorization checks
+
+  def set_tenant
+    org = Organization.find_by(subdomain: request.subdomain)
+    set_current_tenant(org)
+  end
 
   private
 
