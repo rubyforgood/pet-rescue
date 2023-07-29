@@ -61,12 +61,12 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
     assert_select "div.alert", "Please tell us about your ideal pet"
     assert_select "div.alert", "Please tell us about your lifestyle"
     assert_select "div.alert", "Please tell us about the activities"
-    assert_select "div.alert", "This field cannot be blank", {count: 2}
+    assert_select "div.alert", "This field cannot be blank", 2
     assert_select "div.alert", "Please tell us about your pet experience"
     assert_select "div.alert", "Please tell us about your contingencies"
-    assert_select "div.alert", "Select one", {count: 7}
+    assert_select "div.alert", "Select one", 7
     assert_select "div.alert", "Housing type can't be blank"
-    assert_select "div.alert", "can't be blank", {count: 2}
+    assert_select "div.alert", "can't be blank", 2
     assert_select "div.alert", "Adults in home can't be blank"
     assert_select "div.alert", "Kids in home can't be blank"
     assert_select "div.alert", "Please provide an annual cost estimate"
