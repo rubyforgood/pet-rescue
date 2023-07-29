@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_151957) do
-
+ActiveRecord::Schema[7.0].define(version: 2023_07_29_184038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -162,6 +161,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_151957) do
     t.index ["adopter_profile_id"], name: "index_locations_on_adopter_profile_id", unique: true
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "sender_id", null: false
+    t.integer "adopter_application_id", null: false
+    t.string "message", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.string "city"
@@ -222,6 +229,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_151957) do
   add_foreign_key "adoptions", "adopter_accounts"
   add_foreign_key "adoptions", "pets"
   add_foreign_key "locations", "adopter_profiles"
+  add_foreign_key "messages", "adopter_applications"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "pets", "organizations"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
