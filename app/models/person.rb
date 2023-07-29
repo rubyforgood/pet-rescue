@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: adopter_profiles
+# Table name: persons
 #
 #  id                 :bigint           not null, primary key
 #  activities         :text
@@ -19,9 +19,11 @@
 #  experience         :text
 #  fenced_access      :boolean
 #  fenced_alternative :text
+#  first_name         :string
 #  housing_type       :string
 #  ideal_pet          :text
 #  kids_in_home       :integer
+#  last_name          :string
 #  lifestyle_fit      :text
 #  location_day       :text
 #  location_night     :text
@@ -41,13 +43,13 @@
 #
 # Indexes
 #
-#  index_adopter_profiles_on_adopter_account_id  (adopter_account_id)
+#  index_persons_on_adopter_account_id  (adopter_account_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (adopter_account_id => adopter_accounts.id)
 #
-class AdopterProfile < ApplicationRecord
+class Person < ApplicationRecord
   belongs_to :adopter_account
   has_one :location, dependent: :destroy
   accepts_nested_attributes_for :location
@@ -110,6 +112,9 @@ class AdopterProfile < ApplicationRecord
     if: :visiting_laventana?
   validates :referral_source, presence: {message: "Please tell us how you heard about us"},
     length: {maximum: 50, message: "50 characters maximum"}
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+            
 
   def shared_owner_true?
     shared_ownership == true

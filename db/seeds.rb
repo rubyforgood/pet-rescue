@@ -18,8 +18,8 @@
 
 @user_staff_one = User.create!(
   email: "staff@example.com",
-  first_name: "Andy",
-  last_name: "Peters",
+  # first_name: "Andy",
+  # last_name: "Peters",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -33,8 +33,8 @@ StaffAccount.create!(
 
 @user_staff_two = User.create!(
   email: "staff2@example.com",
-  first_name: "Randy",
-  last_name: "Peterson",
+  # first_name: "Randy",
+  # last_name: "Peterson",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -48,8 +48,8 @@ StaffAccount.create!(
 
 @user_adopter_one = User.create!(
   email: "adopter1@example.com",
-  first_name: "Joe",
-  last_name: "Brando",
+  # first_name: "Joe",
+  # last_name: "Brando",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -59,8 +59,8 @@ StaffAccount.create!(
 
 @user_adopter_two = User.create!(
   email: "adopter2@example.com",
-  first_name: "Kamala",
-  last_name: "Lolsworth",
+  # first_name: "Kamala",
+  # last_name: "Lolsworth",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -70,8 +70,8 @@ StaffAccount.create!(
 
 @user_adopter_three = User.create!(
   email: "adopter3@example.com",
-  first_name: "Bad",
-  last_name: "Address",
+  # first_name: "Bad",
+  # last_name: "Address",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -79,7 +79,7 @@ StaffAccount.create!(
 
 @adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
 
-@adopter_profile_one = AdopterProfile.create!(
+@adopter_profile_one = Person.create!(
   adopter_account_id: @adopter_account_one.id,
   phone_number: "250 548 7721",
   contact_method: "phone",
@@ -112,17 +112,19 @@ StaffAccount.create!(
   describe_surrender: "I had to surrender a cat when I was 19 because of university",
   annual_cost: "$2,000",
   visit_laventana: false,
-  referral_source: "my friends friend"
+  referral_source: "my friends friend",
+  first_name: "Phil",
+  last_name: "Fry"
 )
 
 Location.create!(
-  adopter_profile_id: @adopter_profile_one.id,
+  person_id: @adopter_profile_one.id,
   country: "Canada",
   province_state: "Alberta",
   city_town: "Canmore"
 )
 
-@adopter_profile_two = AdopterProfile.create!(
+@adopter_profile_two = Person.create!(
   adopter_account_id: @adopter_account_two.id,
   phone_number: "250 548 7721",
   contact_method: "phone",
@@ -158,17 +160,19 @@ Location.create!(
   annual_cost: "$2,000",
   visit_laventana: true,
   visit_dates: "April 2 to May 7 2023",
-  referral_source: "my friends friend"
+  referral_source: "my friends friend",
+  first_name: "Amy",
+  last_name: "Smith"
 )
 
 Location.create!(
-  adopter_profile_id: @adopter_profile_two.id,
+ person_id: @adopter_profile_two.id,
   country: "USA",
   province_state: "Nevada",
   city_town: "Reno"
 )
 
-@adopter_profile_three = AdopterProfile.create!(
+@adopter_profile_three = Person.create!(
   adopter_account_id: @adopter_account_three.id,
   phone_number: "250 548 7721",
   contact_method: "phone",
@@ -204,11 +208,13 @@ Location.create!(
   annual_cost: "$2,000",
   visit_laventana: true,
   visit_dates: "April 2 to May 7 2023",
-  referral_source: "my friends friend"
+  referral_source: "my friends friend",
+  first_name: "Jill",
+  last_name: "Sanger"
 )
 
 Location.create!(
-  adopter_profile_id: @adopter_profile_three.id,
+  person_id: @adopter_profile_three.id,
   country: "Nonsense",
   province_state: "Nonsense",
   city_town: "Nonsense"
@@ -226,7 +232,7 @@ Location.create!(
   )
 end
 
-Adoption.create!(
+Match.create!(
   pet_id: Pet.first.id,
   adopter_account_id: @adopter_account_one.id
 )

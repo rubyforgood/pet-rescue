@@ -43,4 +43,6 @@ Rails.application.routes.draw do
   resolve("adopter_profile") { [:adopter_profile] }
 
   post "/donations", to: "donations#create"
+
+  get "/adoptions", to: "adoptions#index"
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_27_210215) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_29_145609) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,7 +87,45 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_210215) do
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
-  create_table "adopter_profiles", force: :cascade do |t|
+  create_table "donations", force: :cascade do |t|
+    t.string "amount"
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.string "country"
+    t.string "city_town"
+    t.string "province_state"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["person_id"], name: "index_locations_on_person_id", unique: true
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "pet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "adopter_account_id", null: false
+    t.index ["adopter_account_id"], name: "index_matches_on_adopter_account_id"
+    t.index ["pet_id"], name: "index_matches_on_pet_id"
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "city"
+    t.string "country"
+    t.string "zipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "subdomain"
+  end
+
+  create_table "people", force: :cascade do |t|
     t.bigint "adopter_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -123,45 +161,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_210215) do
     t.boolean "visit_laventana"
     t.text "visit_dates"
     t.text "referral_source"
-    t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
-  end
-
-  create_table "adoptions", force: :cascade do |t|
-    t.bigint "pet_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "adopter_account_id", null: false
-    t.index ["adopter_account_id"], name: "index_adoptions_on_adopter_account_id"
-    t.index ["pet_id"], name: "index_adoptions_on_pet_id"
-  end
-
-  create_table "donations", force: :cascade do |t|
-    t.string "amount"
-    t.string "currency"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.bigint "adopter_profile_id", null: false
-    t.string "country"
-    t.string "city_town"
-    t.string "province_state"
-    t.float "latitude"
-    t.float "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["adopter_profile_id"], name: "index_locations_on_adopter_profile_id", unique: true
-  end
-
-  create_table "organizations", force: :cascade do |t|
-    t.string "name"
-    t.string "city"
-    t.string "country"
-    t.string "zipcode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "subdomain"
+    t.string "first_name"
+    t.string "last_name"
+    t.index ["adopter_account_id"], name: "index_people_on_adopter_account_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -197,8 +199,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_210215) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "first_name", null: false
-    t.string "last_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "tos_agreement"
@@ -211,10 +211,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_27_210215) do
   add_foreign_key "adopter_accounts", "users"
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
-  add_foreign_key "adopter_profiles", "adopter_accounts"
-  add_foreign_key "adoptions", "adopter_accounts"
-  add_foreign_key "adoptions", "pets"
-  add_foreign_key "locations", "adopter_profiles"
+  add_foreign_key "locations", "people"
+  add_foreign_key "matches", "adopter_accounts"
+  add_foreign_key "matches", "pets"
+  add_foreign_key "people", "adopter_accounts"
   add_foreign_key "pets", "organizations"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"

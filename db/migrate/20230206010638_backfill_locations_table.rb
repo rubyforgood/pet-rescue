@@ -17,7 +17,7 @@ class BackfillLocationsTable < ActiveRecord::Migration[7.0]
         country: profile.country,
         province_state: profile.province_state,
         city_town: profile.city_town,
-        adopter_profile_id: profile.id
+        person_id: profile.id
       )
     end
   end
