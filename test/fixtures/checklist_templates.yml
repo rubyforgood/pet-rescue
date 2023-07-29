@@ -10,9 +10,9 @@
 #
 
 one:
-  name: MyString
+  name: Vaccines Dog
   description: MyText
 
 two:
-  name: MyString
+  name: Vaccines Cat
   description: MyText

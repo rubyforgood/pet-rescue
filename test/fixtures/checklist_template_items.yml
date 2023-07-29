@@ -22,14 +22,12 @@
 
 one:
   checklist_template: one
-  name: MyString
-  description: MyText
+  name: Shot 1
   expected_duration_days: 1
   required: false
 
 two:
   checklist_template: two
-  name: MyString
-  description: MyText
-  expected_duration_days: 1
+  name: Shot 2
+  expected_duration_days: 5
   required: false
