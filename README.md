@@ -73,6 +73,13 @@ CI=false ./bin/rails test:system
 Run ALL tests:
 ```
 ./bin/rails test:all
+
+# 💅 Linting 
+
+We use [standard](https://github.com/standardrb/standard) for linting. It provides a command for auto-fixing errors:
+
+```sh
+rails standard:fix
 ```
 
 # 📖 About

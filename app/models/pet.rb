@@ -28,7 +28,6 @@
 class Pet < ApplicationRecord
   acts_as_tenant(:organization)
 
-  belongs_to :organization
   has_many :adopter_applications, dependent: :destroy
   has_one :adoption, dependent: :destroy
   has_many_attached :images
