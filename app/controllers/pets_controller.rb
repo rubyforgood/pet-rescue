@@ -1,12 +1,16 @@
 class PetsController < ApplicationController
-  before_action :verified_staff
+  # before_action :verified_staff
   after_action :set_reason_paused_to_none, only: [:update]
 
   def index
-    @pets = if params[:selection] == 'Adopted'
-      Pet.adopted
+    if current_user&.staff_account&.verified
+      @pets = Pet.includes(:adopter_applications, images_attachments: :blob).where.missing(:adoption)
     else
-      Pet.unadopted
+      @pets = if params[:selection] == 'Adopted'
+        Pet.adopted
+      else
+        Pet.unadopted
+      end
     end
   end
 

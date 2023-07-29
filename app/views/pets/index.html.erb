@@ -4,35 +4,15 @@
     <!--page heading-->
     <div class="text-center mb-5">
       <h1 class="section-heading text-uppercase underline">
-        Our pets
+        <%- if current_user&.staff_account&.verified %>
+          Our pets
+        <%- else %>
+          Up for adoption
+        <% end %>
       </h1>
     </div>
 
-    <!--filter section-->
-    <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5 mt-md-5">
-      <div class ="col-md-6 d-flex flex-column gap-3">
-
-        <!--form1-->
-        <%= form_with url: '/pets', method: :get do | f | %>
-          <div class="d-flex gap-3 form-group">
-            <%= f.select :selection, ['Seeking Adoption', 'Adopted'], 
-                          { prompt: "Filter by adoption status" }, 
-                          class: 'form-control' %>
-            <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
-          </div>
-        <% end %>
-        
-        <div class="d-flex gap-3 form-group">
-          <%- @pets.each do |pet| %>
-            <%= link_to pet.name, pet_path(pet) %>
-          <% end %>
-        </div>
-      </div>
-
-      <div class ="col-md-6 d-flex justify-content-center align-items-center">
-         <%= link_to 'Create Pet', new_pet_path, class: 'custom-btn-pink' %><br>
-      </div>
-    </div> <!--row-->
+    <%= render "filter_section" %>
 
     <!--pet tile section-->
     <div class="row">
@@ -47,14 +27,23 @@
               <% end %>
               <div class="card-body">
                 <h5 class="card-title">
-                  <%= pet.name %>
+                  <% if pet.has_adoption_pending? %>
+                    <%= pet.name %> (Adoption Pending)
+                  <% else %>
+                    <%= pet.name %>
+                  <% end %>
                 </h5>
+                <p class="card-text m-0 bigger">
+                  Age: <%= "#{pet.age}" " #{pet.age_unit}" %>
+                </p>
                 <p class="card-text">
                   Breed: <%= pet.breed %>
                 </p>
-                <p class="card-text">
-                  Applications: <%= pet.application_paused == false ? 'active' : 'paused' %>
-                </p>
+                <%- if current_user&.staff_account&.verified %>
+                  <p class="card-text">
+                    Applications: <%= pet.application_paused == false ? 'active' : 'paused' %>
+                  </p>
+                <% end %>
               </div>
             </div>
           <% end %>
