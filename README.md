@@ -62,7 +62,7 @@ Add the following line:
 ```text
 127.0.0.1  pet-rescue.local alta.pet-rescue.local rubyforgood.pet-rescue.local
 ```
-This will maps the two seed Orgs with the correct subdomains
+This will map the two seed Orgs with the correct subdomains
 
 # 📖 About
 
