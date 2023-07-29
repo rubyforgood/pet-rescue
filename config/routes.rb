@@ -45,4 +45,3 @@ Rails.application.routes.draw do
 
   post "/donations", to: "donations#create"
 end
-  
