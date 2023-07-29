@@ -214,8 +214,9 @@ Location.create!(
   city_town: "Nonsense"
 )
 
+path = Rails.root.join("app", "assets", "images", "hero.jpg")
 10.times do
-  Pet.create!(
+  pet = Pet.create!(
     organization: Organization.all.sample,
     name: Faker::Creature::Dog.name,
     age: Faker::Number.within(range: 1..10),
@@ -224,6 +225,7 @@ Location.create!(
     breed: Faker::Creature::Dog.breed,
     description: "He just loves a run and a bum scratch at the end of the day"
   )
+  pet.images.attach(io: File.open(path), filename: "hero.jpg")
 end
 
 Adoption.create!(
