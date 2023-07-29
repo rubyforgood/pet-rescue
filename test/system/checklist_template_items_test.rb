@@ -14,7 +14,7 @@ class ChecklistTemplateItemsTest < ApplicationSystemTestCase
     visit checklist_template_items_url
     click_on "New checklist template item"
 
-    fill_in "Checklist template", with: @checklist_template_item.checklist_template_id
+    select @checklist_template_item.checklist_template.name, from: "Checklist template"
     fill_in "Description", with: @checklist_template_item.description
     fill_in "Expected duration days", with: @checklist_template_item.expected_duration_days
     fill_in "Name", with: @checklist_template_item.name
@@ -29,7 +29,7 @@ class ChecklistTemplateItemsTest < ApplicationSystemTestCase
     visit checklist_template_item_url(@checklist_template_item)
     click_on "Edit this checklist template item", match: :first
 
-    fill_in "Checklist template", with: @checklist_template_item.checklist_template_id
+    select @checklist_template_item.checklist_template.name, from: "Checklist template"
     fill_in "Description", with: @checklist_template_item.description
     fill_in "Expected duration days", with: @checklist_template_item.expected_duration_days
     fill_in "Name", with: @checklist_template_item.name
