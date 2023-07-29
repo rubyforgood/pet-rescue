@@ -1,7 +1,6 @@
-
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class PetTest < ActiveSupport::TestCase
   context "associations" do
@@ -32,5 +31,4 @@ class PetTest < ActiveSupport::TestCase
       assert_not pet.has_adoption_pending?
     end
   end
-
 end

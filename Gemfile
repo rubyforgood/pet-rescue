@@ -127,8 +127,8 @@ group :test do
 
   # Adds really common matchers you can use in tests to add
   # test coverage easily
-  gem 'shoulda', '~> 4.0'
-  gem 'shoulda-matchers'
+  gem "shoulda", "~> 4.0"
+  gem "shoulda-matchers"
 end
 
 # Add chartkick for charts generation

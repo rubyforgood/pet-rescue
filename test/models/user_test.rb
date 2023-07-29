@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
   context "associations" do
@@ -17,7 +17,7 @@ class UserTest < ActiveSupport::TestCase
   context ".organization_staff" do
     should "return all users with staff accounts" do
       user = users(:verified_staff_one)
-      organization = user.staff_account.organization 
+      organization = user.staff_account.organization
       assert_includes User.organization_staff(organization.id), user
 
       user.staff_account.destroy
