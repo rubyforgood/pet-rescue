@@ -5,9 +5,6 @@
 #  id                     :bigint           not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  first_name             :string           not null
-#  last_name              :string           not null
-#  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
 #  tos_agreement          :boolean
@@ -23,8 +20,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :validatable
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
   validates :email, presence: true
   validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
     allow_nil: false, on: :create
