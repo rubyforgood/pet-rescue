@@ -17,7 +17,7 @@ class ChecklistTemplatesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create checklist_template" do
     assert_difference("ChecklistTemplate.count") do
-      post checklist_templates_url, params: { checklist_template: { description: @checklist_template.description, name: @checklist_template.name, string: @checklist_template.string, text: @checklist_template.text } }
+      post checklist_templates_url, params: { checklist_template: { description: @checklist_template.description, name: @checklist_template.name } }
     end
 
     assert_redirected_to checklist_template_url(ChecklistTemplate.last)
@@ -34,7 +34,7 @@ class ChecklistTemplatesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update checklist_template" do
-    patch checklist_template_url(@checklist_template), params: { checklist_template: { description: @checklist_template.description, name: @checklist_template.name, string: @checklist_template.string, text: @checklist_template.text } }
+    patch checklist_template_url(@checklist_template), params: { checklist_template: { description: @checklist_template.description, name: @checklist_template.name } }
     assert_redirected_to checklist_template_url(@checklist_template)
   end
 

@@ -16,8 +16,6 @@ class ChecklistTemplatesTest < ApplicationSystemTestCase
 
     fill_in "Description", with: @checklist_template.description
     fill_in "Name", with: @checklist_template.name
-    fill_in "String", with: @checklist_template.string
-    fill_in "Text", with: @checklist_template.text
     click_on "Create Checklist template"
 
     assert_text "Checklist template was successfully created"
@@ -30,8 +28,6 @@ class ChecklistTemplatesTest < ApplicationSystemTestCase
 
     fill_in "Description", with: @checklist_template.description
     fill_in "Name", with: @checklist_template.name
-    fill_in "String", with: @checklist_template.string
-    fill_in "Text", with: @checklist_template.text
     click_on "Update Checklist template"
 
     assert_text "Checklist template was successfully updated"

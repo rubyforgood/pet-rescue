@@ -1,13 +1,18 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# == Schema Information
+#
+# Table name: checklist_templates
+#
+#  id          :bigint           not null, primary key
+#  description :text
+#  name        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 
 one:
   name: MyString
-  string: MyString
-  description: MyString
-  text: MyString
+  description: MyText
 
 two:
   name: MyString
-  string: MyString
-  description: MyString
-  text: MyString
+  description: MyText
