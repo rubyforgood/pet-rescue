@@ -1,11 +1,13 @@
-class OrganizationPetsController < ApplicationController
+class PetsController < ApplicationController
   before_action :verified_staff
   after_action :set_reason_paused_to_none, only: [:update]
 
   def index
-    @unadopted_pets = Pet.unadopted_pets(current_user.staff_account.organization_id)
-    @adopted_pets = Pet.adopted_pets(current_user.staff_account.organization_id)
-    @pet = selected_pet
+    @pets = if params[:selection] == 'Adopted'
+      Pet.adopted
+    else
+      Pet.unadopted
+    end
   end
 
   def new

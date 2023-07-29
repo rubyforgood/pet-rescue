@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   get "/account_select", to: "static_pages#account_select"
   get "/profile_review/:id", to: "profile_reviews#show", as: "profile_review"
 
-  get "/adoptable_pets", to: "adoptable_pets#index"
-  get "/adoptable_pets/:id", to: "adoptable_pets#show", as: "adoptable_pet"
+  # get "/adoptable_pets", to: "adoptable_pets#index"
+  # get "/adoptable_pets/:id", to: "adoptable_pets#show", as: "adoptable_pet"
 
   get "/contacts", to: "contacts#create"
   get "/contacts/new", to: "contacts#new", as: "new_contact"
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 
-  resources :pets, controller: "organization_pets"
+  resources :pets
   resources :adopter_applications, only: [:index, :edit, :update], controller: "adoption_application_reviews"
 
   devise_for :users, controllers: {registrations: "registrations"}

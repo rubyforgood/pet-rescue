@@ -52,6 +52,9 @@ class Pet < ApplicationRecord
     :opening_soon,
     :paused_until_further_notice]
 
+  scope :adopted, -> { includes(:adoption).where.not(adoption: {id: nil}) }
+  scope :unadopted, -> { includes(:adoption).where(adoption: {id: nil}) }
+
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?
     adopter_applications.any? { |app| app.status == "adoption_pending" }
@@ -90,16 +93,5 @@ class Pet < ApplicationRecord
   # all unadopted pets under all organizations
   def self.all_unadopted_pets
     Pet.includes(:adoption).where(adoption: {id: nil})
-  end
-
-  # all unadopted pets under an organization
-  def self.unadopted_pets(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:adoption).where(adoption: {id: nil})
-  end
-
-  # all adopted pets under an organization
-  def self.adopted_pets(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:adoption)
-      .where.not(adoption: {id: nil})
   end
 end
