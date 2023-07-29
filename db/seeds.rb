@@ -228,7 +228,7 @@ path = Rails.root.join("app", "assets", "images", "hero.jpg")
   pet.images.attach(io: File.open(path), filename: "hero.jpg")
 end
 
-Adoption.create!(
+Match.create!(
   pet_id: Pet.first.id,
   adopter_account_id: @adopter_account_one.id
 )

@@ -4,7 +4,7 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
   setup do
     @adopter_account = adopter_accounts(:adopter_account_one)
     @pet = pets(:one)
-    @adoptions = Adoption.all
+    @adoptions = Match.all
   end
 
   test "location lat and lon are deviated by google maps data builder" do
