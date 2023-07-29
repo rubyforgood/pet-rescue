@@ -5,7 +5,7 @@ require "test_helper"
 class PetTest < ActiveSupport::TestCase
   context "associations" do
     should have_many(:adopter_applications).dependent(:destroy)
-    should have_one(:adoption).dependent(:destroy)
+    should have_one(:match).dependent(:destroy)
     should have_many_attached(:images)
   end
 

@@ -134,7 +134,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   test "after making the http request to create an adoption, a new Adoption is created" do
     sign_in users(:verified_staff_one)
 
-    assert_changes "Adoption.count", from: 1, to: 2 do
+    assert_changes "Match.count", from: 1, to: 2 do
       post "/create_adoption",
         params: {adopter_account_id: @adopter_account_id, pet_id: @pet.id}
     end
