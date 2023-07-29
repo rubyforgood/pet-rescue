@@ -73,6 +73,7 @@ CI=false ./bin/rails test:system
 Run ALL tests:
 ```
 ./bin/rails test:all
+```
 
 # 💅 Linting 
 
