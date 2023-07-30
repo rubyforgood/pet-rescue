@@ -17,9 +17,11 @@
       <div class='form-group d-flex'>
         <div class='me-3'>
           <%= form.label :birth_date, class: 'mt-3' %>
-          <%= form.date_select :birth_date,
-                               start_year: Date.today.year - 20,
-                               end_year: Date.today.year %>
+          <span class='form-control'>
+            <%= form.date_select :birth_date,
+                                 start_year: Date.today.year - 20,
+                                 end_year: Date.today.year %>
+          </span>
         </div>
 
         <% pet.errors.full_messages_for(:birth_date).each do |message| %>
