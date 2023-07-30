@@ -11,7 +11,7 @@ module BajaPetRescue
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
-    # config.active_record.verify_foreign_keys_for_fixtures = false 
+    # config.active_record.verify_foreign_keys_for_fixtures = false
 
     # BPR - send errors to routes to render custom error pages
     config.exceptions_app = routes

@@ -14,9 +14,8 @@ class ChecklistAssignmentTest < ActiveSupport::TestCase
   end
 
   test "assignment completion" do
-    assert_difference( "ChecklistAssignment.incomplete.count", -1) do 
+    assert_difference("ChecklistAssignment.incomplete.count", -1) do
       ChecklistAssignment.first.update!(completed_at: Time.now)
-    end 
+    end
   end
 end
-
