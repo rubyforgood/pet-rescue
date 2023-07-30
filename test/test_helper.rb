@@ -30,6 +30,12 @@ class ActiveSupport::TestCase
     FileUtils.rm_rf(ActiveStorage::Blob.services.fetch(:test_fixtures).root)
   end
 
+  def check_messages
+    assert_response :success
+    print response.parsed_body
+    assert_not response.parsed_body.include?('translation_missing'), "Missing translations, ensure this text is included in en.yml"
+  end
+
   #
   # Sets up shoulda matcher configuration
   # https://github.com/thoughtbot/shoulda-matchers

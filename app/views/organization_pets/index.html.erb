@@ -16,7 +16,7 @@
     <!--page heading-->
     <div class="text-center mb-5">
       <h1 class="section-heading text-uppercase underline">
-        Our pets
+        <%= t('.our_pets') %>
       </h1>
     </div>
 
@@ -27,10 +27,10 @@
         <!--form1-->
         <%= form_with url: '/pets', method: :get do | f | %>
           <div class="d-flex gap-3 form-group">
-            <%= f.select :selection, ['Seeking Adoption', 'Adopted'], 
-                          { prompt: "Filter by adoption status" }, 
+            <%= f.select :selection, [[t('.select.seeking_adoption'), 'Seeking Adoption'], [t('.select.adopted'), 'Adopted']],
+                          { prompt: t('.filter') },
                           class: 'form-control' %>
-            <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
+            <%= f.submit t('general.submit'), class: 'btn btn-outline-dark' %>
           </div>
         <% end %>
         
@@ -39,16 +39,16 @@
         <%= form_with url: '/pets', class: 'mb-3 mb-md-0', method: :get do | f | %>
           <div class="d-flex gap-3 form-group">
             <%= f.collection_select :pet_id, @collection, :id, :name, 
-                                    { prompt: 'Filter by name' }, 
+                                    { prompt: t('.filter_by_name') },
                                     class: 'form-control' %>
-            <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
+            <%= f.submit t('general.submit'), class: 'btn btn-outline-dark' %>
           </div>
         <% end %>
 
       </div>
 
       <div class ="col-md-6 d-flex justify-content-center align-items-center">
-         <%= link_to 'Create Pet', new_pet_path, class: 'custom-btn-pink' %><br>
+         <%= link_to t('.create_pet'), new_pet_path, class: 'custom-btn-pink' %><br>
       </div>
     </div> <!--row-->
 
@@ -68,10 +68,10 @@
                   <%= pet.name %>
                 </h5>
                 <p class="card-text">
-                  Breed: <%= pet.breed %>
+                  <%= "#{t('general.breed')}: #{pet.breed}" %>
                 </p>
                 <p class="card-text">
-                  Applications: <%= pet.application_paused == false ? 'active' : 'paused' %>
+                  <%= pet.application_paused == false ? t('.application.active') : t('.application.paused') %>
                 </p>
               </div>
             </div>

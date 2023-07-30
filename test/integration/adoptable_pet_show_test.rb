@@ -6,7 +6,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
     get "/adoptable_pets/#{pet.id}"
 
-    assert_response :success
+    check_messages
     assert_select "h4", "Create an account to apply for this pet"
     assert_select "a", "Adopt"
   end
@@ -17,7 +17,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
     get "/adoptable_pets/#{pet.id}"
 
-    assert_response :success
+    check_messages
     assert_select "h4", "Complete your profile to apply for this pet"
     assert_select "a", "Complete my profile"
   end
@@ -28,7 +28,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
     get "/adoptable_pets/#{pet.id}"
 
-    assert_response :success
+    check_messages
     assert_select "h4", "In love with this pooch?"
     assert_select "form" do
       assert_select "button", "Apply to Adopt"
@@ -43,7 +43,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
     get "/adoptable_pets/#{pet.id}"
 
-    assert_response :success
+    check_messages
     assert_select "h4.me-2", "Application Awaiting Review"
   end
 
@@ -53,7 +53,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
     get "/adoptable_pets/#{pet.id}"
 
-    assert_response :success
+    check_messages
     assert_select "form" do
       assert_select "button", "Log Out"
     end
@@ -83,6 +83,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
     get "/adoptable_pets/#{pet.id}"
 
+    check_messages
     assert_select "h1", "#{pet.name} (Adoption Pending)"
   end
 
@@ -93,6 +94,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "You can only view pets that need adoption.", flash[:alert]
   end
 end
