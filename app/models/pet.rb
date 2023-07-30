@@ -30,11 +30,12 @@ class Pet < ApplicationRecord
   has_many :adopter_applications, dependent: :destroy
   has_one :adoption, dependent: :destroy
   has_many_attached :images
+  has_one :weight, dependent: :destroy
+  accepts_nested_attributes_for :weight
 
   validates :name, presence: true
   validates :age, presence: true
   validates :age_unit, presence: true
-  validates :size, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
   validates :description, presence: true, length: {maximum: 1000}

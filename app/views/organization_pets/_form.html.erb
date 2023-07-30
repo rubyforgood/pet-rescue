@@ -58,19 +58,34 @@
         <% end %>
       </div>
 
-      <div class='form-group'>
-        <%= form.label :size, class: 'mt-3' %>
-        <%= form.select :size,
-                        ['Toy (<12 lb)', 
-                        'Small (12-22 lb)', 
-                        'Medium (22-57 lb)',
-                        'Large (57-99 lb)',
-                        'Giant (99+ lb)'], 
-                        { prompt: "Please select" },
-                        class: 'form-control' %>
-        
-        <% pet.errors.full_messages_for(:size).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+      <div class="form-group mt-3">
+        <%= form.fields_for :weight do |weight| %>
+          <div class='form-group d-flex'>
+            <div class='me-3'>
+              <%= weight.label :from, 'From weight' %>
+              <%= weight.text_field :from, class: 'form-control' %>
+              <% pet.weight.custom_messages(:from).each do |error| %>
+                <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+              <% end %>
+            </div>
+            <div class='me-3'>
+              <%= weight.label :to, 'To weight' %>
+              <%= weight.text_field :to, class: 'form-control' %>
+              <% pet.weight.custom_messages(:to).each do |error| %>
+                <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+              <% end %>
+            </div>
+            <div>
+              <%= weight.label :unit %>
+              <%= weight.select :unit, 
+                          Weight.units,
+                          {},
+                          class: 'form-control' %>
+              <% pet.weight.custom_messages(:unit).each do |error| %>
+                <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+              <% end %>
+            </div>
+          </div>
         <% end %>
       </div>
 
