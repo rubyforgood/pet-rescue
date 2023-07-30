@@ -4,7 +4,8 @@ class ChecklistAssignmentTest < ActiveSupport::TestCase
   test "assigning checklist to match" do
     match = Match.create!(
       adopter_account: adopter_accounts(:adopter_account_one),
-      pet: pets(:adopted_pet)
+      pet: pets(:adopted_pet),
+      organization: pets(:adopted_pet).organization
     )
     checklist = checklist_templates(:one)
 
