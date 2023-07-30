@@ -228,7 +228,7 @@ path = Rails.root.join("app", "assets", "images", "hero.jpg")
   pet.images.attach(io: File.open(path), filename: "hero.jpg")
 end
 
-Match.create!(
+@match = Match.create!(
   pet_id: Pet.first.id,
   adopter_account_id: @adopter_account_one.id,
   organization_id: Pet.first.organization_id
@@ -257,6 +257,8 @@ end
     required: [true, false].sample
   )
 end
+
+@match.assign_checklist_template(@checklist_template)
 
 # active admin seed
 AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password") if Rails.env.development?

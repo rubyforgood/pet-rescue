@@ -126,6 +126,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
     t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
   end
 
+  create_table "checklist_assignments", force: :cascade do |t|
+    t.bigint "checklist_template_item_id", null: false
+    t.bigint "match_id", null: false
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_template_item_id"], name: "index_checklist_assignments_on_checklist_template_item_id"
+    t.index ["match_id"], name: "index_checklist_assignments_on_match_id"
+  end
+
   create_table "checklist_template_items", force: :cascade do |t|
     t.bigint "checklist_template_id", null: false
     t.string "name", null: false
@@ -230,6 +240,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_profiles", "adopter_accounts"
+  add_foreign_key "checklist_assignments", "checklist_template_items"
+  add_foreign_key "checklist_assignments", "matches"
   add_foreign_key "checklist_template_items", "checklist_templates"
   add_foreign_key "locations", "adopter_profiles"
   add_foreign_key "matches", "adopter_accounts"

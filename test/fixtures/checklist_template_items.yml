@@ -31,3 +31,15 @@ two:
   name: Shot 2
   expected_duration_days: 5
   required: false
+
+three:
+  checklist_template: one
+  name: Shot 2
+  expected_duration_days: 11
+  required: false
+
+four:
+  checklist_template: one
+  name: Shot 3
+  expected_duration_days: 20
+  required: false
