@@ -18,8 +18,6 @@
 
 @user_staff_one = User.create!(
   email: "staff@example.com",
-  # first_name: "Andy",
-  # last_name: "Peters",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
@@ -33,85 +31,42 @@ StaffAccount.create!(
 
 @user_staff_two = User.create!(
   email: "staff2@example.com",
-  # first_name: "Randy",
-  # last_name: "Peterson",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
-)
-
-StaffAccount.create!(
-  user_id: @user_staff_two.id,
-  organization_id: @organization_two.id,
-  verified: true
 )
 
 @user_adopter_one = User.create!(
   email: "adopter1@example.com",
-  # first_name: "Joe",
-  # last_name: "Brando",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
 )
-
-@adopter_account_one = AdopterAccount.create!(user_id: @user_adopter_one.id)
 
 @user_adopter_two = User.create!(
   email: "adopter2@example.com",
-  # first_name: "Kamala",
-  # last_name: "Lolsworth",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
 )
-
-@adopter_account_two = AdopterAccount.create!(user_id: @user_adopter_two.id)
 
 @user_adopter_three = User.create!(
   email: "adopter3@example.com",
-  # first_name: "Bad",
-  # last_name: "Address",
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
 )
 
-@adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
+ u = User.create!(email: Faker::Internet.email, password: "password123", tos_agreement: true)
 
-@adopter_profile_one = AdopterProfile.create!(
+@adopter_profile_one = Person.create!(
   adopter_account_id: @adopter_account_one.id,
-  phone_number: "250 548 7721",
+  phone_number: Faker::PhoneNumber.phone_number,
   contact_method: "phone",
-  ideal_pet: 'I love a pet with energy and a gentle spirit.
-              One that snuggles on the couch in the evening.',
-  lifestyle_fit: 'I work from home during the week and am always
-                  at home. On weekends I do a lot of hiking.',
-  activities: 'We will go to the pet park, daily walks x 2, and
-              see friends with pets regularly',
-  alone_weekday: 2,
-  alone_weekend: 1,
-  experience: 'I have owned many pets an currently have three rescue
-              pets and one foster pet',
-  contingency_plan: 'My neighbour is a good friend and has looked after
-                    my pets multiple times and they get along very well',
-  shared_ownership: true,
-  shared_owner: 'My brother is often taking my pets when his kids are over
-                for the weekend as they just love the pets',
-  housing_type: "Detached",
-  fenced_access: true,
-  location_day: "In the house",
-  location_night: "In the house",
-  do_you_rent: false,
-  adults_in_home: 2,
-  kids_in_home: 1,
-  other_pets: true,
-  describe_pets: "I have one cat that does not mind pets at all",
-  checked_shelter: true,
-  surrendered_pet: true,
-  describe_surrender: "I had to surrender a cat when I was 19 because of university",
-  annual_cost: "$2,000",
-  visit_laventana: false,
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  user_id: u.id
+
   referral_source: "my friends friend"
 )
 
@@ -122,42 +77,15 @@ Location.create!(
   city_town: "Canmore"
 )
 
+ u2 = User.create!(email: Faker::Internet.email, password: "password123", tos_agreement: true)
+
 @adopter_profile_two = AdopterProfile.create!(
   adopter_account_id: @adopter_account_two.id,
-  phone_number: "250 548 7721",
+  phone_number: Faker::PhoneNumber.phone_number,
   contact_method: "phone",
-  ideal_pet: 'I love a pet with energy and a gentle spirit.
-              One that snuggles on the couch in the evening.',
-  lifestyle_fit: 'I work from home during the week and am always
-                  at home. On weekends I do a lot of hiking.',
-  activities: 'We will go to the pet park, daily walks x 2, and
-              see friends with pets regularly',
-  alone_weekday: 2,
-  alone_weekend: 1,
-  experience: 'I have owned many pets an currently have three rescue
-              pets and one foster pet',
-  contingency_plan: 'My neighbour is a good friend and has looked after
-                    my pets multiple times and they get along very well',
-  shared_ownership: true,
-  shared_owner: 'My brother is often taking my pets when his kids are over
-                for the weekend as they just love the pets',
-  housing_type: "Detached",
-  fenced_access: false,
-  fenced_alternative: "I plan to always be outside with my pet and walk them at the local park",
-  location_day: "In the house",
-  location_night: "In the house",
-  do_you_rent: true,
-  pets_allowed: true,
-  adults_in_home: 2,
-  kids_in_home: 1,
-  other_pets: true,
-  describe_pets: "I have one cat that does not mind pets at all",
-  checked_shelter: true,
-  surrendered_pet: true,
-  describe_surrender: "I had to surrender a cat when I was 19 because of university",
-  annual_cost: "$2,000",
-  visit_laventana: true,
-  visit_dates: "April 2 to May 7 2023",
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  user_id: u2.id
   referral_source: "my friends friend"
 )
 
@@ -168,42 +96,15 @@ Location.create!(
   city_town: "Reno"
 )
 
+u3 = User.create!(email: Faker::Internet.email, password: "password123", tos_agreement: true)
+
 @adopter_profile_three = AdopterProfile.create!(
   adopter_account_id: @adopter_account_three.id,
-  phone_number: "250 548 7721",
+   phone_number: Faker::PhoneNumber.phone_number,
   contact_method: "phone",
-  ideal_pet: 'I love a pet with energy and a gentle spirit.
-              One that snuggles on the couch in the evening.',
-  lifestyle_fit: 'I work from home during the week and am always
-                  at home. On weekends I do a lot of hiking.',
-  activities: 'We will go to the pet park, daily walks x 2, and
-              see friends with pets regularly',
-  alone_weekday: 2,
-  alone_weekend: 1,
-  experience: 'I have owned many pets an currently have three rescue
-              pets and one foster pet',
-  contingency_plan: 'My neighbour is a good friend and has looked after
-                    my pets multiple times and they get along very well',
-  shared_ownership: true,
-  shared_owner: 'My brother is often taking my pets when his kids are over
-                for the weekend as they just love the pets',
-  housing_type: "Detached",
-  fenced_access: false,
-  fenced_alternative: "I plan to always be outside with my pet and walk them at the local park",
-  location_day: "In the house",
-  location_night: "In the house",
-  do_you_rent: true,
-  pets_allowed: true,
-  adults_in_home: 2,
-  kids_in_home: 1,
-  other_pets: true,
-  describe_pets: "I have one cat that does not mind pets at all",
-  checked_shelter: true,
-  surrendered_pet: true,
-  describe_surrender: "I had to surrender a cat when I was 19 because of university",
-  annual_cost: "$2,000",
-  visit_laventana: true,
-  visit_dates: "April 2 to May 7 2023",
+  first_name: Faker::Name.first_name,
+  last_name: Faker::Name.last_name,
+  user_id: u3.id
   referral_source: "my friends friend"
 )
 
