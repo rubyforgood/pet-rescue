@@ -20,9 +20,9 @@
 #
 class Weight < ApplicationRecord
   belongs_to :pet
-  validates :from, presence: {message: "Please enter a from weight"}
-  validates :to, presence: {message: "Please enter a to weight"}
-  validates :unit, presence: {message: "Please enter a unit"}
+  validates :from, presence: true
+  validates :to, presence: true
+  validates :unit, presence: true
   validate :to_weight_must_be_greater_than_from_weight
 
   def self.units

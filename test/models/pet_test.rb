@@ -6,13 +6,13 @@ class PetTest < ActiveSupport::TestCase
   context "associations" do
     should have_many(:adopter_applications).dependent(:destroy)
     should have_one(:match).dependent(:destroy)
+    should have_one(:weight).dependent(:destroy)
     should have_many_attached(:images)
   end
 
   context "validations" do
     should validate_presence_of(:name)
     should validate_presence_of(:birth_date)
-    should validate_presence_of(:size)
     should validate_presence_of(:breed)
     should validate_presence_of(:sex)
     should validate_presence_of(:description)
