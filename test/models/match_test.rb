@@ -3,6 +3,11 @@
 require "test_helper"
 
 class MatchTest < ActiveSupport::TestCase
+  context "associations" do
+    should belong_to(:pet)
+    should belong_to(:adopter_account)
+  end
+
   def test_match_must_belong_to_same_organization_as_pet
     org1 = Organization.create!
     org2 = Organization.create!
