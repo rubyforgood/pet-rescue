@@ -195,7 +195,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
     t.string "name"
     t.boolean "application_paused", default: false
     t.integer "pause_reason", default: 0
-    t.datetime "birth_date"
+    t.datetime "birth_date", null: false
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
