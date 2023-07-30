@@ -31,6 +31,13 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "adopter application sees application status" do
+    sign_in adopter_accounts(:adopter_account_one).user
+    get "/adoptable_pets/#{pets(:pending_adoption_two).id}"
+    assert_response :success
+    assert_select "h4.me-2", "Application Awaiting Review"
+  end
+
   test "staff do not see an adopt button only log out button" do
     sign_in users(:verified_staff_one)
     get "/adoptable_pets/#{@pet_id}"

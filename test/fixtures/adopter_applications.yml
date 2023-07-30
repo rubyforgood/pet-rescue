@@ -25,7 +25,7 @@
 adopter_application_one:
   pet: pending_adoption_one
   adopter_account: adopter_account_one
-  status: 2
+  status: 2 # adoption_pending
 
 adopter_application_two:
   pet: pending_adoption_two
