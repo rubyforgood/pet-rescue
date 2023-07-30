@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get "/terms_and_conditions", to: "static_pages#terms_and_conditions"
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
-  get "/account_select", to: "static_pages#account_select"
   get "/profile_review/:id", to: "profile_reviews#show", as: "profile_review"
 
   get "/adoptable_pets", to: "adoptable_pets#index"

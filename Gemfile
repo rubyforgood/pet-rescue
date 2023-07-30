@@ -60,8 +60,8 @@ gem "dartsass-rails"
 # Active storage validations
 gem "active_storage_validations"
 
-# Amazon Web Service S3 image storage
-gem "aws-sdk-s3"
+# Use Azure Blob Storage for Active Storage
+gem "azure-storage-blob", "~> 2.0", require: false
 
 # validate adopter phone numbers
 gem "phonelib"

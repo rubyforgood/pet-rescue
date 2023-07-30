@@ -178,7 +178,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_203314) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "adopter_account_id", null: false
+    t.bigint "organization_id", null: false
     t.index ["adopter_account_id"], name: "index_matches_on_adopter_account_id"
+    t.index ["organization_id"], name: "index_matches_on_organization_id"
     t.index ["pet_id"], name: "index_matches_on_pet_id"
   end
 

@@ -14,6 +14,12 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  Rails.application.config.hosts << /pet-rescue.local/
+
+  # Allow requests from subdomains like `www.product.com` and
+  # `beta1.product.com`.
+  Rails.application.config.hosts << /.*\.pet-rescue.local/
+
   # Enable server timing
   config.server_timing = true
 

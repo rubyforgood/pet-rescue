@@ -230,7 +230,8 @@ end
 
 @match = Match.create!(
   pet_id: Pet.first.id,
-  adopter_account_id: @adopter_account_one.id
+  adopter_account_id: @adopter_account_one.id,
+  organization_id: Pet.first.organization_id
 )
 
 10.times do

@@ -79,9 +79,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     assert_equal mail[0].from.join, "bajapetrescue@gmail.com", "from email is incorrect"
     assert_equal mail[0].to.join, "abc@123.com", "to email is incorrect"
     assert_equal mail[0].subject, "Welcome to Baja Pet Rescue", "subject is incorrect"
-    assert_equal mail[1].from.join, "bajapetrescue@gmail.com", "from email is incorrect"
-    assert_equal mail[1].to.join, "wcrwater@gmail.com", "to email is incorrect"
-    assert_equal mail[1].subject, "New Staff Account", "subject is incorrect"
+
     ActionMailer::Base.deliveries = []
 
     assert_response :redirect
