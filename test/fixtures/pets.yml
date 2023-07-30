@@ -3,8 +3,6 @@
 # Table name: pets
 #
 #  id                 :bigint           not null, primary key
-#  age                :integer
-#  age_unit           :integer          default("months")
 #  application_paused :boolean          default(FALSE)
 #  birth_date         :datetime
 #  breed              :string
