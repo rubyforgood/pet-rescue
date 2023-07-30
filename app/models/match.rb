@@ -21,10 +21,17 @@
 class Match < ApplicationRecord
   belongs_to :pet
   belongs_to :adopter_account
+  has_many :checklist_assignments
 
   after_create_commit :send_checklist_reminder
 
   def send_checklist_reminder
     MatchMailer.checklist_reminder(self).deliver_later
+  end
+
+  def assign_checklist_template(checklist_template)
+    checklist_template.items.each do |item|
+      checklist_assignments.create!(checklist_template_item: item)
+    end
   end
 end

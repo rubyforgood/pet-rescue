@@ -1,0 +1,31 @@
+# == Schema Information
+#
+# Table name: checklist_assignments
+#
+#  id                         :bigint           not null, primary key
+#  completed_at               :datetime
+#  created_at                 :datetime         not null
+#  updated_at                 :datetime         not null
+#  checklist_template_item_id :bigint           not null
+#  match_id                   :bigint           not null
+#
+# Indexes
+#
+#  index_checklist_assignments_on_checklist_template_item_id  (checklist_template_item_id)
+#  index_checklist_assignments_on_match_id                    (match_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (checklist_template_item_id => checklist_template_items.id)
+#  fk_rails_...  (match_id => matches.id)
+#
+
+one:
+  checklist_template_item: one
+  match: one
+  completed_at: 2023-07-29 16:33:14
+
+two:
+  checklist_template_item: two
+  match: two
+  completed_at: 2023-07-29 16:33:14
