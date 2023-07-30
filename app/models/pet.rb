@@ -6,6 +6,7 @@
 #  age                :integer
 #  age_unit           :integer          default("months")
 #  application_paused :boolean          default(FALSE)
+#  birth_date         :datetime
 #  breed              :string
 #  description        :text
 #  name               :string
@@ -32,8 +33,9 @@ class Pet < ApplicationRecord
   has_many_attached :images
 
   validates :name, presence: true
-  validates :age, presence: true
-  validates :age_unit, presence: true
+  validates :birth_date, presence: true
+  #validates :age, presence: true
+  #validates :age_unit, presence: true
   validates :size, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
@@ -73,6 +75,28 @@ class Pet < ApplicationRecord
   # active storage: using.attach for appending images per rails guide
   def append_images=(attachables)
     images.attach(attachables)
+  end
+
+  # This will be approximate for multiple reasons
+  # - we aren't checking whether today's date has passed the pet's birthdate but instead calculating from duration
+  # - most birthdays entered in the system aren't exact
+  def approximate_age
+    today_in_seconds_since_unix_epoch = DateTime.current.to_i
+    pet_birth_date_in_seconds_since_unix_epoch = self.birth_date.to_i
+    pet_life_duration = ActiveSupport::Duration.build(today_in_seconds_since_unix_epoch - pet_birth_date_in_seconds_since_unix_epoch)
+
+    # years and months will be missing if they are 0, so initialize hash with 0 values and merge in the computed ones, if any
+    {years: 0, months: 0}.merge(pet_life_duration.parts.slice(:years, :months))
+  end
+
+  def approximate_age_display
+    approximate_age => {years:, months:}
+
+    years_string = years.positive? ? "#{years} years" : nil
+    months_string = months.positive? ? "#{months} months" : nil
+
+    # using compact and join will correctly handle the case when either years or months is 0
+    [years_string, months_string].compact.join(', ')
   end
 
   # all pets under an organization
