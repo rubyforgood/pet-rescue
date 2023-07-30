@@ -39,7 +39,12 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           age: "3",
           sex: "Female",
           breed: "mix",
-          size: "Medium (22-57 lb)",
+          weight_attributes: {
+            from: 10,
+            to: 25,
+            unit: "lb",
+            id: ""
+          },
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -72,7 +77,12 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           age: "3",
           sex: "Female",
           breed: "mix",
-          size: "Medium (22-57 lb)",
+          weight_attributes: {
+            from: 10,
+            to: 25,
+            unit: "lb",
+            id: ""
+          },
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -94,7 +104,12 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           age: "7",
           sex: "Female",
           breed: "mix",
-          size: "Medium (22-57 lb)",
+          weight_attributes: {
+            from: 10,
+            to: 25,
+            unit: "lb",
+            id: @pet.id
+          },
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -256,5 +271,29 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "div.col-lg-4", {count: 1}
     assert_select "h5", "Applications"
+  end
+
+  test "if to weight is less than from weight custom error should be displayed" do
+    sign_in users(:verified_staff_one)
+
+    post "/pets",
+      params: {pet:
+        {
+          organization_id: organizations(:one).id.to_s,
+          name: "Ruby",
+          age: "3",
+          sex: "Female",
+          breed: "mix",
+          weight_attributes: {
+            from: 25,
+            to: 10,
+            unit: "lb",
+            id: ""
+          },
+          description: "A lovely little pooch this one.",
+          append_images: [""]
+        }}
+
+    assert_select "div.alert", "Must be greater than from weight"
   end
 end
