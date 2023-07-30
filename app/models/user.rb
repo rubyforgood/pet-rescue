@@ -7,13 +7,16 @@
 #  encrypted_password     :string           default(""), not null
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :integer
 #  tos_agreement          :boolean
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  organization_id        :bigint
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_organization_id       (organization_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
@@ -24,10 +27,12 @@ class User < ApplicationRecord
   validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
     allow_nil: false, on: :create
 
-  has_one :staff_account, dependent: :destroy
-  has_one :adopter_account, dependent: :destroy
 
-  accepts_nested_attributes_for :adopter_account, :staff_account
+  has_one :person, dependent: :destroy
+  has_one :organization
+  enum role: [:staff, :admin]
+
+  accepts_nested_attributes_for :person
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)

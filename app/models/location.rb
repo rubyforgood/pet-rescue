@@ -2,26 +2,26 @@
 #
 # Table name: locations
 #
-#  id                 :bigint           not null, primary key
-#  city_town          :string
-#  country            :string
-#  latitude           :float
-#  longitude          :float
-#  province_state     :string
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  adopter_profile_id :bigint           not null
+#  id             :bigint           not null, primary key
+#  city_town      :string
+#  country        :string
+#  latitude       :float
+#  longitude      :float
+#  province_state :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  person_id      :bigint           not null
 #
 # Indexes
 #
-#  index_locations_on_adopter_profile_id  (adopter_profile_id) UNIQUE
+#  index_locations_on_person_id  (person_id) UNIQUE
 #
 # Foreign Keys
 #
-#  fk_rails_...  (adopter_profile_id => adopter_profiles.id)
+#  fk_rails_...  (person_id => people.id)
 #
 class Location < ApplicationRecord
-  belongs_to :adopter_profile
+  belongs_to :person
   geocoded_by :address
   after_validation :geocode
 
