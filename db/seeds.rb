@@ -219,7 +219,7 @@ path = Rails.root.join("app", "assets", "images", "hero.jpg")
   pet = Pet.create!(
     organization: Organization.all.sample,
     name: Faker::Creature::Dog.name,
-    age: Faker::Number.within(range: 1..10),
+    birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
     sex: Faker::Creature::Dog.gender,
     size: Faker::Creature::Dog.size,
     breed: Faker::Creature::Dog.breed,

@@ -11,8 +11,7 @@ class PetTest < ActiveSupport::TestCase
 
   context "validations" do
     should validate_presence_of(:name)
-    should validate_presence_of(:age)
-    should validate_presence_of(:age_unit)
+    should validate_presence_of(:birth_date)
     should validate_presence_of(:size)
     should validate_presence_of(:breed)
     should validate_presence_of(:sex)

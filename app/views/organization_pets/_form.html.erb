@@ -16,23 +16,13 @@
 
       <div class='form-group d-flex'>
         <div class='me-3'>
-          <%= form.label :age, class: 'mt-3' %>
-          <%= form.number_field :age, class: 'form-control' %>        
+          <%= form.label :birth_date, class: 'mt-3' %>
+          <%= form.date_select :birth_date,
+                               start_year: Date.today.year - 20,
+                               end_year: Date.today.year %>
         </div>
 
-        <div>
-          <%= form.label :age_unit, 'Unit', class: 'mt-3' %>
-          <%= form.select(:age_unit, 
-                                    Pet.list_age_units, 
-                                    {},
-                                    { class: "form-control"}) %>
-        </div>
-
-        <% pet.errors.full_messages_for(:age).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-        <% end %>
-        
-        <% pet.errors.full_messages_for(:age_unit).each do |message| %>
+        <% pet.errors.full_messages_for(:birth_date).each do |message| %>
           <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
         <% end %>
       </div>
