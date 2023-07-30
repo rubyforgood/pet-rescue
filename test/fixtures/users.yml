@@ -5,18 +5,18 @@
 #  id                     :bigint           not null, primary key
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  first_name             :string           not null
-#  last_name              :string           not null
-#  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
 #  reset_password_token   :string
+#  role                   :integer
 #  tos_agreement          :boolean
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  organization_id        :bigint
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_organization_id       (organization_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
@@ -24,37 +24,41 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 
-adopter_with_profile:
-  first_name: Ben
-  last_name: Jo
-  email: test@test.com
+adopter:
+  email: test1@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
+  organization_id: one
 
-verified_staff_one:
-  first_name: Staffy
-  last_name: McStaffface
-  email: testes@test.com
+adopter_two:
+  email: test2@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
+  organization_id: one
 
-unverified_staff:
-  first_name: unverified
-  last_name: McStaffface
-  email: testes@testes.com
+adopter_three:
+  email: test3@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
+  organization_id: one
 
-adopter_without_profile:
-  first_name: Billy
-  last_name: Noprofile
-  email: test@test123.com
+admin:
+  email: test4@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  role: :admin
   tos_agreement: 1
+  organization_id: one
+
+staff:
+  email: test5@test.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  role: :staff
+  tos_agreement: 1
+  organization_id: one
 
 verified_staff_two:
-  first_name: Jimmy
-  last_name: Hendrix
   email: purple@haze.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  role: :staff
   tos_agreement: 1
+  organization_id: one
