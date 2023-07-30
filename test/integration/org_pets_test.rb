@@ -74,7 +74,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
         {
           organization_id: organizations(:one).id.to_s,
           name: "TestPet",
-          age: "3",
+          birth_date: DateTime.current - (4.months + 15.days),
           sex: "Female",
           breed: "mix",
           weight_attributes: {

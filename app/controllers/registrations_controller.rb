@@ -6,7 +6,6 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     build_resource({})
     resource.build_adopter_account
-    resource.build_staff_account
     respond_with resource
   end
 
@@ -49,12 +48,7 @@ class RegistrationsController < Devise::RegistrationsController
   def send_email
     return unless resource.id
 
-    if resource.adopter_account
-      SignUpMailer.with(user: resource).adopter_welcome_email.deliver_now
-    else
-      SignUpMailer.with(user: resource).staff_welcome_email.deliver_now
-      SignUpMailer.with(user: resource).admin_notification_new_staff.deliver_now
-    end
+    SignUpMailer.with(user: resource).adopter_welcome_email.deliver_now
   end
 end
 

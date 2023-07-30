@@ -1,5 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
+    if !current_tenant
+      render :no_tenant and return
+    end
   end
 
   def account_select

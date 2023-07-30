@@ -3,9 +3,8 @@
 # Table name: pets
 #
 #  id                 :bigint           not null, primary key
-#  age                :integer
-#  age_unit           :integer          default("months")
 #  application_paused :boolean          default(FALSE)
+#  birth_date         :datetime         not null
 #  breed              :string
 #  description        :text
 #  name               :string
@@ -28,14 +27,13 @@ class Pet < ApplicationRecord
   acts_as_tenant(:organization)
 
   has_many :adopter_applications, dependent: :destroy
-  has_one :adoption, dependent: :destroy
+  has_one :match, dependent: :destroy
   has_many_attached :images
   has_one :weight, dependent: :destroy
   accepts_nested_attributes_for :weight
 
   validates :name, presence: true
-  validates :age, presence: true
-  validates :age_unit, presence: true
+  validates :birth_date, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
   validates :description, presence: true, length: {maximum: 1000}
@@ -46,8 +44,6 @@ class Pet < ApplicationRecord
     limit: {max: 5, message: "- 5 maximum"},
     size: {between: 10.kilobyte..1.megabytes,
            message: "size must be between 10kb and 1Mb"}
-
-  enum :age_unit, [:months, :years]
 
   enum :pause_reason, [:not_paused,
     :opening_soon,
@@ -65,12 +61,6 @@ class Pet < ApplicationRecord
     end.drop(1)
   end
 
-  def self.list_age_units
-    Pet.age_units.keys.map do |unit|
-      [unit.titleize, unit]
-    end
-  end
-
   # active storage: using.attach for appending images per rails guide
   def append_images=(attachables)
     images.attach(attachables)
@@ -84,23 +74,23 @@ class Pet < ApplicationRecord
   # all pets under an organization with applications and no adoptions
   def self.org_pets_with_apps(staff_org_id)
     Pet.org_pets(staff_org_id).includes(:adopter_applications).where
-      .not(adopter_applications: {id: nil}).includes(:adoption)
-      .where(adoption: {id: nil})
+      .not(adopter_applications: {id: nil}).includes(:match)
+      .where(match: {id: nil})
   end
 
   # all unadopted pets under all organizations
   def self.all_unadopted_pets
-    Pet.includes(:adoption).where(adoption: {id: nil})
+    Pet.includes(:match).where(match: {id: nil})
   end
 
   # all unadopted pets under an organization
   def self.unadopted_pets(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:adoption).where(adoption: {id: nil})
+    Pet.org_pets(staff_org_id).includes(:match).where(match: {id: nil})
   end
 
   # all adopted pets under an organization
   def self.adopted_pets(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:adoption)
-      .where.not(adoption: {id: nil})
+    Pet.org_pets(staff_org_id).includes(:match)
+      .where.not(match: {id: nil})
   end
 end

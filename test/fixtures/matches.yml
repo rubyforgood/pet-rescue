@@ -1,17 +1,19 @@
 # == Schema Information
 #
-# Table name: adoptions
+# Table name: matches
 #
 #  id                 :bigint           not null, primary key
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  adopter_account_id :bigint           not null
+#  organization_id    :bigint           not null
 #  pet_id             :bigint           not null
 #
 # Indexes
 #
-#  index_adoptions_on_adopter_account_id  (adopter_account_id)
-#  index_adoptions_on_pet_id              (pet_id)
+#  index_matches_on_adopter_account_id  (adopter_account_id)
+#  index_matches_on_organization_id     (organization_id)
+#  index_matches_on_pet_id              (pet_id)
 #
 # Foreign Keys
 #
@@ -22,3 +24,4 @@
 adoption_one:
   pet: adopted_pet
   adopter_account: adopter_account_one
+  organization: adopted_pet.organization

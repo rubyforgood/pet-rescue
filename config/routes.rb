@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :checklist_template_items
+  resources :checklist_templates
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   match "/404", to: "errors#not_found", via: :all
@@ -14,7 +16,6 @@ Rails.application.routes.draw do
   get "/terms_and_conditions", to: "static_pages#terms_and_conditions"
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
-  get "/account_select", to: "static_pages#account_select"
   get "/profile_review/:id", to: "profile_reviews#show", as: "profile_review"
 
   get "/adoptable_pets", to: "adoptable_pets#index"
@@ -29,8 +30,8 @@ Rails.application.routes.draw do
   post "create_my_application", to: "adopter_applications#create"
   patch "my_application", to: "adopter_applications#update"
 
-  post "create_adoption", to: "adoptions#create"
-  delete "revoke_adoption", to: "adoptions#delete"
+  post "create_adoption", to: "matches#create"
+  delete "revoke_adoption", to: "matches#delete"
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 

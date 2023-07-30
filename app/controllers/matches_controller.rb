@@ -1,10 +1,11 @@
-class AdoptionsController < ApplicationController
+class MatchesController < ApplicationController
   before_action :verified_staff, :same_organization?
 
   def create
-    @adoption = Adoption.new(adoption_params)
+    @pet = Pet.find(adoption_params[:pet_id])
+    @match = Match.new(adoption_params.merge(organization_id: @pet.organization_id))
 
-    if @adoption.save
+    if @match.save
       set_statuses_to_adoption_made
       redirect_to adopter_applications_path, notice: "Pet successfully adopted."
     else
@@ -14,14 +15,14 @@ class AdoptionsController < ApplicationController
   end
 
   def delete
-    @adoption = Adoption.find(params[:adoption_id])
+    @match = Match.find(params[:match_id])
 
-    @successful_application = @adoption.adopter_account
+    @successful_application = @match.adopter_account
       .adopter_applications
-      .where(pet_id: @adoption.pet_id)[0]
+      .where(pet_id: @match.pet_id)[0]
     AdopterApplication.set_status_to_withdrawn(@successful_application)
 
-    if @adoption.destroy
+    if @match.destroy
       redirect_to pets_path, notice: "Adoption reverted & application set to 'Withdrawn'"
     else
       redirect_to pets_path, alert: "Failed to revert adoption"
@@ -31,7 +32,7 @@ class AdoptionsController < ApplicationController
   private
 
   def adoption_params
-    params.permit(:pet_id, :adopter_account_id, :adoption_id)
+    params.permit(:pet_id, :adopter_account_id, :match_id)
   end
 
   # set status on all applications for a pet
@@ -48,7 +49,7 @@ class AdoptionsController < ApplicationController
   def get_pet_id
     return params[:pet_id] if params[:pet_id]
 
-    Adoption.find(params[:adoption_id]).pet_id
+    Match.find(params[:match_id]).pet_id
   end
 
   # staff and pet in the same org?

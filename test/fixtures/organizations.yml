@@ -17,6 +17,7 @@ one:
   city: testville
   country: testistan
   zipcode: t35t
+  subdomain: test
 
 # default organization for unverified staff, pets do not belong to this org
 unverified_staff_default:
@@ -25,3 +26,4 @@ unverified_staff_default:
   city: default
   country: testistan
   zipcode: t35t
+  subdomain: default

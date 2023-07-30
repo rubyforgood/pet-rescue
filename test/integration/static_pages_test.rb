@@ -4,13 +4,7 @@ class StaticPagesTest < ActionDispatch::IntegrationTest
   test "Home page can be accessed" do
     get "/"
     assert_response :success
-    assert_select "h1", "We rescue pets in Baja, Mexico and rehome them with adopters in Canada and America"
-  end
-
-  test "Account select can be accessed" do
-    get "/account_select"
-    assert_response :success
-    assert_select "h1", "Sign Up"
+    assert_select "h1", "We provide a platform for Pet Rescues and Animal Service Organizations"
   end
 
   test "About Us page can be accessed" do

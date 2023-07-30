@@ -32,6 +32,8 @@
 
 # Ignore application configuration
 /config/application.yml
+# Ignore environment credential keys
+/config/credentials/*.key
 
 # Ignore SimpleCov test coverage metrics
 /coverage

@@ -476,3 +476,16 @@
   .coordinates {
     list-style-type: none;
   }
+
+  .pet-card {
+    object-fit: cover;
+    width: 100%;
+    height: 325px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 3000ms;
+  }
+
+  .pet-card:hover {
+    transform: scale(1.5);
+  }

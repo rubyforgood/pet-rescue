@@ -60,8 +60,8 @@ gem "dartsass-rails"
 # Active storage validations
 gem "active_storage_validations"
 
-# Amazon Web Service S3 image storage
-gem "aws-sdk-s3"
+# Use Azure Blob Storage for Active Storage
+gem "azure-storage-blob", "~> 2.0", require: false
 
 # validate adopter phone numbers
 gem "phonelib"
@@ -124,6 +124,11 @@ group :test do
 
   # Code coverage analysis [https://github.com/simplecov-ruby/simplecov]
   gem "simplecov", require: false
+
+  # Adds really common matchers you can use in tests to add
+  # test coverage easily
+  gem "shoulda", "~> 4.0"
+  gem "shoulda-matchers"
 end
 
 # Add chartkick for charts generation

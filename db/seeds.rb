@@ -219,7 +219,7 @@ path = Rails.root.join("app", "assets", "images", "hero.jpg")
   pet = Pet.create!(
     organization: Organization.all.sample,
     name: Faker::Creature::Dog.name,
-    age: Faker::Number.within(range: 1..10),
+    birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
     sex: Faker::Creature::Dog.gender,
     breed: Faker::Creature::Dog.breed,
     description: "He just loves a run and a bum scratch at the end of the day"
@@ -235,9 +235,10 @@ path = Rails.root.join("app", "assets", "images", "hero.jpg")
   )
 end
 
-Adoption.create!(
+@match = Match.create!(
   pet_id: Pet.first.id,
-  adopter_account_id: @adopter_account_one.id
+  adopter_account_id: @adopter_account_one.id,
+  organization_id: Pet.first.organization_id
 )
 
 10.times do
@@ -249,6 +250,22 @@ Adoption.create!(
     pet: Pet.all.sample
   )
 end
+
+@checklist_template = ChecklistTemplate.create!(
+  name: "vaccinations",
+  description: "Get your dog vaccinated"
+)
+
+5.times do
+  @checklist_template.items.create!(
+    name: Faker::Verb.base,
+    description: Faker::Quote.famous_last_words,
+    expected_duration_days: rand(1..10),
+    required: [true, false].sample
+  )
+end
+
+@match.assign_checklist_template(@checklist_template)
 
 # active admin seed
 AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password") if Rails.env.development?

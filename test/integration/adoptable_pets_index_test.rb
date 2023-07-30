@@ -3,7 +3,7 @@ require "test_helper"
 class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
   # all unadopted pets under all organizations
   setup do
-    @pet_count = Pet.includes(:adoption).where(adoption: {id: nil}).length
+    @pet_count = Pet.includes(:match).where(match: {id: nil}).length
   end
 
   test "unauthenticated user can access adoptable pets index" do

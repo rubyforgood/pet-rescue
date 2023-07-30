@@ -10,7 +10,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     get "/adoptable_pets/#{@pet_id}"
     assert_response :success
     assert_select "h4", "Create an account to apply for this pet"
-    assert_select "a", "Create Account"
+    assert_select "a", "Adopt"
   end
 
   test "adopter without a profile sees complete my profile prompt and link" do
@@ -29,6 +29,13 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     assert_select "form" do
       assert_select "button", "Apply to Adopt"
     end
+  end
+
+  test "adopter application sees application status" do
+    sign_in adopter_accounts(:adopter_account_one).user
+    get "/adoptable_pets/#{pets(:pending_adoption_two).id}"
+    assert_response :success
+    assert_select "h4.me-2", "Application Awaiting Review"
   end
 
   test "staff do not see an adopt button only log out button" do
