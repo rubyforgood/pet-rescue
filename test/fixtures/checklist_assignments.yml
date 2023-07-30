@@ -22,10 +22,9 @@
 
 one:
   checklist_template_item: one
-  match: one
+  match: adoption_one
   completed_at: 2023-07-29 16:33:14
 
 two:
   checklist_template_item: two
-  match: two
-  completed_at: 2023-07-29 16:33:14
+  match: adoption_one

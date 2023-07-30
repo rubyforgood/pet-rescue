@@ -21,7 +21,7 @@
 class Match < ApplicationRecord
   belongs_to :pet
   belongs_to :adopter_account
-  has_many :checklist_assignments
+  has_many :checklist_assignments, dependent: :destroy
 
   after_create_commit :send_checklist_reminder
 

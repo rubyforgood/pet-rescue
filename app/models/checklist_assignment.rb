@@ -23,10 +23,10 @@ class ChecklistAssignment < ApplicationRecord
   belongs_to :checklist_template_item
   belongs_to :match
 
-  # scope :completed, -> { where.not(completed_at: nil)}
-  # scope :incomplete, -> {where(completed_at: nil)}
+  scope :completed, -> { where.not(completed_at: nil)}
+  scope :incomplete, -> {where(completed_at: nil)}
 
-  # def completed?
-  #   completed_at
-  # end 
+  def completed?
+    completed_at
+  end 
 end
