@@ -3,9 +3,8 @@
 # Table name: pets
 #
 #  id                 :bigint           not null, primary key
-#  age                :integer
-#  age_unit           :integer          default("months")
 #  application_paused :boolean          default(FALSE)
+#  birth_date         :datetime         not null
 #  breed              :string
 #  description        :text
 #  name               :string
@@ -32,8 +31,7 @@ class Pet < ApplicationRecord
   has_many_attached :images
 
   validates :name, presence: true
-  validates :age, presence: true
-  validates :age_unit, presence: true
+  validates :birth_date, presence: true
   validates :size, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
@@ -45,8 +43,6 @@ class Pet < ApplicationRecord
     limit: {max: 5, message: "- 5 maximum"},
     size: {between: 10.kilobyte..1.megabytes,
            message: "size must be between 10kb and 1Mb"}
-
-  enum :age_unit, [:months, :years]
 
   enum :pause_reason, [:not_paused,
     :opening_soon,
@@ -62,12 +58,6 @@ class Pet < ApplicationRecord
     Pet.pause_reasons.keys.map do |reason|
       [reason.titleize, reason]
     end.drop(1)
-  end
-
-  def self.list_age_units
-    Pet.age_units.keys.map do |unit|
-      [unit.titleize, unit]
-    end
   end
 
   # active storage: using.attach for appending images per rails guide

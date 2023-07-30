@@ -3,9 +3,8 @@
 # Table name: pets
 #
 #  id                 :bigint           not null, primary key
-#  age                :integer
-#  age_unit           :integer          default("months")
 #  application_paused :boolean          default(FALSE)
+#  birth_date         :datetime         not null
 #  breed              :string
 #  description        :text
 #  name               :string
@@ -28,7 +27,7 @@
 one:
   organization: one
   name: Applications
-  age: 4
+  birth_date: <%= DateTime.current - (4.months + 15.days) %>
   breed: mix
   size: Medium (22-57 lb)
   sex: Female
@@ -38,21 +37,21 @@ one:
 pending_adoption_one:
   organization: one
   name: Deleted
-  age: 5
+  birth_date: <%= DateTime.current - (5.months + 15.days) %>
   breed: mix
   application_paused: false
 
 adopted_pet:
   organization: one
   name: Adopted
-  age: 4
+  birth_date: <%= DateTime.current - (4.months + 15.days) %>
   breed: mix
   application_paused: false
 
 paused_application:
   organization: one
   name: Paused
-  age: 4
+  birth_date: <%= DateTime.current - (4.months + 15.days) %>
   breed: mix
   size: Medium (22-57 lb)
   sex: Male
@@ -62,6 +61,6 @@ paused_application:
 pending_adoption_two:
   organization: one
   name: AppTest
-  age: 4
+  birth_date: <%= DateTime.current - (4.months + 15.days) %>
   breed: mix
   application_paused: false
