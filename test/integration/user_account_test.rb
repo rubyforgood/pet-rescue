@@ -40,7 +40,6 @@ class UserAccountTest < ActionDispatch::IntegrationTest
           first_name: "Foo",
           last_name: "Bar",
           password: "123456",
-          password_confirmation: "123456",
           tos_agreement: "1"
         },
                commit: "Create Account"}
