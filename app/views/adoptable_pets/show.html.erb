@@ -108,14 +108,11 @@
           </div>
 
           <div class='text-center d-flex flex-column align-items-center mt-1'>
-            <% unless user_signed_in? && current_user.staff_account %>
               <% if user_signed_in? %>
-                <% if current_user.adopter_account && 
-                      current_user.adopter_account.adopter_profile %>
                   <% if AdopterApplication.adoption_exists?(
-                                            current_user.adopter_account.id,
+                                            current_user.person.id,
                                             @pet.id
-                                                            ) %>
+                                                            ) && @pet.application_paused == false %>
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2">Application submitted</h4>
                       <%= image_tag('green_check.png', height: '21') %>
@@ -123,6 +120,7 @@
                   <% elsif @pet.application_paused == true %>
                     <div class='d-flex align-items-center mt-3'>
                       <h3 class="me-2 text-danger">
+                      <%binding.pry%>
                         Applications <%= @pet.pause_reason.titleize %>
                       </h3>
                     </div>
@@ -131,17 +129,10 @@
                     <%= button_to 'Apply to Adopt', 
                         create_my_application_path(application: { 
                                                         pet_id: @pet.id, 
-                                                        adopter_account_id: current_user.adopter_account.id}),
+                                                        person_id: current_user.person.id}),
                           
                           class: 'custom-btn-pink' %>
                   <% end %>
-                <% elsif current_user.adopter_account %>
-                  <h4 class='mb-4 mt-3'>
-                    Complete your profile to apply for this pet
-                  </h4>
-                  <%= link_to 'Complete my profile', new_profile_path,
-                      class: 'custom-btn-pink' %>
-                <% end %>
               <% else %>
                   <h4 class="mb-4 mt-3">
                     Create an account to apply for this pet
@@ -151,7 +142,7 @@
                   <p>
                     <%= link_to 'Log in', new_user_session_path %>
                   </p>
-              <% end %>
+              
             <% end %>
           </div>
         </div>

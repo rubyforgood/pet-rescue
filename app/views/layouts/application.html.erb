@@ -86,13 +86,13 @@
                   Dashboard
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="dropdown05">
-                  <% if current_user.adopter_account && 
-                        current_user.adopter_account.adopter_profile.nil? %>
+                  <% if current_user.blank? %> 
+              
                     <li>
                       <%= link_to "My Profile", new_profile_path, 
                           class: 'dropdown-item bigger' %>
                     </li>
-                  <% elsif current_user.adopter_account %>
+                  <% elsif current_user %>
                     <li>
                       <%= link_to "My Profile", profile_path, 
                           class: 'dropdown-item bigger' %>
@@ -102,8 +102,7 @@
                           class: 'dropdown-item bigger' %>
                     </li>
                   <% end %>
-                  <% if current_user.staff_account &&
-                        current_user.staff_account.verified %>
+                  <% if current_user.staff? %>
                     <li>
                       <%= link_to "Our Pets", pets_path, 
                           class: 'dropdown-item bigger' %>
