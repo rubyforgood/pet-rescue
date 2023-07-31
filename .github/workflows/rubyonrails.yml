@@ -35,17 +35,8 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace database setup steps here
-      - name: Set up database schema
-        run: bin/rails db:schema:load
-      - name: Load test fixtures
-        run: bin/rails db:fixtures:load
-      - name: Precompile assets
-        run: bundle exec rails dartsass:build
-      # Add or replace test runners here
-      - name: Run unit tests
-        run: bundle exec rails test
-      - name: Run system tests
-        run: bundle exec rails test:system
+      - name: Run Tests
+        run: bin/test
   standard:
     name: Standard
     runs-on: ubuntu-latest
@@ -56,8 +47,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Run Standard
-        run: bundle exec standardrb
+      - name: Run Style Checks
+        run: bin/style
   brakeman:
     name: Brakeman
     runs-on: ubuntu-latest
@@ -68,5 +59,5 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Run Brakeman
-        run: bundle exec brakeman
+      - name: Run Security Audit
+        run: bin/audit
