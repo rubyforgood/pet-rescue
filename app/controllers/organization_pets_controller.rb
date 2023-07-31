@@ -1,10 +1,9 @@
 class OrganizationPetsController < ApplicationController
-  before_action :verified_staff
   after_action :set_reason_paused_to_none, only: [:update]
 
   def index
-    @unadopted_pets = Pet.unadopted_pets(current_user.staff_account.organization_id)
-    @adopted_pets = Pet.adopted_pets(current_user.staff_account.organization_id)
+    @unadopted_pets = Pet.unadopted_pets(current_user.organization_id)
+    @adopted_pets = Pet.adopted_pets(current_user.organization_id)
     @pet = selected_pet
   end
 
@@ -39,7 +38,6 @@ class OrganizationPetsController < ApplicationController
 
   def update
     @pet = Pet.find(params[:id])
-
     if pet_in_same_organization?(@pet.organization_id) && @pet.update(pet_params)
       redirect_to @pet, notice: "Pet updated successfully."
     else

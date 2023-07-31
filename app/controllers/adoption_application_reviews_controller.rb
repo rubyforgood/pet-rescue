@@ -1,8 +1,7 @@
 class AdoptionApplicationReviewsController < ApplicationController
-  before_action :verified_staff
 
   def index
-    @pets = Pet.org_pets_with_apps(current_user.staff_account.organization_id)
+    @pets = Pet.org_pets_with_apps(current_user.organization_id)
     @pet = selected_pet
   end
 

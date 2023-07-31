@@ -53,7 +53,7 @@ class MatchesController < ApplicationController
 
   # staff and pet in the same org?
   def same_organization?
-    return if current_user.staff_account.organization_id == Pet.find(get_pet_id).organization.id
+    return if current_user.organization_id == Pet.find(get_pet_id).organization.id
 
     redirect_to root_path, alert: "Unauthorized action."
   end

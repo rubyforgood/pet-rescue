@@ -23,15 +23,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "Profiles are for adopters only"
   end
 
-  def verified_staff
-    return if user_signed_in? &&
-      current_user.staff_account &&
-      current_user.staff_account.verified
-
-    redirect_to root_path, alert: "Unauthorized action."
-  end
-
   def pet_in_same_organization?(org_id)
-    current_user.staff_account.organization_id == org_id
+    current_user.organization_id == org_id
   end
 end
