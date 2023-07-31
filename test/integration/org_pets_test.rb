@@ -39,12 +39,9 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           age: "3",
           sex: "Female",
           breed: "mix",
-          weight_attributes: {
-            from: 10,
-            to: 25,
-            unit: "lb",
-            id: ""
-          },
+          weight_from: 15,
+          weight_to: 30,
+          weight_unit: 'lb',
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -77,12 +74,9 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           birth_date: DateTime.current - (4.months + 15.days),
           sex: "Female",
           breed: "mix",
-          weight_attributes: {
-            from: 10,
-            to: 25,
-            unit: "lb",
-            id: ""
-          },
+          weight_from: 15,
+          weight_to: 30,
+          weight_unit: 'lb',
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -104,12 +98,9 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           age: "7",
           sex: "Female",
           breed: "mix",
-          weight_attributes: {
-            from: 10,
-            to: 25,
-            unit: "lb",
-            id: @pet.id
-          },
+          weight_from: 15,
+          weight_to: 30,
+          weight_unit: 'lb',
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -284,12 +275,10 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           age: "3",
           sex: "Female",
           breed: "mix",
-          weight_attributes: {
-            from: 25,
-            to: 10,
-            unit: "lb",
-            id: ""
-          },
+          birth_date: 5.years.ago,
+          weight_from: 15,
+          weight_to: 10,
+          weight_unit: 'lb',
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}

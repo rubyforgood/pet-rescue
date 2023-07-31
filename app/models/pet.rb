@@ -11,6 +11,9 @@
 #  pause_reason       :integer          default("not_paused")
 #  sex                :string
 #  size               :string
+#  weight_from        :integer          not null
+#  weight_to          :integer          not null
+#  weight_unit        :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  organization_id    :bigint           not null
@@ -29,13 +32,15 @@ class Pet < ApplicationRecord
   has_many :adopter_applications, dependent: :destroy
   has_one :match, dependent: :destroy
   has_many_attached :images
-  has_one :weight, dependent: :destroy
-  accepts_nested_attributes_for :weight
 
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
+  validates :weight_from, presence: true
+  validates :weight_to, presence: true
+  validates :weight_unit, presence: true
+  validate :to_weight_must_be_greater_than_from_weight
   validates :description, presence: true, length: {maximum: 1000}
 
   # active storage validations gem
@@ -48,6 +53,21 @@ class Pet < ApplicationRecord
   enum :pause_reason, [:not_paused,
     :opening_soon,
     :paused_until_further_notice]
+
+
+  def self.weight_units
+    ["lb", "kg"]
+  end
+
+  def to_weight_must_be_greater_than_from_weight
+    if weight_from.present? && weight_to.present?
+      errors.add(:weight_to, "Must be greater than from weight") if weight_to < weight_from
+    end
+  end
+
+  def custom_messages(attribute)
+    errors.where(attribute)
+  end
 
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?

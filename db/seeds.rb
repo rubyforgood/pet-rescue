@@ -216,23 +216,19 @@ Location.create!(
 
 path = Rails.root.join("app", "assets", "images", "hero.jpg")
 10.times do
+  from_weight = [5, 10, 20, 30, 40, 50, 60].sample
   pet = Pet.create!(
     organization: Organization.all.sample,
     name: Faker::Creature::Dog.name,
     birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
     sex: Faker::Creature::Dog.gender,
+    weight_from: from_weight,
+    weight_to: from_weight + 15,
+    weight_unit: Pet.weight_units.sample,
     breed: Faker::Creature::Dog.breed,
     description: "He just loves a run and a bum scratch at the end of the day"
   )
   pet.images.attach(io: File.open(path), filename: "hero.jpg")
-
-  from_weight = [5, 10, 20, 30, 40, 50, 60].sample
-  Weight.create!(
-    pet_id: pet.id,
-    from: from_weight,
-    to: from_weight + 15,
-    unit: Weight.units.sample
-  )
 end
 
 @match = Match.create!(

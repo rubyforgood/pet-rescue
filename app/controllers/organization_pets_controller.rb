@@ -10,7 +10,6 @@ class OrganizationPetsController < ApplicationController
 
   def new
     @pet = Pet.new
-    @pet.build_weight
   end
 
   def edit
@@ -70,7 +69,9 @@ class OrganizationPetsController < ApplicationController
       :description,
       :application_paused,
       :pause_reason,
-      weight_attributes: [:from, :to, :unit, :id],
+      :weight_from,
+      :weight_to,
+      :weight_unit,
       append_images: [])
   end
 

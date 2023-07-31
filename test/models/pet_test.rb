@@ -6,7 +6,6 @@ class PetTest < ActiveSupport::TestCase
   context "associations" do
     should have_many(:adopter_applications).dependent(:destroy)
     should have_one(:match).dependent(:destroy)
-    should have_one(:weight).dependent(:destroy)
     should have_many_attached(:images)
   end
 
@@ -17,6 +16,9 @@ class PetTest < ActiveSupport::TestCase
     should validate_presence_of(:sex)
     should validate_presence_of(:description)
     should validate_length_of(:description).is_at_most(1000)
+    should validate_presence_of(:weight_from)
+    should validate_presence_of(:weight_to)
+    should validate_presence_of(:weight_unit)
   end
 
   context "#has_adoption_pending?" do

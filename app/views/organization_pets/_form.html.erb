@@ -51,34 +51,32 @@
       </div>
 
       <div class="form-group mt-3">
-        <%= form.fields_for :weight do |weight| %>
-          <div class='form-group d-flex'>
-            <div class='me-3'>
-              <%= weight.label :from, 'From weight' %>
-              <%= weight.text_field :from, class: 'form-control' %>
-              <% pet.weight.custom_messages(:from).each do |error| %>
-                <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-              <% end %>
-            </div>
-            <div class='me-3'>
-              <%= weight.label :to, 'To weight' %>
-              <%= weight.text_field :to, class: 'form-control' %>
-              <% pet.weight.custom_messages(:to).each do |error| %>
-                <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-              <% end %>
-            </div>
-            <div>
-              <%= weight.label :unit %>
-              <%= weight.select :unit, 
-                          Weight.units,
-                          {},
-                          class: 'form-control' %>
-              <% pet.weight.custom_messages(:unit).each do |error| %>
-                <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-              <% end %>
-            </div>
+        <div class='form-group d-flex'>
+          <div class='me-3'>
+            <%= form.label :weight_from, 'From weight' %>
+            <%= form.text_field :weight_from, class: 'form-control' %>
+            <% pet.errors.full_messages_for(:weight_from).each do |error| %>
+              <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+            <% end %>
           </div>
-        <% end %>
+          <div class='me-3'>
+            <%= form.label :weight_to, 'To weight' %>
+            <%= form.text_field :weight_to, class: 'form-control' %>
+            <% pet.custom_messages(:weight_to).each do |error| %>
+              <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+            <% end %>
+          </div>
+          <div>
+            <%= form.label :weight_unit %>
+            <%= form.select :weight_unit, 
+                        Pet.weight_units,
+                        {},
+                        class: 'form-control' %>
+            <% pet.errors.full_messages_for(:weight_unit).each do |error| %>
+              <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+            <% end %>
+          </div>
+        </div>
       </div>
 
       <div class='form-group'>
