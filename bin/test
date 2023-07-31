@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+set -e
+
+export RAILS_ENV=test
+
+echo "\n🗄️ Ensure a test database exists.\n"
+bin/rails db:setup
+
+echo "\n🗂️ Ensure an up-to-date schema.\n"
+bin/rails db:test:prepare
+
+echo "\n🗃️ Load test DB with fixture data.\n"
+bin/rails db:fixtures:load
+
+echo "\n🍿 Unit & Integration Tests 🍿\n"
+bin/rails test
+
+echo "\n🔥 System Tests 🔥\n"
+bin/rails test:system
