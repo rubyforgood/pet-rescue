@@ -26,7 +26,7 @@ class Match < ApplicationRecord
   has_many :checklist_assignments, dependent: :destroy
   belongs_to :organization
 
-  validate :belongs_to_same_organization_as_pet
+  validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
 
   after_create_commit :send_checklist_reminder
 
