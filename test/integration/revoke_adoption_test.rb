@@ -2,10 +2,10 @@ require "test_helper"
 
 class RevokeAdoptionTest < ActionDispatch::IntegrationTest
   setup do
-    sign_in users(:staff)
+    sign_in users(:staff_one)
     @pet = pets(:adopted_pet)
     @match_id = Match.find_by(pet_id: @pet.id).id
-    @successful_application = adopter_applications(:adopter_application_three)
+    @successful_application = adopter_applications(:person_adopter_three)
   end
 
   test "staff can revoke adoption and pet becomes adoptable and successful application set to withdrawn" do
