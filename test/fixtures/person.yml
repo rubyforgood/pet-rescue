@@ -45,7 +45,7 @@ person_adopter:
   first_name: Joe
   last_name: Shmo
   referral_source: friends
-  user: adopter
+  user: adopter_one
 
 person_adopter_two:
   phone_number: 250-598-8843
@@ -69,7 +69,7 @@ person_staff:
   first_name: "Joe"
   last_name: "Shmo"
   referral_source: friends
-  user: staff
+  user: staff_one
 
 person_staff_two:
   phone_number: 250-598-8843
@@ -77,7 +77,7 @@ person_staff_two:
   first_name: "Joe"
   last_name: "Shmo"
   referral_source: friends
-  user: verified_staff_two
+  user: staff_two
 
 person_admin:
   phone_number: 250-598-8843

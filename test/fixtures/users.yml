@@ -24,11 +24,11 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 
-adopter:
+adopter_one:
   email: test1@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   tos_agreement: 1
-  organization_id: one
+  organization: one
 
 adopter_two:
   email: test2@test.com
@@ -49,16 +49,16 @@ admin:
   tos_agreement: 1
   organization_id: one
 
-staff:
+staff_one:
   email: test5@test.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   role: :staff
   tos_agreement: 1
-  organization_id: one
+  organization: one
 
-verified_staff_two:
+staff_two:
   email: purple@haze.com
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
   role: :staff
   tos_agreement: 1
-  organization_id: one
+  organization_id: two

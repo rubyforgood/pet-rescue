@@ -35,6 +35,17 @@ one:
   description: A lovely little pooch this one.
   application_paused: false
 
+pawsed:
+  organization: oneq
+  name: Applications
+  age: 4
+  breed: mix
+  size: Medium (22-57 lb)
+  sex: Female
+  description: Just a happay happay dawg a just a happay happay happy dawg.
+  application_paused: true
+  pause_reason: opening soon
+
 pending_adoption_one:
   organization: one
   name: Deleted
