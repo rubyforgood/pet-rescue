@@ -58,9 +58,9 @@ FactoryBot.define do
     description { Faker::Lorem.sentence }
     name { Faker::Creature::Dog.name }
     sex { Faker::Creature::Dog.gender }
-    weight_from {10}
-    weight_to {20}
-    weight_unit {'lb'}
+    weight_from { 10 }
+    weight_to { 20 }
+    weight_unit { "lb" }
 
     organization
 

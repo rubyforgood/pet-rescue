@@ -57,8 +57,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
         application_paused: true,
         pause_reason: "opening_soon"
       },
-      id: @pet_id
-    }
+               id: @pet_id}
 
     logout
     sign_in users(:adopter_with_profile)
@@ -70,13 +69,12 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     sign_in users(:verified_staff_one)
 
     put "/pets/#{@pet_id}",
-    params: {pet:
-      {
-        application_paused: true,
-        pause_reason: "paused_until_further_notice"
-      },
-      id: @pet_id
-    }
+      params: {pet:
+        {
+          application_paused: true,
+          pause_reason: "paused_until_further_notice"
+        },
+               id: @pet_id}
     logout
     sign_in users(:adopter_with_profile)
     get "/adoptable_pets/#{@pet_id}"

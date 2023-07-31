@@ -41,7 +41,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           breed: "mix",
           weight_from: 15,
           weight_to: 30,
-          weight_unit: 'lb',
+          weight_unit: "lb",
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -76,7 +76,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           breed: "mix",
           weight_from: 15,
           weight_to: 30,
-          weight_unit: 'lb',
+          weight_unit: "lb",
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -100,7 +100,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           breed: "mix",
           weight_from: 15,
           weight_to: 30,
-          weight_unit: 'lb',
+          weight_unit: "lb",
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -278,7 +278,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           birth_date: 5.years.ago,
           weight_from: 15,
           weight_to: 10,
-          weight_unit: 'lb',
+          weight_unit: "lb",
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}

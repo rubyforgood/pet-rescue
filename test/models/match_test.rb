@@ -13,14 +13,15 @@ class MatchTest < ActiveSupport::TestCase
     org2 = Organization.create!
     pet = Pet.create!(
       organization: org1,
-      name: "Harry", 
-      birth_date: 5.years.ago, 
+      name: "Harry",
+      birth_date: 5.years.ago,
       weight_from: 15,
       weight_to: 30,
-      weight_unit: 'lb',
-      breed: "corgi", 
-      sex: "m", 
-      description: "test pet")
+      weight_unit: "lb",
+      breed: "corgi",
+      sex: "m",
+      description: "test pet"
+    )
     match = Match.create(pet: pet, organization_id: org2.id,
       adopter_account: adopter_accounts(:adopter_account_one))
     assert !match.valid?

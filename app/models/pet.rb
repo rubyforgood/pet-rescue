@@ -53,7 +53,6 @@ class Pet < ApplicationRecord
     :opening_soon,
     :paused_until_further_notice]
 
-
   def self.weight_units
     ["lb", "kg"]
   end
