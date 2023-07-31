@@ -40,11 +40,11 @@
     </div>
 
     <%# nested form for locations table %>
-    <div class="form-group bigger" data-controller="country-state" data-country-state-target="form" data-json="<%= countries_and_states %>">
+    <div class="form-group bigger" data-controller="country-state" data-country-state-target="form">
       <%= form.fields_for :location do |location| %>
           <%= location.label :country %>
           <%= location.select :country,
-                              JSON.parse(countries_and_states)["countries"],
+                              [""],
                               { prompt: "Please select" },
                               'data-country-state-target': 'country',
                               'data-action': 'change->country-state#updateStates',
@@ -55,7 +55,7 @@
 
           <%= location.label :province_state, 'Province/State' %>
           <%= location.select :province_state,
-                              JSON.parse(countries_and_states)["country_states"][location.object.country],
+                              [""],
                               { prompt: "Please select" },
                               'data-country-state-target': 'state',
                               class: 'form-control' %>
