@@ -1,24 +1,3 @@
-# == Schema Information
-#
-# Table name: people
-#
-#  id              :bigint           not null, primary key
-#  city_town       :string
-#  contact_method  :string
-#  country         :string
-#  first_name      :string
-#  last_name       :string
-#  phone_number    :string
-#  province_state  :string
-#  referral_source :text
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  user_id         :bigint
-#
-# Indexes
-#
-#  index_people_on_user_id  (user_id)
-#
 class Person < ApplicationRecord
   belongs_to :user
   has_one :location, dependent: :destroy

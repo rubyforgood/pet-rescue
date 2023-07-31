@@ -41,14 +41,14 @@ class AdopterApplication < ApplicationRecord
   end
 
   # check if an adopter has applied to adopt a pet
-  def self.adoption_exists?(adopter_account_id, pet_id)
-    AdopterApplication.where(adopter_account_id: adopter_account_id,
+  def self.adoption_exists?(person_id, pet_id)
+    AdopterApplication.where(person_id: person_id,
       pet_id: pet_id).exists?
   end
 
   # check if any applications are set to profile_show: true
-  def self.any_applications_profile_show_true?(adopter_account_id)
-    applications = AdopterApplication.where(adopter_account_id: adopter_account_id)
+  def self.any_applications_profile_show_true?(person_id)
+    applications = AdopterApplication.where(person_id: person_id)
     applications.any? { |app| app.profile_show == true }
   end
 
