@@ -1,7 +1,7 @@
 require "test_helper"
 
 class ChecklistTemplateTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  context "associations" do
+    should have_many(:items).dependent(:destroy)
+  end
 end

@@ -92,6 +92,9 @@ group :development, :test do
 
   # Analysis for security vulnerabilities
   gem "brakeman"
+
+  # Creating factory instantiations in tests
+  gem "factory_bot_rails"
 end
 
 group :development do
