@@ -10,7 +10,6 @@
 #  name               :string
 #  pause_reason       :integer          default("not_paused")
 #  sex                :string
-#  size               :string
 #  weight_from        :integer          not null
 #  weight_to          :integer          not null
 #  weight_unit        :string           not null
@@ -64,7 +63,6 @@ paused_application:
   name: Paused
   birth_date: <%= DateTime.current - (4.months + 15.days) %>
   breed: mix
-  size: Medium (22-57 lb)
   sex: Male
   weight_from: 30
   weight_to: 45

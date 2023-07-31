@@ -65,7 +65,6 @@ class OrganizationPetsController < ApplicationController
       :birth_date,
       :sex,
       :breed,
-      :size,
       :description,
       :application_paused,
       :pause_reason,

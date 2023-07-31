@@ -54,17 +54,11 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     put "/pets/#{@pet_id}",
       params: {pet:
       {
-        organization_id: organizations(:one).id.to_s,
-        name: "TestPet",
-        age: "7",
-        sex: "Female",
-        breed: "mix",
-        size: "Medium (22-57 lb)",
-        description: "A lovely little pooch this one.",
-        append_images: [""],
         application_paused: true,
         pause_reason: "opening_soon"
-      }}
+      },
+      id: @pet_id
+    }
 
     logout
     sign_in users(:adopter_with_profile)
@@ -76,20 +70,13 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     sign_in users(:verified_staff_one)
 
     put "/pets/#{@pet_id}",
-      params: {pet:
-        {
-          organization_id: organizations(:one).id.to_s,
-          name: "TestPet",
-          age: "7",
-          sex: "Female",
-          breed: "mix",
-          size: "Medium (22-57 lb)",
-          description: "A lovely little pooch this one.",
-          append_images: [""],
-          application_paused: true,
-          pause_reason: "paused_until_further_notice"
-        }}
-
+    params: {pet:
+      {
+        application_paused: true,
+        pause_reason: "paused_until_further_notice"
+      },
+      id: @pet_id
+    }
     logout
     sign_in users(:adopter_with_profile)
     get "/adoptable_pets/#{@pet_id}"

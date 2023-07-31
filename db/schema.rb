@@ -198,7 +198,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "size"
     t.string "breed"
     t.text "description"
     t.string "sex"
