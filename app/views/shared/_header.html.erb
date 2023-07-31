@@ -1,0 +1,59 @@
+<div class="header">
+
+  <!-- Image -->
+  <img src="assets/img/covers/profile-cover-1.jpg" class="header-img-top" alt="...">
+
+  <div class="container-fluid">
+
+    <!-- Body -->
+    <div class="header-body mt-n5 mt-md-n6">
+      <div class="row align-items-end">
+        <div class="col-auto">
+          <!-- Avatar -->
+          <div class="avatar avatar-xxl header-avatar-top">
+            <img src="assets/img/avatars/profiles/avatar-1.jpg" alt="..." class="avatar-img rounded-circle border border-4 border-body">
+          </div>
+        </div>
+
+        <div class="col mb-3 ms-n3 ms-md-n2">
+
+          <!-- Pretitle -->
+          <h6 class="header-pretitle">
+            <%= local_assigns[:pretitle] %>
+          </h6>
+
+          <!-- Title -->
+          <h1 class="header-title">
+            <%= local_assigns[:title] %>
+          </h1>
+
+        </div>
+
+        <div class="col-12 col-md-auto mt-2 mt-md-0 mb-md-3">
+          <!-- Button -->
+          <a href="#!" class="btn btn-primary d-block d-md-inline-block lift">
+            Subscribe
+          </a>
+        </div>
+      </div> <!-- / .row -->
+
+      <div class="row align-items-center">
+        <div class="col">
+
+          <!-- Nav -->
+          <ul class="nav nav-tabs nav-overflow header-tabs">
+            <% (local_assigns[:nav_items] || []).each do |n| %>
+              <li class="nav-item">
+                <% # Use active_link_to here %>
+                <%= link_to n[:url], class: "nav-link active" do %>
+                  <%= n[:label] %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+
+        </div>
+      </div>
+    </div> <!-- / .header-body -->
+  </div>
+</div>
