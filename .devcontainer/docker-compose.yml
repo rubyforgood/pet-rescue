@@ -18,6 +18,8 @@ services:
     environment:
       # to connect to the db container
       DATABASE_URL: postgres://rescuer:supersecret@db
+      # for system tests to use the selenium chrome container
+      CHROME_URL: http://chrome:4444
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
     # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
@@ -36,6 +38,13 @@ services:
       POSTGRES_PASSWORD: supersecret
     # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward PostgreSQL locally.
     # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+  chrome:
+    image: selenium/standalone-chrome:latest
+    hostname: chrome
+    ports:
+      - "127.0.0.1:5900:5900"
+      - "127.0.0.1:4444:4444"
 
 volumes:
   postgres-data:
