@@ -2,7 +2,6 @@ class AdopterProfilesController < ApplicationController
   # staff and admin cannot create a profile
   before_action :authenticate_user!
   before_action :check_if_adopter, only: [:new, :create, :update, :show]
-  before_action :set_countries_and_states, only: [:new, :edit]
 
   # only allow new profile if one does not exist
   # has_one for location provides new method build_location
@@ -51,11 +50,6 @@ class AdopterProfilesController < ApplicationController
 
   def profile_nil?
     AdopterProfile.where(adopter_account_id: current_user.adopter_account.id)[0].nil?
-  end
-
-  def set_countries_and_states
-    json = Rails.root.join("app/assets/json/countries_and_states.json")
-    @countries_and_states = File.read(json)
   end
 
   def adopter_profile_params
