@@ -40,16 +40,25 @@
     </div>
 
     <%# nested form for locations table %>
-    <div class="form-group bigger">
+    <div class="form-group bigger" data-controller="country-state" data-country-state-target="form" data-json="<%= countries_and_states %>">
       <%= form.fields_for :location do |location| %>
           <%= location.label :country %>
-          <%= location.text_field :country, class: 'form-control' %>
+          <%= location.select :country,
+                              JSON.parse(countries_and_states)["countries"],
+                              { prompt: "Please select" },
+                              'data-country-state-target': 'country',
+                              'data-action': 'change->country-state#updateStates',
+                              class: 'form-control' %>
           <% profile.location.custom_messages(:country).each do |error| %>
             <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
           <% end %>
 
           <%= location.label :province_state, 'Province/State' %>
-          <%= location.text_field :province_state, class: 'form-control' %>
+          <%= location.select :province_state,
+                              JSON.parse(countries_and_states)["country_states"][location.object.country],
+                              { prompt: "Please select" },
+                              'data-country-state-target': 'state',
+                              class: 'form-control' %>
           <% profile.location.custom_messages(:province_state).each do |error| %>
             <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
           <% end %>
