@@ -2,12 +2,13 @@
 
   <!-- HEADER -->
   <% nav_items = [
-    { label: "Overview", url: "#" },
-    { label: "Applications", url: "#" },
-    { label: "Files", url: "#" },
-    { label: "Timeline", url: "#" },
+    { label: "Overview", url: adoptable_pet_path(@pet) },
+    { label: "Applications", url: "/applications" },
+    { label: "ToDos", url: "/todos" },
+    { label: "Files", url: "/files" },
+    { label: "Timeline", url: "/timeline" },
   ] %>
-  <%= render "shared/header", pretitle: "Golden Retriever", title: "Barky Barkster", nav_items: nav_items %>
+  <%= render "shared/header", pretitle: @pet.breed, title: @pet.name, nav_items: nav_items %>
 
   <!-- CONTENT -->
   <%= render "shared/page_content" do %>
@@ -23,7 +24,7 @@
 
               <!-- Avatar -->
               <a href="#!" class="avatar">
-                <img src="assets/img/avatars/profiles/avatar-1.jpg" alt="..." class="avatar-img rounded-circle">
+                <%= image_tag @pet.images.first, class: 'avatar-img rounded-circle' %>
               </a>
 
             </div>
@@ -36,7 +37,7 @@
 
               <!-- Time -->
               <p class="card-text small text-muted">
-              <span class="fe fe-clock"></span> <time datetime="2018-05-24">4hr ago</time>
+                <span class="fe fe-clock"></span> <time datetime="2018-05-24">4hr ago</time>
               </p>
 
             </div>
@@ -76,7 +77,7 @@
 
         <!-- Image -->
         <p class="text-center mb-3">
-        <img src="assets/img/posts/post-1.jpg" alt="..." class="img-fluid rounded">
+          <img src="assets/img/posts/post-1.jpg" alt="..." class="img-fluid rounded">
         </p>
 
         <div class="mb-3">
@@ -518,6 +519,7 @@
       <%= render 'shared/card' do %>
         <!-- List group -->
         <div class="list-group list-group-flush my-n3">
+
           <div class="list-group-item">
             <div class="row align-items-center">
               <div class="col">
@@ -584,16 +586,14 @@
 
                 <!-- Title -->
                 <h5 class="mb-0">
-                  Website
+                  Size
                 </h5>
 
               </div>
               <div class="col-auto">
 
                 <!-- Link -->
-                <a href="#!" class="small">
-                  themes.getbootstrap.com
-                </a>
+                <%= @pet.size.capitalize %>
 
               </div>
             </div> <!-- / .row -->
@@ -602,7 +602,7 @@
       <% end %>
 
       <!-- Weekly Hours -->
-      <%= render "shared/card", title: "Weekly Hours" do %>
+      <%= render "shared/card", title: "Files", icon: 'files' do %>
         Yup
       <% end %>
     <% end %>

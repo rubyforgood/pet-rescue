@@ -1,7 +1,7 @@
 <div class="header">
 
   <!-- Image -->
-  <img src="assets/img/covers/profile-cover-1.jpg" class="header-img-top" alt="...">
+  <img src="https://images.unsplash.com/photo-1591160690555-5debfba289f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80" class="header-img-top" style='height: 250px; object-fit: cover'>
 
   <div class="container-fluid">
 
@@ -11,7 +11,7 @@
         <div class="col-auto">
           <!-- Avatar -->
           <div class="avatar avatar-xxl header-avatar-top">
-            <img src="assets/img/avatars/profiles/avatar-1.jpg" alt="..." class="avatar-img rounded-circle border border-4 border-body">
+            <%= image_tag @pet.images.first, class: "avatar-img rounded-circle border border-2 border-body" %>
           </div>
         </div>
 
@@ -44,10 +44,7 @@
           <ul class="nav nav-tabs nav-overflow header-tabs">
             <% (local_assigns[:nav_items] || []).each do |n| %>
               <li class="nav-item">
-                <% # Use active_link_to here %>
-                <%= link_to n[:url], class: "nav-link active" do %>
-                  <%= n[:label] %>
-                <% end %>
+                <%= active_link_to n[:label], n[:url], **(n[:options] || {}), class: 'nav-link' %>
               </li>
             <% end %>
           </ul>
