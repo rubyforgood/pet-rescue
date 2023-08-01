@@ -13,6 +13,9 @@ bin/rails db:test:prepare
 echo "\n🗃️ Load test DB with fixture data.\n"
 bin/rails db:fixtures:load
 
+echo "\n🗜️ Precompile Assets 🖼️\n"
+bin/rails dartsass:build
+
 echo "\n🍿 Unit & Integration Tests 🍿\n"
 bin/rails test
 
