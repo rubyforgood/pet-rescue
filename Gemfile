@@ -78,8 +78,11 @@ gem "traceroute"
 # facilitates multi-tenancy, allowing database records to be associated with organizations
 gem "acts_as_tenant"
 
-# Handles showing active links in the navbar
+# Handles showing 'active' state on links
 gem 'active_link_to'
+
+# Enhances partials to allow for more slots
+gem 'nice_partials'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
