@@ -1,24 +1,44 @@
 import { Controller } from "@hotwired/stimulus";
+import { locationHelper } from "../helpers/locationHelper.js";
 
 export default class extends Controller {
-  static targets = ["country", "state", "form"];
+  static targets = ["country", "state"];
 
   connect() {
-    this.jsonData = JSON.parse(this.formTarget.attributes["data-json"].value);
-    this.country_states = this.jsonData.country_states;
+    this.selectedCountry = this.countryTarget.dataset.initialValue;
+    this.selectedState = this.stateTarget.dataset.initialValue;
+
+    this.setCountryDropdown();
+    this.setStateDropdown();
+  }
+
+  setCountryDropdown() {
+    locationHelper.countries.forEach((country) => {
+      this.countryTarget.options.add(new Option(country, country));
+    });
+
+    // Set country dropdown to the initial value
+    this.countryTarget.value = this.selectedCountry;
+
+    // Set state dropdown to empty initially
+    this.stateTarget.value = null;
+  }
+
+  setStateDropdown() {
+    locationHelper.country_states[this.selectedCountry].forEach((state) => {
+      this.stateTarget.options.add(new Option(state, state));
+    });
+
+    // Set state dropdown to the initial value
+    this.stateTarget.value = this.selectedState;
   }
 
   updateStates() {
-    // Remove all options from state select
+    // Remove all state options and add new states according to selected country
     this.stateTarget.options.length = 0;
 
-    let country = this.countryTarget.value;
-    let states = this.country_states[country] || [];
+    this.selectedCountry = this.countryTarget.value;
 
-    // Add new options
-    states.forEach((state) => {
-      // <option value="Ontario">Ontario</option>
-      this.stateTarget.options.add(new Option(state, state));
-    });
+    this.setStateDropdown();
   }
 }
