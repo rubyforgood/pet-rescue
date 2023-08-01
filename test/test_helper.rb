@@ -33,7 +33,7 @@ class ActiveSupport::TestCase
   def check_messages
     assert_response :success
     print response.parsed_body
-    assert_not response.parsed_body.include?('translation_missing'), "Missing translations, ensure this text is included in en.yml"
+    assert_not response.parsed_body.include?("translation_missing"), "Missing translations, ensure this text is included in en.yml"
   end
 
   #
