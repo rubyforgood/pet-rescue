@@ -5,7 +5,7 @@ FactoryBot.define do
 
   factory :adopter_application do
     notes { Faker::Lorem.paragraph }
-    profile_show { [true, false].sample }
+    profile_show { true }
     status { 1 }
 
     adopter_account

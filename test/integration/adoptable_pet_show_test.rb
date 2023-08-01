@@ -1,12 +1,10 @@
 require "test_helper"
 
 class AdoptablePetShowTest < ActionDispatch::IntegrationTest
-  setup do
-    @pet_id = create(:pet).id
-  end
-
   test "unauthenticated users see create account prompt and link" do
-    get "/adoptable_pets/#{@pet_id}"
+    pet = create(:pet)
+
+    get "/adoptable_pets/#{pet.id}"
 
     assert_response :success
     assert_select "h4", "Create an account to apply for this pet"
@@ -14,9 +12,10 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter without a profile sees complete my profile prompt and link" do
+    pet = create(:pet)
     sign_in create(:user, :adopter_without_profile)
 
-    get "/adoptable_pets/#{@pet_id}"
+    get "/adoptable_pets/#{pet.id}"
 
     assert_response :success
     assert_select "h4", "Complete your profile to apply for this pet"
@@ -24,9 +23,10 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter with a profile sees love this pooch question and apply button" do
+    pet = create(:pet)
     sign_in create(:user, :adopter_with_profile)
 
-    get "/adoptable_pets/#{@pet_id}"
+    get "/adoptable_pets/#{pet.id}"
 
     assert_response :success
     assert_select "h4", "In love with this pooch?"
@@ -48,9 +48,10 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "staff do not see an adopt button only log out button" do
+    pet = create(:pet)
     sign_in create(:user, :verified_staff)
 
-    get "/adoptable_pets/#{@pet_id}"
+    get "/adoptable_pets/#{pet.id}"
 
     assert_response :success
     assert_select "form" do
