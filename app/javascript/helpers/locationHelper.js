@@ -1,7 +1,7 @@
-{
-  "countries": ["Canada", "United States"],
-  "country_states": {
-    "Canada": [
+export const locationHelper = {
+  countries: ["Canada", "United States"],
+  country_states: {
+    Canada: [
       "Ontario",
       "Quebec",
       "British Columbia",
@@ -14,7 +14,7 @@
       "Prince Edward Island",
       "Yukon",
       "Northwest Territories",
-      "Nunavut"
+      "Nunavut",
     ],
     "United States": [
       "New York",
@@ -67,7 +67,7 @@
       "Delaware",
       "Montana",
       "Vermont",
-      "Wyoming"
-    ]
-  }
-}
+      "Wyoming",
+    ],
+  },
+};
