@@ -35,9 +35,8 @@ class RegistrationsController < Devise::RegistrationsController
       :current_password)
   end
 
-  # redirect new adopter users to adoptable pets page
   def after_sign_up_path_for(resource)
-    resource.adopter_account ? adoptable_pets_path : root_path
+    adoptable_pets_path
   end
 
   def after_sign_in_path_for
