@@ -20,8 +20,8 @@ export default class extends Controller {
     // Set country dropdown to the initial value
     this.countryTarget.value = this.selectedCountry;
 
-    // Set state dropdown to empty initially
-    this.stateTarget.value = null;
+    // Set state dropdown to empty
+    this.stateTarget.options.length = 0;
   }
 
   setStateDropdown() {
@@ -34,11 +34,13 @@ export default class extends Controller {
   }
 
   updateStates() {
-    // Remove all state options and add new states according to selected country
+    // Remove old state options
     this.stateTarget.options.length = 0;
 
+    // Update the selected country based on the user's selection
     this.selectedCountry = this.countryTarget.value;
 
+    // Add new states according to the selected country
     this.setStateDropdown();
   }
 }
