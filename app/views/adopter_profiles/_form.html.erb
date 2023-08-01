@@ -40,14 +40,16 @@
     </div>
 
     <%# nested form for locations table %>
-    <div class="form-group bigger" data-controller="country-state" data-country-state-target="form">
+    <div class="form-group bigger" data-controller="country-state">
       <%= form.fields_for :location do |location| %>
           <%= location.label :country %>
           <%= location.select :country,
-                              [""],
+                              [],
                               { prompt: "Please select" },
                               'data-country-state-target': 'country',
                               'data-action': 'change->country-state#updateStates',
+                              'data-initial-value': location.object.country,
+                              required: true,
                               class: 'form-control' %>
           <% profile.location.custom_messages(:country).each do |error| %>
             <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
@@ -55,9 +57,11 @@
 
           <%= location.label :province_state, 'Province/State' %>
           <%= location.select :province_state,
-                              [""],
+                              [],
                               { prompt: "Please select" },
                               'data-country-state-target': 'state',
+                              'data-initial-value': location.object.province_state,
+                              required: true,
                               class: 'form-control' %>
           <% profile.location.custom_messages(:province_state).each do |error| %>
             <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
