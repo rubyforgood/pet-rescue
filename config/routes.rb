@@ -7,7 +7,11 @@ Rails.application.routes.draw do
 
   resources :adoptable_pets, only: [:index, :show]
   resources :adopter_applications, only: [:index, :edit, :update], controller: "adoption_application_reviews"
-  resource :adopter_profile, except: :destroy, as: "profile"
+  resource :adopter_profile, except: :destroy, as: "profile" do
+    collection do
+      get "states"
+    end
+  end
   resources :checklist_templates
   resources :donations, only: [:create]
   resources :pets, controller: "organization_pets"

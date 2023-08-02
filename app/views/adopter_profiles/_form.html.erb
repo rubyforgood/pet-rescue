@@ -44,8 +44,9 @@
       <%= form.fields_for :location do |location| %>
           <%= location.label :country %>
           <%= location.select :country,
-                              [],
+                              CS.countries.invert,
                               { prompt: "Please select" },
+                              'data-path': states_profile_path,
                               'data-country-state-target': 'country',
                               'data-action': 'change->country-state#updateStates',
                               'data-initial-value': location.object.country,
@@ -57,10 +58,9 @@
 
           <%= location.label :province_state, 'Province/State' %>
           <%= location.select :province_state,
-                              [],
+                              CS.states(location.object.country).invert,
                               { prompt: "Please select" },
                               'data-country-state-target': 'state',
-                              'data-initial-value': location.object.province_state,
                               required: true,
                               class: 'form-control' %>
           <% profile.location.custom_messages(:province_state).each do |error| %>
