@@ -1,19 +1,30 @@
 class ApplicationController < ActionController::Base
-  before_action :debug_request
+  before_action :set_tenant, :debug_request
   set_current_tenant_through_filter
-  before_action :set_tenant
+
+  def set_tenant
+    org = Organization.find_by(subdomain: request.subdomain)
+    set_current_tenant(org)
+    @organization_settings = get_organization_settings[request.subdomain]
+  end
 
   def debug_request
     logger.debug("SUBDOMAIN: #{request.subdomain}")
     logger.debug("TENANT: #{ActsAsTenant.current_tenant}")
   end
 
-  def set_tenant
-    org = Organization.find_by(subdomain: request.subdomain)
-    set_current_tenant(org)
-  end
-
   private
+
+  def get_organization_settings
+    {
+      "alta" => {
+        logo: "logo.png"
+      },
+      "rubyforgood" => {
+        logo: "rubyforgood-logo.png"
+      }
+    }
+  end
 
   def adopter_with_profile
     return if current_user.adopter_account&.adopter_profile

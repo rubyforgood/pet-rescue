@@ -2,7 +2,7 @@
       style='background-color: #00401F;' aria-label="Fourth navbar example">
   <div class="container">
     <div class="navbar-brand">
-      <%= link_to image_tag('logo.png', class: 'logo me-2', alt: 'site logo'),
+      <%= link_to image_tag(@organization_settings[:logo], class: 'logo me-2', alt: 'site logo'),
                   root_path %>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
