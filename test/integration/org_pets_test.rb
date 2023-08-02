@@ -41,7 +41,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
-      )
+    )
 
     assert_response :redirect
     follow_redirect!
@@ -81,7 +81,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
-        )
+    )
 
     assert_response :redirect
     follow_redirect!
@@ -108,7 +108,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
-        )
+    )
 
     assert_response :redirect
     follow_redirect!
@@ -152,7 +152,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           application_paused: true,
           pause_reason: "paused_until_further_notice"
         }}
-        )
+    )
 
     assert_response :redirect
     follow_redirect!
@@ -178,7 +178,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
         {
           application_paused: "false"
         }}
-      )
+    )
 
     assert_response :redirect
     follow_redirect!
@@ -196,7 +196,6 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     pet = create(:pet, organization: organization)
 
     sign_in create(:user, :verified_staff, staff_account: staff_account)
-    
 
     assert_difference "pet.images_attachments.length", 2 do
       patch(
@@ -237,7 +236,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     pet.reload
 
     pet_image = pet.images_attachments.first
-   
+
     assert_difference "pet.images_attachments.length", -1 do
       delete(
         "/attachments/#{pet_image.id}/purge",
@@ -284,7 +283,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
         params: {id: pet_image.id.to_s},
         headers: {"HTTP_REFERER" => "http://www.example.com/pets/#{pet.id}"}
       )
-      
+
       follow_redirect!
       check_messages
       assert_equal "/", path
@@ -342,8 +341,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     sign_in create(:user, :verified_staff)
 
     get("/pets",
-      params: {selection: "Adopted"}
-    )
+      params: {selection: "Adopted"})
 
     check_messages
     assert_select "div.col-lg-4", {count: Pet.adopted_pets(@org_id).count}
@@ -355,12 +353,10 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     staff_account = create(:staff_account, organization: organization)
     pet = create(:pet, organization: organization)
 
-
     sign_in create(:user, :verified_staff)
 
     get("/pets",
-      params: {pet_id: pet.id}
-    )
+      params: {pet_id: pet.id})
 
     check_messages
     assert_select "div.col-lg-4", {count: 1}
