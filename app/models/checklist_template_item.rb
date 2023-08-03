@@ -21,6 +21,8 @@
 #
 class ChecklistTemplateItem < ApplicationRecord
   belongs_to :checklist_template
-  validates :name, :expected_duration_days, presence: true
   has_many :checklist_assignments, dependent: :destroy
+
+  validates :name, presence: true
+  validates :expected_duration_days, presence: true, numericality: {greater_than_or_equal_to: 0}
 end
