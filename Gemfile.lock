@@ -368,6 +368,8 @@ GEM
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
+    requestjs-rails (0.0.10)
+      rails (>= 6.0.0)
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -500,6 +502,7 @@ DEPENDENCIES
   phonelib
   puma (~> 5.0)
   rails (~> 7.0.3)
+  requestjs-rails (~> 0.0.10)
   shoulda (~> 4.0)
   shoulda-matchers
   simplecov
