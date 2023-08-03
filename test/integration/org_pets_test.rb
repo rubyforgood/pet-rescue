@@ -283,7 +283,6 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
         params: {id: pet_image.id.to_s},
         headers: {"HTTP_REFERER" => "http://www.example.com/pets/#{pet.id}"}
       )
-
       follow_redirect!
       check_messages
       assert_equal "/", path
@@ -295,7 +294,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
   test "verified staff can delete pet post" do
     organization = create(:organization)
-    staff_account = create(:staff_account, organization: organization)
+    create(:staff_account, organization: organization)
     pet = create(:pet, organization: organization)
 
     sign_in create(:user, :verified_staff)
@@ -311,7 +310,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
   # test org pets index page filter for adoption status
   test "verified staff accessing org pets index without selection param see all unadopted pets" do
     organization = create(:organization)
-    staff_account = create(:staff_account, organization: organization)
+    create(:staff_account, organization: organization)
     sign_in create(:user, :verified_staff)
 
     get "/pets"
@@ -321,7 +320,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
   test "verified staff accessing org pets index with selection param seeking adoption see all unadopted pets" do
     organization = create(:organization)
-    staff_account = create(:staff_account, organization: organization)
+    create(:staff_account, organization: organization)
 
     sign_in create(:user, :verified_staff)
 
@@ -336,7 +335,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
   test "verified staff accessing org pets index with selection param adopted see all adopted pets" do
     organization = create(:organization)
-    staff_account = create(:staff_account, organization: organization)
+    create(:staff_account, organization: organization)
 
     sign_in create(:user, :verified_staff)
 
@@ -350,7 +349,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
   # test org pets index page filter for pet name
   test "verified staff accessing org pets index with a pet id see that pet only" do
     organization = create(:organization)
-    staff_account = create(:staff_account, organization: organization)
+    create(:staff_account, organization: organization)
     pet = create(:pet, organization: organization)
 
     sign_in create(:user, :verified_staff)
