@@ -36,7 +36,7 @@ three:
   checklist_template: one
   name: Shot 2
   expected_duration_days: 11
-  required: false
+  required: true
 
 four:
   checklist_template: one
