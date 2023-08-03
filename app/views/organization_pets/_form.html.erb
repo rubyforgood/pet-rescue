@@ -69,7 +69,7 @@
           <div>
             <%= form.label :weight_unit %>
             <%= form.select :weight_unit, 
-                        Pet.weight_units,
+                        Pet::WEIGHT_UNITS,
                         {},
                         class: 'form-control' %>
             <% pet.errors.full_messages_for(:weight_unit).each do |error| %>

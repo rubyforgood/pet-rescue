@@ -53,9 +53,13 @@ class Pet < ApplicationRecord
     :opening_soon,
     :paused_until_further_notice]
 
-  def self.weight_units
-    ["lb", "kg"]
-  end
+  WEIGHT_UNIT_LB = 'lb'.freeze
+  WEIGHT_UNIT_KG = 'kg'.freeze
+  
+  WEIGHT_UNITS = [
+    WEIGHT_UNIT_LB,
+    WEIGHT_UNIT_KG,
+  ]
 
   def to_weight_must_be_greater_than_from_weight
     if weight_from.present? && weight_to.present?
