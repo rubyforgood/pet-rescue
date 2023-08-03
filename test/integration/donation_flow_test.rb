@@ -26,8 +26,7 @@ class DonationFlowTest < ActionDispatch::IntegrationTest
   test "post request with completed status creates a new donation record " do
     donation_count_before = Donation.all.length
 
-    post "/donations",
-      params: @completed_paypal_response
+    post "/donations", params: @completed_paypal_response
 
     donation_count_after = Donation.all.length
     assert_equal donation_count_after, donation_count_before + 1
@@ -39,8 +38,7 @@ class DonationFlowTest < ActionDispatch::IntegrationTest
   test "post request with failed status does not create a new donation record" do
     donation_count_before = Donation.all.length
 
-    post "/donations",
-      params: @failed_paypal_response
+    post "/donations", params: @failed_paypal_response
 
     donation_count_after = Donation.all.length
     assert_equal donation_count_after, donation_count_before
