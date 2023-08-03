@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_03_061756) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -132,6 +132,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
     t.datetime "completed_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "due_date", null: false
     t.index ["checklist_template_item_id"], name: "index_checklist_assignments_on_checklist_template_item_id"
     t.index ["match_id"], name: "index_checklist_assignments_on_match_id"
   end
