@@ -1,20 +1,18 @@
 import { Controller } from "@hotwired/stimulus";
-import { Turbo } from "@hotwired/turbo-rails";
+import { get } from "@rails/request.js";
 
 export default class extends Controller {
   static targets = ["country", "state"];
 
   updateStates() {
-    let country = this.countryTarget.value;
     let path = this.countryTarget.dataset.path;
-    let target = this.stateTarget.id;
-    let name = this.stateTarget.name;
 
-    fetch(`${path}?country=${country}&target=${target}&name=${name}`, {
-      method: "GET",
-      headers: { contentType: "text/html" },
-    })
-      .then((response) => response.text())
-      .then((html) => Turbo.renderStreamMessage(html));
+    let params = new URLSearchParams({
+      country: this.countryTarget.value,
+      target: this.stateTarget.id,
+      name: this.stateTarget.name,
+    });
+
+    get(`${path}?${params}`, { responseKind: "turbo-stream" });
   }
 }
