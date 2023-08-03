@@ -27,7 +27,11 @@ class ChecklistAssignment < ApplicationRecord
   scope :completed, -> { where.not(completed_at: nil) }
   scope :incomplete, -> { where(completed_at: nil) }
 
+  scope :required, -> { joins(:checklist_template_item).where(checklist_template_items: {required: true}) }
+  scope :optional, -> { joins(:checklist_template_item).where(checklist_template_items: {required: false}) }
+
   before_create :set_due_date
+  delegate :name, :description, :expected_duration_days, :required, :required?, :optional?, to: :checklist_template_item
 
   def completed?
     completed_at
@@ -36,6 +40,6 @@ class ChecklistAssignment < ApplicationRecord
   private
 
   def set_due_date
-    self.due_date = Time.now + checklist_template_item.expected_duration_days.days
+    self.due_date = Time.now + expected_duration_days.days
   end
 end
