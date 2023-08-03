@@ -46,12 +46,6 @@ class AdopterProfilesController < ApplicationController
     end
   end
 
-  def states
-    @target = params[:target]
-    @name = params[:name]
-    @states = CS.states(params[:country]).invert
-  end
-
   private
 
   def profile_nil?

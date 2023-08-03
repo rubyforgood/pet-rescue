@@ -7,16 +7,18 @@ Rails.application.routes.draw do
 
   resources :adoptable_pets, only: [:index, :show]
   resources :adopter_applications, only: [:index, :edit, :update], controller: "adoption_application_reviews"
-  resource :adopter_profile, except: :destroy, as: "profile" do
-    collection do
-      get "states"
-    end
-  end
+  resource :adopter_profile, except: :destroy, as: "profile"
   resources :checklist_templates
   resources :donations, only: [:create]
   resources :pets, controller: "organization_pets"
   resources :profile_reviews, only: [:show]
   resources :successes, only: [:index]
+
+  resources :countries, only: [] do
+    collection do
+      get :states
+    end
+  end
 
   match "/404", to: "errors#not_found", via: :all
   match "/422", to: "errors#restricted_access", via: :all
