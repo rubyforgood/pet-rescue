@@ -177,7 +177,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     create(:adopter_application, adopter_account: adopter_user.adopter_account, pet: pet)
     sign_in staff_user
 
-    assert_changes "Match.count", from: 1, to: 2 do
+    assert_changes "Match.count", from: 0, to: 1 do
       post "/create_adoption", params: {adopter_account_id: adopter_user.adopter_account.id, pet_id: pet.id}
     end
   end
