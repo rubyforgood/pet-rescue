@@ -2,6 +2,12 @@ class ApplicationController < ActionController::Base
   before_action :debug_request
   set_current_tenant_through_filter
   before_action :set_tenant
+  around_action :switch_locale
+
+  def switch_locale(&action)
+    locale = params[:locale] || I18n.default_locale
+    I18n.with_locale(locale, &action)
+  end
 
   def debug_request
     logger.debug("SUBDOMAIN: #{request.subdomain}")

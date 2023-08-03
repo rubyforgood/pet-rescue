@@ -5,7 +5,7 @@ FactoryBot.define do
 
   factory :adopter_application do
     notes { Faker::Lorem.paragraph }
-    profile_show { [true, false].sample }
+    profile_show { true }
     status { 1 }
 
     adopter_account
@@ -49,6 +49,14 @@ FactoryBot.define do
     name { Faker::Lorem.word }
   end
 
+  factory :checklist_template_item do
+    expected_duration_days { 3 }
+    name { Faker::Lorem.word }
+    required { [true, false].sample }
+
+    checklist_template
+  end
+
   factory :organization do
   end
 
@@ -68,9 +76,27 @@ FactoryBot.define do
       adopter_applications { build_list(:adopter_application, 3, :adoption_pending) }
     end
 
-    trait :application_paused do
+    trait :application_paused_opening_soon do
       application_paused { true }
+      pause_reason { 1 }
     end
+
+    trait :application_paused_until_further_notice do
+      application_paused { true }
+      pause_reason { 2 }
+    end
+
+    trait :adopted do
+      after :create do |pet|
+        create :match, pet: pet, organization: pet.organization
+      end
+    end
+  end
+
+  factory :match do
+    pet
+    organization
+    adopter_account
   end
 
   factory :staff_account do
@@ -100,11 +126,24 @@ FactoryBot.define do
       staff_account { build(:staff_account, :unverified) }
     end
 
+    trait :adopter_without_profile do
+      adopter_account
+    end
+
     trait :adopter_with_profile do
       adopter_account
 
       after :create do |user|
         create :adopter_profile, adopter_account: user.adopter_account
+      end
+    end
+
+    trait :application_awaiting_review do
+      adopter_account
+
+      after :create do |user|
+        create :adopter_application, adopter_account: user.adopter_account, status: 0
+        user.adopter_account.adopter_profile = create(:adopter_profile)
       end
     end
   end

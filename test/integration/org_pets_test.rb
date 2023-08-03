@@ -15,6 +15,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     get "/pets/new"
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "/", path
     assert_equal "Unauthorized action.", flash[:alert]
   end
@@ -24,6 +25,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     get "/pets/new"
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "/", path
     assert_equal "Unauthorized action.", flash[:alert]
   end
@@ -48,19 +50,20 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "Unauthorized action.", flash[:alert]
   end
 
   test "verified staff can access org pets index" do
     sign_in users(:verified_staff_one)
     get "/pets/new"
-    assert_response :success
+    check_messages
   end
 
   test "verified staff can access pet/new" do
     sign_in users(:verified_staff_one)
     get "/pets/new"
-    assert_response :success
+    check_messages
   end
 
   test "verified staff can create a new pet post" do
@@ -83,6 +86,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "Pet saved successfully.", flash[:notice]
     assert_select "h1", "Our pets"
   end
@@ -107,6 +111,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "Pet updated successfully.", flash[:notice]
     assert_select "h1", "TestPet"
   end
@@ -121,6 +126,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "Pet updated successfully.", flash[:notice]
     @pet.reload
 
@@ -139,6 +145,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "Pet updated successfully.", flash[:notice]
 
     assert_select "form" do
@@ -160,6 +167,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "Pet updated successfully.", flash[:notice]
     @pet.reload
 
@@ -196,6 +204,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
+      check_messages
       assert_equal "Attachment removed", flash[:notice]
 
       @pet.reload
@@ -212,6 +221,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
         headers: {"HTTP_REFERER" => "http://www.example.com/pets/#{@pet.id}"}
 
       follow_redirect!
+      check_messages
       assert_equal "/", path
       assert_equal "Unauthorized action.", flash[:alert]
 
@@ -226,6 +236,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_select "h1", "Our pets"
   end
 
@@ -234,7 +245,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     sign_in users(:verified_staff_one)
 
     get "/pets"
-    assert_response :success
+    check_messages
     assert_select "div.col-lg-4", {count: Pet.unadopted_pets(@org_id).count}
   end
 
@@ -242,7 +253,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     sign_in users(:verified_staff_one)
     get "/pets",
       params: {selection: "Seeking Adoption"}
-    assert_response :success
+    check_messages
     assert_select "div.col-lg-4", {count: Pet.unadopted_pets(@org_id).count}
   end
 
@@ -250,7 +261,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     sign_in users(:verified_staff_one)
     get "/pets",
       params: {selection: "Adopted"}
-    assert_response :success
+    check_messages
     assert_select "div.col-lg-4", {count: Pet.adopted_pets(@org_id).count}
   end
 
@@ -259,7 +270,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     sign_in users(:verified_staff_one)
     get "/pets",
       params: {pet_id: @pet.id}
-    assert_response :success
+    check_messages
     assert_select "div.col-lg-4", {count: 1}
     assert_select "h5", "Applications"
   end

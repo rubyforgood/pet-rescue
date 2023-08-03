@@ -45,25 +45,25 @@
         <!--pet info-->
         <div class='row mb-3'>
           <div class='col-md-2 mb-1'>
-            <h5 style='font-weight: bold;'>Age:</h5>
+            <h5 style='font-weight: bold;'><%= t('general.age') %>:</h5>
             <h5><%= time_ago_in_words(@pet.birth_date) %></h5>
           </div>
           <div class='col-md-2 mb-1'>
-            <h5 style='font-weight: bold;'>Sex:</h5>
+            <h5 style='font-weight: bold;'><%= t('general.sex') %>:</h5>
             <h5><%= @pet.sex %></h5>
           </div>
           <div class='col-md-4 mb-1'>
-            <h5 style='font-weight: bold;'>Breed:</h5>
+            <h5 style='font-weight: bold;'><%= t('general.age') %>:</h5>
             <h5><%= @pet.breed %></h5>
           </div>
           <div class='col-md-4 mb-1'>
-            <h5 style='font-weight: bold;'>Size:</h5>
+            <h5 style='font-weight: bold;'><%= t('general.size') %>:</h5>
             <h5> <%= @pet.weight_from %> to <%= @pet.weight_to %> <%= @pet.weight_unit %></h5>
           </div>
         </div>
 
         <h4 style='font-weight: bold;' class=''>
-          About <%= @pet.name %>
+          <%= "#{t('general.about')} #{@pet.name}" %>
         </h4>
         <p style="white-space: pre-line;">
           <%= @pet.description %>
@@ -76,8 +76,7 @@
         <% unless @pet.match %>
           <div class='d-flex align-items-center'>
               <h3 class='me-2'>
-                Applications are
-                <%= @pet.application_paused == true ? 'paused' : 'active' %>
+                <%= @pet.application_paused == true ? t('.application.active') : t('.application.paused') %>
               </h3>
               <%= @pet.application_paused == true ? image_tag('pause.png', height: '25'): 
                                                     image_tag('green_check.png', height: '25')%>
@@ -87,36 +86,36 @@
             <%= form_with model: @pet do |form|%>
               <div data-controller='display'>
                 <div class='d-flex form-group' data-display-target='checked'>
-                  <p class='me-2'>Pause Applications?</p>
-                  <%= form.label :application_paused, 'Yes', value: 'true', class: 'me-2' %>
+                  <p class='me-2'><%= t('.pause_applications') %></p>
+                  <%= form.label :application_paused, t('general.yes'), value: 'true', class: 'me-2' %>
                   <%= form.radio_button :application_paused, 
                                         true, 
                                         data: { action: "input->display#show" } %>
-                  <%= form.label :application_paused, 'No', value: 'false', class: 'ms-3 me-2' %>
+                  <%= form.label :application_paused, t('general.no'), value: 'false', class: 'ms-3 me-2' %>
                   <%= form.radio_button :application_paused, 
                                         false, 
                                         data: { action: "input->display#hide" } %>
                 </div>
 
                 <div data-display-target='additional' class="d-flex d-none">
-                  <%= form.label :pause_reason, 'Why?', class: 'me-2' %>
+                  <%= form.label :pause_reason, t('.why'), class: 'me-2' %>
                   <%= form.select(:pause_reason, 
                                   Pet.app_pause_reasons, 
                                   { selected: @pause_reason }, 
                                   { class: "form-control"}) %>
                 </div>
               </div>
-              <%= form.submit 'Save', class: 'btn btn-outline-dark mb-3 mt-4' %>
+              <%= form.submit t('general.save'), class: 'btn btn-outline-dark mb-3 mt-4' %>
             <% end %>
           </div>
         <% end %>
 
         <div class="p-2 d-flex flex-column">
-            <%= link_to 'Edit Pet', edit_pet_path(@pet), 
+            <%= link_to t('.edit_pet'), edit_pet_path(@pet),
                         class: 'custom-btn-green mb-2' %>
             
             <% if @pet.match %>
-              <%= link_to 'View Adopter', 
+              <%= link_to t('.view_adopter'),
                           profile_review_path(@pet.match
                                                   .adopter_account
                                                   .adopter_profile.id),
@@ -125,19 +124,19 @@
         </div>
         <div class="p-2 d-flex flex-column">
             <% if @pet.match %>
-              <%= link_to 'Revoke Adoption', revoke_adoption_path(match_id: @pet.match.id),
+              <%= link_to t('.revoke_adoption'), revoke_adoption_path(match_id: @pet.match.id),
                   class: 'custom-btn-pink mb-2',
                   data: {
                     turbo_method: :delete,
-                    turbo_confirm: "Are you sure you want to revoke this adoption?"
+                    turbo_confirm: t('.are_you_sure_revoke')
                   } %> 
             <% end %>
 
-            <%= link_to 'Delete', pet_path(@pet), class: 'custom-btn-pink mb-2',
+            <%= link_to t('general.delete'), pet_path(@pet), class: 'custom-btn-pink mb-2',
                   data: 
                         {
                   turbo_method: :delete,
-                  turbo_confirm: "Are you sure you want to delete this pet?"
+                  turbo_confirm: t('.are_you_sure_delete')
                 } %>        
         </div>
       </div> <!--col-->

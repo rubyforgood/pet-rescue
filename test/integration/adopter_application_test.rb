@@ -70,7 +70,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter user with profile cannot apply for a paused pet and sees flash error" do
-    paused_pet_id = create(:pet, :application_paused).id
+    paused_pet = create(:pet, :application_paused_opening_soon)
     adopter_with_profile = create(:user, :adopter_with_profile)
     sign_in adopter_with_profile
     before_count = AdopterApplication.all.count
@@ -79,7 +79,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
       params: {application:
         {
           adopter_account_id: adopter_with_profile.adopter_account.id,
-          pet_id: paused_pet_id
+          pet_id: paused_pet.id
         }}
 
     assert_response :redirect
