@@ -52,7 +52,7 @@ class AdopterProfileFormsTest < ApplicationSystemTestCase
     sign_in create(:user, :adopter_with_profile)
     visit profile_path
     click_on "Edit Profile"
-    
+
     assert_equal page.all("select#adopter_profile_contact_method").map(&:value).join, "Phone"
     assert_equal page.all("select#adopter_profile_alone_weekday").map(&:value).join, "3"
     assert_equal page.all("select#adopter_profile_alone_weekend").map(&:value).join, "3"

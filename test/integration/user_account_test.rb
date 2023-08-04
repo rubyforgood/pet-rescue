@@ -1,6 +1,10 @@
 require "test_helper"
 
 class UserAccountTest < ActionDispatch::IntegrationTest
+  setup do
+    host! "test.test.local"
+  end
+
   test "user gets redirected to root page after sign in" do
     user = create(:user, :adopter_with_profile)
 
