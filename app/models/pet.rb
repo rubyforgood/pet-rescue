@@ -39,7 +39,7 @@ class Pet < ApplicationRecord
   validates :weight_from, presence: true
   validates :weight_to, presence: true
   validates :weight_unit, presence: true
-  validates_comparison_of :weight_to, greater_than: :weight_from  
+  validates_comparison_of :weight_to, greater_than: :weight_from
   validates :description, presence: true, length: {maximum: 1000}
 
   # active storage validations gem
@@ -53,12 +53,12 @@ class Pet < ApplicationRecord
     :opening_soon,
     :paused_until_further_notice]
 
-  WEIGHT_UNIT_LB = 'lb'.freeze
-  WEIGHT_UNIT_KG = 'kg'.freeze
-  
+  WEIGHT_UNIT_LB = "lb".freeze
+  WEIGHT_UNIT_KG = "kg".freeze
+
   WEIGHT_UNITS = [
     WEIGHT_UNIT_LB,
-    WEIGHT_UNIT_KG,
+    WEIGHT_UNIT_KG
   ]
 
   def custom_messages(attribute)
