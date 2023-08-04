@@ -5,7 +5,7 @@
   <% if profile.errors.count > 0 %>
     <div class="alert alert-danger mt-1" role="alert">
       <p>
-        Please fix the errors highlighted below.
+        <%= t '.please_fix_the_errors' %>
       </p>
     </div>
   <% end %>
@@ -27,10 +27,10 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :contact_method, 'Preferred contact method', class: 'bigger' %>
+      <%= form.label :contact_method, t('.preferred_contact_method'), class: 'bigger' %>
       <%= form.select :contact_method, 
                       ['Phone', 'Email', 'WhatsApp'], 
-                      { prompt: "Please select" },
+                      { prompt: t('general.please_select') },
                       class: 'form-control bigger' %>
 
 
