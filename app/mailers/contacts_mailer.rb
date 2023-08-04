@@ -6,7 +6,7 @@ class ContactsMailer < ApplicationMailer
     @url = "https://www.bajapetrescue.com"
     multi_tenant_service = MultiTenantService.new(tenant_org)
     mail(from: multi_tenant_service.default_email,
-         to: multi_tenant_service.contact_email,
-         subject: "New Message via Website")
+      to: multi_tenant_service.contact_email,
+      subject: "New Message via Website")
   end
 end

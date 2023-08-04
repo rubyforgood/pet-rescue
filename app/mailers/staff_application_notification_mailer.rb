@@ -7,7 +7,7 @@ class StaffApplicationNotificationMailer < ApplicationMailer
     emails = @organization_staff.collect(&:email).join(",")
     from_email = MultiTenantService.new(@pet.organization.subdomain).default_email
     mail(from: from_email,
-         to: emails,
-         subject: "New Adoption Application")
+      to: emails,
+      subject: "New Adoption Application")
   end
 end

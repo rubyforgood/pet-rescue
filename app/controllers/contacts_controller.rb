@@ -1,19 +1,18 @@
 class ContactsController < ApplicationController
-
   def new
     @contact = Contact.new
   end
 
   def create
     @contact = Contact.new(name: params[:name],
-                           email: params[:email],
-                           message: params[:message])
+      email: params[:email],
+      message: params[:message])
 
     if @contact.valid?
       ContactsMailer.with(name: params[:name],
-                          email: params[:email],
-                          message: params[:message])
-                    .send_message(current_tenant.subdomain).deliver_now
+        email: params[:email],
+        message: params[:message])
+        .send_message(current_tenant.subdomain).deliver_now
       redirect_to root_path, notice: "Message sent!"
     else
       render :new, status: :unprocessable_entity
