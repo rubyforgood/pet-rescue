@@ -294,6 +294,6 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           append_images: [""]
         }}
 
-    assert_select "div.alert", "Must be greater than from weight"
+    assert_select "div.alert", "Weight to must be greater than 15"
   end
 end
