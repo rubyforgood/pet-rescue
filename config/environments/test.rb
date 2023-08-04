@@ -63,12 +63,12 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
 
   # Devise config
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_mailer.default_url_options = {host: "localhost", port: 3000}
 
   alta_from_domain = "altatest.test.localhost"
   rubyforgood_from_domain = "rubyforgoodtest.test.localhost"
   config.email_from = {
-    default: { altatest: "hello@#{alta_from_domain}", rubyforgoodtest: "hello@#{rubyforgood_from_domain}" },
-    contact: { altatest: "contact@#{alta_from_domain}", rubyforgoodtest: "contact@#{rubyforgood_from_domain}" }
+    default: {altatest: "hello@#{alta_from_domain}", rubyforgoodtest: "hello@#{rubyforgood_from_domain}"},
+    contact: {altatest: "contact@#{alta_from_domain}", rubyforgoodtest: "contact@#{rubyforgood_from_domain}"}
   }
 end
