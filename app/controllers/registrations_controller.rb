@@ -18,7 +18,6 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
       :password,
       :signup_role,
-      :password_confirmation,
       :tos_agreement,
       adopter_account_attributes: [:user_id],
       staff_account_attributes: [:user_id])
