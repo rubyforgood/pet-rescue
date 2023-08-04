@@ -66,9 +66,9 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {host: "localhost", port: 3000}
 
   alta_from_domain = "altatest.test.localhost"
-  rubyforgood_from_domain = "rubyforgoodtest.test.localhost"
+  test_from_domain = "test.test.localhost"
   config.email_from = {
-    default: {altatest: "hello@#{alta_from_domain}", rubyforgoodtest: "hello@#{rubyforgood_from_domain}"},
-    contact: {altatest: "contact@#{alta_from_domain}", rubyforgoodtest: "contact@#{rubyforgood_from_domain}"}
+    default: {altatest: "hello@#{alta_from_domain}", test: "hello@#{test_from_domain}"},
+    contact: {altatest: "contact@#{alta_from_domain}", test: "contact@#{test_from_domain}"}
   }
 end
