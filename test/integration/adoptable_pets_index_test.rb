@@ -9,7 +9,7 @@ class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
 
   test "unauthenticated user can access adoptable pets index" do
     get "/adoptable_pets"
-    assert_response :success
+    check_messages
     assert_select "h1", "Up for adoption"
   end
 

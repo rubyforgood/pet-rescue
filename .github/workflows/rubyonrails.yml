@@ -13,6 +13,7 @@ on:
   workflow_dispatch:
 jobs:
   test:
+    name: Tests
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -31,7 +32,7 @@ jobs:
         uses: actions/checkout@v3
       # Add or replace dependency steps here
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
       # Add or replace database setup steps here
@@ -53,7 +54,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
       - name: Run Standard
@@ -65,7 +66,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       - name: Install Ruby and gems
-        uses: ruby/setup-ruby@0a29871fe2b0200a17a4497bae54fe5df0d973aa # v1.115.3
+        uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
       - name: Run Brakeman

@@ -31,3 +31,86 @@
 
 en:
   hello: "Hello world"
+  general:
+    adoption_pending: "(Adoption Pending)"
+    age: "Age"
+    breed: "Breed"
+    application: "Application"
+    sex: "Sex"
+    size: "Size"
+    about: "About"
+    'yes': Yes
+    'no': No
+    save: "Save"
+    delete: "Delete"
+    please_select: "Please select"
+    male: "Male"
+    female: "Female"
+    edit: "Edit"
+    submit: "Submit"
+  adoptable_pets:
+    index:
+      header: "Up for adoption"
+    show:
+      adoption_process: "Adoption Process"
+      please_read_faq_html: "Please read the <a href='/faq'>FAQ</a> before applying to adopt."
+      please_know_that: "Please know that"
+      please_know_that_items_html: |
+        <li>Adopters must be located in Canada, USA or Mexico</li>
+        <li>There is an adoption fee of $175 USD</li>
+        <li>Every pet will be fully vaccinated and have the necessary
+        paperwork to enter Canada/USA</li>
+        <li>We can usually arrange transport to adopters west of Alberta or
+        Nevada only. Adopters further east will need to arrange
+        transport before an adoption can be approved.</li>
+      after_you_adopt: "After you apply to adopt"
+      after_you_adopt_items_html: | 
+        <li>Your application history will be shown on 'My Applications' page</li> 
+        <li>Application reviews generally take 4-6 days, depending on volume</li> 
+        <li>We will contact you for further discussion if you are shortlisted </li> 
+        <li>We work hard to match pets and adopters, so please try again if you are not successful first time round </li>
+      create_an_account: "Create an account to apply for this pet"
+      status:
+        awaiting_review: Application Awaiting Review
+        under_review: Application Under Review
+        adoption_pending: Adoption Pending
+        withdrawn: Application Withdrawn
+        successful_applicant: Successful Applicant
+        adoption_made: Adoption Made
+        default: "Application submitted"
+      pause_reason:
+        not_paused: Applications Not Paused
+        opening_soon: Applications Opening Soon
+        paused_until_further_notice: Applications Paused Until Further Notice
+      apply_to_adopt: "Apply to Adopt"
+      complete_your_profile: "Complete your profile to apply for this pet"
+      complete_my_profile: "Complete my profile"
+      adopt: "Adopt"
+      login: "Log in"
+  organization_pets:
+    show:
+      pause_applications: "Pause Applications?"
+      why: "Why?"
+      edit_pet: "Edit Pet"
+      view_adopter: "View Adopter"
+      revoke_adoption: "Revoke Adoption"
+      are_you_sure_revoke: "Are you sure you want to revoke this adoption?"
+      are_you_sure_delete: "Are you sure you want to delete this pet?"
+      application:
+        active: "Applications are active"
+        paused: "Applications are paused"
+    form:
+      uploaded_images: "Uploaded Images"
+    index:
+      our_pets: "Our pets"
+      filter: "Filter by adoption status"
+      select:
+        seeking_adoption: "Seeking Adoption"
+        adopted: "Adopted"
+      filter_by_name: "Filter by name"
+      create_pet: "Create Pet"
+      application:
+        active: "Applications: active"
+        paused: "Applications: paused"
+    new:
+      new_pet_post: "New Pet Post"
