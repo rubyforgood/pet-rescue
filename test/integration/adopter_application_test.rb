@@ -2,7 +2,7 @@ require "test_helper"
 
 class AdopterApplicationTest < ActionDispatch::IntegrationTest
   setup do
-    @organization = create(:organization)
+    @organization = create(:organization, subdomain: "altatest")
     @pet_id = create(:pet, organization: @organization).id
   end
 
@@ -64,9 +64,9 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
     assert_equal AdopterApplication.all.count, before_count + 1
 
     mail = ActionMailer::Base.deliveries
-    assert_equal mail[0].from.join, "bajapetrescue@gmail.com", "from email is incorrect"
-    assert_equal mail[0].to.join(" "), org_staff.email, "to email is incorrect"
-    assert_equal mail[0].subject, "New Adoption Application", "subject is incorrect"
+    assert_equal "hello@altatest.test.localhost", mail[0].from.join, "from email is incorrect"
+    assert_equal org_staff.email, mail[0].to.join(" "), "to email is incorrect"
+    assert_equal "New Adoption Application", mail[0].subject, "subject is incorrect"
   end
 
   test "adopter user with profile cannot apply for a paused pet and sees flash error" do
