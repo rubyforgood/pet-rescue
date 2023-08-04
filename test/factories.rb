@@ -42,6 +42,10 @@ FactoryBot.define do
     referral_source { "friends" }
 
     adopter_account
+
+    after :create do |profile|
+      create :location, adopter_profile: profile
+    end
   end
 
   factory :checklist_template do
@@ -55,6 +59,12 @@ FactoryBot.define do
     required { [true, false].sample }
 
     checklist_template
+  end
+
+  factory :location do
+    city_town { Faker::Address.city }
+    sequence(:country) { |n| "Country#{n}" }
+    province_state { Faker::Address.state }
   end
 
   factory :organization do

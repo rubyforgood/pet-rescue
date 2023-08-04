@@ -3,6 +3,7 @@ require "test_helper"
 class UserAccountTest < ActionDispatch::IntegrationTest
   setup do
     @email = users(:adopter_without_profile).email
+    host! "test.test.local"
   end
 
   test "user gets redirected to root page after sign in" do
@@ -46,9 +47,9 @@ class UserAccountTest < ActionDispatch::IntegrationTest
                commit: "Create Account"}
 
     mail = ActionMailer::Base.deliveries[0]
-    assert_equal mail.from.join, "bajapetrescue@gmail.com", "from email is incorrect"
-    assert_equal mail.to.join, "foo@bar.baz", "to email is incorrect"
-    assert_equal mail.subject, "Welcome to Baja Pet Rescue", "subject is incorrect"
+    assert_equal "hello@test.test.localhost", mail.from.join, "from email is incorrect"
+    assert_equal "foo@bar.baz", mail.to.join, "to email is incorrect"
+    assert_equal "Welcome to Baja Pet Rescue", mail.subject, "subject is incorrect"
     ActionMailer::Base.deliveries = []
 
     assert_response :redirect
@@ -76,9 +77,9 @@ class UserAccountTest < ActionDispatch::IntegrationTest
                commit: "Create Account"}
 
     mail = ActionMailer::Base.deliveries
-    assert_equal mail[0].from.join, "bajapetrescue@gmail.com", "from email is incorrect"
-    assert_equal mail[0].to.join, "abc@123.com", "to email is incorrect"
-    assert_equal mail[0].subject, "Welcome to Baja Pet Rescue", "subject is incorrect"
+    assert_equal "hello@test.test.localhost", mail[0].from.join, "from email is incorrect"
+    assert_equal "abc@123.com", mail[0].to.join, "to email is incorrect"
+    assert_equal "Welcome to Baja Pet Rescue", mail[0].subject, "subject is incorrect"
 
     ActionMailer::Base.deliveries = []
 
