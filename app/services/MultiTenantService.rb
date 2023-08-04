@@ -9,4 +9,7 @@ class MultiTenantService
     Rails.configuration.email_from[:default][service_org]
   end
 
+  def contact_email
+    Rails.configuration.email_from[:contact][service_org]
+  end
 end

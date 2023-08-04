@@ -1,6 +1,11 @@
 require "test_helper"
 
 class ContactFormTest < ActionDispatch::IntegrationTest
+  setup do
+    create(:organization, subdomain: "altatest")
+    host! "altatest.test.localhost"
+  end
+
   test "All errors and custom messages appear on blank form submission" do
     user = create(:user, :adopter_without_profile)
     sign_in user

@@ -99,6 +99,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.email_from = {
-    default: { baja: 'bajapetrescue@gmail.com' }
+    default: { baja: "bajapetrescue@gmail.com" },
+    contact: { baja: "bajapetrescue+contact@gmail.com" }
   }
 end

@@ -68,6 +68,7 @@ Rails.application.configure do
   alta_from_domain = "altatest.test.localhost"
   rubyforgood_from_domain = "rubyforgoodtest.test.localhost"
   config.email_from = {
-    default: { altatest: "hello@#{alta_from_domain}", rubyforgoodtest: "hello@#{rubyforgood_from_domain}" }
+    default: { altatest: "hello@#{alta_from_domain}", rubyforgoodtest: "hello@#{rubyforgood_from_domain}" },
+    contact: { altatest: "contact@#{alta_from_domain}", rubyforgoodtest: "contact@#{rubyforgood_from_domain}" }
   }
 end
