@@ -1,5 +1,4 @@
 class MultiTenantService
-  attr_accessor :service_org
 
   def initialize(service_org)
     @service_org = service_org.to_sym
@@ -12,4 +11,8 @@ class MultiTenantService
   def contact_email
     Rails.configuration.email_from[:contact][service_org]
   end
+  
+  private
+
+  attr_accessor :service_org
 end
