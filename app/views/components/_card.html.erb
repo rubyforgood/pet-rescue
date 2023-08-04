@@ -2,12 +2,12 @@
 
   <% if local_assigns[:title] %>
     <div class="card-header">
-      <h4 class="card-header-title">
+      <h3 class="card-header-title">
         <% if local_assigns[:icon] %>
-          <i class="bi bi-<%= local_assigns[:icon] %>"></i>
+          <i class="me-1 bi bi-<%= local_assigns[:icon] %>"></i>
         <% end %>
         <%= local_assigns[:title] %>
-      </h4>
+      </h3>
     </div>
   <% end %>
 

@@ -8,107 +8,30 @@
     { label: "Files", url: "/files" },
     { label: "Timeline", url: "/timeline" },
   ] %>
-  <%= render "components/header", pretitle: @pet.breed, title: @pet.name, nav_items: nav_items %>
+<%= render "components/header", pretitle: @pet.breed, title: @pet.name, nav_items: nav_items %>
 
-  <!-- CONTENT -->
-  <%= render "components/page_content" do |c| %>
+<!-- CONTENT -->
+<%= render "components/page_content" do |c| %>
 
-    <% c.content do %>
+  <% c.content do %>
+    <div class='row'>
 
-    <div class="col-12 col-xl-4">
-
-      <!-- Card -->
-      <%= render 'components/card' do %>
-        <!-- List group -->
-        <div class="list-group list-group-flush my-n3">
-
-          <div class="list-group-item">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h5 class="mb-0">
-                  Birthday
-                </h5>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Time -->
-                <time class="small text-muted" datetime="1988-10-24">
-                  10/24/88
-                </time>
-
-              </div>
-            </div> <!-- / .row -->
-          </div>
-          <div class="list-group-item">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h5 class="mb-0">
-                  Joined
-                </h5>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Time -->
-                <time class="small text-muted" datetime="2018-10-28">
-                  10/24/18
-                </time>
-
-              </div>
-            </div> <!-- / .row -->
-          </div>
-          <div class="list-group-item">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h5 class="mb-0">
-                  Location
-                </h5>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Text -->
-                <small class="text-muted">
-                  Los Angeles, CA
-                </small>
-
-              </div>
-            </div> <!-- / .row -->
-          </div>
-          <div class="list-group-item">
-            <div class="row align-items-center">
-              <div class="col">
-
-                <!-- Title -->
-                <h5 class="mb-0">
-                  Size
-                </h5>
-
-              </div>
-              <div class="col-auto">
-
-                <!-- Link -->
-                <%= @pet.size.capitalize %>
-
-              </div>
-            </div> <!-- / .row -->
-          </div>
-        </div>
-      <% end %>
-
-      <!-- Weekly Hours -->
-      <%= render "components/card", title: "Files", icon: 'files' do |c| %>
-        <% c.body do %>
-          YOOO
+      <div class="col-12 col-xl-8">
+        <%= render 'components/card', title: "Chat", icon: "chat" do |c| %>
         <% end %>
-      <% end %>
+      </div>
 
+      <div class="col-12 col-xl-4">
+        <%= render 'components/card', title: "About #{@pet.name}", icon: "check-circle" do |c| %>
+        <% end %>
+
+        <!-- Card -->
+        <%= render 'components/card', title: "ToDos", icon: "check-circle" do |c| %>
+        <% end %>
+
+        <%= render 'components/card', title: "Files", icon: "files" do |c| %>
+        <% end %>
+      </div>
     <% end %>
   <% end %>
+<% end %>
