@@ -15,9 +15,7 @@ Rails.application.routes.draw do
   resources :successes, only: [:index]
 
   resources :countries, only: [] do
-    collection do
-      get :states
-    end
+    resources :states, only: [:index]
   end
 
   match "/404", to: "errors#not_found", via: :all

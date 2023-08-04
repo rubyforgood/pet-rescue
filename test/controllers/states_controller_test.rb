@@ -1,6 +1,6 @@
 require "test_helper"
 
-class CountriesControllerTest < ActionDispatch::IntegrationTest
+class StatesControllerTest < ActionDispatch::IntegrationTest
   setup do
     sign_in users(:adopter_with_profile)
   end
@@ -9,8 +9,9 @@ class CountriesControllerTest < ActionDispatch::IntegrationTest
     name = "adopter[address_attributes][state]"
     target = "adopter_profile_location_attributes_province_state"
 
-    get states_countries_path,
-    headers: { "Accept" => "text/vnd.turbo-stream.html" }, params: { country: "CA", target:, name: }
+    get country_states_path(:country),
+        headers: { "Accept" => "text/vnd.turbo-stream.html" },
+        params: { country: "CA", target:, name: }
 
     assert_response :success
     assert_select "turbo-stream[action='replace'][target='#{target}']" do
