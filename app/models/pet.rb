@@ -39,7 +39,7 @@ class Pet < ApplicationRecord
   validates :weight_from, presence: true
   validates :weight_to, presence: true
   validates :weight_unit, presence: true
-  validate :to_weight_must_be_greater_than_from_weight
+  validates_comparison_of :weight_to, greater_than: :weight_from  
   validates :description, presence: true, length: {maximum: 1000}
 
   # active storage validations gem
@@ -60,12 +60,6 @@ class Pet < ApplicationRecord
     WEIGHT_UNIT_LB,
     WEIGHT_UNIT_KG,
   ]
-
-  def to_weight_must_be_greater_than_from_weight
-    if weight_from.present? && weight_to.present?
-      errors.add(:weight_to, "Must be greater than from weight") if weight_to < weight_from
-    end
-  end
 
   def custom_messages(attribute)
     errors.where(attribute)

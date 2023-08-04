@@ -55,15 +55,17 @@
           <div class='me-3'>
             <%= form.label :weight_from, 'From weight' %>
             <%= form.text_field :weight_from, class: 'form-control' %>
-            <% pet.errors.full_messages_for(:weight_from).each do |error| %>
-              <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+            <% pet.errors.full_messages_for(:weight_from).each do |message| %>
+              <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
             <% end %>
           </div>
           <div class='me-3'>
             <%= form.label :weight_to, 'To weight' %>
             <%= form.text_field :weight_to, class: 'form-control' %>
-            <% pet.custom_messages(:weight_to).each do |error| %>
-              <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+            <% if pet.errors[:weight_to].any? %>
+              <div class="alert alert-danger mt-1" role="alert">
+                <%= pet.errors.full_messages_for(:weight_to).first %>
+              </div>
             <% end %>
           </div>
           <div>
@@ -72,8 +74,8 @@
                         Pet::WEIGHT_UNITS,
                         {},
                         class: 'form-control' %>
-            <% pet.errors.full_messages_for(:weight_unit).each do |error| %>
-              <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
+            <% pet.errors.full_messages_for(:weight_unit).each do |message| %>
+              <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
             <% end %>
           </div>
         </div>
