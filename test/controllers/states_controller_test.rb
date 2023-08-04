@@ -10,8 +10,8 @@ class StatesControllerTest < ActionDispatch::IntegrationTest
     target = "adopter_profile_location_attributes_province_state"
 
     get country_states_path(:country),
-        headers: { "Accept" => "text/vnd.turbo-stream.html" },
-        params: { country: "CA", target:, name: }
+      headers: {"Accept" => "text/vnd.turbo-stream.html"},
+      params: {country: "CA", target:, name:}
 
     assert_response :success
     assert_select "turbo-stream[action='replace'][target='#{target}']" do
