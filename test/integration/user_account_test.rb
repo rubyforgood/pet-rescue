@@ -2,7 +2,8 @@ require "test_helper"
 
 class UserAccountTest < ActionDispatch::IntegrationTest
   setup do
-    host! "test.test.local"
+    @organization = create(:organization)
+    host! "#{@organization.subdomain}.test.local"
   end
 
   test "user gets redirected to root page after sign in" do
@@ -93,7 +94,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
 
     assert_equal "Welcome! You have signed up successfully.", flash[:notice]
     assert(User.find_by(first_name: "Ima"))
-    assert(StaffAccount.find_by(organization_id: 1))
+    assert(StaffAccount.find_by(organization_id: @organization.id))
   end
 
   test "error messages should appear if edit profile form is submitted without data" do

@@ -88,6 +88,9 @@ FactoryBot.define do
   end
 
   factory :organization do
+    # This needs to be hardcoded as "test" (or "altatest"). Other organizations should specify other subdomains.
+    # See config/environments/test.rb for more context.
+    subdomain { "test" }
   end
 
   factory :pet do
