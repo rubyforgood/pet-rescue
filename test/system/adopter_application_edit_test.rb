@@ -5,7 +5,7 @@ class AdopterApplicationEditTest < ApplicationSystemTestCase
     organization = create(:organization)
     pet = create(:pet, organization: organization)
     adopter = create(:adopter_account, :with_adopter_profile)
-    application = create(:adopter_application, :adoption_pending, pet: pet, adopter_account: adopter)
+    application = create(:adopter_application, :withdrawn, pet: pet, adopter_account: adopter)
     user = create(:user, :verified_staff, staff_account: create(:staff_account, organization: organization))
     adopter_name = adopter.user.first_name + " " + adopter.user.last_name
     sign_in user
@@ -22,14 +22,17 @@ class AdopterApplicationEditTest < ApplicationSystemTestCase
     end
   end
 
-  # test "Application status select dropdown contains all expected options" do
-  #   application = create(:adopter_application, :adoption_pending)
-  #   user = create(:user, :verified_staff)
-  #   sign_in user
+  test "Application status select dropdown contains all expected options" do
+    organization = create(:organization)
+    pet = create(:pet, organization: organization)
+    adopter = create(:adopter_account, :with_adopter_profile)
+    application = create(:adopter_application, :withdrawn, pet: pet, adopter_account: adopter)
+    user = create(:user, :verified_staff, staff_account: create(:staff_account, organization: organization))
+    sign_in user
 
-  #   visit edit_adopter_application_path(application.id)
+    visit edit_adopter_application_path(application.id)
 
-  #   assert_equal page.all("select#adopter_application_status option").map(&:value),
-  #     ["awaiting_review", "under_review", "adoption_pending", "withdrawn", "successful_applicant"]
-  # end
+    assert_equal page.all("select#adopter_application_status option").map(&:value),
+      ["awaiting_review", "under_review", "adoption_pending", "withdrawn", "successful_applicant"]
+  end
 end

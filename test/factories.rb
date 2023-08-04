@@ -20,6 +20,11 @@ FactoryBot.define do
     trait :adoption_pending do
       status { 2 }
     end
+
+    trait :withdrawn do
+      status { 3 }
+      profile_show { false }
+    end
   end
 
   factory :adopter_profile do

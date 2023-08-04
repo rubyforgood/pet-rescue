@@ -1,13 +1,11 @@
 require "application_system_test_case"
 
 class AdopterProfileFormsTest < ApplicationSystemTestCase
-  setup do
-    sign_in users(:adopter_with_profile)
+  test "Text areas appear after radio check and all text areas have character counter and text areas disappear after radio check" do
+    sign_in create(:user, :adopter_with_profile)
     visit profile_path
     click_on "Edit Profile"
-  end
 
-  test "Text areas appear after radio check and all text areas have character counter and text areas disappear after radio check" do
     assert_selector "h1", text: "EDIT PROFILE"
 
     fill_in "Briefly describe your ideal pet", with: "Big and fluffy."
@@ -38,6 +36,10 @@ class AdopterProfileFormsTest < ApplicationSystemTestCase
   end
 
   test "Check all dropdowns contain all exptected values" do
+    sign_in create(:user, :adopter_with_profile)
+    visit profile_path
+    click_on "Edit Profile"
+
     assert_equal page.all("select#adopter_profile_contact_method option").map(&:value), %w[Phone Email WhatsApp]
     assert_equal page.all("select#adopter_profile_alone_weekday option").map(&:value), %w[0 1 2 3 4 5 6 7 8 9 10]
     assert_equal page.all("select#adopter_profile_alone_weekend option").map(&:value), %w[0 1 2 3 4 5 6 7 8 9 10]
@@ -47,6 +49,10 @@ class AdopterProfileFormsTest < ApplicationSystemTestCase
   end
 
   test "Dropdowns populate with the users values when editing profile" do
+    sign_in create(:user, :adopter_with_profile)
+    visit profile_path
+    click_on "Edit Profile"
+    
     assert_equal page.all("select#adopter_profile_contact_method").map(&:value).join, "Phone"
     assert_equal page.all("select#adopter_profile_alone_weekday").map(&:value).join, "3"
     assert_equal page.all("select#adopter_profile_alone_weekend").map(&:value).join, "3"
