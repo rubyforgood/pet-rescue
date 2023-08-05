@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light" id="topnav">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-light" id="topnav" style='z-index:1000'>
+  <div class="container text-primary">
 
     <!-- Brand -->
-    <a class="navbar-brand me-auto" href="./index.html">
-      <%= image_tag "logo.png", alt: "Logo", class: "navbar-brand-img" %>
+    <a class="navbar-brand me-auto">
+      <span class="font-weight-bold border border-1 p-2 px-3 bg-black text-white">Pet Rescue</span>
     </a>
 
     <!-- Toggler -->
@@ -460,288 +460,31 @@
     <!-- Collapse -->
     <div class="collapse navbar-collapse me-lg-auto order-lg-first" id="navbar">
 
-      <!-- Form -->
-      <form class="mt-4 mb-3 d-md-none">
-        <input type="search" class="form-control form-control-rounded" placeholder="Search" aria-label="Search">
-      </form>
-
       <!-- Navigation -->
       <ul class="navbar-nav me-lg-auto">
+        <li class="nav-item">
+          <%= active_link_to "Browse Pets", adoptable_pets_path, class: 'nav-link' %>
+        </li>
+
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" href="#" id="topnavDashboards" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Dashboards
+          <a class="nav-link dropdown-toggle" href="#" id="topnavDashboards" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Info
           </a>
           <ul class="dropdown-menu" aria-labelledby="topnavDashboards">
             <li>
-              <a class="dropdown-item active" href="./index.html">
-                Default
-              </a>
+              <%= active_link_to "About Us", '/about_us', class: 'dropdown-item' %>
             </li>
             <li>
-              <a class="dropdown-item " href="./dashboard-project-management.html">
-                Project Management
-              </a>
+              <%= active_link_to "FAQ", '/faq', class: 'dropdown-item' %>
             </li>
             <li>
-              <a class="dropdown-item " href="./dashboard-ecommerce.html">
-                E-Commerce
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle " href="#" id="topnavPages" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-            Pages
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="topnavPages">
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle " href="#" id="topnavAccount" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Account
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavAccount">
-                <a class="dropdown-item " href="./account-general.html">
-                  General
-                </a>
-                <a class="dropdown-item " href="./account-billing.html">
-                  Billing
-                </a>
-                <a class="dropdown-item " href="./account-members.html">
-                  Members
-                </a>
-                <a class="dropdown-item " href="./account-security.html">
-                  Security
-                </a>
-                <a class="dropdown-item " href="./account-notifications.html">
-                  Notifications
-                </a>
-              </div>
-            </li>
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle " href="#" id="topnavCrm" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                CRM
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavCrm">
-                <a class="dropdown-item " href="./crm-contacts.html">
-                  Contacts
-                </a>
-                <a class="dropdown-item " href="./crm-companies.html">
-                  Companies
-                </a>
-                <a class="dropdown-item " href="./crm-deals.html">
-                  Deals
-                </a>
-              </div>
-            </li>
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle " href="#" id="topnavProfile" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Profile
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavProfile">
-                <a class="dropdown-item " href="./profile-posts.html">
-                  Posts
-                </a>
-                <a class="dropdown-item " href="./profile-groups.html">
-                  Groups
-                </a>
-                <a class="dropdown-item " href="./profile-projects.html">
-                  Projects
-                </a>
-                <a class="dropdown-item " href="./profile-files.html">
-                  Files
-                </a>
-                <a class="dropdown-item " href="./profile-subscribers.html">
-                  Subscribers
-                </a>
-              </div>
-            </li>
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle " href="#" id="topnavProject" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Project
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavProject">
-                <a class="dropdown-item " href="./project-overview.html">
-                  Overview
-                </a>
-                <a class="dropdown-item " href="./project-files.html">
-                  Files
-                </a>
-                <a class="dropdown-item " href="./project-reports.html">
-                  Reports
-                </a>
-                <a class="dropdown-item " href="./project-new.html">
-                  New project
-                </a>
-              </div>
-            </li>
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle " href="#" id="topnavTeam" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Team
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavTeam">
-                <a class="dropdown-item " href="./team-overview.html">
-                  Overview
-                </a>
-                <a class="dropdown-item " href="./team-projects.html">
-                  Projects
-                </a>
-                <a class="dropdown-item " href="./team-members.html">
-                  Members
-                </a>
-                <a class="dropdown-item " href="team-new.html">
-                  New team
-                </a>
-              </div>
-            </li>
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle " href="#" id="topnavFeed" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Feed
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavFeed">
-                <a class="dropdown-item " href="./bied.html">
-                  Platform
-                </a>
-                <a class="dropdown-item " href="./social-bied.html">
-                  Social
-                </a>
-              </div>
-            </li>
-            <li>
-              <a class="dropdown-item " href="./wizard.html">
-                Wizard
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item " href="./kanban.html">
-                Kanban
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item " href="./orders.html">
-                Orders
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item " href="./invoice.html">
-                Invoice
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item " href="./pricing.html">
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item " href="./widgets.html">
-                Widgets
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="topnavAuth" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-            Auth
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="topnavAuth">
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle" href="#" id="topnavSignIn" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sign in
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavSignIn">
-                <a class="dropdown-item" href="./sign-in-cover.html">
-                  Cover
-                </a>
-                <a class="dropdown-item" href="./sign-in-illustration.html">
-                  Illustration
-                </a>
-                <a class="dropdown-item" href="./sign-in-basics.html">
-                  Basic
-                </a>
-              </div>
-            </li>
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle" href="#" id="topnavSignUp" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sign up
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavSignUp">
-                <a class="dropdown-item" href="./sign-up-cover.html">
-                  Cover
-                </a>
-                <a class="dropdown-item" href="./sign-up-illustration.html">
-                  Illustration
-                </a>
-                <a class="dropdown-item" href="./sign-up.html">
-                  Basic
-                </a>
-              </div>
-            </li>
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle" href="#" id="topnavPassword" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Password reset
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavPassword">
-                <a class="dropdown-item" href="./password-reset-cover.html">
-                  Cover
-                </a>
-                <a class="dropdown-item" href="./password-reset-illustration.html">
-                  Illustration
-                </a>
-                <a class="dropdown-item" href="./password-reset.html">
-                  Basic
-                </a>
-              </div>
-            </li>
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle" href="#" id="topnavError" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Error
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavError">
-                <a class="dropdown-item" href="./error-illustration.html">
-                  Illustration
-                </a>
-                <a class="dropdown-item" href="./error.html">
-                  Basic
-                </a>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle " href="#" id="topnavDocumentation" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-haspopup="true" aria-expanded="false">
-            Docs
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="topnavDocumentation">
-            <li class="dropend">
-              <a class="dropdown-item dropdown-toggle " href="#" id="topnavBasics" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Basics
-              </a>
-              <div class="dropdown-menu" aria-labelledby="topnavBasics">
-                <a class="dropdown-item " href="./docs/getting-started.html">
-                  Getting Started
-                </a>
-                <a class="dropdown-item " href="./docs/design-file.html">
-                  Design File
-                </a>
-              </div>
-            </li>
-            <li>
-              <a class="dropdown-item " href="./docs/components.html">
-                Components
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item " href="./docs/changelog.html">
-                Changelog
-              </a>
             </li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasDemo" aria-controls="offcanvasDemo">
-            Customize
-          </a>
+          <%= active_link_to "Contact", new_contact_path, class: 'nav-link' %>
         </li>
       </ul>
-
     </div>
 
   </div> <!-- / .container -->

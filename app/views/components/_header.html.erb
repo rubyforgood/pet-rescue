@@ -1,19 +1,25 @@
 <div class="header">
 
-  <!-- Image -->
-  <img src="https://images.unsplash.com/photo-1591160690555-5debfba289f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80" class="header-img-top" style='height: 250px; object-fit: cover'>
+  <!-- Cover Photo -->
+  <% if partial.cover_photo.present? %>
+    <%= partial.cover_photo %>
+  <% else %>
+    <div style='margin-top:80px'></div>
+  <% end %>
 
   <div class="container-fluid">
 
     <!-- Body -->
     <div class="header-body mt-n5 mt-md-n6">
       <div class="row align-items-end">
-        <div class="col-auto">
-          <!-- Avatar -->
-          <div class="avatar avatar-xxl header-avatar-top">
-            <%= image_tag @pet.images.first, class: "avatar-img rounded-circle border border-2 border-body" %>
+        <% if local_assigns[:avatar] %> 
+          <div class="col-auto">
+            <!-- Avatar -->
+            <div class="avatar avatar-xxl header-avatar-top">
+              <%= image_tag local_assigns[:avatar], class: "avatar-img rounded-circle border border-2 border-body" %>
+            </div>
           </div>
-        </div>
+        <% end %>
 
         <div class="col mb-3 ms-n3 ms-md-n2">
 
@@ -30,10 +36,7 @@
         </div>
 
         <div class="col-12 col-md-auto mt-2 mt-md-0 mb-md-3">
-          <!-- Button -->
-          <a href="#!" class="btn btn-primary d-block d-md-inline-block lift">
-            Subscribe
-          </a>
+          <%= partial.actions %>
         </div>
       </div> <!-- / .row -->
 
