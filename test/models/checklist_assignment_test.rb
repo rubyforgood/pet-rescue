@@ -2,12 +2,15 @@ require "test_helper"
 
 class ChecklistAssignmentTest < ActiveSupport::TestCase
   test "assigning checklist to match" do
-    match = Match.create!(
-      adopter_account: adopter_accounts(:adopter_account_one),
-      pet: pets(:adopted_pet),
-      organization: pets(:adopted_pet).organization
+    organization = create(:organization)
+    pet = create(:pet, :adopted, organization: organization)
+    match = create(
+      :match,
+      adopter_account: create(:adopter_account),
+      pet: pet,
+      organization: organization
     )
-    checklist = checklist_templates(:one)
+    checklist = create(:checklist_template)
 
     match.assign_checklist_template(checklist)
 
@@ -15,6 +18,8 @@ class ChecklistAssignmentTest < ActiveSupport::TestCase
   end
 
   test "assignment completion" do
+    create(:checklist_assignment)
+
     assert_difference("ChecklistAssignment.incomplete.count", -1) do
       ChecklistAssignment.first.update!(completed_at: Time.now)
     end

@@ -23,7 +23,7 @@ class MatchTest < ActiveSupport::TestCase
       description: "test pet"
     )
     match = Match.create(pet: pet, organization_id: org2.id,
-      adopter_account: adopter_accounts(:adopter_account_one))
+      adopter_account: create(:adopter_account))
     assert !match.valid?
     assert match.errors[:organization_id].present?
   end

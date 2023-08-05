@@ -18,7 +18,6 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
       :password,
       :signup_role,
-      :password_confirmation,
       :tos_agreement,
       adopter_account_attributes: [:user_id],
       staff_account_attributes: [:user_id])
@@ -35,9 +34,8 @@ class RegistrationsController < Devise::RegistrationsController
       :current_password)
   end
 
-  # redirect new adopter users to adopter_profile#new
   def after_sign_up_path_for(resource)
-    resource.adopter_account ? new_profile_path : root_path
+    adoptable_pets_path
   end
 
   def after_sign_in_path_for

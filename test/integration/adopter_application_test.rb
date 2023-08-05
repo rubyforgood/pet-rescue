@@ -60,6 +60,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert flash[:notice].include?("Application submitted!")
     assert_equal AdopterApplication.all.count, before_count + 1
 
@@ -84,6 +85,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "Applications are paused for this pet", flash[:alert]
 
     assert_equal before_count, AdopterApplication.all.count

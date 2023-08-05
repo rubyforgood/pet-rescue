@@ -3,7 +3,7 @@
   <div class="container">
     <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
-        Adopter Profile
+        <%= t('.adopter_profile') %>
       </h1>
     </div>
   </div> <!--container-->
@@ -18,38 +18,38 @@
       <div class="col-md-10 card p-5 mx-auto">
         <div class="d-flex gap-4 justify-content-between">
             <h2><%= current_user.first_name %>'s Profile</h2>
-            <%= link_to 'Edit Profile', edit_profile_path, class: 'btn btn-outline-dark' %>
+            <%= link_to t('.edit_profile'), edit_profile_path, class: 'btn btn-outline-dark' %>
         </div>
 
         <!--Administrative Details-->
         <div>
           <h4 class="mb-4 mt-4">Contact</h4>
             <div class="row mb-3 bigger">
-              <p class="col-lg-4"><strong>Phone Number</strong></p>
+              <p class="col-lg-4"><strong><%= t('.phone_number') %></strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.formatted_phone %>
               </p>
             </div>
             <div class="row mb-3 bigger">
-              <p class="col-lg-4"><strong>Contact Method</strong></p>
+              <p class="col-lg-4"><strong><%= t('.contact_method') %></strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.contact_method %>
               </p>
             </div>
             <div class="row mb-3 bigger">
-              <p class="col-lg-4"><strong>Country</strong></p>
+              <p class="col-lg-4"><strong><%= t('.country') %></strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.location.country %>
               </p>
             </div>
             <div class="row mb-3 bigger">
-              <p class="col-lg-4"><strong>Province/State</strong></p>
+              <p class="col-lg-4"><strong><%= t('.province_slash_state') %></strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.location.province_state %>
               </p>
             </div>
             <div class="row mb-4 bigger">
-              <p class="col-lg-4"><strong>City/Town</strong></p>
+              <p class="col-lg-4"><strong><%= t('.city_slash_town') %></strong></p>
               <p class="col-lg-6 text-muted">
                 <%= @adopter_profile.location.city_town %>
               </p>
@@ -59,22 +59,22 @@
         <!--Your Lifestyle-->
         <div>
           <hr>
-          <h4 class="mb-4 mt-4">Lifestyle</h4>
+          <h4 class="mb-4 mt-4"><%= t('.lifestyle') %></h4>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Your ideal pet</strong></p>
+            <p class="col-lg-4"><strong><%= t('.your_ideal_pet') %></strong></p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.ideal_pet %>
             </p>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Your lifestyle</strong></p>
+            <p class="col-lg-4"><strong><%= t('.your_lifestyle') %></strong></p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.lifestyle_fit %>
             </p>
           </div>
           <div class="row mb-3 bigger">
             <p class="col-lg-4">
-              <strong>Activities you will do with your pet</strong>
+              <strong><%= t('.activities') %></strong>
             </p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.activities %>
@@ -82,7 +82,7 @@
           </div>
           <div class="row mb-3 bigger">
             <p class="col-lg-4">
-              <strong>Hours pet will be alone on weekends</strong>
+              <strong><%= t('.hours_alone_on_weekends') %></strong>
             </p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.alone_weekend %>
@@ -90,7 +90,7 @@
           </div>
           <div class="row mb-4 bigger">
             <p class="col-lg-4">
-              <strong>Hours pet will be alone on week days</strong>
+              <strong><%= t('.hours_alone_on_weekdays') %></strong>
             </p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.alone_weekday %>
@@ -101,16 +101,16 @@
         <!--Pet Care-->
         <div>
           <hr>
-          <h4 class="mb-4 mt-4">Pet Care</h4>
+          <h4 class="mb-4 mt-4"><%= t('.pet_care') %></h4>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Your pet care experience</strong></p>
+            <p class="col-lg-4"><strong><%= t('.your_petcare_experience') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.experience %>
             </p>
           </div>
           <div class="row mb-3 bigger">
             <p class="col-lg-4">
-              <strong>Pet care plans during emergency or vacation</strong>
+              <strong><%= t('.petcare_plans_during_emergency_or_vacation') %></strong>
             </p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.contingency_plan %>
@@ -118,18 +118,18 @@
           </div>
           <div class="row mb-3 bigger">
             <p class="col-lg-4">
-              <strong>Will pet care be shared with someone outside household?</strong>
+              <strong><%= t('.will_petcare_be_shared') %></strong>
             </p>
             <% if @adopter_profile.shared_ownership == true %>
-            <p class="col-lg-6 text-muted">Yes</p>
+            <p class="col-lg-6 text-muted"><%= t('.general.yes') %></p>
             <% else %>
-            <p class="col-lg-6 text-muted">No</p>
+            <p class="col-lg-6 text-muted"><%= t('.general.no') %></p>
             <% end %>
           </div>
 
           <% unless @adopter_profile.shared_ownership == false %>
           <div class="row mb-4 bigger">
-            <p class="col-lg-4"><strong>Details on shared pet care</strong></p>
+            <p class="col-lg-4"><strong><%= t('.details_on_petcare') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.shared_owner %>
             </p>
@@ -140,70 +140,70 @@
         <!--Household Information-->
         <div>
           <hr>
-          <h4 class="mb-4 mt-4">Household</h4>
+          <h4 class="mb-4 mt-4"><%= t('.household') %>></h4>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Housing type</strong></p>
+            <p class="col-lg-4"><strong><%= t('.Housing type') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.housing_type %>
             </p>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Do you have access to a fenced garden?</strong></p>
+            <p class="col-lg-4"><strong><%= t('.Do you have access to a fenced garden?') %></strong></p>
             <% if @adopter_profile.fenced_access == true %>
-            <p class="col-lg-6 text-muted">Yes</p>
+            <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
-            <p class="col-lg-6 text-muted">No</p>
+            <p class="col-lg-6 text-muted"><%= t('general.no') %></p>
             <% end %>
           </div>
             <% unless @adopter_profile.fenced_access == true %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Your plan to care for the pet without a fenced garden</strong></p>
+            <p class="col-lg-4"><strong><%= t('.your_plan_to_care') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.fenced_alternative %>
             </p>
           </div>
           <% end %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Pet's location during the day</strong></p>
+            <p class="col-lg-4"><strong><%= t('.pets_location_during_the_day') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.location_day %>
             </p>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Pet's location at night</strong></p>
+            <p class="col-lg-4"><strong><%= t('.pets_location_at_night') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.location_night %>
             </p>
           </div>
 
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Do you rent your home or live on a strata property?</strong></p>
+            <p class="col-lg-4"><strong><%= t('.Do you rent your home or live on a strata property?') %></strong></p>
             <% if @adopter_profile.do_you_rent == true %>
-            <p class="col-lg-6 text-muted">Yes</p>
+            <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
-            <p class="col-lg-6 text-muted">No</p>
+            <p class="col-lg-6 text-muted"><%= t('general.no') %></p>
             <% end %>
           </div>
           <% unless @adopter_profile.do_you_rent == false %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Have you confirmed pets are allowed on the property?</strong></p>
+            <p class="col-lg-4"><strong><%= t('.Have you confirmed pets are allowed on the property?') %></strong></p>
             <% if @adopter_profile.pets_allowed == true %>
-            <p class="col-lg-6 text-muted">Yes</p>
+            <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
-            <p class="col-lg-6 text-muted">No</p>
+            <p class="col-lg-6 text-muted"><%= t('general.no') %></p>
             <% end %>
           </div>
           <% end %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Number of adults in home (over 18)</strong></p>
+            <p class="col-lg-4"><strong><%= t('.Number of adults in home (over 18)') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.adults_in_home %>
             </p>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Number of children in home (under 18)</strong></p>
+            <p class="col-lg-4"><strong><%= t('.Number of children in home (under 18)') %></strong></p>
             <% if @adopter_profile.kids_in_home == 0 %>
-            <p class="col-lg-6 text-muted">None</p>
+            <p class="col-lg-6 text-muted"><%= t('general.none') %></p>
             <% else %>
             <p class="col-lg-6 text-muted">
               <%= @adopter_profile.kids_in_home %>
@@ -211,16 +211,16 @@
             <% end %>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Do you have pets in your home?</strong></p>
+            <p class="col-lg-4"><strong><%= t('.Do you have pets in your home?') %></strong></p>
             <% if @adopter_profile.other_pets == true %>
-            <p class="col-lg-6 text-muted">Yes</p>
+            <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
-            <p class="col-lg-6 text-muted">No</p>
+            <p class="col-lg-6 text-muted"><%= t('general.no') %></p>
             <% end %>
           </div>
           <% unless @adopter_profile.other_pets == false %>
           <div class="row mb-4 bigger">
-            <p class="col-lg-4"><strong>Description of pets</strong></p>
+            <p class="col-lg-4"><strong><%= t('.Description of pets') %></strong></p>
             <p class="col-lg-6 text-muted" style="white-space: pre-line;">
               <%= @adopter_profile.describe_pets %>
             </p>
@@ -231,55 +231,55 @@
         <!--Additional Information-->
         <div>
           <hr>
-          <h4 class="mb-4 mt-4">Additional Details</h4>
+          <h4 class="mb-4 mt-4"><%= t('.additional_details') %></h4>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Have you checked your local shelter for adoptable pets?</strong></p>
+            <p class="col-lg-4"><strong><%= t('.have_you_checked') %></strong></p>
             <% if current_user.adopter_account.adopter_profile.checked_shelter == true %>
-            <p class="col-lg-6 text-muted">Yes</p>
+            <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
-            <p class="col-lg-6 text-muted">No</p>
+            <p class="col-lg-6 text-muted"><%= t('general.no') %></p>
             <% end %>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Have you ever had to surrender a pet?</strong></p>
+            <p class="col-lg-4"><strong><%= t('.have_you_had_to_surrender') %></strong></p>
             <% if current_user.adopter_account.adopter_profile.surrendered_pet == true %>
-            <p class="col-lg-6 text-muted">Yes</p>
+            <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
-            <p class="col-lg-6 text-muted">No</p>
+            <p class="col-lg-6 text-muted"><%= t('general.no') %></p>
             <% end %>
           </div>
           <% unless current_user.adopter_account.adopter_profile.surrendered_pet == false %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Details on surrendering the pet</strong></p>
+            <p class="col-lg-4"><strong><%= t('.details_on_surrender') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.describe_surrender %>
             </p>
           </div>
           <% end %>
           <div class="row mb-4 bigger">
-            <p class="col-lg-4"><strong>Your annual cost estimate for pet care</strong></p>
+            <p class="col-lg-4"><strong><%= t('.your_annual_cost') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.annual_cost %>
             </p>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>Will you or a friend be in La Ventana in person to pick up the pet?</strong></p>
+            <p class="col-lg-4"><strong><%= t('.will_you_pick_up_the_pet') %></strong></p>
             <% if current_user.adopter_account.adopter_profile.visit_laventana == true %>
-            <p class="col-lg-6 text-muted">Yes</p>
+            <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
-            <p class="col-lg-6 text-muted">No</p>
+            <p class="col-lg-6 text-muted"><%= t('general.no') %></p>
             <% end %>
           </div>
           <% unless current_user.adopter_account.adopter_profile.visit_laventana == false %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong>What dates will you be in La Ventana?</strong></p>
+            <p class="col-lg-4"><strong><%= t('.what_dates_will_you_be') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.visit_dates %>
             </p>
           </div>
           <% end %>
           <div class="row mb-4 bigger">
-            <p class="col-lg-4"><strong>How did you find out about Baja Pet Rescue?</strong></p>
+            <p class="col-lg-4"><strong><%= t('.how_did_you_hear') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= current_user.adopter_account.adopter_profile.referral_source %>
             </p>
