@@ -62,10 +62,6 @@ class Pet < ApplicationRecord
     WEIGHT_UNIT_KG
   ]
 
-  def custom_messages(attribute)
-    errors.where(attribute)
-  end
-
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?
     adopter_applications.any? { |app| app.status == "adoption_pending" }
