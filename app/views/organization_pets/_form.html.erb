@@ -55,8 +55,10 @@
           <div class='me-3'>
             <%= form.label :weight_from, 'From weight' %>
             <%= form.text_field :weight_from, class: 'form-control' %>
-            <% pet.errors.full_messages_for(:weight_from).each do |message| %>
-              <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+            <% if pet.errors[:weight_from].any? %>
+              <div class="alert alert-danger mt-1" role="alert">
+                <%= pet.errors.full_messages_for(:weight_from).first %>
+              </div>
             <% end %>
           </div>
           <div class='me-3'>

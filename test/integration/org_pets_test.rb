@@ -369,7 +369,7 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     assert_select "h5", pet.name
   end
 
-  test "if weight to is empty only one error should be displayed" do
+  test "if weight from and weight to are empty only one error should be displayed for each" do
     organization = create(:organization)
     create(:staff_account, organization: organization)
     sign_in create(:user, :verified_staff)
@@ -383,13 +383,13 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           sex: "Female",
           breed: "mix",
           birth_date: 5.years.ago,
-          weight_from: 15,
+          weight_from: "",
           weight_to: "",
           weight_unit: "lb",
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
 
-    assert_select "div.alert", {count: 1}
+    assert_select "div.alert", {count: 2}
   end
 end
