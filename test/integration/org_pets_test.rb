@@ -369,25 +369,27 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     assert_select "h5", pet.name
   end
 
-  test "if to weight is less than from weight custom error should be displayed" do
-    sign_in users(:verified_staff_one)
+  test "if weight to is empty only one error should be displayed" do
+    organization = create(:organization)
+    create(:staff_account, organization: organization)
+    sign_in create(:user, :verified_staff)
 
     post "/pets",
       params: {pet:
         {
-          organization_id: organizations(:one).id.to_s,
+          organization_id: organization.id,
           name: "Ruby",
           age: "3",
           sex: "Female",
           breed: "mix",
           birth_date: 5.years.ago,
           weight_from: 15,
-          weight_to: 10,
+          weight_to: "",
           weight_unit: "lb",
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
 
-    assert_select "div.alert", "Weight to must be greater than 15"
+    assert_select "div.alert", {count: 1}
   end
 end
