@@ -37,7 +37,7 @@ en:
     breed: "Breed"
     application: "Application"
     sex: "Sex"
-    size: "Size"
+    weight: "Weight"
     about: "About"
     'yes': Yes
     'no': No

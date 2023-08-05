@@ -11,8 +11,17 @@ class MatchTest < ActiveSupport::TestCase
   def test_match_must_belong_to_same_organization_as_pet
     org1 = Organization.create!
     org2 = Organization.create!
-    pet = Pet.create!(organization: org1,
-      name: "Harry", birth_date: 5.years.ago, size: "small", breed: "corgi", sex: "m", description: "test pet")
+    pet = Pet.create!(
+      organization: org1,
+      name: "Harry",
+      birth_date: 5.years.ago,
+      weight_from: 15,
+      weight_to: 30,
+      weight_unit: "lb",
+      breed: "corgi",
+      sex: "m",
+      description: "test pet"
+    )
     match = Match.create(pet: pet, organization_id: org2.id,
       adopter_account: create(:adopter_account))
     assert !match.valid?

@@ -37,7 +37,9 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           age: "3",
           sex: "Female",
           breed: "mix",
-          size: "Medium (22-57 lb)",
+          weight_from: 15,
+          weight_to: 30,
+          weight_unit: "lb",
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -77,7 +79,9 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           birth_date: DateTime.current - (4.months + 15.days),
           sex: "Female",
           breed: "mix",
-          size: "Medium (22-57 lb)",
+          weight_from: 15,
+          weight_to: 30,
+          weight_unit: "lb",
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -104,7 +108,9 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
           age: "7",
           sex: "Female",
           breed: "mix",
-          size: "Medium (22-57 lb)",
+          weight_from: 15,
+          weight_to: 30,
+          weight_unit: "lb",
           description: "A lovely little pooch this one.",
           append_images: [""]
         }}
@@ -361,5 +367,29 @@ class OrgPetsTest < ActionDispatch::IntegrationTest
     assert_select "div.col-lg-4", {count: 1}
 
     assert_select "h5", pet.name
+  end
+
+  test "if weight from and weight to are empty only one error should be displayed for each" do
+    organization = create(:organization)
+    create(:staff_account, organization: organization)
+    sign_in create(:user, :verified_staff)
+
+    post "/pets",
+      params: {pet:
+        {
+          organization_id: organization.id,
+          name: "Ruby",
+          age: "3",
+          sex: "Female",
+          breed: "mix",
+          birth_date: 5.years.ago,
+          weight_from: "",
+          weight_to: "",
+          weight_unit: "lb",
+          description: "A lovely little pooch this one.",
+          append_images: [""]
+        }}
+
+    assert_select "div.alert", {count: 2}
   end
 end
