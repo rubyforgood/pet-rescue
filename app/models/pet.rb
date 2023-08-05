@@ -36,9 +36,10 @@ class Pet < ApplicationRecord
   validates :birth_date, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
-  validates :weight_from, presence: true
-  validates :weight_to, presence: true
+  validates :weight_from, presence: true, numericality: {only_integer: true}
+  validates :weight_to, presence: true, numericality: {only_integer: true}
   validates :weight_unit, presence: true
+  validates :weight_unit, inclusion: {in: %w[lb kg]}
   validates_comparison_of :weight_to, greater_than: :weight_from
   validates :description, presence: true, length: {maximum: 1000}
 

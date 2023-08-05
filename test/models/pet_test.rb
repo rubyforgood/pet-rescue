@@ -17,8 +17,11 @@ class PetTest < ActiveSupport::TestCase
     should validate_presence_of(:description)
     should validate_length_of(:description).is_at_most(1000)
     should validate_presence_of(:weight_from)
+    should validate_numericality_of(:weight_from).only_integer
     should validate_presence_of(:weight_to)
+    should validate_numericality_of(:weight_to).only_integer
     should validate_presence_of(:weight_unit)
+    should validate_inclusion_of(:weight_unit).in_array(["lb", "kg"])
   end
 
   context "#has_adoption_pending?" do
