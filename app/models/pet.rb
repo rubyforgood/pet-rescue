@@ -3,15 +3,16 @@
 # Table name: pets
 #
 #  id                 :bigint           not null, primary key
-#  age                :integer
-#  age_unit           :integer          default("months")
 #  application_paused :boolean          default(FALSE)
+#  birth_date         :datetime         not null
 #  breed              :string
 #  description        :text
 #  name               :string
 #  pause_reason       :integer          default("not_paused")
 #  sex                :string
-#  size               :string
+#  weight_from        :integer          not null
+#  weight_to          :integer          not null
+#  weight_unit        :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  organization_id    :bigint           not null
@@ -32,11 +33,14 @@ class Pet < ApplicationRecord
   has_many_attached :images
 
   validates :name, presence: true
-  validates :age, presence: true
-  validates :age_unit, presence: true
-  validates :size, presence: true
+  validates :birth_date, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
+  validates :weight_from, presence: true, numericality: {only_integer: true}
+  validates :weight_to, presence: true, numericality: {only_integer: true}
+  validates :weight_unit, presence: true
+  validates :weight_unit, inclusion: {in: %w[lb kg]}
+  validates_comparison_of :weight_to, greater_than: :weight_from
   validates :description, presence: true, length: {maximum: 1000}
 
   # active storage validations gem
@@ -46,11 +50,17 @@ class Pet < ApplicationRecord
     size: {between: 10.kilobyte..1.megabytes,
            message: "size must be between 10kb and 1Mb"}
 
-  enum :age_unit, [:months, :years]
-
   enum :pause_reason, [:not_paused,
     :opening_soon,
     :paused_until_further_notice]
+
+  WEIGHT_UNIT_LB = "lb".freeze
+  WEIGHT_UNIT_KG = "kg".freeze
+
+  WEIGHT_UNITS = [
+    WEIGHT_UNIT_LB,
+    WEIGHT_UNIT_KG
+  ]
 
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?
@@ -62,12 +72,6 @@ class Pet < ApplicationRecord
     Pet.pause_reasons.keys.map do |reason|
       [reason.titleize, reason]
     end.drop(1)
-  end
-
-  def self.list_age_units
-    Pet.age_units.keys.map do |unit|
-      [unit.titleize, unit]
-    end
   end
 
   # active storage: using.attach for appending images per rails guide

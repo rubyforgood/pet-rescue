@@ -2,7 +2,7 @@ require "test_helper"
 
 class ChecklistTemplatesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @checklist_template = checklist_templates(:one)
+    @checklist_template = create(:checklist_template)
   end
 
   test "should get index" do

@@ -8,6 +8,7 @@
     { label: "Files", url: "/files" },
     { label: "Timeline", url: "/timeline" },
   ] %>
+
 <%= render "components/header", pretitle: @pet.breed, title: @pet.name, avatar: @pet.images.first, nav_items: nav_items do |c| %>
   <% c.cover_photo do %>
     <img src="https://images.unsplash.com/photo-1591160690555-5debfba289f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=928&q=80" class="header-img-top" style='height: 250px; object-fit: cover'>

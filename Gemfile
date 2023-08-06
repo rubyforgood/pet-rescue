@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.1"
+ruby "3.1.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
@@ -84,6 +84,9 @@ gem 'active_link_to'
 # Enhances partials to allow for more slots
 gem 'nice_partials'
 
+# Internationalization (translations)
+gem "rails-i18n"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
@@ -98,6 +101,9 @@ group :development, :test do
 
   # Analysis for security vulnerabilities
   gem "brakeman"
+
+  # Creating factory instantiations in tests
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -139,3 +145,9 @@ end
 
 # Add chartkick for charts generation
 gem "chartkick", "~> 5.0"
+
+# Adds location data for cities and states around the world
+gem "city-state", "~> 0.1.0"
+
+# Adds a simple way to fetch with Javascript
+gem "requestjs-rails", "~> 0.0.10"

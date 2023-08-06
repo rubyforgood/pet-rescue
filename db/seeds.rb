@@ -216,19 +216,22 @@ Location.create!(
 
 path = Rails.root.join("app", "assets", "images", "hero.jpg")
 10.times do
+  from_weight = [5, 10, 20, 30, 40, 50, 60].sample
   pet = Pet.create!(
     organization: Organization.all.sample,
     name: Faker::Creature::Dog.name,
-    age: Faker::Number.within(range: 1..10),
+    birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
     sex: Faker::Creature::Dog.gender,
-    size: Faker::Creature::Dog.size,
+    weight_from: from_weight,
+    weight_to: from_weight + 15,
+    weight_unit: Pet.weight_units.sample,
     breed: Faker::Creature::Dog.breed,
     description: "He just loves a run and a bum scratch at the end of the day"
   )
   pet.images.attach(io: File.open(path), filename: "hero.jpg")
 end
 
-Match.create!(
+@match = Match.create!(
   pet_id: Pet.first.id,
   adopter_account_id: @adopter_account_one.id,
   organization_id: Pet.first.organization_id
@@ -257,6 +260,8 @@ end
     required: [true, false].sample
   )
 end
+
+@match.assign_checklist_template(@checklist_template)
 
 # active admin seed
 AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password") if Rails.env.development?

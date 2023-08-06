@@ -1,16 +1,24 @@
 require "test_helper"
 
 class ContactFormTest < ActionDispatch::IntegrationTest
-  test "All errors and custom messages appear on blank form submission" do
-    sign_in users(:adopter_without_profile)
+  setup do
+    create(:organization, subdomain: "altatest")
+    host! "altatest.test.localhost"
+  end
 
-    get "/contacts",
+  test "All errors and custom messages appear on blank form submission" do
+    user = create(:user, :adopter_without_profile)
+    sign_in user
+
+    get(
+      "/contacts",
       params: {
         name: "",
         email: "",
         message: "",
         commit: "Submit"
       }
+    )
 
     assert_select "div.alert", "Please fix 3 errors highlighted below.", 1
     assert_select "div.alert", "Name can't be blank", 1
@@ -19,16 +27,19 @@ class ContactFormTest < ActionDispatch::IntegrationTest
   end
 
   test "should successfully submit form" do
-    sign_in users(:adopter_without_profile)
+    user = create(:user, :adopter_without_profile)
+    sign_in user
 
     assert_emails 1 do
-      get "/contacts",
+      get(
+        "/contacts",
         params: {
           name: "Samuel",
           email: "samuel@jackson.com",
           message: "Example help message.",
           commit: "Submit"
         }
+      )
     end
 
     assert_response :redirect

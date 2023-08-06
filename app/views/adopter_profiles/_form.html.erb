@@ -5,7 +5,7 @@
   <% if profile.errors.count > 0 %>
     <div class="alert alert-danger mt-1" role="alert">
       <p>
-        Please fix the errors highlighted below.
+        <%= t '.please_fix_the_errors' %>
       </p>
     </div>
   <% end %>
@@ -27,10 +27,10 @@
     </div>
 
     <div class="form-group">
-      <%= form.label :contact_method, 'Preferred contact method', class: 'bigger' %>
+      <%= form.label :contact_method, t('.preferred_contact_method'), class: 'bigger' %>
       <%= form.select :contact_method, 
                       ['Phone', 'Email', 'WhatsApp'], 
-                      { prompt: "Please select" },
+                      { prompt: t('general.please_select') },
                       class: 'form-control bigger' %>
 
 
@@ -40,16 +40,29 @@
     </div>
 
     <%# nested form for locations table %>
-    <div class="form-group bigger">
+    <div class="form-group bigger" data-controller="country-state">
       <%= form.fields_for :location do |location| %>
           <%= location.label :country %>
-          <%= location.text_field :country, class: 'form-control' %>
+          <%= location.select :country,
+                              CS.countries.invert,
+                              { prompt: "Please select" },
+                              'data-path': country_states_path(:country),
+                              'data-country-state-target': 'country',
+                              'data-action': 'change->country-state#updateStates',
+                              'data-initial-value': location.object.country,
+                              required: true,
+                              class: 'form-control' %>
           <% profile.location.custom_messages(:country).each do |error| %>
             <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
           <% end %>
 
           <%= location.label :province_state, 'Province/State' %>
-          <%= location.text_field :province_state, class: 'form-control' %>
+          <%= location.select :province_state,
+                              CS.states(location.object.country).invert,
+                              { prompt: "Please select" },
+                              'data-country-state-target': 'state',
+                              required: true,
+                              class: 'form-control' %>
           <% profile.location.custom_messages(:province_state).each do |error| %>
             <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
           <% end %>

@@ -14,13 +14,15 @@
                   <%= image_tag('coming_soon.jpg', class: 'card-img-top') %>
                 <% end %>
                 <div class="card-body">
+
                   <h3 class="card-title">
                     <% if pet.has_adoption_pending? %>
-                      <%= pet.name %> (Adoption Pending)
+                      <%= "#{pet.name} #{t('general.adoption_pending')}" %>
                     <% else %>
                       <%= pet.name %>
                     <% end %>
                   </h3>
+                  
                   <p class="card-text m-0 bigger">
                   Age: <%= "#{pet.age}" " #{pet.age_unit}" %>
                   </p>

@@ -81,6 +81,11 @@ Run system tests only (Not-Headless)
 CI=false ./bin/rails test:system
 ```
 
+**Note:** If system tests are failing for you, try prepending the command with `APP_HOST=localhost`. Your host might be misconfigured.
+```
+APP_HOST=localhost ./bin/rails test:system
+```
+
 Run ALL tests:
 ```
 ./bin/rails test:all

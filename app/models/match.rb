@@ -23,14 +23,21 @@
 class Match < ApplicationRecord
   belongs_to :pet
   belongs_to :adopter_account
+  has_many :checklist_assignments, dependent: :destroy
   belongs_to :organization
 
-  validate :belongs_to_same_organization_as_pet
+  validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
 
   after_create_commit :send_checklist_reminder
 
   def send_checklist_reminder
     MatchMailer.checklist_reminder(self).deliver_later
+  end
+
+  def assign_checklist_template(checklist_template)
+    checklist_template.items.each do |item|
+      checklist_assignments.create!(checklist_template_item: item)
+    end
   end
 
   private

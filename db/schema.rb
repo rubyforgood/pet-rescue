@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_200513) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -126,6 +126,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_200513) do
     t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
   end
 
+  create_table "checklist_assignments", force: :cascade do |t|
+    t.bigint "checklist_template_item_id", null: false
+    t.bigint "match_id", null: false
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_template_item_id"], name: "index_checklist_assignments_on_checklist_template_item_id"
+    t.index ["match_id"], name: "index_checklist_assignments_on_match_id"
+  end
+
   create_table "checklist_template_items", force: :cascade do |t|
     t.bigint "checklist_template_id", null: false
     t.string "name", null: false
@@ -186,17 +196,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_200513) do
 
   create_table "pets", force: :cascade do |t|
     t.bigint "organization_id", null: false
-    t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "size"
     t.string "breed"
     t.text "description"
     t.string "sex"
     t.string "name"
     t.boolean "application_paused", default: false
     t.integer "pause_reason", default: 0
-    t.integer "age_unit", default: 0
+    t.datetime "birth_date", null: false
+    t.integer "weight_from", null: false
+    t.integer "weight_to", null: false
+    t.string "weight_unit", null: false
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
@@ -231,6 +242,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_200513) do
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_profiles", "adopter_accounts"
+  add_foreign_key "checklist_assignments", "checklist_template_items"
+  add_foreign_key "checklist_assignments", "matches"
   add_foreign_key "checklist_template_items", "checklist_templates"
   add_foreign_key "locations", "adopter_profiles"
   add_foreign_key "matches", "adopter_accounts"

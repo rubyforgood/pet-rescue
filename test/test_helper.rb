@@ -13,20 +13,16 @@ require_relative "../config/environment"
 require "rails/test_help"
 
 class ActiveSupport::TestCase
+  include FactoryBot::Syntax::Methods
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
-
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
 
   # Devise test helpers
   include Devise::Test::IntegrationHelpers
 
-  # Add more helper methods to be used by all tests here...
-  def after_teardown
-    super
-    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
-    FileUtils.rm_rf(ActiveStorage::Blob.services.fetch(:test_fixtures).root)
+  def check_messages
+    assert_response :success
+    assert_not response.parsed_body.include?("translation_missing"), "Missing translations, ensure this text is included in en.yml"
   end
 
   #
@@ -39,4 +35,19 @@ class ActiveSupport::TestCase
       with.library :rails
     end
   end
+
+  # Don't make real HTTP calls with Geocoder
+  Geocoder.configure(lookup: :test, ip_lookup: :test)
+  Geocoder::Lookup::Test.set_default_stub(
+    [
+      {
+        "coordinates" => [40.7143528, -74.0059731],
+        "address" => "New York, NY, USA",
+        "state" => "New York",
+        "state_code" => "NY",
+        "country" => "United States",
+        "country_code" => "US"
+      }
+    ]
+  )
 end
