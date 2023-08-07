@@ -78,6 +78,9 @@ gem "traceroute"
 # facilitates multi-tenancy, allowing database records to be associated with organizations
 gem "acts_as_tenant"
 
+# Catches unsafe migrations in development
+gem "strong_migrations"
+
 # needed for internationalization (translations)
 gem "rails-i18n"
 

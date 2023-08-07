@@ -396,9 +396,12 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    sass-embedded (1.64.1)
+    sass-embedded (1.64.1-arm64-darwin)
       google-protobuf (~> 3.23)
-      rake (>= 13.0.0)
+    sass-embedded (1.64.1-x86_64-darwin)
+      google-protobuf (~> 3.23)
+    sass-embedded (1.64.1-x86_64-linux-gnu)
+      google-protobuf (~> 3.23)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -441,6 +444,8 @@ GEM
       rubocop-performance (~> 1.18.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
+    strong_migrations (1.6.0)
+      activerecord (>= 5.2)
     thor (1.2.2)
     tilt (2.2.0)
     timeout (0.4.0)
@@ -513,6 +518,7 @@ DEPENDENCIES
   sprockets-rails
   standard
   stimulus-rails
+  strong_migrations
   traceroute
   turbo-rails
   tzinfo-data
