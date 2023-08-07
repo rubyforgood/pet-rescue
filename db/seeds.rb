@@ -224,7 +224,7 @@ path = Rails.root.join("app", "assets", "images", "hero.jpg")
     sex: Faker::Creature::Dog.gender,
     weight_from: from_weight,
     weight_to: from_weight + 15,
-    weight_unit: Pet.weight_units.sample,
+    weight_unit: Pet::WEIGHT_UNITS.sample,
     breed: Faker::Creature::Dog.breed,
     description: "He just loves a run and a bum scratch at the end of the day"
   )
