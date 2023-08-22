@@ -128,7 +128,7 @@ Write maintainable code that is accessible to beginners, fostering a supportive 
 Prioritize clear communication, embracing diverse viewpoints, and engaging stakeholders to gather feedback, with a commitment to timely responses and ongoing improvement.
 
 ### Engagement and Practicality:
-Build partnerships with stakeholders, seeking their active involvement, while focusing on the practical impact of our work and resolving disagreements through constructive dialogue.
+Build upon stakeholder partnerships to foster and encourage their active involvement, focusing constructive discussion and dispute resolution on the practical impact of our collective work.
 
 
 ---
