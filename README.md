@@ -112,7 +112,12 @@ Pet Rescue is one of many projects initiated and run by Ruby for Good. You can f
 [Baja Pet Rescue](https://www.bajapetrescue.com)
 
 # 🌟 Core Values
-This is essentially where culture can start which is what we promote, demote, or flat out say no to. These should be the guiding principle when we interact with others, stakeholders, and future collaborators. A analogy that can be used is to say vision is the destination, stragety is how you'll get there, and core values is what you use to handle when things change or there is uncertainity (and they often do!).
+While vision is the destination, and strategy is how we'll get there, core values are what we'll use to handle times of change or uncertainty (both of which are expected, guaranteed to happen, and positive signs of growth!).
+
+We are committed to promoting positive culture and outcomes for all, from coders and maintainers and leads
+to pet rescue and adoption administrators -- and animals everywhere.
+
+We will lean on the following as guiding principles when interacting with others -- stakeholders, as well as current and future maintainers, leads, and collaborators -- and we ask that anyone engaging with this project in any capacity to do the same. Know that we do want to know how and when (not if) we can improve upon these values and/or the way in which we live by and act in accordance with them, so please comment here and in PRs when you have ideas.
 
 Here are our core values defined by early contributors and leads:
 
