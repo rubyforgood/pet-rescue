@@ -125,7 +125,7 @@ Here are our core values defined by early contributors and leads:
 Write maintainable code that is accessible and enjoyable (for beginners and seasoned coders alike), supports and encourages contributors and their contributions, and ensures long-term sustainability of this project and the efforts it supports.
 
 ### Communication and Perspective:
-Prioritize clear communication, embracing diverse viewpoints, and engaging stakeholders to gather feedback, with a commitment to timely responses and ongoing improvement.
+Prioritize clear communication, embrace diverse viewpoints, and always engage feedback -- all with a commitment to timely responses and ongoing improvement for all. Rescue and adoption partner perspectives will be prioritized over abstracted conceptualization of their needs.
 
 ### Engagement and Practicality:
 Build upon stakeholder partnerships to foster and encourage their active involvement, focusing constructive discussion and dispute resolution on the practical impact of our collective work.
