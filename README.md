@@ -122,7 +122,7 @@ We will lean on the following as guiding principles when interacting with others
 Here are our core values defined by early contributors and leads:
 
 ### Code Quality and Collaboration
-Write maintainable code that is accessible to beginners, fostering a supportive environment for contributions while ensuring long-term sustainability to keep the project alive.
+Write maintainable code that is accessible and enjoyable (for beginners and seasoned coders alike), supports and encourages contributors and their contributions, and ensures long-term sustainability of this project and the efforts it supports.
 
 ### Communication and Perspective:
 Prioritize clear communication, embracing diverse viewpoints, and engaging stakeholders to gather feedback, with a commitment to timely responses and ongoing improvement.
