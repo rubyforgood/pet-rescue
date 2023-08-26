@@ -42,6 +42,6 @@ class ChecklistAssignment < ApplicationRecord
   private
 
   def set_due_date
-    self.due_date = Time.now + expected_duration_days.days
+    self.due_date ||= Time.now + expected_duration_days.days
   end
 end
