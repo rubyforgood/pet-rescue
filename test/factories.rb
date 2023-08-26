@@ -1,6 +1,12 @@
 FactoryBot.define do
   factory :adopter_account do
     user
+
+    trait :with_adopter_profile do
+      after :create do |account|
+        create(:adopter_profile, :with_location, adopter_account: account)
+      end
+    end
   end
 
   factory :adopter_application do
@@ -13,6 +19,11 @@ FactoryBot.define do
 
     trait :adoption_pending do
       status { 2 }
+    end
+
+    trait :withdrawn do
+      status { 3 }
+      profile_show { false }
     end
   end
 
@@ -42,6 +53,17 @@ FactoryBot.define do
     referral_source { "friends" }
 
     adopter_account
+
+    trait :with_location do
+      after :create do |profile|
+        create :location, adopter_profile: profile
+      end
+    end
+  end
+
+  factory :checklist_assignment do
+    checklist_template_item
+    match
   end
 
   factory :checklist_template do
@@ -57,7 +79,18 @@ FactoryBot.define do
     checklist_template
   end
 
+  factory :location do
+    city_town { Faker::Address.city }
+    sequence(:country) { |n| "Country#{n}" }
+    province_state { Faker::Address.state }
+
+    adopter_profile
+  end
+
   factory :organization do
+    # This needs to be hardcoded as "test" (or "altatest"). Other organizations should specify other subdomains.
+    # See config/environments/test.rb for more context.
+    subdomain { "test" }
   end
 
   factory :pet do
@@ -66,7 +99,9 @@ FactoryBot.define do
     description { Faker::Lorem.sentence }
     name { Faker::Creature::Dog.name }
     sex { Faker::Creature::Dog.gender }
-    size { Faker::Creature::Dog.size }
+    weight_from { 10 }
+    weight_to { 20 }
+    weight_unit { "lb" }
 
     organization
 
@@ -92,9 +127,9 @@ FactoryBot.define do
   end
 
   factory :match do
-    pet
     organization
-    adopter_account
+    pet { create(:pet, organization: organization) }
+    association :adopter_account, factory: [:adopter_account, :with_adopter_profile]
   end
 
   factory :staff_account do
@@ -111,7 +146,7 @@ FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
     password { "123456" }
-    encrypted_password { Faker::Lorem.word }
+    encrypted_password { Devise::Encryptor.digest(User, "password") }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     tos_agreement { true }
@@ -132,7 +167,7 @@ FactoryBot.define do
       adopter_account
 
       after :create do |user|
-        create :adopter_profile, adopter_account: user.adopter_account
+        create :adopter_profile, :with_location, adopter_account: user.adopter_account
       end
     end
 

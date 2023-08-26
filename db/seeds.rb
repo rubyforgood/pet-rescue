@@ -216,12 +216,15 @@ Location.create!(
 
 path = Rails.root.join("app", "assets", "images", "hero.jpg")
 10.times do
+  from_weight = [5, 10, 20, 30, 40, 50, 60].sample
   pet = Pet.create!(
     organization: Organization.all.sample,
     name: Faker::Creature::Dog.name,
     birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
     sex: Faker::Creature::Dog.gender,
-    size: Faker::Creature::Dog.size,
+    weight_from: from_weight,
+    weight_to: from_weight + 15,
+    weight_unit: Pet::WEIGHT_UNITS.sample,
     breed: Faker::Creature::Dog.breed,
     description: "He just loves a run and a bum scratch at the end of the day"
   )

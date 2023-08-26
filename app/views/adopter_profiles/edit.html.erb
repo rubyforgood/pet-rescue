@@ -3,7 +3,7 @@
   <div class="container">
     <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
-        Edit Profile
+        <%= t('.edit_profile') %>
       </h1>
     </div>
   </div> <!--container-->
@@ -14,7 +14,7 @@
   <div class="container">
     <div class="col-md-8 mx-auto">
         <%= render "form", profile: @adopter_profile %>
-        <%= link_to 'Back', profile_path %>
+        <%= link_to t('general.back'), profile_path %>
     </div>
   </div> <!--container-->
 </section>

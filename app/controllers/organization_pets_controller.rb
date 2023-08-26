@@ -65,10 +65,12 @@ class OrganizationPetsController < ApplicationController
       :birth_date,
       :sex,
       :breed,
-      :size,
       :description,
       :application_paused,
       :pause_reason,
+      :weight_from,
+      :weight_to,
+      :weight_unit,
       append_images: [])
   end
 
