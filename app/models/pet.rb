@@ -10,7 +10,9 @@
 #  name               :string
 #  pause_reason       :integer          default("not_paused")
 #  sex                :string
-#  size               :string
+#  weight_from        :integer          not null
+#  weight_to          :integer          not null
+#  weight_unit        :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  organization_id    :bigint           not null
@@ -32,9 +34,13 @@ class Pet < ApplicationRecord
 
   validates :name, presence: true
   validates :birth_date, presence: true
-  validates :size, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
+  validates :weight_from, presence: true, numericality: {only_integer: true}
+  validates :weight_to, presence: true, numericality: {only_integer: true}
+  validates :weight_unit, presence: true
+  validates :weight_unit, inclusion: {in: %w[lb kg]}
+  validates_comparison_of :weight_to, greater_than: :weight_from
   validates :description, presence: true, length: {maximum: 1000}
 
   # active storage validations gem
@@ -47,6 +53,14 @@ class Pet < ApplicationRecord
   enum :pause_reason, [:not_paused,
     :opening_soon,
     :paused_until_further_notice]
+
+  WEIGHT_UNIT_LB = "lb".freeze
+  WEIGHT_UNIT_KG = "kg".freeze
+
+  WEIGHT_UNITS = [
+    WEIGHT_UNIT_LB,
+    WEIGHT_UNIT_KG
+  ]
 
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?

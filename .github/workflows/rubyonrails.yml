@@ -38,8 +38,6 @@ jobs:
       # Add or replace database setup steps here
       - name: Set up database schema
         run: bin/rails db:schema:load
-      - name: Load test fixtures
-        run: bin/rails db:fixtures:load
       - name: Precompile assets
         run: bundle exec rails dartsass:build
       # Add or replace test runners here
