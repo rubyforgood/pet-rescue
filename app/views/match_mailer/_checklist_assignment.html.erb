@@ -1,0 +1,9 @@
+<b><%= assignment.name %></b>
+<i>
+  (due <%= assignment.due_date.strftime("%F") %>)
+  <% if assignment.optional? %>
+    — optional
+  <% end %>
+</i>
+<br/>
+<%= assignment.description %>

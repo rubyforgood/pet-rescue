@@ -23,4 +23,8 @@ class ChecklistTemplateItem < ApplicationRecord
   belongs_to :checklist_template
   validates :name, :expected_duration_days, presence: true
   has_many :checklist_assignments, dependent: :destroy
+
+  def optional?
+    !required?
+  end
 end

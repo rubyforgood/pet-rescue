@@ -1,5 +1,16 @@
 Congrats on <%= @pet.name %>'s adoption!
 
-Hope everything's going well! This is just a reminder to make sure <%= @pet.name %>'s vaccinations are up to date.
+<% if @assignments.one? %>
+Hope everything's going well! This is just a reminder on a task for <%= @pet.name %>.
+
+<%= render partial: 'match_mailer/checklist_assignment', locals: { assignment: @assignments.first } %>
+
+<% else %>
+This is just a reminder on tasks for <%= @pet.name %>.
+
+<% @assignments.each do |assignment| %>
+<%= render partial: 'match_mailer/checklist_assignment', locals: { assignment: assignment } %>
+<% end %>
+<% end %>
 
 Have a great day!
