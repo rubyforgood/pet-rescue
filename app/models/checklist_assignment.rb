@@ -30,7 +30,8 @@ class ChecklistAssignment < ApplicationRecord
   scope :required, -> { joins(:checklist_template_item).where(checklist_template_items: {required: true}) }
   scope :optional, -> { joins(:checklist_template_item).where(checklist_template_items: {required: false}) }
 
-  before_create :set_due_date
+  before_validation :set_due_date, on: :create
+
   delegate :name, :description, :expected_duration_days, :required, :required?, :optional?, to: :checklist_template_item
 
   def completed?
