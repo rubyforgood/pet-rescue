@@ -3,7 +3,8 @@ require "test_helper"
 class MatchMailerTest < ActionMailer::TestCase
   test "checklist reminder" do
     match = create(:match)
-    match.assign_checklist_template(checklist_templates(:one))
+    checklist_template = create(:checklist_template, :with_items)
+    match.assign_checklist_template(checklist_template)
 
     email = MatchMailer.checklist_reminder(match)
 
@@ -18,7 +19,7 @@ class MatchMailerTest < ActionMailer::TestCase
   end
 
   test "checklist reminder with no assignments" do
-    match = matches(:adoption_one)
+    match = create(:match)
 
     email = MatchMailer.checklist_reminder(match)
 

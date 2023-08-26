@@ -69,6 +69,12 @@ FactoryBot.define do
   factory :checklist_template do
     description { Faker::Lorem.paragraph }
     name { Faker::Lorem.word }
+
+    trait :with_items do
+      after :create do |template|
+        create_list :checklist_template_item, 3, checklist_template: template
+      end
+    end
   end
 
   factory :checklist_template_item do
