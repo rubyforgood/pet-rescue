@@ -5,7 +5,8 @@
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-	"postCreateCommand": "cp config/application.example.yml config/application.yml && sed -i 's/REPLACE_ME/vscode/g' config/application.yml",
+	"onCreateCommand": "cp config/application.example.yml config/application.yml && sed -i 's/REPLACE_ME/vscode/g' config/application.yml",
+	"updateContentCommand": "bin/setup",
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"nodeGypDependencies": true,
