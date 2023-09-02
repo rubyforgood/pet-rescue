@@ -13,7 +13,16 @@ Let's get your machine setup to startup the application!
 ⚠️  We assume you already have ruby installed with your preferred version manager. This codebase supports [rbenv](
 https://github.com/rbenv/rbenv) and [asdf](https://github.com/asdf-vm/asdf-ruby).
 
-## Install & Setup
+## Setup with Codespaces
+
+Create a codespace from this repository.
+
+To run the app locally, use:
+```
+bin/dev
+```
+
+## Install & Setup (Not Codespaces)
 
 Clone the codebase 
 ```
