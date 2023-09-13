@@ -1,0 +1,62 @@
+<svg width="636" height="400" viewBox="0 0 636 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6113_29924)">
+<rect width="636" height="400" fill="#E2E8F0"/>
+<g filter="url(#filter0_d_6113_29924)">
+<path d="M85 0H547V334C547 337.314 544.314 340 541 340H91C87.6863 340 85 337.314 85 334V0Z" fill="white"/>
+</g>
+<circle cx="121" cy="200" r="12" fill="#754FFE"/>
+<path d="M244 202H275" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+<path d="M332 202H363" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+<path d="M429 202H460" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+<rect x="473" y="252" width="40" height="16" rx="4" fill="#334155"/>
+<rect x="429" y="252" width="40" height="16" rx="4" fill="#E2E8F0"/>
+<rect width="462" height="59" transform="matrix(1 0 0 -1 85 59)" fill="url(#paint0_linear_6113_29924)" fill-opacity="0.3"/>
+<line x1="85" y1="169.5" x2="547" y2="169.5" stroke="#E2E8F0"/>
+<path d="M112 230H216" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M112 324H216" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M244 219H291" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M244 324H275" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M289 324H320" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M334 324H365" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M493 324H524" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M332 219H379" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M429 219H523" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M429 231H447" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M429 240H447" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M453 231H513" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M453 240H471" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M478 240H496" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M503 240H521" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M244 231H277" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M332 231H365" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M244 243H289" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M332 243H377" stroke="#CBD5E1" stroke-width="4" stroke-linecap="round"/>
+<path d="M244 255H280" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M332 255H368" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M244 267H275" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M332 267H363" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M112 242H197" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<path d="M112 254H179" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round"/>
+<rect x="109" y="266" width="12" height="12" rx="4" fill="#E2E8F0"/>
+<rect x="125" y="266" width="12" height="12" rx="4" fill="#E2E8F0"/>
+<rect x="141" y="266" width="12" height="12" rx="4" fill="#E2E8F0"/>
+</g>
+<defs>
+<filter id="filter0_d_6113_29924" x="82" y="-2" width="468" height="346" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="1"/>
+<feGaussianBlur stdDeviation="1.5"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0117647 0 0 0 0 0 0 0 0 0 0.278431 0 0 0 0.13 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_6113_29924"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_6113_29924" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_6113_29924" x1="231" y1="0" x2="231" y2="34.3163" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#D1DAE3"/>
+</linearGradient>
+<clipPath id="clip0_6113_29924">
+<rect width="636" height="400" fill="white"/>
+</clipPath>
+</defs>
+</svg>
