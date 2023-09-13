@@ -1,1 +1,0 @@
-$(".flatpickr").length&&flatpickr(".flatpickr",{disableMobile:!0});
