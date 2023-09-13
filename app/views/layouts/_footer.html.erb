@@ -5,7 +5,7 @@
       <div class="col-lg-4 col-md-6 col-12">
         <!-- about company -->
         <div class="mb-4">
-          <h3> Baja Pet Rescue </h3>
+          <h3> Pet Rescue </h3>
           <div class="mt-4">
             <p> We provide a platform for Pet Rescues and Animal Service Organizations </p>
             <!-- social media -->
@@ -22,9 +22,15 @@
           <!-- list -->
           <h3 class="fw-bold mb-3">Company</h3>
           <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
-            <li><a href="#" class="nav-link">About Us</a></li>
-            <li><a href="#" class="nav-link">Partners</a></li>
-            <li><a href="#" class="nav-link">Successes</a></li>
+            <li>
+              <%= active_link_to 'About Us', about_us_path, class: 'nav-link' %>
+            </li>
+            <li>
+              <%= active_link_to 'Partners', partners_path, class: 'nav-link' %>
+            </li>
+            <li>
+              <%= active_link_to 'Successes', successes_path, class: 'nav-link' %>
+            </li>
           </ul>
         </div>
       </div>
