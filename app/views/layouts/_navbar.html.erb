@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-transparent shadow-none px-2 py-3">
+  <div class="container px-0">
+    <%= link_to root_path, class: 'navbar-brand' do %>
+      Baja Pet Rescue
+    <% end %>
+    <div class="d-flex align-items-center order-lg-3">
+      <div class="d-flex align-items-center" style='gap: 0.5em'>
+        <%= link_to 'Adopt', new_user_registration_path, class: 'btn btn-secondary' %>
+        <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
+      </div>
+
+      <div>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default3" aria-controls="navbar-default3" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-bar top-bar mt-0"></span>
+          <span class="icon-bar middle-bar"></span>
+          <span class="icon-bar bottom-bar"></span>
+        </button>
+      </div>
+    </div>
+    <!-- Button -->
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" id="navbar-default3">
+      <ul class="navbar-nav">
+
+        <li class='nav-item'>
+          <%= active_link_to 'About Us', about_us_path, class: 'nav-link' %>
+        </li>
+        <li class='nav-item'>
+          <%= active_link_to 'Partners', partners_path, class: 'nav-link' %>
+        </li>
+        <li class='nav-item'>
+          <%= active_link_to 'Successes', successes_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item d-block d-md-none">
+          <%= active_link_to 'Adopt', new_user_registration_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item d-block d-md-none">
+          <%= active_link_to 'Log In', new_user_session_path, class: 'nav-link' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
