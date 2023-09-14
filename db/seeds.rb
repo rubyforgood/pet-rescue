@@ -13,7 +13,7 @@
   city: "Washington, DC",
   country: "USA",
   zipcode: "12345",
-  subdomain: "rubyforgood"
+  subdomain: "rfg"
 )
 
 @user_staff_one = User.create!(

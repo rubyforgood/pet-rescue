@@ -5,7 +5,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
     get "/"
     assert_select "a", "Adopt"
     assert_select "a", "Log In"
-    assert_select "a", {count: 0, text: "Dashboard"}
+    assert_select "a", {count: 0, text: "Pet Rescue"}
   end
 
   test "authenticated user sees log out button" do
@@ -19,7 +19,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   test "authenticated adopter without profile does not see Applications link" do
     sign_in create(:user, :adopter_without_profile)
     get "/"
-    assert_select "a", "Dashboard"
+    assert_select "a", "Pet Rescue"
     assert_select "a", "Account Settings"
     assert_select "a", "My Profile"
     assert_select "a", {count: 0, text: "My Applications"}
@@ -30,7 +30,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   test "authenticated adopter without profile is directed to new profile by My Profile link" do
     sign_in create(:user, :adopter_without_profile)
     get "/"
-    assert_select "a", "Dashboard"
+    assert_select "a", "Pet Rescue"
     assert_select "a", "Account Settings"
     assert_select "a[href=?]", new_profile_path, {text: "My Profile"}
   end
@@ -38,7 +38,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   test "authenticated adopter with profile sees My Applications link" do
     sign_in create(:user, :adopter_with_profile)
     get "/"
-    assert_select "a", "Dashboard"
+    assert_select "a", "Pet Rescue"
     assert_select "a", "Account Settings"
     assert_select "a", "My Profile"
     assert_select "a", "My Applications"
@@ -49,7 +49,7 @@ class NavbarTest < ActionDispatch::IntegrationTest
   test "authenticated staff sees dashboard with Our Pets and Applications links" do
     sign_in create(:user, :verified_staff)
     get "/"
-    assert_select "a", "Dashboard"
+    assert_select "a", "Pet Rescue"
     assert_select "a", "Account Settings"
     assert_select "a", "Our Pets"
     assert_select "a", "Applications"
