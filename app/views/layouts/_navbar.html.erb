@@ -16,8 +16,73 @@
           <span class="icon-bar bottom-bar"></span>
         </button>
       </div>
+
+      <li class="dropdown ms-2">
+        <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+          <div class="avatar avatar-md avatar-indicators avatar-online">
+            <%= image_tag "avatar/avatar-1.jpg", class: 'rounded-circle' %>
+          </div>
+        </a>
+        <div class="dropdown-menu dropdown-menu-end pb-0" aria-labelledby="dropdownUser" style='z-index: 1000'>
+          <% if user_signed_in? %>
+            <ul class="list-unstyled">
+              <% if current_user.adopter_account && current_user.adopter_account.adopter_profile.nil? %>
+                <li>
+                  <%= link_to new_profile_path, class: 'dropdown-item' do %>
+                    <i class="fe fe-user me-2"></i> My Profile
+                  <% end %>
+                </li>
+              <% elsif current_user.adopter_account %>
+                <li>
+                  <%= link_to profile_path, class: 'dropdown-item' do %>
+                    <i class="fe fe-user me-2"></i> My Profile
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to my_applications_path, class: 'dropdown-item' do %>
+                    <i class="fe fe-star me-2"></i> My Applications
+                  <% end %>
+                </li>
+              <% end %>
+              <% if current_user.staff_account && current_user.staff_account.verified %>
+                <li>
+                  <%= link_to pets_path, class: 'dropdown-item' do %>
+                    <i class="fe fe-star me-2"></i> Our Pets
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to adopter_applications_path, class: 'dropdown-item' do %>
+                    <i class="fe fe-star me-2"></i> Applications
+                  <% end %>
+                </li>
+              <% end %>
+              <li>
+                <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
+                  <i class="fe fe-settings me-2"></i> Account Settings
+                <% end %>
+              </li>
+              <div class="dropdown-divider"></div>
+              <li>
+                <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'dropdown-item' do %>
+                  <i class="fe fe-power me-2"></i> Logout
+                <% end %>
+              </li>
+            </ul>
+
+          <% else %>
+            <ul class="list-unstyled">
+              <li>
+                <%= link_to new_user_session_path, class: 'dropdown-item' do %>
+                  <i class="fe fe-log-in me-2"></i> Log In
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      </li>
     </div>
     <!-- Button -->
+
     <!-- Collapse -->
     <div class="collapse navbar-collapse" id="navbar-default3">
       <ul class="navbar-nav">
