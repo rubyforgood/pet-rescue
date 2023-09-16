@@ -377,6 +377,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rolify (6.0.1)
     rouge (4.1.2)
     rubocop (1.52.1)
       json (~> 2.3)
@@ -399,6 +400,8 @@ GEM
     sass-embedded (1.64.1)
       google-protobuf (~> 3.23)
       rake (>= 13.0.0)
+    sass-embedded (1.64.1-x86_64-linux-gnu)
+      google-protobuf (~> 3.23)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -509,6 +512,7 @@ DEPENDENCIES
   rails (~> 7.0.3)
   rails-i18n
   requestjs-rails (~> 0.0.10)
+  rolify
   shoulda (~> 4.0)
   shoulda-matchers
   simplecov

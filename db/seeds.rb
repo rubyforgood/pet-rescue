@@ -25,10 +25,15 @@
   tos_agreement: 1
 )
 
-StaffAccount.create!(
+@staff_account_one = StaffAccount.create!(
   user_id: @user_staff_one.id,
   organization_id: @organization_one.id,
   verified: true
+)
+
+@staff_account_one.add_role(
+  :admin,
+  @organization_one
 )
 
 @user_staff_two = User.create!(
@@ -40,10 +45,15 @@ StaffAccount.create!(
   tos_agreement: 1
 )
 
-StaffAccount.create!(
+@staff_account_two = StaffAccount.create!(
   user_id: @user_staff_two.id,
   organization_id: @organization_two.id,
   verified: true
+)
+
+@staff_account_two.add_role(
+  :admin,
+  @organization_two
 )
 
 @user_adopter_one = User.create!(

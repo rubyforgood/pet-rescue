@@ -125,6 +125,10 @@
                     data: { turbo: false },
                     method: 'delete' %>
               </li>
+              <% if current_user.staff_account && 
+                    current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
+                <div class="text-white ms-3 navbar-brand">Admin</div>
+              <% end %>
             <% end %>
           </ul>
         </div>

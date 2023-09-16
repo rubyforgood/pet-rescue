@@ -148,3 +148,6 @@ gem "city-state", "~> 0.1.0"
 
 # Adds a simple way to fetch with Javascript
 gem "requestjs-rails", "~> 0.0.10"
+
+# Add ability to set user roles
+gem "rolify"
