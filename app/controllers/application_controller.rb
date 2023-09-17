@@ -1,6 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :debug_request
+  before_action :set_current_user
   around_action :switch_locale
+
+  def set_current_user
+    Current.user = current_user
+  end
 
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
