@@ -1,6 +1,7 @@
 require_relative "boot"
 
 require "rails/all"
+require_relative "../lib/middleware/organization_middleware"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -15,6 +16,11 @@ module BajaPetRescue
 
     # BPR - send errors to routes to render custom error pages
     config.exceptions_app = routes
+
+    #
+    # Added to manage the tenants within the path instead of
+    # the subdomain
+    config.middleware.use OrganizationMiddleware
 
     # Configuration for the application, engines, and railties goes here.
     #
