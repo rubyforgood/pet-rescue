@@ -1,7 +1,6 @@
 class RootController < ApplicationController
-  layout 'no_tenant'
+  layout "no_tenant"
 
   def index
   end
-
 end

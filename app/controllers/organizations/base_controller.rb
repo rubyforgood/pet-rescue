@@ -19,9 +19,7 @@ class Organizations::BaseController < ApplicationController
     end
   end
 
-
   def debug_request
     logger.debug("TENANT: #{ActsAsTenant.current_tenant}")
   end
-
 end

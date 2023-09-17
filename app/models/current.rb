@@ -3,6 +3,5 @@
 class Current < ActiveSupport::CurrentAttributes
   # Set attributes to be available in the entire stack
   attribute :organization, :user
-  alias tenant organization
-
+  alias_method :tenant, :organization
 end
