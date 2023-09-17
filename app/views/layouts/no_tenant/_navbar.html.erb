@@ -5,7 +5,11 @@
     <% end %>
     <div class="d-flex align-items-center order-lg-3">
       <div class="d-flex align-items-center" style='gap: 0.5em'>
-        <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
+        <% if user_signed_in? %>
+          <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
+        <% else %>
+          <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
+        <% end %>
       </div>
 
       <div>

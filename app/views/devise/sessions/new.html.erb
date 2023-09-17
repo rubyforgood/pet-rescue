@@ -3,15 +3,16 @@
 
     <div class="col-lg-5 col-md-8 py-8 py-xl-0">
       <!-- Card -->
-      <div class="card shadow ">
+      <div class="card shadow" data-turbo='false'>
         <!-- Card body -->
         <div class="card-body p-6">
           <div class="mb-4">
-            <%= image_tag "brand/logo/logo-icon.svg", class: 'mb-4', alt: 'logo-icon' %>
+            <div class='d-flex justify-content-center'>
+              <%= image_tag "brand/pet-rescue.png", class: 'mb-4', alt: 'logo-icon', height: 200, width: 200 %>
+            </div>
             <h1 class="mb-1 fw-bold">Sign in</h1>
             <span>Don’t have an account? <%= link_to "Sign up", new_user_registration_path, class: 'small fw-bold' %></span>
           </div>
-          <!-- Form -->
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
@@ -31,7 +32,7 @@
             </div>
             <div class='mb-5'>
               <div class="d-grid">
-                <%= f.submit "Log in", class: 'btn btn-primary', data: { turbo: false } %>
+                <%= f.submit "Log in", class: 'btn btn-primary' %>
               </div>
             </div>
           <% end %>
