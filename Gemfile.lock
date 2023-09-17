@@ -512,6 +512,7 @@ DEPENDENCIES
   letter_opener
   pg (~> 1.1)
   phonelib
+  pry (~> 0.14.2)
   puma (~> 5.0)
   rails (~> 7.0.3)
   rails-i18n
