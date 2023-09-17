@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_16_212537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -211,6 +211,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
   create_table "staff_accounts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -219,6 +229,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
     t.bigint "user_id", default: 0, null: false
     t.index ["organization_id"], name: "index_staff_accounts_on_organization_id"
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
+  end
+
+  create_table "staff_accounts_roles", id: false, force: :cascade do |t|
+    t.bigint "staff_account_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_staff_accounts_roles_on_role_id"
+    t.index ["staff_account_id", "role_id"], name: "index_staff_accounts_roles_on_staff_account_id_and_role_id"
+    t.index ["staff_account_id"], name: "index_staff_accounts_roles_on_staff_account_id"
   end
 
   create_table "users", force: :cascade do |t|
