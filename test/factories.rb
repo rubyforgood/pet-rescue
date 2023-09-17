@@ -90,7 +90,8 @@ FactoryBot.define do
   factory :organization do
     # This needs to be hardcoded as "test" (or "altatest"). Other organizations should specify other subdomains.
     # See config/environments/test.rb for more context.
-    subdomain { "test" }
+    name { Faker::Company.name }
+    slug { Faker::Internet.slug }
   end
 
   factory :pet do
