@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :debug_request
-  set_current_tenant_through_filter
-  before_action :set_tenant
   around_action :switch_locale
 
   def switch_locale(&action)
@@ -10,13 +8,19 @@ class ApplicationController < ActionController::Base
   end
 
   def debug_request
-    logger.debug("SUBDOMAIN: #{request.subdomain}")
     logger.debug("TENANT: #{ActsAsTenant.current_tenant}")
   end
 
-  def set_tenant
-    org = Organization.find_by(subdomain: request.subdomain)
-    set_current_tenant(org)
+  def after_sign_in_path_for(resource)
+    if resource.staff_account
+      #
+      # Redirect to the organization's pets page with multi-tenant
+      # path included
+      #
+      adoptable_pets_path(script_name: "/#{resource.organization.slug}")
+    else
+      root_path
+    end
   end
 
   private

@@ -5,7 +5,7 @@
   city: "Alta",
   country: "Mexico",
   zipcode: "12345",
-  subdomain: "alta"
+  slug: "alta"
 )
 
 @organization_two = Organization.create!(
@@ -13,7 +13,7 @@
   city: "Washington, DC",
   country: "USA",
   zipcode: "12345",
-  subdomain: "rfg"
+  slug: "rfg"
 )
 
 @user_staff_one = User.create!(

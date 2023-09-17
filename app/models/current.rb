@@ -2,6 +2,7 @@
 
 class Current < ActiveSupport::CurrentAttributes
   # Set attributes to be available in the entire stack
-  attribute :tenant, :user
+  attribute :organization, :user
+  alias tenant organization
 
 end

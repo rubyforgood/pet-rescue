@@ -30,6 +30,7 @@ class User < ApplicationRecord
     allow_nil: false, on: :create
 
   has_one :staff_account, dependent: :destroy
+  has_one :organization, through: :staff_account
   has_one :adopter_account, dependent: :destroy
 
   accepts_nested_attributes_for :adopter_account, :staff_account

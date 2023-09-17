@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Pet Rescue" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : Current.organization.name %></title>
     <%= favicon_link_tag asset_path('favicon.png') %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>

@@ -1,12 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-transparent shadow-none px-2 py-3">
   <div class="container px-0">
     <%= link_to root_path, class: 'navbar-brand' do %>
-      Pet Rescue
+      <%= Current.organization.name %>
     <% end %>
     <div class="d-flex align-items-center order-lg-3">
       <div class="d-flex align-items-center" style='gap: 0.5em'>
-        <%= link_to 'Adopt', new_user_registration_path, class: 'btn btn-secondary' %>
-        <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
+        <%= link_to 'Log In', new_user_session_path(script_name: ''), class: 'btn btn-primary' %>
       </div>
 
       <div>
