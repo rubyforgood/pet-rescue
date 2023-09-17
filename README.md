@@ -60,7 +60,7 @@ To configure your local dev env to test subdomains, you will need to [edit your 
 Add the following line:
 
 ```text
-127.0.0.1  pet-rescue.local alta.pet-rescue.local rubyforgood.pet-rescue.local
+127.0.0.1 localhost pet-rescue.local alta.pet-rescue.local rfg.pet-rescue.local
 ```
 This will map the two seed Orgs with the correct subdomains
 
