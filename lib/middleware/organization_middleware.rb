@@ -11,7 +11,7 @@ class OrganizationMiddleware
   # information on how this works.
   #
   def call(env)
-    _, organization_slug, request_path = env["PATH_INFO"].split("/")
+    _, organization_slug, request_path = env["REQUEST_PATH"].split("/", 3)
 
     unless request_path.blank?
       # Used to set the tenant in the controller

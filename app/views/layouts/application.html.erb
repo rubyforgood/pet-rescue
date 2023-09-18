@@ -1,19 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pet Rescue</title>
-    <%= favicon_link_tag asset_path('favicon.png') %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-
-    <% if content_for?(:head) %>
-      <%= yield(:head) %>
-    <% end %>
-  </head>
+  <%= render "layouts/shared/head" %>
 
   <body>
     <%= render partial: "layouts/navbar" %>
