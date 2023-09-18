@@ -11,6 +11,7 @@ class OrganizationMiddleware
   # information on how this works.
   #
   def call(env)
+    # Fetches the organization slug and request path from the request
     _, organization_slug, request_path = env["REQUEST_PATH"].split("/", 3)
 
     unless request_path.blank?
@@ -21,13 +22,21 @@ class OrganizationMiddleware
         #
         # This is the magic that allows the tenant to be set via the path
         #
+        # Append the organization slug to every path generated in Rails
         env["SCRIPT_NAME"] = "/#{organization_slug}"
+
+        # Set the `env` so Rails knows the process the request without the organization slug 
+        # included
         env["PATH_INFO"] = "/#{request_path}"
         env["REQUEST_PATH"] = "/#{request_path}"
         env["REQUEST_URI"] = "/#{request_path}"
       end
     end
 
+    # Continue processing the request with the updated
+    # `env` as if the organization slug was not included but
+    # included in the `Current.tenant` variable accessible
+    # throughout the stack
     status, headers, body = @app.call(env)
     [status, headers, body]
   end
