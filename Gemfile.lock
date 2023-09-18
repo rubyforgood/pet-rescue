@@ -380,6 +380,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
+    rolify (6.0.1)
     rouge (4.1.2)
     rubocop (1.52.1)
       json (~> 2.3)
@@ -517,6 +518,7 @@ DEPENDENCIES
   rails (~> 7.0.3)
   rails-i18n
   requestjs-rails (~> 0.0.10)
+  rolify
   shoulda (~> 4.0)
   shoulda-matchers
   simplecov
