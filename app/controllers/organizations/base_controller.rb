@@ -8,20 +8,4 @@
 
 class Organizations::BaseController < ApplicationController
   include OrganizationScoped
-
-  before_action :debug_request
-  set_current_tenant_through_filter
-  before_action :set_tenant
-
-  def set_tenant
-    if Current.organization.blank?
-      redirect_to root_path, alert: "Organization not found."
-    else
-      set_current_tenant(Current.organization)
-    end
-  end
-
-  def debug_request
-    logger.debug("TENANT: #{ActsAsTenant.current_tenant}")
-  end
 end

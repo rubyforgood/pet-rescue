@@ -8,7 +8,7 @@ organization = Organization.create!(
 
 ActsAsTenant.with_tenant(organization) do
   @user_staff_one = User.create!(
-    email: "staff@example.com",
+    email: "staff@alta.com",
     first_name: "Andy",
     last_name: "Peters",
     password: "123456",
@@ -24,7 +24,7 @@ ActsAsTenant.with_tenant(organization) do
   @staff_account_one.add_role(:admin, @organizaton)
 
   @user_staff_two = User.create!(
-    email: "staff2@example.com",
+    email: "staff2@alta.com",
     first_name: "Randy",
     last_name: "Peterson",
     password: "123456",
@@ -40,7 +40,7 @@ ActsAsTenant.with_tenant(organization) do
   @staff_account_two.add_role(:admin, @organizaton)
 
   @user_adopter_one = User.create!(
-    email: "adopter1@example.com",
+    email: "adopter1@alta.com",
     first_name: "Joe",
     last_name: "Brando",
     password: "123456",
@@ -51,7 +51,7 @@ ActsAsTenant.with_tenant(organization) do
   @adopter_account_one = AdopterAccount.create!(user_id: @user_adopter_one.id)
 
   @user_adopter_two = User.create!(
-    email: "adopter2@example.com",
+    email: "adopter2@alta.com",
     first_name: "Kamala",
     last_name: "Lolsworth",
     password: "123456",
@@ -62,7 +62,7 @@ ActsAsTenant.with_tenant(organization) do
   @adopter_account_two = AdopterAccount.create!(user_id: @user_adopter_two.id)
 
   @user_adopter_three = User.create!(
-    email: "adopter3@example.com",
+    email: "adopter3@alta.com",
     first_name: "Bad",
     last_name: "Address",
     password: "123456",
@@ -255,5 +255,5 @@ ActsAsTenant.with_tenant(organization) do
   @match.assign_checklist_template(@checklist_template)
 
   # active admin seed
-  AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password") if Rails.env.development?
+  AdminUser.create!(email: "admin@alta.com", password: "password", password_confirmation: "password") if Rails.env.development?
 end
