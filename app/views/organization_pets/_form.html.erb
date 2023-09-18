@@ -1,14 +1,14 @@
 <div class="row">
   <div class="col-md-8 mx-auto card p-5 bigger">
-    <%= form_with model: pet do |form|%>
+    <%= form_with model: pet do |form| %>
 
-      <%= form.hidden_field :organization_id, 
-                            value: current_user.organization_id %>
-      
+      <%= form.hidden_field :organization_id,
+                            value: current_user.staff_account.organization_id %>
+
       <div class='form-group'>
         <%= form.label :name, class: 'mt-3' %>
         <%= form.text_field :name, class: 'form-control' %>
-        
+
         <% pet.errors.full_messages_for(:name).each do |message| %>
           <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
         <% end %>
@@ -16,34 +16,26 @@
 
       <div class='form-group d-flex'>
         <div class='me-3'>
-          <%= form.label :age, class: 'mt-3' %>
-          <%= form.number_field :age, class: 'form-control' %>        
+          <%= form.label :birth_date, class: 'mt-3' %>
+          <span class='form-control'>
+            <%= form.date_select :birth_date,
+                                 start_year: Date.today.year - 20,
+                                 end_year: Date.today.year %>
+          </span>
         </div>
 
-        <div>
-          <%= form.label :age_unit, 'Unit', class: 'mt-3' %>
-          <%= form.select(:age_unit, 
-                                    Pet.list_age_units, 
-                                    {},
-                                    { class: "form-control"}) %>
-        </div>
-
-        <% pet.errors.full_messages_for(:age).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-        <% end %>
-        
-        <% pet.errors.full_messages_for(:age_unit).each do |message| %>
+        <% pet.errors.full_messages_for(:birth_date).each do |message| %>
           <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
         <% end %>
       </div>
 
       <div class='form-group'>
         <%= form.label :sex, class: 'mt-3' %>
-        <%= form.select :sex, 
-                        ['Male', 'Female'],
-                        { prompt: "Please select" },
+        <%= form.select :sex,
+                        [[t('general.male'), 'male'], [t('general.female'), 'female']],
+                        { prompt: t('general.please_select') },
                         class: 'form-control' %>
-        
+
         <% pet.errors.full_messages_for(:sex).each do |message| %>
           <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
         <% end %>
@@ -52,38 +44,55 @@
       <div class='form-group'>
         <%= form.label :breed, class: 'mt-3' %>
         <%= form.text_field :breed, class: 'form-control' %>
-        
+
         <% pet.errors.full_messages_for(:breed).each do |message| %>
           <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
         <% end %>
       </div>
 
-      <div class='form-group'>
-        <%= form.label :size, class: 'mt-3' %>
-        <%= form.select :size,
-                        ['Toy (<12 lb)', 
-                        'Small (12-22 lb)', 
-                        'Medium (22-57 lb)',
-                        'Large (57-99 lb)',
-                        'Giant (99+ lb)'], 
-                        { prompt: "Please select" },
+      <div class="form-group mt-3">
+        <div class='form-group d-flex'>
+          <div class='me-3'>
+            <%= form.label :weight_from, 'From weight' %>
+            <%= form.text_field :weight_from, class: 'form-control' %>
+            <% if pet.errors[:weight_from].any? %>
+              <div class="alert alert-danger mt-1" role="alert">
+                <%= pet.errors.full_messages_for(:weight_from).first %>
+              </div>
+            <% end %>
+          </div>
+          <div class='me-3'>
+            <%= form.label :weight_to, 'To weight' %>
+            <%= form.text_field :weight_to, class: 'form-control' %>
+            <% if pet.errors[:weight_to].any? %>
+              <div class="alert alert-danger mt-1" role="alert">
+                <%= pet.errors.full_messages_for(:weight_to).first %>
+              </div>
+            <% end %>
+          </div>
+          <div>
+            <%= form.label :weight_unit %>
+            <%= form.select :weight_unit, 
+                        Pet::WEIGHT_UNITS,
+                        {},
                         class: 'form-control' %>
-        
-        <% pet.errors.full_messages_for(:size).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-        <% end %>
+            <% pet.errors.full_messages_for(:weight_unit).each do |message| %>
+              <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+            <% end %>
+          </div>
+        </div>
       </div>
 
       <div class='form-group'>
         <%= form.label :description, class: 'mt-3' %>
         <div data-controller='counter'>
-          <%= form.text_area :description, 
-                              data: { action: "input->counter#countExtraLarge", 
-                              counter_target: 'input' },
-                              class: 'form-control' %>
+          <%= form.text_area :description,
+                             data: { action: "input->counter#countExtraLarge",
+                                     counter_target: 'input' },
+                             class: 'form-control' %>
           <div data-counter-target='output' class='small mt-2 d-flex flex-row-reverse'></div>
         </div>
-        
+
         <% pet.errors.full_messages_for(:description).each do |message| %>
           <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
         <% end %>
@@ -91,9 +100,9 @@
 
       <div class='form-group mt-3'>
         <%= form.label :append_images, 'Attach images', class: 'me-3' %>
-        <%= form.file_field :append_images, multiple: true, 
+        <%= form.file_field :append_images, multiple: true,
                             class: "custom-attachments" %>
-        
+
         <% pet.errors.full_messages_for(:images).each do |message| %>
           <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
         <% end %>
@@ -101,14 +110,14 @@
 
       <div>
         <% if pet.images.attached? %>
-          <p>Uploaded Images</p>
+          <p><%= t('.uploaded_images') %></p>
           <div class='row row-cols-1 row-cols-lg-5 g-6'>
             <% pet.images.each do |image| %>
               <% if image.created_at %>
                 <div class='d-flex flex-column align-items-center'>
                   <%= image_tag image, class: 'uploaded-image rounded mt-2 mb-2' %>
-                  <%= link_to 'Delete', 
-                              purge_attachment_path(image), 
+                  <%= link_to t('general.delete'),
+                              purge_attachment_path(image),
                               data: { turbo_method: "delete" },
                               class: 'delete-button' %>
                 </div>
@@ -117,8 +126,8 @@
           </div>
         <% end %>
       </div>
-      
-      <%= form.submit 'Save', class: 'btn btn-outline-dark mb-3 mt-4' %>
+
+      <%= form.submit t('general.save'), class: 'btn btn-outline-dark mb-3 mt-4' %>
 
     <% end %>
 

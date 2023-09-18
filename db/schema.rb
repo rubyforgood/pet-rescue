@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_29_212113) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_16_212537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,27 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_212113) do
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
+  create_table "checklist_assignments", force: :cascade do |t|
+    t.bigint "checklist_template_item_id", null: false
+    t.bigint "match_id", null: false
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_template_item_id"], name: "index_checklist_assignments_on_checklist_template_item_id"
+    t.index ["match_id"], name: "index_checklist_assignments_on_match_id"
+  end
+
+  create_table "checklist_template_items", force: :cascade do |t|
+    t.bigint "checklist_template_id", null: false
+    t.string "name", null: false
+    t.text "description"
+    t.integer "expected_duration_days", null: false
+    t.boolean "required", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_template_id"], name: "index_checklist_template_items_on_checklist_template_id"
+  end
+
   create_table "checklist_templates", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -99,6 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_212113) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "person_id"
+    t.bigint "organization_id", null: false
+    t.index ["organization_id"], name: "index_matches_on_organization_id"
     t.index ["person_id"], name: "index_matches_on_person_id"
     t.index ["pet_id"], name: "index_matches_on_pet_id"
   end
@@ -130,18 +153,37 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_212113) do
 
   create_table "pets", force: :cascade do |t|
     t.bigint "organization_id", null: false
-    t.integer "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "size"
     t.string "breed"
     t.text "description"
     t.string "sex"
     t.string "name"
     t.boolean "application_paused", default: false
     t.integer "pause_reason", default: 0
-    t.integer "age_unit", default: 0
+    t.datetime "birth_date", null: false
+    t.integer "weight_from", null: false
+    t.integer "weight_to", null: false
+    t.string "weight_unit", null: false
     t.index ["organization_id"], name: "index_pets_on_organization_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
+  create_table "staff_accounts_roles", id: false, force: :cascade do |t|
+    t.bigint "staff_account_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_staff_accounts_roles_on_role_id"
+    t.index ["staff_account_id", "role_id"], name: "index_staff_accounts_roles_on_staff_account_id_and_role_id"
+    t.index ["staff_account_id"], name: "index_staff_accounts_roles_on_staff_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -162,6 +204,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_29_212113) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "adopter_applications", "pets"
+  add_foreign_key "checklist_assignments", "checklist_template_items"
+  add_foreign_key "checklist_assignments", "matches"
+  add_foreign_key "checklist_template_items", "checklist_templates"
   add_foreign_key "locations", "people"
   add_foreign_key "matches", "pets"
   add_foreign_key "pets", "organizations"

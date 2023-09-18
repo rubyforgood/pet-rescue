@@ -11,13 +11,17 @@ class PetTest < ActiveSupport::TestCase
 
   context "validations" do
     should validate_presence_of(:name)
-    should validate_presence_of(:age)
-    should validate_presence_of(:age_unit)
-    should validate_presence_of(:size)
+    should validate_presence_of(:birth_date)
     should validate_presence_of(:breed)
     should validate_presence_of(:sex)
     should validate_presence_of(:description)
     should validate_length_of(:description).is_at_most(1000)
+    should validate_presence_of(:weight_from)
+    should validate_numericality_of(:weight_from).only_integer
+    should validate_presence_of(:weight_to)
+    should validate_numericality_of(:weight_to).only_integer
+    should validate_presence_of(:weight_unit)
+    should validate_inclusion_of(:weight_unit).in_array(["lb", "kg"])
   end
 
   context "#has_adoption_pending?" do

@@ -14,6 +14,13 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  Rails.application.config.hosts +=
+    [/pet-rescue.local/,
+      /pet-rescue.localhost/,
+      # handle subdomains
+      /.*\.pet-rescue.local/,
+      /.*\.pet-rescue.localhost/]
+
   # Enable server timing
   config.server_timing = true
 
@@ -77,4 +84,11 @@ Rails.application.configure do
 
   # Devise config
   config.action_mailer.default_url_options = {host: "localhost", port: 3000}
+
+  alta_from_domain = "alta.localhost"
+  rubyforgood_from_domain = "rubyforgood.localhost"
+  config.email_from = {
+    default: {alta: "hello@#{alta_from_domain}", rubyforgood: "hello@#{rubyforgood_from_domain}"},
+    contact: {alta: "contact@#{alta_from_domain}", rubyforgood: "contact@#{rubyforgood_from_domain}"}
+  }
 end

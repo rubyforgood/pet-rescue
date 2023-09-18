@@ -6,6 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     build_resource({})
     resource.build_person
+    resource.build_adopter_account
     respond_with resource
   end
 
@@ -17,7 +18,6 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
       :password,
       :signup_role,
-      :password_confirmation,
       :tos_agreement,
       person_attributes: [:user_id, :first_name, :last_name])
   end
@@ -31,9 +31,8 @@ class RegistrationsController < Devise::RegistrationsController
       :current_password)
   end
 
-  # redirect new adopter users to adopter_profile#new
   def after_sign_up_path_for(resource)
-    resource.adopter_account ? new_profile_path : root_path
+    adoptable_pets_path
   end
 
   def after_sign_in_path_for
@@ -44,12 +43,7 @@ class RegistrationsController < Devise::RegistrationsController
   def send_email
     return unless resource.id
 
-    if resource.adopter_account
-      SignUpMailer.with(user: resource).adopter_welcome_email.deliver_now
-    else
-      SignUpMailer.with(user: resource).staff_welcome_email.deliver_now
-      SignUpMailer.with(user: resource).admin_notification_new_staff.deliver_now
-    end
+    SignUpMailer.with(user: resource).adopter_welcome_email(current_tenant.subdomain).deliver_now
   end
 end
 

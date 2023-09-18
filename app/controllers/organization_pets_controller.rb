@@ -60,14 +60,15 @@ class OrganizationPetsController < ApplicationController
   def pet_params
     params.require(:pet).permit(:organization_id,
       :name,
-      :age,
-      :age_unit,
+      :birth_date,
       :sex,
       :breed,
-      :size,
       :description,
       :application_paused,
       :pause_reason,
+      :weight_from,
+      :weight_to,
+      :weight_unit,
       append_images: [])
   end
 

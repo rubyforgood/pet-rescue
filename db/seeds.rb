@@ -13,7 +13,7 @@
   city: "Washington, DC",
   country: "USA",
   zipcode: "12345",
-  subdomain: "rubyforgood"
+  subdomain: "rfg"
 )
 
 @user_staff_one = User.create!(
@@ -23,10 +23,15 @@
   tos_agreement: 1
 )
 
-StaffAccount.create!(
+@staff_account_one = StaffAccount.create!(
   user_id: @user_staff_one.id,
   organization_id: @organization_one.id,
   verified: true
+)
+
+@staff_account_one.add_role(
+  :admin,
+  @organization_one
 )
 
 @user_staff_two = User.create!(
@@ -34,6 +39,17 @@ StaffAccount.create!(
   password: "123456",
   password_confirmation: "123456",
   tos_agreement: 1
+)
+
+@staff_account_two = StaffAccount.create!(
+  user_id: @user_staff_two.id,
+  organization_id: @organization_two.id,
+  verified: true
+)
+
+@staff_account_two.add_role(
+  :admin,
+  @organization_two
 )
 
 @user_adopter_one = User.create!(
@@ -65,7 +81,7 @@ StaffAccount.create!(
   contact_method: "phone",
   first_name: Faker::Name.first_name,
   last_name: Faker::Name.last_name,
-  user_id: u.id
+  user_id: u.id,
 
   referral_source: "my friends friend"
 )
@@ -117,21 +133,25 @@ Location.create!(
 
 path = Rails.root.join("app", "assets", "images", "hero.jpg")
 10.times do
+  from_weight = [5, 10, 20, 30, 40, 50, 60].sample
   pet = Pet.create!(
     organization: Organization.all.sample,
     name: Faker::Creature::Dog.name,
-    age: Faker::Number.within(range: 1..10),
+    birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
     sex: Faker::Creature::Dog.gender,
-    size: Faker::Creature::Dog.size,
+    weight_from: from_weight,
+    weight_to: from_weight + 15,
+    weight_unit: Pet::WEIGHT_UNITS.sample,
     breed: Faker::Creature::Dog.breed,
     description: "He just loves a run and a bum scratch at the end of the day"
   )
   pet.images.attach(io: File.open(path), filename: "hero.jpg")
 end
 
-Match.create!(
+@match = Match.create!(
   pet_id: Pet.first.id,
-  adopter_account_id: @adopter_account_one.id
+  adopter_account_id: @adopter_account_one.id,
+  organization_id: Pet.first.organization_id
 )
 
 10.times do
@@ -143,6 +163,22 @@ Match.create!(
     pet: Pet.all.sample
   )
 end
+
+@checklist_template = ChecklistTemplate.create!(
+  name: "vaccinations",
+  description: "Get your dog vaccinated"
+)
+
+5.times do
+  @checklist_template.items.create!(
+    name: Faker::Verb.base,
+    description: Faker::Quote.famous_last_words,
+    expected_duration_days: rand(1..10),
+    required: [true, false].sample
+  )
+end
+
+@match.assign_checklist_template(@checklist_template)
 
 # active admin seed
 AdminUser.create!(email: "admin@example.com", password: "password", password_confirmation: "password") if Rails.env.development?

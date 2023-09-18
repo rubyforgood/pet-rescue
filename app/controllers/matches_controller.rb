@@ -2,7 +2,8 @@ class MatchesController < ApplicationController
   before_action :verified_staff, :same_organization?
 
   def create
-    @match = Match.new(adoption_params)
+    @pet = Pet.find(adoption_params[:pet_id])
+    @match = Match.new(adoption_params.merge(organization_id: @pet.organization_id))
 
     if @match.save
       set_statuses_to_adoption_made
