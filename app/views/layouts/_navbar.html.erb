@@ -58,7 +58,7 @@
               </li>
               <div class="dropdown-divider"></div>
               <li>
-                <%= button_to destroy_user_session_path(script_name: ''), method: :delete, data: { turbo: false }, class: 'dropdown-item' do %>
+                <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'dropdown-item' do %>
                   <i class="fe fe-power me-2"></i> Log Out
                 <% end %>
               </li>

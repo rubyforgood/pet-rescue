@@ -9,14 +9,6 @@
           Pet Rescue
         <% end %>
         <div class="d-flex align-items-center order-lg-3">
-          <div class="d-flex align-items-center" style='gap: 0.5em'>
-            <% if user_signed_in? %>
-              <%= button_to 'Log Out', destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
-            <% else %>
-              <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
-            <% end %>
-          </div>
-
           <div>
             <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default3" aria-controls="navbar-default3" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon-bar top-bar mt-0"></span>

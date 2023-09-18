@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :debug_request
   before_action :set_current_user
   around_action :switch_locale
 
@@ -10,22 +9,6 @@ class ApplicationController < ActionController::Base
   def switch_locale(&action)
     locale = params[:locale] || I18n.default_locale
     I18n.with_locale(locale, &action)
-  end
-
-  def debug_request
-    logger.debug("TENANT: #{ActsAsTenant.current_tenant}")
-  end
-
-  def after_sign_in_path_for(resource)
-    if resource.staff_account
-      #
-      # Redirect to the organization's pets page with multi-tenant
-      # path included
-      #
-      adoptable_pets_path(script_name: "/#{resource.organization.slug}")
-    else
-      root_path
-    end
   end
 
   private
