@@ -23,6 +23,7 @@
 #
 class User < ApplicationRecord
   acts_as_tenant(:organization)
+  default_scope { where(organization_id: Current.organization&.id) }
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
