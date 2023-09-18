@@ -25,7 +25,7 @@ class OrganizationMiddleware
         # Append the organization slug to every path generated in Rails
         env["SCRIPT_NAME"] = "/#{organization_slug}"
 
-        # Set the `env` so Rails knows the process the request without the organization slug 
+        # Set the `env` so Rails knows the process the request without the organization slug
         # included
         env["PATH_INFO"] = "/#{request_path}"
         env["REQUEST_PATH"] = "/#{request_path}"

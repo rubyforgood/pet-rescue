@@ -17,7 +17,7 @@ ActiveRecord::Base.transaction do
 
   puts "\n\n"
 
-  Dir[Rails.root.join('db', 'seeds', '*.rb')].sort.each do |seed|
+  Dir[Rails.root.join("db", "seeds", "*.rb")].sort.each do |seed|
     # Print out file name
     puts "[ Seeding ] #{seed} started"
     load seed

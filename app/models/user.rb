@@ -29,7 +29,7 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: { scope: :organization_id }
+  validates :email, presence: true, uniqueness: {scope: :organization_id}
   validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
     allow_nil: false, on: :create
 

@@ -1,6 +1,6 @@
-module OrganizationScoped 
+module OrganizationScoped
   extend ActiveSupport::Concern
- 
+
   included do
     set_current_tenant_through_filter
     before_action :set_tenant
@@ -21,5 +21,4 @@ module OrganizationScoped
   def after_sign_out_path_for(resource_or_scope)
     adoptable_pets_path
   end
-
 end

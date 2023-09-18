@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, controllers: {
     registrations: "registrations",
-    sessions: 'users/sessions'
+    sessions: "users/sessions"
   }
 
   resources :adoptable_pets, only: [:index, :show]
