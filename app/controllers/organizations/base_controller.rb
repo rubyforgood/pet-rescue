@@ -7,6 +7,8 @@
 #
 
 class Organizations::BaseController < ApplicationController
+  include OrganizationScoped
+
   before_action :debug_request
   set_current_tenant_through_filter
   before_action :set_tenant

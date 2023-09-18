@@ -13,24 +13,26 @@
 #  tos_agreement          :boolean
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  organization_id        :bigint
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_organization_id       (organization_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :validatable
+  acts_as_tenant(:organization)
+
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: { scope: :organization_id }
   validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
     allow_nil: false, on: :create
 
   has_one :staff_account, dependent: :destroy
-  has_one :organization, through: :staff_account
   has_one :adopter_account, dependent: :destroy
 
   accepts_nested_attributes_for :adopter_account, :staff_account

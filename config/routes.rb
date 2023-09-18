@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users, controllers: {registrations: "registrations"}
+  devise_for :users, controllers: {
+    registrations: "registrations",
+    sessions: 'users/sessions'
+  }
 
   resources :adoptable_pets, only: [:index, :show]
   resources :adopter_applications, only: [:index, :edit, :update], controller: "adoption_application_reviews"
