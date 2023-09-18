@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  include OrganizationScoped
+
   after_action :send_email, only: :create
 
   # nested form in User>registration>new for an adopter or staff account
