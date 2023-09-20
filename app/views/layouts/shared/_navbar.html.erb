@@ -15,9 +15,13 @@
 
       <li class="dropdown ms-2">
         <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-          <div class="avatar avatar-md avatar-indicators avatar-online">
-            <%= image_tag "avatar/avatar-1.jpg", class: 'rounded-circle' %>
-          </div>
+          <% if user_signed_in? %>
+            <div class="avatar avatar-md avatar-indicators avatar-online">
+              <%= image_tag "avatar/avatar-1.jpg", class: 'rounded-circle' %>
+            </div>
+          <% else %>
+            <%= active_link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
+          <% end %>
         </a>
         <div class="dropdown-menu dropdown-menu-end pb-0" aria-labelledby="dropdownUser" style='z-index: 1000'>
           <% if user_signed_in? %>
@@ -64,18 +68,9 @@
                 <% end %>
               </li>
             </ul>
-            <% if current_user.staff_account && 
-                  current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
+            <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
               <div class="ms-4">*Admin*</div>
             <% end %>
-          <% else %>
-            <ul class="list-unstyled">
-              <li>
-                <%= link_to new_user_session_path, class: 'dropdown-item' do %>
-                  <i class="fe fe-log-in me-2"></i> Log In
-                <% end %>
-              </li>
-            </ul>
           <% end %>
         </div>
       </li>
