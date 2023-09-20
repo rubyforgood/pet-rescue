@@ -29,7 +29,7 @@ class User < ApplicationRecord
     # when the Current.organization is set
     #
     if Current.organization
-      where(organization_id: Current.organization&.id) 
+      where(organization_id: Current.organization&.id)
     else
       all
     end

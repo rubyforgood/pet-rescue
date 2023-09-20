@@ -1,4 +1,3 @@
-
 # Per SimpleCov documentation, start gem before application
 if ENV["COVERAGE"]
   require "simplecov"
@@ -12,8 +11,8 @@ end
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
-require 'minitest/unit'
-require 'mocha/minitest'
+require "minitest/unit"
+require "mocha/minitest"
 
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods

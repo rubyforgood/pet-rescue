@@ -1,7 +1,6 @@
-require 'test_helper'
+require "test_helper"
 
 class RootsControllerTest < ActionDispatch::IntegrationTest
-
   context "GET #index" do
     should "get the root url" do
       get root_url
@@ -11,7 +10,7 @@ class RootsControllerTest < ActionDispatch::IntegrationTest
 
     context "when there is a current organization" do
       setup do
-        Current.stubs(:organization).returns('something')
+        Current.stubs(:organization).returns("something")
       end
 
       should "redirect to the home page" do
@@ -33,6 +32,4 @@ class RootsControllerTest < ActionDispatch::IntegrationTest
       end
     end
   end
-
 end
-
