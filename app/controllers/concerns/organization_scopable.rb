@@ -1,4 +1,4 @@
-module OrganizationScoped
+module OrganizationScopable
   extend ActiveSupport::Concern
 
   included do

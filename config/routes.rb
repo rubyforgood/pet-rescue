@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   resource :adopter_profile, except: :destroy, as: "profile"
   resources :checklist_templates
   resources :donations, only: [:create]
-  resources :pets, controller: "organization_pets"
+
+  scope module: :organizations do
+    resources :home, only: [:index]
+    resources :pets
+  end
+
   resources :profile_reviews, only: [:show]
   resources :successes, only: [:index]
 

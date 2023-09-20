@@ -14,23 +14,21 @@ class OrganizationMiddleware
     # Fetches the organization slug and request path from the request
     _, organization_slug, request_path = env["REQUEST_PATH"].split("/", 3)
 
-    unless request_path.blank?
-      # Used to set the tenant in the controller
-      Current.organization = Organization.find_by(slug: organization_slug)
+    # Used to set the tenant in the controller
+    Current.organization = Organization.find_by(slug: organization_slug)
 
-      if Current.organization.present?
-        #
-        # This is the magic that allows the tenant to be set via the path
-        #
-        # Append the organization slug to every path generated in Rails
-        env["SCRIPT_NAME"] = "/#{organization_slug}"
+    if Current.organization.present?
+      #
+      # This is the magic that allows the tenant to be set via the path
+      #
+      # Append the organization slug to every path generated in Rails
+      env["SCRIPT_NAME"] = "/#{organization_slug}"
 
-        # Set the `env` so Rails knows the process the request without the organization slug
-        # included
-        env["PATH_INFO"] = "/#{request_path}"
-        env["REQUEST_PATH"] = "/#{request_path}"
-        env["REQUEST_URI"] = "/#{request_path}"
-      end
+      # Set the `env` so Rails knows the process the request without the organization slug
+      # included
+      env["PATH_INFO"] = "/#{request_path}"
+      env["REQUEST_PATH"] = "/#{request_path}"
+      env["REQUEST_URI"] = "/#{request_path}"
     end
 
     # Continue processing the request with the updated

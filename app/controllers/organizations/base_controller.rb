@@ -7,5 +7,5 @@
 #
 
 class Organizations::BaseController < ApplicationController
-  include OrganizationScoped
+  include OrganizationScopable
 end

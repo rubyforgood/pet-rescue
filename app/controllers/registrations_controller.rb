@@ -1,5 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  include OrganizationScoped
+  include OrganizationScopable
 
   after_action :send_email, only: :create
 
