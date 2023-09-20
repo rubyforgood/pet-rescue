@@ -142,6 +142,9 @@ group :test do
   # test coverage easily
   gem "shoulda", "~> 4.0"
   gem "shoulda-matchers"
+
+  # Adds ability to stub out methods in tests easier
+  gem "mocha"
 end
 
 # Add chartkick for charts generation
