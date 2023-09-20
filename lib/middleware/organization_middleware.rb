@@ -11,8 +11,8 @@ class OrganizationMiddleware
   # information on how this works.
   #
   def call(env)
-    # Fetches the organization slug and request path from the request
-    _, organization_slug, request_path = (env["REQUEST_PATH"] || "").split("/", 3)
+    # Fetches the organization slug and request path from the requesj
+    _, organization_slug, request_path = (env["REQUEST_PATH"] || env["PATH_INFO"]).split("/", 3)
 
     # Used to set the tenant in the controller
     Current.organization = Organization.find_by(slug: organization_slug)
