@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-transparent shadow-none px-2 py-3">
+  <div class="container px-0">
+    <%= link_to root_path, class: 'navbar-brand' do %>
+      Pet Rescue
+    <% end %>
+    <div class="d-flex align-items-center order-lg-3">
+      <div>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default3" aria-controls="navbar-default3" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="icon-bar top-bar mt-0"></span>
+          <span class="icon-bar middle-bar"></span>
+          <span class="icon-bar bottom-bar"></span>
+        </button>
+      </div>
+    </div>
+    <!-- Button -->
+
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" id="navbar-default3">
+      <ul class="navbar-nav">
+        <li class='nav-item'>
+          <%= active_link_to 'About Us', '#about', class: 'nav-link', active: :exact %>
+        </li>
+
+        <li class="nav-item dropdown">
+           <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarBrowse" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
+             Rescues
+           </a>
+           <ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarBrowse">
+             <% Organization.all.each do |org| %>
+               <li>
+                 <%= link_to org.name, organization_home_path(org), class: 'dropdown-item' %>
+               </li>
+             <% end %>
+           </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_18_105616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -191,14 +191,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
     t.string "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "subdomain"
+    t.string "slug"
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "phone_number"
+    t.string "contact_method"
+    t.string "country"
+    t.string "province_state"
+    t.string "city_town"
+    t.text "referral_source"
+    t.bigint "user_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.index ["user_id"], name: "index_people_on_user_id"
   end
 
   create_table "pets", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "size"
     t.string "breed"
     t.text "description"
     t.string "sex"
@@ -206,7 +220,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
     t.boolean "application_paused", default: false
     t.integer "pause_reason", default: 0
     t.datetime "birth_date", null: false
+    t.integer "weight_from", null: false
+    t.integer "weight_to", null: false
+    t.string "weight_unit", null: false
     t.index ["organization_id"], name: "index_pets_on_organization_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
   create_table "staff_accounts", force: :cascade do |t|
@@ -217,6 +244,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
     t.bigint "user_id", default: 0, null: false
     t.index ["organization_id"], name: "index_staff_accounts_on_organization_id"
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
+  end
+
+  create_table "staff_accounts_roles", id: false, force: :cascade do |t|
+    t.bigint "staff_account_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_staff_accounts_roles_on_role_id"
+    t.index ["staff_account_id", "role_id"], name: "index_staff_accounts_roles_on_staff_account_id_and_role_id"
+    t.index ["staff_account_id"], name: "index_staff_accounts_roles_on_staff_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -230,7 +265,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_30_145336) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "tos_agreement"
+    t.bigint "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

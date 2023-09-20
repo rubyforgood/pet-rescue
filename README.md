@@ -37,32 +37,27 @@ To run the app locally, use:
 bin/dev
 ```
 
-## Accessing Roles
+You should see the seed organization by going to:
+```
+http://localhost:3000/alta/
+```
 
-You can use the following login credentials to access the following roles:
+## Login Credentials
 
-Adopter
-- email: `adopter1@example.com`
+All users are scoped to an organization. Hence, you must login via the correct
+login portal per organization. 
+
+You can use the following login credentials to login to http://localhost:3000/alta:
+
+Use the following login 
+Adopter 
+- email: `adopter1@alta.com` 
 - password: `123456`
 
 Staff
-- email: `staff@example.com`
+- email: `staff@alta.com`
 - password: `123456`
 
-You are also able to register an account.
-
-## Subdomain Setup
-
-The app will work OK with no subdomains, but to really test out the multi-tenant capabilities, you will need to configure subdomains. Every `Organization` has a subdomain field, and that Org will be accessible via `ApplicationController#current_tenant`.
-
-To configure your local dev env to test subdomains, you will need to [edit your `/etc/hosts` file](https://linuxize.com/post/how-to-edit-your-hosts-file/)
-
-Add the following line:
-
-```text
-127.0.0.1  pet-rescue.local alta.pet-rescue.local rubyforgood.pet-rescue.local
-```
-This will map the two seed Orgs with the correct subdomains
 
 # 🧪 Running Tests
 
@@ -79,6 +74,11 @@ Run system tests only (Headless)
 Run system tests only (Not-Headless)
 ```
 CI=false ./bin/rails test:system
+```
+
+**Note:** If system tests are failing for you, try prepending the command with `APP_HOST=localhost`. Your host might be misconfigured.
+```
+APP_HOST=localhost ./bin/rails test:system
 ```
 
 Run ALL tests:
@@ -105,6 +105,26 @@ Pet Rescue is one of many projects initiated and run by Ruby for Good. You can f
 
 ## Pet Rescue Adoption Sites
 [Baja Pet Rescue](https://www.bajapetrescue.com)
+
+# 🌟 Core Values
+While vision is the destination, and strategy is how we'll get there, core values are what we'll use to handle times of change or uncertainty (both of which are expected, guaranteed to happen, and positive signs of growth!).
+
+We are committed to promoting positive culture and outcomes for all, from coders and maintainers and leads
+to pet rescue and adoption administrators -- and animals everywhere.
+
+We will lean on the following as guiding principles when interacting with others -- stakeholders, as well as current and future maintainers, leads, and collaborators -- and we ask that anyone engaging with this project in any capacity to do the same. Know that we do want to know how and when (not if) we can improve upon these values and/or the way in which we live by and act in accordance with them, so please comment here and in PRs when you have ideas.
+
+Here are our core values defined by early contributors and leads:
+
+### Code Quality and Collaboration
+Write maintainable code that is accessible and enjoyable (for beginners and seasoned coders alike), supports and encourages contributors and their contributions, and ensures long-term sustainability of this project and the efforts it supports.
+
+### Communication and Perspective:
+Prioritize clear communication, embrace diverse viewpoints, and always engage feedback -- all with a commitment to timely responses and ongoing improvement for all. Rescue and adoption partner perspectives will be prioritized over abstracted conceptualization of their needs.
+
+### Engagement and Practicality:
+Build upon stakeholder partnerships to foster and encourage their active involvement, focusing constructive discussion and dispute resolution on the practical impact of our collective work.
+
 
 ---
 

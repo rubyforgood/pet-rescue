@@ -37,7 +37,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
 
-  # Store uploaded files on amazon.
+  # Store uploaded files on Azure.
   config.active_storage.service = :azure
 
   # Per the deprecation warning in rails server output re this config, set it to true
@@ -97,4 +97,9 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.email_from = {
+    default: {baja: "bajapetrescue@gmail.com"},
+    contact: {baja: "bajapetrescue+contact@gmail.com"}
+  }
 end

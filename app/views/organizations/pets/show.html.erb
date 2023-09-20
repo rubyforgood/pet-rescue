@@ -1,0 +1,145 @@
+<section class="pt-5 pb-5" id="adoptable_pets_show">
+  <div class="container mb-md-5 mt-md-5">
+
+    <!--page heading-->
+    <div class="text-center mb-5">
+      <h1 class="section-heading text-uppercase underline">
+        <%= @pet.name %>
+      </h1>
+    </div>
+
+    <!--pet tile-->
+    <div class="row">
+      <div class="col-lg-8">
+
+        <!--pet images--> 
+        <% if @pet.images.attached? %>
+          <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <% @pet.images.each_with_index do |image, index| %>
+                <button type="button" data-bs-target="#carouselExampleIndicators" 
+                        data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"
+                        aria-current="true" aria-label="Slide <%= index %>"></button>
+              <% end %>
+            </div>
+            <div class="carousel-inner">
+              <% @pet.images.each_with_index do |image, index| %>
+                  <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                  <%= image_tag image, class: 'd-block' %>
+                  </div>
+              <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" 
+                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" 
+                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        <% end %>
+          
+        <!--pet info-->
+        <div class='row mb-3'>
+          <div class='col-md-2 mb-1'>
+            <h5 style='font-weight: bold;'><%= t('general.age') %>:</h5>
+            <h5><%= time_ago_in_words(@pet.birth_date) %></h5>
+          </div>
+          <div class='col-md-2 mb-1'>
+            <h5 style='font-weight: bold;'><%= t('general.sex') %>:</h5>
+            <h5><%= @pet.sex %></h5>
+          </div>
+          <div class='col-md-4 mb-1'>
+            <h5 style='font-weight: bold;'><%= t('general.age') %>:</h5>
+            <h5><%= @pet.breed %></h5>
+          </div>
+          <div class='col-md-4 mb-1'>
+            <h5 style='font-weight: bold;'><%= t('general.weight') %>:</h5>
+            <h5> <%= @pet.weight_from %> to <%= @pet.weight_to %> <%= @pet.weight_unit %></h5>
+          </div>
+        </div>
+
+        <h4 style='font-weight: bold;' class=''>
+          <%= "#{t('general.about')} #{@pet.name}" %>
+        </h4>
+        <p style="white-space: pre-line;">
+          <%= @pet.description %>
+        </p>
+      </div> <!--col-->
+
+      <!--button area-->
+      <div class="col-lg-4 mx-auto d-flex flex-column align-items-center 
+                  justify-content-center mt-5">
+        <% unless @pet.match %>
+          <div class='d-flex align-items-center'>
+              <h3 class='me-2'>
+                <%= @pet.application_paused == true ? t('.application.active') : t('.application.paused') %>
+              </h3>
+              <%= @pet.application_paused == true ? image_tag('pause.png', height: '25'): 
+                                                    image_tag('green_check.png', height: '25')%>
+          </div>
+
+          <div class="border p-3 mt-2 rounded text-center d-flex flex-wrap bigger mb-3">
+            <%= form_with model: @pet do |form|%>
+              <div data-controller='display'>
+                <div class='d-flex form-group' data-display-target='checked'>
+                  <p class='me-2'><%= t('.pause_applications') %></p>
+                  <%= form.label :application_paused, t('general.yes'), value: 'true', class: 'me-2' %>
+                  <%= form.radio_button :application_paused, 
+                                        true, 
+                                        data: { action: "input->display#show" } %>
+                  <%= form.label :application_paused, t('general.no'), value: 'false', class: 'ms-3 me-2' %>
+                  <%= form.radio_button :application_paused, 
+                                        false, 
+                                        data: { action: "input->display#hide" } %>
+                </div>
+
+                <div data-display-target='additional' class="d-flex d-none">
+                  <%= form.label :pause_reason, t('.why'), class: 'me-2' %>
+                  <%= form.select(:pause_reason, 
+                                  Pet.app_pause_reasons, 
+                                  { selected: @pause_reason }, 
+                                  { class: "form-control"}) %>
+                </div>
+              </div>
+              <%= form.submit t('general.save'), class: 'btn btn-outline-dark mb-3 mt-4' %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="p-2 d-flex flex-column">
+            <%= link_to t('.edit_pet'), edit_pet_path(@pet),
+                        class: 'custom-btn-green mb-2' %>
+            
+            <% if @pet.match %>
+              <%= link_to t('.view_adopter'),
+                          profile_review_path(@pet.match
+                                                  .adopter_account
+                                                  .adopter_profile.id),
+                          class: 'custom-btn-green mb-2'%>
+            <% end %>
+        </div>
+        <div class="p-2 d-flex flex-column">
+            <% if @pet.match %>
+              <%= link_to t('.revoke_adoption'), revoke_adoption_path(match_id: @pet.match.id),
+                  class: 'custom-btn-pink mb-2',
+                  data: {
+                    turbo_method: :delete,
+                    turbo_confirm: t('.are_you_sure_revoke')
+                  } %> 
+            <% end %>
+
+            <%= link_to t('general.delete'), pet_path(@pet), class: 'custom-btn-pink mb-2',
+                  data: 
+                        {
+                  turbo_method: :delete,
+                  turbo_confirm: t('.are_you_sure_delete')
+                } %>        
+        </div>
+      </div> <!--col-->
+    </div> <!--row-->
+  </div> <!--container-->
+</section>

@@ -12,11 +12,12 @@ class UserTest < ActiveSupport::TestCase
     should validate_presence_of(:first_name)
     should validate_presence_of(:last_name)
     should validate_presence_of(:email)
+    should validate_uniqueness_of(:email).scoped_to(:organization_id)
   end
 
   context ".organization_staff" do
     should "return all users with staff accounts" do
-      user = users(:verified_staff_one)
+      user = create(:user, :verified_staff)
       organization = user.staff_account.organization
       assert_includes User.organization_staff(organization.id), user
 

@@ -3,7 +3,7 @@
   <div class="container">
     <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
-        Adopter Profile
+        <%= t('.adopter_profile') %>
       </h1>
     </div>
   </div> <!--container-->
@@ -16,7 +16,7 @@
     <%= render partial: 'shared/progress_bar', locals: { page: 'profile' } %>
 
     <h5 class="text-center mb-4 col-md-8 mx-auto">
-      The following questions help us learn more about you so we can match you with the right pooch.    
+      <%= t('.help_us_learn_more') %>
     </h5>
     
     <!--rendering _form.html.erb-->

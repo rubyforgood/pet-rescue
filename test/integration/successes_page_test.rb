@@ -1,13 +1,10 @@
 require "test_helper"
 
 class SuccessesPageTest < ActionDispatch::IntegrationTest
-  setup do
-    @adopter_account = adopter_accounts(:adopter_account_one)
-    @pet = pets(:one)
-    @adoptions = Match.all
-  end
-
   test "location lat and lon are deviated by google maps data builder" do
+    pet = create(:pet, :adopted)
+    location = pet.match.adopter_account.adopter_profile.location
+
     get "/successes"
     assert_response :success
 
@@ -18,24 +15,26 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
     name_value = list_element["data-name"]
     breed_value = list_element["data-breed"]
 
-    assert_not_equal(lat_value, locations(:locations_one).latitude)
-    assert_not_equal(lon_value, locations(:locations_one).longitude)
-    assert_equal(name_value, pets(:adopted_pet).name)
-    assert_equal(breed_value, pets(:adopted_pet).breed)
+    assert_not_equal(lat_value, location.latitude)
+    assert_not_equal(lon_value, location.longitude)
+    assert_equal(name_value, pet.name)
+    assert_equal(breed_value, pet.breed)
   end
 
   test "An additional list element is created when a new adoption is made" do
-    sign_in users(:verified_staff_one)
-    adoption_count_before = @adoptions.count
+    user = create(:user, :verified_staff)
+    pet = create(:pet, organization: user.staff_account.organization)
+    adopter_account = create(:user, :adopter_with_profile).adopter_account
+    sign_in user
 
     post "/create_adoption",
-      params: {adopter_account_id: @adopter_account.id, pet_id: @pet.id}
+      params: {adopter_account_id: adopter_account.id, pet_id: pet.id}
 
     get "/successes"
     assert_select "ul.coordinates" do
-      assert_select "li", {count: adoption_count_before + 1}
-      assert_select "li[data-lat]", {count: adoption_count_before + 1}
-      assert_select "li[data-lon]", {count: adoption_count_before + 1}
+      assert_select "li", {count: 1}
+      assert_select "li[data-lat]", {count: 1}
+      assert_select "li[data-lon]", {count: 1}
     end
   end
 end

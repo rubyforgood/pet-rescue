@@ -2,7 +2,7 @@ require "test_helper"
 
 class AdopterApplicationTest < ActionDispatch::IntegrationTest
   setup do
-    @organization = create(:organization)
+    @organization = create(:organization, subdomain: "altatest")
     @pet_id = create(:pet, organization: @organization).id
   end
 
@@ -60,17 +60,18 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert flash[:notice].include?("Application submitted!")
     assert_equal AdopterApplication.all.count, before_count + 1
 
     mail = ActionMailer::Base.deliveries
-    assert_equal mail[0].from.join, "bajapetrescue@gmail.com", "from email is incorrect"
-    assert_equal mail[0].to.join(" "), org_staff.email, "to email is incorrect"
-    assert_equal mail[0].subject, "New Adoption Application", "subject is incorrect"
+    assert_equal "hello@altatest.test.localhost", mail[0].from.join, "from email is incorrect"
+    assert_equal org_staff.email, mail[0].to.join(" "), "to email is incorrect"
+    assert_equal "New Adoption Application", mail[0].subject, "subject is incorrect"
   end
 
   test "adopter user with profile cannot apply for a paused pet and sees flash error" do
-    paused_pet_id = create(:pet, :application_paused).id
+    paused_pet = create(:pet, :application_paused_opening_soon)
     adopter_with_profile = create(:user, :adopter_with_profile)
     sign_in adopter_with_profile
     before_count = AdopterApplication.all.count
@@ -79,11 +80,12 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
       params: {application:
         {
           adopter_account_id: adopter_with_profile.adopter_account.id,
-          pet_id: paused_pet_id
+          pet_id: paused_pet.id
         }}
 
     assert_response :redirect
     follow_redirect!
+    check_messages
     assert_equal "Applications are paused for this pet", flash[:alert]
 
     assert_equal before_count, AdopterApplication.all.count

@@ -1,0 +1,21 @@
+<head>
+  <title>
+    <% if Current.tenant %>
+      <%= Current.tenant.name %> | "Pet Rescue"
+    <% else %>
+      <%= content_for?(:title) ? yield(:title) : "Pet Rescue" %>
+    <% end %>
+  </title>
+
+  <%= favicon_link_tag asset_path('favicon.png') %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+
+  <% if content_for?(:head) %>
+    <%= yield(:head) %>
+  <% end %>
+</head>

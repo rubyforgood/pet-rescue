@@ -1,14 +1,18 @@
 require "application_system_test_case"
 
 class AdopterApplicationEditTest < ApplicationSystemTestCase
-  setup do
-    @application_id = adopter_applications(:adopter_application_three).id
-    sign_in users(:verified_staff_one)
-    visit edit_adopter_application_path(@application_id)
-  end
-
   test "Clicking the information icon makes the information box appear and disappear" do
-    assert_selector "h1", text: "Ben Jo's application for Adopted"
+    organization = create(:organization)
+    pet = create(:pet, organization: organization)
+    adopter = create(:adopter_account, :with_adopter_profile)
+    application = create(:adopter_application, :withdrawn, pet: pet, adopter_account: adopter)
+    user = create(:user, :verified_staff, staff_account: create(:staff_account, organization: organization))
+    adopter_name = adopter.user.first_name + " " + adopter.user.last_name
+    sign_in user
+
+    visit edit_adopter_application_path(application.id)
+
+    assert_selector "h1", text: "#{adopter_name}'s application for #{pet.name}"
     assert_selector "p.explanation", count: 0
 
     find("img.ms-2").click do |image|
@@ -19,6 +23,15 @@ class AdopterApplicationEditTest < ApplicationSystemTestCase
   end
 
   test "Application status select dropdown contains all expected options" do
+    organization = create(:organization)
+    pet = create(:pet, organization: organization)
+    adopter = create(:adopter_account, :with_adopter_profile)
+    application = create(:adopter_application, :withdrawn, pet: pet, adopter_account: adopter)
+    user = create(:user, :verified_staff, staff_account: create(:staff_account, organization: organization))
+    sign_in user
+
+    visit edit_adopter_application_path(application.id)
+
     assert_equal page.all("select#adopter_application_status option").map(&:value),
       ["awaiting_review", "under_review", "adoption_pending", "withdrawn", "successful_applicant"]
   end

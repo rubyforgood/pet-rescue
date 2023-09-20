@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  include OrganizationScopable
+
   after_action :send_email, only: :create
 
   # nested form in User>registration>new for an adopter or staff account
@@ -18,7 +20,6 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
       :password,
       :signup_role,
-      :password_confirmation,
       :tos_agreement,
       adopter_account_attributes: [:user_id],
       staff_account_attributes: [:user_id])
@@ -35,9 +36,8 @@ class RegistrationsController < Devise::RegistrationsController
       :current_password)
   end
 
-  # redirect new adopter users to adopter_profile#new
   def after_sign_up_path_for(resource)
-    resource.adopter_account ? new_profile_path : root_path
+    adoptable_pets_path
   end
 
   def after_sign_in_path_for
@@ -48,7 +48,7 @@ class RegistrationsController < Devise::RegistrationsController
   def send_email
     return unless resource.id
 
-    SignUpMailer.with(user: resource).adopter_welcome_email.deliver_now
+    SignUpMailer.with(user: resource).adopter_welcome_email(current_tenant.slug).deliver_now
   end
 end
 

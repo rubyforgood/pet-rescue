@@ -5,8 +5,7 @@
     <!--page heading-->
     <div class="text-center mb-5">
       <h1 class="section-heading text-uppercase underline">
-        <%= @adopter_profile.adopter_account.user.first_name %> 
-        <%= @adopter_profile.adopter_account.user.last_name %>'s Profile
+        <%= @adopter_profile.adopter_account.user.first_name %> <%= @adopter_profile.adopter_account.user.last_name %>'s Profile
       </h1>
     </div>
 
@@ -89,7 +88,7 @@
           </div>
           <div class="row mb-4 bigger">
             <p class="col-lg-4">
-              <strong>Hours pet will be alone on week days</strong>
+              <strong>Hours pet will be alone on weekdays</strong>
             </p>
              <p class="col-lg-6 text-muted">
               <%= @adopter_profile.alone_weekday %>

@@ -13,6 +13,7 @@ on:
   workflow_dispatch:
 jobs:
   test:
+    name: Tests
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -35,6 +36,11 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace database setup steps here
+      - name: Set up database schema
+        run: bin/rails db:schema:load
+      - name: Precompile assets
+        run: bundle exec rails dartsass:build
+      # Add or replace test runners here
       - name: Run Tests
         run: bin/test
   standard:
