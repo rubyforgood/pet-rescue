@@ -1,10 +1,14 @@
 require "test_helper"
 
 class AdoptablePetShowTest < ActionDispatch::IntegrationTest
-  test "unauthenticated users see create account prompt and link" do
-    pet = create(:pet)
+  setup do
+    # Set defaults on route helper
+    @pet = create(:pet)
+    set_organization(@pet.organization)
+  end
 
-    get "/adoptable_pets/#{pet.id}"
+  test "unauthenticated users see create account prompt and link" do
+    get adoptable_pet_path(@pet)
 
     check_messages
     assert_select "h4", "Create an account to apply for this pet"

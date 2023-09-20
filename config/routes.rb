@@ -3,14 +3,22 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users, controllers: {registrations: "registrations"}
+  devise_for :users, controllers: {
+    registrations: "registrations",
+    sessions: "users/sessions"
+  }
 
   resources :adoptable_pets, only: [:index, :show]
   resources :adopter_applications, only: [:index, :edit, :update], controller: "adoption_application_reviews"
   resource :adopter_profile, except: :destroy, as: "profile"
   resources :checklist_templates
   resources :donations, only: [:create]
-  resources :pets, controller: "organization_pets"
+
+  scope module: :organizations do
+    resources :home, only: [:index]
+    resources :pets
+  end
+
   resources :profile_reviews, only: [:show]
   resources :successes, only: [:index]
 
@@ -22,7 +30,7 @@ Rails.application.routes.draw do
   match "/422", to: "errors#restricted_access", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
 
-  root "static_pages#home"
+  root "root#index"
   get "/about_us", to: "static_pages#about_us"
   get "/faq", to: "static_pages#faq"
   get "/partners", to: "static_pages#partners"

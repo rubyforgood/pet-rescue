@@ -1,4 +1,4 @@
-# # Per SimpleCov documentation, start gem before application
+# Per SimpleCov documentation, start gem before application
 if ENV["COVERAGE"]
   require "simplecov"
   SimpleCov.start do
@@ -11,6 +11,8 @@ end
 ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
+require "minitest/unit"
+require "mocha/minitest"
 
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
@@ -19,6 +21,18 @@ class ActiveSupport::TestCase
 
   # Devise test helpers
   include Devise::Test::IntegrationHelpers
+
+  def set_organization(organization)
+    Rails.application.routes.default_url_options[:script_name] = "/#{organization.slug}"
+  end
+
+  def setup
+    ActsAsTenant.current_tenant = create(:organization, slug: "test")
+  end
+
+  def teardown
+    ActsAsTenant.current_tenant = nil
+  end
 
   def check_messages
     assert_response :success

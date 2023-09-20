@@ -3,12 +3,6 @@
   <%= render "layouts/shared/head" %>
 
   <body>
-    <% if Current.tenant.present? %>
-      <%= render partial: "layouts/shared/navbar" %>
-    <% else %>
-      <%= render partial: "layouts/shared/no_tenant_navbar" %>
-    <% end %>
-
     <main>
       <div>
         <% if flash[:notice] %>
@@ -28,11 +22,6 @@
         </div>
       </div>
     </main>
-
-    <% if Current.tenant.present? %>
-      <%= render partial: "layouts/shared/footer" %>
-    <% else %>
-      <%= render partial: "layouts/shared/no_tenant_footer" %>
-    <% end %>
   </body>
 </html>
+

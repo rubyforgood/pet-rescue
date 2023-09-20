@@ -1,4 +1,4 @@
-class OrganizationPetsController < ApplicationController
+class Organizations::PetsController < Organizations::BaseController
   before_action :verified_staff
   after_action :set_reason_paused_to_none, only: [:update]
 

@@ -90,7 +90,8 @@ FactoryBot.define do
   factory :organization do
     # This needs to be hardcoded as "test" (or "altatest"). Other organizations should specify other subdomains.
     # See config/environments/test.rb for more context.
-    subdomain { "test" }
+    name { Faker::Company.name }
+    slug { Faker::Internet.domain_word }
   end
 
   factory :pet do
@@ -146,7 +147,7 @@ FactoryBot.define do
   factory :user do
     email { Faker::Internet.email }
     password { "123456" }
-    encrypted_password { Devise::Encryptor.digest(User, "password") }
+    encrypted_password { Devise::Encryptor.digest(User, "123456") }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     tos_agreement { true }

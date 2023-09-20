@@ -1,4 +1,4 @@
-class ChecklistTemplatesController < InheritedResources::Base
+class ChecklistTemplatesController < Organizations::BaseController
   private
 
   def checklist_template_params
