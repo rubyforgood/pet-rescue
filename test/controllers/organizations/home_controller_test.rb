@@ -13,7 +13,4 @@ class Organizations::HomeControllerTest < ActionDispatch::IntegrationTest
       assert_select "title", text: "#{@organization.name} | \"Pet Rescue\""
     end
   end
-
-  
-
 end

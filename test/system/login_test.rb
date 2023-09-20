@@ -2,9 +2,9 @@ require "application_system_test_case"
 
 class LoginTest < ApplicationSystemTestCase
   setup do
-    ActsAsTenant.with_mutable_tenant do
-      @user = create(:user, :verified_staff)
-    end
+    @organization = create(:organization)
+    @user = create(:user, organization: @organization)
+    set_organization(@organization)
   end
 
   context "when logging in as a staff member" do

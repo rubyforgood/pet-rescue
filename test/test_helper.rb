@@ -26,6 +26,14 @@ class ActiveSupport::TestCase
     Rails.application.routes.default_url_options[:script_name] = "/#{organization.slug}"
   end
 
+  def setup
+    ActsAsTenant.current_tenant = create(:organization, slug: "test")
+  end
+
+  def teardown
+    ActsAsTenant.current_tenant = nil
+  end
+
   def check_messages
     assert_response :success
     assert_not response.parsed_body.include?("translation_missing"), "Missing translations, ensure this text is included in en.yml"
