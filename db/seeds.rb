@@ -8,7 +8,6 @@ if Rails.env.production?
   return
 end
 
-# Seed data
 ActiveRecord::Base.transaction do
   a = Time.now
   log_seed_output "-----------------------"
