@@ -2,6 +2,7 @@ require "test_helper"
 
 class AdopterProfileFormTest < ActionDispatch::IntegrationTest
   test "All errors and their custom messages appear on blank form submission" do
+    skip("while new ui is implemented")
     # user = create(:user, :adopter_without_profile)
     # sign_in user
 
@@ -76,6 +77,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
   end
 
   test "Phone number with less than 8 digits is invalid" do
+    skip("while new ui is implemented")
     # user = create(:user, :adopter_with_profile)
     # sign_in user
 
@@ -95,6 +97,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
   end
 
   test "Phone number with more than 10 digits is invalid" do
+    skip("while new ui is implemented")
     # user = create(:user, :adopter_with_profile)
     # sign_in user
 
@@ -114,6 +117,7 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
   end
 
   test "Radio buttons are pre-populated with adopter selection on edit form" do
+    skip("while new ui is implemented")
     # user = create(:user, :adopter_with_profile)
     # sign_in user
 

@@ -2,6 +2,7 @@ require "test_helper"
 
 class SuccessesPageTest < ActionDispatch::IntegrationTest
   test "location lat and lon are deviated by google maps data builder" do
+    skip("while new ui is implemented")
     # pet = create(:pet, :adopted)
     # location = pet.match.adopter_account.adopter_profile.location
 
@@ -22,6 +23,7 @@ class SuccessesPageTest < ActionDispatch::IntegrationTest
   end
 
   test "An additional list element is created when a new adoption is made" do
+    skip("while new ui is implemented")
     # user = create(:user, :verified_staff)
     # pet = create(:pet, organization: user.staff_account.organization)
     # adopter_account = create(:user, :adopter_with_profile).adopter_account

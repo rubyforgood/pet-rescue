@@ -31,6 +31,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "Adopter user can sign up with an associated adopter account and sees success flash and welcome mail is sent" do
+    skip("while new ui is implemented")
     # post(
     #   "/users",
     #   params: {
@@ -63,6 +64,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "Staff user can sign up with an unverified staff account belonging to organization id 1 and see success flash" do
+    skip("while new ui is implemented")
     # post(
     #   "/users",
     #   params: {
@@ -97,6 +99,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "error messages should appear if edit profile form is submitted without data" do
+    skip("while new ui is implemented")
     # sign_in create(:user, :adopter_without_profile)
 
     # put(
@@ -122,6 +125,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "user cannot update their profile with invalid password and should see error message" do
+    skip("while new ui is implemented")
     # user = create(:user, :adopter_without_profile)
     # sign_in user
 
@@ -211,6 +215,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
   end
 
   test "error messages appear if sign up form is submitted without data" do
+    skip("while new ui is implemented")
     # post(
     #   "/users",
     #   params: {

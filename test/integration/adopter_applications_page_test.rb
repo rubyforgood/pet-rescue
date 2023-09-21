@@ -2,6 +2,7 @@ require "test_helper"
 
 class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   test "Adopter without profile cannot access adopter applications route" do
+    skip("while new ui is implemented")
     # sign_in create(:user, :adopter_without_profile)
 
     # get "/my_applications"
@@ -12,6 +13,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adopter with profile can access adopter applications route and see applications" do
+    skip("while new ui is implemented")
     # pet_name = "Bob"
     # user = create(:user, :adopter_with_profile)
     # pet = create(:pet, name: pet_name)
@@ -35,6 +37,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adopter with account can withdraw an application and see remove button" do
+    skip("while new ui is implemented")
     # user = create(:user, :adopter_with_profile)
     # application = create(:adopter_application, status: 0, adopter_account: user.adopter_account)
     # sign_in user
@@ -55,6 +58,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adopter with account can remove an application from the page" do
+    skip("while new ui is implemented")
     # user = create(:user, :adopter_with_profile)
     # application = create(:adopter_application, status: 0, adopter_account: user.adopter_account)
     # sign_in user
@@ -74,6 +78,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Adoption status changes when the application status changes" do
+    skip("while new ui is implemented")
     # user = create(:user, :adopter_with_profile)
     # verified_staff = create(:user, :verified_staff)
     # pet = create(:pet, organization: verified_staff.staff_account.organization)
@@ -106,6 +111,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   end
 
   test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
+    skip("while new ui is implemented")
   #   user = create(:user, :adopter_with_profile)
   #   application = create(:adopter_application, status: 0, adopter_account: user.adopter_account)
   #   sign_in user

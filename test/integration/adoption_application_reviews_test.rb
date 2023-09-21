@@ -2,6 +2,7 @@ require "test_helper"
 
 class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   test "verified staff can see all applications" do
+    skip("while new ui is implemented")
     # user = create(:user, :verified_staff)
     # sign_in user
 
@@ -14,6 +15,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot access the page" do
+    skip("while new ui is implemented")
     # user = create(:user, :unverified_staff)
     # sign_in user
 
@@ -25,6 +27,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "all expected elements of an application are shown" do
+    skip("while new ui is implemented")
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:user, :adopter_with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
@@ -60,6 +63,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot edit an adoption application status" do
+    skip("while new ui is implemented")
     # staff_user = create(:user, :unverified_staff)
     # application = create(:adopter_application)
     # sign_in staff_user
@@ -80,6 +84,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "verified staff can add notes to an application" do
+    skip("while new ui is implemented")
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:user, :adopter_with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
@@ -106,6 +111,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot add notes to an application" do
+    skip("while new ui is implemented")
     # staff_user = create(:user, :unverified_staff)
     # application = create(:adopter_application)
     # sign_in staff_user
@@ -128,6 +134,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "when Successful Applicant is selected, button to Create Adoption shows" do
+    skip("while new ui is implemented")
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:user, :adopter_with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
@@ -151,6 +158,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "after making the http request to create an adoption, the application disappears" do
+    skip("while new ui is implemented")
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:user, :adopter_with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
@@ -183,6 +191,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
+    skip("while new ui is implemented")
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:user, :adopter_with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
@@ -216,6 +225,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "unverified staff cannot create an adoption" do
+    skip("while new ui is implemented")
     # staff_user = create(:user, :unverified_staff)
     # adopter_user = create(:user, :adopter_with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
@@ -229,6 +239,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   test "the filter works to show applications for a given pet and for all pets" do
+    skip("while new ui is implemented")
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:user, :adopter_with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)

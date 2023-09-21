@@ -2,6 +2,7 @@ require "test_helper"
 
 class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   test "unauthenticated users see create account prompt and link" do
+    skip("while new ui is implemented")
     # pet = create(:pet)
 
     # get "/adoptable_pets/#{pet.id}"
@@ -12,6 +13,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter without a profile sees complete my profile prompt and link" do
+    skip("while new ui is implemented")
     # pet = create(:pet)
     # sign_in create(:user, :adopter_without_profile)
 
@@ -23,6 +25,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter with a profile sees love this pooch question and apply button" do
+    skip("while new ui is implemented")
   #   pet = create(:pet)
   #   sign_in create(:user, :adopter_with_profile)
 
@@ -36,6 +39,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter application sees application status" do
+    skip("while new ui is implemented")
     # pet = create(:pet, :adoption_pending)
     # user = create(:user, :application_awaiting_review)
     # user.adopter_account.adopter_applications[0].update(pet: pet)
@@ -48,6 +52,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "staff do not see an adopt button only log out button" do
+    skip("while new ui is implemented")
     # pet = create(:pet)
     # sign_in create(:user, :verified_staff)
 
@@ -61,6 +66,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "if pet status is paused and reason is opening soon this is displayed" do
+    skip("while new ui is implemented")
     # pet = create(:pet, :application_paused_opening_soon)
     # sign_in create(:user, :adopter_with_profile)
 
@@ -70,6 +76,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "if pet status is paused and reason is paused until further notice this is displayed" do
+    skip("while new ui is implemented")
     # pet = create(:pet, :application_paused_until_further_notice)
     # sign_in create(:user, :adopter_with_profile)
 
@@ -79,6 +86,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "pet name shows adoption pending if it has any applications with that status" do
+    skip("while new ui is implemented")
     # pet = create(:pet, :adoption_pending)
 
     # get "/adoptable_pets/#{pet.id}"
@@ -88,6 +96,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "an adopted pet can't be shown as an adoptable pet" do
+    skip("while new ui is implemented")
     # adopted_pet = create(:pet, :adopted)
 
     # get "/adoptable_pets/#{adopted_pet.id}"

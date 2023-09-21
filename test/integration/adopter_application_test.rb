@@ -7,6 +7,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter user without profile cannot apply for pet and sees flash error" do
+    skip("while new ui is implemented")
     # user = create(:user)
     # sign_in user
     # before_count = AdopterApplication.all.count
@@ -26,6 +27,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "staff user sees flash error if they apply for a pet" do
+    skip("while new ui is implemented")
     # verified_staff = create(:user, :verified_staff)
     # sign_in verified_staff
     # before_count = AdopterApplication.all.count
@@ -45,6 +47,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter user with profile can apply for a pet and staff receive email" do
+    skip("while new ui is implemented")
     # verified_staff = create(:staff_account, organization: @organization)
     # org_staff = create(:user, staff_account: verified_staff)
     # adopter_with_profile = create(:user, :adopter_with_profile)
@@ -71,6 +74,7 @@ class AdopterApplicationTest < ActionDispatch::IntegrationTest
   end
 
   test "adopter user with profile cannot apply for a paused pet and sees flash error" do
+    skip("while new ui is implemented")
     # paused_pet = create(:pet, :application_paused_opening_soon)
     # adopter_with_profile = create(:user, :adopter_with_profile)
     # sign_in adopter_with_profile
