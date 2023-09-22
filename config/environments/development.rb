@@ -14,13 +14,6 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
-  Rails.application.config.hosts +=
-    [/pet-rescue.local/,
-      /pet-rescue.localhost/,
-      # handle subdomains
-      /.*\.pet-rescue.local/,
-      /.*\.pet-rescue.localhost/]
-
   # Enable server timing
   config.server_timing = true
 

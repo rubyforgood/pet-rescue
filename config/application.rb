@@ -18,8 +18,7 @@ module BajaPetRescue
     config.exceptions_app = routes
 
     #
-    # Added to manage the tenants within the path instead of
-    # the subdomain
+    # Added to manage the tenants within the path
     config.middleware.use OrganizationMiddleware
 
     # Configuration for the application, engines, and railties goes here.

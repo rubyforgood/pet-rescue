@@ -2,7 +2,7 @@ require "test_helper"
 
 class AdopterApplicationTest < ActionDispatch::IntegrationTest
   setup do
-    @organization = create(:organization, subdomain: "altatest")
+    @organization = create(:organization)
     @pet_id = create(:pet, organization: @organization).id
   end
 

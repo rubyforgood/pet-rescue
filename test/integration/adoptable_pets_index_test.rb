@@ -1,12 +1,6 @@
 require "test_helper"
 
 class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
-  # all unadopted pets under all organizations
-  setup do
-    @pet = create(:pet, :adoption_pending)
-    @pet_count = Pet.includes(:match).where(match: {id: nil}).length
-  end
-
   test "unauthenticated user can access adoptable pets index" do
     skip("while new ui is implemented")
     # get "/adoptable_pets"
