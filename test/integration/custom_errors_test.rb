@@ -5,8 +5,8 @@ class CustomErrorsTest < ActionDispatch::IntegrationTest
     skip("while new ui is implemented")
     # get "/404"
 
-  #   assert_select "h1", "404: Page not found"
-  #   assert_select "a", "Take me home!"
+    #   assert_select "h1", "404: Page not found"
+    #   assert_select "a", "Take me home!"
   end
 
   test "error code, error message and link to home are displayed for status 422" do

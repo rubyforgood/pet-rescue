@@ -22,15 +22,15 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
   test "adopter with a profile sees love this pooch question and apply button" do
     skip("while new ui is implemented")
-  #   pet = create(:pet)
-  #   sign_in create(:user, :adopter_with_profile)
+    #   pet = create(:pet)
+    #   sign_in create(:user, :adopter_with_profile)
 
-  #   get "/adoptable_pets/#{pet.id}"
+    #   get "/adoptable_pets/#{pet.id}"
 
-  #   check_messages
-  #   assert_select "h4", "In love with this pooch?"
-  #   assert_select "form" do
-  #     assert_select "button", "Apply to Adopt"
+    #   check_messages
+    #   assert_select "h4", "In love with this pooch?"
+    #   assert_select "form" do
+    #     assert_select "button", "Apply to Adopt"
     # end
   end
 

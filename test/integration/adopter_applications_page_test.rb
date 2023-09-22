@@ -112,43 +112,43 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
 
   test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
     skip("while new ui is implemented")
-  #   user = create(:user, :adopter_with_profile)
-  #   application = create(:adopter_application, status: 0, adopter_account: user.adopter_account)
-  #   sign_in user
+    #   user = create(:user, :adopter_with_profile)
+    #   application = create(:adopter_application, status: 0, adopter_account: user.adopter_account)
+    #   sign_in user
 
-  #   get "/my_applications"
-  #   assert_response :success
-  #   assert_select "form", 2
+    #   get "/my_applications"
+    #   assert_response :success
+    #   assert_select "form", 2
 
-  #   # withdraw and remove in one request
-  #   patch(
-  #     "/my_application",
-  #     params: {
-  #       application: {
-  #         id: application.id,
-  #         status: "withdrawn",
-  #         profile_show: false
-  #       }
-  #     }
-  #   )
+    #   # withdraw and remove in one request
+    #   patch(
+    #     "/my_application",
+    #     params: {
+    #       application: {
+    #         id: application.id,
+    #         status: "withdrawn",
+    #         profile_show: false
+    #       }
+    #     }
+    #   )
 
-  #   assert_response :redirect
-  #   follow_redirect!
-  #   assert_select "form", 1
-  #   logout
+    #   assert_response :redirect
+    #   follow_redirect!
+    #   assert_select "form", 1
+    #   logout
 
-  #   sign_in create(:user, :verified_staff)
-  #   patch(
-  #     "/adopter_applications/#{application.id}",
-  #     params: {
-  #       adopter_application: {status: "adoption_pending", profile_show: "true"}
-  #     }
-  #   )
+    #   sign_in create(:user, :verified_staff)
+    #   patch(
+    #     "/adopter_applications/#{application.id}",
+    #     params: {
+    #       adopter_application: {status: "adoption_pending", profile_show: "true"}
+    #     }
+    #   )
 
-  #   logout
-  #   sign_in user
-  #   get "/my_applications"
-  #   assert_response :success
-  #   assert_select "form", 1
+    #   logout
+    #   sign_in user
+    #   get "/my_applications"
+    #   assert_response :success
+    #   assert_select "form", 1
   end
 end
