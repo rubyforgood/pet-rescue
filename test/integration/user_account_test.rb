@@ -3,7 +3,7 @@ require "test_helper"
 class UserAccountTest < ActionDispatch::IntegrationTest
   setup do
     @organization = create(:organization)
-    host! "#{@organization.subdomain}.test.local"
+    host! "#{@organization.slug}.test.local"
   end
 
   test "user gets redirected to root page after sign in" do

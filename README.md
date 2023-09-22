@@ -37,32 +37,27 @@ To run the app locally, use:
 bin/dev
 ```
 
-## Accessing Roles
+You should see the seed organization by going to:
+```
+http://localhost:3000/alta/
+```
 
-You can use the following login credentials to access the following roles:
+## Login Credentials
 
-Adopter
-- email: `adopter1@example.com`
+All users are scoped to an organization. Hence, you must login via the correct
+login portal per organization. 
+
+You can use the following login credentials to login to http://localhost:3000/alta:
+
+Use the following login 
+Adopter 
+- email: `adopter1@alta.com` 
 - password: `123456`
 
 Staff
-- email: `staff@example.com`
+- email: `staff@alta.com`
 - password: `123456`
 
-You are also able to register an account.
-
-## Subdomain Setup
-
-The app will work OK with no subdomains, but to really test out the multi-tenant capabilities, you will need to configure subdomains. Every `Organization` has a subdomain field, and that Org will be accessible via `ApplicationController#current_tenant`.
-
-To configure your local dev env to test subdomains, you will need to [edit your `/etc/hosts` file](https://linuxize.com/post/how-to-edit-your-hosts-file/)
-
-Add the following line:
-
-```text
-127.0.0.1 localhost pet-rescue.local alta.pet-rescue.local rfg.pet-rescue.local
-```
-This will map the two seed Orgs with the correct subdomains
 
 # 🧪 Running Tests
 

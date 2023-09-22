@@ -1,14 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-transparent shadow-none px-2 py-3">
   <div class="container px-0">
-    <%= link_to root_path, class: 'navbar-brand' do %>
-      Pet Rescue
+    <%= link_to home_index_path, class: 'navbar-brand' do %>
+      <%= Current.organization.name %>
     <% end %>
-    <div class="d-flex align-items-center order-lg-3">
-      <div class="d-flex align-items-center" style='gap: 0.5em'>
-        <%= link_to 'Adopt', new_user_registration_path, class: 'btn btn-secondary' %>
-        <%= link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
-      </div>
 
+    <div class="d-flex align-items-center order-lg-3">
       <div>
         <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default3" aria-controls="navbar-default3" aria-expanded="false" aria-label="Toggle navigation">
           <span class="icon-bar top-bar mt-0"></span>
@@ -17,12 +13,19 @@
         </button>
       </div>
 
-      <li class="dropdown ms-2">
+      <% unless user_signed_in? %>
+        <%= active_link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
+      <% end %>
+
+      <li class="dropdown ms-2 list-unstyled">
         <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-          <div class="avatar avatar-md avatar-indicators avatar-online">
-            <%= image_tag "avatar/avatar-1.jpg", class: 'rounded-circle' %>
-          </div>
+          <% if user_signed_in? %>
+            <div class="avatar avatar-md avatar-indicators avatar-online">
+              <%= image_tag "avatar/avatar-1.jpg", class: 'rounded-circle' %>
+            </div>
+          <% end %>
         </a>
+
         <div class="dropdown-menu dropdown-menu-end pb-0" aria-labelledby="dropdownUser" style='z-index: 1000'>
           <% if user_signed_in? %>
             <ul class="list-unstyled">
@@ -68,18 +71,9 @@
                 <% end %>
               </li>
             </ul>
-            <% if current_user.staff_account && 
-                  current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
+            <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
               <div class="ms-4">*Admin*</div>
             <% end %>
-          <% else %>
-            <ul class="list-unstyled">
-              <li>
-                <%= link_to new_user_session_path, class: 'dropdown-item' do %>
-                  <i class="fe fe-log-in me-2"></i> Log In
-                <% end %>
-              </li>
-            </ul>
           <% end %>
         </div>
       </li>

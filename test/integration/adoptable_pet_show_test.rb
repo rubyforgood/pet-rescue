@@ -6,10 +6,6 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     # pet = create(:pet)
 
     # get "/adoptable_pets/#{pet.id}"
-
-    # check_messages
-    # assert_select "h4", "Create an account to apply for this pet"
-    # assert_select "a", "Adopt"
   end
 
   test "adopter without a profile sees complete my profile prompt and link" do
