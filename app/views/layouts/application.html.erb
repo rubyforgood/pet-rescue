@@ -30,7 +30,7 @@
     </main>
 
     <% if Current.tenant.present? %>
-      <%= render partial: "layouts/shared/footer" %>
+      <%= render partial: "layouts/shared/footer" unless @hide_footer %>
     <% else %>
       <%= render partial: "layouts/shared/no_tenant_footer" %>
     <% end %>
