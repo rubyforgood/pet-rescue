@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   resources :checklist_template_items
-  ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions"
