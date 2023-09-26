@@ -2,3 +2,18 @@
   <%= render 'organizations/dashboard/navbar' %>
   <%# <%= yield :dashboard_content %>
 <%# </div> %> 
+<%= content_for :header do  %>
+  Add a new dog
+<% end %>
+
+
+<%= content_for :button do %>
+<div class="input-group me-3  ">
+  <input class="form-control flatpickr flatpickr-input" type="text" placeholder="Select Date" aria-describedby="basic-addon2" readonly="readonly">
+
+    <span class="input-group-text text-muted" id="basic-addon2"><i class="fe fe-calendar"></i></span>
+
+  </div> 
+
+  <a href="#" class="btn btn-primary"> Add a New Pet</a>
+<% end %>
