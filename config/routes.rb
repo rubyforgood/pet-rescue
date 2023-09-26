@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   scope module: :organizations do
     resources :home, only: [:index]
     resources :pets
+    resources :dashboard
   end
 
   resources :profile_reviews, only: [:show]

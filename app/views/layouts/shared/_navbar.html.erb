@@ -49,13 +49,8 @@
               <% end %>
               <% if current_user.staff_account && current_user.staff_account.verified %>
                 <li>
-                  <%= link_to pets_path, class: 'dropdown-item' do %>
-                    <i class="fe fe-star me-2"></i> Our Pets
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to adopter_applications_path, class: 'dropdown-item' do %>
-                    <i class="fe fe-star me-2"></i> Applications
+                  <%= link_to dashboard_index_path, class: 'dropdown-item' do %>
+                    <i class="fe fe-star me-2"></i> Dashboard
                   <% end %>
                 </li>
               <% end %>
