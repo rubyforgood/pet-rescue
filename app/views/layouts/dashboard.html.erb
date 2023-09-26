@@ -6,313 +6,97 @@
     <div id="db-wrapper">
  <!-- navbar vertical -->
   <!-- Sidebar -->
- <nav class="navbar-vertical navbar">
+ <nav class="navbar-vertical ">
      <div class="vh-100 simplebar-scrollable-x simplebar-scrollable-y" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: scroll;"><div class="simplebar-content" style="padding: 0px;">
          <!-- Brand logo -->
          <a class="navbar-brand" href="../../index.html">
              <img src="../../assets/images/brand/logo/logo-inverse.svg" alt="">
          </a>
          <!-- Navbar nav -->
+          <!-- Navbar nav -->
          <ul class="navbar-nav flex-column" id="sideNavbar">
+          <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
+            <li class="nav-item">
+                    <a class="nav-link @@if (context.page_group !== 'org') { collapsed }" href="#"
+                        data-bs-toggle="collapse" data-bs-target="#navOrg" aria-expanded="false"
+                        aria-controls="navOrg">
+                        <i class="nav-icon fe fe-book me-2"></i> Organization
+                    </a>
+                    <div id="navOrg" class="collapse @@if (context.page_group === 'org') { show }"
+                        data-bs-parent="#sideNavbar">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link @@if (context.page === 'settings') { active }">
+                                    Settings
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link @@if (context.page === 'staff') { active }">
+                                    Staff
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            <% end %>
              <li class="nav-item">
-                 <a class="nav-link  " href="#" data-bs-toggle="collapse" data-bs-target="#navDashboard" aria-expanded="false" aria-controls="navDashboard">
-                     <i class="nav-icon fe fe-home me-2"></i> Dashboard
+                 <a class="nav-link @@if (context.page_group !== 'pets') { collapsed }" href="#"
+                     data-bs-toggle="collapse" data-bs-target="#navPets" aria-expanded="false"
+                     aria-controls="navPets">
+                     <i class="nav-icon fe fe-book me-2"></i> Pets
                  </a>
-                 <div id="navDashboard" class="collapse  show " data-bs-parent="#sideNavbar">
+                 <div id="navPets" class="collapse @@if (context.page_group === 'pets') { show }"
+                     data-bs-parent="#sideNavbar">
                      <ul class="nav flex-column">
-                         <li class="nav-item ">
-                             <a class="nav-link  active " href="../../pages/dashboard/admin-dashboard.html">
-                                 Overview
+                         <li class="nav-item">
+                             <a class="nav-link @@if (context.page === 'manage') { active }">
+                                 Manage
                              </a>
                          </li>
-                         <!-- Nav item -->
-                         <li class="nav-item ">
-                             <a class="nav-link " href="../../pages/dashboard/dashboard-analytics.html">
-                                 Analytics
-
+                         <li class="nav-item">
+                             <a class="nav-link @@if (context.page === 'checklists') { active }">
+                                 Checklists
                              </a>
                          </li>
                      </ul>
                  </div>
              </li>
              <li class="nav-item">
-                 <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navCourses" aria-expanded="false" aria-controls="navCourses">
-                     <i class="nav-icon fe fe-book me-2"></i> Courses
+                 <a class="nav-link @@if (context.page_group !== 'apps') { collapsed }" href="#"
+                     data-bs-toggle="collapse" data-bs-target="#navApps" aria-expanded="false"
+                     aria-controls="navApps">
+                     <i class="nav-icon fe fe-book me-2"></i> Applications
                  </a>
-                 <div id="navCourses" class="collapse " data-bs-parent="#sideNavbar">
+                 <div id="navApps" class="collapse @@if (context.page_group === 'apps') { show }"
+                     data-bs-parent="#sideNavbar">
                      <ul class="nav flex-column">
                          <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/admin-course-overview.html">
-                                 All Courses
+                             <a class="nav-link @@if (context.page === 'adoption') { active }">
+                                 Adoption
                              </a>
                          </li>
                          <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/admin-course-category.html">
-                                 Courses Category
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/admin-course-category-single.html">
-                                 Category Single
+                             <a class="nav-link @@if (context.page === 'foster') { active }">
+                                 Foster
                              </a>
                          </li>
                      </ul>
                  </div>
              </li>
-             <!-- Nav item -->
              <li class="nav-item">
-                 <a class="nav-link   collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navProfile" aria-expanded="false" aria-controls="navProfile">
-                     <i class="nav-icon fe fe-user me-2"></i> User
+                 <a class="nav-link @@if (context.page_group !== 'donation') { collapsed }" href="#"
+                     data-bs-toggle="collapse" data-bs-target="#navProfile" aria-expanded="false"
+                     aria-controls="navProfile">
+                     <i class="nav-icon fe fe-user me-2"></i> Donations
                  </a>
-                 <div id="navProfile" class="collapse " data-bs-parent="#sideNavbar">
+                 <div id="navProfile" class="collapse @@if (context.page_group === 'donation') { show }"
+                     data-bs-parent="#sideNavbar">
                      <ul class="nav flex-column">
                          <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/admin-instructor.html">
-                                 Instructor
+                             <a class="nav-link @@if (context.page === 'sources') { active }">
+                                 Sources
                              </a>
                          </li>
-                         <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/admin-students.html">Students</a>
-                         </li>
-                     </ul>
-                 </div>
-             </li>
-
-             <!-- Nav item -->
-             <li class="nav-item ">
-                 <a class="nav-link   collapsed  " href="#" data-bs-toggle="collapse" data-bs-target="#navCMS" aria-expanded="false" aria-controls="navCMS">
-                     <i class="nav-icon fe fe-book-open me-2"></i> CMS
-                 </a>
-                 <div id="navCMS" class="collapse  " data-bs-parent="#sideNavbar">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link   active  " href="../../pages/dashboard/admin-cms-overview.html">
-                                 Overview
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/admin-cms-post.html">
-                                 All Post
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/admin-cms-post-new.html">
-                                 New Post
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/admin-cms-post-category.html">
-                                 Category
-                             </a>
-                         </li>
-                     </ul>
-                 </div>
-             </li>
-             <!-- Nav item -->
-             <li class="nav-item ">
-                 <a class="nav-link   collapsed  " href="#" data-bs-toggle="collapse" data-bs-target="#navProject" aria-expanded="false" aria-controls="navProject">
-                     <i class="nav-icon fe fe-file me-2"></i> Project
-                 </a>
-                 <div id="navProject" class="collapse  " data-bs-parent="#sideNavbar">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link   " href="../../pages/dashboard/project-grid.html">
-                                 Grid
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/project-list.html">
-                                 List
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link   collapsed  " href="#" data-bs-toggle="collapse" data-bs-target="#navprojectSingle" aria-expanded="false" aria-controls="navprojectSingle">
-
-                                 Single
-                             </a>
-                             <div id="navprojectSingle" class="collapse " data-bs-parent="#navProject">
-                                 <ul class="nav flex-column">
-                                     <li class="nav-item">
-                                         <a class="nav-link  active " href="../../pages/dashboard/project-overview.html">
-                                             Overview
-                                         </a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/project-task.html">
-                                             Task
-                                         </a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/project-budget.html">
-                                             Budget
-                                         </a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/project-team.html">
-                                             Team
-                                         </a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/project-files.html">
-                                             Files
-                                         </a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/project-summary.html">
-                                             Summary
-                                         </a>
-                                     </li>
-
-                                 </ul>
-                             </div>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/add-project.html">
-                                 Create Project
-                             </a>
-                         </li>
-
-
-
-
-
-
-
-
-
-                     </ul>
-                 </div>
-             </li>
-
-
-
-
-
-
-             <!-- Nav item -->
-             <li class="nav-item">
-                 <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navAuthentication" aria-expanded="false" aria-controls="navAuthentication">
-                     <i class="nav-icon fe fe-lock me-2"></i> Authentication
-                 </a>
-                 <div id="navAuthentication" class="collapse " data-bs-parent="#sideNavbar">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link " href="../../pages/sign-in.html">Sign In</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/sign-up.html">Sign Up</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link " href="../../pages/forget-password.html">
-                                 Forget Password
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/notification-history.html">
-                                 Notifications
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/404-error.html"> 404 Error</a>
-                         </li>
-                     </ul>
-                 </div>
-             </li>
-             <!-- Nav item -->
-             <li class="nav-item">
-                 <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navecommerce" aria-expanded="false" aria-controls="navecommerce">
-                     <i class="nav-icon fe fe-shopping-bag me-2"></i> Ecommerce
-                 </a>
-                 <div id="navecommerce" class="collapse " data-bs-parent="#sideNavbar">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link   collapsed  " href="#" data-bs-toggle="collapse" data-bs-target="#navproduct" aria-expanded="false" aria-controls="navproduct">
-
-                                 Product
-                             </a>
-                             <div id="navproduct" class="collapse " data-bs-parent="#navProduct">
-                                 <ul class="nav flex-column">
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/ecommerce/product-grid.html">Grid</a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/ecommerce/product-grid-with-sidebar.html">Grid
-                                             Sidebar</a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/ecommerce/products.html">Products</a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/ecommerce/product-single.html">Product
-                                             Single</a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link " href="../../pages/dashboard/ecommerce/product-single-v2.html">Product
-                                             Single v2</a>
-                                     </li>
-                                     <li class="nav-item">
-                                         <a class="nav-link  " href="../../pages/dashboard/ecommerce/add-product.html">Add Product</a>
-                                     </li>
-
-                                 </ul>
-                             </div>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/ecommerce/shopping-cart.html">Shopping Cart</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/ecommerce/checkout.html">Checkout</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/ecommerce/order.html">Order</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/ecommerce/order-single.html">Order Single</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/ecommerce/order-history.html">Order History</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/ecommerce/order-summary.html">Order Summary</a>
-                         </li>
-
-
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/ecommerce/customers.html">Customers</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/ecommerce/customer-single.html">Customer Single</a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/ecommerce/add-customer.html">Add Customer</a>
-                         </li>
-
-
-
-
-                     </ul>
-                 </div>
-             </li>
-             <!-- Nav item -->
-             <li class="nav-item">
-                 <a class="nav-link  collapsed " href="#" data-bs-toggle="collapse" data-bs-target="#navlayouts" aria-expanded="false" aria-controls="navlayouts">
-                     <i class="nav-icon fe fe-layout me-2"></i> Layouts
-                 </a>
-                 <div id="navlayouts" class="collapse " data-bs-parent="#sideNavbar">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/layouts/layout-horizontal.html">Top</a>
-                         </li>
-
-                         <li class="nav-item">
-                             <a class="nav-link " href="../../pages/dashboard/layouts/layout-compact.html">
-                                 Compact
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link  " href="../../pages/dashboard/layouts/layout-vertical.html">Vertical</a>
-                         </li>
-
                      </ul>
                  </div>
              </li>
