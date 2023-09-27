@@ -5,21 +5,7 @@
   <body>
     <main>
       <div>
-        <% if flash[:notice] %>
-          <div class="flash-notice bigger">
-            <%= notice %>
-          </div>
-        <% end %>
-
-        <% if flash[:alert] %>
-          <div class="flash-alert bigger">
-            <%= alert %>
-          </div>
-        <% end%>
-
-        <div>
-          <%= yield %>
-        </div>
+        <%= yield %>
       </div>
     </main>
   </body>
