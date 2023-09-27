@@ -1,4 +1,4 @@
-class AdoptionApplicationReviewsController < ApplicationController
+class Organizations::AdoptionApplicationReviewsController < Organizations::BaseController
   before_action :verified_staff
 
   def index
