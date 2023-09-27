@@ -2,118 +2,67 @@
 <html>
   <%= render "layouts/shared/head" %>
 
-  <body>
-    <div id="db-wrapper">
- <!-- navbar vertical -->
+<body>
+  <div id="db-wrapper">
+  <!-- navbar vertical -->
   <!-- Sidebar -->
- <nav class="navbar-vertical ">
-     <div class="vh-100 simplebar-scrollable-x simplebar-scrollable-y" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: scroll;"><div class="simplebar-content" style="padding: 0px;">
-         <!-- Brand logo -->
-         <a class="navbar-brand" href="../../index.html">
-             <img src="../../assets/images/brand/logo/logo-inverse.svg" alt="">
-         </a>
-         <!-- Navbar nav -->
-          <!-- Navbar nav -->
-         <ul class="navbar-nav flex-column" id="sideNavbar">
+    <nav class="navbar-vertical navbar">
+      <div class="vh-100 simplebar-scrollable-x simplebar-scrollable-y" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: scroll;"><div class="simplebar-content" style="padding: 0px;">
+        <!-- Brand logo -->
+        <a class="navbar-brand" href="../../index.html">
+          <img src="../../assets/images/brand/logo/logo-inverse.svg" alt="">
+        </a>
+        <!-- Navbar nav -->
+        <!-- Navbar nav -->
+        <ul class="navbar-nav flex-column" id="sideNavbar">
           <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
             <li class="nav-item">
-                    <a class="nav-link @@if (context.page_group !== 'org') { collapsed }" href="#"
-                        data-bs-toggle="collapse" data-bs-target="#navOrg" aria-expanded="false"
-                        aria-controls="navOrg">
-                        <i class="nav-icon fe fe-book me-2"></i> Organization
-                    </a>
-                    <div id="navOrg" class="collapse @@if (context.page_group === 'org') { show }"
-                        data-bs-parent="#sideNavbar">
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link @@if (context.page === 'settings') { active }">
-                                    Settings
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link @@if (context.page === 'staff') { active }">
-                                    Staff
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            <% end %>
-             <li class="nav-item">
-                 <a class="nav-link @@if (context.page_group !== 'pets') { collapsed }" href="#"
-                     data-bs-toggle="collapse" data-bs-target="#navPets" aria-expanded="false"
-                     aria-controls="navPets">
-                     <i class="nav-icon fe fe-book me-2"></i> Pets
-                 </a>
-                 <div id="navPets" class="collapse @@if (context.page_group === 'pets') { show }"
-                     data-bs-parent="#sideNavbar">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link @@if (context.page === 'manage') { active }">
-                                 Manage
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link @@if (context.page === 'checklists') { active }">
-                                 Checklists
-                             </a>
-                         </li>
-                     </ul>
-                 </div>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link @@if (context.page_group !== 'apps') { collapsed }" href="#"
-                     data-bs-toggle="collapse" data-bs-target="#navApps" aria-expanded="false"
-                     aria-controls="navApps">
-                     <i class="nav-icon fe fe-book me-2"></i> Applications
-                 </a>
-                 <div id="navApps" class="collapse @@if (context.page_group === 'apps') { show }"
-                     data-bs-parent="#sideNavbar">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link @@if (context.page === 'adoption') { active }">
-                                 Adoption
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link @@if (context.page === 'foster') { active }">
-                                 Foster
-                             </a>
-                         </li>
-                     </ul>
-                 </div>
-             </li>
-             <li class="nav-item">
-                 <a class="nav-link @@if (context.page_group !== 'donation') { collapsed }" href="#"
-                     data-bs-toggle="collapse" data-bs-target="#navProfile" aria-expanded="false"
-                     aria-controls="navProfile">
-                     <i class="nav-icon fe fe-user me-2"></i> Donations
-                 </a>
-                 <div id="navProfile" class="collapse @@if (context.page_group === 'donation') { show }"
-                     data-bs-parent="#sideNavbar">
-                     <ul class="nav flex-column">
-                         <li class="nav-item">
-                             <a class="nav-link @@if (context.page === 'sources') { active }">
-                                 Sources
-                             </a>
-                         </li>
-                     </ul>
-                 </div>
-             </li>
+              <a class="nav-link @@if (context.page_group !== 'org') { collapsed }" href="#">
+                <i class="nav-icon fe fe-book me-2"></i> Pets
+              </a>          
+            </li>
+            <li class="nav-item">
+              <a class="nav-link @@if (context.page_group !== 'org') { collapsed }" href="#">
+                <i class="nav-icon fe fe-book me-2"></i> Adoption Applications
+              </a>          
+            </li> 
+          <% end %>
+          <li class="nav-item">
+              <a class="nav-link @@if (context.page_group !== 'org') { collapsed }" href="#">
+                <i class="nav-icon fe fe-book me-2"></i> Foster Applications
+              </a>          
+            </li>
+            <li class="nav-item">
+              <a class="nav-link @@if (context.page_group !== 'org') { collapsed }" href="#">
+                <i class="nav-icon fe fe-book me-2"></i> Settings
+              </a>          
+            </li>
+            <li class="nav-item">
+              <a class="nav-link @@if (context.page_group !== 'org') { collapsed }" href="#">
+                <i class="nav-icon fe fe-book me-2"></i> Staff
+              </a>          
+            </li>
+            <li class="nav-item">
+              <a class="nav-link @@if (context.page_group !== 'org') { collapsed }" href="#">
+                <i class="nav-icon fe fe-book me-2"></i> Donations
+              </a>          
+            </li>
              <!-- Nav item -->
              <li class="nav-item">
                  <div class="nav-divider"></div>
              </li>
- </nav>
-        <!-- Page Content -->
-        <main id="page-content" class="mx-0">
-        <div class="header">
-    <!-- navbar -->
-    <nav class="navbar-default navbar navbar-expand-lg">
-        <a id="nav-toggle" href="#">
+          </ul>
+        </div>
+    </nav>
+    <!-- Page Content -->
+    <main id="page-content" class="mx-0">
+      <div class="header">
+        <!-- navbar -->
+        <nav class="navbar-default navbar navbar-expand-lg">
+          <a id="nav-toggle" href="#">
             <i class="fe fe-menu"></i>
-        </a>
-        <div class="ms-lg-3 d-none d-md-none d-lg-block">
+          </a>
+          <div class="ms-lg-3 d-none d-md-none d-lg-block">
             <!-- Form -->
             <form class="d-flex align-items-center">
                 <span class="position-absolute ps-3 search-icon">
@@ -121,29 +70,28 @@
                     </span>
                 <input type="search" class="form-control ps-6" placeholder="Search Entire Dashboard">
             </form>
-        </div>
-        <!--Navbar nav -->
-        <div class="ms-auto d-flex">
+          </div>
+          <!--Navbar nav -->
+          <div class="ms-auto d-flex">
             <a href="#" class="form-check form-switch theme-switch btn btn-light btn-icon rounded-circle ">
-				<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-				<label class="form-check-label" for="flexSwitchCheckDefault"></label>
-
-					   </a>
-        <ul class="navbar-nav navbar-right-wrap ms-2 d-flex nav-top-wrap">
-            <li class="dropdown stopevent">
+				      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+				      <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+					  </a>
+            <ul class="navbar-nav navbar-right-wrap ms-2 d-flex nav-top-wrap">
+              <li class="dropdown stopevent">
                 <a class="btn btn-light btn-icon rounded-circle indicator indicator-primary text-muted" href="#" role="button" id="dropdownNotification" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fe fe-bell"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-lg" aria-labelledby="dropdownNotification">
-                    <div>
-                        <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
-                            <span class="h4 mb-0">Notifications</span>
-                            <a href="# " class="text-muted">
-                                <span class="align-middle">
-                                        <i class="fe fe-settings me-1"></i>
-                                    </span>
-                            </a>
-                        </div>
+                  <div>
+                    <div class="border-bottom px-3 pb-3 d-flex justify-content-between align-items-center">
+                      <span class="h4 mb-0">Notifications</span>
+                        <a href="# " class="text-muted">
+                          <span class="align-middle">
+                            <i class="fe fe-settings me-1"></i>
+                          </span>
+                        </a>
+                    </div>
                         <!-- List group -->
                         <ul class="list-group list-group-flush simplebar-scrollable-y" data-simplebar="init" style="max-height: 300px;"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden scroll;"><div class="simplebar-content" style="padding: 0px;">
                             <li class="list-group-item bg-light">
