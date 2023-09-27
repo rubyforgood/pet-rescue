@@ -18,7 +18,7 @@ class LoginTest < ApplicationSystemTestCase
       click_on "Log in"
 
       assert current_path.include?(@user.organization.slug)
-      assert current_path.has_content?("Dashboard")
+      assert_equal current_path, dashboard_index_path
     end
   end
 end
