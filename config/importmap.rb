@@ -10,8 +10,6 @@ pin_all_from "app/javascript/controllers", under: "controllers"
 pin "popper", to: "popper.js", preload: true
 pin "bootstrap", to: "bootstrap.min.js", preload: true
 
-pin "chartkick", to: "chartkick.js"
-pin "Chart.bundle", to: "Chart.bundle.js"
 pin "simplebar", to: "https://ga.jspm.io/npm:simplebar@6.2.5/dist/index.mjs"
 pin "can-use-dom", to: "https://ga.jspm.io/npm:can-use-dom@0.1.0/index.js"
 pin "lodash-es", to: "https://ga.jspm.io/npm:lodash-es@4.17.21/lodash.js"
