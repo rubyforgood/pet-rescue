@@ -3,6 +3,7 @@
   <%= render "layouts/shared/head" %>
 
   <body>
+    <%= render "layouts/shared/flash_messages" %>
     <% if Current.tenant.present? %>
       <%= render partial: "layouts/shared/navbar" %>
     <% else %>
@@ -10,24 +11,7 @@
     <% end %>
 
     <main>
-      <div>
-        <% if flash[:notice] %>
-          <div class="flash-notice bigger">
-            <%= notice %>
-          </div>
-        <% end %>
-
-        <% if flash[:alert] %>
-          <div class="flash-alert bigger">
-            <%= alert %>
-          </div>
-        <% end%>
-
-        <div>
-        
-          <%= yield %>
-        </div>
-      </div>
+      <%= yield %>
     </main>
 
     <% if Current.tenant.present? %>
