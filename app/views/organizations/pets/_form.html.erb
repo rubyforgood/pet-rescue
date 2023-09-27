@@ -6,7 +6,7 @@
                             value: current_user.staff_account.organization_id %>
 
       <div class='form-group'>
-        <%= form.label :name, class: 'mt-3' %>
+        <%= form.label :name, 'Name*', class: 'mt-3' %>
         <%= form.text_field :name, class: 'form-control' %>
 
         <% pet.errors.full_messages_for(:name).each do |message| %>
@@ -16,7 +16,7 @@
 
       <div class='form-group d-flex'>
         <div class='me-3'>
-          <%= form.label :birth_date, class: 'mt-3' %>
+          <%= form.label :birth_date, 'Birth date*', class: 'mt-3' %>
           <span class='form-control'>
             <%= form.date_select :birth_date,
                                  start_year: Date.today.year - 20,
@@ -30,7 +30,7 @@
       </div>
 
       <div class='form-group'>
-        <%= form.label :sex, class: 'mt-3' %>
+        <%= form.label :sex, 'Sex*', class: 'mt-3' %>
         <%= form.select :sex,
                         [[t('general.male'), 'male'], [t('general.female'), 'female']],
                         { prompt: t('general.please_select') },
@@ -42,7 +42,7 @@
       </div>
 
       <div class='form-group'>
-        <%= form.label :breed, class: 'mt-3' %>
+        <%= form.label :breed, 'Breed*', class: 'mt-3' %>
         <%= form.text_field :breed, class: 'form-control' %>
 
         <% pet.errors.full_messages_for(:breed).each do |message| %>
@@ -53,7 +53,7 @@
       <div class="form-group mt-3">
         <div class='form-group d-flex'>
           <div class='me-3'>
-            <%= form.label :weight_from, 'From weight' %>
+            <%= form.label :weight_from, 'From weight*' %>
             <%= form.text_field :weight_from, class: 'form-control' %>
             <% if pet.errors[:weight_from].any? %>
               <div class="alert alert-danger mt-1" role="alert">
@@ -62,7 +62,7 @@
             <% end %>
           </div>
           <div class='me-3'>
-            <%= form.label :weight_to, 'To weight' %>
+            <%= form.label :weight_to, 'To weight*' %>
             <%= form.text_field :weight_to, class: 'form-control' %>
             <% if pet.errors[:weight_to].any? %>
               <div class="alert alert-danger mt-1" role="alert">
@@ -71,7 +71,7 @@
             <% end %>
           </div>
           <div>
-            <%= form.label :weight_unit %>
+            <%= form.label :weight_unit, 'Weight unit*' %>
             <%= form.select :weight_unit, 
                         Pet::WEIGHT_UNITS,
                         {},
@@ -84,7 +84,7 @@
       </div>
 
       <div class='form-group'>
-        <%= form.label :description, class: 'mt-3' %>
+        <%= form.label :description, 'Description*', class: 'mt-3' %>
         <div data-controller='counter'>
           <%= form.text_area :description,
                              data: { action: "input->counter#countExtraLarge",
