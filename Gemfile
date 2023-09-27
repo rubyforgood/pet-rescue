@@ -66,9 +66,6 @@ gem "azure-storage-blob", "~> 2.0", require: false
 # validate adopter phone numbers
 gem "phonelib"
 
-# active admin
-gem "activeadmin"
-
 # geocoder creates lat/long for success page map
 gem "geocoder"
 
