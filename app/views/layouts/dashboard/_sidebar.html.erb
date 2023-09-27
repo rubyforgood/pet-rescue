@@ -1,56 +1,43 @@
-<!-- Sidebar -->
 <nav class="navbar-vertical navbar">
-  <div class="vh-100 simplebar-scrollable-x simplebar-scrollable-y" data-simplebar="init">
-    <div class="simplebar-wrapper" style="margin: 0px;">
-      <div class="simplebar-height-auto-observer-wrapper">
-        <div class="simplebar-height-auto-observer"></div>
-      </div>
-      <div class="simplebar-mask">
-        <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-          <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: scroll;">
-            <div class="simplebar-content" style="padding: 0px;">
-              <!-- Brand logo -->
-              <a class="navbar-brand" href="../../index.html">
-                <img src="" alt="">
-              </a>
-              <!-- Navbar nav -->
-              <ul class="navbar-nav flex-column" id="sideNavbar">
-                <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
-                <li class="nav-item">
-                  <%= link_to pets_path, class: "nav-link" do %>
-                  <i class="nav-icon fe fe-book me-2"></i> Pets
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to adoption_application_reviews_path, class: "nav-link" do %>
-                  <i class="nav-icon fe fe-book me-2"></i> Adoption Applications
-                  <% end %>
-                </li>
-                <% end %>
-                <li class="nav-item">
-                  <%= link_to foster_application_reviews_path, class: "nav-link" do %>
-                  <i class="nav-icon fe fe-book me-2"></i> Foster Applications
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to settings_path, class: "nav-link" do %>
-                  <i class="nav-icon fe fe-book me-2"></i> Settings
-                  <% end %>
-                </li>
-                <li class="nav-item">
-                  <%= link_to staff_index_path, class: "nav-link" do %>
-                  <i class="nav-icon fe fe-book me-2"></i> Staff
-                  <% end %>
-                </li>
-                <!-- Nav item -->
-                <li class="nav-item">
-                  <div class="nav-divider"></div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="vh-100 w-100" data-simplebar>
+    <!-- Brand logo -->
+    <a class="navbar-brand">
+      <img src="" alt="">
+    </a>
+
+    <!-- Navbar nav -->
+    <ul class="navbar-nav flex-column" id="sideNavbar">
+      <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
+        <li class="nav-item">
+          <%= link_to pets_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-book me-2"></i> Pets
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to adoption_application_reviews_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-book me-2"></i> Adoption Applications
+          <% end %>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <%= link_to foster_application_reviews_path, class: "nav-link" do %>
+          <i class="nav-icon fe fe-book me-2"></i> Foster Applications
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to settings_path, class: "nav-link" do %>
+          <i class="nav-icon fe fe-book me-2"></i> Settings
+        <% end %>
+      </li>
+      <li class="nav-item">
+        <%= link_to staff_index_path, class: "nav-link" do %>
+          <i class="nav-icon fe fe-book me-2"></i> Staff
+        <% end %>
+      </li>
+      <!-- Nav item -->
+      <li class="nav-item">
+        <div class="nav-divider"></div>
+      </li>
+    </ul>
   </div>
 </nav>
