@@ -4,11 +4,12 @@ class LoginTest < ApplicationSystemTestCase
   setup do
     @organization = create(:organization)
     @user = create(:user, organization: @organization)
+    StaffAccount.create!(user: @user, organization: @organization, verified: true)
     set_organization(@organization)
   end
 
   context "when logging in as a staff member" do
-    should "direct to the organization's adoptable pets page" do
+    should "direct to the organization's dashboard" do
       visit root_url
       click_on "Log In"
 
@@ -17,7 +18,7 @@ class LoginTest < ApplicationSystemTestCase
       click_on "Log in"
 
       assert current_path.include?(@user.organization.slug)
-      assert page.has_content?("Signed in successfully.")
+      assert current_path.has_content?("Dashboard")
     end
   end
 end
