@@ -21,10 +21,10 @@
 #  fk_rails_...  (pet_id => pets.id)
 #
 class Match < ApplicationRecord
+  acts_as_tenant(:organization)
   belongs_to :pet
   belongs_to :adopter_account
   has_many :checklist_assignments, dependent: :destroy
-  belongs_to :organization
 
   validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
 

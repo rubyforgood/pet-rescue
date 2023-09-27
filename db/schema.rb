@@ -10,23 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_25_130443) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "active_admin_comments", force: :cascade do |t|
-    t.string "namespace"
-    t.text "body"
-    t.string "resource_type"
-    t.bigint "resource_id"
-    t.string "author_type"
-    t.bigint "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
-    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
-    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
-  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -54,18 +40,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "adopter_accounts", force: :cascade do |t|
@@ -191,7 +165,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
     t.string "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "subdomain"
+    t.string "slug"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -211,6 +185,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+    t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
+  end
+
   create_table "staff_accounts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -219,6 +203,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
     t.bigint "user_id", default: 0, null: false
     t.index ["organization_id"], name: "index_staff_accounts_on_organization_id"
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
+  end
+
+  create_table "staff_accounts_roles", id: false, force: :cascade do |t|
+    t.bigint "staff_account_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_staff_accounts_roles_on_role_id"
+    t.index ["staff_account_id", "role_id"], name: "index_staff_accounts_roles_on_staff_account_id_and_role_id"
+    t.index ["staff_account_id"], name: "index_staff_accounts_roles_on_staff_account_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -232,7 +224,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_31_215832) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "tos_agreement"
+    t.bigint "organization_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

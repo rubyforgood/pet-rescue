@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+set -e
+
+export RAILS_ENV=test
+
+bundle exec brakeman

@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+
+set -e
+
+export RAILS_ENV=test
+
+echo "::group::🗄️ Ensure a test database exists.\n"
+bin/rails db:setup
+echo "::endgroup::\n"
+
+echo "::group::🗂️ Ensure an up-to-date schema.\n"
+bin/rails db:test:prepare
+echo "::endgroup::\n"
+
+echo "::group::🗃️ Load test DB with fixture data.\n"
+bin/rails db:fixtures:load
+echo "::endgroup::\n"
+
+echo "::group::🗜️ Precompile Assets 🖼️\n"
+bin/rails assets:precompile
+echo "::endgroup::\n"
+
+echo "::group::🍿 Unit & Integration Tests 🍿\n"
+bin/rails test
+echo "::endgroup::\n"
+
+echo "::group::🔥 System Tests 🔥\n"
+bin/rails test:system
+echo "::endgroup::\n"

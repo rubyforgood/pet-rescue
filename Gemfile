@@ -66,9 +66,6 @@ gem "azure-storage-blob", "~> 2.0", require: false
 # validate adopter phone numbers
 gem "phonelib"
 
-# active admin
-gem "activeadmin"
-
 # geocoder creates lat/long for success page map
 gem "geocoder"
 
@@ -84,9 +81,13 @@ gem "strong_migrations"
 # needed for internationalization (translations)
 gem "rails-i18n"
 
+# Provides helper methods to easily add 'active' tag on links
+gem "active_link_to"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "pry", "~> 0.14.2"
   gem "faker"
 
   # Add annotation to models to make it easier to navigate in the codebase
@@ -138,6 +139,9 @@ group :test do
   # test coverage easily
   gem "shoulda", "~> 4.0"
   gem "shoulda-matchers"
+
+  # Adds ability to stub out methods in tests easier
+  gem "mocha"
 end
 
 # Add chartkick for charts generation
@@ -148,3 +152,6 @@ gem "city-state", "~> 0.1.0"
 
 # Adds a simple way to fetch with Javascript
 gem "requestjs-rails", "~> 0.0.10"
+
+# Add ability to set user roles
+gem "rolify"
