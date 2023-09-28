@@ -16,6 +16,14 @@
             <h1 class="mb-1 fw-bold">Sign in</h1>
             <span>Don’t have an account? <%= link_to "Sign up", new_user_registration_path, class: 'small fw-bold' %></span>
           </div>
+
+          <div>
+            <% if flash[:alert] %>
+              <div class="alert alert-danger" role="alert">
+                <%= alert %>
+              </div>
+            <% end%>
+          </div>
           <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>

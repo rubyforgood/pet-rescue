@@ -252,7 +252,4 @@ ActsAsTenant.with_tenant(organization) do
   end
 
   @match.assign_checklist_template(@checklist_template)
-
-  # active admin seed
-  AdminUser.create!(email: "admin@baja.com", password: "password", password_confirmation: "password") if Rails.env.development?
 end

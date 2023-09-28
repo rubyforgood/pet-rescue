@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <%= render "layouts/shared/head" %>
-
-<body>
-  <div id="db-wrapper">
-  <!-- navbar vertical -->
+  <body>
+    <%= render "layouts/shared/flash_messages" %>
+    <div id="db-wrapper">
+ <!-- navbar vertical -->
   <!-- Sidebar -->
     <nav class="navbar-vertical navbar">
       <div class="vh-100 simplebar-scrollable-x simplebar-scrollable-y" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: scroll;"><div class="simplebar-content" style="padding: 0px;">
@@ -94,7 +94,7 @@
                                     <div class="col">
                                         <a class="text-body" href="#">
                                         <div class="d-flex">
-                                            <img src="../../assets/images/avatar/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+                                            <img src="" alt="" class="avatar-md rounded-circle">
                                             <div class="ms-3">
                                                 <h5 class="fw-bold mb-1">Kristin Watson:</h5>
                                                 <p class="mb-3">
@@ -125,7 +125,7 @@
                                     <div class="col">
                                         <a class="text-body" href="#">
                                         <div class="d-flex">
-                                            <img src="../../assets/images/avatar/avatar-2.jpg" alt="" class="avatar-md rounded-circle">
+                                            <img src="" alt="" class="avatar-md rounded-circle">
                                             <div class="ms-3">
                                                 <h5 class="fw-bold mb-1">Brooklyn Simmons</h5>
                                                 <p class="mb-3">
@@ -150,7 +150,7 @@
                                     <div class="col">
                                         <a class="text-body" href="#">
                                         <div class="d-flex">
-                                            <img src="../../assets/images/avatar/avatar-3.jpg" alt="" class="avatar-md rounded-circle">
+                                            <img src="" alt="" class="avatar-md rounded-circle">
                                             <div class="ms-3">
                                                 <h5 class="fw-bold mb-1">Jenny Wilson</h5>
                                                 <p class="mb-3">
@@ -176,7 +176,7 @@
                                     <div class="col">
                                         <a class="text-body" href="#">
                                         <div class="d-flex">
-                                            <img src="../../assets/images/avatar/avatar-4.jpg" alt="" class="avatar-md rounded-circle">
+                                            <img src="" alt="" class="avatar-md rounded-circle">
                                             <div class="ms-3">
                                                 <h5 class="fw-bold mb-1">Sina Ray</h5>
                                                 <p class="mb-3">
@@ -210,14 +210,14 @@
             <li class="dropdown ms-2">
                 <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="avatar avatar-md avatar-indicators avatar-online">
-                        <img alt="avatar" src="../../assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                        <img alt="avatar" src="" class="rounded-circle">
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                     <div class="dropdown-item">
                         <div class="d-flex">
                             <div class="avatar avatar-md avatar-indicators avatar-online">
-                                <img alt="avatar" src="../../assets/images/avatar/avatar-1.jpg" class="rounded-circle">
+                                <img alt="avatar" src="" class="rounded-circle">
                             </div>
                             <div class="ms-3 lh-1">
                                 <h5 class="mb-1">Annette Black</h5>
@@ -293,12 +293,12 @@
                             </div>
                             <div class="d-flex">
                             <%= yield :button %>
-                                
+
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <%= yield %>
             </section>
         </main>
