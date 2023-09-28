@@ -1,6 +1,7 @@
 class Organizations::PetsController < Organizations::BaseController
   before_action :verified_staff
   after_action :set_reason_paused_to_none, only: [:update]
+  layout "dashboard"
 
   def index
     @unadopted_pets = Pet.unadopted_pets(current_user.staff_account.organization_id)
