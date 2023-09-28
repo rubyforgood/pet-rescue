@@ -1,6 +1,6 @@
 class Organizations::AdoptionApplicationReviewsController < Organizations::BaseController
   before_action :verified_staff
-  layout 'dashboard'
+  layout "dashboard"
 
   def index
     @pets = Pet.org_pets_with_apps(current_user.staff_account.organization_id)

@@ -1,6 +1,6 @@
 class Organizations::StaffController < Organizations::BaseController
-  layout 'dashboard'
-  
+  layout "dashboard"
+
   def index
   end
 end
