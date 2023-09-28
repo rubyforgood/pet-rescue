@@ -9,26 +9,18 @@
   <% @collection = @unadopted_pets %>
 <% end %>
 
+<!--page heading-->
+<%= provide(:header_title, t(".our_pets"))  %>
+
+<!--create pet button-->
+<%= content_for :button do  %>
+  <%= button_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
+<% end %>
+
 
 <section class="pt-5 pb-5" id="pets">
   <div class="container mb-md-5 mt-md-5">
 
-    <!--page heading-->
-    <%= content_for :header do  %>
-      <div class="text-center mb-5">
-        <h2 class="section-heading text-uppercase">
-          <%= t('.our_pets') %>
-        </h2>
-      </div>
-    <% end %>
-
-    <!--create pet button-->
-      <%= content_for :button do  %>
-        <div class ="col-md-6 d-flex justify-content-center align-items-center">
-          <%= button_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
-        </div>
-    <% end %>
-    
     <!--filter section-->
     <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5 mt-md-5">
       <div class ="col-md-6 d-flex flex-column gap-3">
