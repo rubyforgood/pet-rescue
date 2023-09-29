@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
   <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
 
-  <% if content_for?(:header_title) %>
-    <%= yield(:header_title) %>
+  <% if content_for?(:head) %>
+    <%= yield(:head) %>
   <% end %>
 </head>
