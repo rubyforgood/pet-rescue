@@ -48,6 +48,9 @@ gem "bootsnap", require: false
 # add bootstrap gem
 gem "bootstrap"
 
+# add bootstrap_form gem
+gem "bootstrap_form", "~> 5.3"
+
 # Devise Authentication
 gem "devise"
 
