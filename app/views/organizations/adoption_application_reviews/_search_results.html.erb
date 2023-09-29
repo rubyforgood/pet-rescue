@@ -21,7 +21,7 @@
             <!--pet name-->
             <div class="col-md-3 d-flex align-items-center">
               <p class='bigger'>
-                Applicant: <%= app.adopter_account.user.first_name %> <%= app.adopter_account.user.last_name %>
+                Applicant: Fix me.
               </p>
             </div>
 
@@ -41,7 +41,7 @@
 
             <!--edit application button-->
             <div class="col-md-3 d-flex align-items-center justify-content-md-center">
-              <%= link_to 'Edit Application', edit_adopter_application_path(app.id),
+              <%= link_to 'Edit Application', edit_adoption_application_review_path(app.id),
                                               class: 'btn btn-outline-dark
                                                       mt-3 mt-md-0 mb-3 mb-md-0' %>
             </div>

@@ -16,7 +16,7 @@ gem "figaro"
 gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma", "~> 5.6"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -65,9 +65,6 @@ gem "azure-storage-blob", "~> 2.0", require: false
 
 # validate adopter phone numbers
 gem "phonelib"
-
-# active admin
-gem "activeadmin"
 
 # geocoder creates lat/long for success page map
 gem "geocoder"

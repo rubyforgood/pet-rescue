@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
   resources :checklist_template_items
-  ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions"
   }
 
   resources :adoptable_pets, only: [:index, :show]
-  resources :adopter_applications, only: [:index, :edit, :update], controller: "adoption_application_reviews"
   resource :adopter_profile, except: :destroy, as: "profile"
   resources :checklist_templates
   resources :donations, only: [:create]
@@ -18,6 +15,10 @@ Rails.application.routes.draw do
     resources :home, only: [:index]
     resources :pets
     resources :dashboard
+    resources :adoption_application_reviews, only: [:index, :edit, :update]
+    resources :foster_application_reviews, only: [:index]
+    resources :settings, only: [:index]
+    resources :staff, only: [:index]
   end
 
   resources :profile_reviews, only: [:show]
