@@ -16,10 +16,10 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  def delete
-    binding.pry
-    super
-  end
+  # def destroy
+  #   binding.pry
+  #   super
+  # end
 
   # protected
 
