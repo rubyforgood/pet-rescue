@@ -1,19 +1,7 @@
-<%# <div class="d-flex">
-  <%= render 'organizations/dashboard/navbar' %>
-  <%# <%= yield :dashboard_content %>
-<%# </div> %> 
-<%= content_for :header do  %>
-  Add a new dog
-<% end %>
+ <!--page heading-->
+  <%= provide(:header_title, t(".add a new pet"))  %>
 
-
-<%= content_for :button do %>
-<div class="input-group me-3  ">
-  <input class="form-control flatpickr flatpickr-input" type="text" placeholder="Select Date" aria-describedby="basic-addon2" readonly="readonly">
-
-    <span class="input-group-text text-muted" id="basic-addon2"><i class="fe fe-calendar"></i></span>
-
-  </div> 
-
-  <a href="#" class="btn btn-primary"> Add a New Pet</a>
-<% end %>
+ <!--create pet button-->
+  <%= content_for :button do  %>
+    <%= button_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
+  <% end %>
