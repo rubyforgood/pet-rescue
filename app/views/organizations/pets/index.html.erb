@@ -26,7 +26,7 @@
       <div class ="col-md-6 d-flex flex-column gap-3">
 
         <!--form1-->
-        <%= form_with url: '/pets', method: :get do | f | %>
+        <%= bootstrap_form_with url: '/pets', method: :get do | f | %>
           <div class="d-flex gap-3 form-group">
             <%= f.select :selection, [[t('.select.seeking_adoption'), 'Seeking Adoption'], [t('.select.adopted'), 'Adopted']],
                           { prompt: t('.filter') },
@@ -37,7 +37,7 @@
         
         <!--form2-->
         <%# only show pet name seletion if collection is greater than e.g., 5 pets? %>
-        <%= form_with url: '/pets', class: 'mb-3 mb-md-0', method: :get do | f | %>
+        <%= bootstrap_form_with url: '/pets', class: 'mb-3 mb-md-0', method: :get do | f | %>
           <div class="d-flex gap-3 form-group">
             <%= f.collection_select :pet_id, @collection, :id, :name, 
                                     { prompt: t('.filter_by_name') },

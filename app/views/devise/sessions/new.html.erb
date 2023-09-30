@@ -24,7 +24,7 @@
               </div>
             <% end%>
           </div>
-          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
 

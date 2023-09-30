@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-8 mx-auto card p-5 bigger">
-    <%= form_with model: pet do |form| %>
+    <%= bootstrap_form_with model: pet do |form| %>
 
       <%= form.hidden_field :organization_id,
                             value: current_user.staff_account.organization_id %>

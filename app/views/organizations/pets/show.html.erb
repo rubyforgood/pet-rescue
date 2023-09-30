@@ -83,7 +83,7 @@
           </div>
 
           <div class="border p-3 mt-2 rounded text-center d-flex flex-wrap bigger mb-3">
-            <%= form_with model: @pet do |form|%>
+            <%= bootstrap_form_with model: @pet do |form|%>
               <div data-controller='display'>
                 <div class='d-flex form-group' data-display-target='checked'>
                   <p class='me-2'><%= t('.pause_applications') %></p>

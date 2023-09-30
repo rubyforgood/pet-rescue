@@ -17,7 +17,7 @@
     <div>
       <div class="row">
         <div class="col-md-6 mx-auto card p-5">
-          <%= form_for(resource, as: resource_name, 
+          <%= bootstrap_form_for(resource, as: resource_name, 
                                  url: registration_path(resource_name), 
                                  html: { method: :put }) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
