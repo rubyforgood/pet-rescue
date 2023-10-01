@@ -87,22 +87,21 @@
               <div data-controller='display'>
                 <div class='d-flex form-group' data-display-target='checked'>
                   <p class='me-2'><%= t('.pause_applications') %></p>
-                  <%= form.label :application_paused, t('general.yes'), value: 'true', class: 'me-2' %>
                   <%= form.radio_button :application_paused, 
                                         true, 
-                                        data: { action: "input->display#show" } %>
-                  <%= form.label :application_paused, t('general.no'), value: 'false', class: 'ms-3 me-2' %>
+                                        data: { action: "input->display#show" },
+                                        label: 'Yes' %>
                   <%= form.radio_button :application_paused, 
                                         false, 
-                                        data: { action: "input->display#hide" } %>
+                                        data: { action: "input->display#hide" },
+                                        label: 'No' %>
                 </div>
 
                 <div data-display-target='additional' class="d-flex d-none">
-                  <%= form.label :pause_reason, t('.why'), class: 'me-2' %>
-                  <%= form.select(:pause_reason, 
+                  <%= form.select :pause_reason, 
                                   Pet.app_pause_reasons, 
-                                  { selected: @pause_reason }, 
-                                  { class: "form-control"}) %>
+                                  { selected: @pause_reason, label: "Why" }, 
+                                  { class: "form-control"}  %>
                 </div>
               </div>
               <%= form.submit t('general.save'), class: 'btn btn-outline-dark mb-3 mt-4' %>
