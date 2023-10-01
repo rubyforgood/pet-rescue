@@ -1,5 +1,5 @@
-<nav class="navbar-vertical navbar">
-  <div class="vh-100 w-100" data-simplebar>
+<nav class="navbar navbar-vertical h-auto align-items-baseline">
+  <div class="vh-100 w-100 position-fixed" data-simplebar>
     <!-- Brand logo -->
     <a class="navbar-brand">
       <img src="" alt="">
@@ -8,6 +8,9 @@
     <!-- Navbar nav -->
     <ul class="navbar-nav flex-column" id="sideNavbar">
       <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
+        <li class="nav-item">
+          <div class="navbar-heading">Menu</div>
+        </li>
         <li class="nav-item">
           <%= active_link_to pets_path, class: "nav-link" do %>
             <i class="nav-icon fe fe-book me-2"></i> Pets
