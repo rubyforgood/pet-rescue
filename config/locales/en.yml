@@ -39,8 +39,8 @@ en:
     sex: "Sex"
     weight: "Weight"
     about: "About"
-    'yes': "Yes"
-    'no': "No"
+    "yes": "Yes"
+    "no": "No"
     save: "Save"
     delete: "Delete"
     please_select: "Please select"
@@ -113,7 +113,7 @@ en:
       complete_my_profile: "Complete my profile"
       adopt: "Adopt"
       login: "Log in"
-  organizations:
+  organization:
     pets:
       show:
         pause_applications: "Pause Applications?"

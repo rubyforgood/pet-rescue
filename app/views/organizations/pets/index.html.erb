@@ -1,5 +1,4 @@
 <%# set @collection to appropriate controller instance variable %>
-<% breadcrumb :dashboard_pets %>
 <% if params[:pet_id] == '' || params[:selection] == 'Seeking Adoption' %>
   <% @collection = @unadopted_pets %>
 <% elsif params[:selection] == 'Adopted' %>
@@ -12,15 +11,20 @@
 
 <!--page heading-->
 <<<<<<< HEAD
+<<<<<<< HEAD
 <%= provide(:header_title, t(".our_pets")) %>
 =======
 <%= provide(:header_title, t(".our_pets"))  %>
+=======
+<%= provide(:header_title, t(".our_pets")) %>
+>>>>>>> c548999 (Updating index page to match geekui styling)
 
 <!--create pet button-->
-<%= content_for :button do  %>
+<%= content_for :button do %>
   <%= button_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
 <% end %>
 
+<<<<<<< HEAD
 >>>>>>> 5c7af82 (Pets index styling (#204))
 
 <!--create pet button-->
@@ -34,6 +38,13 @@
   <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5">
     <div class ="col-md-6 d-flex flex-column gap-3">
 
+=======
+<section class="container-fluid p-4">
+  <!--filter section-->
+  <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5">
+    <div class ="col-md-6 d-flex flex-column gap-3">
+
+>>>>>>> c548999 (Updating index page to match geekui styling)
       <!--form1-->
       <%= form_with url: "/#{current_tenant.slug}/pets", method: :get do | f | %>
         <div class="d-flex gap-3 form-group">
@@ -41,6 +52,7 @@
                        { prompt: t('.filter') },
                        class: 'form-control' %>
           <%= f.submit t('general.submit'), class: 'btn btn-outline-dark' %>
+<<<<<<< HEAD
 =======
     <!--filter section-->
     <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5 mt-md-5">
@@ -95,6 +107,8 @@
             </div>
           <% end %>
 >>>>>>> 5c7af82 (Pets index styling (#204))
+=======
+>>>>>>> c548999 (Updating index page to match geekui styling)
         </div>
       <% end %>
 
