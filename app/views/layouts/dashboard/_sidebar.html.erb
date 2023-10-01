@@ -12,8 +12,11 @@
       </li>
       <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
         <li class="nav-item">
-          <%= active_link_to settings_path, class: "nav-link" do %>
-            <i class="nav-icon fe fe-book me-2"></i> Settings
+          <div class="navbar-heading">Menu</div>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to pets_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-book me-2"></i> Pets
           <% end %>
         </li>
         <li class="nav-item">
