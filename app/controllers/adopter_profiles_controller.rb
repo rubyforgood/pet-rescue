@@ -4,8 +4,8 @@ class AdopterProfilesController < ApplicationController
   before_action :check_if_adopter, only: [:new, :create, :update, :show]
 
   # only allow new profile if one does not exist
-  # has_one for location provides new method build_location
-  # https://guides.rubyonrails.org/association_basics.html#has-one-association-reference
+  # belongs_to for location provides new method build_location
+  # https://guides.rubyonrails.org/association_basics.html#the-belongs-to-association
   def new
     if profile_nil?
       @adopter_profile = AdopterProfile.new
