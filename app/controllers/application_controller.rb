@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     current_user.staff_account.organization_id == org_id
   end
 
-  def organization_admin
+  def require_organization_admin
     return if user_signed_in? &&
       current_user.staff_account &&
       current_user.staff_account.has_role?(:admin, current_user.staff_account.organization)
