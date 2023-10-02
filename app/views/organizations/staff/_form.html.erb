@@ -1,0 +1,66 @@
+<!-- form -->
+<%= form_with model: staff, url: "/#{current_tenant.slug}/staff", method: :post do |form| %>
+  <% if staff.user.errors.count > 0 %>
+    <div class="alert alert-danger mt-1" role="alert">
+      <p>
+        <%= t 'adopter_profiles.form.please_fix_the_errors' %>
+      </p>
+    </div>
+  <% end %>
+
+  <%= form.fields_for staff.user do |user_subform| %>
+    <div class="row gx-3">
+      <!-- form group -->
+      <div class="mb-3 col-md-6 col-12">
+        <%= user_subform.label :first_name, class: 'form-label' do %>
+          First name <span class="text-danger">*</span>
+        <% end %>
+        <div class="input-group me-3">
+          <%= user_subform.text_field :first_name, class: 'form-control', required: true %>
+        </div>
+        <% staff.errors.full_messages_for(:first_name).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
+      <!-- form group -->
+      <div class="mb-3 col-md-6 col-12">
+        <%= form.label :last_name, class: 'form-label' do %>
+          Last name <span class="text-danger">*</span>
+        <% end %>
+        <div class="input-group me-3">
+          <%= user_subform.text_field :last_name, class: 'form-control', required: true %>
+        </div>
+        <% staff.errors.full_messages_for(:last_name).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
+      <!-- form group -->
+      <div class="mb-3 col-12">
+        <%= user_subform.label :email, class: 'form-label' do %>
+          Email <span class="text-danger">*</span>
+        <% end %>
+        <div class="input-group">
+          <%= user_subform.text_field :email, class: 'form-control', required: true %>
+        </div>
+        <% staff.user.errors.full_messages_for(:email).each do |message| %>
+          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+        <% end %>
+      </div>
+  <% end %>
+  <!-- form group -->
+  <div class="mb-3 col-md-6 col-12">
+    <%= form.label :role, class: 'form-label' do %>
+      Role <span class="text-danger">*</span>
+    <% end %>
+    <div class="input-group me-3">
+      <%= form.select :role, options_for_select([['Staff', :staff], ['Admin', :admin]], :staff), class: 'form-control', required: true %>
+    </div>
+  </div>
+
+  <!-- button -->
+  <div class="col-12 mt-3">
+    <%= form.submit 'Save profile', class: 'btn btn-primary' %>
+  </div>
+  </div>
+
+<% end %>
