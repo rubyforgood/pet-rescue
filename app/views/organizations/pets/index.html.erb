@@ -14,7 +14,7 @@
 
 <!--create pet button-->
 <%= content_for :button do %>
-  <%= button_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
+  <%= link_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
 <% end %>
 
 <section class="container-fluid p-4">
