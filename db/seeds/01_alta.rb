@@ -72,8 +72,12 @@ ActsAsTenant.with_tenant(organization) do
   @location_one = Location.create!(
     country: "Canada",
     province_state: "Alberta",
+<<<<<<< HEAD
     city_town: "Canmore",
     zipcode: "12345"
+=======
+    city_town: "Canmore"
+>>>>>>> acbc281 (Invert association between Location and AdopterProfile (#225))
   )
 
   @adopter_profile_one = AdopterProfile.create!(
@@ -116,8 +120,12 @@ ActsAsTenant.with_tenant(organization) do
   @location_two = Location.create!(
     country: "USA",
     province_state: "Nevada",
+<<<<<<< HEAD
     city_town: "Reno",
     zipcode: "12345"
+=======
+    city_town: "Reno"
+>>>>>>> acbc281 (Invert association between Location and AdopterProfile (#225))
   )
 
   @adopter_profile_two = AdopterProfile.create!(
@@ -163,8 +171,12 @@ ActsAsTenant.with_tenant(organization) do
   @location_three = Location.create!(
     country: "Nonsense",
     province_state: "Nonsense",
+<<<<<<< HEAD
     city_town: "Nonsense",
     zipcode: "12345"
+=======
+    city_town: "Nonsense"
+>>>>>>> acbc281 (Invert association between Location and AdopterProfile (#225))
   )
 
   @adopter_profile_three = AdopterProfile.create!(

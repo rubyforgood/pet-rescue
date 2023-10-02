@@ -71,8 +71,7 @@ ActsAsTenant.with_tenant(organization) do
   @location_one = Location.create!(
     country: "Canada",
     province_state: "Alberta",
-    city_town: "Canmore",
-    zipcode: "12345"
+    city_town: "Canmore"
   )
 
   @adopter_profile_one = AdopterProfile.create!(
@@ -115,8 +114,7 @@ ActsAsTenant.with_tenant(organization) do
   @location_two = Location.create!(
     country: "USA",
     province_state: "Nevada",
-    city_town: "Reno",
-    zipcode: "12345"
+    city_town: "Reno"
   )
 
   @adopter_profile_two = AdopterProfile.create!(
@@ -162,8 +160,7 @@ ActsAsTenant.with_tenant(organization) do
   @location_three = Location.create!(
     country: "Nonsense",
     province_state: "Nonsense",
-    city_town: "Nonsense",
-    zipcode: "12345"
+    city_town: "Nonsense"
   )
 
   @adopter_profile_three = AdopterProfile.create!(
