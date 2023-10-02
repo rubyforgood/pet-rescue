@@ -1,145 +1,245 @@
-<section class="pt-5 pb-5" id="adoptable_pets_show">
-  <div class="container mb-md-5 mt-md-5">
+<section class="container-fluid p-4">
+  <!--page heading-->
+  <%= provide(:header_title, @pet.name) %>
 
-    <!--page heading-->
-    <div class="text-center mb-5">
-      <h1 class="section-heading text-uppercase underline">
-        <%= @pet.name %>
-      </h1>
+  <!-- row  -->
+  <div class="row">
+    <div class="col-12 mb-4">
+      <!-- nav  -->
+      <ul class="nav nav-lb-tab">
+        <li class="nav-item ms-0 me-3">
+          <a class="nav-link active" href="project-overview.html">Overview</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link " href="project-task.html">Task</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="project-budget.html">Applications</a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" href="project-files.html">Files</a>
+        </li>
+      </ul>
     </div>
+  </div>
+  <div class="row">
 
-    <!--pet tile-->
-    <div class="row">
-      <div class="col-lg-8">
-
-        <!--pet images--> 
-        <% if @pet.images.attached? %>
-          <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <% @pet.images.each_with_index do |image, index| %>
-                <button type="button" data-bs-target="#carouselExampleIndicators" 
-                        data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"
-                        aria-current="true" aria-label="Slide <%= index %>"></button>
-              <% end %>
-            </div>
-            <div class="carousel-inner">
-              <% @pet.images.each_with_index do |image, index| %>
-                  <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag image, class: 'd-block' %>
-                  </div>
-              <% end %>
-            </div>
-            <button class="carousel-control-prev" type="button" 
-                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" 
-                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        <% end %>
-          
-        <!--pet info-->
-        <div class='row mb-3'>
-          <div class='col-md-2 mb-1'>
-            <h5 style='font-weight: bold;'><%= t('general.age') %>:</h5>
-            <h5><%= time_ago_in_words(@pet.birth_date) %></h5>
-          </div>
-          <div class='col-md-2 mb-1'>
-            <h5 style='font-weight: bold;'><%= t('general.sex') %>:</h5>
-            <h5><%= @pet.sex %></h5>
-          </div>
-          <div class='col-md-4 mb-1'>
-            <h5 style='font-weight: bold;'><%= t('general.age') %>:</h5>
-            <h5><%= @pet.breed %></h5>
-          </div>
-          <div class='col-md-4 mb-1'>
-            <h5 style='font-weight: bold;'><%= t('general.weight') %>:</h5>
-            <h5> <%= @pet.weight_from %> to <%= @pet.weight_to %> <%= @pet.weight_unit %></h5>
-          </div>
-        </div>
-
-        <h4 style='font-weight: bold;' class=''>
-          <%= "#{t('general.about')} #{@pet.name}" %>
-        </h4>
-        <p style="white-space: pre-line;">
-          <%= @pet.description %>
-        </p>
-      </div> <!--col-->
-
-      <!--button area-->
-      <div class="col-lg-4 mx-auto d-flex flex-column align-items-center 
-                  justify-content-center mt-5">
-        <% unless @pet.match %>
-          <div class='d-flex align-items-center'>
-              <h3 class='me-2'>
-                <%= @pet.application_paused == true ? t('.application.active') : t('.application.paused') %>
-              </h3>
-              <%= @pet.application_paused == true ? image_tag('pause.png', height: '25'): 
-                                                    image_tag('green_check.png', height: '25')%>
-          </div>
-
-          <div class="border p-3 mt-2 rounded text-center d-flex flex-wrap bigger mb-3">
-            <%= form_with model: @pet do |form|%>
-              <div data-controller='display'>
-                <div class='d-flex form-group' data-display-target='checked'>
-                  <p class='me-2'><%= t('.pause_applications') %></p>
-                  <%= form.label :application_paused, t('general.yes'), value: 'true', class: 'me-2' %>
-                  <%= form.radio_button :application_paused, 
-                                        true, 
-                                        data: { action: "input->display#show" } %>
-                  <%= form.label :application_paused, t('general.no'), value: 'false', class: 'ms-3 me-2' %>
-                  <%= form.radio_button :application_paused, 
-                                        false, 
-                                        data: { action: "input->display#hide" } %>
+    <div class="col-md-12 col-xl-8 col-12">
+      <div class="row">
+        <div class="col-12 mb-4">
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex justify-content-between
+                    align-items-center">
+                <div>
+                  <h4 class="mb-0">Summary</h4>
                 </div>
-
-                <div data-display-target='additional' class="d-flex d-none">
-                  <%= form.label :pause_reason, t('.why'), class: 'me-2' %>
-                  <%= form.select(:pause_reason, 
-                                  Pet.app_pause_reasons, 
-                                  { selected: @pause_reason }, 
-                                  { class: "form-control"}) %>
+                <!-- dropdown  -->
+                <div>
+                        <span class="dropdown dropstart">
+                          <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="DropdownTen" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fe fe-more-vertical"></i>
+                          </a>
+                          <span class="dropdown-menu" aria-labelledby="DropdownTen">
+                            <span class="dropdown-header">Settings</span>
+                            <%= link_to t('general.edit'), edit_pet_path(@pet), class: 'dropdown-item' %>
+                            <%= link_to t('general.delete'), pet_path(@pet), class: 'dropdown-item',
+                                        data:
+                                          {
+                                            turbo_method: :delete,
+                                            turbo_confirm: t('organization_pets.show.are_you_sure_delete')
+                                          } %>
+                          </span>
+                        </span>
                 </div>
               </div>
-              <%= form.submit t('general.save'), class: 'btn btn-outline-dark mb-3 mt-4' %>
-            <% end %>
+
+
+            </div>
+            <div class="card-body">
+              <p><%= @pet.description %> </p>
+
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item px-0">
+                  <div class="d-flex justify-content-between
+                            align-items-center">
+                    <div class="d-flex align-items-center">
+                      <i class="fe fe-book me-2"></i>
+                      <div class="ms-2">
+                        <h5 class="mb-0 text-body">Sex</h5>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <p class="text-dark mb-0 fw-semibold"><%= @pet.sex %></p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item px-0">
+                  <div class="d-flex justify-content-between
+                            align-items-center">
+                    <div class="d-flex align-items-center">
+                      <i class="fe fe-book me-2"></i>
+                      <div class="ms-2">
+                        <h5 class="mb-0 text-body">Breed</h5>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <p class="text-dark mb-0 fw-semibold"><%= @pet.breed %></p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item  px-0">
+                  <div class="d-flex justify-content-between
+                        align-items-center">
+                    <div class="d-flex align-items-center">
+                      <i class="fe fe-book me-2"></i>
+                      <div class="ms-2">
+                        <h5 class="mb-0 text-body">Weight</h5>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <p class="text-dark mb-0 fw-semibold"><%= "#{@pet.weight_from} - #{@pet.weight_to} #{@pet.weight_unit}" %></p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li class="list-group-item px-0 pb-0">
+                  <div class="d-flex
+                          justify-content-between
+                          align-items-center">
+                    <div class="d-flex
+                            align-items-center">
+                      <i class="fe fe-book me-2"></i>
+                      <div class="ms-2">
+                        <h5 class="mb-0 text-body">Application Status</h5>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <p class="text-dark mb-0 fw-semibold">
+                          <%= @pet.application_paused == false ? t('.application.active') : t('.application.paused') %>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
           </div>
-        <% end %>
-
-        <div class="p-2 d-flex flex-column">
-            <%= link_to t('.edit_pet'), edit_pet_path(@pet),
-                        class: 'custom-btn-green mb-2' %>
-            
-            <% if @pet.match %>
-              <%= link_to t('.view_adopter'),
-                          profile_review_path(@pet.match
-                                                  .adopter_account
-                                                  .adopter_profile.id),
-                          class: 'custom-btn-green mb-2'%>
-            <% end %>
         </div>
-        <div class="p-2 d-flex flex-column">
-            <% if @pet.match %>
-              <%= link_to t('.revoke_adoption'), revoke_adoption_path(match_id: @pet.match.id),
-                  class: 'custom-btn-pink mb-2',
-                  data: {
-                    turbo_method: :delete,
-                    turbo_confirm: t('.are_you_sure_revoke')
-                  } %> 
-            <% end %>
+      </div>
 
-            <%= link_to t('general.delete'), pet_path(@pet), class: 'custom-btn-pink mb-2',
-                  data: 
-                        {
-                  turbo_method: :delete,
-                  turbo_confirm: t('.are_you_sure_delete')
-                } %>        
+    </div>
+    <div class="col-md-12 col-xl-4 col-12">
+      <!-- card  -->
+      <div class="card mb-4 bg-primary border-primary">
+        <!-- card body  -->
+        <div class="card-body">
+          <% if @pet.images.attached? %>
+            <%= image_tag @pet.images.first, class: 'card-img-top test' %>
+          <% else %>
+            <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
+          <% end %>
         </div>
-      </div> <!--col-->
-    </div> <!--row-->
-  </div> <!--container-->
+
+      </div>
+      <div class="card">
+        <!-- Card header -->
+        <div class="card-header card-header-height d-flex justify-content-between align-items-center">
+          <div>
+            <h4 class="mb-0">Recent Activity
+            </h4>
+          </div>
+          <div><a href="#">View All</a></div>
+        </div>
+        <!-- Card body -->
+        <div class="card-body">
+          <!-- List group -->
+          <ul class="list-group list-group-flush list-timeline-activity">
+            <li class="list-group-item px-0 pt-0 border-0 pb-6">
+              <div class="row position-relative">
+                <div class="col-auto">
+                  <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                    <i class="fe fe-check"></i>
+                  </div>
+                </div>
+                <div class="col ms-n3">
+                  <h4 class="mb-0 h5">Task Finished</h4>
+                  <p class="mb-0 text-body">Paula finished figma task</p>
+
+                </div>
+                <div class="col-auto">
+                  <span class="text-muted fs-6">2 mins ago</span>
+
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item px-0 pt-0 border-0 pb-6">
+              <div class="row position-relative">
+                <div class="col-auto">
+                  <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                    <i class="fe fe-message-square"></i>
+                  </div>
+                </div>
+                <div class="col ms-n3">
+                  <h4 class="mb-0 h5">New Comment</h4>
+                  <p class="mb-0 text-body">Georg commented on task.</p>
+
+                </div>
+                <div class="col-auto">
+                  <span class="text-muted fs-6">1 hour ago</span>
+
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item px-0 pt-0 border-0 pb-6">
+              <div class="row position-relative">
+                <div class="col-auto">
+                  <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                    <i class="fe fe-alert-triangle"></i>
+                  </div>
+                </div>
+                <div class="col ms-n3">
+                  <h4 class="mb-0 h5">Task Overdue</h4>
+                  <p class="mb-0 text-body">Task <a href="#"><u>status updatd for board</u></a>
+                    is overdue.</p>
+
+                </div>
+                <div class="col-auto">
+                  <span class="text-muted fs-6">1 day</span>
+
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item px-0 pt-0 border-0">
+              <div class="row position-relative">
+                <div class="col-auto">
+                  <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                    <i class="fe fe-mail"></i>
+                  </div>
+                </div>
+                <div class="col ms-n3">
+                  <h4 class="mb-0 h5">Update Send to Client</h4>
+                  <p class="mb-0 text-body">Jitu send email to update design
+                    for client Geeks UI.</p>
+
+                </div>
+                <div class="col-auto">
+                  <span class="text-muted fs-6">1 day</span>
+
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>

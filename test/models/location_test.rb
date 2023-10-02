@@ -2,7 +2,7 @@ require "test_helper"
 
 class LocationTest < ActiveSupport::TestCase
   context "associations" do
-    should belong_to(:adopter_profile)
+    should have_one(:adopter_profile)
   end
 
   context "validations" do
