@@ -36,4 +36,12 @@ class ApplicationController < ActionController::Base
   def pet_in_same_organization?(org_id)
     current_user.staff_account.organization_id == org_id
   end
+
+  def require_organization_admin
+    return if user_signed_in? &&
+      current_user.staff_account &&
+      current_user.staff_account.has_role?(:admin, current_user.staff_account.organization)
+
+    redirect_to root_path, alert: "Unauthorized action."
+  end
 end
