@@ -4,7 +4,7 @@ FactoryBot.define do
 
     trait :with_adopter_profile do
       after :create do |account|
-        create(:adopter_profile, :with_location, adopter_account: account)
+        create(:adopter_profile, adopter_account: account)
       end
     end
   end
@@ -53,12 +53,7 @@ FactoryBot.define do
     referral_source { "friends" }
 
     adopter_account
-
-    trait :with_location do
-      after :create do |profile|
-        create :location, adopter_profile: profile
-      end
-    end
+    location
   end
 
   factory :checklist_assignment do
@@ -84,7 +79,11 @@ FactoryBot.define do
     sequence(:country) { |n| "Country#{n}" }
     province_state { Faker::Address.state }
 
-    adopter_profile
+    trait :with_adopter_profile do
+      after :create do |location|
+        create(:adopter_profile, location: location)
+      end
+    end
   end
 
   factory :organization do
@@ -166,7 +165,7 @@ FactoryBot.define do
       adopter_account
 
       after :create do |user|
-        create :adopter_profile, :with_location, adopter_account: user.adopter_account
+        create :adopter_profile, adopter_account: user.adopter_account
       end
     end
 
