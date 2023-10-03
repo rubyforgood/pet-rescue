@@ -196,6 +196,9 @@ GEM
     google-protobuf (3.23.4-arm64-darwin)
     google-protobuf (3.23.4-x86_64-darwin)
     google-protobuf (3.23.4-x86_64-linux)
+    gretel (4.5.0)
+      actionview (>= 5.1, < 7.1)
+      railties (>= 5.1, < 7.1)
     guard (2.18.0)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -439,6 +442,7 @@ GEM
 PLATFORMS
   arm64-darwin-21
   arm64-darwin-22
+  arm64-darwin-23
   x86_64-darwin-22
   x86_64-linux
 
@@ -464,6 +468,7 @@ DEPENDENCIES
   faker
   figaro
   geocoder
+  gretel (~> 4.5)
   guard (~> 2.18)
   guard-livereload (~> 2.5, >= 2.5.2)
   importmap-rails
