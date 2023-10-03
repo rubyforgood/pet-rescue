@@ -160,7 +160,12 @@ ActsAsTenant.with_tenant(organization) do
   @location_three = Location.create!(
     country: "Nonsense",
     province_state: "Nonsense",
+<<<<<<< HEAD
+    city_town: "Nonsense",
+    zipcode: "12345"
+=======
     city_town: "Nonsense"
+>>>>>>> acbc281 (Invert association between Location and AdopterProfile (#225))
   )
 
   @adopter_profile_three = AdopterProfile.create!(
