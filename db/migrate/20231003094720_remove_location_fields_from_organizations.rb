@@ -6,7 +6,7 @@ class RemoveLocationFieldsFromOrganizations < ActiveRecord::Migration[7.0]
       remove_column :organizations, :zipcode, :string
     end
   end
-  
+
   def down
     add_column :organizations, :city, :string
     add_column :organizations, :country, :string
