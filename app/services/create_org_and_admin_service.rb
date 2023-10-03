@@ -93,12 +93,12 @@ class CreateOrgAndAdminService
 
   def send_email
     return puts "**One or more of the prior steps failed. Email not sent.**" unless @success_counter == 5
-
+    debugger
     SignUpMailer.with(
       user: @user, 
       organization: @organization, 
       password: @password)
-      .create_new_org_and_admin(@organizaton.slug).deliver_now
+      .create_new_org_and_admin(@organization.slug).deliver_now
   end
 
   private
