@@ -1,6 +1,14 @@
+@org_location = Location.create!(
+  country: "Mexico",
+  province_state: "Baja",
+  city_town: "La Ventana",
+  zipcode: "abcdef"
+)
+
 organization = Organization.create!(
   name: "Baja",
-  slug: "baja"
+  slug: "baja",
+  location_id: @org_location.id
 )
 ActsAsTenant.with_tenant(organization) do
   @user_staff_one = User.create!(

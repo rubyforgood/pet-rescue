@@ -1,6 +1,14 @@
+@org_location = Location.create!(
+  country: "Canada",
+  province_state: "Ontario",
+  city_town: "Toronto",
+  zipcode: "12345"
+)
+
 organization = Organization.create!(
   name: "Alta Pet Rescue",
-  slug: "alta"
+  slug: "alta",
+  location_id: @org_location.id
 )
 
 ActsAsTenant.with_tenant(organization) do
