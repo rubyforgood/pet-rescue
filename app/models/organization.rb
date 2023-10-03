@@ -3,11 +3,8 @@
 # Table name: organizations
 #
 #  id         :bigint           not null, primary key
-#  city       :string
-#  country    :string
 #  name       :string
 #  slug       :string
-#  zipcode    :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

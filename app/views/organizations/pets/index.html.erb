@@ -1,4 +1,5 @@
 <%# set @collection to appropriate controller instance variable %>
+<% breadcrumb :dashboard_pets %>
 <% if params[:pet_id] == '' || params[:selection] == 'Seeking Adoption' %>
   <% @collection = @unadopted_pets %>
 <% elsif params[:selection] == 'Adopted' %>
