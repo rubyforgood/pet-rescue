@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_02_150909) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_095748) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -146,9 +146,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_02_150909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
 <<<<<<< HEAD
+<<<<<<< HEAD
     t.string "zipcode"
 =======
 >>>>>>> acbc281 (Invert association between Location and AdopterProfile (#225))
+=======
+    t.string "zipcode"
+>>>>>>> 11802f5 (228 remove location columns on organizations table and add zipcode to locations table (#230))
   end
 
   create_table "matches", force: :cascade do |t|
