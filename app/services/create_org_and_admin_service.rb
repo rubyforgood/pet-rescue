@@ -45,7 +45,7 @@ class CreateOrgAndAdminService
       @user = User.new(
         email: email,
         first_name: first_name,
-        last_name: last_name, 
+        last_name: last_name,
         password: SecureRandom.hex(3)[0, 6],
         tos_agreement: 1
       )
@@ -87,17 +87,18 @@ class CreateOrgAndAdminService
       puts "Admin role added to Staff Account"
       @success_counter += 1
     else
-      puts "**Role not added**" 
+      puts "**Role not added**"
     end
   end
 
   def send_email
     return puts "**One or more of the prior steps failed. Email not sent.**" unless @success_counter == 5
-    debugger
+
     SignUpMailer.with(
-      user: @user, 
-      organization: @organization, 
-      password: @password)
+      user: @user,
+      organization: @organization,
+      password: @password
+    )
       .create_new_org_and_admin(@organization.slug).deliver_now
   end
 

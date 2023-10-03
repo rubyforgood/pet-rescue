@@ -3,4 +3,3 @@ class ValidateAddForeignKeyToOrganization < ActiveRecord::Migration[7.0]
     validate_foreign_key :organizations, :locations
   end
 end
-
