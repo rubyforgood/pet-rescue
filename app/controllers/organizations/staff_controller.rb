@@ -7,15 +7,15 @@ class Organizations::StaffController < Organizations::BaseController
   end
 
   def new
-    @staff = StaffAccount.new(user: User.new)
+    @user = User.new
+    @staff = StaffAccount.new(user: @user)
   end
 
   def create
-    @user = User.new(staff_params[:user].merge(password: SecureRandom.hex(8)))
-    @staff = StaffAccount.new(user: @user, verified: true)
+    @user = User.new(user_params.merge(password: SecureRandom.hex(8)))
 
-    if @user.save && @staff.save
-      @staff.add_role(staff_params[:role])
+    if @user.save
+      # @user.staff_account.add_role(staff_role[:role])
       redirect_to staff_index_path, notice: "Staff saved successfully."
     else
       render :new, status: :unprocessable_entity
@@ -24,8 +24,9 @@ class Organizations::StaffController < Organizations::BaseController
 
   private
 
-  def staff_params
-    params.require(:staff_account)
-      .permit(:role, user: [:first_name, :last_name, :email])
+  def user_params
+    params.require(:user)
+      .permit(:first_name, :last_name, :email,
+        staff_account_attributes: [:roles])
   end
 end
