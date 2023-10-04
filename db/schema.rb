@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_25_130443) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_095748) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,7 +97,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_130443) do
     t.boolean "visit_laventana"
     t.text "visit_dates"
     t.text "referral_source"
+    t.bigint "location_id", null: false
     t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
+    t.index ["location_id"], name: "index_adopter_profiles_on_location_id"
   end
 
   create_table "checklist_assignments", force: :cascade do |t|
@@ -136,7 +138,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_130443) do
   end
 
   create_table "locations", force: :cascade do |t|
-    t.bigint "adopter_profile_id", null: false
     t.string "country"
     t.string "city_town"
     t.string "province_state"
@@ -144,7 +145,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_130443) do
     t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["adopter_profile_id"], name: "index_locations_on_adopter_profile_id", unique: true
+    t.string "zipcode"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -160,9 +161,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_130443) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
-    t.string "city"
-    t.string "country"
-    t.string "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
@@ -236,10 +234,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_25_130443) do
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_profiles", "adopter_accounts"
+  add_foreign_key "adopter_profiles", "locations"
   add_foreign_key "checklist_assignments", "checklist_template_items"
   add_foreign_key "checklist_assignments", "matches"
   add_foreign_key "checklist_template_items", "checklist_templates"
-  add_foreign_key "locations", "adopter_profiles"
   add_foreign_key "matches", "adopter_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "pets", "organizations"

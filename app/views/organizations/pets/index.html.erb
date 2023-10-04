@@ -1,30 +1,27 @@
 <%# set @collection to appropriate controller instance variable %>
-<% if params[:pet_id] == '' || params[:selection] == 'Seeking Adoption'  %> 
+<% breadcrumb :dashboard_pets %>
+<% if params[:pet_id] == '' || params[:selection] == 'Seeking Adoption' %>
   <% @collection = @unadopted_pets %>
 <% elsif params[:selection] == 'Adopted' %>
   <% @collection = @adopted_pets %>
-<% elsif params[:pet_id]  %>
+<% elsif params[:pet_id] %>
   <% @collection = @pet %>
 <% else %>
   <% @collection = @unadopted_pets %>
 <% end %>
 
 <!--page heading-->
-<%= provide(:header_title, t(".our_pets"))  %>
+<%= provide(:header_title, t(".our_pets")) %>
 
 <!--create pet button-->
-<%= content_for :button do  %>
-  <%= button_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
+<%= content_for :button do %>
+  <%= link_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
 <% end %>
 
-
-<section class="pt-5 pb-5" id="pets">
-  <div class="container mb-md-5 mt-md-5">
-
-    <!--filter section-->
-    <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5 mt-md-5">
-      <div class ="col-md-6 d-flex flex-column gap-3">
-
+<section class="container-fluid p-4">
+  <!--filter section-->
+  <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5">
+    <div class ="col-md-6 d-flex flex-column gap-3">
         <!--form1-->
         <%= bootstrap_form_with url: '/pets', method: :get do | f | %>
           <div class="d-flex gap-3 form-group">
@@ -45,37 +42,98 @@
             <%= f.submit t('general.submit'), class: 'btn btn-outline-dark' %>
           </div>
         <% end %>
-
-      </div>
-    </div> 
-
-    <!--pet tile section-->
+    </div>
+  </div>
+  <!-- row -->
+  <div class="row justify-content-md-between mb-4 mb-xl-0 gx-3">
+    <!-- row -->
     <div class="row">
-      <% @collection.each do |pet| %>    
-        <div class="col-lg-4 col-md-6 p-0">
-          <%= link_to pet_path(pet), class: 'text-decoration-none' do %>
-            <div class="card m-4">
-              <% if pet.images.attached? %>
-                <%= image_tag pet.images.first, class: 'card-img-top test' %>
-              <% else %>
-                <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= pet.name %>
-                </h5>
-                <p class="card-text">
-                  <%= "#{t('general.breed')}: #{pet.breed}" %>
-                </p>
-                <p class="card-text">
-                  <%= pet.application_paused == false ? t('.application.active') : t('.application.paused') %>
-                </p>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div> <!--row-->
+      <!-- col -->
+      <div class="col-12">
+        <!-- card -->
+        <div class="card">
+          <!-- table -->
+          <div class="table-responsive overflow-y-hidden">
+            <table class="table mb-0 text-nowrap table-hover table-centered">
+              <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Breed</th>
+                <th scope="col">Weight</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+              </tr>
+              </thead>
+              <tbody>
+              <% @collection.each do |pet| %>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <div class="icon-shape icon-lg rounded-3 border">
+                        <% if pet.images.attached? %>
+                          <%= image_tag pet.images.first, class: 'card-img' %>
+                        <% else %>
+                          <%= image_tag('coming_soon.jpg', class: 'card-img') %>
+                        <% end %>
+                      </div>
+                      <div class="ms-3">
+                        <h4 class="mb-0">
+                          <%= link_to pet.name, pet_path(pet), class: 'text-inherit' %>
+                        </h4>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <%= pet.sex %>
+                  </td>
+                  <td>
+                    <%= pet.breed %>
+                  </td>
+                  <td>
+                    <%= "#{pet.weight_from} - #{pet.weight_to} #{pet.weight_unit}" %>
+                  </td>
+                  <td>
+                    <span class="badge bg-info-soft"><%= pet.application_paused == false ? t('.application.active') : t('.application.paused') %></span>
+                  </td>
+                  <% if current_user.staff_account %>
+                    <td>
+                      <div class="dropdown dropstart">
+                        <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="Dropdown1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fe fe-more-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="Dropdown1">
+                          <span class="dropdown-header">Settings</span>
+                          <%= link_to pet_path(pet), class: 'dropdown-item' do %>
+                            <i class="fe fe-edit dropdown-item-icon"></i>Edit Details
+                          <% end %>
+                          <%= link_to pet_path(pet), class: 'dropdown-item' do %>
+                            <i class="fe fe-link dropdown-item-icon"></i>Copy link
+                          <% end %>
+                          <a class="dropdown-item" href="#">
+                            <i class="fe fe-pause dropdown-item-icon"></i>Pause applications
+                          </a>
+                          <%= link_to t('general.delete'), url: pet_path(pet), class: 'dropdown-item',
+                                      data:
+                              {
+                                turbo_method: :delete,
+                                turbo_confirm: t('.are_you_sure_delete')
+                              } do %>
+                            <i class="fe fe-trash dropdown-item-icon"></i>Delete
 
-  </div> <!--container-->
+                          <% end %>
+
+                        </div>
+                      </div>
+                    </td>
+                  <% end %>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,8 +1,5 @@
 organization = Organization.create!(
   name: "Baja",
-  city: "Baja",
-  country: "Mexico",
-  zipcode: "12345",
   slug: "baja"
 )
 ActsAsTenant.with_tenant(organization) do
@@ -71,7 +68,15 @@ ActsAsTenant.with_tenant(organization) do
 
   @adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
 
+  @location_one = Location.create!(
+    country: "Canada",
+    province_state: "Alberta",
+    city_town: "Canmore",
+    zipcode: "12345"
+  )
+
   @adopter_profile_one = AdopterProfile.create!(
+    location_id: @location_one.id,
     adopter_account_id: @adopter_account_one.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
@@ -107,14 +112,15 @@ ActsAsTenant.with_tenant(organization) do
     referral_source: "my friends friend"
   )
 
-  Location.create!(
-    adopter_profile_id: @adopter_profile_one.id,
-    country: "Canada",
-    province_state: "Alberta",
-    city_town: "Canmore"
+  @location_two = Location.create!(
+    country: "USA",
+    province_state: "Nevada",
+    city_town: "Reno",
+    zipcode: "12345"
   )
 
   @adopter_profile_two = AdopterProfile.create!(
+    location_id: @location_two.id,
     adopter_account_id: @adopter_account_two.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
@@ -153,14 +159,15 @@ ActsAsTenant.with_tenant(organization) do
     referral_source: "my friends friend"
   )
 
-  Location.create!(
-    adopter_profile_id: @adopter_profile_two.id,
-    country: "USA",
-    province_state: "Nevada",
-    city_town: "Reno"
+  @location_three = Location.create!(
+    country: "Nonsense",
+    province_state: "Nonsense",
+    city_town: "Nonsense",
+    zipcode: "12345"
   )
 
   @adopter_profile_three = AdopterProfile.create!(
+    location_id: @location_three.id,
     adopter_account_id: @adopter_account_three.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
@@ -197,13 +204,6 @@ ActsAsTenant.with_tenant(organization) do
     visit_laventana: true,
     visit_dates: "April 2 to May 7 2023",
     referral_source: "my friends friend"
-  )
-
-  Location.create!(
-    adopter_profile_id: @adopter_profile_three.id,
-    country: "Nonsense",
-    province_state: "Nonsense",
-    city_town: "Nonsense"
   )
 
   path = Rails.root.join("app", "assets", "images", "hero.jpg")
