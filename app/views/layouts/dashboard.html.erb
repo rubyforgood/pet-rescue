@@ -3,6 +3,7 @@
 <%= render "layouts/shared/head" %>
 
   <body>
+    <%= render "layouts/shared/flash_messages" %>
     <div id="db-wrapper">
       <%= render "layouts/dashboard/sidebar" %>
 
@@ -267,12 +268,12 @@
                                           fragment_class: "breadcrumb-item" %>
                         </div>
                         <div class="d-flex">
-                          <%= yield :button %>  
+                          <%= yield :button %>
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <%= yield %>
                 </div>
             </section>
