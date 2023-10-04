@@ -40,8 +40,8 @@ class User < ApplicationRecord
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, presence: true, uniqueness: {scope: :organization_id}
-  validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
-    allow_nil: false, on: :create
+  # validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
+  #   allow_nil: false, on: :create
 
   has_one :staff_account, dependent: :destroy
   has_one :adopter_account, dependent: :destroy
