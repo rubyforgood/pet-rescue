@@ -12,11 +12,12 @@ class Organizations::StaffController < Organizations::BaseController
   end
 
   def create
-    @user = User.new(user_params.merge(password: SecureRandom.hex(8)))
+    @user = User.new(user_params.merge(password: SecureRandom.hex(8)).except(:staff_account_attributes))
+    @user.staff_account = StaffAccount.new
 
     if @user.save
-      @user.staff_account.add_role(user_params[:staff_account_attributes][:role])
-      redirect_to staff_index_path, notice: "Staff saved successfully."
+      @user.staff_account.add_role(user_params[:staff_account_attributes][:roles])
+      redirect_to staff_index_path, notice: 'Staff saved successfully.'
     else
       render :new, status: :unprocessable_entity
     end
