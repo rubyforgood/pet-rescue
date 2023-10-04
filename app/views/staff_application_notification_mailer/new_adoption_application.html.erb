@@ -6,10 +6,11 @@
   <body>
     <h1><%= @pet.name %> has received a new adoption application</h1>
     <p>
-      Great news! You have another adoption application to review for <%= @pet.name %>.
+      Great news! You have another adoption application to review for
+      <%= link_to @pet.name, pet_url(@pet, script_name: "/#{@pet.organization.slug}"), target: "_blank" %>
     </p>
     <p>
-      Log-in and check the applications: <a href="<%= @url %>">here</a>.
+      <%= link_to "Log-in and check the applications", new_user_session_url(script_name: "/#{@pet.organization.slug}"), target: "_blank" %>
     </p>
     <p>Have a great day!</p>
   </body>
