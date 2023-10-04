@@ -15,7 +15,7 @@ class Organizations::StaffController < Organizations::BaseController
     @user = User.new(user_params.merge(password: SecureRandom.hex(8)))
 
     if @user.save
-      # @user.staff_account.add_role(staff_role[:role])
+      @user.staff_account.add_role(user_params[:staff_account_attributes][:role])
       redirect_to staff_index_path, notice: "Staff saved successfully."
     else
       render :new, status: :unprocessable_entity
