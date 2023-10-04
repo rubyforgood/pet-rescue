@@ -77,7 +77,7 @@ class CreateOrgAndAdminService
   def send_email
     return puts "**One or more of the prior steps failed. Email not sent.**" unless @success_counter == 4
 
-    SignUpMailer.with(
+    OrganizationMailer.with(
       user: @user,
       organization: @organization,
       password: @password
