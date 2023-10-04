@@ -17,7 +17,7 @@ class Organizations::StaffController < Organizations::BaseController
 
     if @user.save
       @user.staff_account.add_role(user_params[:staff_account_attributes][:roles])
-      redirect_to staff_index_path, notice: 'Staff saved successfully.'
+      redirect_to staff_index_path, notice: "Staff saved successfully."
     else
       render :new, status: :unprocessable_entity
     end
