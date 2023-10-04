@@ -6,7 +6,6 @@ class CreateOrgAndAdminService
   end
 
   def create_organization(name, slug)
-    return puts "Location required" unless @location
     return puts "Organization with that name or slug already exists" if org_name_or_slug_in_use?(name, slug)
 
     @organization = Organization.new(
@@ -98,6 +97,6 @@ class CreateOrgAndAdminService
   end
 
   def org_name_or_slug_in_use?(name, slug)
-    # finish me
+    Organization.exists?(name: name) || Organization.exists?(slug: slug)
   end
 end
