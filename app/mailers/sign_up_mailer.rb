@@ -25,12 +25,4 @@ class SignUpMailer < ApplicationMailer
       to: "wcrwater@gmail.com",
       subject: "New Staff Account")
   end
-
-  def create_new_org_and_admin(tenant_org)
-    @organization = params[:organization]
-    @user = params[:user]
-    mail(from: MultiTenantService.new(tenant_org).default_email,
-      to: @user.email,
-      subject: "Pet Rescue - New Organization Sign Up")
-  end
 end
