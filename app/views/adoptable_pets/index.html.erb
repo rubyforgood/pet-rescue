@@ -13,34 +13,7 @@
 <section class="pb-5" id="adoptable_pets">
   <div class="container">
     <div class="row">
-      <% @pets.each do |pet| %>    
-        <div class="col-lg-4 col-md-6 p-0">
-          <%= link_to adoptable_pet_path(pet), class: 'text-decoration-none' do %>
-            <div class="card m-4" style='overflow: hidden'>
-              <% if pet.images.attached? %>
-                <%= image_tag pet.images.first, class: 'card-img-top pet-card' %>
-              <% else %>
-                <%= image_tag('coming_soon.jpg', class: 'card-img-top pet-card') %>
-              <% end %>
-              <div class="card-body bg-white" style='z-index: 1000'>
-                  <h3 class="card-title">
-                    <% if pet.has_adoption_pending? %>
-                      <%= "#{pet.name} #{t('general.adoption_pending')}" %>
-                    <% else %>
-                      <%= pet.name %>
-                    <% end %>
-                  </h3>
-                <p class="card-text m-0 bigger">
-                  <%= "#{t('general.age')}: #{time_ago_in_words(pet.birth_date)}" %>
-                </p>
-                <p class="card-text bigger">
-                  <%= "#{t('general.breed')}: #{pet.breed}" %>
-                </p>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
+      <%= render partial:"partials/pet_card", collection: @pets, as: :pet %>
     </div>
   </div> <!--container-->
 </section>

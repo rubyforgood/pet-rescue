@@ -148,7 +148,7 @@ end
 gem "chartkick", "~> 5.0"
 
 # Adds location data for cities and states around the world
-gem "city-state", "~> 0.1.0"
+gem "city-state", "~> 1.1.0"
 
 # Adds a simple way to fetch with Javascript
 gem "requestjs-rails", "~> 0.0.10"
