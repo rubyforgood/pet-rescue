@@ -110,19 +110,23 @@
                           <%= link_to pet_path(pet), class: 'dropdown-item' do %>
                             <i class="fe fe-link dropdown-item-icon"></i>Copy link
                           <% end %>
-                          <a class="dropdown-item" href="#">
-                            <i class="fe fe-pause dropdown-item-icon"></i>Pause applications
-                          </a>
-                          <%= link_to t('general.delete'), url: pet_path(pet), class: 'dropdown-item',
-                                      data:
-                              {
-                                turbo_method: :delete,
-                                turbo_confirm: t('.are_you_sure_delete')
-                              } do %>
-                            <i class="fe fe-trash dropdown-item-icon"></i>Delete
-
+                          <% if pet.application_paused %>
+                            <%= button_to pet, method: :put, class: 'dropdown-item', params: {pet: {application_paused: false }} do %>
+                              <i class="fe fe-play dropdown-item-icon"></i>Resume applications
+                            <% end %>
+                          <% else %>
+                            <%= button_to pet, method: :put, class: 'dropdown-item', params: {pet: {application_paused: true}} do %>
+                              <i class="fe fe-pause dropdown-item-icon"></i>Pause applications
+                            <% end %>
                           <% end %>
-
+                          <%= link_to t('general.delete'), url: pet_path(pet), class: 'dropdown-item',
+                                    data:
+                            {
+                              turbo_method: :delete,
+                              turbo_confirm: t('.are_you_sure_delete')
+                            } do %>
+                          <i class="fe fe-trash dropdown-item-icon"></i>Delete
+                        <% end %>
                         </div>
                       </div>
                     </td>
