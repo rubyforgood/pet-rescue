@@ -11,41 +11,18 @@
 <% end %>
 
 <!--page heading-->
-<<<<<<< HEAD
-<<<<<<< HEAD
 <%= provide(:header_title, t(".our_pets")) %>
-=======
-<%= provide(:header_title, t(".our_pets"))  %>
-=======
-<%= provide(:header_title, t(".our_pets")) %>
->>>>>>> c548999 (Updating index page to match geekui styling)
 
 <!--create pet button-->
 <%= content_for :button do %>
   <%= link_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
 <% end %>
 
-<<<<<<< HEAD
->>>>>>> 5c7af82 (Pets index styling (#204))
-
-<!--create pet button-->
-<%= content_for :button do %>
-  <%= link_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
-<% end %>
-
-<<<<<<< HEAD
 <section class="container-fluid p-4">
   <!--filter section-->
   <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5">
     <div class ="col-md-6 d-flex flex-column gap-3">
 
-=======
-<section class="container-fluid p-4">
-  <!--filter section-->
-  <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5">
-    <div class ="col-md-6 d-flex flex-column gap-3">
-
->>>>>>> c548999 (Updating index page to match geekui styling)
       <!--form1-->
       <%= form_with url: "/#{current_tenant.slug}/pets", method: :get do | f | %>
         <div class="d-flex gap-3 form-group">
@@ -53,63 +30,6 @@
                        { prompt: t('.filter') },
                        class: 'form-control' %>
           <%= f.submit t('general.submit'), class: 'btn btn-outline-dark' %>
-<<<<<<< HEAD
-=======
-    <!--filter section-->
-    <div class="row p-4 border rounded-5 ms-2 ms-md-0 me-2 me-md-0 mb-md-5 mt-md-5">
-      <div class ="col-md-6 d-flex flex-column gap-3">
-
-        <!--form1-->
-        <%= form_with url: '/pets', method: :get do | f | %>
-          <div class="d-flex gap-3 form-group">
-            <%= f.select :selection, [[t('.select.seeking_adoption'), 'Seeking Adoption'], [t('.select.adopted'), 'Adopted']],
-                          { prompt: t('.filter') },
-                          class: 'form-control' %>
-            <%= f.submit t('general.submit'), class: 'btn btn-outline-dark' %>
-          </div>
-        <% end %>
-        
-        <!--form2-->
-        <%# only show pet name seletion if collection is greater than e.g., 5 pets? %>
-        <%= form_with url: '/pets', class: 'mb-3 mb-md-0', method: :get do | f | %>
-          <div class="d-flex gap-3 form-group">
-            <%= f.collection_select :pet_id, @collection, :id, :name, 
-                                    { prompt: t('.filter_by_name') },
-                                    class: 'form-control' %>
-            <%= f.submit t('general.submit'), class: 'btn btn-outline-dark' %>
-          </div>
-        <% end %>
-
-      </div>
-    </div> 
-
-    <!--pet tile section-->
-    <div class="row">
-      <% @collection.each do |pet| %>    
-        <div class="col-lg-4 col-md-6 p-0">
-          <%= link_to pet_path(pet), class: 'text-decoration-none' do %>
-            <div class="card m-4">
-              <% if pet.images.attached? %>
-                <%= image_tag pet.images.first, class: 'card-img-top test' %>
-              <% else %>
-                <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= pet.name %>
-                </h5>
-                <p class="card-text">
-                  <%= "#{t('general.breed')}: #{pet.breed}" %>
-                </p>
-                <p class="card-text">
-                  <%= pet.application_paused == false ? t('.application.active') : t('.application.paused') %>
-                </p>
-              </div>
-            </div>
-          <% end %>
->>>>>>> 5c7af82 (Pets index styling (#204))
-=======
->>>>>>> c548999 (Updating index page to match geekui styling)
         </div>
       <% end %>
 
