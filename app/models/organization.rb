@@ -10,7 +10,10 @@
 #
 class Organization < ApplicationRecord
   resourcify # rolify
+
   has_many :staff_accounts
   has_many :users, through: :staff_accounts
   has_many :pets
+  
+  has_one :profile, dependent: :destroy, class_name: 'OrganizationProfile' #, required: true
 end

@@ -90,6 +90,20 @@ FactoryBot.define do
   factory :organization do
     name { Faker::Company.name }
     slug { Faker::Internet.domain_word }
+
+    trait :with_profile do
+      after :create do |organization|
+        create(:organization_profile, organization: organization)
+      end
+    end
+  end
+
+  factory :organization_profile do
+    email { Faker::Internet.email }
+    phone_number { Faker::PhoneNumber.phone_number }
+
+    location
+    organization
   end
 
   factory :pet do

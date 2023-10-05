@@ -14,6 +14,8 @@
 #
 class Location < ApplicationRecord
   has_one :adopter_profile
+  has_one :organization_profile
+
   geocoded_by :address
   after_validation :geocode
 
