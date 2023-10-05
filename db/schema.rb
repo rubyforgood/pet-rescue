@@ -182,7 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_182930) do
     t.integer "weight_from", null: false
     t.integer "weight_to", null: false
     t.string "weight_unit", null: false
-    t.integer "species"
+    t.integer "species", null: false
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
