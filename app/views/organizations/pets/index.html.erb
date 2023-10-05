@@ -119,14 +119,9 @@
                               <i class="fe fe-pause dropdown-item-icon"></i>Pause applications
                             <% end %>
                           <% end %>
-                          <%= link_to t('general.delete'), url: pet_path(pet), class: 'dropdown-item',
-                                    data:
-                            {
-                              turbo_method: :delete,
-                              turbo_confirm: t('.are_you_sure_delete')
-                            } do %>
-                          <i class="fe fe-trash dropdown-item-icon"></i>Delete
-                        <% end %>
+                          <%= button_to pet, method: :delete, class: 'dropdown-item', data: { turbo_confirm: t('.are_you_sure_delete') } do %>
+                            <i class="fe fe-trash dropdown-item-icon"></i>Delete
+                          <% end %>
                         </div>
                       </div>
                     </td>
