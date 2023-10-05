@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_03_095748) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_05_144432) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -157,6 +157,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_095748) do
     t.index ["adopter_account_id"], name: "index_matches_on_adopter_account_id"
     t.index ["organization_id"], name: "index_matches_on_organization_id"
     t.index ["pet_id"], name: "index_matches_on_pet_id"
+  end
+
+  create_table "organization_profiles", force: :cascade do |t|
+    t.string "email"
+    t.string "phone_number"
+    t.bigint "location_id"
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_organization_profiles_on_location_id"
+    t.index ["organization_id"], name: "index_organization_profiles_on_organization_id"
   end
 
   create_table "organizations", force: :cascade do |t|
