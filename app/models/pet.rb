@@ -31,6 +31,7 @@ class Pet < ApplicationRecord
   has_many :adopter_applications, dependent: :destroy
   has_one :match, dependent: :destroy
   has_many_attached :images
+  enum species: ["dog", "cat"]
 
   validates :name, presence: true
   validates :birth_date, presence: true
