@@ -80,7 +80,6 @@ class CreateOrgAndAdminService
     OrganizationMailer.with(
       user: @user,
       organization: @organization,
-      password: @password
     )
       .create_new_org_and_admin(@organization.slug).deliver_now
   end
