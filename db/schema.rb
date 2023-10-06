@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_03_095748) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_03_182930) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -180,6 +180,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_03_095748) do
     t.integer "weight_from", null: false
     t.integer "weight_to", null: false
     t.string "weight_unit", null: false
+    t.integer "species", null: false
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 

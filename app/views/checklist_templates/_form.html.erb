@@ -1,4 +1,4 @@
-<%= form_with(model: checklist_template) do |form| %>
+<%= bootstrap_form_with(model: checklist_template) do |form| %>
   <% if checklist_template.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(checklist_template.errors.count, "error") %> prohibited this checklist_template from being saved:</h2>
@@ -12,12 +12,10 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
   </div>
 

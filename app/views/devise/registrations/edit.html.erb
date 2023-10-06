@@ -17,13 +17,12 @@
     <div>
       <div class="row">
         <div class="col-md-6 mx-auto card p-5">
-          <%= form_for(resource, as: resource_name, 
+          <%= bootstrap_form_for(resource, as: resource_name, 
                                  url: registration_path(resource_name), 
                                  html: { method: :put }) do |f| %>
             <%= render "devise/shared/error_messages", resource: resource %>
 
             <div class="form-group mb-3">
-              <%= f.label :email %><br />
               <%= f.email_field :email, autofocus: true, autocomplete: "email", 
                                  class: 'form-control' %>
             </div>
@@ -35,35 +34,30 @@
             <% end %>
 
             <div class="form-group mb-3">
-              <%= f.label :password, 'New password' %> 
               <i>(leave blank if you don't want to change it)</i><br />
               <%= f.password_field :password, autocomplete: "new-password", 
-                                    class: 'form-control' %>
+                                    class: 'form-control', label: 'New password' %>
               <% if @minimum_password_length %>
                 <em><%= @minimum_password_length %> characters minimum</em>
               <% end %>
             </div>
 
             <div class="form-group mb-3">
-              <%= f.label :password_confirmation, 'Confirm new password' %><br />
               <%= f.password_field :password_confirmation, autocomplete: "new-password", 
-                                    class: 'form-control' %>
+                                    class: 'form-control', label: 'Confirm new password' %>
             </div>
 
             <div class="form-group mb-3">
-              <%= f.label :first_name %><br />
               <%= f.text_field :first_name, 
                                 class: 'form-control' %>
             </div>
 
             <div class="form-group mb-3">
-              <%= f.label :last_name %><br />
               <%= f.text_field :last_name, 
                                 class: 'form-control' %>
             </div>
 
             <div class="form-group mb-3">
-              <%= f.label :current_password %> 
                           <i>(we need your current password to confirm your changes)</i><br />
               <%= f.password_field :current_password, 
                                   autocomplete: "current-password",
