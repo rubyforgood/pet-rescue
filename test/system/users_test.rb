@@ -31,7 +31,8 @@ class UsersTest < ApplicationSystemTestCase
   test "non-authenticated user attempts to log out" do
     visit root_url
     refute has_button?("Sign out")
-    assert_equal current_path, "/yundt/home"
+    expected_path = "/" + @organization.slug + "/home"
+    assert_equal current_path, expected_path
     assert_text "Rescue a really cute pet and be a hero"
   end
 end
