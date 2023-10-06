@@ -1,4 +1,4 @@
-<%= form_with(model: checklist_template_item) do |form| %>
+<%= bootstrap_form_with(model: checklist_template_item) do |form| %>
   <% if checklist_template_item.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(checklist_template_item.errors.count, "error") %> prohibited this checklist_template_item from being saved:</h2>
@@ -12,27 +12,22 @@
   <% end %>
 
   <div>
-    <%= form.label :checklist_template_id, style: "display: block" %>
     <%= form.collection_select(:checklist_template_id, ChecklistTemplate.all, :id, :name) %>
   </div>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
   </div>
 
   <div>
-    <%= form.label :expected_duration_days, style: "display: block" %>
     <%= form.number_field :expected_duration_days %>
   </div>
 
   <div>
-    <%= form.label :required, style: "display: block" %>
     <%= form.check_box :required %>
   </div>
 
