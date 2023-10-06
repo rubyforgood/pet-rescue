@@ -198,11 +198,16 @@
                     </div>
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
-                        <li>
-                          <%= button_to destroy_user_session_path, method: :delete, class: 'dropdown-item', form: {data: {turbo: false}} do %>
-                            <i class= 'fe fe-power me-2'></i> Sign Out
-                          <% end %>
-                        </li>
+                      <li>
+                        <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+                          <i class="fe fe-settings me-2"></i> Account Settings
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= button_to destroy_user_session_path, method: :delete, class: 'dropdown-item', form: {data: {turbo: false}} do %>
+                          <i class= 'fe fe-power me-2'></i> Sign Out
+                        <% end %>
+                      </li>
                     </ul>
                   </div>
                 </li>
