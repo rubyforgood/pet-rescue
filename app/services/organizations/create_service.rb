@@ -22,6 +22,8 @@ class Organizations::CreateService
     puts "An error occurred: #{e.message}"
   end
 
+  private
+
   def create_organization(name, slug)
     @organization = Organization.create!(
       name: name,
