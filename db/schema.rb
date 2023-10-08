@@ -162,8 +162,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_144432) do
   create_table "organization_profiles", force: :cascade do |t|
     t.string "email"
     t.string "phone_number"
-    t.bigint "location_id"
-    t.bigint "organization_id"
+    t.bigint "location_id", null: false
+    t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_organization_profiles_on_location_id"
@@ -252,6 +252,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_05_144432) do
   add_foreign_key "checklist_template_items", "checklist_templates"
   add_foreign_key "matches", "adopter_accounts"
   add_foreign_key "matches", "pets"
+  add_foreign_key "organization_profiles", "locations"
+  add_foreign_key "organization_profiles", "organizations"
   add_foreign_key "pets", "organizations"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"

@@ -7,13 +7,18 @@
 #  phone_number    :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  location_id     :bigint
-#  organization_id :bigint
+#  location_id     :bigint           not null
+#  organization_id :bigint           not null
 #
 # Indexes
 #
 #  index_organization_profiles_on_location_id      (location_id)
 #  index_organization_profiles_on_organization_id  (organization_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (location_id => locations.id)
+#  fk_rails_...  (organization_id => organizations.id)
 #
 class OrganizationProfile < ApplicationRecord
   belongs_to :location
