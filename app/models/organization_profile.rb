@@ -18,4 +18,17 @@
 class OrganizationProfile < ApplicationRecord
   belongs_to :location
   belongs_to :organization
+
+  accepts_nested_attributes_for :location
+  validates_associated :location
+
+  before_save :normalize_phone
+
+  validates :phone_number, phone: {possible: true}
+
+  private
+
+  def normalize_phone
+    self.phone_number = Phonelib.parse(phone_number).full_e164.presence
+  end
 end
