@@ -8,7 +8,7 @@ orga_location = Location.create!(
 organization = Organization.create!(
   name: "Alta Pet Rescue",
   slug: "alta",
-  profile: OrganizationProfile.new(email: 'alta@email.com', phone_number: '+123 456 789', location: orga_location)
+  profile: OrganizationProfile.new(email: "alta@email.com", phone_number: "+123 456 789", location: orga_location)
 )
 
 ActsAsTenant.with_tenant(organization) do

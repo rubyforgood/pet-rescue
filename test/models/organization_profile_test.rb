@@ -11,7 +11,7 @@ class OrganizationProfileTest < ActiveSupport::TestCase
   context "callbacks" do
     subject { build(:organization_profile, :with_organization) }
 
-    should 'call normalize phone when saving' do
+    should "call normalize phone when saving" do
       assert subject.expects(:normalize_phone).at_least_once
 
       subject.save

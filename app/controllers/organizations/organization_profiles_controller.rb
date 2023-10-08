@@ -7,7 +7,7 @@ class Organizations::OrganizationProfilesController < ApplicationController
 
   def update
     @organization_profile = Current.organization.profile
-    
+
     respond_to do |format|
       if @organization_profile.update(organization_profile_params)
         format.html { redirect_to dashboard_index_path, notice: "Profile updated" }
@@ -23,6 +23,7 @@ class Organizations::OrganizationProfilesController < ApplicationController
     params.require(:organization_profile).permit(
       :phone_number,
       :email,
-      location_attributes: %i[city_town country province_state id])
+      location_attributes: %i[city_town country province_state id]
+    )
   end
 end
