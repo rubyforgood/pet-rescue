@@ -19,7 +19,7 @@ class Organizations::CreateService
       send_email
     end
   rescue => e
-    puts "An error occurred: #{e.message}"
+    raise "An error occurred: #{e.message}"
   end
 
   private
@@ -54,7 +54,7 @@ class Organizations::CreateService
   end
 
   def add_admin_role_to_staff_account
-    @staff_account.add_role(:admin)
+    # @staff_account.add_role(:admin)
 
     if !@staff_account.has_role?(:admin)
       raise StandardError, "Failed to add admin role"
