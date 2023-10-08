@@ -1,0 +1,35 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "kasugaijin",
+      "name": "Ben",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95949082?v=4",
+      "profile": "https://github.com/kasugaijin",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "marlena-b",
+      "name": "Marlena Borowiec",
+      "avatar_url": "https://avatars.githubusercontent.com/u/96994176?v=4",
+      "profile": "https://github.com/marlena-b",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "pet-rescue",
+  "projectOwner": "rubyforgood"
+}

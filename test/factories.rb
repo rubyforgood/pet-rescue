@@ -115,7 +115,7 @@ FactoryBot.define do
     weight_from { 10 }
     weight_to { 20 }
     weight_unit { "lb" }
-
+    species { Faker::Number.within(range: 0..1) }
     organization
 
     trait :adoption_pending do
