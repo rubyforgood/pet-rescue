@@ -9,7 +9,7 @@ class Organizations::OrganizationProfilesController < ApplicationController
     @organization_profile = Current.organization.profile
     
     respond_to do |format|
-      if @organization_profile.update(adopter_profile_params)
+      if @organization_profile.update(organization_profile_params)
         format.html { redirect_to dashboard_index_path, notice: "Profile updated" }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -19,7 +19,7 @@ class Organizations::OrganizationProfilesController < ApplicationController
 
   private
 
-  def adopter_profile_params
+  def organization_profile_params
     params.require(:organization_profile).permit(
       :phone_number,
       :email,
