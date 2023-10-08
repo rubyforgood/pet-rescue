@@ -1,5 +1,5 @@
-class Organizations::OrganizationProfilesController < ApplicationController
-  before_action :verified_staff
+class Organizations::OrganizationProfilesController < Organizations::BaseController
+  layout "dashboard"
 
   def edit
     @organization_profile = Current.organization.profile
