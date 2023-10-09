@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -152,6 +152,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/kasugaijin"><img src="https://avatars.githubusercontent.com/u/95949082?v=4?s=100" width="100px;" alt="Ben"/><br /><sub><b>Ben</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=kasugaijin" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/marlena-b"><img src="https://avatars.githubusercontent.com/u/96994176?v=4?s=100" width="100px;" alt="Marlena Borowiec"/><br /><sub><b>Marlena Borowiec</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=marlena-b" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Ptrboro"><img src="https://avatars.githubusercontent.com/u/16762860?v=4?s=100" width="100px;" alt="Piotr Borowiec"/><br /><sub><b>Piotr Borowiec</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Ptrboro" title="Code">💻</a> <a href="https://github.com/rubyforgood/pet-rescue/pulls?q=is%3Apr+reviewed-by%3APtrboro" title="Reviewed Pull Requests">👀</a></td>
     </tr>
   </tbody>
 </table>
