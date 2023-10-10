@@ -1,6 +1,14 @@
+orga_location = Location.create!(
+  country: "USA",
+  province_state: "Nevada",
+  city_town: "BajaCity",
+  zipcode: "12346"
+)
+
 organization = Organization.create!(
   name: "Baja",
-  slug: "baja"
+  slug: "baja",
+  profile: OrganizationProfile.new(email: "baja@email.com", phone_number: "123 456 7891", location: orga_location)
 )
 ActsAsTenant.with_tenant(organization) do
   @user_staff_one = User.create!(

@@ -204,6 +204,11 @@
                         <% end %>
                       </li>
                       <li>
+                        <%= link_to edit_organization_profile_path, class: 'dropdown-item' do %>
+                          <i class="fe fe-user me-2"></i> Profile
+                        <% end %>
+                      </li>
+                      <li>
                         <%= button_to destroy_user_session_path, method: :delete, class: 'dropdown-item', form: {data: {turbo: false}} do %>
                           <i class= 'fe fe-power me-2'></i> Sign Out
                         <% end %>

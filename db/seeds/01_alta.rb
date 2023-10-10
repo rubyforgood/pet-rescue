@@ -1,6 +1,14 @@
+orga_location = Location.create!(
+  country: "USA",
+  province_state: "Nevada",
+  city_town: "AltaCity",
+  zipcode: "12345"
+)
+
 organization = Organization.create!(
   name: "Alta Pet Rescue",
-  slug: "alta"
+  slug: "alta",
+  profile: OrganizationProfile.new(email: "alta@email.com", phone_number: "123 456 7890", location: orga_location)
 )
 
 ActsAsTenant.with_tenant(organization) do

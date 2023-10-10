@@ -142,6 +142,11 @@ en:
           paused: "Applications: paused"
       new:
         new_pet_post: "New Pet Post"
+    organization_profiles:
+      form:
+        please_fix_the_errors: "Please fix the errors highlighted below."
+      edit:
+        edit_profile: "Edit Profile"
   adopter_applications:
     index:
       adoption_applications: "Adoption Applications"

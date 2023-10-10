@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   resources :donations, only: [:create]
 
   scope module: :organizations do
+    resource :organization_profile, only: %i[edit update]
+
     resources :home, only: [:index]
     resources :pets
     resources :dashboard
