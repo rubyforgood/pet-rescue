@@ -1,0 +1,39 @@
+<!-- form -->
+<%= bootstrap_form_with model: user, url: invitation_path(user) do |form| %>
+
+  <div class="row gx-3">
+    <!-- form group -->
+    <div class="mb-3 col-md-6 col-12">
+      <div class="input-group me-3">
+        <%= form.text_field :first_name, class: 'form-control', required: true %>
+      </div>
+    </div>
+    <!-- form group -->
+    <div class="mb-3 col-md-6 col-12">
+      <div class="input-group me-3">
+        <%= form.text_field :last_name, class: 'form-control', required: true %>
+      </div>
+    </div>
+    <!-- form group -->
+    <div class="mb-3 col-12">
+      <div class="input-group">
+        <%= form.text_field :email, class: 'form-control', required: true %>
+      </div>
+    </div>
+
+    <!-- form group -->
+    <%= form.fields_for :staff_account do |staff_subform| %>
+      <div class="mb-3 col-md-6 col-12">
+        <div class="input-group me-3">
+          <%= staff_subform.select :roles, options_for_select([['Staff', :staff], ['Admin', :admin]]), class: 'form-control', required: true %>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- button -->
+    <div class="col-12 mt-3">
+      <%= form.submit 'Save profile', class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+<% end %>
