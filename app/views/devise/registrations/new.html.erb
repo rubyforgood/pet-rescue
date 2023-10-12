@@ -34,13 +34,13 @@
           </div>
 
           <div class="form-group mb-3 bigger">
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
             <%= f.password_field :password,
                                  required: true,
                                  autocomplete: "new-password",
                                  class: 'form-control' %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
           </div>
 
           <div class="form-group mb-3 bigger">
