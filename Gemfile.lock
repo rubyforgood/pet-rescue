@@ -142,6 +142,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.8)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     docile (1.4.0)
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
@@ -272,6 +275,8 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
+    nice_partials (0.10.0)
+      actionview (>= 4.2.6)
     nio4r (2.5.9)
     nokogiri (1.15.3)
       mini_portile2 (~> 2.8.2)
@@ -476,6 +481,7 @@ DEPENDENCIES
   dartsass-rails
   debug
   devise
+  devise_invitable (~> 2.0.0)
   evil_systems (~> 1.1)
   factory_bot_rails
   faker
@@ -488,6 +494,7 @@ DEPENDENCIES
   jbuilder
   letter_opener
   mocha
+  nice_partials
   pg (~> 1.1)
   phonelib
   pry (~> 0.14.2)

@@ -154,6 +154,12 @@ FactoryBot.define do
     trait :unverified do
       verified { false }
     end
+
+    trait :admin do
+      after :create do |staff_account|
+        staff_account.add_role(:admin, staff_account.organization)
+      end
+    end
   end
 
   factory :user do
@@ -166,6 +172,10 @@ FactoryBot.define do
 
     trait :verified_staff do
       staff_account
+    end
+
+    trait :staff_admin do
+      association(:staff_account, :admin)
     end
 
     trait :unverified_staff do

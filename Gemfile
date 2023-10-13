@@ -54,6 +54,8 @@ gem "bootstrap_form", "~> 5.3"
 # Devise Authentication
 gem "devise"
 
+gem "devise_invitable", "~> 2.0.0"
+
 # Use Sass to process CSS
 gem "dartsass-rails"
 
@@ -86,6 +88,7 @@ gem "rails-i18n"
 
 # Provides helper methods to easily add 'active' tag on links
 gem "active_link_to"
+gem "nice_partials"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

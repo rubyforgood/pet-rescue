@@ -50,6 +50,16 @@ en:
     submit: "Submit"
     status: "Status"
     back: "Back"
+  activerecord:
+    models:
+      location: Location
+    attributes:
+      location:
+        country: Country
+        province_state: Province/State
+        city_town: City/Town
+        latitude: Latitude
+        longitude: Longitude
   errors:
     attributes:
       general:
