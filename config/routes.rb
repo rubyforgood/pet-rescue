@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: {
     registrations: "registrations",
-    sessions: "users/sessions"
+    sessions: "users/sessions",
+    invitations: "organizations/invitations"
   }
 
   resources :adoptable_pets, only: [:index, :show]

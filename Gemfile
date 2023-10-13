@@ -54,6 +54,8 @@ gem "bootstrap_form", "~> 5.3"
 # Devise Authentication
 gem "devise"
 
+gem "devise_invitable", "~> 2.0.0"
+
 # Use Sass to process CSS
 gem "dartsass-rails"
 

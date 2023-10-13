@@ -10,6 +10,7 @@
 #  name               :string
 #  pause_reason       :integer          default("not_paused")
 #  sex                :string
+#  species            :integer          not null
 #  weight_from        :integer          not null
 #  weight_to          :integer          not null
 #  weight_unit        :string           not null
