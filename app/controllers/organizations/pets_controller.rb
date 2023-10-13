@@ -21,7 +21,7 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def show
-    @active_tab = params[:active_tab] || "overview"
+    @active_tab = ["overview", "tasks", "applications", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
     @pet = Pet.find(params[:id])
     @pause_reason = @pet.pause_reason
     return if pet_in_same_organization?(@pet.organization_id)
