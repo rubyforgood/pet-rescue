@@ -1,0 +1,10 @@
+.nav-link {
+  color: #888;
+  /* other styles for non-active tabs */
+}
+
+.nav-link.active {
+  color: #333;
+  font-weight: bold;
+  /* other styles for the active tab */
+}
