@@ -3,7 +3,7 @@
     <!-- Pet Info -->
     <div class="col-xl-12 col-lg-12 col-md-12 col-12">
       <div class="pt-16 rounded-top-md bg-gray-200"></div>
-      <div class="d-flex align-items-end justify-content-between bg-white px-4 pt-2 pb-4 rounded-none rounded-bottom-md shadow-sm">
+      <div class="d-flex align-items-center justify-content-between bg-white px-4 pt-2 pb-4 rounded-none rounded-bottom-md shadow-sm">
         <div class="d-flex align-items-center">
           <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
             <% if @pet.images.attached? %>
@@ -18,7 +18,7 @@
           </div>
         </div>
         <div>
-          <a href="add-course.html" class="btn btn-primary btn-sm d-none d-md-block">Become an adopter</a>
+          <%= link_to 'Become an adopter', new_user_registration_path, class: 'btn btn-primary btn-sm d-none d-md-block' %>
         </div>
       </div>
     </div>
@@ -60,7 +60,7 @@
           </div>
         <% end %>
 
-        <%= render partial:"partials/pet_card_bigger", pet: @pet %>
+        <%= render partial: "partials/pet_card_bigger", pet: @pet %>
       </div>
 
       <div class=' col-lg-6 ps-3 pe-3 ps-lg-0 pe-lg-0'>
