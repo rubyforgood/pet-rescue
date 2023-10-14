@@ -22,7 +22,7 @@
               class: 'text-decoration-none bigger' %>
         </div>
 
-        <%= bootstrap_form_with model: @application, :url => adopter_application_path do |form| %>
+        <%= bootstrap_form_with model: @application, :url => adoption_application_review_path do |form| %>
 
           <div class="form-group">
             <%= form.select(:status, 
