@@ -3,27 +3,27 @@
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
-  context 'avatarable' do
+  context "avatarable" do
     should "behave as avatarable" do
       assert_includes User.included_modules, Avatarable
-    
+
       assert subject, respond_to?(:append_avatar=)
     end
 
-    context 'validations' do
-      should 'append error if avatar is too big' do
+    context "validations" do
+      should "append error if avatar is too big" do
         fixture_file.stubs(:size).returns(2.megabytes)
 
-        subject.avatar.attach(io: fixture_file, filename: 'test.png')
+        subject.avatar.attach(io: fixture_file, filename: "test.png")
 
         refute subject.valid?
         assert_includes subject.errors[:avatar], "size must be between 10kb and 1Mb"
       end
-      
-      should 'append error if avatar is too small' do
+
+      should "append error if avatar is too small" do
         fixture_file.stubs(:size).returns(1.kilobyte)
 
-        subject.avatar.attach(io: fixture_file, filename: 'test.png')
+        subject.avatar.attach(io: fixture_file, filename: "test.png")
 
         refute subject.valid?
         assert_includes subject.errors[:avatar], "size must be between 10kb and 1Mb"
@@ -60,15 +60,15 @@ class UserTest < ActiveSupport::TestCase
       assert_not_includes User.organization_staff(organization.id), user
     end
   end
-  
-  private 
+
+  private
 
   def fixture_file
     @fixture_file ||= load_file
   end
 
   def load_file
-    fixture_path = File.join(Rails.root, 'test', 'fixtures', 'files', 'logo.png')
+    fixture_path = File.join(Rails.root, "test", "fixtures", "files", "logo.png")
     File.open(fixture_path)
   end
 end
