@@ -10,7 +10,7 @@
           <h5 class="card-title text-secondary mb-0">
             <%= pet.name %>
           </h5>
-          <div>
+          <div id="adoption-status">
             <%= tag.span("Adoption Pending", class: "badge bg-info") if pet.has_adoption_pending? %>
           </div>
         </li>
