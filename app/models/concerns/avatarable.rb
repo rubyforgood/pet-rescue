@@ -1,16 +1,16 @@
-module Pictureable
+module Avatarable
   extend ActiveSupport::Concern
   
   included do
-    has_one_attached :picture
+    has_one_attached :avatar
   
-    validates :picture, content_type: {in: ["image/png", "image/jpeg"],
+    validates :avatar, content_type: {in: ["image/png", "image/jpeg"],
                                                message: "must be PNG or JPEG"},
                                 size: {between: 10.kilobyte..1.megabytes,
                                        message: "size must be between 10kb and 1Mb"}
   end
 
-  def append_picture=(attachable)
-    picture.attach(attachable)
+  def append_avatar=(attachable)
+    avatar.attach(attachable)
   end
 end

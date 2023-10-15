@@ -33,7 +33,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  include Pictureable
+  include Avatarable
 
   acts_as_tenant(:organization)
   default_scope do
