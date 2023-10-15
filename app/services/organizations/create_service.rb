@@ -2,22 +2,22 @@
 # email is sent to admin user if all steps are successful
 # call with Organizations::CreateService.new.signal(args)
 # sample args:
-{
-  location: {
-    country: 'Mexico',
-    city_town: 'La Ventana',
-    province_state: 'Baja'
-  },
-  organization: {
-    name: 'Baja Pet Rescue',
-    slug: 'baja'
-  },
-  user: {
-    email: 'test@test.lol',
-    first_name: 'Jimmy',
-    last_name: 'Hendrix'  
-  }
-}
+# {
+#   location: {
+#     country: 'Mexico',
+#     city_town: 'La Ventana',
+#     province_state: 'Baja'
+#   },
+#   organization: {
+#     name: 'Baja Pet Rescue',
+#     slug: 'baja'
+#   },
+#   user: {
+#     email: 'test@test.lol',
+#     first_name: 'Jimmy',
+#     last_name: 'Hendrix'  
+#   }
+# }
 
 class Organizations::CreateService
   def signal(args)
