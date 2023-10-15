@@ -170,6 +170,8 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     tos_agreement { true }
 
+    organization
+
     trait :verified_staff do
       staff_account
     end
