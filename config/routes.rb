@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :adoptable_pets, only: [:index, :show]
   resource :adopter_profile, except: :destroy, as: "profile"
   resources :checklist_templates
+  resources :checklist_items
   resources :donations, only: [:create]
 
   scope module: :organizations do

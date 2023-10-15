@@ -247,8 +247,8 @@ ActsAsTenant.with_tenant(organization) do
   end
 
   @checklist_template = ChecklistTemplate.create!(
-    name: "vaccinations",
-    description: "Get your dog vaccinated"
+    name: "#{Faker::Creature::Animal.name} form",
+    description: "Get your pet vaccinated"
   )
 
   5.times do

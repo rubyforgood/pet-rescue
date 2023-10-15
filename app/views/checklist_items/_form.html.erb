@@ -1,0 +1,29 @@
+<%= bootstrap_form_with(model: checklist_item) do |form| %>
+  <% if checklist_item&.errors && checklist_item.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(checklist_item.errors.count, "error") %> prohibited this checklist_item from being saved:</h2>
+
+      <ul>
+        <% checklist_item.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.number_field :input_type %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

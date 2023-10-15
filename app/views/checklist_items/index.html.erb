@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Checklist items</h1>
+
+<div id="checklist_items">
+  <% @checklist_items.each do |checklist_item| %>
+    <%= render checklist_item %>
+    <p>
+      <%= link_to "Show this checklist template item", checklist_item %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New checklist template item", new_checklist_item_path %>

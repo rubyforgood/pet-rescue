@@ -11,6 +11,7 @@
 #
 class ChecklistItem < ApplicationRecord
   has_many :items, class_name: "ChecklistTemplateItem", dependent: :destroy
+  has_many :checklist_templates, through: :items
 
   enum :input_type, %i[str int date bool]
 end

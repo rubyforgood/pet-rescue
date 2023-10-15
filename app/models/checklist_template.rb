@@ -10,4 +10,5 @@
 #
 class ChecklistTemplate < ApplicationRecord
   has_many :items, class_name: "ChecklistTemplateItem", dependent: :destroy
+  has_many :checklist_items, through: :items
 end
