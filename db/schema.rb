@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_132343) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_15_050058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -112,6 +112,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_132343) do
     t.index ["match_id"], name: "index_checklist_assignments_on_match_id"
   end
 
+  create_table "checklist_items", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "input_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "checklist_template_items", force: :cascade do |t|
     t.bigint "checklist_template_id", null: false
     t.string "name", null: false
@@ -120,6 +128,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_132343) do
     t.boolean "required", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "checklist_item_id", default: 0, null: false
+    t.index ["checklist_item_id"], name: "index_checklist_template_items_on_checklist_item_id"
     t.index ["checklist_template_id"], name: "index_checklist_template_items_on_checklist_template_id"
   end
 

@@ -253,7 +253,13 @@ ActsAsTenant.with_tenant(organization) do
   )
 
   5.times do
+    checklist_item = ChecklistItem.create!(
+      name: Faker::Verb.base,
+      description: Faker::Quote.famous_last_words,
+      input_type: ChecklistItem.input_types.values.sample
+    )
     @checklist_template.items.create!(
+      checklist_item:,
       name: Faker::Verb.base,
       description: Faker::Quote.famous_last_words,
       expected_duration_days: rand(1..10),

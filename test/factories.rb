@@ -1,4 +1,10 @@
 FactoryBot.define do
+  factory :checklist_item do
+    name { "first_name" }
+    description { "What is your first name?" }
+    input_type { 1 }
+  end
+
   factory :adopter_account do
     user
 
@@ -72,6 +78,7 @@ FactoryBot.define do
     required { [true, false].sample }
 
     checklist_template
+    checklist_item
   end
 
   factory :location do
