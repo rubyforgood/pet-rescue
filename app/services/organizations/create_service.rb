@@ -15,7 +15,7 @@
 #   user: {
 #     email: 'test@test.lol',
 #     first_name: 'Jimmy',
-#     last_name: 'Hendrix'  
+#     last_name: 'Hendrix'
 #   }
 # }
 
@@ -28,12 +28,12 @@ class Organizations::CreateService
         args[:location][:province_state]
       )
       create_organization_and_profile(
-        args[:organization][:name], 
+        args[:organization][:name],
         args[:organization][:slug]
       )
       create_user(
-        args[:user][:email], 
-        args[:user][:first_name], 
+        args[:user][:email],
+        args[:user][:first_name],
         args[:user][:last_name]
       )
       create_staff_account
@@ -48,7 +48,7 @@ class Organizations::CreateService
 
   def create_location(country, city_town, province_state)
     @location = Location.create!(
-      country: country, 
+      country: country,
       city_town: city_town,
       province_state: province_state
     )
@@ -59,7 +59,7 @@ class Organizations::CreateService
       name: name,
       slug: slug,
       profile: OrganizationProfile.new(
-        location_id: @location.id,
+        location_id: @location.id
       )
     )
   end
