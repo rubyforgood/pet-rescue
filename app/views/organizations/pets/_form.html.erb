@@ -7,10 +7,6 @@
 
       <div class='form-group'>
         <%= form.text_field :name, class: 'form-control' %>
-
-        <% pet.errors.full_messages_for(:name).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-        <% end %>
       </div>
 
       <div class='form-group d-flex'>
@@ -32,37 +28,19 @@
                         [[t('general.male'), 'male'], [t('general.female'), 'female']],
                         { prompt: t('general.please_select') },
                         class: 'form-control' %>
-
-        <% pet.errors.full_messages_for(:sex).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-        <% end %>
       </div>
 
       <div class='form-group'>
         <%= form.text_field :breed, class: 'form-control' %>
-
-        <% pet.errors.full_messages_for(:breed).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-        <% end %>
       </div>
 
       <div class="form-group mt-3">
         <div class='form-group d-flex'>
           <div class='me-3'>
             <%= form.text_field :weight_from, class: 'form-control', label: 'From weight'  %>
-            <% if pet.errors[:weight_from].any? %>
-              <div class="alert alert-danger mt-1" role="alert">
-                <%= pet.errors.full_messages_for(:weight_from).first %>
-              </div>
-            <% end %>
           </div>
           <div class='me-3'>
             <%= form.text_field :weight_to, class: 'form-control', label: 'To weight' %>
-            <% if pet.errors[:weight_to].any? %>
-              <div class="alert alert-danger mt-1" role="alert">
-                <%= pet.errors.full_messages_for(:weight_to).first %>
-              </div>
-            <% end %>
           </div>
           <div>
             <%= form.select :weight_unit,
@@ -84,10 +62,6 @@
                              class: 'form-control' %>
           <div data-counter-target='output' class='small mt-2 d-flex flex-row-reverse'></div>
         </div>
-
-        <% pet.errors.full_messages_for(:description).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-        <% end %>
       </div>
 
       <div class='form-group'>

@@ -1,22 +1,35 @@
 <header class="pt-5 pb-5">
-  <div class="container">
-    <div class="text-center">
-      <h1 class="section-heading text-uppercase underline">
-        <% if @pet.has_adoption_pending? %>
-          <%= "#{@pet.name} #{t('general.adoption_pending')}" %>
-        <% else %>
-          <%= @pet.name %>
-        <% end %>
-      </h1>
+  <div class="row align-items-center">
+    <!-- Pet Info -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+      <div class="pt-16 rounded-top-md bg-gray-200"></div>
+      <div class="d-flex align-items-center justify-content-between bg-white px-4 pt-2 pb-4 rounded-none rounded-bottom-md shadow-sm">
+        <div class="d-flex align-items-center">
+          <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+            <% if @pet.images.attached? %>
+              <%= image_tag @pet.images.first, class: 'avatar-xl rounded-circle border border-4 border-white' %>
+            <% end %>
+          </div>
+          <div class="lh-1">
+            <h2 class="mb-0"><%= @pet.name %></h2>
+            <% if @pet.has_adoption_pending? %>
+              <p class="mb-0 d-block"><%= t('general.adoption_pending') %></p>
+            <% end %>
+          </div>
+        </div>
+        <div>
+          <%= link_to 'Become an adopter', new_user_registration_path, class: 'btn btn-primary btn-sm d-none d-md-block' %>
+        </div>
+      </div>
     </div>
-  </div> <!--container-->
+  </div>
 </header>
 
 <!--pet tile-->
 <section class="pb-5" id="adoptable_pets_show">
   <div class="container">
     <div class="row g-5">
-      <div class="col-lg-8">
+      <div class="col-lg-6">
         <!--pet images-->
         <% if @pet.images.attached? %>
           <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
@@ -30,7 +43,7 @@
             <div class="carousel-inner">
               <% @pet.images.each_with_index do |image, index| %>
                 <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
-                  <%= image_tag image, class: 'd-block' %>
+                  <%= image_tag image, class: 'd-block w-100' %>
                 </div>
               <% end %>
             </div>
@@ -47,52 +60,35 @@
           </div>
         <% end %>
 
-        <div class='row mb-3'>
-          <div class='col-md-2 mb-1'>
-            <h5 style='font-weight: bold;'><%= t('general.age') %>:</h5>
-            <h5><%= time_ago_in_words(@pet.birth_date) %></h5>
-          </div>
-          <div class='col-md-2 mb-1'>
-            <h5 style='font-weight: bold;'><%= t('general.sex') %>:</h5>
-            <h5><%= @pet.sex %></h5>
-          </div>
-          <div class='col-md-4 mb-1'>
-            <h5 style='font-weight: bold;'><%= t('general.breed') %>:</h5>
-            <h5><%= @pet.breed %></h5>
-          </div>
-          <div class='col-md-4 mb-1'>
-            <h5 style='font-weight: bold;'><%= t('general.weight') %>:</h5>
-            <h5> <%= @pet.weight_from %> to <%= @pet.weight_to %> <%= @pet.weight_unit %></h5>
-          </div>
-        </div>
-
-        <h4 style='font-weight: bold;' class="">
-          <%= "#{t('general.about')} #{@pet.name}" %>
-        </h4>
-        <p class='bigger' style="white-space: pre-line;">
-          <%= @pet.description %>
-        </p>
+        <%= render partial: "partials/pet_card_bigger", pet: @pet %>
       </div>
 
-      <div class=' col-lg-4 ps-3 pe-3 ps-lg-0 pe-lg-0'>
-        <div class=' border p-5 rounded
-                    d-flex flex-column justify-content-between'>
+      <div class=' col-lg-6 ps-3 pe-3 ps-lg-0 pe-lg-0'>
+        <div class=' border p-5 rounded d-flex flex-column justify-content-between'>
           <div>
-            <h4>
-              <%= t('.adoption_process') %>
-            </h4>
-            <p class='mb-3 bigger'>
-              <%= t('.please_read_faq_html') %>
-            </p>
-            <p class='bigger'><%= t('.please_know_that') %>:</p>
-            <ul class='bigger'>
-              <%= t('.please_know_that_items_html') %>
-            </ul>
+            <div class="row">
+              <!-- heading -->
+              <span class="text-uppercase text-primary fw-semibold ls-md"><%= t('.adoption_process') %></span>
+              <!-- para -->
+              <p class="fs-3  mb-5"><%= t('.please_read_faq_html') %></p>
+            </div>
 
-            <p class='mt-3 bigger'><%= t('.after_you_adopt') %>:</p>
-            <ul class='bigger'>
-              <%= t('.after_you_adopt_items_html') %>
-            </ul>
+            <div class=" row align-items-center ">
+              <div class="mb-6">
+                <h3 class="mb-3 fw-bold"><%= t('.please_know_that') %></h3>
+                <p class="mb-0 fs-4 ">
+                <ul><%= t('.please_know_that_items_html') %></ul>
+                </p>
+              </div>
+              <!-- content -->
+              <div class="mb-6">
+                <h3 class="mb-3 fw-bold"><%= t('.after_you_adopt') %></h3>
+                <p class="mb-0 fs-4 ">
+                <ul><%= t('.after_you_adopt_items_html') %></ul>
+                </p>
+              </div>
+            </div>
+
           </div>
 
           <div class='text-center d-flex flex-column align-items-center mt-1'>
@@ -123,7 +119,7 @@
                     <%= button_to t('.apply_to_adopt'),
                                   create_my_application_path(application: {
                                     pet_id: @pet.id,
-                                    adopter_account_id: current_user.adopter_account.id }),
+                                    adopter_account_id: current_user.adopter_account.id}),
 
                                   class: 'custom-btn-pink' %>
                   <% end %>

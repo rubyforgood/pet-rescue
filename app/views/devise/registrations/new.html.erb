@@ -34,18 +34,18 @@
           </div>
 
           <div class="form-group mb-3 bigger">
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
             <%= f.password_field :password,
                                  required: true,
                                  autocomplete: "new-password",
                                  class: 'form-control' %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
           </div>
 
           <div class="form-group mb-3 bigger">
             <%= f.check_box :tos_agreement, required: true,
-                            class: 'me-2', label: '*I agree to the' %>
+                            class: 'me-2', label: 'I agree to the' %>
             <%= link_to 'Terms and Conditions', terms_and_conditions_path,
                         target: '_blank', class: 'text-decoration-none' %>
             <span>& </span>
