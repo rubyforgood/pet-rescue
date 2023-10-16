@@ -1,19 +1,41 @@
-# class to create a new organization, user, staff account with role admin, and send email via the console
+# class to create a new location, organization, organization profile, user, and staff account with role admin
+# email is sent to admin user if all steps are successful
 # call with Organizations::CreateService.new.signal(args)
-# args:
+# sample args:
 # {
-#   organization_name: 'value',
-#   organization_slug: 'value',
-#   user_email: 'value',
-#   user_first_name: 'value',
-#   user_last_name: 'value'
+#   location: {
+#     country: 'Mexico',
+#     city_town: 'La Ventana',
+#     province_state: 'Baja'
+#   },
+#   organization: {
+#     name: 'Baja Pet Rescue',
+#     slug: 'baja'
+#   },
+#   user: {
+#     email: 'test@test.lol',
+#     first_name: 'Jimmy',
+#     last_name: 'Hendrix'
+#   }
 # }
 
 class Organizations::CreateService
   def signal(args)
     ActiveRecord::Base.transaction do
-      create_organization(args[:organization_name], args[:organization_slug])
-      create_user(args[:user_email], args[:user_first_name], args[:user_last_name])
+      create_location(
+        args[:location][:country],
+        args[:location][:city_town],
+        args[:location][:province_state]
+      )
+      create_organization_and_profile(
+        args[:organization][:name],
+        args[:organization][:slug]
+      )
+      create_user(
+        args[:user][:email],
+        args[:user][:first_name],
+        args[:user][:last_name]
+      )
       create_staff_account
       add_admin_role_to_staff_account
       send_email
@@ -24,10 +46,21 @@ class Organizations::CreateService
 
   private
 
-  def create_organization(name, slug)
+  def create_location(country, city_town, province_state)
+    @location = Location.create!(
+      country: country,
+      city_town: city_town,
+      province_state: province_state
+    )
+  end
+
+  def create_organization_and_profile(name, slug)
     @organization = Organization.create!(
       name: name,
-      slug: slug
+      slug: slug,
+      profile: OrganizationProfile.new(
+        location_id: @location.id
+      )
     )
   end
 
@@ -54,7 +87,7 @@ class Organizations::CreateService
   end
 
   def add_admin_role_to_staff_account
-    # @staff_account.add_role(:admin)
+    @staff_account.add_role(:admin)
 
     if !@staff_account.has_role?(:admin)
       raise StandardError, "Failed to add admin role"
