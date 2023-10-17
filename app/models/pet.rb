@@ -30,6 +30,7 @@ class Pet < ApplicationRecord
   acts_as_tenant(:organization)
 
   has_many :adopter_applications, dependent: :destroy
+  has_many :tasks, dependent: :destroy
   has_one :match, dependent: :destroy
   has_many_attached :images
   enum species: ["dog", "cat"]

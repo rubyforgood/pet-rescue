@@ -16,7 +16,9 @@ Rails.application.routes.draw do
     resource :organization_profile, only: %i[edit update]
 
     resources :home, only: [:index]
-    resources :pets
+    resources :pets do
+      resources :tasks, only: [:create, :edit, :update, :destroy]
+    end
     resources :dashboard
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
