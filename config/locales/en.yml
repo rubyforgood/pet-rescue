@@ -101,9 +101,9 @@ en:
         transport before an adoption can be approved.</li>
       after_you_adopt: "After you apply to adopt"
       after_you_adopt_items_html: |
-        <li>Your application history will be shown on 'My Applications' page</li> 
-        <li>Application reviews generally take 4-6 days, depending on volume</li> 
-        <li>We will contact you for further discussion if you are shortlisted </li> 
+        <li>Your application history will be shown on 'My Applications' page</li>
+        <li>Application reviews generally take 4-6 days, depending on volume</li>
+        <li>We will contact you for further discussion if you are shortlisted </li>
         <li>We work hard to match pets and adopters, so please try again if you are not successful first time round </li>
       create_an_account: "Create an account to apply for this pet"
       status:
@@ -207,3 +207,7 @@ en:
       will_you_pick_up_the_pet: "Will you or a friend be in La Ventana in person to pick up the pet?"
       what_dates_will_you_be: "What dates will you be in La Ventana?"
       how_did_you_hear: "How did you find out about Baja Pet Rescue?"
+  staff_accounts:
+    status:
+      invitation_sent: "Invitation sent"
+      enabled: "Enabled"

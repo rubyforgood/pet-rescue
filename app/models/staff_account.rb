@@ -27,4 +27,8 @@ class StaffAccount < ApplicationRecord
   def email
     user.email.to_s
   end
+
+  def status
+    user.invited_to_sign_up? ? :invitation_sent : :enabled
+  end
 end
