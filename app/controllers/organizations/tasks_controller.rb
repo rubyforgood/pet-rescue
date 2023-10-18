@@ -32,13 +32,12 @@ class Organizations::TasksController < Organizations::BaseController
 
   def new
     @task = @pet.tasks.build
-    render partial: 'nice_partials/new_task_form'
+    render partial: "nice_partials/new_task_form"
   end
 
   private
 
   def set_pet
-    
     @organization = Organization.find_by(slug: "alta")
     raise ActiveRecord::RecordNotFound if @organization.nil?
     pet_id = params[:pet_id] || params[:id]

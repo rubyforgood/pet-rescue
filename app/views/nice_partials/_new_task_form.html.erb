@@ -1,0 +1,24 @@
+<div class="col-md-12 col-xl-8 col-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="mb-0">Add New Task</h4>
+    </div>
+    <div class="card-body">
+      <%= form_with(model: [@pet, @pet.tasks.build], local: true) do |f| %>
+        <div class="mb-3">
+          <%= f.label :name, 'Title!!!!', class: 'form-label' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :description, 'Description', class: 'form-label' %>
+          <%= f.text_area :description, class: 'form-control' %>
+        </div>
+        <div class="mb-3">
+          <%= f.label :completed, class: 'form-check-label' %>
+          <%= f.check_box :completed, class: 'form-check-input' %>
+        </div>
+        <%= f.submit 'Create Task', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>
