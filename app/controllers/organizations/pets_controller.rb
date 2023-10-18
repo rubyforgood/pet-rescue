@@ -49,6 +49,21 @@ class Organizations::PetsController < Organizations::BaseController
     end
   end
 
+  def update_images
+    @pet = Pet.find(params[:id])
+    @pet.append_images = params[:append_images]
+
+    if @pet.save
+      redirect_to @pet, notice: "Pet updated successfully."
+    else
+      # byebug
+      # render partial: "nice_partials/files", locals: { pet: @pet }, status: :unprocessable_entity
+      flash[:error]
+      p flash[:error]
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @pet = Pet.find(params[:id])
 
