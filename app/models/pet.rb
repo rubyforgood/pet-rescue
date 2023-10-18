@@ -10,6 +10,7 @@
 #  name               :string
 #  pause_reason       :integer          default("not_paused")
 #  sex                :string
+#  species            :integer          not null
 #  weight_from        :integer          not null
 #  weight_to          :integer          not null
 #  weight_unit        :string           not null
@@ -31,6 +32,7 @@ class Pet < ApplicationRecord
   has_many :adopter_applications, dependent: :destroy
   has_one :match, dependent: :destroy
   has_many_attached :images
+  enum species: ["dog", "cat"]
 
   validates :name, presence: true
   validates :birth_date, presence: true

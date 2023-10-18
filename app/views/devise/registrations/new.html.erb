@@ -13,13 +13,12 @@
   <div class='container'>
     <div class="row">
       <div class="col-md-6 mx-auto card p-5">
-        <%= form_for(resource, as: resource_name,
+        <%= bootstrap_form_for(resource, as: resource_name,
                      url: registration_path(resource_name)) do |f| %>
 
           <%= render "devise/shared/error_messages", resource: resource %>
 
           <div class="form-group mb-3 bigger">
-            <%= f.label :email, 'Email*'%><br />
             <%= f.email_field :email,
                               autofocus: true,
                               required: true,
@@ -27,30 +26,26 @@
           </div>
 
           <div class="form-group mb-3 bigger">
-            <%= f.label :first_name, 'First Name*' %><br />
             <%= f.text_field :first_name, required: true, class: 'form-control' %>
           </div>
 
           <div class="form-group mb-3 bigger">
-            <%= f.label :last_name, 'Last Name*' %><br />
             <%= f.text_field :last_name, required: true, class: 'form-control' %>
           </div>
 
           <div class="form-group mb-3 bigger">
-            <%= f.label :password, 'Password*' %>
-            <% if @minimum_password_length %>
-              <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %><br />
             <%= f.password_field :password,
                                  required: true,
                                  autocomplete: "new-password",
                                  class: 'form-control' %>
+            <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
           </div>
 
           <div class="form-group mb-3 bigger">
             <%= f.check_box :tos_agreement, required: true,
-                            class: 'me-2' %>
-            <%= f.label :tos_agreement, '*I agree to the' %>
+                            class: 'me-2', label: 'I agree to the' %>
             <%= link_to 'Terms and Conditions', terms_and_conditions_path,
                         target: '_blank', class: 'text-decoration-none' %>
             <span>& </span>

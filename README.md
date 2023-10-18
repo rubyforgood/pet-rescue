@@ -1,4 +1,7 @@
 # Pet Rescue Adoption Application
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
 
@@ -37,32 +40,27 @@ To run the app locally, use:
 bin/dev
 ```
 
-## Accessing Roles
+You should see the seed organization by going to:
+```
+http://localhost:3000/alta/
+```
 
-You can use the following login credentials to access the following roles:
+## Login Credentials
 
-Adopter
-- email: `adopter1@example.com`
+All users are scoped to an organization. Hence, you must login via the correct
+login portal per organization. 
+
+You can use the following login credentials to login to http://localhost:3000/alta:
+
+Use the following login 
+Adopter 
+- email: `adopter1@alta.com` 
 - password: `123456`
 
 Staff
-- email: `staff@example.com`
+- email: `staff@alta.com`
 - password: `123456`
 
-You are also able to register an account.
-
-## Subdomain Setup
-
-The app will work OK with no subdomains, but to really test out the multi-tenant capabilities, you will need to configure subdomains. Every `Organization` has a subdomain field, and that Org will be accessible via `ApplicationController#current_tenant`.
-
-To configure your local dev env to test subdomains, you will need to [edit your `/etc/hosts` file](https://linuxize.com/post/how-to-edit-your-hosts-file/)
-
-Add the following line:
-
-```text
-127.0.0.1  pet-rescue.local alta.pet-rescue.local rubyforgood.pet-rescue.local
-```
-This will map the two seed Orgs with the correct subdomains
 
 # 🧪 Running Tests
 
@@ -140,4 +138,32 @@ These are just some of the documents put together before writing any code:
 * Slide deck to pitch idea to client: [here](https://docs.google.com/presentation/d/1d4gjzADk7BcxmQEVZlesheGUen9d1E3RzrVvskMhVxo/edit?usp=sharing)
 * Figma site design: [here](https://www.figma.com/file/x3iM31l8csY7mT0VwKykhT/BPR---Wireframes---Ami?node-id=530186%3A154&t=mgRlseVd2LTKPX4o-1)
 * Model association diagram: [here](https://lucid.app/lucidchart/a915c03c-3c09-454d-837b-f3d2768f5722/edit?viewport_loc=-25%2C-973%2C3565%2C2341%2C0_0&invitationId=inv_85cf2967-7b33-4030-903f-9655e767cbbf)
+
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/kasugaijin"><img src="https://avatars.githubusercontent.com/u/95949082?v=4?s=100" width="100px;" alt="Ben"/><br /><sub><b>Ben</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=kasugaijin" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/marlena-b"><img src="https://avatars.githubusercontent.com/u/96994176?v=4?s=100" width="100px;" alt="Marlena Borowiec"/><br /><sub><b>Marlena Borowiec</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=marlena-b" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Ptrboro"><img src="https://avatars.githubusercontent.com/u/16762860?v=4?s=100" width="100px;" alt="Piotr Borowiec"/><br /><sub><b>Piotr Borowiec</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Ptrboro" title="Code">💻</a> <a href="https://github.com/rubyforgood/pet-rescue/pulls?q=is%3Apr+reviewed-by%3APtrboro" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/yuricarvalhop"><img src="https://avatars.githubusercontent.com/u/20230045?v=4?s=100" width="100px;" alt="Yuri Pains"/><br /><sub><b>Yuri Pains</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=yuricarvalhop" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://reyes-dev.github.io/portfolio-site/"><img src="https://avatars.githubusercontent.com/u/102765102?v=4?s=100" width="100px;" alt="Jarrod Reyes"/><br /><sub><b>Jarrod Reyes</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=reyes-dev" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://erinclaudio.com"><img src="https://avatars.githubusercontent.com/u/20326770?v=4?s=100" width="100px;" alt="Erin Claudio"/><br /><sub><b>Erin Claudio</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=ErinClaudio" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 

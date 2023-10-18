@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user.first_name %>, thank you for registering <%= @organization.name %> with Pet Rescue</h1>
+    
+    <p>
+      URL: <a href="https://www.petrescue.org/<%= @organization.slug %>">https://www.petrescue.org/<%= @organization.slug %></a>
+    </p>
+
+    <p>
+      username: <%= @user.email %> 
+    </p>
+
+    <p>
+      Password: <%= @user.password %> 
+    </p>
+
+    <p>
+      Please change your password after logging in. 
+    </p>
+
+    <p>People like you help these pets live their best life <\3</p>
+
+    <strong>- Pet Rescue Team</strong>
+  </body>
+</html>

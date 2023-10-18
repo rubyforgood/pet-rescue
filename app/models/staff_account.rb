@@ -22,11 +22,7 @@
 class StaffAccount < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :user
-
-  # Active Admin getter methods
-  def full_name
-    user.first_name.to_s + " " + user.last_name.to_s
-  end
+  rolify
 
   def email
     user.email.to_s

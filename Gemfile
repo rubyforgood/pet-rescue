@@ -16,7 +16,7 @@ gem "figaro"
 gem "pg", "~> 1.1"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma", "~> 5.6"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -48,8 +48,13 @@ gem "bootsnap", require: false
 # add bootstrap gem
 gem "bootstrap"
 
+# add bootstrap_form gem
+gem "bootstrap_form", "~> 5.3"
+
 # Devise Authentication
 gem "devise"
+
+gem "devise_invitable", "~> 2.0.0"
 
 # Use Sass to process CSS
 gem "dartsass-rails"
@@ -66,9 +71,6 @@ gem "azure-storage-blob", "~> 2.0", require: false
 # validate adopter phone numbers
 gem "phonelib"
 
-# active admin
-gem "activeadmin"
-
 # geocoder creates lat/long for success page map
 gem "geocoder"
 
@@ -84,9 +86,14 @@ gem "strong_migrations"
 # needed for internationalization (translations)
 gem "rails-i18n"
 
+# Provides helper methods to easily add 'active' tag on links
+gem "active_link_to"
+gem "nice_partials"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "pry", "~> 0.14.2"
   gem "faker"
 
   # Add annotation to models to make it easier to navigate in the codebase
@@ -138,13 +145,21 @@ group :test do
   # test coverage easily
   gem "shoulda", "~> 4.0"
   gem "shoulda-matchers"
+
+  # Adds ability to stub out methods in tests easier
+  gem "mocha"
 end
 
 # Add chartkick for charts generation
 gem "chartkick", "~> 5.0"
 
 # Adds location data for cities and states around the world
-gem "city-state", "~> 0.1.0"
+gem "city-state", "~> 1.1.0"
 
 # Adds a simple way to fetch with Javascript
 gem "requestjs-rails", "~> 0.0.10"
+
+# Add ability to set user roles
+gem "rolify"
+
+gem "gretel", "~> 4.5"

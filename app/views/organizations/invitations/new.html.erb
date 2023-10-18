@@ -1,0 +1,26 @@
+<section class="container-fluid p-4">
+
+  <!--page heading-->
+  <%= provide(:header_title, "Invite staff") %>
+
+  <%= content_for :button do %>
+    <%= link_to "Back to staff", staff_index_path, class: "btn btn-primary" %><br>
+  <% end %>
+
+  <div class="py-6">
+    <!-- row -->
+    <div class="row">
+      <div class="offset-xl-3 col-xl-6 col-md-12 col-12">
+        <!-- card -->
+        <div class="card">
+          <!-- card body -->
+          <div class="card-body p-lg-6">
+            <%= render 'form', user: @user %>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

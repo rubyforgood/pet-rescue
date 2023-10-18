@@ -1,4 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
+  include OrganizationScopable
+
   after_action :send_email, only: :create
 
   # nested form in User>registration>new for an adopter or staff account
@@ -46,7 +48,7 @@ class RegistrationsController < Devise::RegistrationsController
   def send_email
     return unless resource.id
 
-    SignUpMailer.with(user: resource).adopter_welcome_email(current_tenant.subdomain).deliver_now
+    SignUpMailer.with(user: resource).adopter_welcome_email(current_tenant.slug).deliver_now
   end
 end
 

@@ -4,7 +4,7 @@ FactoryBot.define do
 
     trait :with_adopter_profile do
       after :create do |account|
-        create(:adopter_profile, :with_location, adopter_account: account)
+        create(:adopter_profile, adopter_account: account)
       end
     end
   end
@@ -53,12 +53,7 @@ FactoryBot.define do
     referral_source { "friends" }
 
     adopter_account
-
-    trait :with_location do
-      after :create do |profile|
-        create :location, adopter_profile: profile
-      end
-    end
+    location
   end
 
   factory :checklist_assignment do
@@ -83,14 +78,32 @@ FactoryBot.define do
     city_town { Faker::Address.city }
     sequence(:country) { |n| "Country#{n}" }
     province_state { Faker::Address.state }
+    zipcode { Faker::Address.zip_code }
 
-    adopter_profile
+    trait :with_adopter_profile do
+      after :create do |location|
+        create(:adopter_profile, location: location)
+      end
+    end
   end
 
   factory :organization do
-    # This needs to be hardcoded as "test" (or "altatest"). Other organizations should specify other subdomains.
-    # See config/environments/test.rb for more context.
-    subdomain { "test" }
+    name { Faker::Company.name }
+    slug { Faker::Internet.domain_word }
+    profile { build(:organization_profile) }
+  end
+
+  factory :organization_profile do
+    email { Faker::Internet.email }
+    phone_number { Faker::PhoneNumber.phone_number }
+
+    location
+
+    trait :with_organization do
+      after :build do |profile|
+        profile.organization = create(:organization, profile: profile)
+      end
+    end
   end
 
   factory :pet do
@@ -102,7 +115,7 @@ FactoryBot.define do
     weight_from { 10 }
     weight_to { 20 }
     weight_unit { "lb" }
-
+    species { Faker::Number.within(range: 0..1) }
     organization
 
     trait :adoption_pending do
@@ -141,18 +154,30 @@ FactoryBot.define do
     trait :unverified do
       verified { false }
     end
+
+    trait :admin do
+      after :create do |staff_account|
+        staff_account.add_role(:admin, staff_account.organization)
+      end
+    end
   end
 
   factory :user do
     email { Faker::Internet.email }
     password { "123456" }
-    encrypted_password { Devise::Encryptor.digest(User, "password") }
+    encrypted_password { Devise::Encryptor.digest(User, "123456") }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     tos_agreement { true }
 
+    organization
+
     trait :verified_staff do
       staff_account
+    end
+
+    trait :staff_admin do
+      association(:staff_account, :admin)
     end
 
     trait :unverified_staff do
@@ -167,7 +192,7 @@ FactoryBot.define do
       adopter_account
 
       after :create do |user|
-        create :adopter_profile, :with_location, adopter_account: user.adopter_account
+        create :adopter_profile, adopter_account: user.adopter_account
       end
     end
 

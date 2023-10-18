@@ -1,0 +1,7 @@
+ <!--page heading-->
+  <%= provide(:header_title, t(".add a new pet"))  %>
+
+ <!--create pet button-->
+  <%= content_for :button do  %>
+    <%= button_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
+  <% end %>

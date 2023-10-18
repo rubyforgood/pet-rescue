@@ -6,6 +6,13 @@
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  first_name             :string           not null
+#  invitation_accepted_at :datetime
+#  invitation_created_at  :datetime
+#  invitation_limit       :integer
+#  invitation_sent_at     :datetime
+#  invitation_token       :string
+#  invitations_count      :integer          default(0)
+#  invited_by_type        :string
 #  last_name              :string           not null
 #  remember_created_at    :datetime
 #  reset_password_sent_at :datetime
@@ -13,21 +20,39 @@
 #  tos_agreement          :boolean
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  invited_by_id          :bigint
+#  organization_id        :bigint
 #
 # Indexes
 #
 #  index_users_on_email                 (email) UNIQUE
+#  index_users_on_invitation_token      (invitation_token) UNIQUE
+#  index_users_on_invited_by            (invited_by_type,invited_by_id)
+#  index_users_on_invited_by_id         (invited_by_id)
+#  index_users_on_organization_id       (organization_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
-  devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :validatable
+  acts_as_tenant(:organization)
+  default_scope do
+    #
+    # Used as a extra measure to scope down the options for devise
+    # when the Current.organization is set
+    #
+    if Current.organization
+      where(organization_id: Current.organization&.id)
+    else
+      all
+    end
+  end
+
+  devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true
-  validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
-    allow_nil: false, on: :create
+  validates :email, presence: true, uniqueness: {scope: :organization_id}
+  # validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
+  #   allow_nil: false, on: :create
 
   has_one :staff_account, dependent: :destroy
   has_one :adopter_account, dependent: :destroy

@@ -1,0 +1,20 @@
+<!--page heading-->
+<header class="pt-5 pb-5">
+  <div class="container">
+    <div class="text-center">
+      <h1 class="section-heading text-uppercase underline">
+        <%= t('.edit_profile') %>
+      </h1>
+    </div>
+  </div> <!--container-->
+</header>
+
+<!--rendering _form.html.erb--> 
+<section class="pb-5" id="account_select">
+  <div class="container">
+    <div class="col-md-8 mx-auto">
+        <%= render "form", profile: @organization_profile %>
+        <%= link_to t('general.back'), dashboard_index_path %>
+    </div>
+  </div> <!--container-->
+</section>
