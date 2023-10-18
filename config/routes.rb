@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
     resources :home, only: [:index]
     resources :pets do
-      resources :tasks, only: [:create, :edit, :update, :destroy]
+      resources :tasks, only: [:new, :create, :edit, :update, :destroy]
     end
     resources :dashboard
     resources :adoption_application_reviews, only: [:index, :edit, :update]
