@@ -102,4 +102,15 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     # check_messages
     # assert_equal "You can only view pets that need adoption.", flash[:alert]
   end
+
+  test "staff can view list of applications when selecting the applications tab" do
+    # pet = create(:pet)
+    sign_in create(:user, :verified_staff)
+    adopter_applications = create(:adopter_application)
+    pet = adopter_applications.first.pet
+    debugger
+    get "/#{pet.organization.slug}/pets/#{pet.id}?active_tab=applications"
+
+    assert_select "div.row.mb-3.rounded.py-2.application-info", {count: adopter_applications.length}
+  end
 end
