@@ -1,6 +1,15 @@
 require "test_helper"
 
 class AdoptablePetShowTest < ActionDispatch::IntegrationTest
+  setup do
+    ActsAsTenant.current_tenant = create(:organization, slug: "test")
+    @user = create(:user, :verified_staff)
+    @pet = create(:pet, organization: @user.staff_account.organization)
+    @adopter_account = create(:adopter_account, :with_adopter_profile)
+    @adopter_applications = create_list(:adopter_application, 3, pet: @pet, adopter_account: @adopter_account)
+    sign_in @user
+  end
+
   test "unauthenticated users see create account prompt and link" do
     skip("while new ui is implemented")
     # pet = create(:pet)
@@ -104,13 +113,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   end
 
   test "staff can view list of applications when selecting the applications tab" do
-    # pet = create(:pet)
-    sign_in create(:user, :verified_staff)
-    adopter_applications = create(:adopter_application)
-    pet = adopter_applications.first.pet
-    debugger
-    get "/#{pet.organization.slug}/pets/#{pet.id}?active_tab=applications"
-
-    assert_select "div.row.mb-3.rounded.py-2.application-info", {count: adopter_applications.length}
+    get "/#{@pet.organization.slug}/pets/#{@pet.id}?active_tab=applications"
+    assert_select "div.row.mb-3.rounded.py-2.application-info", {count: @adopter_applications.length}
   end
 end
