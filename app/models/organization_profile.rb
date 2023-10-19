@@ -3,6 +3,7 @@
 # Table name: organization_profiles
 #
 #  id              :bigint           not null, primary key
+#  about_us        :string           not null
 #  email           :string
 #  phone_number    :string
 #  created_at      :datetime         not null
@@ -30,6 +31,7 @@ class OrganizationProfile < ApplicationRecord
   before_save :normalize_phone
 
   validates :phone_number, phone: {possible: true, allow_blank: true}
+  validates :about_us, presence: true
 
   private
 
