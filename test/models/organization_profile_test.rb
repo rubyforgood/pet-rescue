@@ -8,10 +8,9 @@ class OrganizationProfileTest < ActiveSupport::TestCase
     should accept_nested_attributes_for(:location)
   end
 
-  context "validations" do 
+  context "validations" do
     should validate_presence_of(:about_us)
   end
-  
   context "callbacks" do
     subject { build(:organization_profile, :with_organization) }
 
