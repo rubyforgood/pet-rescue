@@ -28,8 +28,6 @@
         </div>
 
         <div class="card-body">
-          <%# <p><%= @pet.description %> </p>
-
           <h5>Tasks</h5> <!-- Task header -->
 
           <ul class="list-group list-group-flush">
@@ -46,32 +44,55 @@
                     <p class="text-dark mb-0 fw-semibold">
                       <%= task.completed? ? "Completed" : "Pending" %> <!-- Task status -->
                     </p>
-                    <!-- Edit and Delete options for tasks could be placed here -->
+                    <button type="button" class="edit-task-button btn btn-info" data-bs-toggle="modal" data-bs-target="#editTaskModal" 
+                        data-task-name="<%= task.name %>" 
+                        data-task-description="<%= task.description %>" 
+                        data-task-id="<%= task.id %>">
+                        Edit
+                    </button>
                   </div>
                 </div>
               </li>
+              <%= link_to 'Delete', pet_task_path(@pet, task), method: :delete, data: { confirm: t('organization_pets.show.are_you_sure_delete') }, class: 'btn btn-danger' %>
             <% end %>
           </ul>
 
-          <h6 class="mt-3">Add New Task</h6>
-           <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#newTaskModal">Add New Task</button>
-            <div class="modal" tabindex="-1" id="newTaskModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">New Task</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-         <%= render 'nice_partials/new_task_form' %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+          <button type="button" class="add-new-task-button btn btn-primary" data-bs-toggle="modal" data-bs-target="#newTaskModal">Add New Task</button>
+          <div class="modal" tabindex="-1" id="newTaskModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="taskModalTitle">New Task</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <%= render 'nice_partials/new_task_form', pet: @pet, task: @pet.tasks.build %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <!-- Edit Task Modal -->
+          <div class="modal" tabindex="-1" id="editTaskModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="taskModalTitle"><%= @editing_task&.new_record? ? "Add New Task" : "Edit Task" %></h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <%= render 'nice_partials/edit_task_form', pet: @pet, task: @editing_task || @pet.tasks.build %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+                <%# <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: t('organization_pets.show.are_you_sure_delete') }, class: 'btn btn-danger' %> %>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
