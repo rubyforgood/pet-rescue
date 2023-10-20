@@ -157,6 +157,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://reyes-dev.github.io/portfolio-site/"><img src="https://avatars.githubusercontent.com/u/102765102?v=4?s=100" width="100px;" alt="Jarrod Reyes"/><br /><sub><b>Jarrod Reyes</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=reyes-dev" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://erinclaudio.com"><img src="https://avatars.githubusercontent.com/u/20326770?v=4?s=100" width="100px;" alt="Erin Claudio"/><br /><sub><b>Erin Claudio</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=ErinClaudio" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://edwinmak.com"><img src="https://avatars.githubusercontent.com/u/11335191?v=4?s=100" width="100px;" alt="Edwin Mak"/><br /><sub><b>Edwin Mak</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=edwinthinks" title="Code">💻</a></td>
+    </tr>
+    <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jadekstewart3"><img src="https://avatars.githubusercontent.com/u/114014697?v=4?s=100" width="100px;" alt="Jade Stewart"/><br /><sub><b>Jade Stewart</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jadekstewart3" title="Code">💻</a></td>
     </tr>
   </tbody>
