@@ -29,6 +29,20 @@ class StaffAccount < ApplicationRecord
   end
 
   def status
-    user.invited_to_sign_up? ? :invitation_sent : :enabled
+    if user.invited_to_sign_up?
+      :invitation_sent
+    elsif deactivated_at
+      :deactivated
+    else
+      :enabled
+    end
+  end
+
+  def deactivate
+    update(deactivated_at: Time.now) unless deactivated_at
+  end
+
+  def activate
+    update(deactivated_at: nil) if deactivated_at
   end
 end
