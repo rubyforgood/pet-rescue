@@ -166,7 +166,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_19_155058) do
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "about_us", null: false
+    t.string "about_us"
     t.index ["location_id"], name: "index_organization_profiles_on_location_id"
     t.index ["organization_id"], name: "index_organization_profiles_on_organization_id"
   end
@@ -192,7 +192,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_19_155058) do
     t.integer "weight_from", null: false
     t.integer "weight_to", null: false
     t.string "weight_unit", null: false
-    t.integer "species", null: false
+    t.integer "species"
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 

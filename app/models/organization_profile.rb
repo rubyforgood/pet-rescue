@@ -3,6 +3,7 @@
 # Table name: organization_profiles
 #
 #  id              :bigint           not null, primary key
+#  about_us        :string           not null
 #  email           :string
 #  phone_number    :string
 #  created_at      :datetime         not null
