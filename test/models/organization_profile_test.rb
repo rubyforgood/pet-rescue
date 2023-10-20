@@ -7,7 +7,7 @@ class OrganizationProfileTest < ActiveSupport::TestCase
 
     should accept_nested_attributes_for(:location)
   end
-  
+
   context "callbacks" do
     subject { build(:organization_profile, :with_organization) }
 
