@@ -5,3 +5,94 @@
   <%= content_for :button do  %>
     <%= button_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
   <% end %>
+
+<div class="card">
+  <!-- Card header -->
+  <div class="card-header">
+    <h3 class="mb-0"> <%= @organization.name %> </h3>  
+  </div>
+  <!-- Card body -->
+  <div class="card-body">
+    <div class="d-lg-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center mb-4 mb-lg-0">
+        <!-- img tag for avatar -->
+        <div class="ms-3">
+          <h4 class="mb-0"> Welcome <%= @user.first_name %>!</h4>
+          <p class="mb-0">
+            <!--sub text under welcome message-->
+          </p>
+        </div>
+      </div>
+      <div>
+        <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>
+        <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+      </div>
+    </div>
+    <hr class="my-5">
+    <div>
+      <h4 class="mb-0">Personal Details</h4>
+      <p class="mb-4">
+        Edit your personal information and address.
+      </p>
+      <!-- Form -->
+      <form class="row gx-3">
+        <!-- First name -->
+        <div class="mb-3 col-12 col-md-6">
+          <label class="form-label" for="fname">First Name</label>
+          <input type="text" id="fname" class="form-control" placeholder="First Name" required="">
+        </div>
+        <!-- Last name -->
+        <div class="mb-3 col-12 col-md-6">
+          <label class="form-label" for="lname">Last Name</label>
+          <input type="text" id="lname" class="form-control" placeholder="Last Name" required="">
+        </div>
+        <!-- Phone -->
+        <div class="mb-3 col-12 col-md-6">
+          <label class="form-label" for="phone">Phone</label>
+          <input type="text" id="phone" class="form-control" placeholder="Phone" required="">
+        </div>
+        <!-- Birthday -->
+        <div class="mb-3 col-12 col-md-6">
+          <label class="form-label" for="birth">Birthday</label>
+          <input class="form-control flatpickr flatpickr-input" type="text" placeholder="Birth of Date" id="birth" name="birth" readonly="readonly">
+        </div>
+        <!-- Address -->
+        <div class="mb-3 col-12 col-md-6">
+          <label class="form-label" for="address">Address Line 1</label>
+          <input type="text" id="address" class="form-control" placeholder="Address" required="">
+        </div>
+        <!-- Address -->
+        <div class="mb-3 col-12 col-md-6">
+          <label class="form-label" for="address2">Address Line 2</label>
+          <input type="text" id="address2" class="form-control" placeholder="Address" required="">
+        </div>
+        <!-- State -->
+        <div class="mb-3 col-12 col-md-6">
+          <label class="form-label">State</label>
+          <div class="dropdown bootstrap-select" style="width: 100%;"><select class="selectpicker" data-width="100%">
+            <option value="">Select State</option>
+            <option value="1">Gujarat</option>
+            <option value="2">Rajasthan</option>
+            <option value="3">Maharashtra</option>
+          </select><button type="button" tabindex="-1" class="btn dropdown-toggle bs-placeholder btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox" aria-expanded="false" title="Select State"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Select State</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-1" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+        </div>
+        <!-- Country -->
+        <div class="mb-3 col-12 col-md-6">
+          <label class="form-label">Country</label>
+          <div class="dropdown bootstrap-select" style="width: 100%;"><select class="selectpicker" data-width="100%">
+            <option value="">Select Country</option>
+            <option value="1">India</option>
+            <option value="2">UK</option>
+            <option value="3">USA</option>
+          </select><button type="button" tabindex="-1" class="btn dropdown-toggle bs-placeholder btn-light" data-bs-toggle="dropdown" role="combobox" aria-owns="bs-select-2" aria-haspopup="listbox" aria-expanded="false" title="Select Country"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Select Country</div></div> </div></button><div class="dropdown-menu "><div class="inner show" role="listbox" id="bs-select-2" tabindex="-1"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+        </div>
+        <div class="col-12">
+          <!-- Button -->
+          <button class="btn btn-primary" type="submit">
+            Update Profile
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
