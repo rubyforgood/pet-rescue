@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -156,6 +156,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/yuricarvalhop"><img src="https://avatars.githubusercontent.com/u/20230045?v=4?s=100" width="100px;" alt="Yuri Pains"/><br /><sub><b>Yuri Pains</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=yuricarvalhop" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://reyes-dev.github.io/portfolio-site/"><img src="https://avatars.githubusercontent.com/u/102765102?v=4?s=100" width="100px;" alt="Jarrod Reyes"/><br /><sub><b>Jarrod Reyes</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=reyes-dev" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://erinclaudio.com"><img src="https://avatars.githubusercontent.com/u/20326770?v=4?s=100" width="100px;" alt="Erin Claudio"/><br /><sub><b>Erin Claudio</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=ErinClaudio" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jadekstewart3"><img src="https://avatars.githubusercontent.com/u/114014697?v=4?s=100" width="100px;" alt="Jade Stewart"/><br /><sub><b>Jade Stewart</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jadekstewart3" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
