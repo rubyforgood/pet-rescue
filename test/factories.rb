@@ -13,7 +13,7 @@ FactoryBot.define do
     end
 
     trait :with_adopter_profile do
-      adopter_profile { association :adopter_profile, adopter_account: instance}
+      adopter_profile { association :adopter_profile, adopter_account: instance }
     end
   end
 
@@ -148,7 +148,7 @@ FactoryBot.define do
     verified { true }
 
     organization { ActsAsTenant.test_tenant }
-    user { association :user, organization: organization}
+    user { association :user, organization: organization }
 
     trait :unverified do
       verified { false }
@@ -172,15 +172,15 @@ FactoryBot.define do
     organization { ActsAsTenant.test_tenant }
 
     trait :verified_staff do
-      staff_account { association :staff_account, organization: organization}
+      staff_account { association :staff_account, organization: organization }
     end
 
     trait :staff_admin do
-      staff_account { association :staff_account, :admin, organization: organization}
+      staff_account { association :staff_account, :admin, organization: organization }
     end
 
     trait :unverified_staff do
-      staff_account { association :staff_account, :unverified, organization: organization}
+      staff_account { association :staff_account, :unverified, organization: organization }
     end
 
     trait :adopter_without_profile do
