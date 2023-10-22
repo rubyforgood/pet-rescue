@@ -26,7 +26,7 @@ class ActiveSupport::TestCase
     Rails.application.routes.default_url_options[:script_name] = "/#{organization.slug}"
   end
 
-  def setup
+  setup do
     ActsAsTenant.current_tenant = create(:organization, slug: "test")
   end
 
