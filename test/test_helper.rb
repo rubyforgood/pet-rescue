@@ -27,11 +27,11 @@ class ActiveSupport::TestCase
   end
 
   setup do
-    ActsAsTenant.current_tenant = create(:organization, slug: "test")
+    ActsAsTenant.test_tenant = create(:organization, slug: "test")
   end
 
   def teardown
-    ActsAsTenant.current_tenant = nil
+    ActsAsTenant.test_tenant = nil
     Rails.application.routes.default_url_options[:script_name] = ""
   end
 
