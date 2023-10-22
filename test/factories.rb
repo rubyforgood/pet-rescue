@@ -89,7 +89,7 @@ FactoryBot.define do
 
   factory :organization do
     name { Faker::Company.name }
-    slug { Faker::Internet.domain_word }
+    sequence(:slug) { |n| Faker::Internet.domain_word + n.to_s }
     profile { build(:organization_profile) }
   end
 
