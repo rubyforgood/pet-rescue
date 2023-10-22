@@ -162,7 +162,7 @@ FactoryBot.define do
   end
 
   factory :user do
-    email { Faker::Internet.email }
+    sequence(:email) { |n| "john-#{n}@example.com" }
     password { "123456" }
     encrypted_password { Devise::Encryptor.digest(User, "123456") }
     first_name { Faker::Name.first_name }
