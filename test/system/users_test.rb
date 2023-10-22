@@ -2,9 +2,8 @@ require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
   setup do
-    @organization = create(:organization)
-    @user = create(:user, organization: @organization)
-    StaffAccount.create!(user: @user, organization: @organization, verified: true)
+    @user = create(:user, :verified_staff)
+    @organization = @user.organization
     set_organization(@organization)
   end
 
@@ -16,7 +15,7 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "Password", with: @user.password
     click_on "Log in"
 
-    assert current_path.include?(@user.organization.slug)
+    assert current_path.include?(@organization.slug)
     assert_equal current_path, dashboard_index_path
 
     using_wait_time(5) do
