@@ -61,6 +61,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "edwinthinks",
+      "name": "Edwin Mak",
+      "avatar_url": "https://avatars.githubusercontent.com/u/11335191?v=4",
+      "profile": "http://edwinmak.com",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jadekstewart3",
+      "name": "Jade Stewart",
+      "avatar_url": "https://avatars.githubusercontent.com/u/114014697?v=4",
+      "profile": "https://github.com/jadekstewart3",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

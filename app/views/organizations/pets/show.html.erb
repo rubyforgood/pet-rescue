@@ -116,12 +116,12 @@
               </ul>
             </div>
           </div>
-          <%= link_to t('general.delete'), pet_path(@pet), class: 'btn btn-outline-danger mt-2',
-                                      data:
-                                        {
-                                          turbo_method: :delete,
-                                          turbo_confirm: t('organization_pets.show.are_you_sure_delete')
-                                        } %>
+          <%= 
+            button_to t('general.delete'), 
+            pet_path(@pet), method: :delete, 
+            class: 'btn btn-outline-danger mt-2', 
+            data: { turbo_confirm: t('.are_you_sure_delete') } 
+          %>
         </div>
       </div>
 

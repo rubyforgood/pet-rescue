@@ -211,3 +211,4 @@ en:
     status:
       invitation_sent: "Invitation sent"
       enabled: "Enabled"
+      deactivated: "Deactivated"
