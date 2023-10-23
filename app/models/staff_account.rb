@@ -3,6 +3,7 @@
 # Table name: staff_accounts
 #
 #  id              :bigint           not null, primary key
+#  deactivated_at  :datetime
 #  verified        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
