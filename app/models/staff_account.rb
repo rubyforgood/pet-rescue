@@ -7,8 +7,8 @@
 #  verified        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  organization_id :bigint           default(1), not null
-#  user_id         :bigint           default(0), not null
+#  organization_id :bigint           not null
+#  user_id         :bigint           not null
 #
 # Indexes
 #
