@@ -37,8 +37,8 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   test "adopter application sees application status" do
     skip("while new ui is implemented")
     # pet = create(:pet, :adoption_pending)
-    # user = create(:user, :application_awaiting_review)
-    # user.adopter_account.adopter_applications[0].update(pet: pet)
+    # user = create(:user, :adopter_with_profile, organization: pet.organization)
+    # create(:adopter_application, adopter_account: user.adopter_account, pet: pet, status: :awaiting_review)
     # sign_in user
 
     # get "/adoptable_pets/#{pet.id}"

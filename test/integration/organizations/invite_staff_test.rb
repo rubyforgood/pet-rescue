@@ -10,13 +10,12 @@ class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
         staff_account_attributes: {roles: "admin"}
       }
     }
+    admin = create(:user, :staff_admin)
+    set_organization(admin.organization)
+    sign_in admin
   end
 
   test "staff admin can invite other staffs to the organization" do
-    admin = create(:user, :staff_admin)
-    sign_in admin
-    set_organization(admin.organization)
-
     post(
       user_invitation_path,
       params: @user_invitation_params
@@ -34,9 +33,6 @@ class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
   end
 
   test "staff admin can not invite existing user to the organization" do
-    admin = create(:user, :staff_admin)
-    sign_in admin
-    set_organization(admin.organization)
     _existing_user = create(:user, email: "john@example.com")
 
     post(

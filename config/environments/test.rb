@@ -1,4 +1,5 @@
 require "active_support/core_ext/integer/time"
+require_dependency "acts_as_tenant/test_tenant_middleware"
 
 # The test environment is used exclusively to run your application's
 # test suite. You never need to work with it otherwise. Remember that
@@ -71,4 +72,7 @@ Rails.application.configure do
     default: {altatest: "hello@#{alta_from_domain}", test: "hello@#{test_from_domain}"},
     contact: {altatest: "contact@#{alta_from_domain}", test: "contact@#{test_from_domain}"}
   }
+
+  # Handle ActsAsTenant.test_tenant properly in request specs
+  config.middleware.use ActsAsTenant::TestTenantMiddleware
 end

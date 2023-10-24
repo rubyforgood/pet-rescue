@@ -1,11 +1,19 @@
 FactoryBot.define do
   factory :adopter_account do
-    user
+    transient do
+      organization { ActsAsTenant.test_tenant }
+    end
+
+    user do
+      if organization
+        association :user, organization: organization
+      else
+        association :user
+      end
+    end
 
     trait :with_adopter_profile do
-      after :create do |account|
-        create(:adopter_profile, adopter_account: account)
-      end
+      adopter_profile { association :adopter_profile, adopter_account: instance }
     end
   end
 
@@ -81,16 +89,14 @@ FactoryBot.define do
     zipcode { Faker::Address.zip_code }
 
     trait :with_adopter_profile do
-      after :create do |location|
-        create(:adopter_profile, location: location)
-      end
+      adopter_profile
     end
   end
 
   factory :organization do
     name { Faker::Company.name }
-    slug { Faker::Internet.domain_word }
-    profile { build(:organization_profile) }
+    sequence(:slug) { |n| Faker::Internet.domain_word + n.to_s }
+    profile { association :organization_profile, organization: instance }
   end
 
   factory :organization_profile do
@@ -98,12 +104,7 @@ FactoryBot.define do
     phone_number { Faker::PhoneNumber.phone_number }
     about_us { Faker::Lorem.paragraph(sentence_count: 4) }
     location
-
-    trait :with_organization do
-      after :build do |profile|
-        profile.organization = create(:organization, profile: profile)
-      end
-    end
+    organization { ActsAsTenant.test_tenant }
   end
 
   factory :pet do
@@ -116,7 +117,7 @@ FactoryBot.define do
     weight_to { 20 }
     weight_unit { "lb" }
     species { Faker::Number.within(range: 0..1) }
-    organization
+    organization { ActsAsTenant.test_tenant }
 
     trait :adoption_pending do
       adopter_applications { build_list(:adopter_application, 3, :adoption_pending) }
@@ -133,23 +134,21 @@ FactoryBot.define do
     end
 
     trait :adopted do
-      after :create do |pet|
-        create :match, pet: pet, organization: pet.organization
-      end
+      match { association :match, organization: organization }
     end
   end
 
   factory :match do
-    organization
-    pet { create(:pet, organization: organization) }
-    association :adopter_account, factory: [:adopter_account, :with_adopter_profile]
+    organization { ActsAsTenant.test_tenant }
+    pet { association :pet, organization: organization }
+    adopter_account { association :adopter_account, :with_adopter_profile, organization: organization }
   end
 
   factory :staff_account do
     verified { true }
 
-    organization
-    user
+    organization { ActsAsTenant.test_tenant }
+    user { association :user, organization: organization }
 
     trait :unverified do
       verified { false }
@@ -163,25 +162,25 @@ FactoryBot.define do
   end
 
   factory :user do
-    email { Faker::Internet.email }
+    sequence(:email) { |n| "john-#{n}@example.com" }
     password { "123456" }
     encrypted_password { Devise::Encryptor.digest(User, "123456") }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     tos_agreement { true }
 
-    organization
+    organization { ActsAsTenant.test_tenant }
 
     trait :verified_staff do
-      staff_account
+      staff_account { association :staff_account, organization: organization }
     end
 
     trait :staff_admin do
-      association(:staff_account, :admin)
+      staff_account { association :staff_account, :admin, organization: organization }
     end
 
     trait :unverified_staff do
-      staff_account { build(:staff_account, :unverified) }
+      staff_account { association :staff_account, :unverified, organization: organization }
     end
 
     trait :adopter_without_profile do
@@ -189,20 +188,7 @@ FactoryBot.define do
     end
 
     trait :adopter_with_profile do
-      adopter_account
-
-      after :create do |user|
-        create :adopter_profile, adopter_account: user.adopter_account
-      end
-    end
-
-    trait :application_awaiting_review do
-      adopter_account
-
-      after :create do |user|
-        create :adopter_application, adopter_account: user.adopter_account, status: 0
-        user.adopter_account.adopter_profile = create(:adopter_profile)
-      end
+      association :adopter_account, :with_adopter_profile
     end
   end
 end
