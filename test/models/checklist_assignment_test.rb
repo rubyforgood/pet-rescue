@@ -2,13 +2,11 @@ require "test_helper"
 
 class ChecklistAssignmentTest < ActiveSupport::TestCase
   test "assigning checklist to match" do
-    organization = create(:organization)
-    pet = create(:pet, :adopted, organization: organization)
+    pet = create(:pet, :adopted)
     match = create(
       :match,
       adopter_account: create(:adopter_account),
-      pet: pet,
-      organization: organization
+      pet: pet
     )
     checklist = create(:checklist_template)
 

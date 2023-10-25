@@ -3,11 +3,12 @@
 # Table name: staff_accounts
 #
 #  id              :bigint           not null, primary key
+#  deactivated_at  :datetime
 #  verified        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  organization_id :bigint           default(1), not null
-#  user_id         :bigint           default(0), not null
+#  organization_id :bigint           not null
+#  user_id         :bigint           not null
 #
 # Indexes
 #
@@ -29,6 +30,20 @@ class StaffAccount < ApplicationRecord
   end
 
   def status
-    user.invited_to_sign_up? ? :invitation_sent : :enabled
+    if user.invited_to_sign_up?
+      :invitation_sent
+    elsif deactivated_at
+      :deactivated
+    else
+      :enabled
+    end
+  end
+
+  def deactivate
+    update(deactivated_at: Time.now) unless deactivated_at
+  end
+
+  def activate
+    update(deactivated_at: nil) if deactivated_at
   end
 end

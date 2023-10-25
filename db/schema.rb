@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_132343) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_23_113924) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_132343) do
   create_table "adopter_accounts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", default: 0, null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_adopter_accounts_on_user_id"
   end
 
@@ -166,6 +166,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_132343) do
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "about_us"
     t.index ["location_id"], name: "index_organization_profiles_on_location_id"
     t.index ["organization_id"], name: "index_organization_profiles_on_organization_id"
   end
@@ -208,9 +209,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_132343) do
   create_table "staff_accounts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "organization_id", default: 1, null: false
+    t.bigint "organization_id", null: false
     t.boolean "verified", default: false, null: false
-    t.bigint "user_id", default: 0, null: false
+    t.bigint "user_id", null: false
+    t.datetime "deactivated_at"
     t.index ["organization_id"], name: "index_staff_accounts_on_organization_id"
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
   end

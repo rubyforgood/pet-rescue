@@ -69,4 +69,12 @@ class User < ApplicationRecord
   def custom_messages(attribute)
     errors.where(attribute)
   end
+
+  def active_for_authentication?
+    super && !staff_account&.deactivated_at
+  end
+
+  def inactive_message
+    staff_account.deactivated_at ? :deactivated : super
+  end
 end

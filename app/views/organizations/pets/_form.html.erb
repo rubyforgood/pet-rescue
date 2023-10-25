@@ -11,7 +11,7 @@
 
       <div class='form-group d-flex'>
         <div class='me-3'>
-          <span class='form-control'>
+          <span class=''>
             <%= form.date_select :birth_date,
                                  start_year: Date.today.year - 20,
                                  end_year: Date.today.year %>
@@ -69,35 +69,6 @@
             <%= form.hidden_field :application_paused, value: false %>
             <%= form.check_box :application_paused, { class: "form-check-input", role: "switch", id: "flexSwitchCheckChecked" }, true, false %>
         </div>
-      </div>
-
-      <div class='form-group mt-3'>
-        <%= form.file_field :append_images, multiple: true,
-                            class: "custom-attachments",
-                            label: 'Attach images' %>
-
-        <% pet.errors.full_messages_for(:images).each do |message| %>
-          <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
-        <% end %>
-      </div>
-
-      <div>
-        <% if pet.images.attached? %>
-          <p><%= t('.uploaded_images') %></p>
-          <div class='row row-cols-1 row-cols-lg-5 g-6'>
-            <% pet.images.each do |image| %>
-              <% if image.created_at %>
-                <div class='d-flex flex-column align-items-center'>
-                  <%= image_tag image, class: 'uploaded-image rounded mt-2 mb-2' %>
-                  <%= link_to t('general.delete'),
-                              purge_attachment_path(image),
-                              data: { turbo_method: "delete" },
-                              class: 'delete-button' %>
-                </div>
-              <% end %>
-            <% end %>
-          </div>
-        <% end %>
       </div>
 
       <%= form.submit t('general.save'), class: 'btn btn-outline-dark mb-3 mt-4' %>
