@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 require "test_helper"
+require "shared/avatarable_shared_tests"
 
 class UserTest < ActiveSupport::TestCase
+  include AvatarableSharedTests
+
   context "associations" do
     should have_one(:staff_account).dependent(:destroy)
     should have_one(:adopter_account).dependent(:destroy)
@@ -31,5 +34,16 @@ class UserTest < ActiveSupport::TestCase
       user.staff_account.destroy
       assert_not_includes User.organization_staff(organization.id), user
     end
+  end
+
+  private
+
+  def fixture_file
+    @fixture_file ||= load_file
+  end
+
+  def load_file
+    fixture_path = File.join(Rails.root, "test", "fixtures", "files", "logo.png")
+    File.open(fixture_path)
   end
 end
