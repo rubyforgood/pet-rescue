@@ -31,12 +31,12 @@
             <%= f.submit t('general.submit'), class: 'btn btn-outline-dark' %>
           </div>
         <% end %>
-        
+
         <!--form2-->
         <%# only show pet name seletion if collection is greater than e.g., 5 pets? %>
         <%= bootstrap_form_with url: '/pets', class: 'mb-3 mb-md-0', method: :get do | f | %>
           <div class="d-flex gap-3 form-group">
-            <%= f.collection_select :pet_id, @collection, :id, :name, 
+            <%= f.collection_select :pet_id, @collection, :id, :name,
                                     { prompt: t('.filter_by_name') },
                                     class: 'form-control' %>
             <%= f.submit t('general.submit'), class: 'btn btn-outline-dark' %>
