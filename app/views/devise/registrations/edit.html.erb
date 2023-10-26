@@ -65,6 +65,8 @@
               <i>(we need your current password to confirm your changes)</i><br />
             </div>
 
+            <%= render partial: 'partials/avatarable_form', locals: { resource: resource, form: f } %>
+
             <div class="actions">
               <%= f.submit "Update", class: 'btn btn-outline-dark mt-3 mb-3', 
                                      data: { turbo: false } %>
