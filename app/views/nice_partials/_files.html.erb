@@ -1,33 +1,51 @@
 <div class="col-md-12 col-xl-8 col-12">
   <div class="row">
     <div class="col-12 mb-4">
-      <div class="card">
+      <div class="card mb-4">
         <div class="card-header">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <h4 class="mb-0">Summary</h4>
-            </div>
-            <!-- dropdown  -->
-            <div>
-              <span class="dropdown dropstart">
-                <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="DropdownTen" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fe fe-more-vertical"></i>
-                </a>
-                <span class="dropdown-menu" aria-labelledby="DropdownTen">
-                  <span class="dropdown-header">Settings</span>
-                  <%= link_to t('general.edit'), edit_pet_path(@pet), class: 'dropdown-item' %>
-                  <%= link_to t('general.delete'), pet_path(@pet), class: 'dropdown-item',
-                    data:
-                      {
-                        turbo_method: :delete,
-                        turbo_confirm: t('organization_pets.show.are_you_sure_delete')
-                      } %>
-                </span>
-              </span>
+              <h4 class="mb-0">Files</h4>
             </div>
           </div>
         </div>
+        <div class="card-body">
+          <%= bootstrap_form_with url: update_images_pet_path do |form| %>
+            <div class='form-group mt-3'>
+              <%= form.file_field :append_images, multiple: true,
+                        class: "custom-attachments",
+                        label: 'Attach images',
+                        accept: 'image/*',
+                        data: { max_file_size: 1.megabytes } %>
+              <% if @pet.errors %>
+                <% @pet.errors.full_messages_for(:images).each do |message| %>
+                  <div class="alert alert-danger mt-1" role="alert"><%= message %></div>
+                <% end %>
+              <% end %>
+            </div>
+
+            <%= form.submit t('general.save'), class: 'btn btn-outline-dark mb-3 mt-4' %>
+          <% end %>
+        </div>
       </div>
+
+      <% if @pet.images.attached? %>
+        <% @pet.images.each do |image| %>
+          <%p image.id %>
+          <div class="card mb-4">
+            <div class="card-body">
+              <p><%= image.filename %></p>
+              <%= image_tag image, style: 'width:100%;' %>
+              <%= link_to t('general.delete'),
+                              purge_attachment_path(image.id),
+                              data: {
+                                turbo_confirm: "Do you want to delete this image?", 
+                                turbo_method: "delete" },
+                              class: 'delete-button' %>
+              </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
