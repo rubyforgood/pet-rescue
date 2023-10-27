@@ -1,5 +1,5 @@
 class Organizations::TasksController < Organizations::BaseController
-  before_action :set_pet, only: [:new, :create, :edit, :update]
+  before_action :set_pet, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_task, only: [:edit, :update]
 
   def new

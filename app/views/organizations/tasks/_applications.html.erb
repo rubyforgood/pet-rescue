@@ -1,0 +1,33 @@
+<div class="col-md-12 col-xl-8 col-12">
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h4 class="mb-0">Summary</h4>
+            </div>
+            <!-- dropdown  -->
+            <div>
+              <span class="dropdown dropstart">
+                <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="DropdownTen" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fe fe-more-vertical"></i>
+                </a>
+                <span class="dropdown-menu" aria-labelledby="DropdownTen">
+                  <span class="dropdown-header">Settings</span>
+                  <%= link_to t('general.edit'), edit_pet_path(@pet), class: 'dropdown-item' %>
+                  <%= link_to t('general.delete'), pet_path(@pet), class: 'dropdown-item',
+                    data:
+                      {
+                        turbo_method: :delete,
+                        turbo_confirm: t('organization_pets.show.are_you_sure_delete')
+                      } %>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
