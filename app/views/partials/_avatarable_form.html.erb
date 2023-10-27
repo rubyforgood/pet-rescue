@@ -1,0 +1,21 @@
+<% if resource.avatar.attached? %>
+  <div class='form-group mt-3'>
+    <label class="form-label">
+      Current picture
+    </label>
+    <div class='d-flex flex-column align-items-center'>
+      <%= image_tag resource.avatar, class: 'uploaded-image rounded mt-2 mb-2' %>
+      <%= link_to t('general.delete'),
+                  purge_attachment_path(resource.avatar.id),
+                  data: { turbo_method: "delete" },
+                  class: 'delete-button' %>
+    </div>
+  </div>
+<% else %>
+  <div class='form-group mt-3'>
+    <%= form.file_field :append_avatar, 
+                        class: "custom-attachments",
+                        label: 'Attach images' %>
+
+  </div>
+<% end %>

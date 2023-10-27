@@ -118,15 +118,23 @@
                         <a href="#" class="fe fe-mail text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Message" data-bs-original-title="Message"></a>
                         <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i class="fe fe-trash"></i></a>
                         <span class="dropdown dropstart">
-                                <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" data-bs-toggle="dropdown" data-bs-offset="-20,20" aria-expanded="false">
-                                  <i class="fe fe-more-vertical"></i>
-                                </a>
-                                <span class="dropdown-menu">
-                                  <span class="dropdown-header">Settings</span>
-                                                        <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i>Edit</a>
-                                                        <a class="dropdown-item" href="#"><i class="fe fe-trash dropdown-item-icon"></i>Remove</a>
-                                                        </span>
-                                                        </span>
+                          <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" data-bs-toggle="dropdown" data-bs-offset="-20,20" aria-expanded="false">
+                            <i class="fe fe-more-vertical"></i>
+                          </a>
+                          <span class="dropdown-menu">
+                            <span class="dropdown-header">Settings</span>
+                              <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i> Edit</a>
+                              <% if staff.deactivated_at %>
+                                <%= button_to staff_activate_path(staff), class: "dropdown-item" do %>
+                                  <i class="fe fe-unlock dropdown-item-icon"></i> Activate
+                                <% end %>
+                              <% else %>
+                                <%= button_to staff_deactivate_path(staff), class: "dropdown-item" do %>
+                                  <i class="fe fe-lock  dropdown-item-icon"></i> Deactivate
+                                <% end %>
+                              <% end %>
+                            </span>
+                          </span>
                       </div>
                     </td>
                   </tr>

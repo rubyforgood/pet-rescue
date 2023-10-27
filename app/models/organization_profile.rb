@@ -3,6 +3,7 @@
 # Table name: organization_profiles
 #
 #  id              :bigint           not null, primary key
+#  about_us        :string
 #  email           :string
 #  phone_number    :string
 #  created_at      :datetime         not null
@@ -22,7 +23,7 @@
 #
 class OrganizationProfile < ApplicationRecord
   belongs_to :location
-  belongs_to :organization
+  belongs_to :organization, inverse_of: :profile
 
   accepts_nested_attributes_for :location
   validates_associated :location

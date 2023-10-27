@@ -1,4 +1,7 @@
 class Organizations::InvitationsController < Devise::InvitationsController
+  include OrganizationScopable
+  # TODO: remove next line once we fix links in the invitation emails
+  skip_before_action :set_tenant, except: [:new, :create]
   before_action :require_organization_admin, only: [:new, :create]
   layout "dashboard", only: [:new, :create]
 

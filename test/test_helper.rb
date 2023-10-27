@@ -26,12 +26,13 @@ class ActiveSupport::TestCase
     Rails.application.routes.default_url_options[:script_name] = "/#{organization.slug}"
   end
 
-  def setup
-    ActsAsTenant.current_tenant = create(:organization, slug: "test")
+  setup do
+    ActsAsTenant.test_tenant = create(:organization, slug: "test")
   end
 
   def teardown
-    ActsAsTenant.current_tenant = nil
+    ActsAsTenant.test_tenant = nil
+    Rails.application.routes.default_url_options[:script_name] = ""
   end
 
   def check_messages

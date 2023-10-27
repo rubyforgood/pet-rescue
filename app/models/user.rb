@@ -33,6 +33,8 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  include Avatarable
+
   acts_as_tenant(:organization)
   default_scope do
     #
@@ -68,5 +70,13 @@ class User < ApplicationRecord
   # used in views to show only the custom error msg without leading attribute
   def custom_messages(attribute)
     errors.where(attribute)
+  end
+
+  def active_for_authentication?
+    super && !staff_account&.deactivated_at
+  end
+
+  def inactive_message
+    staff_account.deactivated_at ? :deactivated : super
   end
 end
