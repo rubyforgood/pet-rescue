@@ -21,7 +21,7 @@ class Organizations::TasksController < Organizations::BaseController
     @task = @pet.tasks.build
     respond_to do |format|
       format.html # default behavior
-      format.js 
+      format.js
     end
   end
 
@@ -37,7 +37,7 @@ class Organizations::TasksController < Organizations::BaseController
     binding.pry
     @task = Task.find(params[:id])
     @task.destroy
-    redirect_to pet_path(@pet), notice: 'Task was successfully deleted.'
+    redirect_to pet_path(@pet), notice: "Task was successfully deleted."
   end
 
   private
