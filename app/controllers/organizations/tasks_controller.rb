@@ -34,7 +34,6 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def destroy
-    binding.pry
     @task = Task.find(params[:id])
     @task.destroy
     redirect_to pet_path(@pet), notice: "Task was successfully deleted."
