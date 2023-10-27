@@ -23,7 +23,10 @@ Rails.application.routes.draw do
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
     resources :settings, only: [:index]
-    resources :staff
+    resources :staff do
+      post "deactivate", to: "staff#deactivate"
+      post "activate", to: "staff#activate"
+    end
   end
 
   resources :profile_reviews, only: [:show]
