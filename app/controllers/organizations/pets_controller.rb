@@ -51,16 +51,13 @@ class Organizations::PetsController < Organizations::BaseController
 
   def update_images
     @pet = Pet.find(params[:id])
-    @pet.append_images = params[:append_images]
-
-    if @pet.save
+    
+    if pet_in_same_organization?(@pet.organization_id) && @pet.images.attach(params[:append_images])
       redirect_to @pet, notice: "Pet updated successfully."
     else
-      # byebug
-      # render partial: "nice_partials/files", locals: { pet: @pet }, status: :unprocessable_entity
-      flash[:error]
-      p flash[:error]
-      render :new, status: :unprocessable_entity
+      @active_tab = "files"
+      @pet.images.last.purge
+      render :show, status: :unprocessable_entity
     end
   end
 
