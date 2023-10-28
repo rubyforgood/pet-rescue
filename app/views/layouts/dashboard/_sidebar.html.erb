@@ -10,37 +10,44 @@
       <li class="nav-item">
         <div class="navbar-heading">Menu</div>
       </li>
-      <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
-        <li class="nav-item">
-          <%= active_link_to settings_path, class: "nav-link" do %>
-            <i class="nav-icon fe fe-book me-2"></i> Settings
-          <% end %>
-        </li>
-        <li class="nav-item">
-          <%= active_link_to staff_index_path, class: "nav-link" do %>
-            <i class="nav-icon fe fe-book me-2"></i> Staff
-          <% end %>
-        </li>
-      <% end %>
+
+      <li class="nav-item">
+        <%= active_link_to dashboard_index_path, class: "nav-link" do %>
+          <i class="nav-icon fe fe-home me-2"></i> Dashboard
+        <% end %>
+      </li>
       <li class="nav-item">
         <%= active_link_to adoption_application_reviews_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-book me-2"></i> Adoption Applications
+          <i class="nav-icon fe fe-file-text me-2"></i> Adoption Applications
         <% end %>
       </li>
       <li class="nav-item">
         <%= active_link_to foster_application_reviews_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-book me-2"></i> Foster Applications
+          <i class="nav-icon fe fe-file-text me-2"></i> Foster Applications
         <% end %>
       </li>
       <li class="nav-item">
         <%= active_link_to pets_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-book me-2"></i> Pets
+          <i class="nav-icon fe fe-heart me-2"></i> Pets
         <% end %>
       </li>
       <!-- Nav item -->
       <li class="nav-item">
         <div class="nav-divider"></div>
       </li>
+
+      <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
+        <li class="nav-item">
+          <%= active_link_to edit_organization_profile_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-settings me-2"></i> Settings
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to staff_index_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-users me-2"></i> Staff
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>
