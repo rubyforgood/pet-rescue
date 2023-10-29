@@ -13,9 +13,8 @@
               </div>
               <%= link_to t('general.edit'), edit_pet_path(@pet), class: 'btn btn-outline-dark' %>
             </div>
-
-
           </div>
+
           <div class="card-body">
             <p><%= @pet.description %> </p>
 
@@ -103,18 +102,17 @@
 
   </div>
   <div class="col-md-12 col-xl-4 col-12">
-    <!-- card  -->
-    <div class="card mb-4 bg-primary border-primary">
-      <!-- card body  -->
-      <div class="card-body">
+
+    <div class="mb-4">
+      <div>
         <% if @pet.images.attached? %>
-          <%= image_tag @pet.images.first, class: 'card-img-top test' %>
+          <%= image_tag @pet.images.first, class: 'rounded card-img-top' %>
         <% else %>
-          <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
+          <%= image_tag('coming_soon.jpg', class: 'rounded card-img-top') %>
         <% end %>
       </div>
-
     </div>
+
     <div class="card">
       <!-- Card header -->
       <div class="card-header card-header-height d-flex justify-content-between align-items-center">
