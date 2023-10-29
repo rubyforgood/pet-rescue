@@ -1,7 +1,7 @@
 class Organizations::PetsController < Organizations::BaseController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :verified_staff
-  before_action :set_nav_tabs
+  before_action :set_nav_tabs, only: [:show]
 
   after_action :set_reason_paused_to_none, only: [:update]
   layout "dashboard"
