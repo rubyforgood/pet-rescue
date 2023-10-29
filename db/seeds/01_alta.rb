@@ -3,7 +3,7 @@ orga_location = Location.create!(
   province_state: "Nevada",
   city_town: "AltaCity",
   zipcode: "12345",
-  latitude: 48.4283182, 
+  latitude: 48.4283182,
   longitude: -123.3649533
 )
 
@@ -84,7 +84,7 @@ ActsAsTenant.with_tenant(organization) do
     province_state: "Alberta",
     city_town: "Canmore",
     zipcode: "12345",
-    latitude: 48.4283182, 
+    latitude: 48.4283182,
     longitude: -123.3649533
   )
 
@@ -130,7 +130,7 @@ ActsAsTenant.with_tenant(organization) do
     province_state: "Nevada",
     city_town: "Reno",
     zipcode: "12345",
-    latitude: 48.4283182, 
+    latitude: 48.4283182,
     longitude: -123.3649533
   )
 
@@ -179,7 +179,7 @@ ActsAsTenant.with_tenant(organization) do
     province_state: "Nonsense",
     city_town: "Nonsense",
     zipcode: "12345",
-    latitude: 48.4283182, 
+    latitude: 48.4283182,
     longitude: -123.3649533
   )
 
