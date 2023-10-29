@@ -60,18 +60,18 @@ class Organizations::PetsController < Organizations::BaseController
 
   def pet_params
     params.require(:pet).permit(:organization_id,
-                                :name,
-                                :birth_date,
-                                :sex,
-                                :species,
-                                :breed,
-                                :description,
-                                :application_paused,
-                                :pause_reason,
-                                :weight_from,
-                                :weight_to,
-                                :weight_unit,
-                                append_images: [])
+      :name,
+      :birth_date,
+      :sex,
+      :species,
+      :breed,
+      :description,
+      :application_paused,
+      :pause_reason,
+      :weight_from,
+      :weight_to,
+      :weight_unit,
+      append_images: [])
   end
 
   def set_pet
@@ -88,7 +88,7 @@ class Organizations::PetsController < Organizations::BaseController
 
   def set_nav_tabs
     @nav_tabs = [
-      { name: "Summary", path: pet_path(@pet) },
+      {name: "Summary", path: pet_path(@pet)}
     ]
   end
 end
