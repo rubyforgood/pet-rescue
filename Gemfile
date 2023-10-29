@@ -71,9 +71,6 @@ gem "azure-storage-blob", "~> 2.0", require: false
 # validate adopter phone numbers
 gem "phonelib"
 
-# geocoder creates lat/long for success page map
-gem "geocoder"
-
 # a rake task that helps find dead routes and unused actions
 gem "traceroute"
 
