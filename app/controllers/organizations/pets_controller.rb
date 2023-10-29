@@ -66,6 +66,7 @@ class Organizations::PetsController < Organizations::BaseController
       :name,
       :birth_date,
       :sex,
+      :species,
       :breed,
       :description,
       :application_paused,
