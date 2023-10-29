@@ -17,7 +17,7 @@ class Location < ApplicationRecord
   has_one :organization_profile
 
   geocoded_by :address
-  after_validation :geocode
+  after_validation :geocode, if: ->(obj) { Rails.env.production? || (Rails.env.development? && (obj.latitude.nil? || obj.longitude.nil?)) }
 
   # create address string for Geocoder gem to get Lat/Long
   def address
