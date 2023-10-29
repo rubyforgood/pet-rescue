@@ -31,6 +31,13 @@
       </div>
 
       <div class='form-group'>
+        <%= form.select :species, 
+                        options_for_select(Pet.species.keys, selected: pet.species), 
+                        { prompt: t('general.please_select') }, 
+                        class: 'form-control' %>
+      </div>
+
+      <div class='form-group'>
         <%= form.text_field :breed, class: 'form-control' %>
       </div>
 
