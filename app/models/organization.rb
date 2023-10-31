@@ -8,6 +8,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_organizations_on_slug  (slug) UNIQUE
+#
 class Organization < ApplicationRecord
   resourcify # rolify
 

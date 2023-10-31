@@ -1,0 +1,28 @@
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 0 * * *'
+
+jobs:
+  unassign_issues:
+    runs-on: ubuntu-latest
+    name: Unassign issues
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Mark issues as stale
+        uses: actions/stale@v8
+        with:
+          include-only-assigned: true
+          stale-issue-message: 'This issue is marked as stale due to no activity within 30 days. If no further activity is detected within 7 days, it will be unassigned.'
+          days-before-stale: 30
+          days-before-close: -1
+          days-before-pr-close: -1
+      - name: Unassign stale issues
+        uses: boundfoxstudios/action-unassign-contributor-after-days-of-inactivity@main
+        with:
+          last-activity: 7
+          labels: 'Stale'
+          labels-to-remove: 'Stale'
+          message: 'Automatically unassigned after 7 days of inactivity.'

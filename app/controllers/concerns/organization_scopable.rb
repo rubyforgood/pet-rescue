@@ -16,7 +16,7 @@ module OrganizationScopable
 
   def after_sign_in_path_for(resource_or_scope)
     if resource_or_scope.staff_account&.verified
-      dashboard_index_path
+      pets_path
     else
       adoptable_pets_path
     end
