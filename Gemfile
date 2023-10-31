@@ -163,3 +163,5 @@ gem "requestjs-rails", "~> 0.0.10"
 gem "rolify"
 
 gem "gretel", "~> 4.5"
+
+gem "ransack"
