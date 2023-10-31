@@ -8,7 +8,7 @@ class LoginTest < ApplicationSystemTestCase
   end
 
   context "when logging in as a staff member" do
-    should "direct to the organization's dashboard" do
+    should "direct to the organization's pets index view" do
       visit root_url
       click_on "Log In"
 
@@ -17,7 +17,7 @@ class LoginTest < ApplicationSystemTestCase
       click_on "Log in"
 
       assert current_path.include?(@organization.slug)
-      assert_equal current_path, dashboard_index_path
+      assert_equal current_path, pets_path
     end
   end
 end

@@ -38,6 +38,7 @@ class Pet < ApplicationRecord
   validates :birth_date, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
+  validates :species, presence: true
   validates :weight_from, presence: true, numericality: {only_integer: true}
   validates :weight_to, presence: true, numericality: {only_integer: true}
   validates :weight_unit, presence: true

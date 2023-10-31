@@ -1,12 +1,14 @@
 class Organizations::PetsController < Organizations::BaseController
+  before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :verified_staff
+  before_action :set_nav_tabs, only: [:show]
+
   after_action :set_reason_paused_to_none, only: [:update]
   layout "dashboard"
 
   def index
     @unadopted_pets = Pet.unadopted_pets(current_user.staff_account.organization_id)
     @adopted_pets = Pet.adopted_pets(current_user.staff_account.organization_id)
-    @pet = selected_pet
   end
 
   def new
@@ -14,14 +16,12 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def edit
-    @pet = Pet.find(params[:id])
     return if pet_in_same_organization?(@pet.organization_id)
 
     redirect_to pets_path, alert: "This pet is not in your organization."
   end
 
   def show
-    @pet = Pet.find(params[:id])
     @pause_reason = @pet.pause_reason
     return if pet_in_same_organization?(@pet.organization_id)
 
@@ -39,8 +39,6 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def update
-    @pet = Pet.find(params[:id])
-
     if pet_in_same_organization?(@pet.organization_id) && @pet.update(pet_params)
       redirect_to @pet, notice: "Pet updated successfully."
     else
@@ -65,6 +63,7 @@ class Organizations::PetsController < Organizations::BaseController
       :name,
       :birth_date,
       :sex,
+      :species,
       :breed,
       :description,
       :application_paused,
@@ -75,19 +74,21 @@ class Organizations::PetsController < Organizations::BaseController
       append_images: [])
   end
 
-  def selected_pet
-    return if !params[:pet_id] || params[:pet_id] == ""
-
-    Pet.where(id: params[:pet_id])
+  def set_pet
+    @pet = Pet.find(params[:id])
   end
 
   # update Pet pause_reason to not paused if applications resumed
   def set_reason_paused_to_none
-    pet = Pet.find(params[:id])
+    return unless @pet.application_paused == false
 
-    return unless pet.application_paused == false
+    @pet.pause_reason = 0
+    @pet.save!
+  end
 
-    pet.pause_reason = 0
-    pet.save!
+  def set_nav_tabs
+    @nav_tabs = [
+      {name: "Summary", path: pet_path(@pet)}
+    ]
   end
 end
