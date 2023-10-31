@@ -226,21 +226,36 @@
             <div class="col-lg-12 col-md-12 col-12">
               <div class="border-bottom pb-3 mb-3 d-lg-flex justify-content-between align-items-center">
                 <div style="--bs-breadcrumb-divider: '>'" class="flex-column">
-                  <h2 class="section-heading">
+                  <h2 class="section-heading text-uppercase">
                     <%= yield(:header_title) %>
                   </h2>
-                  <%= breadcrumbs class: "breadcrumb",
-                    style: :ol,
-                    fragment_class: "breadcrumb-item" %>
+                  <%= breadcrumbs class: "breadcrumb", style: :ol, fragment_class: "breadcrumb-item" %>
                 </div>
                 <div class="d-flex">
                   <%= yield :button %>
                 </div>
               </div>
             </div>
-
-            <%= yield %>
           </div>
+
+          <div class="row">
+            <div class="col-12 mb-4 border-bottom">
+              <!-- Nav tabs -->
+              <% if @nav_tabs.present? %>
+                <ul class="nav nav-lb-tab">
+                  <% @nav_tabs.each_with_index do |link, index| %>
+                    <li class="nav-item <%= index == 0 ? 'ms-0' : 'mx-0' %>">
+                      <%= active_link_to link[:path], class: "nav-link" do %>
+                        <%= link[:name] %>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+
+          <%= yield %>
         </section>
       </main>
     </div>
