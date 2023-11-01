@@ -79,6 +79,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "MarchandMD",
+      "name": "Michael Marchand",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35391349?v=4",
+      "profile": "http://marchandmd.github.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
