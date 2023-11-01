@@ -79,6 +79,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "BakiVernes",
+      "name": "Vernes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31761693?v=4",
+      "profile": "http://vernespendic.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
