@@ -161,6 +161,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jadekstewart3"><img src="https://avatars.githubusercontent.com/u/114014697?v=4?s=100" width="100px;" alt="Jade Stewart"/><br /><sub><b>Jade Stewart</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jadekstewart3" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://vernespendic.com"><img src="https://avatars.githubusercontent.com/u/31761693?v=4?s=100" width="100px;" alt="Vernes"/><br /><sub><b>Vernes</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=BakiVernes" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://marchandmd.github.io"><img src="https://avatars.githubusercontent.com/u/35391349?v=4?s=100" width="100px;" alt="Michael Marchand"/><br /><sub><b>Michael Marchand</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=MarchandMD" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Yuji3000"><img src="https://avatars.githubusercontent.com/u/108035840?v=4?s=100" width="100px;" alt="Yuji K."/><br /><sub><b>Yuji K.</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Yuji3000" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

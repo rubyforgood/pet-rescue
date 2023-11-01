@@ -88,6 +88,22 @@
       "contributions": [
         "code"
       ]
+    },
+      "login": "MarchandMD",
+      "name": "Michael Marchand",
+      "avatar_url": "https://avatars.githubusercontent.com/u/35391349?v=4",
+      "profile": "http://marchandmd.github.io",
+        "contributions": [
+        "code"
+      ]
+    },
+      "login": "Yuji3000",
+      "name": "Yuji K.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/108035840?v=4",
+      "profile": "https://github.com/Yuji3000",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
