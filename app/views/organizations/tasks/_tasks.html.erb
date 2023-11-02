@@ -6,22 +6,18 @@
           <!-- ... (rest of the card header) ... -->
         </div>
         <div class="card-body">
-
           <h5>Tasks</h5>
-
           <!-- This turbo-frame encapsulates the actual list of tasks -->
           <turbo-frame id="tasks_list">
             <ul class="list-group list-group-flush">
               <% @pet.tasks.each do |task| %> <!-- Ensure @pet is the correct context -->
                 <li class="list-group-item px-0">
                   <div class="d-flex justify-content-between align-items-start">
-
                     <!-- Left side: Task details -->
                     <div>
                       <strong class="d-block mb-1"><%= task.name %></strong>
                       <p><%= task.description %></p>
                     </div>
-
                     <!-- Right side: Completion status and action buttons -->
                     <div class="text-right">
                       <div class="d-flex align-items-center justify-content-end">
@@ -34,7 +30,6 @@
                         <%= link_to 'Delete', pet_task_path(@pet, task), class: 'btn btn-danger', data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
                       </div>
                     </div>
-
                     <!-- Modal for Editing Task -->
                     <div class="modal" tabindex="-1" id="editTaskModal_<%= task.id %>">
                       <div class="modal-dialog">
@@ -54,8 +49,8 @@
                         </div>
                       </div>
                     </div>
-                </li>
-              <% end %>
+                  </li>
+                <% end %>
             </ul>
           </turbo-frame>
           <%= render 'organizations/tasks/new_task_modal', pet: @pet %>
