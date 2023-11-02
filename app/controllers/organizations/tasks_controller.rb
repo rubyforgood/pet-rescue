@@ -10,31 +10,24 @@ class Organizations::TasksController < Organizations::BaseController
   def create
     @task = @pet.tasks.build(task_params)
     if @task.save
-      redirect_to pet_path(@pet, active_tab: @active_tab) # Make sure @active_tab is set elsewhere or provide a default
+      redirect_to pet_path(@pet, active_tab: @active_tab)
     else
       render :new
     end
   end
 
-  def edit
-    # binding.pry
-    # render layout: false if request.headers["Turbo-Frame"]
-  end
+  def edit; end
 
   def update
     if @task.update(task_params)
       respond_to do |format|
         format.html { redirect_to @task, notice: "Task was successfully updated." }
-        # render turbo_stream: turbo_stream.replace("task_#{task.id}", partial: 'organizations/tasks/tasks', locals: { task: task })
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/tasks/tasks", locals: {task: @task}) }  # working
-        # format.turbo_stream { render turbo_stream: turbo_stream.append("tasks_list", partial: 'organizations/tasks/tasks', locals: { task: @task }) }
-        # format.turbo_stream { render turbo_stream: turbo_stream.prepend("tasks_list", partial: 'organizations/tasks/tasks', locals: { task: @task }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/tasks/tasks", locals: { task: @task }) }
       end
     else
-      # respond_to do |format|
-      #   format.html { render :edit } # render the edit form again with error messages
-      #   format.turbo_stream { render partial: "tasks", status: :unprocessable_entity }
-      # end
+      respond_to do |format|
+        format.html { render :edit }
+      end
     end
   end
 
