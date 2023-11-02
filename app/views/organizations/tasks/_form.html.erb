@@ -1,9 +1,10 @@
-<div class="col-md-12 col-xl-8 col-12">
-  <div class="card">
-    <div class="card-header">
-      <h4 class="mb-0">Add New Task?????????</h4>
-    </div>
-    <div class="card-body">
-    </div>
+<%= form_for [@pet, @task], remote: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, "Task Name" %>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
-</div>
+  <div class="mb-3">
+    <%= f.submit "Update Task", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+

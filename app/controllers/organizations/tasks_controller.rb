@@ -4,7 +4,7 @@ class Organizations::TasksController < Organizations::BaseController
 
   def new
     @task = @pet.tasks.build
-    render partial: "nice_partials/new_task_form"
+    render partial: 'form', locals: { task: @task }
   end
 
   def create
@@ -17,19 +17,25 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def edit
-    render layout: false
-    @task = @pet.tasks.build
-    respond_to do |format|
-      format.html # default behavior
-      format.js
-    end
+    # binding.pry
+    # render layout: false if request.headers["Turbo-Frame"]
   end
 
   def update
     if @task.update(task_params)
-      redirect_to @pet
+      respond_to do |format|
+        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        # render turbo_stream: turbo_stream.replace("task_#{task.id}", partial: 'organizations/tasks/tasks', locals: { task: task })
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: 'organizations/tasks/tasks', locals: { task: @task }) }  #working
+        # format.turbo_stream { render turbo_stream: turbo_stream.append("tasks_list", partial: 'organizations/tasks/tasks', locals: { task: @task }) }
+        # format.turbo_stream { render turbo_stream: turbo_stream.prepend("tasks_list", partial: 'organizations/tasks/tasks', locals: { task: @task }) }
+
+      end
     else
-      render :edit
+      # respond_to do |format|
+      #   format.html { render :edit } # render the edit form again with error messages
+      #   format.turbo_stream { render partial: "tasks", status: :unprocessable_entity }
+      # end
     end
   end
 

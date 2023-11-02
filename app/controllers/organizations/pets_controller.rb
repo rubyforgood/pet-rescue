@@ -45,7 +45,7 @@ class Organizations::PetsController < Organizations::BaseController
     if pet_in_same_organization?(@pet.organization_id) && @pet.update(pet_params)
       redirect_to @pet, notice: "Pet updated successfully."
     else
-      render :edit, status: :unprocessable_entity
+      render :edit
     end
   end
 

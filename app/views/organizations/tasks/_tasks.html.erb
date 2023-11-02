@@ -3,65 +3,91 @@
     <div class="col-12 mb-4">
       <div class="card">
         <div class="card-header">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <h4 class="mb-0">Summary</h4>
-            </div>
-            <!-- dropdown -->
-            <div>
-              <span class="dropdown dropstart">
-                <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="DropdownTen" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fe fe-more-vertical"></i>
-                </a>
-                <span class="dropdown-menu" aria-labelledby="DropdownTen">
-                  <span class="dropdown-header">Settings</span>
-                  <%= link_to t('general.edit'), edit_pet_path(@pet), class: 'dropdown-item' %>
-                  <%= link_to t('general.delete'), pet_path(@pet), class: 'dropdown-item',
-                    data: {
-                      turbo_method: :delete,
-                      turbo_confirm: t('organization_pets.show.are_you_sure_delete')
-                    } %>
-                </span>
-              </span>
-            </div>
-          </div>
+          <!-- ... (rest of the card header) ... -->
         </div>
-
         <div class="card-body">
-          <h5>Tasks</h5> <!-- Task header -->
-
-          <ul class="list-group list-group-flush">
-            <% @pet.tasks.each do |task| %>
-              <li class="list-group-item px-0">
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="d-flex align-items-center">
-                    <i class="fe fe-check-square me-2"></i> <!-- A generic icon for tasks; change as needed -->
-                    <div class="ms-2">
-                      <h6 class="mb-0 text-body"><%= task.name %></h6> <!-- Task title -->
+          
+          <!-- Comment/Remove this if your main view already contains the "Tasks" title -->
+          <%# <h5>Tasks</h5> %>
+          
+          <!-- This turbo-frame encapsulates the actual list of tasks -->
+          <turbo-frame id="tasks_list">
+            <ul class="list-group list-group-flush">
+              <% @pet.tasks.each do |task| %> <!-- Ensure @pet is the correct context -->
+                <li class="list-group-item px-0">
+                  <div class="d-flex justify-content-between align-items-start">
+                    
+                    <!-- Left side: Task details -->
+                    <div>
+                      <strong class="d-block mb-1"><%= task.name %></strong>
+                      <p><%= task.description %></p>
                     </div>
-                  </div>
-                  <div class="d-flex align-items-center">
-                    <p class="text-dark mb-0 fw-semibold mr-3">
-                      <%= task.completed? ? "Completed" : "Pending" %> <!-- Task status -->
-                    </p>
-                    <%= link_to 'Edit', edit_pet_task_path(@pet, task), class: 'btn btn-warning mr-4' %>
-                    <%= link_to 'Delete', pet_task_path(@pet, task), class: 'btn btn-danger', data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
-                  </div>
-                </div>
-              </li>
-            <% end %>
+                    
+                    <!-- Right side: Completion status and action buttons -->
+                    <div class="text-right">
+                      <div class="d-flex align-items-center justify-content-end">
+                        <strong class="mr-3"><%= task.completed %></strong>
+                        <!-- Trigger Edit Modal -->
+                        <button type="button" class="btn btn-warning mr-4" data-bs-toggle="modal" data-bs-target="#editTaskModal_<%= task.id %>">
+                          Edit
+                        </button>
+                        <!-- Delete Task Link -->
+                        <%= link_to 'Delete', pet_task_path(@pet, task), class: 'btn btn-danger', data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
+                      </div>
+                    </div>
 
-          </ul>
-          <button type="button" class="add-new-task-button btn btn-primary" data-bs-toggle="modal" data-bs-target="#newTaskModal">Add New Task</button>
+                    <!-- Modal for Editing Task -->
+                    <div class="modal" tabindex="-1" id="editTaskModal_<%= task.id %>">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title">Edit Task</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                            <!-- Turbo Frame for Dynamic Loading of Edit Form -->
+                            <turbo-frame id="edit_task_frame_<%= task.id %>" src="<%= edit_pet_task_path(@pet, task) %>">
+                            </turbo-frame>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </li>
+              <% end %>
+            </ul>
+          </turbo-frame>
+
+          <!-- Modal for Adding New Task -->
           <div class="modal" tabindex="-1" id="newTaskModal">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="taskModalTitle">New Task</h5>
+                  <%# <h5 class="modal-title">Add New Task</h5> %>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  <%= render 'nice_partials/new_task_form', pet: @pet, task: @pet.tasks.build %>
+                  <!-- Form for Adding a New Task -->
+                  <%= form_for [@pet, Task.new], remote: true do |f| %>
+                    <div class="mb-3">
+                      <%= f.label :name, "Task Name" %>
+                      <%= f.text_field :name, class: 'form-control' %>
+                    </div>
+                    <div class="mb-3">
+                      <%= f.label :description, "Task Description" %>
+                      <%= f.text_area :description, class: 'form-control', rows: 3 %>
+                    </div>
+
+                    <div class="mb-3">
+                      <%= f.label :completed, "Task Completed?" %>
+                      <%= f.check_box :completed %>
+                    </div>
+                    <div class="mb-3">
+                      <%= f.submit "Add Task", class: 'btn btn-primary' %>
+                    </div> %>
+                  <% end %>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -69,6 +95,11 @@
               </div>
             </div>
           </div>
+
+          <!-- Trigger New Task Modal -->
+          <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#newTaskModal">
+            Add New Task
+          </button>
         </div>
       </div>
     </div>
