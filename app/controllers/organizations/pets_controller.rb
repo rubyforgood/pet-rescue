@@ -2,7 +2,6 @@ class Organizations::PetsController < Organizations::BaseController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :verified_staff
   before_action :set_nav_tabs, only: [:show]
-
   after_action :set_reason_paused_to_none, only: [:update]
   layout "dashboard"
 
@@ -22,8 +21,7 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def show
-    @active_tab = ["tasks", "applications", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
-    @pet = Pet.find(params[:id])
+    @active_tab = determine_active_tab
     @pause_reason = @pet.pause_reason
     return if pet_in_same_organization?(@pet.organization_id)
 
@@ -78,6 +76,10 @@ class Organizations::PetsController < Organizations::BaseController
 
   def set_pet
     @pet = Pet.find(params[:id])
+  end
+
+  def determine_active_tab
+    ["tasks", "applications", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
   end
 
   # update Pet pause_reason to not paused if applications resumed
