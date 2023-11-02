@@ -4,7 +4,7 @@ class Organizations::TasksController < Organizations::BaseController
 
   def new
     @task = @pet.tasks.build
-    render partial: 'form', locals: { task: @task }
+    render partial: "form", locals: {task: @task}
   end
 
   def create
@@ -24,12 +24,11 @@ class Organizations::TasksController < Organizations::BaseController
   def update
     if @task.update(task_params)
       respond_to do |format|
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to @task, notice: "Task was successfully updated." }
         # render turbo_stream: turbo_stream.replace("task_#{task.id}", partial: 'organizations/tasks/tasks', locals: { task: task })
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: 'organizations/tasks/tasks', locals: { task: @task }) }  #working
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/tasks/tasks", locals: {task: @task}) }  # working
         # format.turbo_stream { render turbo_stream: turbo_stream.append("tasks_list", partial: 'organizations/tasks/tasks', locals: { task: @task }) }
         # format.turbo_stream { render turbo_stream: turbo_stream.prepend("tasks_list", partial: 'organizations/tasks/tasks', locals: { task: @task }) }
-
       end
     else
       # respond_to do |format|
