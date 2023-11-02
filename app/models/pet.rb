@@ -66,6 +66,9 @@ class Pet < ApplicationRecord
     WEIGHT_UNIT_KG
   ]
 
+  scope :adopted, -> { Pet.includes(:match).where.not(match: {id: nil}) }
+  scope :unadopted, -> { Pet.includes(:match).where(match: {id: nil}) }
+
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?
     adopter_applications.any? { |app| app.status == "adoption_pending" }
@@ -100,14 +103,19 @@ class Pet < ApplicationRecord
     Pet.includes(:match).where(match: {id: nil})
   end
 
-  # all unadopted pets under an organization
-  def self.unadopted_pets(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:match).where(match: {id: nil})
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "sex", "species"]
   end
 
-  # all adopted pets under an organization
-  def self.adopted_pets(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:match)
-      .where.not(match: {id: nil})
+  def self.ransackable_associations(auth_object = nil)
+    []
+  end
+
+  def self.ransackable_scopes(auth_object = nil)
+    [:ransack_adopted]
+  end
+
+  def self.ransack_adopted(boolean)
+    boolean ? adopted : unadopted
   end
 end
