@@ -16,13 +16,14 @@ class Organizations::TasksController < Organizations::BaseController
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @task.update(task_params)
       respond_to do |format|
         format.html { redirect_to @task, notice: "Task was successfully updated." }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/tasks/tasks", locals: { task: @task }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/tasks/tasks", locals: {task: @task}) }
       end
     else
       respond_to do |format|
