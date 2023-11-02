@@ -7,8 +7,8 @@ class Organizations::PetsController < Organizations::BaseController
   layout "dashboard"
 
   def index
-    @unadopted_pets = Pet.unadopted_pets(current_user.staff_account.organization_id)
-    @adopted_pets = Pet.adopted_pets(current_user.staff_account.organization_id)
+    @q = Pet.ransack(params[:q])
+    @pets = @q.result
   end
 
   def new
