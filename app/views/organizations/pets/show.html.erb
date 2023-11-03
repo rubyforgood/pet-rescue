@@ -136,94 +136,64 @@
               <div class="col ms-n3">
                 <h4 class="mb-0 h5">Task Finished</h4>
                 <p class="mb-0 text-body">Paula finished figma task</p>
+                  <li class="list-group-item px-0 pt-0 border-0 pb-6">
+                    <div class="row position-relative">
+                      <div class="col-auto">
+                        <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                          <i class="fe fe-message-square"></i>
+                        </div>
+                      </div>
+                      <div class="col ms-n3">
+                        <h4 class="mb-0 h5">New Comment</h4>
+                        <p class="mb-0 text-body">Georg commented on task.</p>
 
-
-                <div class="border p-3 mt-2 rounded text-center d-flex flex-wrap bigger mb-3">
-                  <%= bootstrap_form_with model: @pet do |form|%>
-                    <div data-controller='display'>
-                      <div class='d-flex form-group' data-display-target='checked'>
-                        <p class='me-2'><%= t('.pause_applications') %></p>
-                        <%= form.radio_button :application_paused, 
-                          true, 
-                          data: { action: "input->display#show" },
-                          label: 'Yes' %>
-                        <%= form.radio_button :application_paused, 
-                          false, 
-                          data: { action: "input->display#hide" },
-                          label: 'No' %>
                       </div>
                       <div class="col-auto">
-                        <span class="text-muted fs-6">2 mins ago</span>
+                        <span class="text-muted fs-6">1 hour ago</span>
 
-                        <div data-display-target='additional' class="d-flex d-none">
-                          <%= form.select :pause_reason, 
-                            Pet.app_pause_reasons, 
-                            { selected: @pause_reason, label: "Why" }, 
-                            { class: "form-control"}  %>
-                        </div>
                       </div>
-                      <%= form.submit t('general.save'), class: 'btn btn-outline-dark mb-3 mt-4' %>
-                    <% end %>
-
-                    <li class="list-group-item px-0 pt-0 border-0 pb-6">
-                      <div class="row position-relative">
-                        <div class="col-auto">
-                          <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
-                            <i class="fe fe-message-square"></i>
-                          </div>
-                        </div>
-                        <div class="col ms-n3">
-                          <h4 class="mb-0 h5">New Comment</h4>
-                          <p class="mb-0 text-body">Georg commented on task.</p>
-
-                        </div>
-                        <div class="col-auto">
-                          <span class="text-muted fs-6">1 hour ago</span>
-
-                        </div>
-                      </div>
-                    </li>
-                    <li class="list-group-item px-0 pt-0 border-0 pb-6">
-                      <div class="row position-relative">
-                        <div class="col-auto">
-                          <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
-                            <i class="fe fe-alert-triangle"></i>
-                          </div>
-                        </div>
-                        <div class="col ms-n3">
-                          <h4 class="mb-0 h5">Task Overdue</h4>
-                          <p class="mb-0 text-body">Task <a href="#"><u>status updatd for board</u></a>
-                          is overdue.</p>
-
-                        </div>
-                        <div class="col-auto">
-                          <span class="text-muted fs-6">1 day</span>
-
-                        </div>
-                      </div>
-                    </li>
-                    <li class="list-group-item px-0 pt-0 border-0">
-                      <div class="row position-relative">
-                        <div class="col-auto">
-                          <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
-                            <i class="fe fe-mail"></i>
-                          </div>
-                        </div>
-                        <div class="col ms-n3">
-                          <h4 class="mb-0 h5">Update Send to Client</h4>
-                          <p class="mb-0 text-body">Jitu send email to update design
-                          for client Geeks UI.</p>
-
-                        </div>
-                        <div class="col-auto">
-                          <span class="text-muted fs-6">1 day</span>
-
-                        </div>
-                      </div>
-                    </li>
-        </ul>
                     </div>
+                  </li>
+                  <li class="list-group-item px-0 pt-0 border-0 pb-6">
+                    <div class="row position-relative">
+                      <div class="col-auto">
+                        <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                          <i class="fe fe-alert-triangle"></i>
+                        </div>
+                      </div>
+                      <div class="col ms-n3">
+                        <h4 class="mb-0 h5">Task Overdue</h4>
+                        <p class="mb-0 text-body">Task <a href="#"><u>status updatd for board</u></a>
+                        is overdue.</p>
+
+                      </div>
+                      <div class="col-auto">
+                        <span class="text-muted fs-6">1 day</span>
+
+                      </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item px-0 pt-0 border-0">
+                    <div class="row position-relative">
+                      <div class="col-auto">
+                        <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                          <i class="fe fe-mail"></i>
+                        </div>
+                      </div>
+                      <div class="col ms-n3">
+                        <h4 class="mb-0 h5">Update Send to Client</h4>
+                        <p class="mb-0 text-body">Jitu send email to update design
+                        for client Geeks UI.</p>
+
+                      </div>
+                      <div class="col-auto">
+                        <span class="text-muted fs-6">1 day</span>
                 </div>
               </div>
-            </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 

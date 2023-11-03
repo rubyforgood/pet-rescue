@@ -4,7 +4,8 @@
       Current picture
     </label>
     <div class='d-flex flex-column align-items-center'>
-      <%= image_tag resource.avatar, class: 'uploaded-image rounded mt-2 mb-2' %>
+      <%= image_tag resource.avatar, class: 'avatar-xxl rounded-circle' %>
+      
       <%= link_to t('general.delete'),
                   purge_attachment_path(resource.avatar.id),
                   data: { turbo_method: "delete" },
