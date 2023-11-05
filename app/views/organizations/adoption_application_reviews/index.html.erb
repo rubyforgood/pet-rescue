@@ -1,36 +1,29 @@
-<!--page heading-->
-<header class="pt-5 pb-5">
-  <div class="container">
-    <div class="text-center">
-      <h1 class="section-heading text-uppercase underline">
-        Applications
-      </h1>
-    </div>
-  </div> <!--container-->
-</header>
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title "Applications" %>
+  <% p.content do %>
+    <section class="pb-5" id="about_us">
+      <div class="container">
 
-<!--main section-->
-<section class="pb-5" id="about_us">
-  <div class="container">
+        <h5 class="mb-2">Filter by pet name</h5>
+        <%= bootstrap_form_with url: '/adopter_applications', method: :get do | f | %>
 
-    <h5 class="mb-2">Filter by pet name</h5>
-    <%= bootstrap_form_with url: '/adopter_applications', method: :get do | f | %>
+          <div class="form-group">
+            <div class="row mb-2">
+              <div class="col-md-4 mb-3">
+                <%= f.collection_select :pet_id, @pets, :id, :name, { prompt: 'All' },
+                  class: 'form-control bigger' %>
+              </div>
+              <div class="col-md-4 mb-3">
+                <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
+              </div>
+            </div> <!--row-->
+          </div> 
 
-    <div class="form-group">
-      <div class="row mb-2">
-        <div class="col-md-4 mb-3">
-          <%= f.collection_select :pet_id, @pets, :id, :name, { prompt: 'All' },
-                                  class: 'form-control bigger' %>
-        </div>
-        <div class="col-md-4 mb-3">
-          <%= f.submit 'Submit', class: 'btn btn-outline-dark' %>
-        </div>
-      </div> <!--row-->
-    </div> 
+        <% end %>
 
-    <% end %>
+        <%= render 'search_results' %>
 
-    <%= render 'search_results' %>
-
-  </div> <!--container-->
-</section>
+      </div> <!--container-->
+    </section>
+  <% end %>
+<% end %>
