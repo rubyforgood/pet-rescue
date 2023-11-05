@@ -8,7 +8,7 @@
       <%= render "layouts/dashboard/sidebar" %>
 
       <!-- Page Content -->
-      <main class="container-md">
+      <main class="container-md" id="page-content">
         <div class="header">
           <!-- navbar -->
           <nav class="navbar-default navbar navbar-expand-lg">
@@ -215,42 +215,8 @@
             </div>
           </nav>
         </div>
-        <section class="container-fluid p-4">
-          <div class="row">
-            <div class="col-lg-12 col-md-12 col-12">
-              <div class="pb-3 d-lg-flex justify-content-between align-items-center">
-                <div style="--bs-breadcrumb-divider: '>'" class="flex-column">
-                  <h2 class="section-heading text-uppercase">
-                    <%= yield(:header_title) %>
-                  </h2>
-                  <%= breadcrumbs class: "breadcrumb", style: :ol, fragment_class: "breadcrumb-item" %>
-                </div>
-                <div class="d-flex">
-                  <%= yield :button %>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-12 mb-4 border-bottom">
-              <!-- Nav tabs -->
-              <% if @nav_tabs.present? %>
-                <ul class="nav nav-lb-tab mt-n3">
-                  <% @nav_tabs.each_with_index do |link, index| %>
-                    <li class="nav-item <%= index == 0 ? 'ms-0' : 'mx-0' %>">
-                      <%= active_link_to link[:path], class: "nav-link" do %>
-                        <%= link[:name] %>
-                      <% end %>
-                    </li>
-                  <% end %>
-                </ul>
-              <% end %>
-            </div>
-          </div>
-
-          <%= yield %>
-        </section>
+        <%= yield %>
       </main>
     </div>
   </body>
