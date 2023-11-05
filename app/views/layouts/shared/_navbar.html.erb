@@ -18,13 +18,9 @@
       <% end %>
 
       <li class="dropdown ms-2 list-unstyled">
-        <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-          <% if user_signed_in? %>
-            <div class="avatar avatar-md avatar-indicators avatar-online">
-              <%= image_tag "avatar/avatar-1.jpg", class: 'rounded-circle' %>
-            </div>
-          <% end %>
-        </a>
+        <% if user_signed_in? %>
+          <%= render AvatarComponent.new(alt: current_user.first_name.first.upcase, src: current_user.avatar) %>
+        <% end %>
 
         <div class="dropdown-menu dropdown-menu-end pb-0" aria-labelledby="dropdownUser" style='z-index: 1000'>
           <% if user_signed_in? %>
