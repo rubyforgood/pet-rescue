@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   end
 
   resources :profile_reviews, only: [:show]
-  resources :successes, only: [:index]
 
   resources :countries, only: [] do
     resources :states, only: [:index]
