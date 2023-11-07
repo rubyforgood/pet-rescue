@@ -16,37 +16,12 @@ Let's get your machine setup to startup the application!
 ⚠️  We assume you already have ruby installed with your preferred version manager. This codebase supports [rbenv](
 https://github.com/rbenv/rbenv) and [asdf](https://github.com/asdf-vm/asdf-ruby).
 
-## 🤝 Contributing Guidelines 
-
-Please feel free to contribute! Priority will be given to pull requests that address outstanding issues and have appropriate test coverage. Focus on issues tagged with the next milestone for higher priority.
-
-To contribute:
-* Identify an unassigned issue
-* Assign the issue to yourself to avoid duplicated efforts (or request assignment by adding a comment)
-* Fork the repo if you're not a contributor yet
-* Create a new branch for the issue using the format `XXX-brief-description-of-feature`, where `XXX` is the issue number
-* Make sure tests run green locally and remotely. Create tests to validate your work fixes the issue(most of the time)
-* Commit locally using descriptive messages that indicate the affected parts of the app
-* Ensure all tests pass successfully; if any fail, fix the issues causing the failures
-* Make a final commit if tests needed fixing
-* Push up the branch
-* Create a pull request and indicate the addressed issue in the title
-
-* To attribute someone so they are recognized in the All Contributors section, comment with the following on a pull request.
-
-  ```
-  @all-contributors
-  please add @<username> for <contributions>. 
-  please add @<username> for <contributions>.
-  ```
-
 ## Install & Setup
 
-Clone the codebase. <br> 
+Clone the codebase 
 ```
 git clone git@github.com:rubyforgood/pet-rescue.git
 ```
-
 
 Create a new `config/application.yml` file from the `config/application.example.yml`:
 ```
