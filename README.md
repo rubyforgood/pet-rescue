@@ -16,6 +16,36 @@ Let's get your machine setup to startup the application!
 ⚠️  We assume you already have ruby installed with your preferred version manager. This codebase supports [rbenv](
 https://github.com/rbenv/rbenv) and [asdf](https://github.com/asdf-vm/asdf-ruby).
 
+## 🤝 Contributing Guidelines 
+
+Please feel free to contribute! Priority will be given to pull requests that address outstanding issues and have appropriate test coverage. Focus on issues tagged with the next milestone for higher priority.
+
+To contribute:
+* Identify an unassigned issue
+* Only work on one issue at a time
+* Request assignment of an issue by adding a comment on the issue
+* Fork the repo if you're not a contributor yet
+* Ensure that the application runs locally in your browser. When you run the test suite locally, it passes 
+* Create a new branch for the issue using the format `XXX-brief-description-of-feature`, where `XXX` is the issue number
+* Make code changes related to the assigned issue
+* Commit locally using descriptive messages that indicate the affected parts of the application
+* Add tests related to your work(most of the time)
+* Ensure all tests pass successfully; if any fail, fix the issues causing the failures
+* Make a final commit if any code changes are required
+* Push up the branch
+* Create a pull request and fill out the description fields
+* We like to make sure people are recognized for their contributions, so please attribute others by commenting on a pull request
+
+  ```
+  @all-contributors
+  please add @<username> for <contributions>. 
+  please add @<username> for <contributions>.
+  ```
+  Replace `<contributions>` with `code` or `review`
+
+
+
+
 ## Install & Setup
 
 Clone the codebase 
