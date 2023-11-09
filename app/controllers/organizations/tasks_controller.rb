@@ -9,10 +9,14 @@ class Organizations::TasksController < Organizations::BaseController
 
   def create
     @task = @pet.tasks.build(task_params)
+
     if @task.save
-      redirect_to pet_path(@pet, active_tab: @active_tab)
+      respond_to do |format|
+        format.html { redirect_to pet_path(@pet, active_tab: 'tasks') }
+        format.turbo_stream
+      end
     else
-      render :new
+      # Handle the error case if necessary
     end
   end
 
