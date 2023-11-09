@@ -1,0 +1,33 @@
+en:
+  errors:
+    messages:
+      # messages for active storage validations gem
+      content_type_invalid: "must be PNG or JPEG YOOOO"
+      file_size_out_of_range: "size must be between 10KB and 1MB"
+      limit_out_of_range: "5 maximum"
+  activerecord:
+    errors:
+      models:
+        pet:
+          attributes:
+            name:
+              blank: "can't be blank"
+            birth_date:
+              blank: "can't be blank"
+            breed:
+              blank: "can't be blank"
+            sex:
+              blank: "can't be blank"
+            weight_from:
+              blank: "can't be blank"
+              not_a_number: "is not a number"
+            weight_to:
+              blank: "can't be blank"
+              not_a_number: "is not a number"
+              greater_than: "must be greater than from weight"
+            weight_unit:
+              blank: "can't be blank"
+              inclusion: "must be lb or kg"
+            description:
+              blank: "can't be blank"
+              too_long: "too long (maximum %{count} characters)"
