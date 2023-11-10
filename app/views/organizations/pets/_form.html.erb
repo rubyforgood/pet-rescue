@@ -63,7 +63,7 @@
 
       <div class='form-group'>
                 <%= form.select :placement_type, 
-                options_for_select(Pet.placement_types, selected: pet.placement_type), 
+                options_for_select(Pet.placement_types.keys, selected: pet.placement_type), 
                 { prompt: t('general.please_select') }, 
                 class: 'form-control' %>
       </div>
