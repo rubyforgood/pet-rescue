@@ -10,4 +10,12 @@ module ApplicationHelper
   def path_to_partial(active_tab)
     "pets/#{active_tab}"
   end
+
+  def current_organization_name
+    if Current.organization.present?
+      Current.organization.name
+    else
+      Current.tenant.name
+    end
+  end
 end

@@ -16,7 +16,7 @@ class Organizations::TasksController < Organizations::BaseController
         format.turbo_stream
       end
     else
-      # Handle the error case if necessary
+      render :new
     end
   end
 
