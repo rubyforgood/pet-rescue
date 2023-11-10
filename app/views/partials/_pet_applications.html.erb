@@ -1,0 +1,51 @@
+<% applications.each do |app|%>
+  <div class="row mb-3 rounded py-2
+    <%= 'awaiting-review' if app.status == 'awaiting_review' %>
+    <%= 'withdrawn' if app.status == 'withdrawn' %>
+    <%= 'under-review' if app.status == 'under_review' %>
+    <%= 'adoption-pending' if app.status == 'adoption_pending' %>
+    <%= 'successful-applicant' if app.status == 'successful_applicant' %>">    
+
+    <!--pet name-->
+    <div class="col-md-3 d-flex align-items-center">
+      <p class='bigger'>
+        Applicant: Fix me.
+      </p>
+    </div>
+
+    <!--application status-->
+    <div class="col-md-3 d-flex align-items-center bigger">
+      <div class="<%= 'fw-bold' if app.status == 'withdrawn' %>"> 
+        Status: <%= app.status.titleize%>
+      </div>
+    </div>
+
+    <% unless app.status == 'successful_applicant' %>
+      <!--adopter profile link-->
+      <div class="col-md-3 d-md-flex align-items-center justify-content-center bigger">
+        <%= link_to 'Adopter Profile', profile_review_path(app.adopter_account.adopter_profile.id) %>
+      </div>
+    <% end %>
+
+    <!--edit application button-->
+    <div class="col-md-3 d-flex align-items-center justify-content-md-center">
+      <%= link_to 'Edit Application', edit_adoption_application_review_path(app.id),
+                                      class: 'btn btn-outline-dark
+                                              mt-3 mt-md-0 mb-3 mb-md-0' %>
+    </div>
+
+      <% if app.status == 'successful_applicant' %>
+        <!--create adoption button-->
+        <div class="col-md-3 d-flex align-items-center justify-content-md-center">
+          <%= link_to 'Create Adoption', 
+                      create_adoption_path(pet_id: app.pet.id, 
+                                          adopter_account_id: app.adopter_account.id),
+                      data: { turbo_method: :post, 
+                              turbo_confirm: "Click OK to finalize this adoption." },
+                      class: 'custom-btn-pink mb-3 mb-md-0 
+                              pt-2 pb-2 ps-4 pe-4' %>
+        </div>
+      <% end %>
+
+  </div> <!--row-->
+<% end %>
