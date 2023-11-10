@@ -9,6 +9,7 @@
 #  description        :text
 #  name               :string
 #  pause_reason       :integer          default("not_paused")
+#  placement_type     :integer          not null
 #  sex                :string
 #  species            :integer          not null
 #  weight_from        :integer          not null
@@ -33,6 +34,7 @@ class Pet < ApplicationRecord
   has_one :match, dependent: :destroy
   has_many_attached :images
   enum species: ["dog", "cat"]
+  enum placement_type: ["adoptable", "fosterable", "adoptable and fosterable"]
 
   validates :name, presence: true
   validates :birth_date, presence: true

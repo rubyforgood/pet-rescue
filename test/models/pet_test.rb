@@ -24,6 +24,7 @@ class PetTest < ActiveSupport::TestCase
     should validate_presence_of(:weight_unit)
     should validate_inclusion_of(:weight_unit).in_array(["lb", "kg"])
     should define_enum_for(:species)
+    should define_enum_for(:placement_type)
   end
 
   context "#has_adoption_pending?" do
