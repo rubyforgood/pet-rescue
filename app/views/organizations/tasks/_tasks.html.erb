@@ -43,14 +43,17 @@
                       <!-- Right side: Completion status and action buttons -->
                       <div class="text-right">
                         <div class="d-flex align-items-center justify-content-end">
-                          <strong class="mr-3"><%= task.completed %></strong>
-                          <!-- Trigger Edit Modal -->
-                          <button type="button" class="btn btn-warning mr-4" data-bs-toggle="modal" data-bs-target="#editTaskModal_<%= task.id %>">
-                            Edit
-                          </button>
-                          <!-- Delete Task Link -->
+                          <div style="margin-right: 20px;">
+                            <strong class="mr-3"><%= task.completed %></strong>
+                          </div>
+                          <div style="margin-right: 20px;">
+                            <button type="button" class="btn btn-warning mr-4" data-bs-toggle="modal" data-bs-target="#editTaskModal_<%= task.id %>">
+                              Edit
+                            </button>
+                          </div>
+                          <div style="margin-right: 20px;">
                           <%= link_to 'Delete', pet_task_path(@pet, task), class: 'btn btn-danger', data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
-                              <%# <%= link_to 'Delete', pet_task_path(@pet, task), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                          </div>
                         </div>
                       </div>
 

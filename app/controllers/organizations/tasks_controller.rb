@@ -21,7 +21,6 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def edit
-    # binding.pry
   end
 
   def update
@@ -38,7 +37,6 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def destroy
-    # binding.pry
     @task = Task.find(params[:id])
     @task.destroy
 
@@ -51,7 +49,7 @@ class Organizations::TasksController < Organizations::BaseController
   private
 
   def set_pet
-    @organization = Organization.find_by(slug: "alta")
+    @organization = Organization.find_by(slug: "alta") # this is hard coded
     raise ActiveRecord::RecordNotFound if @organization.nil?
 
     pet_id = params[:pet_id] || params[:id]
