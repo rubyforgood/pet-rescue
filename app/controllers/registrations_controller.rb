@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   include OrganizationScopable
+  layout :set_layout, only: [:edit, :update]
 
   after_action :send_email, only: :create
 
@@ -12,6 +13,14 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def set_layout
+    if current_user.staff_account
+      "dashboard"
+    else
+      "application"
+    end
+  end
 
   def sign_up_params
     params.require(:user).permit(:username,
@@ -33,7 +42,8 @@ class RegistrationsController < Devise::RegistrationsController
       :password,
       :password_confirmation,
       :signup_role,
-      :current_password)
+      :current_password,
+      :append_avatar)
   end
 
   def after_sign_up_path_for(resource)

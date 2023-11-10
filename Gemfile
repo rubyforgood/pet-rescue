@@ -27,6 +27,9 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
+# A framework for creating reusable, testable & encapsulated view components
+gem "view_component"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
@@ -70,9 +73,6 @@ gem "azure-storage-blob", "~> 2.0", require: false
 
 # validate adopter phone numbers
 gem "phonelib"
-
-# geocoder creates lat/long for success page map
-gem "geocoder"
 
 # a rake task that helps find dead routes and unused actions
 gem "traceroute"
@@ -163,3 +163,5 @@ gem "requestjs-rails", "~> 0.0.10"
 gem "rolify"
 
 gem "gretel", "~> 4.5"
+
+gem "ransack"

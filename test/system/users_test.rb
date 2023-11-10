@@ -16,10 +16,10 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Log in"
 
     assert current_path.include?(@organization.slug)
-    assert_equal current_path, dashboard_index_path
+    assert_equal current_path, pets_path
 
     using_wait_time(5) do
-      find("#dropdownUser").hover
+      find(".avatar").hover
     end
 
     click_on "Sign Out"

@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -15,6 +15,33 @@ Let's get your machine setup to startup the application!
 
 ⚠️  We assume you already have ruby installed with your preferred version manager. This codebase supports [rbenv](
 https://github.com/rbenv/rbenv) and [asdf](https://github.com/asdf-vm/asdf-ruby).
+
+## 🤝 Contributing Guidelines 
+
+Please feel free to contribute! Priority will be given to pull requests that address outstanding issues and have appropriate test coverage. Focus on issues tagged with the next milestone for higher priority.
+
+To contribute:
+* Identify an unassigned issue
+* Only work on one issue at a time
+* Request assignment of an issue by adding a comment on the issue
+* Fork the repo if you're not yet a contributor 
+* Ensure that the application runs locally in your browser. When you run the test suite locally, it should pass
+* Create a new branch for the issue using the format `XXX-brief-description-of-feature`, where `XXX` is the issue number
+* Make code changes related to the assigned issue
+* Commit locally using descriptive messages that indicate the affected parts of the application
+* Add tests related to your work(most of the time)
+* Ensure all tests pass successfully; if any fail, fix the issues causing the failures
+* Make a final commit if any code changes are required
+* Push up the branch
+* Create a pull request and fill out the description fields
+* We like to make sure people are recognized for their contributions, so please attribute others by commenting on a pull request with
+
+  ```
+  @all-contributors
+  please add @<username> for <contributions>. 
+  please add @<username> for <contributions>.
+  ```
+  Replace `<contributions>` with `code` or `review`
 
 ## Install & Setup
 
@@ -157,7 +184,12 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://reyes-dev.github.io/portfolio-site/"><img src="https://avatars.githubusercontent.com/u/102765102?v=4?s=100" width="100px;" alt="Jarrod Reyes"/><br /><sub><b>Jarrod Reyes</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=reyes-dev" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://erinclaudio.com"><img src="https://avatars.githubusercontent.com/u/20326770?v=4?s=100" width="100px;" alt="Erin Claudio"/><br /><sub><b>Erin Claudio</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=ErinClaudio" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://edwinmak.com"><img src="https://avatars.githubusercontent.com/u/11335191?v=4?s=100" width="100px;" alt="Edwin Mak"/><br /><sub><b>Edwin Mak</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=edwinthinks" title="Code">💻</a></td>
+    </tr>
+    <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jadekstewart3"><img src="https://avatars.githubusercontent.com/u/114014697?v=4?s=100" width="100px;" alt="Jade Stewart"/><br /><sub><b>Jade Stewart</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jadekstewart3" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://vernespendic.com"><img src="https://avatars.githubusercontent.com/u/31761693?v=4?s=100" width="100px;" alt="Vernes"/><br /><sub><b>Vernes</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=BakiVernes" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://marchandmd.github.io"><img src="https://avatars.githubusercontent.com/u/35391349?v=4?s=100" width="100px;" alt="Michael Marchand"/><br /><sub><b>Michael Marchand</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=MarchandMD" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Yuji3000"><img src="https://avatars.githubusercontent.com/u/108035840?v=4?s=100" width="100px;" alt="Yuji K."/><br /><sub><b>Yuji K.</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Yuji3000" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     resources :dashboard
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
-    resources :settings, only: [:index]
     resources :staff do
       post "deactivate", to: "staff#deactivate"
       post "activate", to: "staff#activate"
@@ -28,7 +27,6 @@ Rails.application.routes.draw do
   end
 
   resources :profile_reviews, only: [:show]
-  resources :successes, only: [:index]
 
   resources :countries, only: [] do
     resources :states, only: [:index]
