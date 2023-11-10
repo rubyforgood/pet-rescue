@@ -227,7 +227,8 @@ ActsAsTenant.with_tenant(organization) do
       weight_unit: Pet::WEIGHT_UNITS.sample,
       breed: Faker::Creature::Dog.breed,
       description: "He just loves a run and a bum scratch at the end of the day",
-      species: 0
+      species: 0,
+      placement_type: 0
     )
     pet.images.attach(io: File.open(path), filename: "hero.jpg")
   end
