@@ -49,7 +49,8 @@ class Organizations::TasksController < Organizations::BaseController
   private
 
   def set_pet
-    @organization = Organization.find_by(slug: "alta") # this is hard coded
+    # @organization = Organization.find_by(slug: "alta")
+    @organization = current_user.organization
     raise ActiveRecord::RecordNotFound if @organization.nil?
 
     pet_id = params[:pet_id] || params[:id]
