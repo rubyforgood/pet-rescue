@@ -14,10 +14,10 @@
       <thead>
         <tr>
           <th scope="col">Applicant</th>
-          <th scope="col">Profile</th>
-          <th scope="col">Edit</th>
+          <th scope="col" class="text-center">Profile</th>
+          <th scope="col" class="text-center">Edit</th>
           <th scope="col">Status</th>
-          <th scope="col">New Adoption</th>
+          <th scope="col" class="text-center">New Adoption</th>
         </tr>
       </thead>
       <tbody>
@@ -28,7 +28,7 @@
                 <%= app.applicant_name %>
             </td>
             <!-- profile -->
-            <td class="align-middle">
+            <td class="align-middle text-center">
               <% unless app.status == 'successful_applicant' %>
                 <%= link_to profile_review_path(app.adopter_account.adopter_profile.id), 
                             class: "link-underline link-underline-opacity-0" do %>
@@ -37,20 +37,20 @@
               <% end %>
             </td>
             <!-- edit -->
-            <td class="align-middle">
+            <td class="align-middle text-center">
               <%= link_to edit_adoption_application_review_path(app.id), 
                           class: "link-underline link-underline-opacity-0" do %>
                 <i class="fe fe-edit" aria-label="edit application"></i>
               <% end %>
             </td>
             <!-- status -->
-            <td class="align-middle <%= 'fw-bold' if app.status == 'withdrawn' %>">
-              <span class="badge <%= app.status == 'withdrawn' ? 'bg-warning text-dark' : 'bg-gray-700' %>">
+            <td class="align-middle">
+              <span class="badge <%= application_status_classes(app) %>">
                 <%= app.status.titleize %>
               </span>
             </td>
             <!-- create --> 
-            <td class="align-middle">
+            <td class="align-middle text-center">
               <% if app.status == 'successful_applicant' %>
                 <!--create adoption button-->
                   <%= link_to create_adoption_path(pet_id: app.pet.id, 
