@@ -30,15 +30,18 @@
             <!-- profile -->
             <td class="align-middle">
               <% unless app.status == 'successful_applicant' %>
-                <%= link_to 'Adopter Profile', 
-                    profile_review_path(app.adopter_account.adopter_profile.id) %>
+                <%= link_to profile_review_path(app.adopter_account.adopter_profile.id), 
+                            class: "link-underline link-underline-opacity-0" do %>
+                  <i class="fe fe-file-text" aria-label="applicant profile"></i>
+                <% end %>
               <% end %>
             </td>
             <!-- edit -->
             <td class="align-middle">
-              <%= link_to 'Edit Application', 
-                  edit_adoption_application_review_path(app.id),
-                  class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
+              <%= link_to edit_adoption_application_review_path(app.id), 
+                          class: "link-underline link-underline-opacity-0" do %>
+                <i class="fe fe-edit" aria-label="edit application"></i>
+              <% end %>
             </td>
             <!-- status -->
             <td class="align-middle <%= 'fw-bold' if app.status == 'withdrawn' %>">
@@ -50,13 +53,13 @@
             <td class="align-middle">
               <% if app.status == 'successful_applicant' %>
                 <!--create adoption button-->
-                  <%= link_to 'Create Adoption', 
-                              create_adoption_path(pet_id: app.pet.id, 
+                  <%= link_to create_adoption_path(pet_id: app.pet.id, 
                                                   adopter_account_id: app.adopter_account.id),
+                              class: "link-underline link-underline-opacity-0",
                               data: { turbo_method: :post, 
-                                      turbo_confirm: "Click OK to finalize this adoption." },
-                              class: '' %>
-              
+                                      turbo_confirm: "Click OK to finalize this adoption." } do %>
+                    <i class="fe fe-plus" aria-label="create new adoption"></i>
+                  <% end %>
               <% end %>
             </td>
           </tr>
