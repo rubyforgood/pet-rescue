@@ -4,16 +4,9 @@
 
   <% @collection.each do |pet| %>
     <!--pet name-->
-    <div class='card px-4 mt-5'>
-      <h4 class="mt-2 text-center">
-        <%= link_to pet.name, pet_path(pet), class: 'text-decoration-none' %>
-      </h4>
-      
-      <div class='p-2'>
-        <%= render "partials/pet_applications", applications: pet.adopter_applications %>
-      </div> <!--card-->
+    <div class="mb-4">
+      <%= render "partials/pet_applications", applications: pet.adopter_applications, pet: pet %>
     </div>
-
   <% end %>
 
 <% end %>
