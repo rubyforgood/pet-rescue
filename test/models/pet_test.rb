@@ -15,6 +15,7 @@ class PetTest < ActiveSupport::TestCase
     should validate_presence_of(:breed)
     should validate_presence_of(:sex)
     should validate_presence_of(:species)
+    should validate_presence_of(:placement_type)
     should validate_presence_of(:description)
     should validate_length_of(:description).is_at_most(1000)
     should validate_presence_of(:weight_from)
