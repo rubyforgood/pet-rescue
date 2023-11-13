@@ -72,6 +72,8 @@ class Organizations::PetsController < Organizations::BaseController
       :weight_from,
       :weight_to,
       :weight_unit,
+      :species,
+      :placement_type,
       append_images: [])
   end
 
