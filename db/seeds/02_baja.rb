@@ -243,7 +243,7 @@ ActsAsTenant.with_tenant(@organization) do
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..5),
-      adopter_account: AdopterAccount.joins(:user).where(users: { organization_id: @organization.id }).sample,
+      adopter_account: AdopterAccount.joins(:user).where(users: {organization_id: @organization.id}).sample,
       pet: Pet.all.sample
     )
   end
