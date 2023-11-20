@@ -5,8 +5,24 @@
     </div>
   <% end %>
 
+  <div class='card-body'>
+    <!--Avatar section- not yet functional-->
+    <div class="d-lg-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center mb-4 mb-lg-0">
+        <img src="../assets/images/avatar/avatar-3.jpg" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
+        <div class="ms-3">
+          <h4 class="mb-0">Your avatar</h4>
+          <p class="mb-0">PNG or JPG, size must be between 10kb and 1Mb</p>
+        </div>
+      </div>
+
+      <div>
+        <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>
+        <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+      </div>
+    </div>
+
   <!--Administrative details section-->
-  <div class='card p-5 mb-5'>
     <h3>Contact</h3>
 
     <div class="form-group">
@@ -55,6 +71,6 @@
   </div> <!--card-->
 
   <div>
-    <%= form.submit 'Save profile', class: 'btn btn-outline-dark mb-3' %>
+    <%= form.submit 'Save profile', class: 'btn btn-primary' %>
   </div>
 <% end %>
