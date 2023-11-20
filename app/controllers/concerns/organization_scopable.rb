@@ -5,7 +5,7 @@ module OrganizationScopable
     set_current_tenant_through_filter
     before_action :set_tenant
   end
- 
+
   def set_tenant
     if Current.organization.blank?
       redirect_to root_path, alert: "Organization not found."
