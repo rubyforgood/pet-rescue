@@ -5,13 +5,13 @@ orga_location = Location.create!(
   zipcode: "12345"
 )
 
-organization = Organization.create!(
+@organization = Organization.create!(
   name: "Alta Pet Rescue",
   slug: "alta",
   profile: OrganizationProfile.new(email: "alta@email.com", phone_number: "123 456 7890", location: orga_location, about_us: "We get pets into loving homes!")
 )
 
-ActsAsTenant.with_tenant(organization) do
+ActsAsTenant.with_tenant(@organization) do
   @user_staff_one = User.create!(
     email: "staff@alta.com",
     first_name: "Andy",
@@ -227,7 +227,8 @@ ActsAsTenant.with_tenant(organization) do
       weight_unit: Pet::WEIGHT_UNITS.sample,
       breed: Faker::Creature::Dog.breed,
       description: "He just loves a run and a bum scratch at the end of the day",
-      species: 0
+      species: 0,
+      placement_type: 0
     )
     pet.images.attach(io: File.open(path), filename: "hero.jpg")
   end
@@ -242,7 +243,7 @@ ActsAsTenant.with_tenant(organization) do
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..5),
-      adopter_account: AdopterAccount.all.sample,
+      adopter_account: AdopterAccount.joins(:user).where(users: {organization_id: @organization.id}).sample,
       pet: Pet.all.sample
     )
   end
