@@ -21,7 +21,7 @@
 #  fk_rails_...  (location_id => locations.id)
 #  fk_rails_...  (organization_id => organizations.id)
 #
-class OrganizationProfile < ApplicationRecord
+class OrganizationProfile < ApplicationRecord 
   belongs_to :location
   belongs_to :organization, inverse_of: :profile
 
