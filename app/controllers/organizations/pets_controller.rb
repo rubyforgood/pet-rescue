@@ -1,6 +1,4 @@
 class Organizations::PetsController < Organizations::BaseController
-  include Tabbable
-
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
   before_action :verified_staff
   before_action :set_nav_tabs, only: [:show]
@@ -24,7 +22,7 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def show
-    @active_tab = determine_active_tab # from 265
+    @active_tab = determine_active_tab
     @pause_reason = @pet.pause_reason
     return if pet_in_same_organization?(@pet.organization_id)
 
@@ -95,5 +93,9 @@ class Organizations::PetsController < Organizations::BaseController
     @nav_tabs = [
       {name: "Summary", path: pet_path(@pet)}
     ]
+  end
+
+  def determine_active_tab
+    ["tasks", "applications", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
   end
 end
