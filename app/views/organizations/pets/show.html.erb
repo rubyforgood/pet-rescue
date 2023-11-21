@@ -31,9 +31,9 @@
       <!-- card body -->
       <div class="card-body">
         <% if @pet.images.attached? %>
-          <%= image_tag @pet.images.first, class: 'card-img-top test' %>
+          <%= image_tag @pet.images.first, class: 'rounded card-img-top' %>
         <% else %>
-          <%= image_tag('coming_soon.jpg', class: 'card-img-top test') %>
+          <%= image_tag('coming_soon.jpg', class: 'rounded card-img-top') %>
         <% end %>
       </div>
     </div>

@@ -1,5 +1,1 @@
-<%# create.turbo_stream.erb %>
-<%# <% binding.pry %> %>
-<%= turbo_stream.update 'tasks_list', partial: 'organizations/tasks/tasks', locals: { task: @task } %> %>
-<%# <%= turbo_stream.replace 'tasks_list', partial: 'organizations/tasks/tasks', locals: { task: @task } %> %>
-
+<%= turbo_stream.update 'tasks_list', partial: 'organizations/tasks/tasks', locals: { task: @task } %>
