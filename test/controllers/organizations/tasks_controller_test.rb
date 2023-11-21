@@ -1,8 +1,8 @@
-require 'test_helper'
+require "test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
-  
+
   setup do
     # @organization = create(:organization)
     @user = create(:user, :verified_staff, :staff_admin)
@@ -17,7 +17,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     get new_pet_task_url(@pet)
     assert_response :success
   end
-  
+
   test "new action should handle missing pet" do
     skip "Temporarily skipping this test for now"
     get new_pet_task_url(-1)
@@ -26,7 +26,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "create action should handle invalid task parameters" do
     skip "Temporarily skipping this test for now"
-    post pet_tasks_url(@pet), params: { task: { name: nil } }
+    post pet_tasks_url(@pet), params: {task: {name: nil}}
     assert_response :success
   end
 
@@ -38,13 +38,13 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "update action should handle invalid update parameters" do
     skip "Temporarily skipping this test for now"
-    patch pet_task_url(@pet, @task), params: { task: { name: nil } }
-    assert_response :success 
+    patch pet_task_url(@pet, @task), params: {task: {name: nil}}
+    assert_response :success
   end
 
   test "destroy action should handle non-existent task" do
     skip "Temporarily skipping this test for now"
-    assert_no_difference 'Task.count' do
+    assert_no_difference "Task.count" do
       delete pet_task_url(@pet, -1)
     end
     assert_response :not_found
