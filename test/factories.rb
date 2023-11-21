@@ -1,9 +1,10 @@
 FactoryBot.define do
+
   factory :task do
     name { "MyString" }
     description { "MyText" }
     completed { false }
-    pet { nil }
+    pet
   end
 
   factory :adopter_account do
