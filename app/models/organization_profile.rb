@@ -31,6 +31,8 @@ class OrganizationProfile < ApplicationRecord
   before_save :normalize_phone
 
   validates :phone_number, phone: {possible: true, allow_blank: true}
+  
+  delegate :name, to: :organization
 
   private
 
