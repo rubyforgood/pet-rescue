@@ -81,12 +81,14 @@
         <li class='nav-item'>
           <%= active_link_to 'Partners', partners_path, class: 'nav-link' %>
         </li>
+        <% unless user_signed_in? %>
         <li class="nav-item d-block d-md-none">
           <%= active_link_to 'Adopt', new_user_registration_path, class: 'nav-link' %>
         </li>
         <li class="nav-item d-block d-md-none">
           <%= active_link_to 'Log In', new_user_session_path, class: 'nav-link' %>
         </li>
+        <% end %>
       </ul>
     </div>
   </div>

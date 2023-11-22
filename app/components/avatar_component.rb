@@ -32,11 +32,11 @@ class AvatarComponent < ViewComponent::Base
   end
 
   def avatar_with_image
-    image_tag @system_arguments[:src], class: @classes, alt: @alt
+    image_tag @system_arguments[:src], class: @classes, 'data-bs-toggle' => 'dropdown', alt: @alt
   end
 
   def avatar_with_initials
-    tag.div(tag.span(@alt), class: @classes, style: "background-color: #{avatar_color(@alt)}; display: flex; align-items: center; justify-content: center;")
+    tag.div(tag.span(@alt), class: @classes, 'data-bs-toggle' => 'dropdown', style: "background-color: #{avatar_color(@alt)}; display: flex; align-items: center; justify-content: center;")
   end
 
   def avatar_color(text)
