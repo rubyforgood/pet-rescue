@@ -22,6 +22,7 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def show
+    @active_tab = determine_active_tab
     @pause_reason = @pet.pause_reason
     return if pet_in_same_organization?(@pet.organization_id)
 
@@ -92,5 +93,9 @@ class Organizations::PetsController < Organizations::BaseController
     @nav_tabs = [
       {name: "Summary", path: pet_path(@pet)}
     ]
+  end
+
+  def determine_active_tab
+    ["tasks", "applications", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
   end
 end
