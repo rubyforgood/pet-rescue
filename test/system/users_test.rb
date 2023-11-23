@@ -19,7 +19,7 @@ class UsersTest < ApplicationSystemTestCase
     assert_equal current_path, pets_path
 
     using_wait_time(5) do
-      find(".avatar").hover
+      find("#dropdownUser").hover
     end
 
     click_on "Sign Out"
