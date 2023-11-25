@@ -16,7 +16,10 @@ Rails.application.routes.draw do
     resource :organization_profile, only: %i[edit update]
 
     resources :home, only: [:index]
-    resources :pets
+    resources :pets do
+      post 'attach_images', on: :member, to: 'pets#attach_images'
+      post 'attach_records', on: :member, to: 'pets#attach_records'
+    end
     resources :dashboard
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
