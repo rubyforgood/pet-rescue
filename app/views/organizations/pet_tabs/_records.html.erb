@@ -1,0 +1,4 @@
+<div class="mb-4">
+  <%= render "partials/attachment_form", instance: @pet, title: 'Records', url: attach_records_pet_path(@pet), attachment_type: 'records' %>
+  <%= render "partials/record_attachment_table", pet: @pet %>
+</div>
