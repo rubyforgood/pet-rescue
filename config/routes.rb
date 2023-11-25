@@ -17,8 +17,8 @@ Rails.application.routes.draw do
 
     resources :home, only: [:index]
     resources :pets do
-      post 'attach_images', on: :member, to: 'pets#attach_images'
-      post 'attach_records', on: :member, to: 'pets#attach_records'
+      post "attach_images", on: :member, to: "pets#attach_images"
+      post "attach_records", on: :member, to: "pets#attach_records"
     end
     resources :dashboard
     resources :adoption_application_reviews, only: [:index, :edit, :update]

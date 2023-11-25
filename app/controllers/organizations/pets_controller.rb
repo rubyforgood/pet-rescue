@@ -59,22 +59,22 @@ class Organizations::PetsController < Organizations::BaseController
 
   def attach_images
     if pet_in_same_organization?(@pet.organization_id) && @pet.images.attach(params[:pet][:images])
-      redirect_to pet_path(@pet, active_tab: 'photos'), notice: "Upload successful."
+      redirect_to pet_path(@pet, active_tab: "photos"), notice: "Upload successful."
     else
       @active_tab = "photos"
       @pet.images.last&.purge
-      
+
       render :show, status: :unprocessable_entity
     end
   end
 
   def attach_records
     if pet_in_same_organization?(@pet.organization_id) && @pet.records.attach(params[:pet][:records])
-      redirect_to pet_path(@pet, active_tab: 'records'), notice: "Upload successful."
+      redirect_to pet_path(@pet, active_tab: "records"), notice: "Upload successful."
     else
       @active_tab = "records"
       @pet.records.last.purge
-      
+
       render :show, status: :unprocessable_entity
     end
   end
