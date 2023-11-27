@@ -26,7 +26,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   test "create action should handle invalid task parameters" do
     post pet_tasks_url(@pet), params: {task: {name: nil}}
     assert_response :redirect
-    assert_redirected_to pet_path(@pet, active_tab: 'tasks')
+    assert_redirected_to pet_path(@pet, active_tab: "tasks")
   end
 
   test "edit action should handle non-existent task" do
@@ -37,7 +37,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should handle non-existent task during update" do
     non_existent_task_id = -1
-    patch pet_task_path(@pet, non_existent_task_id), params: { task: { name: "Updated Name" } }
+    patch pet_task_path(@pet, non_existent_task_id), params: {task: {name: "Updated Name"}}
 
     assert_response :redirect
     assert_redirected_to pets_path

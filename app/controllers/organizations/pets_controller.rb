@@ -80,10 +80,6 @@ class Organizations::PetsController < Organizations::BaseController
     @pet = Pet.find(params[:id])
   end
 
-  def determine_active_tab
-    ["tasks", "applications", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
-  end
-
   # update Pet pause_reason to not paused if applications resumed
   def set_reason_paused_to_none
     return unless @pet.application_paused == false
