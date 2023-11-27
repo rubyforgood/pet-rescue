@@ -44,21 +44,26 @@ class Organizations::TasksController < Organizations::BaseController
       format.html { redirect_to pet_path(@pet), notice: "Task was successfully deleted." }
       format.turbo_stream
     end
+  rescue ActiveRecord::RecordNotFound
+    redirect_to pets_path
   end
 
   private
 
   def set_pet
-    # @organization = Organization.find_by(slug: "alta")
     @organization = current_user.organization
     raise ActiveRecord::RecordNotFound if @organization.nil?
 
     pet_id = params[:pet_id] || params[:id]
     @pet = @organization.pets.find(pet_id)
+  rescue ActiveRecord::RecordNotFound
+    redirect_to pets_path unless @pet
   end
 
   def set_task
     @task = @pet.tasks.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to pets_path
   end
 
   def task_params

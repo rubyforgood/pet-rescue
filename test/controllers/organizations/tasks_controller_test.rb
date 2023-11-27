@@ -4,49 +4,50 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
-    # @organization = create(:organization)
     @user = create(:user, :verified_staff, :staff_admin)
+    set_organization(@user.organization)
+    @organization = ActsAsTenant.test_tenant
     @pet = create(:pet)
     @task = create(:task, pet: @pet)
     sign_in @user
-    # binding.pry
   end
 
   test "should get new" do
-    skip "Temporarily skipping this test for now"
     get new_pet_task_url(@pet)
     assert_response :success
   end
 
   test "new action should handle missing pet" do
-    skip "Temporarily skipping this test for now"
     get new_pet_task_url(-1)
-    assert_response :not_found
+    assert_response :redirect
+    assert_redirected_to pets_path
   end
 
   test "create action should handle invalid task parameters" do
-    skip "Temporarily skipping this test for now"
     post pet_tasks_url(@pet), params: {task: {name: nil}}
-    assert_response :success
+    assert_response :redirect
+    assert_redirected_to pet_path(@pet, active_tab: 'tasks')
   end
 
   test "edit action should handle non-existent task" do
-    skip "Temporarily skipping this test for now"
     get edit_pet_task_url(@pet, -1)
-    assert_response :not_found
+    assert_response :redirect
+    assert_redirected_to pets_path
   end
 
-  test "update action should handle invalid update parameters" do
-    skip "Temporarily skipping this test for now"
-    patch pet_task_url(@pet, @task), params: {task: {name: nil}}
-    assert_response :success
+  test "should handle non-existent task during update" do
+    non_existent_task_id = -1
+    patch pet_task_path(@pet, non_existent_task_id), params: { task: { name: "Updated Name" } }
+
+    assert_response :redirect
+    assert_redirected_to pets_path
   end
 
   test "destroy action should handle non-existent task" do
-    skip "Temporarily skipping this test for now"
     assert_no_difference "Task.count" do
       delete pet_task_url(@pet, -1)
     end
-    assert_response :not_found
+    assert_response :redirect
+    assert_redirected_to pets_path
   end
 end
