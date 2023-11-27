@@ -4,52 +4,53 @@
       <%= t '.please_fix_the_errors' %>
     </div>
   <% end %>
-    <div class='card-body'>
-      <!--Avatar section- not yet functional-->
-      <div class="d-lg-flex align-items-center justify-content-between">
-        <div class="d-flex align-items-center mb-4 mb-lg-0">
-          <!--Avatar Image-->
-          <img src="../assets/images/avatar/avatar-3.jpg" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
+  
+  <div class='card-body'>
+    <!-- Avatar section- not yet functional -->
+    <div class="d-lg-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center mb-4 mb-lg-0">
+        <!-- Avatar Image -->
+        <img src="../assets/images/avatar/avatar-3.jpg" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
 
-          <!--Avatar Details-->
-          <div class="ms-3">
-            <h4 class="mb-0">Your avatar</h4>
-            <p class="mb-0">PNG or JPG, size must be between 10kb and 1Mb</p>
-          </div>
-        </div>
-
-        <div>
-          <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>
-          <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+        <!-- Avatar Details -->
+        <div class="ms-3">
+          <h4 class="mb-0">Your avatar</h4>
+          <p class="mb-0">PNG or JPG, size must be between 10kb and 1Mb</p>
         </div>
       </div>
 
-<!--Administrative details section-->
- <div class="row mt-3">
+      <div>
+        <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>
+        <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
+      </div>
+    </div>
 
+    <!-- Administrative details section -->
+    <div class="row mt-3">
       <!-- First Column -->
       <div class="col-lg-6">
-        <form class="mb-3">
-          <h3>Contact</h3>
-          <!--Organization Name-->
-          <div class="form-group">
-            <%= form.text_field :organization_name, placeholder: "Fluffy Friends Rescue", class: 'form-control' %>
-          </div>
-          
-          <!-- Phone Number -->
-          <div class="form-group">
-            <%= form.telephone_field :phone_number,
-                                    autofocus: true,
-                                    placeholder: "10 digit number",
-                                    class: 'form-control' %>
-          </div>
+        <%= form.fields_for :organization do |org_form| %>
+          <form class="mb-3">
+            <h3>Contact</h3>
+            <!-- Phone Number -->
+            <div class="form-group">
+              <%= form.telephone_field :phone_number,
+                                      autofocus: true,
+                                      placeholder: "10 digit number",
+                                      class: 'form-control' %>
+            </div>
 
-          <!-- Email -->
-          <div class="form-group">
-            <%= form.text_field :email, placeholder: "john@email.com", class: 'form-control' %>
-          </div>
-
-        </form>
+            <!-- Email -->
+            <div class="form-group">
+              <%= form.text_field :email, placeholder: "john@email.com", class: 'form-control' %>
+            </div>
+            
+            <!-- About Us -->
+             <div class="form-group">
+              <%= form.text_field :about_us, placeholder: "We get pets into loving homes!", class: 'form-control' %>
+            </div>
+          </form>
+        <% end %>
       </div>
 
       <!-- Second Column -->
@@ -92,10 +93,8 @@
               <% end %>
             <% end %>
           </div>
-
         </form>
       </div>
-
     </div>
 
     <div class="row mt-3">
@@ -103,6 +102,6 @@
         <%= form.submit 'Save profile', class: 'btn btn-primary' %>
       </div>
     </div>
-
   </div> <!-- End of Card Body -->
 <% end %>
+
