@@ -1,0 +1,70 @@
+<div class="card">
+  <div class="card-header">
+    <!-- MARK: from applications reviews would pass pet and from pet show would pass nil -->
+    <% if pet %>
+      <h4 class="mb-0 text-center">
+        <%= link_to pet.name, pet_path(pet), class: 'text-decoration-none' %>
+      </h4>
+    <% else %>
+      <h4 class="mb-0">Applications</h4>
+    <% end %>
+  </div>
+  <div class="card-body table-responsive">
+    <table class="table mb-0 text-nowrap table-hover table-centered">
+      <thead>
+        <tr>
+          <th scope="col">Applicant</th>
+          <th scope="col" class="text-center">Profile</th>
+          <th scope="col" class="text-center">Edit</th>
+          <th scope="col">Status</th>
+          <th scope="col" class="text-center">New Adoption</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% applications.each do |app|%>
+          <tr>
+            <!-- applicant -->
+            <td class="align-middle">
+                <%= app.applicant_name %>
+            </td>
+            <!-- profile -->
+            <td class="align-middle text-center">
+              <% unless app.status == 'successful_applicant' %>
+                <%= link_to profile_review_path(app.adopter_account.adopter_profile.id), 
+                            class: "link-underline link-underline-opacity-0" do %>
+                  <i class="fe fe-file-text" aria-label="applicant profile"></i>
+                <% end %>
+              <% end %>
+            </td>
+            <!-- edit -->
+            <td class="align-middle text-center">
+              <%= link_to edit_adoption_application_review_path(app.id), 
+                          class: "link-underline link-underline-opacity-0" do %>
+                <i class="fe fe-edit" aria-label="edit application"></i>
+              <% end %>
+            </td>
+            <!-- status -->
+            <td class="align-middle">
+              <span class="badge <%= application_status_classes(app) %>">
+                <%= app.status.titleize %>
+              </span>
+            </td>
+            <!-- create --> 
+            <td class="align-middle text-center">
+              <% if app.status == 'successful_applicant' %>
+                <!--create adoption button-->
+                  <%= link_to create_adoption_path(pet_id: app.pet.id, 
+                                                  adopter_account_id: app.adopter_account.id),
+                              class: "link-underline link-underline-opacity-0",
+                              data: { turbo_method: :post, 
+                                      turbo_confirm: "Click OK to finalize this adoption." } do %>
+                    <i class="fe fe-plus" aria-label="create new adoption"></i>
+                  <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -10,11 +10,9 @@
 </header>
 
 <!--main section-->
-<section class="pb-5" id="about_us">
-  <div class="container">
-
-    <h5 class="mb-2">Filter by pet name</h5>
-    <%= bootstrap_form_with url: '/adopter_applications', method: :get do | f | %>
+<section class="pb-5" id="about_us"> 
+  <h5 class="mb-2">Filter by pet name</h5>
+  <%= bootstrap_form_with url: '/adopter_applications', method: :get do | f | %>
 
     <div class="form-group">
       <div class="row mb-2">
@@ -28,9 +26,8 @@
       </div> <!--row-->
     </div> 
 
-    <% end %>
+  <% end %>
 
-    <%= render 'search_results' %>
+  <%= render 'search_results' %>
 
-  </div> <!--container-->
 </section>

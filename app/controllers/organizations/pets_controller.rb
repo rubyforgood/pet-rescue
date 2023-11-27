@@ -97,4 +97,8 @@ class Organizations::PetsController < Organizations::BaseController
       {name: "Summary", path: pet_path(@pet)}
     ]
   end
+
+  def determine_active_tab
+    ["tasks", "applications", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
+  end
 end
