@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "test_helper"
 
 class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
@@ -11,7 +12,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
     get edit_organization_profile_path(@org_profile)
   end
 
-  test "all expected fields are present on the edit organization profile page" do 
+  test "all expected fields are present on the edit organization profile page" do
     assert_select "h4", text: "Your avatar"
     assert_select "p", text: "PNG or JPG, size must be between 10kb and 1Mb"
 
@@ -30,7 +31,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
     assert_select 'input[type="submit"][value="Save profile"]'
   end
 
-  test 'organization profile updates with the submission of the form' do
+  test "organization profile updates with the submission of the form" do
     patch organization_profile_path(@org_profile), params: {
       organization_profile: {
         email: "happy_paws_rescue@gmail.com",
