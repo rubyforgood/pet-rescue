@@ -51,5 +51,3 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pets_path
   end
 end
-
-
