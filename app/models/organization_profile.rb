@@ -24,7 +24,7 @@
 class OrganizationProfile < ApplicationRecord
   belongs_to :location
   belongs_to :organization, inverse_of: :profile
-  accepts_nested_attributes_for :organization
+  # accepts_nested_attributes_for :organization
   accepts_nested_attributes_for :location
   validates_associated :location
 
