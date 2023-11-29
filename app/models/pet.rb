@@ -9,6 +9,7 @@
 #  description        :text
 #  name               :string
 #  pause_reason       :integer          default("not_paused")
+#  placement_type     :integer          not null
 #  sex                :string
 #  species            :integer          not null
 #  weight_from        :integer          not null
@@ -32,13 +33,15 @@ class Pet < ApplicationRecord
   has_many :adopter_applications, dependent: :destroy
   has_one :match, dependent: :destroy
   has_many_attached :images
-  enum species: ["dog", "cat"]
+  enum species: ["Dog", "Cat"]
+  enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
 
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :breed, presence: true
   validates :sex, presence: true
   validates :species, presence: true
+  validates :placement_type, presence: true
   validates :weight_from, presence: true, numericality: {only_integer: true}
   validates :weight_to, presence: true, numericality: {only_integer: true}
   validates :weight_unit, presence: true
@@ -92,7 +95,7 @@ class Pet < ApplicationRecord
 
   # all pets under an organization with applications and no adoptions
   def self.org_pets_with_apps(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:adopter_applications).where
+    Pet.org_pets(staff_org_id).includes(adopter_applications: [adopter_account: [:user]]).where
       .not(adopter_applications: {id: nil}).includes(:match)
       .where(match: {id: nil})
   end

@@ -3,7 +3,6 @@
   <% p.content do %>
     <section class="pb-5" id="about_us">
       <div class="container">
-
         <h5 class="mb-2">Filter by pet name</h5>
         <%= bootstrap_form_with url: '/adopter_applications', method: :get do | f | %>
 
@@ -18,11 +17,9 @@
               </div>
             </div> <!--row-->
           </div> 
-
         <% end %>
 
         <%= render 'search_results' %>
-
       </div> <!--container-->
     </section>
   <% end %>

@@ -27,18 +27,18 @@
 
             <div class="form-group mb-3">
               <%= f.email_field :email, autofocus: true, autocomplete: "email",
-                                class: 'form-control' %>
+                                 class: 'form-control' %>
             </div>
 
             <% if devise_mapping.confirmable? &&
-              resource.pending_reconfirmation? %>
+                  resource.pending_reconfirmation? %>
               <div>Currently waiting confirmation for:
-                <%= resource.unconfirmed_email %></div>
+                   <%= resource.unconfirmed_email %></div>
             <% end %>
 
             <div class="form-group mb-3">
               <%= f.password_field :password, autocomplete: "new-password",
-                                   class: 'form-control', label: 'New password' %>
+                                    class: 'form-control', label: 'New password' %>
               <i>(leave blank if you don't want to change it)</i><br />
               <% if @minimum_password_length %>
                 <em><%= @minimum_password_length %> characters minimum</em>
@@ -47,24 +47,24 @@
 
             <div class="form-group mb-3">
               <%= f.password_field :password_confirmation, autocomplete: "new-password",
-                                   class: 'form-control', label: 'Confirm new password' %>
+                                    class: 'form-control', label: 'Confirm new password' %>
             </div>
 
             <div class="form-group mb-3">
               <%= f.text_field :first_name,
-                               class: 'form-control' %>
+                                class: 'form-control' %>
             </div>
 
             <div class="form-group mb-3">
               <%= f.text_field :last_name,
-                               class: 'form-control' %>
+                                class: 'form-control' %>
             </div>
 
             <div class="form-group mb-3">
               <%= f.password_field :current_password,
-                                   autocomplete: "current-password",
-                                   required: true,
-                                   class: 'form-control' %>
+                                  autocomplete: "current-password",
+                                  required: true,
+                                  class: 'form-control' %>
               <i>(we need your current password to confirm your changes)</i><br />
             </div>
 
@@ -72,7 +72,7 @@
 
             <div class="actions">
               <%= f.submit "Update", class: 'btn btn-outline-dark mt-3 mb-3',
-                           data: { turbo: false } %>
+                                     data: { turbo: false } %>
             </div>
           <% end %>
         </div> <!--col-->
@@ -90,15 +90,20 @@
                  data-delete-target="input" class="form-control mt-2">
 
           <%= button_to "Delete my account", registration_path(resource_name),
-                        class: 'btn custom-btn-pink mt-3 mb-3',
-                        data: { confirm: 'Are you sure?',
-                                turbo: 'false',
-                                delete_target: 'button' },
-                        method: 'delete',
-                        disabled: true %>
+                      class: 'btn custom-btn-pink mt-3 mb-3',
+                      data: { confirm: 'Are you sure?',
+                              turbo: 'false',
+                              delete_target: 'button' },
+                      method: 'delete',
+                      disabled: true %>
         </div>
       </div>
     </div> <!--row-->
 
   </div><!--container-->
 </section>
+
+
+
+
+

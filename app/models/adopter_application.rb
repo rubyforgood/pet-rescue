@@ -58,4 +58,8 @@ class AdopterApplication < ApplicationRecord
     adopter_application.status = :withdrawn
     adopter_application.save
   end
+
+  def applicant_name
+    "#{adopter_account.user.last_name}, #{adopter_account.user.first_name}"
+  end
 end
