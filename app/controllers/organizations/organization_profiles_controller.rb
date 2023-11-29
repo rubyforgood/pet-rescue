@@ -7,7 +7,7 @@ class Organizations::OrganizationProfilesController < Organizations::BaseControl
 
   def update
     @organization_profile = Current.organization.profile
-    if @organization_profile.update!(organization_profile_params)
+    if @organization_profile.update(organization_profile_params)
       redirect_to dashboard_index_path, notice: "Your profile has been updated!"
     else
       render :edit, status: :unprocessable_entity
