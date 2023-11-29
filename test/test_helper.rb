@@ -23,11 +23,16 @@ class ActiveSupport::TestCase
   include Devise::Test::IntegrationHelpers
 
   def set_organization(organization)
-    Rails.application.routes.default_url_options[:script_name] = "/#{organization.slug}"
+    Rails.application.routes.default_url_options[:script_name] = if organization
+      "/#{organization.slug}"
+    else
+      ""
+    end
   end
 
   setup do
     ActsAsTenant.test_tenant = create(:organization, slug: "test")
+    set_organization(ActsAsTenant.test_tenant)
   end
 
   def teardown

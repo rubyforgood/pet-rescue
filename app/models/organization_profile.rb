@@ -24,13 +24,15 @@
 class OrganizationProfile < ApplicationRecord
   belongs_to :location
   belongs_to :organization, inverse_of: :profile
-
   accepts_nested_attributes_for :location
   validates_associated :location
 
   before_save :normalize_phone
 
   validates :phone_number, phone: {possible: true, allow_blank: true}
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+
+  delegate :name, to: :organization
 
   private
 

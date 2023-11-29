@@ -7,13 +7,10 @@ class Organizations::OrganizationProfilesController < Organizations::BaseControl
 
   def update
     @organization_profile = Current.organization.profile
-
-    respond_to do |format|
-      if @organization_profile.update(organization_profile_params)
-        format.html { redirect_to dashboard_index_path, notice: "Profile updated" }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @organization_profile.update(organization_profile_params)
+      redirect_to dashboard_index_path, notice: "Your profile has been updated!"
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -23,7 +20,8 @@ class Organizations::OrganizationProfilesController < Organizations::BaseControl
     params.require(:organization_profile).permit(
       :phone_number,
       :email,
-      location_attributes: %i[city_town country province_state id]
+      :about_us,
+      location_attributes: %i[city_town country province_state]
     )
   end
 end
