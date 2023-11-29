@@ -29,7 +29,7 @@ class OrganizationProfile < ApplicationRecord
 
   before_save :normalize_phone
 
-  validates :phone_number, phone: { possible: true, allow_blank: true }
+  validates :phone_number, phone: {possible: true, allow_blank: true}
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   delegate :name, to: :organization
