@@ -57,4 +57,43 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
     assert_equal "Colorado", @org_profile.location.province_state
     assert_equal "Golden", @org_profile.location.city_town
   end
+
+  test "organization profile updates with only some form fields to update" do
+    patch organization_profile_path(@org_profile), params: {
+      organization_profile: {
+        phone_number: "3038947542",
+        about_us: "Finding pets loving homes across the Denver Metro area"
+      }
+    }
+    @org_profile.reload
+
+    assert_response :redirect
+    follow_redirect!
+    assert_response :success
+
+    assert_equal "+13038947542", @org_profile.phone_number
+    assert_equal "Finding pets loving homes across the Denver Metro area", @org_profile.about_us
+  end
+
+  test "organization profile does not update with a non valid phone number" do
+    patch organization_profile_path(@org_profile), params: {
+      organization_profile: {
+        phone_number: "303894754232849320",
+      }
+    }
+    @org_profile.reload
+    assert_response :unprocessable_entity
+    assert_select 'div.alert.alert-danger.mt-1', text: 'Please fix the errors highlighted below.'
+  end
+
+  test "organization profile does not update with an invalid email" do
+    patch organization_profile_path(@org_profile), params: {
+      organization_profile: {
+        email: "happy_pets_bad_email.com",
+      }
+    }
+    @org_profile.reload
+    assert_response :unprocessable_entity
+    assert_select 'div.alert.alert-danger.mt-1', text: 'Please fix the errors highlighted below.'
+  end
 end
