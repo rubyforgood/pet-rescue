@@ -1,0 +1,26 @@
+<div id="task_modal_<%= @task.id %>" class="modal">
+  <turbo-frame id="edit_task_frame_<%= @task.id %>">
+    <%= form_for [@pet, @task], html: { 'data-turbo-frame': "edit_task_frame_#{@task.id}" } do |f| %>
+
+      <div class="mb-3">
+        <%= f.label :name, "Task Name" %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :description, "Task Description" %>
+        <%= f.text_area :description, class: 'form-control', rows: 3 %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :completed, "Task Completed?" %>
+        <%= f.check_box :completed %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.submit "Update Task", class: 'btn btn-primary', data: { bs_dismiss: "modal" } %>
+      </div>
+
+    <% end %>
+  </turbo-frame>
+</div>
