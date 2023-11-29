@@ -5,7 +5,6 @@
     </div>
   <% end %>
   
-  <div class='card-body'>
     <!-- Avatar section- not yet functional -->
     <div class="d-lg-flex align-items-center justify-content-between">
       <div class="d-flex align-items-center mb-4 mb-lg-0">
@@ -25,13 +24,18 @@
       </div>
     </div>
 
+  <div class='card-body'>
+    <div calss="d-lg-flex align-items-center justify-content-between">
+      <h3 class="mb-1">Organization Details<h3>
+        <p class="text-muted mb-3" style="font-size: 12px;">Edit your organization's information.<p>
+    </div>
+
     <!-- Administrative details section -->
     <div class="row mt-3">
       <!-- First Column -->
       <div class="col-lg-6">
         <%= form.fields_for :organization do |org_form| %>
           <form class="mb-3">
-            <h3>Contact</h3>
             <!-- Phone Number -->
             <div class="form-group">
               <%= form.telephone_field :phone_number,
@@ -55,7 +59,6 @@
 
       <!-- Second Column -->
       <div class="col-lg-6">
-        <h3>Location</h3>
 
         <!-- Nested Form for Locations Table -->
         <div class="form-group bigger" data-controller="country-state">
