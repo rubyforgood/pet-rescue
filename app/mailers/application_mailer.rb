@@ -9,6 +9,7 @@ class ApplicationMailer < ActionMailer::Base
   def with_organization_path
     default_url_options[:script_name] = "/#{Current.organization.slug}"
     yield
+  ensure
     default_url_options[:script_name] = nil
   end
 end
