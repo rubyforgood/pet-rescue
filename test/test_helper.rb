@@ -23,10 +23,10 @@ class ActiveSupport::TestCase
   include Devise::Test::IntegrationHelpers
 
   def set_organization(organization)
-    if organization
-     Rails.application.routes.default_url_options[:script_name] = "/#{organization.slug}"
+    Rails.application.routes.default_url_options[:script_name] = if organization
+      "/#{organization.slug}"
     else
-      Rails.application.routes.default_url_options[:script_name] = ""
+      ""
     end
   end
 

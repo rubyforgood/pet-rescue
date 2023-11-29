@@ -73,9 +73,6 @@
                                 'data-initial-value': location.object.country,
                                 required: true,
                                 class: 'form-control' %>
-            <% profile.location.custom_messages(:country).each do |error| %>
-              <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-            <% end %>
 
             <!-- Province/State Select -->
             <%= location.select :province_state,
@@ -84,15 +81,9 @@
                                 'data-country-state-target': 'state',
                                 required: true,
                                 class: 'form-control' %>
-            <% profile.location.custom_messages(:province_state).each do |error| %>
-              <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-            <% end %>
 
             <!-- City/Town Text Field -->
             <%= location.text_field :city_town, class: 'form-control' %>
-            <% profile.location.custom_messages(:city_town).each do |error| %>
-              <div class="alert alert-danger mt-1" role="alert"><%= error.message %></div>
-            <% end %>
           <% end %>
         </div>
       </div>

@@ -1,7 +1,7 @@
 require "test_helper"
 
 class RootsControllerTest < ActionDispatch::IntegrationTest
-  setup do 
+  setup do
     set_organization(nil)
   end
   context "GET #index" do

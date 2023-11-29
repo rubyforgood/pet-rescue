@@ -31,6 +31,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
   end
 
   test "organization profile updates with the submission of the form" do
+    puts "!!!!!!!!#{@org_profile.id}"
     patch organization_profile_path(@org_profile), params: {
       organization_profile: {
         email: "happy_paws_rescue@gmail.com",
