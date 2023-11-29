@@ -7,7 +7,6 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
     @org = ActsAsTenant.test_tenant
     @org_profile = @org.profile
     admin = create(:user, :staff_admin, organization: @org)
-    set_organization(admin.organization)
     sign_in admin
     get edit_organization_profile_path(@org_profile)
   end
