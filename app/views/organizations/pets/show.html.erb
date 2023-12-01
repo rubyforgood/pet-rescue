@@ -1,113 +1,112 @@
 <% breadcrumb :dashboard_pet, @pet %>
 
-<div class="row">
-  <!-- from 265 -->
-  <div class="col-12 mb-4">
-    <!-- nav -->
-    <ul class="nav nav-lb-tab">
-      <li class="nav-item ms-0 me-3">
-        <%= link_to 'Overview', pet_path(@pet, active_tab: 'overview'), class: 'nav-link' + (@active_tab == 'overview' ? ' active' : '') %>
-      </li>
-      <li class="nav-item mx-3">
-        <%= link_to 'Task', pet_path(@pet, active_tab: 'tasks'), class: 'nav-link' + (@active_tab == 'tasks' ? ' active' : '') %>
-      </li>
-      <li class="nav-item mx-3">
-        <%= link_to 'Applications', pet_path(@pet, active_tab: 'applications'), class: 'nav-link' + (@active_tab == 'applications' ? ' active' : '') %>
-      </li>
-      <li class="nav-item mx-3">
-        <%= link_to 'Files', pet_path(@pet, active_tab: 'files'), class: 'nav-link' + (@active_tab == 'files' ? ' active' : '') %>
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="row">
-  <%= render partial: "organizations/tasks/#{@active_tab}", locals: { pet: @pet } %>
-  <div class="col-md-12 col-xl-4 col-12">
-    <!-- card -->
-    <div class="card mb-4 bg-primary border-primary">
-      <!-- card body -->
-      <div class="card-body">
-        <% if @pet.images.attached? %>
-          <%= image_tag @pet.images.first, class: 'rounded card-img-top' %>
-        <% else %>
-          <%= image_tag('coming_soon.jpg', class: 'rounded card-img-top') %>
-        <% end %>
-      </div>
-    </div>
-    <div class="card">
-      <!-- Card header -->
-      <div class="card-header card-header-height d-flex justify-content-between align-items-center">
-        <div>
-          <h4 class="mb-0">Recent Activity</h4>
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title @pet.name %>
+  <% p.nav_tabs do %>
+    <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: "overview"), text: "Summary", options: { active: /overview/ } %>
+    <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: "applications"), text: "Tasks", options: { active: /applications/ } %>
+  <% end %>
+  <% p.content do %>
+    <div class="row">
+      <!-- from 265 -->
+      <div class="col-md-12 col-xl-8 col-12">
+        <%= render partial: "organizations/tasks/#{@active_tab}", locals: { pet: @pet } %>
+      </div> 
+
+      <div class="col-md-12 col-xl-4 col-12">
+
+        <div class="mb-4">
+          <div>
+            <% if @pet.images.attached? %>
+              <%= image_tag @pet.images.first, class: 'rounded card-img-top' %>
+            <% else %>
+              <%= image_tag('coming_soon.jpg', class: 'rounded card-img-top') %>
+            <% end %>
+          </div>
         </div>
-        <div><a href="#">View All</a></div>
-      </div>
-      <!-- Card body -->
-      <div class="card-body">
-        <!-- List group -->
-        <ul class="list-group list-group-flush list-timeline-activity">
-          <li class="list-group-item px-0 pt-0 border-0 pb-6">
-            <div class="row position-relative">
-              <div class="col-auto">
-                <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
-                  <i class="fe fe-check"></i>
+
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header card-header-height d-flex justify-content-between align-items-center">
+            <div>
+              <h4 class="mb-0">Recent Activity
+              </h4>
+            </div>
+            <div><a href="#">View All</a></div>
+          </div>
+          <!-- Card body -->
+          <div class="card-body">
+            <!-- List group -->
+            <ul class="list-group list-group-flush list-timeline-activity">
+              <li class="list-group-item px-0 pt-0 border-0 pb-6">
+                <div class="row position-relative">
+                  <div class="col-auto">
+                    <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                      <i class="fe fe-check"></i>
+                    </div>
+                  </div>
+                  <div class="col ms-n3">
+                    <h4 class="mb-0 h5">Task Finished</h4>
+                    <p class="mb-0 text-body">Paula finished figma task</p>
+                    <li class="list-group-item px-0 pt-0 border-0 pb-6">
+                      <div class="row position-relative">
+                        <div class="col-auto">
+                          <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                            <i class="fe fe-message-square"></i>
+                          </div>
+                        </div>
+                        <div class="col ms-n3">
+                          <h4 class="mb-0 h5">New Comment</h4>
+                          <p class="mb-0 text-body">Georg commented on task.</p>
+
+                        </div>
+                        <div class="col-auto">
+                          <span class="text-muted fs-6">1 hour ago</span>
+
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item px-0 pt-0 border-0 pb-6">
+                      <div class="row position-relative">
+                        <div class="col-auto">
+                          <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                            <i class="fe fe-alert-triangle"></i>
+                          </div>
+                        </div>
+                        <div class="col ms-n3">
+                          <h4 class="mb-0 h5">Task Overdue</h4>
+                          <p class="mb-0 text-body">Task <a href="#"><u>status updatd for board</u></a>
+                          is overdue.</p>
+
+                        </div>
+                        <div class="col-auto">
+                          <span class="text-muted fs-6">1 day</span>
+
+                        </div>
+                      </div>
+                    </li>
+                    <li class="list-group-item px-0 pt-0 border-0">
+                      <div class="row position-relative">
+                        <div class="col-auto">
+                          <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
+                            <i class="fe fe-mail"></i>
+                          </div>
+                        </div>
+                        <div class="col ms-n3">
+                          <h4 class="mb-0 h5">Update Send to Client</h4>
+                          <p class="mb-0 text-body">Jitu send email to update design
+                          for client Geeks UI.</p>
+
+                        </div>
+                        <div class="col-auto">
+                          <span class="text-muted fs-6">1 day</span>
+                        </div>
+                      </div>
+                    </li>
+            </ul>
+                  </div>
                 </div>
-              </div>
-              <div class="col ms-n3">
-                <h4 class="mb-0 h5">Task Finished</h4>
-                <p class="mb-0 text-body">Paula finished figma task</p>
-                <li class="list-group-item px-0 pt-0 border-0 pb-6">
-                  <div class="row position-relative">
-                    <div class="col-auto">
-                      <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
-                        <i class="fe fe-message-square"></i>
-                      </div>
-                    </div>
-                    <div class="col ms-n3">
-                      <h4 class="mb-0 h5">New Comment</h4>
-                      <p class="mb-0 text-body">Georg commented on task.</p>
-                    </div>
-                    <div class="col-auto">
-                      <span class="text-muted fs-6">1 hour ago</span>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item px-0 pt-0 border-0 pb-6">
-                  <div class="row position-relative">
-                    <div class="col-auto">
-                      <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
-                        <i class="fe fe-alert-triangle"></i>
-                      </div>
-                    </div>
-                    <div class="col ms-n3">
-                      <h4 class="mb-0 h5">Task Overdue</h4>
-                      <p class="mb-0 text-body">Task <a href="#"><u>status updatd for board</u></a> is overdue.</p>
-                    </div>
-                    <div class="col-auto">
-                      <span class="text-muted fs-6">1 day</span>
-                    </div>
-                  </div>
-                </li>
-                <li class="list-group-item px-0 pt-0 border-0">
-                  <div class="row position-relative">
-                    <div class="col-auto">
-                      <div class="icon-shape icon-md bg-light-primary text-primary rounded-circle">
-                        <i class="fe fe-mail"></i>
-                      </div>
-                    </div>
-                    <div class="col ms-n3">
-                      <h4 class="mb-0 h5">Update Send to Client</h4>
-                      <p class="mb-0 text-body">Jitu send email to update design for client Geeks UI.</p>
-                    </div>
-                    <div class="col-auto">
-                      <span class="text-muted fs-6">1 day</span>
-                    </div>
-                  </div>
-                </li>
-              </div>
-            </li>
-          </ul>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
+      <% end %>
+    <% end %>
