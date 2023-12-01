@@ -3,8 +3,11 @@
   <div class="container">
     <div class="text-center">
       <h1 class="section-heading text-uppercase underline">
-        <%= t('.edit_profile') %>
+        <%= @organization_profile.name %> <%= t('.profile_details') %>
       </h1>
+      <p class="mb-0">
+        <%= t('.manage_your_own_account_settings') %>
+      </p>
     </div>
   </div> <!--container-->
 </header>
@@ -18,3 +21,4 @@
     </div>
   </div> <!--container-->
 </section>
+
