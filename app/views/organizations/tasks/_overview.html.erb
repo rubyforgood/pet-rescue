@@ -78,7 +78,7 @@
               </div>
             </div>
           </li>
-          <li class="list-group-item px-0 pb-0">
+          <li class="list-group-item px-0">
             <div class="d-flex
                             justify-content-between
                             align-items-center">
@@ -98,7 +98,13 @@
               </div>
             </div>
           </li>
-
+          <li class="list-group-item px-0 pb-0 d-flex justify-content-between">
+            <span class="fw-bold">
+              <i class="fe fe-book me-2"></i>
+              Published
+            </span>
+            <%= tag.span "#{@pet.is_published}".titleize, class: "fw-semibold text-dark"%>
+          </li>
         </ul>
       </div>
     </div>
