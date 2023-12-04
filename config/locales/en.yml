@@ -153,6 +153,7 @@ en:
     organization_profiles:
       form:
         please_fix_the_errors: "Please fix the errors highlighted below."
+        manage_your_own_account_settings: "You have full control to manage your own account settings."
       edit:
         edit_profile: "Edit Profile"
   adopter_applications:
