@@ -82,7 +82,10 @@
                       <%= "#{pet.weight_from} - #{pet.weight_to} #{pet.weight_unit}" %>
                     </td>
                     <td>
-                      <span class="badge bg-info-soft"><%= pet.application_paused == false ? t('.application.active') : t('.application.paused') %></span>
+                      <div class="d-inline-flex flex-column">
+                        <span class="badge bg-info-soft mb-3"><%= pet.application_paused == false ? t('.application.active') : t('.application.paused') %></span>
+                        <span class="badge bg-info-soft"><%= pet.is_published ? "Published" : "Draft" %></span>
+                      </div>
                     </td>
                     <% if current_user.staff_account %>
                       <td>
