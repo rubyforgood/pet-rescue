@@ -7,6 +7,7 @@
 #  birth_date         :datetime         not null
 #  breed              :string
 #  description        :text
+#  is_published       :boolean          default(TRUE), not null
 #  name               :string
 #  pause_reason       :integer          default("not_paused")
 #  placement_type     :integer          not null
@@ -39,6 +40,7 @@ class Pet < ApplicationRecord
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :breed, presence: true
+  validates :is_published, presence: true
   validates :sex, presence: true
   validates :species, presence: true
   validates :placement_type, presence: true

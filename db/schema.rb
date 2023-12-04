@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_10_194816) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_01_204221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -193,6 +193,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_194816) do
     t.string "weight_unit", null: false
     t.integer "species", null: false
     t.integer "placement_type", null: false
+    t.boolean "is_published", default: true, null: false
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
@@ -223,6 +224,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_194816) do
     t.index ["role_id"], name: "index_staff_accounts_roles_on_role_id"
     t.index ["staff_account_id", "role_id"], name: "index_staff_accounts_roles_on_staff_account_id_and_role_id"
     t.index ["staff_account_id"], name: "index_staff_accounts_roles_on_staff_account_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.boolean "completed", default: false
+    t.bigint "pet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["pet_id"], name: "index_tasks_on_pet_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -270,4 +281,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_10_194816) do
   add_foreign_key "pets", "organizations"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
+  add_foreign_key "tasks", "pets"
 end
