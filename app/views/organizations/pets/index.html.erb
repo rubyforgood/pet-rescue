@@ -110,6 +110,10 @@
                                 <i class="fe fe-pause dropdown-item-icon"></i>Pause applications
                               <% end %>
                             <% end %>
+                            <%= button_to pet, method: :put, class: 'dropdown-item', params: {pet: {is_published: !pet.is_published }} do %>
+                              <%= tag.i class: ["fe", "dropdown-item-icon", pet.is_published ? "fe-pause" : "fe-play"] %>
+                              <%= pet.is_published ? "Move to draft" : "Publish" %>
+                            <% end %>
                             <%= button_to pet, method: :delete, class: 'dropdown-item', data: { turbo_confirm: t('.are_you_sure_delete') } do %>
                               <i class="fe fe-trash dropdown-item-icon"></i>Delete
                             <% end %>

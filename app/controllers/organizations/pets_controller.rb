@@ -7,7 +7,7 @@ module Organizations
     before_action :set_nav_tabs, only: [:show]
 
     after_action :set_reason_paused_to_none, only: [:update]
-    layout 'dashboard'
+    layout "dashboard"
 
     def index
       @q = Pet.ransack(params[:q])
@@ -21,7 +21,7 @@ module Organizations
     def edit
       return if pet_in_same_organization?(@pet.organization_id)
 
-      redirect_to pets_path, alert: 'This pet is not in your organization.'
+      redirect_to pets_path, alert: "This pet is not in your organization."
     end
 
     def show
@@ -29,14 +29,14 @@ module Organizations
       @pause_reason = @pet.pause_reason
       return if pet_in_same_organization?(@pet.organization_id)
 
-      redirect_to pets_path, alert: 'This pet is not in your organization.'
+      redirect_to pets_path, alert: "This pet is not in your organization."
     end
 
     def create
       @pet = Pet.new(pet_params)
 
       if @pet.save
-        redirect_to pets_path, notice: 'Pet saved successfully.'
+        redirect_to pets_path, notice: "Pet saved successfully."
       else
         render :new, status: :unprocessable_entity
       end
@@ -44,7 +44,7 @@ module Organizations
 
     def update
       if pet_in_same_organization?(@pet.organization_id) && @pet.update(pet_params)
-        redirect_to @pet, notice: 'Pet updated successfully.'
+        redirect_to @pet, notice: "Pet updated successfully."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -54,9 +54,9 @@ module Organizations
       @pet = Pet.find(params[:id])
 
       if pet_in_same_organization?(@pet.organization_id) && @pet.destroy
-        redirect_to pets_path, notice: 'Pet deleted.', status: :see_other
+        redirect_to pets_path, notice: "Pet deleted.", status: :see_other
       else
-        redirect_to pets_path, alert: 'Error.'
+        redirect_to pets_path, alert: "Error."
       end
     end
 
@@ -96,12 +96,12 @@ module Organizations
 
     def set_nav_tabs
       @nav_tabs = [
-        { name: 'Summary', path: pet_path(@pet) }
+        {name: "Summary", path: pet_path(@pet)}
       ]
     end
 
     def determine_active_tab
-      %w[tasks applications files].include?(params[:active_tab]) ? params[:active_tab] : 'overview'
+      %w[tasks applications files].include?(params[:active_tab]) ? params[:active_tab] : "overview"
     end
   end
 end
