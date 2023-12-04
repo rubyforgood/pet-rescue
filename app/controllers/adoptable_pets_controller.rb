@@ -1,6 +1,9 @@
 class AdoptablePetsController < Organizations::BaseController
   def index
-    @pets = Pet.includes(:adopter_applications, images_attachments: :blob).where.missing(:match)
+    @pets = Pet.includes(:adopter_applications, images_attachments: :blob)
+               .published
+               .where
+               .missing(:match)
   end
 
   def show
