@@ -6,6 +6,7 @@
     <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: "overview"), text: "Summary", options: { active: /overview/ } %>
     <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: "tasks"), text: "Tasks", options: { active: /applications/ } %>
     <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: "applications"), text: "Applications", options: { active: /applications/ } %>
+    <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: "files"), text: "Files", options: { active: /applications/ } %>
   <% end %>
   <% p.content do %>
     <div class="row">
