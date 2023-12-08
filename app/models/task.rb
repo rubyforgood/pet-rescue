@@ -3,7 +3,7 @@
 # Table name: tasks
 #
 #  id          :bigint           not null, primary key
-#  completed   :boolean          default(FALSE)
+#  completed   :boolean
 #  description :text
 #  name        :string           not null
 #  created_at  :datetime         not null
@@ -20,4 +20,7 @@
 #
 class Task < ApplicationRecord
   belongs_to :pet
+
+  validates :name, presence: true
+  validates :description, presence: true
 end
