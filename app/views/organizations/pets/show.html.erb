@@ -24,7 +24,11 @@
   </div>
 
   <div class="col-md-12 col-xl-8 col-12">
-    <%= render partial: "components/pet_tabs/#{@active_tab}", locals: { pet: @pet } %>
+    <% if @active_tab == 'tasks' %>
+      <%= render partial: "organizations/tasks/tasks", locals: { pet: @pet } %>
+    <% else %>
+      <%= render partial: "components/pet_tabs/#{@active_tab}", locals: { pet: @pet } %>
+    <% end %>
   </div> 
 
   <div class="col-md-12 col-xl-4 col-12">
