@@ -1,0 +1,9 @@
+<%= form_for [@pet, @task], remote: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, "Task Name" %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="mb-3">
+    <%= f.submit "Update Task", class: 'btn btn-primary' %>
+  </div>
+<% end %>
