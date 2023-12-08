@@ -1,4 +1,11 @@
 FactoryBot.define do
+  factory :task do
+    name { "MyString" }
+    description { "MyText" }
+    completed { false }
+    pet
+  end
+
   factory :adopter_account do
     transient do
       organization { ActsAsTenant.test_tenant }

@@ -45,6 +45,11 @@ class ActiveSupport::TestCase
     assert_not response.parsed_body.include?("translation_missing"), "Missing translations, ensure this text is included in en.yml"
   end
 
+  def after_teardown
+    super
+    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+  end
+
   #
   # Sets up shoulda matcher configuration
   # https://github.com/thoughtbot/shoulda-matchers
