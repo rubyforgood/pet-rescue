@@ -2,6 +2,10 @@ require "test_helper"
 
 class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
   setup do
+    user = create(:user, :staff_admin)
+    set_organization(user.organization)
+    sign_in user
+
     @user_invitation_params = {
       user: {
         first_name: "John",

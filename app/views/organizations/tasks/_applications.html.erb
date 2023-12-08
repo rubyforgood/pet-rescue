@@ -1,9 +1,9 @@
 <div class="card">
   <div class="card-header">
     <!-- MARK: from applications reviews would pass pet and from pet show would pass nil -->
-    <% if pet %>
+    <% if @pet %>
       <h4 class="mb-0 text-center">
-        <%= link_to pet.name, pet_path(pet), class: 'text-decoration-none' %>
+        <%= link_to @pet.name, pet_path(@pet), class: 'text-decoration-none' %>
       </h4>
     <% else %>
       <h4 class="mb-0">Applications</h4>
@@ -21,7 +21,7 @@
         </tr>
       </thead>
       <tbody>
-        <% applications.each do |app|%>
+        <% @pet.adopter_applications.each do |app|%>
           <tr>
             <!-- applicant -->
             <td class="align-middle">
