@@ -5,10 +5,12 @@
         <div class="card-header">
           <div class="d-flex justify-content-between align-items-center">
             <div>
-              <h4 class="mb-0">Summary</h4>
+              <h4 class="mb-0">Tasks</h4>
             </div>
             <!-- dropdown  -->
-            <%= link_to t('general.edit'), edit_pet_path(@pet), class: 'btn btn-outline-dark' %>
+            <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#newTaskModal">
+              Add Task
+            </button>
           </div>
         </div>
         
