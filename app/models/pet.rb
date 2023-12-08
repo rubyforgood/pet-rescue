@@ -57,7 +57,7 @@ class Pet < ApplicationRecord
            message: "size must be between 10kb and 1Mb"}
 
   validates :files, content_type: {in: ["image/png", "image/jpeg", "application/pdf"],
-                                     message: "must be PNG or JPEG"},
+                                   message: "must be PNG or JPEG"},
     limit: {max: 15, message: "- 15 maximum"},
     size: {between: 10.kilobyte..2.megabytes,
            message: "size must be between 10kb and 2Mb"}

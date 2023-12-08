@@ -28,19 +28,19 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  context "POST #attach_records" do
-    should "attaches a record and redirects to pet records tab with success flash" do
-      record = fixture_file_upload("test.png", "image/png")
+  context "POST #attach_files" do
+    should "attaches a record and redirects to pet files tab with success flash" do
+      file = fixture_file_upload("test.png", "image/png")
 
-      assert_difference("@pet.records.count", 1) do
-        post attach_records_pet_path(@pet),
-          params: {pet: {records: [record]}}
+      assert_difference("@pet.files.count", 1) do
+        post attach_files_pet_path(@pet),
+          params: {pet: {files: [file]}}
       end
 
       assert_response :redirect
       follow_redirect!
       assert_equal flash.notice, "Upload successful."
-      assert_equal URI.decode_www_form(URI.parse(request.url).query).join("="), "active_tab=records"
+      assert_equal URI.decode_www_form(URI.parse(request.url).query).join("="), "active_tab=files"
     end
   end
 end
