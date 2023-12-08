@@ -18,13 +18,13 @@
         <%= link_to 'Photos', pet_path(@pet, active_tab: 'photos'), class: 'nav-link' + (@active_tab == 'photos' ? ' active' : '') %>
       </li>
       <li class="nav-item mx-3">
-        <%= link_to 'Files', pet_path(@pet, active_tab: 'Files'), class: 'nav-link' + (@active_tab == 'Files' ? ' active' : '') %>
+        <%= link_to 'Files', pet_path(@pet, active_tab: 'files'), class: 'nav-link' + (@active_tab == 'files' ? ' active' : '') %>
       </li>
     </ul>
   </div>
 
   <div class="col-md-12 col-xl-8 col-12">
-    <%= render partial: "organizations/tasks/#{@active_tab}", locals: { pet: @pet } %>
+    <%= render partial: "components/pet_tabs/#{@active_tab}", locals: { pet: @pet } %>
   </div> 
 
   <div class="col-md-12 col-xl-4 col-12">

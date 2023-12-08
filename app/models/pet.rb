@@ -34,7 +34,7 @@ class Pet < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_one :match, dependent: :destroy
   has_many_attached :images
-  has_many_attached :records
+  has_many_attached :files
 
   validates :name, presence: true
   validates :birth_date, presence: true
@@ -56,7 +56,7 @@ class Pet < ApplicationRecord
     size: {between: 10.kilobyte..1.megabytes,
            message: "size must be between 10kb and 1Mb"}
 
-  validates :records, content_type: {in: ["image/png", "image/jpeg", "application/pdf"],
+  validates :files, content_type: {in: ["image/png", "image/jpeg", "application/pdf"],
                                      message: "must be PNG or JPEG"},
     limit: {max: 15, message: "- 15 maximum"},
     size: {between: 10.kilobyte..2.megabytes,

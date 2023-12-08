@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :pets do
       resources :tasks, only: [:new, :create, :edit, :update, :destroy]
       post "attach_images", on: :member, to: "pets#attach_images"
-      post "attach_records", on: :member, to: "pets#attach_records"
+      post "attach_files", on: :member, to: "pets#attach_files"
     end
     resources :dashboard
     resources :adoption_application_reviews, only: [:index, :edit, :update]
