@@ -30,7 +30,7 @@
                 <%= f.select :ransack_adopted, [['Adopted', true], ['Unadopted', false]], {include_blank: 'All'}, class: "form-select" %>
               </div>
             </div>
-            <div class='d-flex flex-column w-100 w-md-auto flex-md-row'>
+            <div class='d-flex flex-column w-100 w-md-auto flex-md-row gap-2'>
               <%= f.submit class: "btn btn-primary" %>
               <%= link_to "Clear filters", pets_path, class: "btn btn-default"%>
             </div>
