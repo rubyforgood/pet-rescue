@@ -8,29 +8,33 @@
 
   <% p.content do %>
     <!--filter section-->
-    <div class="p-4 border rounded-5 mb-5 bg-white">
+    <div>
       <div>
         <%= search_form_for @q do |f| %>
-          <div class="row">
-            <div class="form-group mb-3 col-md-6">
-              <%= f.label :name_i_cont, "Name" %>
-              <%= f.text_field :name_i_cont, class: "form-control", placeholder: "Enter a few characters" %>
+          <div class='d-flex justify-content-between align-items-center flex-wrap mb-3'>
+            <div class="d-flex gap-3 flex-wrap mb-3">
+              <div class="form-group">
+                <%= f.label :name_i_cont, "Name" %>
+                <%= f.text_field :name_i_cont, class: "form-control", placeholder: "Enter a few characters" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :sex_eq, "Sex" %>
+                <%= f.select :sex_eq, ["Male", "Female"], {include_blank: 'All'}, class: "form-select" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :species_eq, "Species" %>
+                <%= f.select :species_eq, Pet.species, {include_blank: 'All'}, class: "form-select" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :ransack_adopted, "Status" %>
+                <%= f.select :ransack_adopted, [['Adopted', true], ['Unadopted', false]], {include_blank: 'All'}, class: "form-select" %>
+              </div>
             </div>
-            <div class="mb-3 form-group col-md-2">
-              <%= f.label :sex_eq, "Sex" %>
-              <%= f.select :sex_eq, ["Male", "Female"], {include_blank: 'All'}, class: "form-select" %>
-            </div>
-            <div class="mb-3 form-group col-md-2">
-              <%= f.label :species_eq, "Species" %>
-              <%= f.select :species_eq, Pet.species, {include_blank: 'All'}, class: "form-select" %>
-            </div>
-            <div class="mb-3 form-group col-md-2">
-              <%= f.label :ransack_adopted, "Status" %>
-              <%= f.select :ransack_adopted, [['Adopted', true], ['Unadopted', false]], {include_blank: 'All'}, class: "form-select" %>
+            <div class='d-flex flex-column w-100 w-md-auto flex-md-row'>
+              <%= f.submit class: "btn btn-primary" %>
+              <%= link_to "Clear filters", pets_path, class: "btn btn-default"%>
             </div>
           </div>
-          <%= f.submit class: "btn btn-primary" %>
-          <%= link_to "Clear filters", pets_path, class: "btn btn-default"%>
         <% end %>
       </div>
     </div>
