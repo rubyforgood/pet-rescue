@@ -1,44 +1,38 @@
 <% breadcrumb :dashboard_pet, @pet %>
 
-<div class="row">
-  <!-- from 265 -->
-  <div class="col-12 mb-4">
-    <!-- nav -->
-    <ul class="nav nav-lb-tab">
-      <li class="nav-item ms-0 me-3">
-        <%= link_to 'Overview', pet_path(@pet, active_tab: 'overview'), class: 'nav-link' + (@active_tab == 'overview' ? ' active' : '') %>
-      </li>
-      <li class="nav-item mx-3">
-        <%= link_to 'Tasks', pet_path(@pet, active_tab: 'tasks'), class: 'nav-link' + (@active_tab == 'tasks' ? ' active' : '') %>
-      </li>
-      <li class="nav-item mx-3">
-        <%= link_to 'Applications', pet_path(@pet, active_tab: 'applications'), class: 'nav-link' + (@active_tab == 'applications' ? ' active' : '') %>
-      </li>
-      <li class="nav-item mx-3">
-        <%= link_to 'Photos', pet_path(@pet, active_tab: 'photos'), class: 'nav-link' + (@active_tab == 'photos' ? ' active' : '') %>
-      </li>
-      <li class="nav-item mx-3">
-        <%= link_to 'Files', pet_path(@pet, active_tab: 'files'), class: 'nav-link' + (@active_tab == 'files' ? ' active' : '') %>
-      </li>
-    </ul>
-  </div>
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title @pet.name %>
+  <% p.nav_tabs do %>
+    <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'overview'), text: "Overview", options: { active: :exact } %>
+    <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'tasks'), text: "Tasks", options: { active: :exact } %>
+    <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'applications'), text: "Applications", options: { active: :exact } %>
+    <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'photos'), text: "Photos", options: { active: :exact } %>
+    <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'files'), text: "Files", options: { active: :exact } %>
+  <% end %>
 
-  <div class="col-md-12 col-xl-8 col-12">
-    <% if @active_tab == 'tasks' %>
-      <%= render partial: "organizations/tasks/tasks", locals: { pet: @pet } %>
-    <% else %>
-      <%= render partial: "components/pet_tabs/#{@active_tab}", locals: { pet: @pet } %>
-    <% end %>
-  </div> 
+  <% p.content do %>
 
-  <div class="col-md-12 col-xl-4 col-12">
-
-    <div class="mb-4">
-      <div>
-        <% if @pet.images.attached? %>
-          <%= image_tag @pet.images.first, class: 'rounded card-img-top' %>
+    <div class="row">
+      <div class="col-md-12 col-xl-8 col-12">
+        <% if @active_tab == 'tasks' %>
+          <%= render partial: "organizations/tasks/tasks", locals: { pet: @pet } %>
         <% else %>
-          <%= image_tag('coming_soon.jpg', class: 'rounded card-img-top') %>
+          <%= render partial: "components/pet_tabs/#{@active_tab}", locals: { pet: @pet } %>
         <% end %>
+      </div> 
+
+      <div class="col-md-12 col-xl-4 col-12">
+
+        <div class="mb-4">
+          <div>
+            <% if @pet.images.attached? %>
+              <%= image_tag @pet.images.first, class: 'rounded card-img-top' %>
+            <% else %>
+              <%= image_tag('coming_soon.jpg', class: 'rounded card-img-top') %>
+            <% end %>
+          </div>
+        </div>  
       </div>
-    </div>  
+    </div>
+  <% end %>
+<% end %>
