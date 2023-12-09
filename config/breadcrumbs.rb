@@ -1,5 +1,5 @@
 crumb :root do
-  link "Home", root_path
+  link "Home", dashboard_index_path
 end
 
 crumb :dashboard_pets do
@@ -9,6 +9,10 @@ end
 crumb :dashboard_pet do |pet|
   link pet.name, pet_path(pet)
   parent :dashboard_pets
+end
+
+crumb :organization_profile do |organization|
+  link "Edit Profile", edit_organization_profile_path(organization)
 end
 
 # crumb :projects do

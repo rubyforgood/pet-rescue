@@ -10,6 +10,11 @@
           <h2 class="section-heading text-capitalize">
             <%= partial.header_title %>
           </h2>
+          <% if partial.header_subtitle? %>
+            <p class="section-subheading text-muted mt-n2">
+              <%= partial.header_subtitle %>
+            </p>
+          <% end %>
           <%= breadcrumbs class: "breadcrumb", style: :ol, fragment_class: "breadcrumb-item" %>
         </div>
         <div class="d-flex">
