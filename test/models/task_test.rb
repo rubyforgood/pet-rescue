@@ -34,15 +34,7 @@ class TaskTest < ActiveSupport::TestCase
     assert_equal "New description", task.description
   end
 
-  test "invalid without name" do
-    task = build(:task, name: nil)
-    refute task.valid?, "task is valid without a name"
-    assert_not_nil task.errors[:name], "no validation error for name present"
-  end
+  should validate_presence_of(:name)
 
-  test "invalid without description" do
-    task = build(:task, description: nil)
-    refute task.valid?, "task is valid without description"
-    assert_not_nil task.errors[:description], "no validation error for description present"
-  end
+  should validate_presence_of(:description)
 end
