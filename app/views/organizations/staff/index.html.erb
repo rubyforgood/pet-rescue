@@ -30,11 +30,7 @@
         <div class="tab-content">
           <!-- Tab Pane -->
           <div class="tab-pane fade" id="tabPaneGrid" role="tabpanel" aria-labelledby="tabPaneGrid">
-            <div class="mb-4">
-              <input type="search" class="form-control" placeholder="Search Staff">
-            </div>
-            <div class="row">
-
+            <div class='d-flex gap-3'>
               <% @staff_accounts.each do |staff| %>
                 <div class="col-xl-3 col-lg-6 col-md-6 col-12">
                   <!-- Card -->
@@ -68,86 +64,83 @@
               <% end %>
             </div>
           </div>
-          <!-- Tab Pane -->
-          <div class="tab-pane fade active show" id="tabPaneList" role="tabpanel" aria-labelledby="tabPaneList">
-            <!-- Card -->
-            <div class="card">
-              <!-- Card Header -->
-              <div class="card-header">
-                <input type="search" class="form-control" placeholder="Search Staff">
-              </div>
-              <!-- Table -->
-              <div class="table-responsive">
-                <table class="table mb-0 text-nowrap table-hover table-centered">
-                  <thead class="table-light">
+        </div>
+        <!-- Tab Pane -->
+        <div class="tab-pane fade active show" id="tabPaneList" role="tabpanel" aria-labelledby="tabPaneList">
+          <!-- Card -->
+          <div class="card">
+            <!-- Table -->
+            <div class="table-responsive">
+              <table class="table mb-0 text-nowrap table-hover table-centered">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Joined At</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <% @staff_accounts.each do |staff| %>
                     <tr>
-                      <th scope="col">Name</th>
-                      <th scope="col">Role</th>
-                      <th scope="col">Joined At</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Action</th>
-
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                    <% @staff_accounts.each do |staff| %>
-                      <tr>
-                        <td>
-                          <div class="d-flex align-items-center">
-                            <div class="position-relative">
-                              <%= image_tag "danielle_3.jpg", alt: "", class: "rounded-circle avatar-md me-2" %>
-                              <a href="#" class="position-absolute mt-5 ms-n4">
-                                <span class="status bg-success"></span>
-                              </a>
-                            </div>
-                            <h5 class="mb-0"><%= "#{staff.user.first_name} #{staff.user.last_name}" %></h5>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="position-relative">
+                            <%= image_tag "danielle_3.jpg", alt: "", class: "rounded-circle avatar-md me-2" %>
+                            <a href="#" class="position-absolute mt-5 ms-n4">
+                              <span class="status bg-success"></span>
+                            </a>
                           </div>
-                        </td>
-                        <td>
-                          <%= staff.roles.pluck(:name).join(", ") %>
-                        </td>
-                        <td>
-                          <%= staff.created_at.strftime("%d %B, %Y") %>
-                        </td>
-                        <td>
-                          <%= t("staff_accounts.status.#{staff.status}") %>
-                        </td>
+                          <h5 class="mb-0"><%= "#{staff.user.first_name} #{staff.user.last_name}" %></h5>
+                        </div>
+                      </td>
+                      <td>
+                        <%= staff.roles.pluck(:name).join(", ") %>
+                      </td>
+                      <td>
+                        <%= staff.created_at.strftime("%d %B, %Y") %>
+                      </td>
+                      <td>
+                        <%= t("staff_accounts.status.#{staff.status}") %>
+                      </td>
 
-                        <td>
-                          <div class="hstack gap-4">
-                            <a href="#" class="fe fe-mail text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Message" data-bs-original-title="Message"></a>
-                            <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i class="fe fe-trash"></i></a>
-                            <span class="dropdown dropstart">
-                              <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" data-bs-toggle="dropdown" data-bs-offset="-20,20" aria-expanded="false">
-                                <i class="fe fe-more-vertical"></i>
-                              </a>
-                              <span class="dropdown-menu">
-                                <span class="dropdown-header">Settings</span>
-                                <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i> Edit</a>
-                                <% if staff.deactivated_at %>
-                                  <%= button_to staff_activate_path(staff), class: "dropdown-item" do %>
-                                    <i class="fe fe-unlock dropdown-item-icon"></i> Activate
-                                  <% end %>
-                                <% else %>
-                                  <%= button_to staff_deactivate_path(staff), class: "dropdown-item" do %>
-                                    <i class="fe fe-lock  dropdown-item-icon"></i> Deactivate
-                                  <% end %>
+                      <td>
+                        <div class="hstack gap-4">
+                          <a href="#" class="fe fe-mail text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Message" data-bs-original-title="Message"></a>
+                          <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i class="fe fe-trash"></i></a>
+                          <span class="dropdown dropstart">
+                            <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" data-bs-toggle="dropdown" data-bs-offset="-20,20" aria-expanded="false">
+                              <i class="fe fe-more-vertical"></i>
+                            </a>
+                            <span class="dropdown-menu">
+                              <span class="dropdown-header">Settings</span>
+                              <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i> Edit</a>
+                              <% if staff.deactivated_at %>
+                                <%= button_to staff_activate_path(staff), class: "dropdown-item" do %>
+                                  <i class="fe fe-unlock dropdown-item-icon"></i> Activate
                                 <% end %>
-                              </span>
+                              <% else %>
+                                <%= button_to staff_deactivate_path(staff), class: "dropdown-item" do %>
+                                  <i class="fe fe-lock  dropdown-item-icon"></i> Deactivate
+                                <% end %>
+                              <% end %>
                             </span>
-                          </div>
-                        </td>
-                      </tr>
-                    <% end %>
-                  </tbody>
-                </table>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
 
-              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
     </div>
   <% end %>
 <% end %>
