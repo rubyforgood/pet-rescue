@@ -15,6 +15,10 @@ crumb :organization_profile do |organization|
   link "Edit Profile", edit_organization_profile_path(organization)
 end
 
+crumb :staff_index do
+  link "Staff", staff_index_path
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
