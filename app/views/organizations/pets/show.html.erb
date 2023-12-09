@@ -3,7 +3,7 @@
 <%= render "components/dashboard/page" do |p| %>
   <% p.header_title @pet.name %>
   <% p.nav_tabs do %>
-    <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'overview'), text: "Overview", options: { active: :exact } %>
+    <%= render "components/dashboard/nav_tab", url: pet_path(@pet), text: "Overview", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'tasks'), text: "Tasks", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'applications'), text: "Applications", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'photos'), text: "Photos", options: { active: :exact } %>
@@ -11,14 +11,9 @@
   <% end %>
 
   <% p.content do %>
-
     <div class="row">
       <div class="col-md-12 col-xl-8 col-12">
-        <% if @active_tab == 'tasks' %>
-          <%= render partial: "organizations/tasks/tasks", locals: { pet: @pet } %>
-        <% else %>
-          <%= render partial: "components/pet_tabs/#{@active_tab}", locals: { pet: @pet } %>
-        <% end %>
+        <%= render partial: "components/pet_tabs/#{@active_tab}", locals: { pet: @pet } %>
       </div> 
 
       <div class="col-md-12 col-xl-4 col-12">
