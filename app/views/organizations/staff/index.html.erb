@@ -3,26 +3,27 @@
 <%= render "components/dashboard/page" do |p| %>
   <% p.header_title "Staff" %>
   <% p.actions do %>
-    <%= link_to "Invite Staff", new_user_invitation_path, class: "btn btn-primary" %><br>
-  <% end %>
-
-  <% p.content do %>
-    <div class="row">
-      <div class="col-lg-12 col-md-12 col-12">
-        <!-- Page Header -->
-        <div class="border-bottom pb-3 mb-3 d-flex justify-content-between align-items-center">
-          <div class="nav btn-group" role="tablist">
-            <button class="btn btn-outline-secondary" data-bs-toggle="tab" data-bs-target="#tabPaneGrid" role="tab" aria-controls="tabPaneGrid" aria-selected="false" tabindex="-1">
-              <span class="fe fe-grid"></span>
-            </button>
-            <button class="btn btn-outline-secondary active" data-bs-toggle="tab" data-bs-target="#tabPaneList" role="tab" aria-controls="tabPaneList" aria-selected="true">
-              <span class="fe fe-list"></span>
-            </button>
+    <div class='d-flex align-items-center gap-2'>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <!-- Page Header -->
+          <div class="border-bottom d-flex justify-content-between align-items-center">
+            <div class="nav btn-group" role="tablist">
+              <button class="btn btn-outline-secondary" data-bs-toggle="tab" data-bs-target="#tabPaneGrid" role="tab" aria-controls="tabPaneGrid" aria-selected="false" tabindex="-1">
+                <span class="fe fe-grid"></span>
+              </button>
+              <button class="btn btn-outline-secondary active" data-bs-toggle="tab" data-bs-target="#tabPaneList" role="tab" aria-controls="tabPaneList" aria-selected="true">
+                <span class="fe fe-list"></span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
+      <%= link_to "Invite Staff", new_user_invitation_path, class: "btn btn-primary" %><br>
     </div>
+  <% end %>
 
+  <% p.content do %>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-12">
         <!-- Tab -->
