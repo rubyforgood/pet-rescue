@@ -86,9 +86,8 @@
         </div>
       </div>
 
-      <%= form.submit t('general.save'), class: 'btn btn-outline-dark mb-3 mt-4' %>
-
+      <%= form.submit t('general.save'), class: 'btn btn-primary' %>
+      <%= link_to t('general.cancel'), pets_path, class: 'btn btn-secondary' %>
     <% end %>
-
   </div>
 </div> <!--row-->
