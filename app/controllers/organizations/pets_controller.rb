@@ -1,7 +1,6 @@
 class Organizations::PetsController < Organizations::BaseController
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :attach_images, :attach_files]
   before_action :verified_staff
-  before_action :set_nav_tabs, only: [:show]
 
   after_action :set_reason_paused_to_none, only: [:update]
   layout "dashboard"
@@ -110,12 +109,6 @@ class Organizations::PetsController < Organizations::BaseController
 
     @pet.pause_reason = 0
     @pet.save!
-  end
-
-  def set_nav_tabs
-    @nav_tabs = [
-      {name: "Summary", path: pet_path(@pet)}
-    ]
   end
 
   def determine_active_tab
