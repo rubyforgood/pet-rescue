@@ -1,7 +1,6 @@
 class Organizations::PetsController < Organizations::BaseController
-  before_action :set_pet, only: [:show, :edit, :update, :destroy]
+  before_action :set_pet, only: [:show, :edit, :update, :destroy, :attach_images, :attach_files]
   before_action :verified_staff
-  before_action :set_nav_tabs, only: [:show]
 
   after_action :set_reason_paused_to_none, only: [:update]
   layout "dashboard"
@@ -57,6 +56,28 @@ class Organizations::PetsController < Organizations::BaseController
     end
   end
 
+  def attach_images
+    if pet_in_same_organization?(@pet.organization_id) && @pet.images.attach(params[:pet][:images])
+      redirect_to pet_path(@pet, active_tab: "photos"), notice: "Upload successful."
+    else
+      @active_tab = "photos"
+      @pet.images.last&.purge
+
+      render :show, status: :unprocessable_entity
+    end
+  end
+
+  def attach_files
+    if pet_in_same_organization?(@pet.organization_id) && @pet.files.attach(params[:pet][:files])
+      redirect_to pet_path(@pet, active_tab: "files"), notice: "Upload successful."
+    else
+      @active_tab = "files"
+      @pet.files.last.purge
+
+      render :show, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def pet_params
@@ -74,7 +95,8 @@ class Organizations::PetsController < Organizations::BaseController
       :weight_unit,
       :species,
       :placement_type,
-      append_images: [])
+      images: [],
+      files: [])
   end
 
   def set_pet
@@ -89,13 +111,7 @@ class Organizations::PetsController < Organizations::BaseController
     @pet.save!
   end
 
-  def set_nav_tabs
-    @nav_tabs = [
-      {name: "Summary", path: pet_path(@pet)}
-    ]
-  end
-
   def determine_active_tab
-    ["tasks", "applications", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
+    ["tasks", "applications", "photos", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
   end
 end
