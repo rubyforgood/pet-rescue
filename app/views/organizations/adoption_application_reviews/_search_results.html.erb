@@ -1,6 +1,6 @@
 <%# @pet, @pets are defined in the adoption_application_reviews controller %>
 
-<% if @pet.nil? ? @collection = @pets : @collection = @pet %>
+<% @collection = @pet.nil? ? @pets : @pet %>
 
   <% @collection.each do |pet| %>
     <!--pet name-->
@@ -8,5 +8,3 @@
       <%= render "components/pet_tabs/applications", applications: pet.adopter_applications, pet: pet %>
     </div>
   <% end %>
-
-<% end %>
