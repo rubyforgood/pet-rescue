@@ -20,6 +20,12 @@
               <%= file.created_at.strftime("%Y-%m-%d") %>
             </td>
             <td>
+              <%= link_to t('general.download'),
+                download_attachment_path(file.id),
+                class: 'btn btn-outline-success',
+                data: { turbo_method: "get" },
+                target: '_blank' %>
+
               <%= link_to t('general.delete'),
                   purge_attachment_path(file.id),
                   data: {
