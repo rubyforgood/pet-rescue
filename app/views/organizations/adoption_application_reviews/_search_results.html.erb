@@ -1,6 +1,6 @@
 <%# @pet, @pets are defined in the adoption_application_reviews controller %>
 
-<% @collection = @pet.nil? ? @pets : @pet %>
+<% @collection = @pet.nil? ? @pets_with_applications : @pet %>
 
   <% @collection.each do |pet| %>
     <!--pet name-->

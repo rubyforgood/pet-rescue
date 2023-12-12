@@ -23,7 +23,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       end
 
       should "return applications for a specific pet name" do
-        get adoption_application_reviews_url, params: {q: { pet_name_cont: "Pango" } }
+        get adoption_application_reviews_url, params: {q: { name_cont: "Pango" } }
         assert_response :success
         assert_match "Pango", @response.body
         refute_match "Tycho", @response.body
