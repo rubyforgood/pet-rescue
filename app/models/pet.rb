@@ -9,7 +9,7 @@
 #  description        :text
 #  name               :string
 #  pause_reason       :integer          default("not_paused")
-#  placement_type     :integer
+#  placement_type     :integer          not null
 #  sex                :string
 #  species            :integer          not null
 #  weight_from        :integer          not null
@@ -31,10 +31,10 @@ class Pet < ApplicationRecord
   acts_as_tenant(:organization)
 
   has_many :adopter_applications, dependent: :destroy
+  has_many :tasks, dependent: :destroy
   has_one :match, dependent: :destroy
   has_many_attached :images
-  enum species: ["Dog", "Cat"]
-  enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
+  has_many_attached :files
 
   validates :name, presence: true
   validates :birth_date, presence: true
@@ -56,9 +56,15 @@ class Pet < ApplicationRecord
     size: {between: 10.kilobyte..1.megabytes,
            message: "size must be between 10kb and 1Mb"}
 
-  enum :pause_reason, [:not_paused,
-    :opening_soon,
-    :paused_until_further_notice]
+  validates :files, content_type: {in: ["image/png", "image/jpeg", "application/pdf"],
+                                   message: "must be PNG or JPEG"},
+    limit: {max: 15, message: "- 15 maximum"},
+    size: {between: 10.kilobyte..2.megabytes,
+           message: "size must be between 10kb and 2Mb"}
+
+  enum species: ["Dog", "Cat"]
+  enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
+  enum :pause_reason, [:not_paused, :opening_soon, :paused_until_further_notice]
 
   WEIGHT_UNIT_LB = "lb".freeze
   WEIGHT_UNIT_KG = "kg".freeze
@@ -95,7 +101,7 @@ class Pet < ApplicationRecord
 
   # all pets under an organization with applications and no adoptions
   def self.org_pets_with_apps(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(:adopter_applications).where
+    Pet.org_pets(staff_org_id).includes(adopter_applications: [adopter_account: [:user]]).where
       .not(adopter_applications: {id: nil}).includes(:match)
       .where(match: {id: nil})
   end

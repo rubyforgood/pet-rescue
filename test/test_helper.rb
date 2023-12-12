@@ -23,11 +23,16 @@ class ActiveSupport::TestCase
   include Devise::Test::IntegrationHelpers
 
   def set_organization(organization)
-    Rails.application.routes.default_url_options[:script_name] = "/#{organization.slug}"
+    Rails.application.routes.default_url_options[:script_name] = if organization
+      "/#{organization.slug}"
+    else
+      ""
+    end
   end
 
   setup do
     ActsAsTenant.test_tenant = create(:organization, slug: "test")
+    set_organization(ActsAsTenant.test_tenant)
   end
 
   def teardown
@@ -38,6 +43,11 @@ class ActiveSupport::TestCase
   def check_messages
     assert_response :success
     assert_not response.parsed_body.include?("translation_missing"), "Missing translations, ensure this text is included in en.yml"
+  end
+
+  def after_teardown
+    super
+    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
   end
 
   #
