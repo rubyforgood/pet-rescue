@@ -29,5 +29,26 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
         refute_match "Tycho", @response.body
       end
     end
+
+    context "by applicant name" do
+      setup do
+        @pet = create(:pet, organization: @user.staff_account.organization)
+        adopter_account1 = create(:adopter_account, :with_adopter_profile,
+                                  user: create(:user, first_name: "David", last_name: "Attenborough",
+                                               organization: @user.staff_account.organization))
+        adopter_account2 = create(:adopter_account, :with_adopter_profile,
+                                  user: create(:user, first_name: "Jane", last_name: "Goodall",
+                                               organization: @user.staff_account.organization))
+        create(:adopter_application, pet: @pet, adopter_account: adopter_account1)
+        create(:adopter_application, pet: @pet, adopter_account: adopter_account2)
+      end
+
+      should "return applications for a specific applicant name" do
+        get adoption_application_reviews_url, params: {q: { applicant_name_cont: "Attenborough" } }
+        assert_response :success
+        assert_match "Attenborough, David", @response.body
+        refute_match "Goodall, Jane", @response.body
+      end
+    end
   end
 end
