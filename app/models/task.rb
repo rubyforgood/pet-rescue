@@ -3,9 +3,9 @@
 # Table name: tasks
 #
 #  id          :bigint           not null, primary key
-#  completed   :boolean          default(FALSE)
+#  completed   :boolean
 #  description :text
-#  name        :string           not null
+#  name        :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  pet_id      :bigint           not null
