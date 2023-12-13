@@ -9,11 +9,11 @@
     <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'photos'), text: "Photos", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: pet_path(@pet, active_tab: 'files'), text: "Files", options: { active: :exact } %>
   <% end %>
-
+/tasks/tasks
   <% p.content do %>
     <div class="row">
       <div class="col-md-12 col-xl-8 col-12">
-        <%= render partial: "components/pet_tabs/#{@active_tab}", locals: { pet: @pet } %>
+        <%= render partial: "organizations/pets/tabs/#{@active_tab}", locals: { pet: @pet } %>
       </div> 
 
       <div class="col-md-12 col-xl-4 col-12">
