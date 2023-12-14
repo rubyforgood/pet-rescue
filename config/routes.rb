@@ -61,7 +61,5 @@ Rails.application.routes.draw do
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 
-  get "attachments/:id/download", to: "attachments#download", as: "download_attachment"
-
   resolve("adopter_profile") { [:adopter_profile] }
 end
