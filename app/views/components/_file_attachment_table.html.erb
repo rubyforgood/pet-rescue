@@ -14,12 +14,16 @@
         <% @pet.files.each do |file| %>
           <tr>
             <td>
-              <%= file.filename %>
+              <%= link_to file.filename, rails_blob_path(file, disposition: 'attachment') %>
             </td>
             <td>
               <%= file.created_at.strftime("%Y-%m-%d") %>
             </td>
             <td>
+              <%= link_to t('general.download'),
+                rails_blob_path(file, disposition: 'attachment'),
+                class: 'btn btn-outline-success' %>
+
               <%= link_to t('general.delete'),
                   purge_attachment_path(file.id),
                   data: {
