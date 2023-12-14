@@ -35,10 +35,9 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-
   context "GET #download" do
     should "send the file for download" do
-      file = fixture_file_upload('test.png', 'image/png')
+      file = fixture_file_upload("test.png", "image/png")
       @pet.files.attach(file)
       @attachment = @pet.files.last
 
@@ -46,7 +45,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
 
       # Checks that the response contains the expected headers
-      assert @response.headers['Content-Disposition'].present?
+      assert @response.headers["Content-Disposition"].present?
     end
   end
 end
