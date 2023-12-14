@@ -14,7 +14,10 @@
         <% @pet.files.each do |file| %>
           <tr>
             <td>
-              <%= file.filename %>
+              <%= link_to file.filename, 
+                download_attachment_path(file.id), 
+                data: { turbo_method: "get" }, 
+                target: '_blank' %>
             </td>
             <td>
               <%= file.created_at.strftime("%Y-%m-%d") %>
