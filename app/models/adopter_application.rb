@@ -70,8 +70,4 @@ class AdopterApplication < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["applicant_name", "status"]
   end
-
-  def self.ransackable_associations(auth_object = nil)
-    ["adopter_account", "pet"]
-  end
 end

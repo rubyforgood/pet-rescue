@@ -3,37 +3,9 @@ class Organizations::AdoptionApplicationReviewsController < Organizations::BaseC
   layout "dashboard"
 
   def index
-  #   @q = Pet.org_pets_with_apps(current_user.staff_account.organization_id).ransack(params[:q])
-  #   @pets_with_applications = @q.result.includes(:adopter_applications)
-
-    # @pets_with_applications = @q.result.includes(adopter_applications: [(:adopter_account => :user if params[:q]&.key?(:applicant_name_cont))])
-    # include_user = params[:q]&.key?(:applicant_name_cont)
-    # @pets_with_applications = if include_user
-    #                             @q.result.includes(adopter_applications: { adopter_account: :user })
-    #                           else
-    #                             @q.result.includes(:adopter_applications)
-    #                           end
-    # @pets_with_applications = @q.result.includes(:adopter_applications)
-    #                             .joins(adopter_applications: :user)
-
-
-    # @q = AdopterApplication.joins(adopter_account: :user)
-    #                        .where(pets: { id: organization_pets_scope })
-    #                        .ransack(params[:q])
-
-    organization_pets_scope = Pet.org_pets_with_apps(current_user.staff_account.organization_id)
-    @q = Pet.where(id: organization_pets_scope)
-            .joins(adopter_applications: { adopter_account: :user })
-            .ransack(params[:q])
-    @pets_with_applications= @q.result.includes(:adopter_applications, adopter_account: :user)
-    # @pet = selected_pet
-
-    @q_result = @q.result
-    sql_query = @q_result.to_sql
-    puts "YOOO Debug: params[:q] = #{params[:q]}"
-    puts "wattt Debug: SQL query = #{@q}"
-    puts 'HALLP', sql_query
-    puts "PETZ #{@pets_with_applications}"
+    @q = Pet.org_pets_with_apps(current_user.staff_account.organization_id).ransack(params[:q])
+    @pets_with_applications = @q.result.includes(:adopter_applications)
+    @pet = selected_pet
   end
 
   def edit
