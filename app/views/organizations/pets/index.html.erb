@@ -1,11 +1,9 @@
 <% breadcrumb :dashboard_pets %>
-
 <%= render "components/dashboard/page" do |p| %>
   <% p.header_title t(".our_pets") %>
   <% p.actions do %>
     <%= link_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
   <% end %>
-
   <% p.content do %>
     <!--filter section-->
     <div>
@@ -38,7 +36,6 @@
         <% end %>
       </div>
     </div>
-
     <!-- row -->
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <!-- card -->
@@ -52,7 +49,7 @@
                 <th scope="col">Sex</th>
                 <th scope="col">Breed</th>
                 <th scope="col">Weight</th>
-                <th scope="col">Status</th>
+                <th class="text-center" scope="col">Pause Applications</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -85,7 +82,7 @@
                     <%= "#{pet.weight_from} - #{pet.weight_to} #{pet.weight_unit}" %>
                   </td>
                   <td>
-                    <span class="badge bg-info-soft"><%= pet.application_paused == false ? t('.application.active') : t('.application.paused') %></span>
+                    <%= render 'pause_toggle', pet: pet %>
                   </td>
                   <% if current_user.staff_account %>
                     <td>
@@ -100,15 +97,6 @@
                           <% end %>
                           <%= link_to pet_path(pet), class: 'dropdown-item' do %>
                             <i class="fe fe-link dropdown-item-icon"></i>Copy link
-                          <% end %>
-                          <% if pet.application_paused %>
-                            <%= button_to pet, method: :put, class: 'dropdown-item', params: {pet: {application_paused: false }} do %>
-                              <i class="fe fe-play dropdown-item-icon"></i>Resume applications
-                            <% end %>
-                          <% else %>
-                            <%= button_to pet, method: :put, class: 'dropdown-item', params: {pet: {application_paused: true}} do %>
-                              <i class="fe fe-pause dropdown-item-icon"></i>Pause applications
-                            <% end %>
                           <% end %>
                           <%= button_to pet, method: :delete, class: 'dropdown-item', data: { turbo_confirm: t('.are_you_sure_delete') } do %>
                             <i class="fe fe-trash dropdown-item-icon"></i>Delete
