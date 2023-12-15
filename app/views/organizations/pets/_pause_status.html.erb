@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "pet_pause_status_#{pet.id}" do %>
+  <span class="badge bg-info-soft"><%= pet.application_paused == false ? t('.application.active') : t('.application.paused') %></span>
+<% end %>

@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "pet_pause_toggle_#{pet.id}" do %>
+  <% if pet.application_paused %>
+    <%= button_to pet, method: :put, class: 'btn btn-outline-primary',
+                        params: {toggle: 'true', pet: {application_paused: false }} do %>
+      <i class="fe fe-play dropdown-item-icon"></i>
+    <% end %>
+  <% else %>
+    <%= button_to pet, method: :put, class: 'btn btn-outline-primary', 
+                        params: {toggle: 'true', pet: {application_paused: true}} do %>
+      <i class="fe fe-pause dropdown-item-icon"></i>
+    <% end %>
+  <% end %>
+<% end%>
