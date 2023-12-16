@@ -5,6 +5,14 @@ class Organizations::AdoptionApplicationReviewsController < Organizations::BaseC
   def index
     @q = Pet.org_pets_with_apps(current_user.staff_account.organization_id).ransack(params[:q])
     @pets_with_applications = @q.result.includes(:adopter_applications)
+
+    if params[:q]&.include?('adopter_applications_status_eq')
+      status_filter = params[:q]['adopter_applications_status_eq']
+      @pets_with_applications.each do |pet|
+        pet.adopter_applications = pet.filtered_adopter_applications(status_filter)
+      end
+    end
+
     @pet = selected_pet
   end
 
