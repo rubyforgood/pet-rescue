@@ -50,5 +50,23 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
         refute_match "Goodall, Jane", @response.body
       end
     end
+
+    context "Filtering by application status" do
+      setup do
+        @pet = create(:pet, organization: @user.staff_account.organization)
+        adopter_account1 = create(:adopter_account, :with_adopter_profile, organization: @user.staff_account.organization)
+        adopter_account2 = create(:adopter_account, :with_adopter_profile, organization: @user.staff_account.organization)
+
+        @application_under_review = create(:adopter_application, pet: @pet, adopter_account: adopter_account1, status: :under_review)
+        @application_awaiting_review = create(:adopter_application, pet: @pet, adopter_account: adopter_account2, status: :awaiting_review)
+      end
+
+      should "return pets only with applications of the specified status" do
+        get adoption_application_reviews_url, params: { q: { adopter_applications_status_eq: "under_review" } }
+        assert_response :success
+        assert_match "Under Review", @response.body
+        refute_match "Awaiting Review", @response.body
+      end
+    end
   end
 end
