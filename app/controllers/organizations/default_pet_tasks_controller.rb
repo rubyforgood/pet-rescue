@@ -4,5 +4,4 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
   def index
     @default_pet_tasks = DefaultPetTask.all
   end
-
 end

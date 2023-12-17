@@ -9,8 +9,8 @@ class PetTask
     ActiveRecord::Base.transaction do
       @default_pet_tasks.each do |task|
         Task.create!(
-          pet_id: @pet.id, 
-          name: task.name, 
+          pet_id: @pet.id,
+          name: task.name,
           description: task.description,
           completed: false
         )
