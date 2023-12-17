@@ -19,6 +19,10 @@ crumb :staff_index do
   link "Staff", staff_index_path
 end
 
+crumb :default_pet_tasks_index do
+  link 'Default Pet Tasks', default_pet_tasks_path
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

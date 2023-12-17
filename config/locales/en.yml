@@ -123,6 +123,10 @@ en:
       adopt: "Adopt"
       login: "Log in"
   organizations:
+    default_pet_tasks:
+      index:
+        default_pet_tasks: 'Default Pet Tasks'
+        create_default_task: 'Create Default Task'
     pets:
       show:
         pause_applications: "Pause Applications?"
