@@ -106,11 +106,6 @@ class Pet < ApplicationRecord
       .where(match: {id: nil})
   end
 
-  # applications for a pet by application status
-  def filtered_adopter_applications(status)
-    adopter_applications.where(status: status)
-  end
-
   # all unadopted pets under all organizations
   def self.all_unadopted_pets
     Pet.includes(:match).where(match: {id: nil})
