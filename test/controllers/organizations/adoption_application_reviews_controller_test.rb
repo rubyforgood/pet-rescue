@@ -23,7 +23,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       end
 
       should "return applications for a specific pet name" do
-        get adoption_application_reviews_url, params: {q: {name_cont: "Pango"}}
+        get adoption_application_reviews_url, params: {q: {name_i_cont: "Pango"}}
         assert_response :success
         assert_match "Pango", @response.body
         refute_match "Tycho", @response.body
@@ -44,7 +44,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       end
 
       should "return applications for a specific applicant name" do
-        get adoption_application_reviews_url, params: {q: {adopter_applications_applicant_name_cont: "Attenborough"}}
+        get adoption_application_reviews_url, params: {q: {adopter_applications_applicant_name_i_cont: "Attenborough"}}
         assert_response :success
         assert_match "Attenborough, David", @response.body
         refute_match "Goodall, Jane", @response.body
