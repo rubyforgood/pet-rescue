@@ -67,7 +67,7 @@ class AdopterApplication < ApplicationRecord
     Arel.sql("CONCAT(users.last_name, ', ', users.first_name)")
   end
 
-  ransacker :status, formatter: proc {|v| statuses[v]} do |parent|
+  ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
     parent.table[:status]
   end
 

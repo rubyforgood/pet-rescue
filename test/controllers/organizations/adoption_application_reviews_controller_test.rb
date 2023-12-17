@@ -23,7 +23,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       end
 
       should "return applications for a specific pet name" do
-        get adoption_application_reviews_url, params: {q: { name_cont: "Pango" } }
+        get adoption_application_reviews_url, params: {q: {name_cont: "Pango"}}
         assert_response :success
         assert_match "Pango", @response.body
         refute_match "Tycho", @response.body
@@ -34,17 +34,17 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       setup do
         @pet = create(:pet, organization: @user.staff_account.organization)
         adopter_account1 = create(:adopter_account, :with_adopter_profile,
-                                  user: create(:user, first_name: "David", last_name: "Attenborough",
-                                               organization: @user.staff_account.organization))
+          user: create(:user, first_name: "David", last_name: "Attenborough",
+            organization: @user.staff_account.organization))
         adopter_account2 = create(:adopter_account, :with_adopter_profile,
-                                  user: create(:user, first_name: "Jane", last_name: "Goodall",
-                                               organization: @user.staff_account.organization))
+          user: create(:user, first_name: "Jane", last_name: "Goodall",
+            organization: @user.staff_account.organization))
         create(:adopter_application, pet: @pet, adopter_account: adopter_account1)
         create(:adopter_application, pet: @pet, adopter_account: adopter_account2)
       end
 
       should "return applications for a specific applicant name" do
-        get adoption_application_reviews_url, params: {q: { adopter_applications_applicant_name_cont: "Attenborough" } }
+        get adoption_application_reviews_url, params: {q: {adopter_applications_applicant_name_cont: "Attenborough"}}
         assert_response :success
         assert_match "Attenborough, David", @response.body
         refute_match "Goodall, Jane", @response.body
@@ -61,7 +61,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       end
 
       should "return pets only with applications of the specified status" do
-        get adoption_application_reviews_url, params: { q: { adopter_applications_status_eq: "under_review" } }
+        get adoption_application_reviews_url, params: {q: {adopter_applications_status_eq: "under_review"}}
         assert_response :success
         assert_select "span.badge.bg-dark-info", text: "Under Review"
         assert_select "span.badge", text: "Awaiting Review", count: 0

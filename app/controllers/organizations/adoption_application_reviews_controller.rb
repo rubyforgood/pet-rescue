@@ -7,14 +7,15 @@ class Organizations::AdoptionApplicationReviewsController < Organizations::BaseC
     @pets_with_applications = @q.result.includes(:adopter_applications)
     @pet = selected_pet
 
-    if params[:q]&.include?("adopter_applications_status_eq")
+    # Combining these into a single chained statement does not yield the same result due to how Ransack processes parameters.
+    if params[:q].present? && params[:q]["adopter_applications_status_eq"].present?
       status_filter = params[:q]["adopter_applications_status_eq"]
       @pets_with_applications = filter_by_application_status(@pets_with_applications, status_filter)
     end
   end
 
   def filter_by_application_status(pets_relation, status_filter)
-    pets_relation.joins(:adopter_applications).where(adopter_applications: { status: status_filter })
+    pets_relation.joins(:adopter_applications).where(adopter_applications: {status: status_filter})
   end
 
   def edit
