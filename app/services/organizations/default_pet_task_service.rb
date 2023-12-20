@@ -1,11 +1,11 @@
-# A plain object that creates the default pet tasks for newly created Pet
-class PetTask
+# Service object that creates the default pet tasks for a newly created Pet
+class Organizations::DefaultPetTaskService
   def initialize(pet)
     @pet = pet
     @default_pet_tasks = DefaultPetTask.all
   end
 
-  def create
+  def create_tasks
     ActiveRecord::Base.transaction do
       @default_pet_tasks.each do |task|
         Task.create!(
