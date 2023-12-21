@@ -5,6 +5,6 @@
   <% @collection.each do |pet| %>
     <!--pet name-->
     <div class="mb-4">
-      <%= render "components/pet_tabs/applications", applications: pet.adopter_applications, pet: pet %>
+      <%= render "organizations/pets/tabs/applications", applications: pet.adopter_applications, pet: pet %>
     </div>
   <% end %>
