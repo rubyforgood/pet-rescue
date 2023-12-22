@@ -40,7 +40,10 @@ class Organizations::PetsController < Organizations::BaseController
 
   def update
     if pet_in_same_organization?(@pet.organization_id) && @pet.update(pet_params)
-      redirect_to @pet, notice: "Pet updated successfully."
+      respond_to do |format|
+        format.html { redirect_to @pet, notice: "Pet updated successfully." }
+        format.turbo_stream if params[:pet][:toggle] == "true"
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -95,6 +98,7 @@ class Organizations::PetsController < Organizations::BaseController
       :weight_unit,
       :species,
       :placement_type,
+      :toggle,
       images: [],
       files: [])
   end

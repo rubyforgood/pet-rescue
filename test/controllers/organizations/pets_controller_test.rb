@@ -43,4 +43,18 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
       assert_equal URI.decode_www_form(URI.parse(request.url).query).join("="), "active_tab=files"
     end
   end
+
+  test "update application paused should respond with turbo_stream when toggled on pets page" do
+    patch url_for(@pet), params: {pet: {application_paused: true, toggle: "true"}}, as: :turbo_stream
+
+    assert_equal Mime[:turbo_stream], response.media_type
+    assert_response :success
+  end
+
+  test "update application paused should respond with html when not on pets page" do
+    patch url_for(@pet), params: {pet: {application_paused: true}}, as: :turbo_stream
+
+    assert_equal Mime[:html], response.media_type
+    assert_response :redirect
+  end
 end
