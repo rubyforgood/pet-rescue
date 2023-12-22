@@ -118,7 +118,7 @@ class Pet < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    []
+    ["adopter_applications"]
   end
 
   def self.ransackable_scopes(auth_object = nil)
