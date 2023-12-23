@@ -62,4 +62,16 @@ class AdopterApplication < ApplicationRecord
   def applicant_name
     "#{adopter_account.user.last_name}, #{adopter_account.user.first_name}"
   end
+
+  ransacker :applicant_name do
+    Arel.sql("CONCAT(users.last_name, ', ', users.first_name)")
+  end
+
+  ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
+    parent.table[:status]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["applicant_name", "status"]
+  end
 end
