@@ -9,6 +9,14 @@
 #  updated_at      :datetime         not null
 #  organization_id :bigint           not null
 #
+# Indexes
+#
+#  index_default_pet_tasks_on_organization_id  (organization_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (organization_id => organizations.id)
+#
 class DefaultPetTask < ApplicationRecord
   acts_as_tenant(:organization)
 

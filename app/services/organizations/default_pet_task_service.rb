@@ -5,18 +5,22 @@ class Organizations::DefaultPetTaskService
     @default_pet_tasks = DefaultPetTask.all
   end
 
+  def default_tasks_array 
+    @default_pet_tasks.map do |task|
+      {
+        pet_id: @pet.id,
+        name: task.name,
+        description: task.description,
+        completed: false
+      }
+    end
+  end
+
   def create_tasks
     ActiveRecord::Base.transaction do
-      @default_pet_tasks.each do |task|
-        Task.create!(
-          pet_id: @pet.id,
-          name: task.name,
-          description: task.description,
-          completed: false
-        )
-      end
+      Task.create(default_tasks_array)
+    rescue ActiveRecord::RecordInvalid => e
+      Rails.logger.info "Error creating tasks: #{e.message}"
     end
-  rescue ActiveRecord::RecordInvalid => e
-    Rails.logger.info "Error creating tasks: #{e.message}"
   end
 end
