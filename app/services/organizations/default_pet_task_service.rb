@@ -5,7 +5,7 @@ class Organizations::DefaultPetTaskService
     @default_pet_tasks = DefaultPetTask.all
   end
 
-  def default_tasks_array 
+  def default_tasks_array
     @default_pet_tasks.map do |task|
       {
         pet_id: @pet.id,
