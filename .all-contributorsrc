@@ -115,6 +115,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "diegolinhares",
+      "name": "Diego Linhares",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3309779?v=4",
+      "profile": "https://dev.to/diegolinhares",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
