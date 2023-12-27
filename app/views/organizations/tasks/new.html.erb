@@ -1,5 +1,5 @@
 <%= turbo_frame_tag @task do %>
   <%= bootstrap_form_with model: @task, url: pet_tasks_path(@task.pet) do |f| %>
-    <%= render partial: 'form', locals: {f: f} %>
+    <%= render partial: 'organizations/pets/tasks/form', locals: {f: f} %>
   <% end %>
 <% end %>

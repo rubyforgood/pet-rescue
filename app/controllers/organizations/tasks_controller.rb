@@ -11,7 +11,7 @@ class Organizations::TasksController < Organizations::BaseController
 
     if @task.save
       respond_to do |format|
-        format.turbo_stream
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/pets/tasks/tasks", locals: {task: @task}) }
       end
     else
       respond_to do |format|
@@ -26,11 +26,11 @@ class Organizations::TasksController < Organizations::BaseController
   def update
     if @task.update(task_params)
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/tasks/tasks", locals: {task: @task}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/pets/tasks/tasks", locals: {task: @task}) }
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task}) }
       end
     end
   end

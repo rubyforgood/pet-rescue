@@ -32,10 +32,11 @@
             <% end %>
           <% end %>
         </ul>
+        
         <%= turbo_frame_tag Task.new do %>
           <%= link_to 'New Task', new_pet_task_path(@pet), class: 'btn btn-primary m-3' %>
         <% end %>
-        </div>
       </div>
     </div>
+  </div>
 </turbo-frame>
