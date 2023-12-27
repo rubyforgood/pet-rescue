@@ -22,7 +22,7 @@ class Organizations::DefaultPetTaskService
     end
   rescue ActiveRecord::RecordInvalid => e
     Rails.logger.info "Error creating tasks: #{e.message}"
-    return false
+    false
   end
   true
 end
