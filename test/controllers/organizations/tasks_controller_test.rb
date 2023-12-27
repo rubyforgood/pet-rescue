@@ -24,8 +24,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create action should handle invalid task parameters" do
-    task_name = "Super task"
-    post pet_tasks_url(@pet), params: {task: {name: task_name, description: "Some description", completed: false}}
+    post pet_tasks_url(@pet, format: :turbo_stream), params: {task: {description: "Some description"}}
     assert_response :redirect
     assert_redirected_to pet_path(@pet, active_tab: "tasks")
   end

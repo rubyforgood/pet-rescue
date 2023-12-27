@@ -15,7 +15,7 @@ class Organizations::TasksController < Organizations::BaseController
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}) }
       end
     end
   end
@@ -30,7 +30,7 @@ class Organizations::TasksController < Organizations::BaseController
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}) }
       end
     end
   end
