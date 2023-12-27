@@ -1,13 +1,9 @@
-<%= turbo_frame_tag 'new_task' do %>
-  <%= bootstrap_form_with model: @task, url: pet_tasks_path(@task.pet) do |f| %>
-    <div class="mb-3">
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
-    <div class="mb-3">
-      <%= f.text_area :description, class: 'form-control', rows: 3 %>
-    </div>
-    <div class="mb-3">
-      <%= f.submit class: 'btn btn-primary' %>
-    </div>
-  <% end %>
-<% end %>
+<div class="m-3">
+  <%= f.text_field :name, class: 'form-control' %>
+</div>
+<div class="m-3">
+  <%= f.text_area :description, class: 'form-control', rows: 3 %>
+</div>
+<div class="m-3">
+  <%= f.submit class: 'btn btn-primary' %>
+</div>
