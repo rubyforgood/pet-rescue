@@ -1,10 +1,4 @@
 FactoryBot.define do
-  factory :task do
-    name { "MyString" }
-    description { "MyText" }
-    completed { false }
-    pet
-  end
 
   factory :adopter_account do
     transient do
@@ -167,6 +161,19 @@ FactoryBot.define do
         staff_account.add_role(:admin, staff_account.organization)
       end
     end
+  end
+
+  factory :task do
+    name { "MyString" }
+    description { "MyText" }
+    completed { false }
+    pet
+  end
+
+  factory :default_pet_task do
+    name { "MyString" }
+    description { "MyText" }
+    organization { ActsAsTenant.test_tenant }
   end
 
   factory :user do
