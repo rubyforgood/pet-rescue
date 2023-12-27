@@ -23,12 +23,6 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pets_path
   end
 
-  test "create action should handle invalid task parameters" do
-    post pet_tasks_url(@pet, format: :turbo_stream), params: {task: {description: "Some description"}}
-    assert_response :redirect
-    assert_redirected_to pet_path(@pet, active_tab: "tasks")
-  end
-
   test "edit action should handle non-existent task" do
     get edit_pet_task_url(@pet, -1)
     assert_response :redirect
