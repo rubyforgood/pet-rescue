@@ -63,12 +63,11 @@
             <% end %>
           <% end %>
         </ul>
-        <%= render 'organizations/tasks/new_task_modal', pet: @pet %>
-        <!-- Trigger New Task Modal -->
-        <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#newTaskModal">
-          Add New Task
-        </button>
-                </div>
+
+        <%= turbo_frame_tag Task.new do %>
+          <%= link_to 'New Task', new_pet_task_path(@pet), class: 'btn btn-primary' %>
+        <% end %>
+        </div>
       </div>
     </div>
 </turbo-frame>

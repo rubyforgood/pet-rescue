@@ -4,7 +4,6 @@ class Organizations::TasksController < Organizations::BaseController
 
   def new
     @task = @pet.tasks.build
-    render partial: "form", locals: {task: @task}
   end
 
   def create
