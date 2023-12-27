@@ -11,11 +11,12 @@ class Organizations::TasksController < Organizations::BaseController
 
     if @task.save
       respond_to do |format|
-        format.html { redirect_to pet_path(@pet, active_tab: "tasks") }
         format.turbo_stream
       end
     else
-      render :new
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task}) }
+      end
     end
   end
 
