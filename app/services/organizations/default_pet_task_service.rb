@@ -18,9 +18,11 @@ class Organizations::DefaultPetTaskService
 
   def create_tasks
     ActiveRecord::Base.transaction do
-      Task.create(default_tasks_array)
-    rescue ActiveRecord::RecordInvalid => e
-      Rails.logger.info "Error creating tasks: #{e.message}"
+      Task.create!(default_tasks_array)
     end
+  rescue ActiveRecord::RecordInvalid => e
+    Rails.logger.info "Error creating tasks: #{e.message}"
+    return false
   end
+  true
 end

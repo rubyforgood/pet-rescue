@@ -31,7 +31,7 @@ class Organizations::PetsController < Organizations::BaseController
   def create
     @pet = Pet.new(pet_params)
 
-    if @pet.save
+    if @pet.save && Organizations::DefaultPetTaskService.new(@pet).create_tasks
       redirect_to pets_path, notice: "Pet saved successfully."
     else
       render :new, status: :unprocessable_entity

@@ -30,8 +30,6 @@
 class Pet < ApplicationRecord
   acts_as_tenant(:organization)
 
-  after_create { Organizations::DefaultPetTaskService.new(self).create_tasks }
-
   has_many :adopter_applications, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_one :match, dependent: :destroy
