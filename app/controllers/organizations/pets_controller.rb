@@ -31,7 +31,7 @@ class Organizations::PetsController < Organizations::BaseController
   def create
     transaction_success = false
     @pet = Pet.new(pet_params)
-  
+
     ActiveRecord::Base.transaction do
       if @pet.save && Organizations::DefaultPetTaskService.new(@pet).create_tasks
         transaction_success = true
@@ -39,7 +39,7 @@ class Organizations::PetsController < Organizations::BaseController
         raise ActiveRecord::Rollback
       end
     end
-  
+
     if transaction_success
       redirect_to pets_path, notice: "Pet saved successfully."
     else

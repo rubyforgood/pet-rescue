@@ -1,5 +1,4 @@
 FactoryBot.define do
-
   factory :adopter_account do
     transient do
       organization { ActsAsTenant.test_tenant }

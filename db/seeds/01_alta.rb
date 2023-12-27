@@ -238,6 +238,14 @@ ActsAsTenant.with_tenant(@organization) do
       placement_type: 0
     )
     pet.images.attach(io: File.open(path), filename: "hero.jpg")
+
+    DefaultPetTask.all.each do |task|
+      Task.create!(
+        pet_id: pet.id,
+        name: task.name,
+        description: task.description
+      )
+    end
   end
 
   @match = Match.create!(
