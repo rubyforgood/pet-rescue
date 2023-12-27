@@ -29,11 +29,21 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def create
+    transaction_success = false
     @pet = Pet.new(pet_params)
-
-    if @pet.save && Organizations::DefaultPetTaskService.new(@pet).create_tasks
+  
+    ActiveRecord::Base.transaction do
+      if @pet.save && Organizations::DefaultPetTaskService.new(@pet).create_tasks
+        transaction_success = true
+      else
+        raise ActiveRecord::Rollback
+      end
+    end
+  
+    if transaction_success
       redirect_to pets_path, notice: "Pet saved successfully."
     else
+      flash.now[:alert] = "Error creating pet."
       render :new, status: :unprocessable_entity
     end
   end
