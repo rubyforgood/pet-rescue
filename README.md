@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-12-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -191,6 +191,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="http://marchandmd.github.io"><img src="https://avatars.githubusercontent.com/u/35391349?v=4?s=100" width="100px;" alt="Michael Marchand"/><br /><sub><b>Michael Marchand</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=MarchandMD" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Yuji3000"><img src="https://avatars.githubusercontent.com/u/108035840?v=4?s=100" width="100px;" alt="Yuji K."/><br /><sub><b>Yuji K.</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Yuji3000" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jmilljr24"><img src="https://avatars.githubusercontent.com/u/16829344?v=4?s=100" width="100px;" alt="Justin"/><br /><sub><b>Justin</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jmilljr24" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/gorangorun"><img src="https://avatars.githubusercontent.com/u/89098560?v=4?s=100" width="100px;" alt="Goran"/><br /><sub><b>Goran</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=gorangorun" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/phonghpham"><img src="https://avatars.githubusercontent.com/u/9318603?v=4?s=100" width="100px;" alt="Phong Pham"/><br /><sub><b>Phong Pham</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=phonghpham" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://dev.to/diegolinhares"><img src="https://avatars.githubusercontent.com/u/3309779?v=4?s=100" width="100px;" alt="Diego Linhares"/><br /><sub><b>Diego Linhares</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=diegolinhares" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://egemen-dev.github.io/portfolio"><img src="https://avatars.githubusercontent.com/u/93445248?v=4?s=100" width="100px;" alt="Egemen Öztürk"/><br /><sub><b>Egemen Öztürk</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=egemen-dev" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/MooseCowBear"><img src="https://avatars.githubusercontent.com/u/82609260?v=4?s=100" width="100px;" alt="Alisa"/><br /><sub><b>Alisa</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=MooseCowBear" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
