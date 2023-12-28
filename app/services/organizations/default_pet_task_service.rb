@@ -16,13 +16,10 @@ class Organizations::DefaultPetTaskService
     end
   end
 
+  # no error handling as errors should bubble up to where this method is called
   def create_tasks
     ActiveRecord::Base.transaction do
       Task.create!(default_tasks_array)
     end
-  rescue ActiveRecord::RecordInvalid => e
-    Rails.logger.info "Error creating tasks: #{e.message}"
-    false
   end
-  true
 end
