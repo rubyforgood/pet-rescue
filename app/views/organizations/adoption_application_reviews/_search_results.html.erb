@@ -1,12 +1,10 @@
 <%# @pet, @pets are defined in the adoption_application_reviews controller %>
 
-<% if @pet.nil? ? @collection = @pets : @collection = @pet %>
+<% @collection = @pet.nil? ? @pets_with_applications : @pet %>
 
   <% @collection.each do |pet| %>
     <!--pet name-->
     <div class="mb-4">
-      <%= render "partials/pet_applications", applications: pet.adopter_applications, pet: pet %>
+      <%= render "organizations/pets/tabs/applications", applications: pet.adopter_applications, pet: pet %>
     </div>
   <% end %>
-
-<% end %>

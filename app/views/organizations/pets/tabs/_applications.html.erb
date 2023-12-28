@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h4 class="mb-0">Applications</h4>
+    <h4 class="mb-0"><%= pet.name %></h4>
   </div>
   <div class="card-body table-responsive">
     <table class="table mb-0 text-nowrap table-hover table-centered">
@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @pet.adopter_applications.each do |app|%>
+        <% applications.each do |app|%>
           <tr>
             <!-- applicant -->
             <td class="align-middle">

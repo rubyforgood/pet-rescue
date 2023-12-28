@@ -77,6 +77,8 @@ class Pet < ApplicationRecord
   scope :adopted, -> { Pet.includes(:match).where.not(match: {id: nil}) }
   scope :unadopted, -> { Pet.includes(:match).where(match: {id: nil}) }
 
+  attr_writer :toggle
+
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?
     adopter_applications.any? { |app| app.status == "adoption_pending" }
@@ -116,7 +118,7 @@ class Pet < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    []
+    ["adopter_applications"]
   end
 
   def self.ransackable_scopes(auth_object = nil)

@@ -33,4 +33,8 @@ class TaskTest < ActiveSupport::TestCase
     task.update(description: "New description")
     assert_equal "New description", task.description
   end
+
+  should validate_presence_of(:name)
+
+  should validate_presence_of(:description)
 end
