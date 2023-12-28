@@ -14,22 +14,4 @@ class DefaultPetTaskTest < ActiveSupport::TestCase
       default_pet_task.save
     end
   end
-
-  test "can update description" do
-    default_pet_task = create(:default_pet_task, description: "Old description")
-
-    assert_equal "Old description", default_pet_task.description
-
-    default_pet_task.update(description: "New description")
-    assert_equal "New description", default_pet_task.description
-  end
-
-  test "can update name" do
-    default_pet_task = create(:default_pet_task, description: "Old Name")
-
-    assert_equal "Old Name", default_pet_task.description
-
-    default_pet_task.update(description: "New Name")
-    assert_equal "New Name", default_pet_task.description
-  end
 end

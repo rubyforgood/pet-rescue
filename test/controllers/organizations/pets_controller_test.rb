@@ -60,31 +60,27 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "POST default pet tasks are created when pet is created" do
-    post pets_path, params: post_params
+    assert_difference "Pet.count", 1 do
+      post pets_path, params: p{
+        "pet" => {
+          "organization_id" => @user.organization.id.to_s,
+          "name" => "Test",
+          "birth_date(1i)" => "2023",
+          "birth_date(2i)" => "12",
+          "birth_date(3i)" => "27",
+          "sex" => "male",
+          "species" => "Cat",
+          "breed" => "Anything",
+          "weight_from" => "44",
+          "weight_to" => "45",
+          "weight_unit" => "lb",
+          "placement_type" => "Adoptable",
+          "description" => "sd",
+          "application_paused" => "false"
+        }
+      }
+   end
 
     assert_equal Pet.last.tasks.count, 1
-  end
-
-  private
-
-  def post_params
-    {
-      "pet" => {
-        "organization_id" => @user.organization.id.to_s,
-        "name" => "Test",
-        "birth_date(1i)" => "2023",
-        "birth_date(2i)" => "12",
-        "birth_date(3i)" => "27",
-        "sex" => "male",
-        "species" => "Cat",
-        "breed" => "Anything",
-        "weight_from" => "44",
-        "weight_to" => "45",
-        "weight_unit" => "lb",
-        "placement_type" => "Adoptable",
-        "description" => "sd",
-        "application_paused" => "false"
-      }
-    }
   end
 end

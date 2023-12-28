@@ -29,18 +29,18 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def create
-    transaction_success = false
     @pet = Pet.new(pet_params)
 
     ActiveRecord::Base.transaction do
-      if @pet.save && Organizations::DefaultPetTaskService.new(@pet).create_tasks
-        transaction_success = true
-      else
-        raise ActiveRecord::Rollback
+      begin
+         @pet.save!
+         Organizations::DefaultPetTaskService.new(@pet).create_tasks
+      rescue
+         raise ActiveRecord::Rollback
       end
-    end
+   end
 
-    if transaction_success
+    if @pet.persisted?
       redirect_to pets_path, notice: "Pet saved successfully."
     else
       flash.now[:alert] = "Error creating pet."
