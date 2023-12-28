@@ -61,7 +61,8 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
 
   test "POST default pet tasks are created when pet is created" do
     assert_difference "Pet.count", 1 do
-      post pets_path, params: p{
+      post pets_path, params:
+      {
         "pet" => {
           "organization_id" => @user.organization.id.to_s,
           "name" => "Test",
@@ -79,8 +80,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
           "application_paused" => "false"
         }
       }
-   end
-
+    end
     assert_equal Pet.last.tasks.count, 1
   end
 end

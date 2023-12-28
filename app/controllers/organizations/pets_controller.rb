@@ -32,13 +32,11 @@ class Organizations::PetsController < Organizations::BaseController
     @pet = Pet.new(pet_params)
 
     ActiveRecord::Base.transaction do
-      begin
-         @pet.save!
-         Organizations::DefaultPetTaskService.new(@pet).create_tasks
-      rescue
-         raise ActiveRecord::Rollback
-      end
-   end
+      @pet.save!
+      Organizations::DefaultPetTaskService.new(@pet).create_tasks
+    rescue
+      raise ActiveRecord::Rollback
+    end
 
     if @pet.persisted?
       redirect_to pets_path, notice: "Pet saved successfully."
