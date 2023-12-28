@@ -8,7 +8,6 @@
 #  breed              :string
 #  description        :text
 #  name               :string
-#  pause_reason       :integer          default("not_paused")
 #  placement_type     :integer          not null
 #  sex                :string
 #  species            :integer          not null
