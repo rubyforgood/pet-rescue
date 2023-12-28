@@ -215,6 +215,13 @@ ActsAsTenant.with_tenant(@organization) do
     referral_source: "my friends friend"
   )
 
+  5.times do
+    DefaultPetTask.create!(
+      name: Faker::Lorem.word.capitalize,
+      description: Faker::Lorem.sentence
+    )
+  end
+
   path = Rails.root.join("app", "assets", "images", "hero.jpg")
   10.times do
     from_weight = [5, 10, 20, 30, 40, 50, 60].sample
@@ -231,6 +238,14 @@ ActsAsTenant.with_tenant(@organization) do
       placement_type: 1
     )
     pet.images.attach(io: File.open(path), filename: "hero.jpg")
+
+    DefaultPetTask.all.each do |task|
+      Task.create!(
+        pet_id: pet.id,
+        name: task.name,
+        description: task.description
+      )
+    end
   end
 
   @match = Match.create!(

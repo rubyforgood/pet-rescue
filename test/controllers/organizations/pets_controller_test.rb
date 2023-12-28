@@ -4,6 +4,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:user, :verified_staff)
     @pet = create(:pet, organization: @user.staff_account.organization)
+    @default_pet_tasks = create(:default_pet_task)
     set_organization(@user.organization)
     sign_in @user
   end
@@ -56,5 +57,30 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal Mime[:html], response.media_type
     assert_response :redirect
+  end
+
+  test "POST default pet tasks are created when pet is created" do
+    assert_difference "Pet.count", 1 do
+      post pets_path, params:
+      {
+        "pet" => {
+          "organization_id" => @user.organization.id.to_s,
+          "name" => "Test",
+          "birth_date(1i)" => "2023",
+          "birth_date(2i)" => "12",
+          "birth_date(3i)" => "27",
+          "sex" => "male",
+          "species" => "Cat",
+          "breed" => "Anything",
+          "weight_from" => "44",
+          "weight_to" => "45",
+          "weight_unit" => "lb",
+          "placement_type" => "Adoptable",
+          "description" => "sd",
+          "application_paused" => "false"
+        }
+      }
+    end
+    assert_equal Pet.last.tasks.count, 1
   end
 end
