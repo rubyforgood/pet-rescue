@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       post "attach_images", on: :member, to: "pets#attach_images"
       post "attach_files", on: :member, to: "pets#attach_files"
     end
+    resources :default_pet_tasks
     resources :dashboard
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
