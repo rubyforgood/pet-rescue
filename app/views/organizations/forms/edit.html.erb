@@ -1,0 +1,9 @@
+<% breadcrumb :organization_form %>
+
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title @form.name %>
+
+  <% p.content do %>
+    <%= render partial: 'form' %>
+  <% end %>
+<% end %>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     invitations: "organizations/invitations"
   }
 
+  resources :submissions, only: [:new, :create]
   resources :adoptable_pets, only: [:index, :show]
   resource :adopter_profile, except: :destroy, as: "profile"
   resources :checklist_templates
@@ -14,6 +15,9 @@ Rails.application.routes.draw do
 
   scope module: :organizations do
     resource :organization_profile, only: %i[edit update]
+    resource :form, only: [:edit, :update]
+    resources :questions, only: [:new, :create]
+    resources :form_questions, only: [:new, :create]
 
     resources :home, only: [:index]
     resources :pets do

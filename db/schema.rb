@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_28_010428) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_28_155659) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -186,6 +186,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_010428) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "organization_id"
+    t.index ["organization_id"], name: "index_forms_on_organization_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -249,7 +251,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_010428) do
 
   create_table "questions", force: :cascade do |t|
     t.string "text"
-    t.string "input_type"
+    t.integer "input_type", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

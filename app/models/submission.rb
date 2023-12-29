@@ -21,5 +21,6 @@
 class Submission < ApplicationRecord
   belongs_to :form
   belongs_to :user
+
   has_many :responses, dependent: :destroy
 end

@@ -1,0 +1,39 @@
+<turbo-frame id="questions_list" class="col-md-12 col-xl-8 col-12">
+  <div class="row">
+    <div class="col-12 mb-4">
+      <div class="card">
+        <div class="card-header">
+          <div class="d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Questions</h4>
+          </div>
+        </div>
+
+        <% if @form.form_questions.count > 0 %>
+          <ul class="list-group">
+            <% @form.form_questions.each do |form_question| %>
+              <%= turbo_frame_tag form_question do %>
+                <li class="list-group-item">
+                  <div class="d-flex justify-content-between
+                              align-items-center">
+                    <div>
+                      <strong class="d-block mb-1" ><%= form_question.question.text %></strong>
+                      <p><%= form_question.question.input_type %></p>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+          <%= turbo_frame_tag Question.new do %>
+            <%= link_to 'New Question', new_question_path, class: 'btn btn-primary m-3' %>
+          <% end %>
+        <% else %>
+          <%= turbo_frame_tag Question.new do %>
+            <h5 class="mx-4 my-2">You have no Application Form questions</h5>
+            <%= link_to 'New Question', new_question_path, class: 'btn btn-primary m-3' %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</turbo-frame>

@@ -1,0 +1,19 @@
+<%= bootstrap_form_with url: submissions_path do |f| %>
+  <% @submission.form.form_questions.each do |form_question| %>
+    <div class="form-group mb-3">
+      <label for="response_<%= form_question.question.id %>">
+        <%= form_question.question.text %>
+      </label>
+      <input
+        type="text"
+        name="submission[<%= form_question.question.id %>]"
+        id="response_<%= form_question.question.id %>"
+        class="form-control"
+      >
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Submit", class: 'btn btn-outline-dark mt-3 mb-3' %>
+  </div>
+<% end %>
