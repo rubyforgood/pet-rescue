@@ -1,6 +1,6 @@
 class Organizations::QuestionsController < Organizations::BaseController
   before_action :verified_staff
-    
+
   def new
     @organization = current_user.organization
     @form = @organization.form || Form.create(organization: @organization, name: "#{@organization.name}'s Application Form")

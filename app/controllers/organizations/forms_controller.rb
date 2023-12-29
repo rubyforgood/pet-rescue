@@ -1,8 +1,8 @@
 class Organizations::FormsController < Organizations::BaseController
   before_action :verified_staff
-  
+
   layout "dashboard"
-    
+
   def edit
     @form = Current.organization.form || Form.create(
       organization: Current.organization,
@@ -10,4 +10,3 @@ class Organizations::FormsController < Organizations::BaseController
     )
   end
 end
-  
