@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     resource :organization_profile, only: %i[edit update]
     resource :form, only: [:edit, :update]
     resources :questions, only: [:new, :create]
-    resources :form_questions, only: [:new, :create]
 
     resources :home, only: [:index]
     resources :pets do

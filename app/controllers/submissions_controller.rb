@@ -19,9 +19,7 @@ class SubmissionsController < ApplicationController
 
     ActiveRecord::Base.transaction do
       responses.each do |response|
-        unless response.save
-          debugger
-        end
+        response.save
       end
     end
 

@@ -14,4 +14,7 @@ class Question < ApplicationRecord
   has_many :form_questions, dependent: :destroy
   has_many :forms, through: :form_questions
   has_many :responses, dependent: :destroy
+
+  validates :text, presence: true
+  validates :input_type, presence: true
 end

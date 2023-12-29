@@ -4,6 +4,7 @@ class Organizations::QuestionsController < Organizations::BaseController
   def new
     @organization = current_user.organization
     @form = @organization.form || Form.create(organization: @organization, name: "#{@organization.name}'s Application Form")
+    @question = @form.questions.build
   end
 
   def create
@@ -15,16 +16,12 @@ class Organizations::QuestionsController < Organizations::BaseController
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("questions_list", partial: "organizations/forms/form", locals: {question: @question}) }
       end
-    else
-      # respond_to do |format|
-      #   format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}) }
-      # end
     end
   end
 
   private
 
   def question_params
-    params.permit(:text, :input_type)
+    params.require(:question).permit(:text, :input_type)
   end
 end
