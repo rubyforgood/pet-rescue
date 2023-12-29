@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-18-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -198,6 +198,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://dev.to/diegolinhares"><img src="https://avatars.githubusercontent.com/u/3309779?v=4?s=100" width="100px;" alt="Diego Linhares"/><br /><sub><b>Diego Linhares</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=diegolinhares" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://egemen-dev.github.io/portfolio"><img src="https://avatars.githubusercontent.com/u/93445248?v=4?s=100" width="100px;" alt="Egemen Öztürk"/><br /><sub><b>Egemen Öztürk</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=egemen-dev" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/MooseCowBear"><img src="https://avatars.githubusercontent.com/u/82609260?v=4?s=100" width="100px;" alt="Alisa"/><br /><sub><b>Alisa</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=MooseCowBear" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/nsiwnf"><img src="https://avatars.githubusercontent.com/u/34173394?v=4?s=100" width="100px;" alt="Sree P"/><br /><sub><b>Sree P</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=nsiwnf" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
