@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_12_28_081555) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_12_17_000021) do
+>>>>>>> main
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -128,6 +132,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_081555) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "default_pet_tasks", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "description", null: false
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
 
   create_table "donations", force: :cascade do |t|
@@ -272,6 +285,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_081555) do
   add_foreign_key "checklist_assignments", "checklist_template_items"
   add_foreign_key "checklist_assignments", "matches"
   add_foreign_key "checklist_template_items", "checklist_templates"
+  add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "matches", "adopter_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
