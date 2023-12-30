@@ -5,6 +5,7 @@
 #  id              :bigint           not null, primary key
 #  array_value     :text             is an Array
 #  boolean_value   :boolean
+#  date_value      :date
 #  integer_value   :integer
 #  string_value    :string
 #  created_at      :datetime         not null

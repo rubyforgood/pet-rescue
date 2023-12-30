@@ -18,7 +18,7 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Question < ApplicationRecord
-  enum input_type: [:string, :boolean, :integer, :array]
+  enum input_type: [:string, :boolean, :integer, :date, :array]
 
   has_many :form_questions, dependent: :destroy
   has_many :forms, through: :form_questions

@@ -267,6 +267,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_010428) do
     t.integer "integer_value"
     t.boolean "boolean_value"
     t.text "array_value", array: true
+    t.date "date_value"
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
