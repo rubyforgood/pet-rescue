@@ -14,15 +14,18 @@
               <li class="list-group-item">
                 <div class="d-flex justify-content-between
                             align-items-center">
-                  <div>
-                    <strong class="d-block mb-1" ><%= task.name %></strong>
-                    <p><%= task.description %></p>
+
+                  <div class="d-flex align-items-center">
+                    <%= render '/organizations/pets/tasks/tasks_toggle', task: task %>
+                    <div style="padding: 0 10px; margin-top: 15px;">
+                      <strong class="d-block mb-1" ><%= task.name %></strong>
+                      <p><%= task.description %></p>
+                    </div>
                   </div>
 
                   <!-- Right side: Completion status and action buttons -->
                   <div class="text-right">
                     <div class="d-flex align-items-center justify-content-end">
-                      <strong class="m-3"><%= task.completed %></strong>
                       <%= link_to 'Edit', edit_pet_task_path(@pet, task), class: 'btn btn-warning m-2' %>
                       <%= link_to 'Delete', pet_task_path(@pet, task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
                     </div>
