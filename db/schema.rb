@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_28_155659) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_28_010428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -175,18 +175,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_155659) do
   create_table "form_questions", force: :cascade do |t|
     t.bigint "form_id", null: false
     t.bigint "question_id", null: false
+    t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["form_id"], name: "index_form_questions_on_form_id"
+    t.index ["organization_id"], name: "index_form_questions_on_organization_id"
     t.index ["question_id"], name: "index_form_questions_on_question_id"
   end
 
   create_table "forms", force: :cascade do |t|
     t.string "name"
     t.text "description"
+    t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "organization_id"
     t.index ["organization_id"], name: "index_forms_on_organization_id"
   end
 
@@ -252,8 +254,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_155659) do
   create_table "questions", force: :cascade do |t|
     t.string "text"
     t.integer "input_type", default: 0
+    t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_questions_on_organization_id"
   end
 
   create_table "responses", force: :cascade do |t|
@@ -263,8 +267,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_155659) do
     t.integer "integer_value"
     t.boolean "boolean_value"
     t.text "array_value", array: true
+    t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_responses_on_organization_id"
     t.index ["question_id"], name: "index_responses_on_question_id"
     t.index ["submission_id"], name: "index_responses_on_submission_id"
   end
@@ -301,9 +307,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_155659) do
   create_table "submissions", force: :cascade do |t|
     t.bigint "form_id", null: false
     t.bigint "user_id", null: false
+    t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["form_id"], name: "index_submissions_on_form_id"
+    t.index ["organization_id"], name: "index_submissions_on_organization_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
@@ -357,17 +365,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_28_155659) do
   add_foreign_key "checklist_template_items", "checklist_templates"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "form_questions", "forms"
+  add_foreign_key "form_questions", "organizations"
   add_foreign_key "form_questions", "questions"
+  add_foreign_key "forms", "organizations"
   add_foreign_key "matches", "adopter_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"
   add_foreign_key "pets", "organizations"
+  add_foreign_key "questions", "organizations"
+  add_foreign_key "responses", "organizations"
   add_foreign_key "responses", "questions"
   add_foreign_key "responses", "submissions"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
   add_foreign_key "submissions", "forms"
+  add_foreign_key "submissions", "organizations"
   add_foreign_key "submissions", "users"
   add_foreign_key "tasks", "pets"
 end

@@ -3,6 +3,7 @@ class CreateSubmissions < ActiveRecord::Migration[7.0]
     create_table :submissions do |t|
       t.references :form, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: true
+      t.references :organization, null: false, foreign_key: true
 
       t.timestamps
     end

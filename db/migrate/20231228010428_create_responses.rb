@@ -7,6 +7,7 @@ class CreateResponses < ActiveRecord::Migration[7.0]
       t.integer :integer_value
       t.boolean :boolean_value
       t.text :array_value, array: true
+      t.references :organization, null: false, foreign_key: true
 
       t.timestamps
     end
