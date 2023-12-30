@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -200,6 +200,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/MooseCowBear"><img src="https://avatars.githubusercontent.com/u/82609260?v=4?s=100" width="100px;" alt="Alisa"/><br /><sub><b>Alisa</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=MooseCowBear" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/nsiwnf"><img src="https://avatars.githubusercontent.com/u/34173394?v=4?s=100" width="100px;" alt="Sree P"/><br /><sub><b>Sree P</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=nsiwnf" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Thrillberg"><img src="https://avatars.githubusercontent.com/u/10481391?v=4?s=100" width="100px;" alt="Eric Tillberg"/><br /><sub><b>Eric Tillberg</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Thrillberg" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Tomaszabc"><img src="https://avatars.githubusercontent.com/u/131488886?v=4?s=100" width="100px;" alt="Tomaszabc"/><br /><sub><b>Tomaszabc</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Tomaszabc" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
