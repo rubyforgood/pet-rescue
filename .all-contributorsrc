@@ -160,6 +160,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Thrillberg",
+      "name": "Eric Tillberg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10481391?v=4",
+      "profile": "https://github.com/Thrillberg",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
