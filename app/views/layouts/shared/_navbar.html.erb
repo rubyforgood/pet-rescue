@@ -20,16 +20,7 @@
       <li class="dropdown ms-2 list-unstyled">
         <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
           <% if user_signed_in? %>
-            <%= render "components/avatar" do |partial| %>
-              <% partial.alt "#{current_user.first_name.first.upcase} Avatar" %>
-              <% partial.initials "#{current_user.first_name.first}#{current_user.last_name.first}".upcase %>
-
-              <% if current_user.avatar.attached? %>
-                <% partial.avatar do %>
-                  <%= image_tag url_for(current_user.avatar), alt: partial.alt, class: "rounded-circle" %>
-                <% end %>
-              <% end %>
-            <% end %>
+           <%= render_avatar_partial %>
           <% end %>
         </a>
 
