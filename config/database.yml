@@ -68,6 +68,11 @@ test:
   #   https://stackoverflow.com/questions/59089991/ruby-2-6-5-and-postgresql-pg-gem-segmentation-fault
   gssencmode: disable
 
+staging:
+  <<: *default
+  host: <%= ENV['STAGING_DATABASE_HOST'] %>
+  database: <%= ENV['STAGING_DATABASE_NAME'] %>
+
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
