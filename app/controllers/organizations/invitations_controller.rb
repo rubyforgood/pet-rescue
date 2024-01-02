@@ -29,4 +29,8 @@ class Organizations::InvitationsController < Devise::InvitationsController
       .permit(:first_name, :last_name, :email,
         staff_account_attributes: [:roles])
   end
+
+  def after_accept_path_for(_resource)
+    dashboard_index_path
+  end
 end
