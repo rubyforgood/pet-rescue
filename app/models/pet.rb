@@ -63,7 +63,6 @@ class Pet < ApplicationRecord
 
   enum species: ["Dog", "Cat"]
   enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
-  enum :pause_reason, [:not_paused, :opening_soon, :paused_until_further_notice]
 
   WEIGHT_UNIT_LB = "lb".freeze
   WEIGHT_UNIT_KG = "kg".freeze
@@ -81,13 +80,6 @@ class Pet < ApplicationRecord
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?
     adopter_applications.any? { |app| app.status == "adoption_pending" }
-  end
-
-  # remove not_paused status as not necessary for staff
-  def self.app_pause_reasons
-    Pet.pause_reasons.keys.map do |reason|
-      [reason.titleize, reason]
-    end.drop(1)
   end
 
   # active storage: using.attach for appending images per rails guide

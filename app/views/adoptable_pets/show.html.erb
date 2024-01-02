@@ -77,14 +77,14 @@
               <div class="mb-6">
                 <h3 class="mb-3 fw-bold"><%= t('.please_know_that') %></h3>
                 <p class="mb-0 fs-4 ">
-                <ul><%= t('.please_know_that_items_html') %></ul>
+                  <ul><%= t('.please_know_that_items_html') %></ul>
                 </p>
               </div>
               <!-- content -->
               <div class="mb-6">
                 <h3 class="mb-3 fw-bold"><%= t('.after_you_adopt') %></h3>
                 <p class="mb-0 fs-4 ">
-                <ul><%= t('.after_you_adopt_items_html') %></ul>
+                  <ul><%= t('.after_you_adopt_items_html') %></ul>
                 </p>
               </div>
             </div>
@@ -107,12 +107,6 @@
                       <% else %>
                         <%= image_tag('green_check.png', height: '21') %>
                       <% end %>
-                    </div>
-                  <% elsif @pet.application_paused == true %>
-                    <div class='d-flex align-items-center mt-3'>
-                      <h3 class="me-2 text-danger">
-                        <%= t(".pause_reason." + @pet.pause_reason) %>
-                      </h3>
                     </div>
                   <% else %>
                     <h4 class="mb-4 mt-3">In love with this pooch?</h4>
