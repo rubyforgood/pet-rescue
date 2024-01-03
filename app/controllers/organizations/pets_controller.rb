@@ -2,7 +2,6 @@ class Organizations::PetsController < Organizations::BaseController
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :attach_images, :attach_files]
   before_action :verified_staff
 
-  after_action :set_reason_paused_to_none, only: [:update]
   layout "dashboard"
 
   def index
@@ -22,7 +21,6 @@ class Organizations::PetsController < Organizations::BaseController
 
   def show
     @active_tab = determine_active_tab
-    @pause_reason = @pet.pause_reason
     return if pet_in_same_organization?(@pet.organization_id)
 
     redirect_to pets_path, alert: "This pet is not in your organization."
@@ -100,7 +98,6 @@ class Organizations::PetsController < Organizations::BaseController
       :breed,
       :description,
       :application_paused,
-      :pause_reason,
       :weight_from,
       :weight_to,
       :weight_unit,
@@ -113,14 +110,6 @@ class Organizations::PetsController < Organizations::BaseController
 
   def set_pet
     @pet = Pet.find(params[:id])
-  end
-
-  # update Pet pause_reason to not paused if applications resumed
-  def set_reason_paused_to_none
-    return unless @pet.application_paused == false
-
-    @pet.pause_reason = 0
-    @pet.save!
   end
 
   def determine_active_tab

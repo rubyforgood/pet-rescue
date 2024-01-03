@@ -113,10 +113,6 @@ en:
         successful_applicant: Successful Applicant
         adoption_made: Adoption Made
         default: "Application submitted"
-      pause_reason:
-        not_paused: Applications Not Paused
-        opening_soon: Applications Opening Soon
-        paused_until_further_notice: Applications Paused Until Further Notice
       apply_to_adopt: "Apply to Adopt"
       complete_your_profile: "Complete your profile to apply for this pet"
       complete_my_profile: "Complete my profile"
