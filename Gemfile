@@ -84,7 +84,7 @@ gem "rails-i18n"
 gem "active_link_to"
 gem "nice_partials"
 
-group :development, :test do
+group :development, :test, :staging do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "pry", "~> 0.14.2"
