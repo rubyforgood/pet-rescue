@@ -108,12 +108,6 @@
                         <%= image_tag('green_check.png', height: '21') %>
                       <% end %>
                     </div>
-                  <% elsif @pet.application_paused == true %>
-                    <div class='d-flex align-items-center mt-3'>
-                      <h3 class="me-2 text-danger">
-                        <%= t(".pause_reason." + @pet.pause_reason) %>
-                      </h3>
-                    </div>
                   <% else %>
                     <h4 class="mb-4 mt-3">In love with this pooch?</h4>
                     <%= button_to t('.apply_to_adopt'),

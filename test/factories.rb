@@ -1,11 +1,4 @@
 FactoryBot.define do
-  factory :task do
-    name { "MyString" }
-    description { "MyText" }
-    completed { false }
-    pet
-  end
-
   factory :adopter_account do
     transient do
       organization { ActsAsTenant.test_tenant }
@@ -131,16 +124,6 @@ FactoryBot.define do
       adopter_applications { build_list(:adopter_application, 3, :adoption_pending) }
     end
 
-    trait :application_paused_opening_soon do
-      application_paused { true }
-      pause_reason { 1 }
-    end
-
-    trait :application_paused_until_further_notice do
-      application_paused { true }
-      pause_reason { 2 }
-    end
-
     trait :adopted do
       match { association :match, organization: organization }
     end
@@ -167,6 +150,19 @@ FactoryBot.define do
         staff_account.add_role(:admin, staff_account.organization)
       end
     end
+  end
+
+  factory :task do
+    name { "MyString" }
+    description { "MyText" }
+    completed { false }
+    pet
+  end
+
+  factory :default_pet_task do
+    name { "MyString" }
+    description { "MyText" }
+    organization { ActsAsTenant.test_tenant }
   end
 
   factory :user do

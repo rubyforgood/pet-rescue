@@ -61,26 +61,6 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     # assert_select "form", count: 1
   end
 
-  test "if pet status is paused and reason is opening soon this is displayed" do
-    skip("while new ui is implemented")
-    # pet = create(:pet, :application_paused_opening_soon)
-    # sign_in create(:user, :adopter_with_profile)
-
-    # get "/adoptable_pets/#{pet.id}"
-
-    # assert_select "h3", "Applications Opening Soon"
-  end
-
-  test "if pet status is paused and reason is paused until further notice this is displayed" do
-    skip("while new ui is implemented")
-    # pet = create(:pet, :application_paused_until_further_notice)
-    # sign_in create(:user, :adopter_with_profile)
-
-    # get "/adoptable_pets/#{pet.id}"
-
-    # assert_select "h3", "Applications Paused Until Further Notice"
-  end
-
   test "pet name shows adoption pending if it has any applications with that status" do
     skip("while new ui is implemented")
     # pet = create(:pet, :adoption_pending)
