@@ -18,6 +18,9 @@
                   <div class="d-flex align-items-center">
                     <%= render '/organizations/pets/tasks/tasks_toggle', task: task %>
                     <div style="padding: 0 10px; margin-top: 15px;">
+                      <% if task.due_date %>
+                        <%= task.due_date.strftime('%d/%m/%Y') %> (<%= distance_of_time_in_words_to_now(task.due_date) %>)
+                      <% end %>
                       <strong class="d-block mb-1" ><%= task.name %></strong>
                       <p><%= task.description %></p>
                     </div>
