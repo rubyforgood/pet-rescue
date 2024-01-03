@@ -1,0 +1,19 @@
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title "Sign up to adopt" %>
+
+  <% p.content do %>
+    <section class="pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mx-auto card p-5">
+            <%= render partial: 'form' %>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% end %>
+<% end %>
+
+
+
+

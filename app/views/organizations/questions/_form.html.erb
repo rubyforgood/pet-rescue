@@ -1,0 +1,11 @@
+<%= bootstrap_form_with model: question, url: questions_path do |f| %>
+  <div class="m-3">
+    <%= f.text_field :text, class: 'form-control' %>
+  </div>
+  <div class="m-3">
+    <%= f.select :input_type, options_for_select(Question.input_types.keys), class: 'form-control' %>
+  </div>
+  <div class="m-3">
+    <%= f.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>
