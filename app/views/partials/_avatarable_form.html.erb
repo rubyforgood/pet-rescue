@@ -4,7 +4,11 @@
       Current picture
     </label>
     <div class='d-flex flex-column align-items-center'>
-      <%= image_tag resource.avatar, class: 'avatar-xxl rounded-circle' %>
+      <% if picture_shape == 'circle' %>
+        <%= image_tag resource.avatar, class: 'avatar-xxl rounded-circle' %>
+      <% elsif picture_shape == 'rectangle' %>
+        <%= image_tag resource.avatar, class: 'avatar-xxl rounded-1 w-auto' %>
+      <% end %>
       
       <%= link_to t('general.delete'),
                   purge_attachment_path(resource.avatar.id),
