@@ -12,9 +12,6 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
   end
 
   test "all expected fields are present on the edit organization profile page" do
-    assert_select "h4", text: "Your avatar"
-    assert_select "p", text: "PNG or JPG, size must be between 10kb and 1Mb"
-
     assert_select "label", text: "Phone number"
     assert_select "input[name='organization_profile[phone_number]'][type='tel']"
 
@@ -26,6 +23,9 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
 
     assert_select "label", text: "City/Town"
     assert_select "input[name='organization_profile[location_attributes][city_town]'][type='text']"
+
+    assert_select "label", text: "Attach picture"
+    assert_select "input[name='organization_profile[append_avatar]']"
 
     assert_select 'input[type="submit"][value="Save profile"]'
   end
@@ -41,7 +41,8 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
           country: "United States",
           province_state: "Colorado",
           city_town: "Golden"
-        }
+        },
+        append_avatar: fixture_file_upload("/logo.png")
       }
     }
     @org_profile.reload
@@ -56,6 +57,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
     assert_equal "United States", @org_profile.location.country
     assert_equal "Colorado", @org_profile.location.province_state
     assert_equal "Golden", @org_profile.location.city_town
+    assert_equal "logo.png", @org_profile.avatar.filename.sanitized
   end
 
   test "organization profile updates with only some form fields to update" do
