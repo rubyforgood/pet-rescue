@@ -11,7 +11,7 @@ class OrganizationProfileTest < ActiveSupport::TestCase
    organization = ActsAsTenant.test_tenant
    organization_profile = build(:organization_profile, organization: organization)
 
-   assert_equal organization_profile.organization, organization
+   assert_equal organization_profile.organization.slug, "test"
   end
 
   context "validations" do
