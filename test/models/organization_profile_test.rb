@@ -1,17 +1,16 @@
 require "test_helper"
 
 class OrganizationProfileTest < ActiveSupport::TestCase
-
   context "associations" do
     should belong_to(:location)
     should accept_nested_attributes_for(:location)
   end
 
-  test "should belong to an organization" do 
-   organization = ActsAsTenant.test_tenant
-   organization_profile = build(:organization_profile, organization: organization)
+  test "should belong to an organization" do
+    organization = ActsAsTenant.test_tenant
+    organization_profile = build(:organization_profile, organization: organization)
 
-   assert_equal organization_profile.organization.slug, "test"
+    assert_equal organization_profile.organization.slug, "test"
   end
 
   context "validations" do
