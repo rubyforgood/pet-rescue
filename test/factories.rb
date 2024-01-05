@@ -145,6 +145,10 @@ FactoryBot.define do
       verified { false }
     end
 
+    trait :deactivated do
+      deactivated_at { DateTime.now }
+    end
+
     trait :admin do
       after :create do |staff_account|
         staff_account.add_role(:admin, staff_account.organization)
