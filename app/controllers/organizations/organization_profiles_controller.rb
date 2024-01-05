@@ -14,12 +14,6 @@ class Organizations::OrganizationProfilesController < Organizations::BaseControl
     end
   end
 
-  # def destroy
-  #   organization_profile = OrganizationProfile.first
-  #   organization_profile.destroy
-  #   redirect_to dashboard_index_path
-  # end
-
   private
 
   def organization_profile_params
