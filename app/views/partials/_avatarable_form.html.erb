@@ -7,7 +7,7 @@
       <% if picture_shape == 'circle' %>
         <%= image_tag resource.avatar, class: 'avatar-xxl rounded-circle' %>
       <% elsif picture_shape == 'rectangle' %>
-        <%= image_tag resource.avatar, class: 'avatar-xxl rounded-1 w-auto' %>
+        <%= image_tag resource.avatar, class: 'rounded-1', style: 'max-height:7.5rem;max-width:100%' %>
       <% end %>
       
       <%= link_to t('general.delete'),
