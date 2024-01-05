@@ -46,4 +46,8 @@ class StaffAccount < ApplicationRecord
   def activate
     update(deactivated_at: nil) if deactivated_at
   end
+
+  def deactivated?
+    !!deactivated_at
+  end
 end
