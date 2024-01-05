@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   def verified_staff
     return if user_signed_in? &&
       current_user.staff_account &&
-      current_user.staff_account.verified
+      !current_user.staff_account.deactivated?
 
     redirect_to root_path, alert: "Unauthorized action."
   end
