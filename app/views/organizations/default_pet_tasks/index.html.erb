@@ -36,21 +36,10 @@
                   </td>
                   <% if current_user.staff_account %>
                     <td>
-                      <div class="dropdown dropstart">
-                        <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="Dropdown1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fe fe-more-vertical"></i>
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="Dropdown1">
-                          <span class="dropdown-header">Settings</span>
-
-                          <%= link_to edit_default_pet_task_path(task), class: 'dropdown-item' do %>
-                            <i class="fe fe-edit dropdown-item-icon"></i>Edit Details
-                          <% end %>
-
-                          <%= button_to task, method: :delete, class: 'dropdown-item', data: { turbo_confirm: t('.are_you_sure_delete') } do %>
-                            <i class="fe fe-trash dropdown-item-icon"></i>Delete
-                          <% end %>
+                      <div class="text-right">
+                        <div class="d-flex align-items-center justify-content-end">
+                          <%= link_to 'Edit', edit_default_pet_task_path(task), class: 'btn btn-warning m-2' %>
+                          <%= link_to 'Delete', default_pet_task_path(task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
                         </div>
                       </div>
                     </td>
