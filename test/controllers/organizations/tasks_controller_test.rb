@@ -32,7 +32,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   test "should allow creating task" do
     freeze_time
 
-    current_time = Time.current 
+    current_time = Time.current
 
     assert_difference "Task.count", 1 do
       post pet_tasks_url(@pet, format: :turbo_stream), params: {
