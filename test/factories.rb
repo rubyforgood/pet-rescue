@@ -124,16 +124,6 @@ FactoryBot.define do
       adopter_applications { build_list(:adopter_application, 3, :adoption_pending) }
     end
 
-    trait :application_paused_opening_soon do
-      application_paused { true }
-      pause_reason { 1 }
-    end
-
-    trait :application_paused_until_further_notice do
-      application_paused { true }
-      pause_reason { 2 }
-    end
-
     trait :adopted do
       match { association :match, organization: organization }
     end

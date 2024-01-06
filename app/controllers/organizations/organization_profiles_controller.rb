@@ -2,11 +2,11 @@ class Organizations::OrganizationProfilesController < Organizations::BaseControl
   layout "dashboard"
 
   def edit
-    @organization_profile = Current.organization.profile
+    @organization_profile = OrganizationProfile.first
   end
 
   def update
-    @organization_profile = Current.organization.profile
+    @organization_profile = OrganizationProfile.first
     if @organization_profile.update(organization_profile_params)
       redirect_to dashboard_index_path, notice: "Your profile has been updated!"
     else

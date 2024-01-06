@@ -195,7 +195,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_03_003542) do
     t.string "sex"
     t.string "name"
     t.boolean "application_paused", default: false
-    t.integer "pause_reason", default: 0
     t.datetime "birth_date", null: false
     t.integer "weight_from", null: false
     t.integer "weight_to", null: false
