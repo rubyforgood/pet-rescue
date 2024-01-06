@@ -22,8 +22,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @staff_account_one = StaffAccount.create!(
-    user_id: @user_staff_one.id,
-    verified: true
+    user_id: @user_staff_one.id
   )
 
   @staff_account_one.add_role(:admin, @organizaton)
@@ -38,8 +37,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @staff_account_two = StaffAccount.create!(
-    user_id: @user_staff_two.id,
-    verified: true
+    user_id: @user_staff_two.id
   )
 
   @staff_account_two.add_role(:admin, @organizaton)
