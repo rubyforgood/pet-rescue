@@ -1,11 +1,11 @@
-<% if resource.avatar.attached? %>
+<% if resource.avatar.id %>
   <div class='form-group mt-3'>
     <label class="form-label">
       Current picture
     </label>
     <div class='d-flex flex-column align-items-center'>
       <%= image_tag resource.avatar, class: 'avatar-xxl rounded-circle' %>
-      
+
       <%= link_to t('general.delete'),
                   purge_attachment_path(resource.avatar.id),
                   data: { turbo_method: "delete" },
