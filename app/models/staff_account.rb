@@ -4,7 +4,6 @@
 #
 #  id              :bigint           not null, primary key
 #  deactivated_at  :datetime
-#  verified        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :bigint           not null
@@ -27,16 +26,6 @@ class StaffAccount < ApplicationRecord
 
   def email
     user.email.to_s
-  end
-
-  def status
-    if user.invited_to_sign_up?
-      :invitation_sent
-    elsif deactivated_at
-      :deactivated
-    else
-      :enabled
-    end
   end
 
   def deactivate
