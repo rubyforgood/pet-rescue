@@ -9,7 +9,7 @@
         </div>
 
         <ul class="list-group">
-          <% @pet.tasks.each do |task| %>
+          <% @pet.tasks.order(due_date: :asc).each do |task| %>
             <%= turbo_frame_tag task do %>
               <li class="list-group-item">
                 <div class="d-flex justify-content-between
@@ -20,12 +20,23 @@
                     <div style="padding: 0 10px; margin-top: 15px;">
                       <strong class="d-block" ><%= task.name %></strong>
                       <p class='mb-0'> <%= task.description %> </p>
+
                       <% if task.due_date %>
-                        <div class='badge bg-secondary'>
-                          <%= local_relative_time(Time.current, type: 'weekday') %>
-                          <%= local_time(Time.current, format: '%B %e, %Y %l:%M%P') %>
-                        </div>
+                        <% if task.due_date.to_date == Date.current %>
+                          <div class='badge bg-success text-uppercase'>
+                            Today
+                          </div>
+                        <% elsif task.due_date.to_date > Date.current %>
+                          <div class='badge bg-secondary text-uppercase'>
+                            <%= task.due_date.strftime("%A, %b %d") %>
+                          </div>
+                        <% elsif task.due_date.to_date < Date.current %>
+                          <div class='badge bg-danger text-uppercase'>
+                            <%= task.due_date.strftime("%b %d, %Y") %>
+                          </div>
+                        <% end %>
                       <% end %>
+
                     </div>
                   </div>
 
