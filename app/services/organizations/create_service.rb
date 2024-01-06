@@ -81,7 +81,6 @@ class Organizations::CreateService
       @staff_account = StaffAccount.create!(
         organization_id: @organization.id,
         user_id: @user.id,
-        verified: 1
       )
     end
   end
