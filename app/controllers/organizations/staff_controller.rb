@@ -12,7 +12,7 @@ class Organizations::StaffController < Organizations::BaseController
       @staff_account.deactivate
       respond_to do |format|
         format.html { redirect_to staff_index_path, notice: "Staff account deactivated." }
-        format.turbo_stream { render "organizations/staff/update" } 
+        format.turbo_stream { render "organizations/staff/update" }
       end
     else
       redirect_to staff_index_path, alert: "You can't deactivate yourself."
@@ -23,7 +23,7 @@ class Organizations::StaffController < Organizations::BaseController
     @staff_account.activate
     respond_to do |format|
       format.html { redirect_to staff_index_path, notice: "Staff account activated." }
-      format.turbo_stream { render "organizations/staff/update" } 
+      format.turbo_stream { render "organizations/staff/update" }
     end
   end
 
@@ -35,7 +35,7 @@ class Organizations::StaffController < Organizations::BaseController
     end
   end
 
-  private 
+  private
 
   def set_staff_account
     @staff_account = StaffAccount.where(organization: current_tenant).find(params[:staff_id])

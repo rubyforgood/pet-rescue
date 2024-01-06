@@ -16,13 +16,13 @@ class AdopterProfileReviewTest < ActionDispatch::IntegrationTest
   end
 
   test "deactivated staff cannot access an adopter profile" do
-    staff_user = create(:user, :deactivated_staff) 
+    staff_user = create(:user, :deactivated_staff)
     adopter_user = create(:user, :adopter_with_profile)
     sign_in staff_user
 
     get "/profile_reviews/#{adopter_user.adopter_account.adopter_profile.id}"
 
     assert_response :redirect
-    assert_equal "Your account is deactivated.", flash[:alert] 
+    assert_equal "Your account is deactivated.", flash[:alert]
   end
 end

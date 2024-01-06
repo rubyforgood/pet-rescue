@@ -22,7 +22,7 @@ class StaffAccountTest < ActiveSupport::TestCase
   end
 
   context "#deactivated?" do
-    should "return true if deactivated_at is not nil" do 
+    should "return true if deactivated_at is not nil" do
       staff_account = create(:staff_account, :deactivated)
 
       assert(staff_account.deactivated?)

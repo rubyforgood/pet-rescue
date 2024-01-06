@@ -8,10 +8,6 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
   end
 
-  teardown do
-    :after_teardown
-  end
-
   test "update activation should respond with turbo_stream when toggled on staff page" do
     post staff_update_activation_url(@staff), as: :turbo_stream
 
