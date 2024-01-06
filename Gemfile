@@ -83,6 +83,7 @@ gem "rails-i18n"
 # Provides helper methods to easily add 'active' tag on links
 gem "active_link_to"
 gem "nice_partials"
+gem "local_time"
 
 group :development, :test, :staging do
   gem "faker"
