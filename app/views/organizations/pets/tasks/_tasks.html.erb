@@ -18,11 +18,14 @@
                   <div class="d-flex align-items-center">
                     <%= render '/organizations/pets/tasks/tasks_toggle', task: task %>
                     <div style="padding: 0 10px; margin-top: 15px;">
+                      <strong class="d-block" ><%= task.name %></strong>
+                      <p class='mb-0'> <%= task.description %> </p>
                       <% if task.due_date %>
-                        <%= task.due_date.strftime('%d/%m/%Y') %> (<%= distance_of_time_in_words_to_now(task.due_date) %>)
+                        <div class='badge bg-secondary'>
+                          <%= local_relative_time(Time.current, type: 'weekday') %>
+                          <%= local_time(Time.current, format: '%B %e, %Y %l:%M%P') %>
+                        </div>
                       <% end %>
-                      <strong class="d-block mb-1" ><%= task.name %></strong>
-                      <p><%= task.description %></p>
                     </div>
                   </div>
 
