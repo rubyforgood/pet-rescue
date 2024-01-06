@@ -80,7 +80,7 @@ class Organizations::CreateService
     ActsAsTenant.with_tenant(@organization) do
       @staff_account = StaffAccount.create!(
         organization_id: @organization.id,
-        user_id: @user.id,
+        user_id: @user.id
       )
     end
   end
