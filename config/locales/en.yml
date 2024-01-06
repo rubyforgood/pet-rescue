@@ -52,6 +52,121 @@ en:
     status: "Status"
     back: "Back"
   activerecord:
+    errors:
+      models:
+        adopter_account:
+          attributes:
+            user: "User must exist"
+        pet_adoption:
+          attributes:
+            pet: "Pet must exist"
+            adopter_account: "Adopter account must exist"
+        adopter_profile:
+          attributes:
+            location: "Location must exist"
+            adopter_account: "Adopter account must exist"
+            phone_number: "Phone number is invalid"
+            contact_method: "Contact method can't be blank"
+            ideal_pet: "Please tell us about your ideal pet"
+            lifestyle_fit: "Please tell us about your lifestyle"
+            activities: "Please tell us about the activities"
+            alone_weekday: "This field cannot be blank"
+            alone_weekend: "This field cannot be blank"
+            experience: "Please tell us about your pet experience"
+            contingency_plan: "Please tell us about your contingencies"
+            shared_ownership: "Select one"
+            housing_type: "Housing type can't be blank"
+            fenced_access: "Select one"
+            location_day: "Location day can't be blank"
+            location_night: "Location night can't be blank"
+            do_you_rent: "Select one"
+            adults_in_home: "Adults at home can't be blank"
+            kids_in_home: "Kids at home can't be blank"
+            other_pets: "Select one"
+            checked_shelter: "Select one"
+            surrendered_pet: "Select one"
+            annual_cost: "Please provide an annual cost estimate"
+            visit_laventana: "Select one"
+            referral_source: "Please tell us how you heard about us"
+        checklist_assignment:
+          attributes:
+            checklist_template_item: "Checklist template item must exist"
+            match: "Match must exist"
+        checklist_assignment_item:
+          attributes:
+            checklist_template: "Checklist template must exist"
+            name: "Name can't be blank"
+            expected_duration_days:
+              blank: "Expected duration days can't be blank"
+              not_a_number: "Expected duration days is not a number"
+        contact:
+          attributes:
+            name: "Name can't be blank"
+            email: "Email can't be blank"
+            message: "Message can't be blank"
+        default_pet_task:
+          attributes:
+            organization: "Organization must exist"
+            name: "Name can't be blank"
+            description: "Description can't be blank"
+        donation:
+          attributes:
+            amount: "Amount can't be blank"
+            currency: "Currency can't be blank"
+        location:
+          attributes:
+            country: "Please enter a country"
+            city_town: "Please enter a city or town"
+            province_state: "Please enter a province or state"
+        match:
+          attributes:
+            organization: "Organization must exist"
+            pet: "Pet must exist"
+            adopter_account: "Adopter account must exist"
+        organization_profile:
+          attributes:
+            location: "Location must exist"
+            organization: "Organization must exist"
+            email: "Email is invalid"
+        organization:
+          attributes:
+            profile: "Profile must exist"
+        pet:
+          attributes:
+            organization: "Organization must exist"
+            name: "Name can't be blank"
+            birth_date: "Birth date can't be blank"
+            breed: "Breed can't be blank"
+            sex: "Sex can't be blank"
+            species: "Species can't be blank"
+            placement_type: "Placement type can't be blank"
+            weight_from: 
+              blank: "Weight From can't be blank"
+              not_a_number: "Weight From is not a number"
+            weight_to:
+              blank: "Weight To can't be blank"
+              not_a_number: "Weight To is not a number"
+              exclusion: "Weight To can't be blank"
+            weight_unit:
+              blank: "Weight unit can't be blank"
+              inclusion: "Weight unit is not included in the list"
+            description: "Description can't be blank"
+        staff_account:
+          attributes:
+            organization: "Organization must exist"
+            user: "User must exist"
+        task:
+          attributes:
+            pet: "Pet must exist"
+            name: "Name can't be blank"
+            description: "Description can't be blank"
+        user:
+          attributes:
+            organization: "Organization must exist"
+            email: "Email can't be blank"
+            password: "Password can't be blank"
+            first_name: "First name can't be blank"
+            last_name: "Last name can't be blank"
     models:
       location: Location
     attributes:
