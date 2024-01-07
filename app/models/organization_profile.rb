@@ -22,8 +22,10 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class OrganizationProfile < ApplicationRecord
+  include Avatarable
+
   belongs_to :location
-  belongs_to :organization, inverse_of: :profile
+  acts_as_tenant(:organization, inverse_of: :profile)
   accepts_nested_attributes_for :location
   validates_associated :location
 
