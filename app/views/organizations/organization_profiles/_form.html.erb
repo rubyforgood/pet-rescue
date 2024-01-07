@@ -4,26 +4,7 @@
       <%= t '.please_fix_the_errors' %>
     </div>
   <% end %>
-  <hr class="my-5">
-    <!-- Avatar section- not yet functional -->
-    <div class="d-lg-flex align-items-center justify-content-between">
-      <div class="d-flex align-items-center mb-4 mb-lg-0">
-        <!-- Avatar Image -->
-        <img src="../assets/images/avatar/avatar-3.jpg" id="img-uploaded" class="avatar-xl rounded-circle" alt="avatar">
 
-        <!-- Avatar Details -->
-        <div class="ms-3">
-          <h4 class="mb-0">Your avatar</h4>
-          <p class="mb-0">PNG or JPG, size must be between 10kb and 1Mb</p>
-        </div>
-      </div>
-
-      <div>
-        <a href="#" class="btn btn-outline-secondary btn-sm">Update</a>
-        <a href="#" class="btn btn-outline-danger btn-sm">Delete</a>
-      </div>
-    </div>
-  <hr class="my-5">
   <div class='card-body'>
     <div class="d-lg-flex align-items-center justify-content-between">
       <h3 class="mb-1">Organization Details<h3>
@@ -87,6 +68,12 @@
           <% end %>
         </div>
       </div>
+
+      <!-- Third Column -->
+      <div class="col-lg-6">
+        <%= render partial: 'partials/avatarable_form', locals: { resource: profile, form: form, picture_shape: 'rectangle' } %>
+      </div>
+
     </div>
 
     <div class="row mt-3">
