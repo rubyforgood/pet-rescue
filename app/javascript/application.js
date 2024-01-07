@@ -5,3 +5,6 @@ import "controllers"
 // bootstrap js
 import "popper"
 import "bootstrap"
+
+import LocalTime from "local-time"
+LocalTime.start()

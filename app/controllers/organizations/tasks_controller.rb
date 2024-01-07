@@ -15,7 +15,7 @@ class Organizations::TasksController < Organizations::BaseController
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}), status: :bad_request }
       end
     end
   end
@@ -30,7 +30,7 @@ class Organizations::TasksController < Organizations::BaseController
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}), status: :bad_request }
       end
     end
   end
@@ -66,6 +66,6 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :completed)
+    params.require(:task).permit(:name, :description, :completed, :due_date)
   end
 end

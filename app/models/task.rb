@@ -5,6 +5,7 @@
 #  id          :bigint           not null, primary key
 #  completed   :boolean
 #  description :text
+#  due_date    :datetime
 #  name        :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -23,6 +24,4 @@ class Task < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
-
-  default_scope { order(created_at: :asc) }
 end
