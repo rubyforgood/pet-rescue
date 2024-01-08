@@ -7,7 +7,7 @@ class Organizations::DeactivateActivateStaffTest < ActionDispatch::IntegrationTe
     sign_in admin
     staff = create(:staff_account)
 
-    post(staff_deactivate_url(staff.id))
+    post(staff_update_activation_url(staff.id))
 
     assert_response :redirect
     assert staff.reload.deactivated_at
@@ -19,7 +19,7 @@ class Organizations::DeactivateActivateStaffTest < ActionDispatch::IntegrationTe
     sign_in admin
     staff = create(:staff_account, deactivated_at: Time.now)
 
-    post(staff_activate_url(staff.id))
+    post(staff_update_activation_url(staff.id))
 
     assert_response :redirect
     assert_nil staff.reload.deactivated_at
@@ -30,7 +30,7 @@ class Organizations::DeactivateActivateStaffTest < ActionDispatch::IntegrationTe
     set_organization(admin.organization)
     sign_in admin
 
-    post(staff_deactivate_url(admin.staff_account.id))
+    post(staff_update_activation_url(admin.staff_account.id))
 
     assert_response :redirect
     assert_not admin.staff_account.reload.deactivated_at

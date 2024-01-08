@@ -1,6 +1,6 @@
 class Organizations::PetsController < Organizations::BaseController
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :attach_images, :attach_files]
-  before_action :verified_staff
+  before_action :active_staff
 
   layout "dashboard"
 

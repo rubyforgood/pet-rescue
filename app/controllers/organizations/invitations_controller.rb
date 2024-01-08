@@ -11,7 +11,7 @@ class Organizations::InvitationsController < Devise::InvitationsController
 
   def create
     @user = User.new(user_params.merge(password: SecureRandom.hex(8)).except(:staff_account_attributes))
-    @user.staff_account = StaffAccount.new(verified: true)
+    @user.staff_account = StaffAccount.new
 
     if @user.save
       @user.staff_account.add_role(user_params[:staff_account_attributes][:roles])

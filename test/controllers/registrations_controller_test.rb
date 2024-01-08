@@ -2,7 +2,7 @@ require "test_helper"
 
 class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   test "should get new with dashboard layout when signed in as staff" do
-    user = create(:user, :verified_staff)
+    user = create(:user, :activated_staff)
     organization = user.staff_account.organization
     sign_in user
 

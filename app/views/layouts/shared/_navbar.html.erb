@@ -45,7 +45,7 @@
                   <% end %>
                 </li>
               <% end %>
-              <% if current_user.staff_account && current_user.staff_account.verified %>
+              <% if current_user.staff_account && !current_user.staff_account.deactivated? %>
                 <li>
                   <%= link_to dashboard_index_path, class: 'dropdown-item' do %>
                     <i class="fe fe-star me-2"></i> Dashboard

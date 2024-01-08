@@ -27,7 +27,7 @@ class UserTest < ActiveSupport::TestCase
 
   context ".organization_staff" do
     should "return all users with staff accounts" do
-      user = create(:user, :verified_staff)
+      user = create(:user, :activated_staff)
       organization = user.staff_account.organization
       assert_includes User.organization_staff(organization.id), user
 

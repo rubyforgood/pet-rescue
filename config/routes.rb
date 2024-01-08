@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :staff do
       post "deactivate", to: "staff#deactivate"
       post "activate", to: "staff#activate"
+      post "update_activation", to: "staff#update_activation"
     end
   end
 

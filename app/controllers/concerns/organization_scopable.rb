@@ -15,10 +15,10 @@ module OrganizationScopable
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if resource_or_scope.staff_account&.verified
-      pets_path
-    else
+    if resource_or_scope.staff_account&.deactivated?
       adoptable_pets_path
+    else
+      pets_path
     end
   end
 

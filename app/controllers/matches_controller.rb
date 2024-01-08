@@ -1,5 +1,5 @@
 class MatchesController < ApplicationController
-  before_action :verified_staff, :same_organization?
+  before_action :active_staff, :same_organization?
 
   def create
     @pet = Pet.find(adoption_params[:pet_id])

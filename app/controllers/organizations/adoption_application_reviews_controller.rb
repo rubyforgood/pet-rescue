@@ -1,5 +1,5 @@
 class Organizations::AdoptionApplicationReviewsController < Organizations::BaseController
-  before_action :verified_staff
+  before_action :active_staff
   layout "dashboard"
 
   def index

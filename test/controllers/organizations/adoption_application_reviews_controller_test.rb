@@ -3,7 +3,7 @@ require "test_helper"
 class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::IntegrationTest
   context "Filtering adoption applications" do
     setup do
-      @user = create(:user, :verified_staff)
+      @user = create(:user, :activated_staff)
       set_organization(@user.organization)
       sign_in @user
     end

@@ -4,7 +4,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @user = create(:user, :verified_staff, :staff_admin)
+    @user = create(:user, :activated_staff, :staff_admin)
     set_organization(@user.organization)
     @organization = ActsAsTenant.test_tenant
     @pet = create(:pet)
