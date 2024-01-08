@@ -49,17 +49,13 @@ class Pet < ApplicationRecord
   validates :description, presence: true, length: {maximum: 1000}
 
   # active storage validations gem
-  validates :images, content_type: {in: ["image/png", "image/jpeg"],
-                                    message: "must be PNG or JPEG"},
-    limit: {max: 5, message: "- 5 maximum"},
-    size: {between: 10.kilobyte..1.megabytes,
-           message: "size must be between 10kb and 1Mb"}
+  validates :images, content_type: {in: ["image/png", "image/jpeg"]},
+    limit: {max: 5},
+    size: {between: 10.kilobyte..1.megabytes}
 
-  validates :files, content_type: {in: ["image/png", "image/jpeg", "application/pdf"],
-                                   message: "must be PNG or JPEG"},
+  validates :files, content_type: {in: ["image/png", "image/jpeg", "application/pdf"]},
     limit: {max: 15, message: "- 15 maximum"},
-    size: {between: 10.kilobyte..2.megabytes,
-           message: "size must be between 10kb and 2Mb"}
+    size: {between: 10.kilobyte..2.megabytes}
 
   enum species: ["Dog", "Cat"]
   enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]

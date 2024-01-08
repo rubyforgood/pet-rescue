@@ -62,57 +62,49 @@ class AdopterProfile < ApplicationRecord
   validates :phone_number, phone: {possible: true}
 
   validates :contact_method, presence: true
-  validates :ideal_pet, presence: {message: I18n.t("errors.attributes.ideal_pet.please_tell_us_about_your_ideal_pet")},
-    length: {maximum: 200, message: I18n.t("errors.attributes.general.200_characters_maximum")}
-  validates :lifestyle_fit, presence: {message: I18n.t("errors.attributes.lifestyle_fit.please_tell_us_about_your_lifestyle")},
-    length: {maximum: 200, message: I18n.t("errors.attributes.general.200_characters_maximum")}
-  validates :activities, presence: {message: I18n.t("errors.attributes.activities.please_tell_us_about_the_activities")},
-    length: {maximum: 200, message: I18n.t("errors.attributes.general.200_characters_maximum")}
-  validates :alone_weekday, presence: {message: I18n.t("errors.attributes.general.cannot_be_blank")}
-  validates :alone_weekend, presence: {message: I18n.t("errors.attributes.general.cannot_be_blank")}
-  validates :experience, presence: {message: I18n.t("errors.attributes.experience.please_tell_us_about_your_pet_experience")},
-    length: {maximum: 200, message: I18n.t("errors.attributes.general.200_characters_maximum")}
-  validates :contingency_plan, presence: {message: I18n.t("errors.attributes.contingency_plan.please_tell_us_about_your_contingencies")},
-    length: {maximum: 200, message: I18n.t("errors.attributes.general.200_characters_maximum")}
-  validates_inclusion_of :shared_ownership, in: [true, false],
-    message: I18n.t("errors.attributes.general.select_one")
-  validates :shared_owner, presence: {message: "Please tell us about the alternate person"},
-    length: {maximum: 200, message: I18n.t("errors.attributes.general.200_characters_maximum")},
+  validates :ideal_pet, presence: {length: {maximum: 200,
+                                            message: I18n.t("errors.attributes.general.200_characters_maximum")}}
+  validates :lifestyle_fit, presence: {length: {maximum: 200,
+                                                message: I18n.t("errors.attributes.general.200_characters_maximum")}}
+  validates :activities, presence: {length: {maximum: 200,
+                                             message: I18n.t("errors.attributes.general.200_characters_maximum")}}
+  validates :alone_weekday, presence: true
+  validates :alone_weekend, presence: true
+  validates :experience, presence: {length: {maximum: 200,
+                                             message: I18n.t("errors.attributes.general.200_characters_maximum")}}
+  validates :contingency_plan, presence: {length: {maximum: 200,
+                                                   message: I18n.t("errors.attributes.general.200_characters_maximum")}}
+  validates_inclusion_of :shared_ownership, in: [true, false]
+  validates :shared_owner, presence: {length: {maximum: 200,
+                                               message: I18n.t("errors.attributes.general.200_characters_maximum")}},
     if: :shared_owner_true?
   validates :housing_type, presence: true
-  validates_inclusion_of :fenced_access, in: [true, false],
-    message: I18n.t("errors.attributes.general.select_one")
-  validates :fenced_alternative, presence: {message: I18n.t("errors.attributes.general.please_fill_in")},
-    length: {maximum: 200, message: I18n.t("errors.attributes.general.200_characters_maximum")},
+  validates_inclusion_of :fenced_access, in: [true, false]
+  validates :fenced_alternative, presence: {length: {maximum: 200,
+                                                     message: I18n.t("errors.attributes.general.200_characters_maximum")}},
     if: :fenced_access_false?
   validates :location_day, presence: true, length: {maximum: 100}
   validates :location_night, presence: true, length: {maximum: 100}
-  validates_inclusion_of :do_you_rent, in: [true, false], message: I18n.t("errors.attributes.general.select_one")
-  validates_inclusion_of :pets_allowed, in: [true, false],
-    message: I18n.t("errors.attributes.general.select_one"),
-    if: :do_you_rent?
+  validates_inclusion_of :do_you_rent, in: [true, false]
+  validates_inclusion_of :pets_allowed, in: [true, false], if: :do_you_rent?
   validates :adults_in_home, presence: true
   validates :kids_in_home, presence: true
-  validates_inclusion_of :other_pets, in: [true, false],
-    message: I18n.t("errors.attributes.general.select_one")
-  validates :describe_pets, presence: {message: I18n.t("errors.attributes.describe_pets.tell_us_about_pets")},
-    length: {maximum: 200, message: I18n.t("errors.attributes.general.200_characters_maximum")},
+  validates_inclusion_of :other_pets, in: [true, false]
+  validates :describe_pets, presence: {length: {maximum: 200,
+                                                message: I18n.t("errors.attributes.general.200_characters_maximum")}},
     if: :other_pets?
-  validates_inclusion_of :checked_shelter, in: [true, false],
-    message: I18n.t("errors.attributes.general.select_one")
-  validates_inclusion_of :surrendered_pet, in: [true, false],
-    message: I18n.t("errors.attributes.general.select_one")
-  validates :describe_surrender, presence: {message: I18n.t("errors.attributes.general.please_fill_in")},
-    length: {maximum: 200, message: I18n.t("errors.attributes.general.200_characters_maximum")},
+  validates_inclusion_of :checked_shelter, in: [true, false]
+  validates_inclusion_of :surrendered_pet, in: [true, false]
+  validates :describe_surrender, presence: {length: {maximum: 200,
+                                                     message: I18n.t("errors.attributes.general.200_characters_maximum")}},
     if: :surrendered_pet?
-  validates :annual_cost, presence: {message: I18n.t("errors.attributes.annual_cost.annual_cost_estimate")}
-  validates_inclusion_of :visit_laventana, in: [true, false],
-    message: I18n.t("errors.attributes.general.select_one")
-  validates :visit_dates, presence: {message: I18n.t("errors.attributes.general.please_fill_in")},
-    length: {maximum: 50, message: I18n.t("errors.attributes.general.50_characters_maximum")},
+  validates :annual_cost, presence: true
+  validates_inclusion_of :visit_laventana, in: [true, false]
+  validates :visit_dates, presence: {length: {maximum: 50,
+                                              message: I18n.t("errors.attributes.general.50_characters_maximum")}},
     if: :visiting_laventana?
-  validates :referral_source, presence: {message: I18n.t("errors.attributes.referral_source.how_did_you_hear_about_us")},
-    length: {maximum: 50, message: I18n.t("errors.attributes.general.50_characters_maximum")}
+  validates :referral_source, presence: {length: {maximum: 50,
+                                                  message: I18n.t("errors.attributes.general.50_characters_maximum")}}
 
   def shared_owner_true?
     shared_ownership == true
