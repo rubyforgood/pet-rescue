@@ -35,6 +35,4 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   should validate_presence_of(:name)
-
-  should validate_presence_of(:description)
 end

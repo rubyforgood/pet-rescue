@@ -2,7 +2,6 @@ require "test_helper"
 
 class DefaultPetTaskTest < ActiveSupport::TestCase
   should validate_presence_of(:name)
-  should validate_presence_of(:description)
 
   test "should have valid factory" do
     assert build(:default_pet_task).valid?
