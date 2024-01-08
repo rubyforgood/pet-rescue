@@ -162,3 +162,5 @@ gem "rolify"
 gem "gretel", "~> 4.5"
 
 gem "ransack"
+
+gem 'rails-controller-testing'
