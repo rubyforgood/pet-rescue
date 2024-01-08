@@ -17,7 +17,7 @@ class RegistrationTest < ApplicationSystemTestCase
 
   context "when uploading avatar" do
     should "return error for invalid file type/size" do
-      attach_file("Attach images", Rails.root + "test/fixtures/files/blank.pdf")
+      attach_file("Attach picture", Rails.root + "test/fixtures/files/blank.pdf")
       fill_in "Current password", with: @user.password
       click_on "Update"
 
@@ -27,7 +27,7 @@ class RegistrationTest < ApplicationSystemTestCase
     end
 
     should "direct to home index path with valid upload" do
-      attach_file("Attach images", Rails.root + "test/fixtures/files/test.png")
+      attach_file("Attach picture", Rails.root + "test/fixtures/files/test.png")
       fill_in "Current password", with: @user.password
       click_on "Update"
 
