@@ -1,4 +1,4 @@
-<% if resource.avatar.attached? %>
+<% if resource.avatar.id %>
   <div class='form-group mt-3'>
     <label class="form-label">
       Current picture
@@ -9,7 +9,6 @@
       <% elsif picture_shape == 'rectangle' %>
         <%= image_tag resource.avatar, class: 'rounded-1', style: 'max-height:7.5rem;max-width:100%' %>
       <% end %>
-      
       <%= link_to t('general.delete'),
                   purge_attachment_path(resource.avatar.id),
                   data: { turbo_method: "delete" },
@@ -21,6 +20,5 @@
     <%= form.file_field :append_avatar, 
                         class: "custom-attachments",
                         label: 'Attach picture' %>
-
   </div>
 <% end %>
