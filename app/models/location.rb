@@ -14,9 +14,9 @@ class Location < ApplicationRecord
   has_one :adopter_profile
   has_one :organization_profile
 
-  validates :country, presence: {length: {maximum: 50, message: "50 characters maximum"}}
-  validates :city_town, presence: {length: {maximum: 50, message: "50 characters maximum"}}
-  validates :province_state, presence: {length: {maximum: 50, message: "50 characters maximum"}}
+  validates :country, presence: true, length: {maximum: 50, message: "50 characters maximum"}
+  validates :city_town, presence: true, length: {maximum: 50, message: "50 characters maximum"}
+  validates :province_state, presence: true, length: {maximum: 50, message: "50 characters maximum"}
 
   # custom error messages for adopter profile validations
   def custom_messages(attribute)

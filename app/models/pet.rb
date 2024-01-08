@@ -53,8 +53,6 @@ class Pet < ApplicationRecord
     limit: {max: 5},
     size: {between: 10.kilobyte..1.megabytes}
 
-
-
   validates :files, content_type: {in: ["image/png", "image/jpeg", "application/pdf"]},
     limit: {max: 15, message: "- 15 maximum"},
     size: {between: 10.kilobyte..2.megabytes}

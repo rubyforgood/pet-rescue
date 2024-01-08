@@ -77,12 +77,12 @@ class AdopterProfile < ApplicationRecord
   validates_inclusion_of :shared_ownership, in: [true, false]
   validates :shared_owner, presence: {length: {maximum: 200,
                                                message: I18n.t("errors.attributes.general.200_characters_maximum")}},
-                                               if: :shared_owner_true?
+    if: :shared_owner_true?
   validates :housing_type, presence: true
   validates_inclusion_of :fenced_access, in: [true, false]
   validates :fenced_alternative, presence: {length: {maximum: 200,
                                                      message: I18n.t("errors.attributes.general.200_characters_maximum")}},
-                                                     if: :fenced_access_false?
+    if: :fenced_access_false?
   validates :location_day, presence: true, length: {maximum: 100}
   validates :location_night, presence: true, length: {maximum: 100}
   validates_inclusion_of :do_you_rent, in: [true, false]
@@ -92,17 +92,17 @@ class AdopterProfile < ApplicationRecord
   validates_inclusion_of :other_pets, in: [true, false]
   validates :describe_pets, presence: {length: {maximum: 200,
                                                 message: I18n.t("errors.attributes.general.200_characters_maximum")}},
-                                                if: :other_pets?
+    if: :other_pets?
   validates_inclusion_of :checked_shelter, in: [true, false]
   validates_inclusion_of :surrendered_pet, in: [true, false]
   validates :describe_surrender, presence: {length: {maximum: 200,
                                                      message: I18n.t("errors.attributes.general.200_characters_maximum")}},
-                                                     if: :surrendered_pet?
+    if: :surrendered_pet?
   validates :annual_cost, presence: true
   validates_inclusion_of :visit_laventana, in: [true, false]
   validates :visit_dates, presence: {length: {maximum: 50,
                                               message: I18n.t("errors.attributes.general.50_characters_maximum")}},
-                                              if: :visiting_laventana?
+    if: :visiting_laventana?
   validates :referral_source, presence: {length: {maximum: 50,
                                                   message: I18n.t("errors.attributes.general.50_characters_maximum")}}
 
