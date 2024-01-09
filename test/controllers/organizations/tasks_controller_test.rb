@@ -51,7 +51,6 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_response :success
-    assert_match(/turbo-stream action="remove"/, @response.body)
-    assert_match(/#{Regexp.escape(@task.id.to_s)}/, @response.body)
+    assert_turbo_stream action: "remove", target: @task
   end
 end
