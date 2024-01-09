@@ -44,4 +44,14 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :redirect
     assert_redirected_to pets_path
   end
+
+  test "destroy action should remove task with Turbo Stream" do
+    assert_difference "Task.count", -1 do
+      delete pet_task_url(@pet, @task), as: :turbo_stream
+    end
+
+    assert_response :success
+    assert_match(/turbo-stream action="remove"/, @response.body)
+    assert_match(/#{Regexp.escape(@task.id.to_s)}/, @response.body)
+  end
 end
