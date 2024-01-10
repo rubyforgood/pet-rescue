@@ -44,7 +44,7 @@ class Match < ApplicationRecord
 
   def belongs_to_same_organization_as_pet
     if organization_id != pet.organization_id
-      errors.add(:organization_id, "must belong to same organization as pet")
+      errors.add(:organization_id, :different_organization)
     end
   end
 end
