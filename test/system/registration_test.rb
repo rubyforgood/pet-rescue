@@ -20,10 +20,7 @@ class RegistrationTest < ApplicationSystemTestCase
       attach_file("Attach picture", Rails.root + "test/fixtures/files/blank.pdf")
       fill_in "Current password", with: @user.password
       click_on "Update"
-
-      alert = first("div.alert")
-
-      assert !alert.nil?
+      assert_selector("div.invalid-feedback", text: "must be PNG or JPEG")
     end
 
     should "direct to home index path with valid upload" do
