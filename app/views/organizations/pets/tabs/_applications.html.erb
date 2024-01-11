@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h4 class="mb-0"><%= pet.name %></h4>
+    <h4 class="mb-0"><%= link_to pet.name, pet_path(pet), class: "link-underline link-underline-opacity-0" %></h4>
   </div>
   <div class="card-body table-responsive">
     <table class="table mb-0 text-nowrap table-hover table-centered">
@@ -18,7 +18,8 @@
           <tr>
             <!-- applicant -->
             <td class="align-middle">
-                <%= app.applicant_name %>
+              <%= link_to app.applicant_name, profile_review_path(app.adopter_account.adopter_profile), 
+                            class: "link-underline link-underline-opacity-0"  %>
             </td>
             <!-- profile -->
             <td class="align-middle text-center">
