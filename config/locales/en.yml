@@ -32,6 +32,7 @@
 en:
   hello: "Hello world"
   general:
+    attach: "Attach"
     adoption_pending: "(Adoption Pending)"
     age: "Age"
     breed: "Breed"
