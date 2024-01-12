@@ -25,10 +25,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, alert: "Profiles are for adopters only"
   end
 
-  def verified_staff
+  def active_staff
     return if user_signed_in? &&
       current_user.staff_account &&
-      current_user.staff_account.verified
+      !current_user.staff_account.deactivated?
 
     redirect_to root_path, alert: "Unauthorized action."
   end
