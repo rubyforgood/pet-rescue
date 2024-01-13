@@ -1,7 +1,9 @@
 <div class="card">
-  <div class="card-header">
-    <h4 class="mb-0"><%= link_to pet.name, pet_path(pet), class: "link-underline link-underline-opacity-0" %></h4>
-  </div>
+  <% if current_page?(adoption_application_reviews_path) %>
+    <div class="card-header">
+      <h4 class="mb-0"><%= link_to pet.name, pet_path(pet), class: "link-underline link-underline-opacity-0" %></h4>
+    </div>
+  <% end %>
   <div class="card-body table-responsive">
     <table class="table mb-0 text-nowrap table-hover table-centered">
       <thead>

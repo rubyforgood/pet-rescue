@@ -218,7 +218,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_08_014846) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "organization_id", null: false
-    t.boolean "verified", default: false, null: false
     t.bigint "user_id", null: false
     t.datetime "deactivated_at"
     t.index ["organization_id"], name: "index_staff_accounts_on_organization_id"

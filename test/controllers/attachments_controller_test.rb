@@ -2,7 +2,7 @@ require "test_helper"
 
 class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = create(:user, :verified_staff)
+    @user = create(:user, :activated_staff)
     @pet = create(:pet, organization: @user.staff_account.organization)
     set_organization(@user.organization)
     sign_in @user

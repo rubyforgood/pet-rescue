@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class RegistrationTest < ApplicationSystemTestCase
   setup do
-    @user = create(:user, :verified_staff)
+    @user = create(:user, :activated_staff)
     @organization = @user.organization
     set_organization(@organization)
 
