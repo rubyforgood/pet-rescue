@@ -25,4 +25,10 @@ module OrganizationScopable
   def after_sign_out_path_for(resource_or_scope)
     adoptable_pets_path
   end
+
+  def verify_organization_for_current_user
+    if current_user.blank? || current_user.organization.id != ActsAsTenant.current_tenant.id
+      redirect_to root_path, alert: "Wrong organization."
+    end
+  end
 end

@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class Organizations::DefaultPetTasksControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -13,42 +13,42 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
     :after_teardown
   end
 
-  test 'should get index' do
+  test "should get index" do
     get default_pet_tasks_path
 
     assert_response :success
-    assert_select 'h2', text: 'Default Pet Tasks'
+    assert_select "h2", text: "Default Pet Tasks"
   end
 
-  test 'should get new' do
+  test "should get new" do
     get new_default_pet_task_path
 
     assert_response :success
-    assert_select 'h1', text: 'New Default Pet Task'
+    assert_select "h1", text: "New Default Pet Task"
   end
 
-  context 'POST #create' do
-    should 'create new default pet task' do
-      assert_difference('@organization.default_pet_tasks.count', 1) do
+  context "POST #create" do
+    should "create new default pet task" do
+      assert_difference("@organization.default_pet_tasks.count", 1) do
         post default_pet_tasks_path, params: {
           default_pet_task: {
-            name: 'New Task',
-            description: 'Descrition of new Task'
+            name: "New Task",
+            description: "Descrition of new Task"
           }
         }
       end
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, 'Default pet task saved successfully.'
+      assert_equal flash.notice, "Default pet task saved successfully."
     end
 
-    should 'not create new default pet task with invalid or missing param' do
-      assert_difference('@organization.default_pet_tasks.count', 0) do
+    should "not create new default pet task with invalid or missing param" do
+      assert_difference("@organization.default_pet_tasks.count", 0) do
         post default_pet_tasks_path, params: {
           default_pet_task: {
-            name: '',
-            description: 'Descrition of new Task'
+            name: "",
+            description: "Descrition of new Task"
           }
         }
       end
@@ -57,27 +57,27 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
     end
   end
 
-  context 'GET #edit' do
-    should 'visit edit page' do
+  context "GET #edit" do
+    should "visit edit page" do
       get edit_default_pet_task_path(@default_pet_task)
 
       assert_response :success
-      assert_select 'h1', text: 'Edit Default Pet Task'
+      assert_select "h1", text: "Edit Default Pet Task"
     end
 
-    should 'not visit edit page of inexistent task' do
+    should "not visit edit page of inexistent task" do
       assert_raises(ActiveRecord::RecordNotFound) do
         get edit_default_pet_task_path(id: DefaultPetTask.order(:id).last.id + 1)
       end
     end
   end
 
-  context 'PATCH #update' do
-    should 'update default pet task' do
-      assert_changes '@default_pet_task.name' do
+  context "PATCH #update" do
+    should "update default pet task" do
+      assert_changes "@default_pet_task.name" do
         patch default_pet_task_path(@default_pet_task), params: {
           default_pet_task: {
-            name: @default_pet_task.name + ' new name'
+            name: @default_pet_task.name + " new name"
           }
         }
 
@@ -86,13 +86,13 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, 'Default pet task updated successfully.'
+      assert_equal flash.notice, "Default pet task updated successfully."
     end
 
-    should 'not update default pet task with invalid or missing param' do
+    should "not update default pet task with invalid or missing param" do
       patch default_pet_task_path(@default_pet_task), params: {
         default_pet_task: {
-          name: '',
+          name: ""
         }
       }
 
@@ -100,23 +100,23 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
     end
   end
 
-  context 'DELETE #destroy' do
-    should 'destroy a default pet task' do
-      assert_difference('@organization.default_pet_tasks.count', -1) do
+  context "DELETE #destroy" do
+    should "destroy a default pet task" do
+      assert_difference("@organization.default_pet_tasks.count", -1) do
         delete default_pet_task_path(@default_pet_task)
       end
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, 'Default pet task was successfully deleted.'
+      assert_equal flash.notice, "Default pet task was successfully deleted."
     end
 
-    should 'not visit edit page of inexistent task' do
+    should "not visit edit page of inexistent task" do
       delete default_pet_task_path(id: DefaultPetTask.order(:id).last.id + 1)
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, 'Failed to delete default pet task.'
+      assert_equal flash.alert, "Failed to delete default pet task."
     end
   end
 end
