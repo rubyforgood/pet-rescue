@@ -3,7 +3,7 @@ require "test_helper"
 class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::IntegrationTest
   context "Filtering adoption applications" do
     setup do
-      @user = create(:user, :verified_staff)
+      @user = create(:user, :activated_staff)
       set_organization(@user.organization)
       sign_in @user
     end
@@ -25,7 +25,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       should "return applications for a specific pet name" do
         get adoption_application_reviews_url, params: {q: {name_i_cont: "Pango"}}
         assert_response :success
-        assert_match "Pango", @response.body
+        assert_select "a.link-underline.link-underline-opacity-0", text: "Pango"
         refute_match "Tycho", @response.body
       end
     end
@@ -46,7 +46,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       should "return applications for a specific applicant name" do
         get adoption_application_reviews_url, params: {q: {adopter_applications_applicant_name_i_cont: "Attenborough"}}
         assert_response :success
-        assert_match "Attenborough, David", @response.body
+        assert_select "a.link-underline.link-underline-opacity-0", text: "Attenborough, David"
         refute_match "Goodall, Jane", @response.body
       end
     end

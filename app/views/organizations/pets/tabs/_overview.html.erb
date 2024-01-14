@@ -6,107 +6,53 @@
           <div>
             <h4 class="mb-0">Summary</h4>
           </div>
-          <%= link_to t('general.edit'), edit_pet_path(@pet), class: 'btn btn-outline-dark' %>
+          <div class="d-flex gap-2">
+            <%= link_to t('general.edit'), edit_pet_path(@pet), class: 'btn btn-outline-dark' %>
+            <%= button_to t('general.delete'), pet_path(@pet), method: :delete, 
+                                               class: 'btn btn-outline-danger', 
+                                               data: { turbo_confirm: t('.are_you_sure_delete') } %>
+          </div>
         </div>
       </div>
 
       <div class="card-body">
-        <p><%= @pet.description %> </p>
 
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item px-0">
-            <div class="d-flex justify-content-between
-                            align-items-center">
-              <div class="d-flex align-items-center">
-                <i class="fe fe-book me-2"></i>
-                <div class="ms-2">
-                  <h5 class="mb-0 text-body">Sex</h5>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p class="text-dark mb-0 fw-semibold"><%= @pet.sex %></p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item px-0">
-            <div class="d-flex justify-content-between
-                            align-items-center">
-              <div class="d-flex align-items-center">
-                <i class="fe fe-book me-2"></i>
-                <div class="ms-2">
-                  <h5 class="mb-0 text-body">Breed</h5>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p class="text-dark mb-0 fw-semibold"><%= @pet.breed %></p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item  px-0">
-            <div class="d-flex justify-content-between
-                            align-items-center">
-              <div class="d-flex align-items-center">
-                <i class="fe fe-book me-2"></i>
-                <div class="ms-2">
-                  <h5 class="mb-0 text-body">Weight</h5>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p class="text-dark mb-0 fw-semibold"><%= "#{@pet.weight_from} - #{@pet.weight_to} #{@pet.weight_unit}" %></p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item px-0">
-            <div class="d-flex justify-content-between
-                            align-items-center">
-              <div class="d-flex align-items-center">
-                <i class="fe fe-book me-2"></i>
-                <div class="ms-2">
-                  <h5 class="mb-0 text-body">Placement Type</h5>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p class="text-dark mb-0 fw-semibold"><%= @pet.placement_type %></p>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li class="list-group-item px-0 pb-0">
-            <div class="d-flex
-                            justify-content-between
-                            align-items-center">
-              <div class="d-flex
-                              align-items-center">
-                <i class="fe fe-book me-2"></i>
-                <div class="ms-2">
-                  <h5 class="mb-0 text-body">Application Status</h5>
-                </div>
-              </div>
-              <div>
-                <div>
-                  <p class="text-dark mb-0 fw-semibold">
-                  <%= @pet.application_paused == false ? t('.application.active') : t('.application.paused') %>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </li>
+        <table class="table">
+          <div>
+            <tr>
+              <th>Sex</th>
+              <th>Breed</th> 
+              <th>Weight</th>
+              <th>Placement Type</th>
+              <th>Application Status</th>
+            </tr>
+          </div>
 
-        </ul>
+          <tr>
+            <td>
+              <p class="text-dark mb-0 fw-semibold"><%= @pet.sex %></p>
+            </td>
+            <td>
+              <p class="text-dark mb-0 fw-semibold"><%= @pet.breed %></p>
+            </td> 
+            <td>
+              <p class="text-dark mb-0 fw-semibold">
+                <%= "#{@pet.weight_from} - #{@pet.weight_to} #{@pet.weight_unit}" %>
+              </p>
+            </td>
+            <td>
+              <p class="text-dark mb-0 fw-semibold"><%= @pet.placement_type %></p>
+            </td>
+            <td>
+              <p class="text-dark mb-0 fw-semibold">
+                <%= @pet.application_paused == false ? t('.application.active') : t('.application.paused') %>
+              </p>
+            </td>
+          </tr>
+        </table>
+
+        <p class="mt-5"><%= @pet.description %> </p>
       </div>
     </div>
-    <%= 
-      button_to t('general.delete'), 
-        pet_path(@pet), method: :delete, 
-        class: 'btn btn-outline-danger mt-2', 
-        data: { turbo_confirm: t('.are_you_sure_delete') } 
-      %>
   </div>
 </div>

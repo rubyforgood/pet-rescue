@@ -136,13 +136,12 @@ FactoryBot.define do
   end
 
   factory :staff_account do
-    verified { true }
-
     organization { ActsAsTenant.test_tenant }
     user { association :user, organization: organization }
+    deactivated_at { nil }
 
-    trait :unverified do
-      verified { false }
+    trait :deactivated do
+      deactivated_at { DateTime.now }
     end
 
     trait :admin do
@@ -175,7 +174,7 @@ FactoryBot.define do
 
     organization { ActsAsTenant.test_tenant }
 
-    trait :verified_staff do
+    trait :activated_staff do
       staff_account { association :staff_account, organization: organization }
     end
 
@@ -183,8 +182,8 @@ FactoryBot.define do
       staff_account { association :staff_account, :admin, organization: organization }
     end
 
-    trait :unverified_staff do
-      staff_account { association :staff_account, :unverified, organization: organization }
+    trait :deactivated_staff do
+      staff_account { association :staff_account, :deactivated, organization: organization }
     end
 
     trait :adopter_without_profile do

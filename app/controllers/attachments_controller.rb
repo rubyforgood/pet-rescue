@@ -1,5 +1,5 @@
 class AttachmentsController < ApplicationController
-  before_action :verified_staff
+  before_action :active_staff
 
   def purge
     @attachment = ActiveStorage::Attachment.find(params[:id])
