@@ -80,9 +80,14 @@
       </div>
 
       <div class='form-group'>
-        <div class="form-check form-switch">
+        <div class="form-check form-switch ps-3">
             <%= form.hidden_field :application_paused, value: false %>
             <%= form.check_box :application_paused, { class: "form-check-input", role: "switch", id: "flexSwitchCheckChecked" }, true, false %>
+        </div>
+
+        <div class="form-check form-switch ps-3">
+          <%= form.hidden_field :is_published, value: false %>
+          <%= form.check_box :is_published, { class: "form-check-input", role: "switch", required: false }, true, false %>
         </div>
       </div>
 

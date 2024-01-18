@@ -201,6 +201,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_08_014846) do
     t.string "weight_unit", null: false
     t.integer "species", null: false
     t.integer "placement_type", null: false
+    t.boolean "is_published", default: true, null: false
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
