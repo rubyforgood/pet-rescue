@@ -77,7 +77,8 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
           "weight_unit" => "lb",
           "placement_type" => "Adoptable",
           "description" => "sd",
-          "application_paused" => "false"
+          "application_paused" => "false",
+          "is_published" => "true"
         }
       }
     end
