@@ -49,7 +49,7 @@
                 <th scope="col">Sex</th>
                 <th scope="col">Breed</th>
                 <th scope="col">Weight</th>
-                <th scope="col">Publish status</th>
+                <th class="text-center" scope="col">Published</th>
                 <th class="text-center" scope="col">Pause Applications</th>
                 <th scope="col"></th>
               </tr>
@@ -83,7 +83,7 @@
                     <%= "#{pet.weight_from} - #{pet.weight_to} #{pet.weight_unit}" %>
                   </td>
                   <td>
-                    <%= pet.is_published ? "Published" : "Draft" %>
+                    <%= render 'publish_toggle', pet: pet %>
                   </td>
                   <td>
                     <%= render 'pause_toggle', pet: pet %>
@@ -101,9 +101,6 @@
                           <% end %>
                           <%= link_to pet_path(pet), class: 'dropdown-item' do %>
                             <i class="fe fe-link dropdown-item-icon"></i>Copy link
-                          <% end %>
-                          <%= button_to pet, method: :put, class: 'dropdown-item', params: {pet: {is_published: !pet.is_published }} do %>
-                            <i class="fe fe-link dropdown-item-icon"></i><%= pet.is_published ? "Move to draft" : "Publish" %>
                           <% end %>
                           <%= button_to pet, method: :delete, class: 'dropdown-item', data: { turbo_confirm: t('.are_you_sure_delete') } do %>
                             <i class="fe fe-trash dropdown-item-icon"></i>Delete
