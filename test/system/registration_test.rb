@@ -31,7 +31,7 @@ class RegistrationTest < ApplicationSystemTestCase
       fill_in "Current password", with: @user.password
       click_on "Update"
 
-      assert_equal current_path, home_index_path
+      assert has_current_path?(home_index_path)
     end
   end
 end
