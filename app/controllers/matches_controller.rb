@@ -7,9 +7,9 @@ class MatchesController < ApplicationController
 
     if @match.save
       set_statuses_to_adoption_made
-      redirect_to adopter_applications_path, notice: "Pet successfully adopted."
+      redirect_back_or_to dashboard_index_path, notice: "Pet successfully adopted."
     else
-      redirect_to adopter_applications_path, alert: "Error."
+      redirect_back_or_to dashboard_index_path, alert: "Error."
 
     end
   end

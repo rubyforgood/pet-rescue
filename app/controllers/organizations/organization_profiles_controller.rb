@@ -21,7 +21,7 @@ class Organizations::OrganizationProfilesController < Organizations::BaseControl
       :phone_number,
       :email,
       :about_us,
-      :append_avatar,
+      :avatar,
       location_attributes: %i[city_town country province_state]
     )
   end

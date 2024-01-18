@@ -32,6 +32,7 @@
 en:
   hello: "Hello world"
   general:
+    attach: "Attach"
     adoption_pending: "(Adoption Pending)"
     age: "Age"
     breed: "Breed"
@@ -52,6 +53,215 @@ en:
     status: "Status"
     back: "Back"
   activerecord:
+    errors:
+      models:
+        adopter_account:
+          attributes:
+            user:  
+              blank: "User must exist"
+        pet_adoption:
+          attributes:
+            pet:  
+              blank: "Pet must exist"
+            adopter_account:  
+              blank: "Adopter account must exist"
+        adopter_profile:
+          attributes:
+            location:
+              blank: "Location must exist"
+            adopter_account:
+              blank: "Adopter account must exist"
+            phone_number:
+              invalid: "Phone number is invalid"
+            contact_method:
+              blank: "Contact method can't be blank"
+            ideal_pet:
+              blank: "Please tell us about your ideal pet"
+            lifestyle_fit:
+              blank: "Please tell us about your lifestyle"
+            activities:
+              blank: "Please tell us about the activities"
+            alone_weekday:
+              blank: "This field cannot be blank"
+            alone_weekend:
+              blank: "This field cannot be blank"
+            experience:
+              blank: "Please tell us about your pet experience"
+            contingency_plan:
+              blank: "Please tell us about your contingencies"
+            shared_ownership:
+              inclusion: "Select one"
+            shared_owner:
+              blank: "Please tell us the alternative"
+            housing_type:
+              blank: "Housing type can't be blank"
+            fenced_access:
+              inclusion: "Select one"
+            fenced_alternative:
+              blank: "Please fill this field"
+            location_day:
+              blank: "Location day can't be blank"
+            location_night:
+              blank: "Location night can't be blank"
+            do_you_rent:
+              inclusion: "Select one"
+            pets_allowed:
+              inclusion: "Select one"
+            adults_in_home:
+              blank: "Adults in home can't be blank"
+            kids_in_home:
+              blank: "Kids in home can't be blank"
+            other_pets:
+              inclusion: "Select one"
+            describe_pets:
+              blank: "Please describe pets"
+            checked_shelter:
+              inclusion: "Select one"
+            surrendered_pet:
+              inclusion: "Select one"
+            describe_surrender:
+              blank: "Please fill in"
+            annual_cost:
+              blank: "Please provide an annual cost estimate"
+            visit_laventana:
+              inclusion: "Select one"
+            visit_dates:
+              blank: "Please fill in"
+            referral_source:
+              blank: "Please tell us how you heard about us"
+        checklist_assignment:
+          attributes:
+            checklist_template_item:  
+              blank: "Checklist template item must exist"
+            match:  
+              blank: "Match must exist"
+        checklist_assignment_item:
+          attributes:
+            checklist_template:  
+              blank: "Checklist template must exist"
+            name:  
+              blank: "Name can't be blank"
+            expected_duration_days:
+              blank: "Expected duration days can't be blank"
+              not_a_number: "Expected duration days is not a number"
+              greater_than_or_equal_to: "Expected duration days must be greater than or equal to 0"
+        contact:
+          attributes:
+            name:  
+              blank: "Name can't be blank"
+            email:  
+              blank: "Email can't be blank"
+            message:  
+              blank: "Message can't be blank"
+        default_pet_task:
+          attributes:
+            organization:  
+              blank: "Organization must exist"
+            name:  
+              blank: "Name can't be blank"
+            description:  
+              blank: "Description can't be blank"
+        donation:
+          attributes:
+            amount:  
+              blank: "Amount can't be blank"
+            currency:  
+              blank: "Currency can't be blank"
+        location:
+          attributes:
+            country:  
+              blank: "Please enter a country"
+            city_town: 
+              blank: "Please enter a city or town"
+            province_state:  
+              blank: "Please enter a province or state"
+        match:
+          attributes:
+            organization:  
+              blank: "Organization must exist"
+            pet:  
+              blank: "Pet must exist"
+            adopter_account:  
+              blank: "Adopter account must exist"
+            organization_id: 
+              different_organization: "must belong to same organization as pet"
+        organization_profile:
+          attributes:
+            location:  
+              blank: "Location must exist"
+            organization:  
+              blank: "Organization must exist"
+            email:  
+              invalid: "Email is invalid"
+            phone_number:  
+              invalid: "Phone Number is invalid"
+        organization:
+          attributes:
+            profile:  
+              blank: "Profile must exist"
+        pet:
+          attributes:
+            organization:  
+              blank: "Organization must exist"
+            name: 
+              blank: "Name can't be blank"
+            birth_date:  
+              blank: "Birth date can't be blank"
+            breed:  
+              blank: "Breed can't be blank"
+            sex:  
+              blank: "Sex can't be blank"
+            species:  
+              blank: "Species can't be blank"
+            placement_type: 
+              blank: "Placement type can't be blank"
+            weight_from: 
+              blank: "Weight From can't be blank"
+              not_a_number: "Weight From is not a number"
+            weight_to:
+              blank: "Weight To can't be blank"
+              not_a_number: "Weight To is not a number"
+              greater_than: "Weight To must be greater than %{count}"
+            weight_unit:
+              blank: "Weight unit can't be blank"
+              inclusion: "Weight unit is not included in the list"
+            description: 
+              blank: "Description can't be blank"
+            files:
+              content_type_invalid: "must be PNG, JPEG, or PDF"
+              limit_out_of_range: "15 maximum"
+              file_size_out_of_range: "size must be between 10kb and 2Mb"
+            images:
+              content_type_invalid: "Image must be PNG or JPEG"
+              limit_out_of_range: "5 maximum"
+              file_size_out_of_range: "Image size must be between 10kb and 1Mb"
+        staff_account:
+          attributes:
+            organization: 
+              blank: "Organization must exist"
+            user:  
+              blank: "User must exist"
+        task:
+          attributes:
+            pet: 
+              blank: "Pet must exist"
+            name: 
+              blank: "Name can't be blank"
+            description: 
+              blank: "Description can't be blank"
+        user:
+          attributes:
+            organization: 
+              blank: "Organization must exist"
+            email: 
+              blank: "Email can't be blank"
+              taken: "Email is already registered"
+            password: 
+              blank: "Password can't be blank"
+            first_name: 
+              blank: "First name can't be blank"
+            last_name: 
+              blank: "Last name can't be blank"
     models:
       location: Location
     attributes:
@@ -67,22 +277,6 @@ en:
         select_one: "Select one"
         please_fill_in: "Please fill this field"
         50_characters_maximum: "50 characters maximum"
-      ideal_pet:
-        please_tell_us_about_your_ideal_pet: "Please tell us about your ideal pet"
-      lifestyle_fit:
-        please_tell_us_about_your_lifestyle: "Please tell us about your lifestyle"
-      activities:
-        please_tell_us_about_the_activities: "Please tell us about the activities"
-      experience:
-        please_tell_us_about_your_pet_experience: "Please tell us about your pet experience"
-      contingency_plan:
-        please_tell_us_about_your_contingencies: "Please tell us about your contingencies"
-      describe_pets:
-        tell_us_about_pets: "Please tell us about your other pets"
-      annual_cost:
-        annual_cost_estimate: "Please provide an annual cost estimate"
-      referral_source:
-        how_did_you_hear_about_us: "Please tell us how you heard about us"
   adoptable_pets:
     index:
       header: "Up for adoption"

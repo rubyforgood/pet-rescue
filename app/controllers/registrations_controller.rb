@@ -43,7 +43,7 @@ class RegistrationsController < Devise::RegistrationsController
       :password_confirmation,
       :signup_role,
       :current_password,
-      :append_avatar)
+      :avatar)
   end
 
   def after_sign_up_path_for(resource)

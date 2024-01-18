@@ -25,7 +25,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
     assert_select "input[name='organization_profile[location_attributes][city_town]'][type='text']"
 
     assert_select "label", text: "Attach picture"
-    assert_select "input[name='organization_profile[append_avatar]']"
+    assert_select "input[name='organization_profile[avatar]']"
 
     assert_select 'input[type="submit"][value="Save profile"]'
   end
@@ -41,7 +41,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
           province_state: "Colorado",
           city_town: "Golden"
         },
-        append_avatar: fixture_file_upload("/logo.png")
+        avatar: fixture_file_upload("/logo.png")
       }
     }
     @org_profile.reload
