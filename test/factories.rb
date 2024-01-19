@@ -119,6 +119,7 @@ FactoryBot.define do
     species { Faker::Number.within(range: 0..1) }
     organization { ActsAsTenant.test_tenant }
     placement_type { Faker::Number.within(range: 0..2) }
+    is_published { true }
 
     trait :adoption_pending do
       adopter_applications { build_list(:adopter_application, 3, :adoption_pending) }
