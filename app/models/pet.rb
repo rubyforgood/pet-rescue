@@ -7,7 +7,7 @@
 #  birth_date         :datetime         not null
 #  breed              :string
 #  description        :text
-#  is_published       :boolean          default(TRUE), not null
+#  is_published       :boolean          default(FALSE), not null
 #  name               :string
 #  placement_type     :integer          not null
 #  sex                :string
