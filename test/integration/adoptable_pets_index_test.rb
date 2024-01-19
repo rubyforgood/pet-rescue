@@ -5,6 +5,7 @@ class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
     @match = create(:adopter_application, :adoption_pending)
     @pet = @match.pet
     set_organization(@pet.organization)
+    @pet_count = Pet.unadopted.published.count
   end
 
   test "unauthenticated user can access adoptable pets index" do
@@ -13,7 +14,7 @@ class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
     assert_select "h1", "Up for adoption"
   end
 
-  test "all unadopted pets show on the pet_index page" do
+  test "all unadopted, published pets show on the pet_index page" do
     get "/#{@pet.organization.slug}/adoptable_pets"
     assert_select "img.card-img-top", {count: @pet_count}
   end
