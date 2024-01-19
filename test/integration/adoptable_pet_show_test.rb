@@ -82,4 +82,16 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     # check_messages
     # assert_equal "You can only view pets that need adoption.", flash[:alert]
   end
+
+  test "a drafted pet can't be shown" do
+    skip("while new ui is implemented")
+    # drafted_pet = create(:pet, published: false)
+    #
+    # get "/adoptable_pets/#{drafted_pet.id}"
+    #
+    # assert_response :redirect
+    # follow_redirect!
+    # check_messages
+    # assert_equal "You can only view published pets.", flash[:alert]
+  end
 end
