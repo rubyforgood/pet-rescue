@@ -1,7 +1,7 @@
 class Organizations::DefaultPetTasksController < Organizations::BaseController
   layout "dashboard"
 
-  before_action :verify_organization_for_current_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :verify_organization_for_current_user
 
   def index
     @default_pet_tasks = DefaultPetTask.all
