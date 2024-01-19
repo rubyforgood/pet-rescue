@@ -23,8 +23,7 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
   end
 
   def edit
-    @task = DefaultPetTask.find_by(id: params[:id])
-    raise ActiveRecord::RecordNotFound if @task.nil?
+    @task = DefaultPetTask.find(params[:id])
   end
 
   def update
