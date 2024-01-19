@@ -98,7 +98,7 @@ class Organizations::PetsController < Organizations::BaseController
       :breed,
       :description,
       :application_paused,
-      :is_published,
+      :published,
       :weight_from,
       :weight_to,
       :weight_unit,

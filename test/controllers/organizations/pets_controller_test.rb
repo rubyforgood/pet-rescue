@@ -78,7 +78,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
           "placement_type" => "Adoptable",
           "description" => "sd",
           "application_paused" => "false",
-          "is_published" => "false"
+          "published" => "false"
         }
       }
     end
