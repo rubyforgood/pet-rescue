@@ -8,6 +8,10 @@ class AdoptablePetsController < Organizations::BaseController
 
   def show
     @pet = Pet.find(params[:id])
+    unless @pet.published
+      redirect_to adoptable_pets_path, alert: "You can only view published pets."
+    end
+
     if AdopterApplication.adoption_exists?(current_user&.adopter_account&.id, @pet.id)
       @adoption_application = AdopterApplication.where(pet_id: @pet.id,
         adopter_account_id: current_user.adopter_account.id).first
