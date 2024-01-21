@@ -16,7 +16,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Log in"
 
     assert current_path.include?(@organization.slug)
-    assert_equal current_path, pets_path
+    assert has_current_path?(pets_path)
 
     using_wait_time(5) do
       find("#dropdownUser").hover
@@ -31,7 +31,7 @@ class UsersTest < ApplicationSystemTestCase
     visit root_url
     refute has_button?("Sign out")
     expected_path = "/" + @organization.slug + "/home"
-    assert_equal current_path, expected_path
+    assert has_current_path?(expected_path)
     assert_text "Rescue a really cute pet and be a hero"
   end
 end

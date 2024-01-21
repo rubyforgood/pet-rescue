@@ -61,3 +61,9 @@ class ActiveSupport::TestCase
     end
   end
 end
+
+class ActionDispatch::IntegrationTest
+  parallelize_setup do |i|
+    ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{i}"
+  end
+end
