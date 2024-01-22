@@ -9,7 +9,6 @@
       <thead>
         <tr>
           <th scope="col">Applicant</th>
-          <th scope="col" class="text-center">Profile</th>
           <th scope="col" class="text-center">Edit</th>
           <th scope="col">Status</th>
           <th scope="col"></th>
@@ -22,15 +21,6 @@
             <td class="align-middle">
               <%= link_to app.applicant_name, profile_review_path(app.adopter_account.adopter_profile), 
                             class: "link-underline link-underline-opacity-0"  %>
-            </td>
-            <!-- profile -->
-            <td class="align-middle text-center">
-              <% unless app.status == 'successful_applicant' %>
-                <%= link_to profile_review_path(app.adopter_account.adopter_profile.id), 
-                            class: "link-underline link-underline-opacity-0" do %>
-                  <i class="fe fe-file-text" aria-label="applicant profile"></i>
-                <% end %>
-              <% end %>
             </td>
             <!-- edit -->
             <td class="align-middle text-center">
