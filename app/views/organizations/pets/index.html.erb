@@ -50,6 +50,7 @@
                 <th scope="col">Breed</th>
                 <th scope="col">Weight</th>
                 <th class="text-center" scope="col">Pause Applications</th>
+                <th class="text-center" scope="col">Published</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -83,6 +84,9 @@
                   </td>
                   <td>
                     <%= render 'pause_toggle', pet: pet %>
+                  </td>
+                  <td>
+                    <%= render 'publish_toggle', pet: pet %>
                   </td>
                   <% if current_user.staff_account %>
                     <td>

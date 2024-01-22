@@ -15,7 +15,7 @@
         </div>
       </div>
 
-      <div class="card-body">
+      <div class="card-body table-responsive">
 
         <table class="table">
           <div>
@@ -25,6 +25,7 @@
               <th>Weight</th>
               <th>Placement Type</th>
               <th>Application Status</th>
+              <th>Publish Status</th>
             </tr>
           </div>
 
@@ -46,6 +47,11 @@
             <td>
               <p class="text-dark mb-0 fw-semibold">
                 <%= @pet.application_paused == false ? t('.application.active') : t('.application.paused') %>
+              </p>
+            </td>
+            <td>
+              <p class="text-dark mb-0 fw-semibold">
+                <%= @pet.published == true ? t('.published.published') : t('.published.draft') %>
               </p>
             </td>
           </tr>

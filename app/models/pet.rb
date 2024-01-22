@@ -9,6 +9,7 @@
 #  description        :text
 #  name               :string
 #  placement_type     :integer          not null
+#  published          :boolean          default(FALSE), not null
 #  sex                :string
 #  species            :integer          not null
 #  weight_from        :integer          not null
@@ -38,6 +39,7 @@ class Pet < ApplicationRecord
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :breed, presence: true
+  validates :published, inclusion: [true, false]
   validates :sex, presence: true
   validates :species, presence: true
   validates :placement_type, presence: true
@@ -70,6 +72,7 @@ class Pet < ApplicationRecord
 
   scope :adopted, -> { Pet.includes(:match).where.not(match: {id: nil}) }
   scope :unadopted, -> { Pet.includes(:match).where(match: {id: nil}) }
+  scope :published, -> { where(published: true) }
 
   attr_writer :toggle
 
