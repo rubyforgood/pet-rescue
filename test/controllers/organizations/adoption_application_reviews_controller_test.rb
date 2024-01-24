@@ -63,8 +63,8 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       should "return pets only with applications of the specified status" do
         get adoption_application_reviews_url, params: {q: {adopter_applications_status_eq: "under_review"}}
         assert_response :success
-        assert_select "span.badge.bg-dark-info", text: "Under Review"
-        assert_select "span.badge", text: "Awaiting Review", count: 0
+        assert_select "button.bg-dark-info", text: "Under Review"
+        assert_select "button.bg-dark-primary", text: "Awaiting Review", count: 0
       end
     end
   end
