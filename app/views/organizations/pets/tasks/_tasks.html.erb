@@ -23,16 +23,16 @@
 
                       <% if task.due_date %>
                         <% if task.due_date.to_date == Date.current %>
-                          <div class='badge bg-success text-uppercase'>
-                            Today
+                          <div class='text-warning'>
+                            <i class="fe fe-clock"></i> Due Date - Today
                           </div>
                         <% elsif task.due_date.to_date > Date.current %>
-                          <div class='badge bg-secondary text-uppercase'>
-                            <%= task.due_date.strftime("%A, %b %d") %>
+                          <div class='text-warning'>
+                            <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
                           </div>
                         <% elsif task.due_date.to_date < Date.current %>
-                          <div class='badge bg-danger text-uppercase'>
-                            <%= task.due_date.strftime("%b %d, %Y") %>
+                          <div class='text-danger'>
+                            <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
                           </div>
                         <% end %>
                       <% end %>
