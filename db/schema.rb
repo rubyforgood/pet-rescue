@@ -240,6 +240,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_22_001134) do
     t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "due_date"
     t.index ["pet_id"], name: "index_tasks_on_pet_id"
   end
 

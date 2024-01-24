@@ -9,7 +9,7 @@
         </div>
 
         <ul class="list-group">
-          <% @pet.tasks.each do |task| %>
+          <% @pet.tasks.order(due_date: :asc).each do |task| %>
             <%= turbo_frame_tag task do %>
               <li class="list-group-item">
                 <div class="d-flex justify-content-between
@@ -18,8 +18,25 @@
                   <div class="d-flex align-items-center">
                     <%= render '/organizations/pets/tasks/tasks_toggle', task: task %>
                     <div style="padding: 0 10px; margin-top: 15px;">
-                      <strong class="d-block mb-1" ><%= task.name %></strong>
-                      <p><%= task.description %></p>
+                      <strong class="d-block" ><%= task.name %></strong>
+                      <p class='mb-0'> <%= task.description %> </p>
+
+                      <% if task.due_date %>
+                        <% if task.due_date.to_date == Date.current %>
+                          <div class='text-warning'>
+                            <i class="fe fe-clock"></i> Due Date - Today
+                          </div>
+                        <% elsif task.due_date.to_date > Date.current %>
+                          <div class='text-warning'>
+                            <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
+                          </div>
+                        <% elsif task.due_date.to_date < Date.current %>
+                          <div class='text-danger'>
+                            <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
+                          </div>
+                        <% end %>
+                      <% end %>
+
                     </div>
                   </div>
 
