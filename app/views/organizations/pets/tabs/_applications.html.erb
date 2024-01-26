@@ -4,55 +4,19 @@
       <h4 class="mb-0"><%= link_to pet.name, pet_path(pet), class: "link-underline link-underline-opacity-0" %></h4>
     </div>
   <% end %>
-  <div class="card-body table-responsive">
+  <div class="card-body">
     <table class="table mb-0 text-nowrap table-hover table-centered">
       <thead>
         <tr>
           <th scope="col">Applicant</th>
-          <th scope="col" class="text-center">Edit</th>
           <th scope="col">Status</th>
           <th scope="col"></th>
+          <th scope="col">Notes</th>
         </tr>
       </thead>
       <tbody>
         <% applications.each do |app|%>
-          <tr>
-            <!-- applicant -->
-            <td class="align-middle">
-              <%= link_to app.applicant_name, profile_review_path(app.adopter_account.adopter_profile), 
-                            class: "link-underline link-underline-opacity-0"  %>
-            </td>
-            <!-- edit -->
-            <td class="align-middle text-center">
-              <%= link_to edit_adoption_application_review_path(app.id), 
-                          class: "link-underline link-underline-opacity-0" do %>
-                <i class="fe fe-edit" aria-label="edit application"></i>
-              <% end %>
-            </td>
-            <!-- status -->
-            <td class="align-middle">
-              <span class="badge <%= application_status_classes(app) %>">
-                <%= app.status.titleize %>
-              </span>
-            </td>
-            <!-- create -->
-            <td class="align-middle text-center">
-              <% if app.status == 'successful_applicant' %>
-                <!--create adoption button-->
-                <%= button_to "New Adoption", create_adoption_path(pet_id: app.pet.id, 
-                                                  adopter_account_id: app.adopter_account.id),
-                              class: "btn btn-outline-primary",
-                              data: { turbo_method: :post, 
-                                      turbo_confirm: "Click OK to finalize this adoption." } %>
-              <% else %>
-                <span class="d-inline-block" tabindex="0"
-                data-bs-toggle="tooltip" title="Finalize adoption">
-                  <button type="button" class="btn btn-outline-secondary"
-                disabled>New Adoption</button>
-                </span>
-              <% end %>
-            </td>
-          </tr>
+          <%= render 'organizations/pets/tabs/partials/application_status', app: app %>
         <% end %>
       </tbody>
     </table>

@@ -23,19 +23,26 @@ class Organizations::AdoptionApplicationReviewsController < Organizations::BaseC
 
     return if pet_in_same_organization?(@application.pet.organization_id)
 
-    redirect_to adopter_applications_path,
+    redirect_to dashboard_index_path,
       alert: 'Staff can only edit applications for their organization
                         pets.'
   end
 
   def update
     @application = AdopterApplication.find(params[:id])
+    @applications_tab = request.referrer.include?("applications") # Change table display in pets/applications tab
 
     if pet_in_same_organization?(@application.pet.organization_id) &&
         @application.update(application_params)
-      redirect_to adopter_applications_path
+      respond_to do |format|
+        format.html { redirect_to dashboard_index_path }
+        format.turbo_stream { flash.now[:notice] = "Application was successfully updated." }
+      end
     else
-      render :edit, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.turbo_stream { flash.now[:alert] = "Error updating application" }
+      end
     end
   end
 
