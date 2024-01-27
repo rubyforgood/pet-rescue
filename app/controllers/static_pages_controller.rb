@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  skip_verify_authorized only: %i[about_us cookie_policy donate faq partners privacy_policy terms_and_conditions]
+
   def home
     if !current_tenant
       render :no_tenant and return
