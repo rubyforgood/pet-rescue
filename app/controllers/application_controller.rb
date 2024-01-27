@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
-  # Turn this on once authorization framework has been applied to all controllers.
-  # verify_authorized
+  verify_authorized unless: :devise_controller?
 
   before_action :set_current_user
   around_action :switch_locale
