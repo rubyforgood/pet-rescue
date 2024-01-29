@@ -146,6 +146,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_22_001134) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "foster_accounts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_foster_accounts_on_user_id"
+  end
+
   create_table "locations", force: :cascade do |t|
     t.string "country"
     t.string "city_town"
@@ -283,6 +288,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_22_001134) do
   add_foreign_key "checklist_assignments", "matches"
   add_foreign_key "checklist_template_items", "checklist_templates"
   add_foreign_key "default_pet_tasks", "organizations"
+  add_foreign_key "foster_accounts", "users"
   add_foreign_key "matches", "adopter_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
