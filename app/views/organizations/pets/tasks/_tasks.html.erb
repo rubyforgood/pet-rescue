@@ -11,7 +11,7 @@
         <ul class="list-group">
           <% @pet.tasks.order(due_date: :asc).each do |task| %>
             <%= turbo_frame_tag task do %>
-              <li class="list-group-item">
+              <li class="list-group-item <%= task.determine_shading_class %>">
                 <div class="d-flex justify-content-between
                             align-items-center">
 
