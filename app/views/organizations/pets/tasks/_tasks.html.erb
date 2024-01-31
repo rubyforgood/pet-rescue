@@ -3,9 +3,16 @@
     <div class="col-12 mb-4">
       <div class="card">
         <div class="card-header">
-          <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center">
             <h4 class="mb-0">Tasks</h4>
+            <%= link_to new_pet_task_path(@pet), class: 'btn btn-outline-primary m-3', data: { turbo_frame: dom_id(Task.new) } do %>
+              <div class="d-flex align-items-center">
+                <i class="fe fe-plus fw-bolder me-2" aria-label="add new task" style="font-size: 22px;"></i> 
+                Add New Task
+              </div>
+            <% end %>
           </div>
+          <%= turbo_frame_tag Task.new %>
         </div>
 
         <ul class="list-group">
@@ -52,10 +59,7 @@
             <% end %>
           <% end %>
         </ul>
-
-        <%= turbo_frame_tag Task.new do %>
-          <%= link_to 'New Task', new_pet_task_path(@pet), class: 'btn btn-primary m-3' %>
-        <% end %>
+        
       </div>
     </div>
   </div>
