@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_22_001134) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_31_185014) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_22_001134) do
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
-  create_table "adopter_profiles", force: :cascade do |t|
+  create_table "adopter_foster_profiles", force: :cascade do |t|
     t.bigint "adopter_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,8 +98,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_22_001134) do
     t.text "visit_dates"
     t.text "referral_source"
     t.bigint "location_id", null: false
-    t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
-    t.index ["location_id"], name: "index_adopter_profiles_on_location_id"
+    t.index ["adopter_account_id"], name: "index_adopter_foster_profiles_on_adopter_account_id"
+    t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
   end
 
   create_table "checklist_assignments", force: :cascade do |t|
@@ -277,8 +277,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_22_001134) do
   add_foreign_key "adopter_accounts", "users"
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
-  add_foreign_key "adopter_profiles", "adopter_accounts"
-  add_foreign_key "adopter_profiles", "locations"
+  add_foreign_key "adopter_foster_profiles", "adopter_accounts"
+  add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "checklist_assignments", "checklist_template_items"
   add_foreign_key "checklist_assignments", "matches"
   add_foreign_key "checklist_template_items", "checklist_templates"

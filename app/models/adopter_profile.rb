@@ -51,6 +51,8 @@
 #  fk_rails_...  (location_id => locations.id)
 #
 class AdopterProfile < ApplicationRecord
+  self.table_name = "adopter_foster_profiles"
+
   belongs_to :location, dependent: :destroy
   belongs_to :adopter_account
   accepts_nested_attributes_for :location
