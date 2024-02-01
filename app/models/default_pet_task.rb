@@ -22,4 +22,5 @@ class DefaultPetTask < ApplicationRecord
   acts_as_tenant(:organization)
 
   validates :name, presence: true
+  validates_numericality_of :due_in_days, only_integer: true, greater_than_or_equal_to: 0, allow_nil: true
 end
