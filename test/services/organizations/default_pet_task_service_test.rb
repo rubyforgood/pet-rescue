@@ -15,7 +15,7 @@ class Organizations::DefaultPetTaskServiceTest < ActiveSupport::TestCase
 
   test "creates tasks with due_date set based on the default task's due_in_days" do
     organization = create(:organization)
-    default_task = create(:default_pet_task, organization: organization, due_in_days: 5)
+    create(:default_pet_task, organization: organization, due_in_days: 5)
     pet = create(:pet, organization: organization)
 
     Organizations::DefaultPetTaskService.new(pet).create_tasks
