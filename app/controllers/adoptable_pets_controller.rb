@@ -1,5 +1,5 @@
 class AdoptablePetsController < Organizations::BaseController
-  skip_verify_authorized only: %i[index]
+  # skip_verify_authorized only: %i[index]
 
   def index
     @pets = Pet.includes(:adopter_applications, images_attachments: :blob)

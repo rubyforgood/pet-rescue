@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  verify_authorized unless: :devise_controller?
+  # verify_authorized unless: :devise_controller?
 
   before_action :set_current_user
   around_action :switch_locale
