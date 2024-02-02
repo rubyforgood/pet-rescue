@@ -48,6 +48,6 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
   private
 
   def task_params
-    params.require(:default_pet_task).permit(:name, :description)
+    params.require(:default_pet_task).permit(:name, :description, :due_in_days)
   end
 end

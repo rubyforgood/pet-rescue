@@ -33,7 +33,8 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
         post default_pet_tasks_path, params: {
           default_pet_task: {
             name: "New Task",
-            description: "Descrition of new Task"
+            description: "Descrition of new Task",
+            due_in_days: 5
           }
         }
       end
