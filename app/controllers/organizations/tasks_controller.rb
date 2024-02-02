@@ -66,6 +66,6 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :completed, :due_date)
+    params.require(:task).permit(:name, :description, :completed, :due_date, :recurring, :next_due_date_in_days)
   end
 end
