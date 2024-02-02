@@ -157,6 +157,7 @@ FactoryBot.define do
     description { "MyText" }
     completed { false }
     pet
+    recurring { false }
   end
 
   factory :default_pet_task do
