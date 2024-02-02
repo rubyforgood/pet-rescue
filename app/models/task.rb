@@ -27,6 +27,22 @@ class Task < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :next_due_date_in_days, numericality: {only_integer: true, allow_nil: true}
+  validate :next_due_date_in_days_only_if_due_date
+  validate :next_due_date_in_days_only_if_recurring
 
   default_scope { order(created_at: :asc) }
+
+  private
+
+  def next_due_date_in_days_only_if_due_date
+    if next_due_date_in_days && !due_date
+      errors.add(:due_date, "needed if adding next due date in")
+    end
+  end
+
+  def next_due_date_in_days_only_if_recurring
+    if next_due_date_in_days && !recurring
+      errors.add(:base, "Only recurring tasks may set next due date in.")
+    end
+  end
 end
