@@ -5,7 +5,10 @@
         <%= f.text_field :name, class: 'form-control' %>
       </div>
       <div class='col-3'>
-        <%= f.date_field :due_date, class: 'form-control' %>
+        <%= f.date_field :due_date, 
+                          class: 'form-control', 
+                          id: "due-date",
+                          onchange: "document.getElementById('next-due').disabled = !document.getElementById('recur').checked || !this.value;" %>
       </div>
     </div>
   </div>
@@ -13,8 +16,9 @@
     <div class="d-flex flex-row justify-content-between align-items-end gap-2">
       <div class="">
         <%= f.check_box :recurring, 
-                          { class: "form-check-input",  
-                          onchange: "document.getElementById('next-due').disabled = !this.checked;"} %>
+                        { class: "form-check-input",  
+                        id: "recur",
+                        onchange: "document.getElementById('next-due').disabled = !this.checked || !document.getElementById('due-date').value;"} %>
       </div>
       <div class="w-75">
         <%= f.number_field :recurrence_in_days, 
