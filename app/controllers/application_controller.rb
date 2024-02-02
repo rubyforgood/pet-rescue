@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
   def require_organization_admin
     return if user_signed_in? &&
       current_user.staff_account &&
-      current_user.staff_account.has_role?(:admin, current_user.staff_account.organization)
+      current_user.has_role?(:admin, current_user.staff_account.organization)
 
     redirect_to root_path, alert: "Unauthorized action."
   end

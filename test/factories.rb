@@ -144,12 +144,6 @@ FactoryBot.define do
     trait :deactivated do
       deactivated_at { DateTime.now }
     end
-
-    trait :admin do
-      after :create do |staff_account|
-        staff_account.add_role(:admin, staff_account.organization)
-      end
-    end
   end
 
   factory :task do
@@ -177,14 +171,17 @@ FactoryBot.define do
 
     trait :activated_staff do
       staff_account { association :staff_account, organization: organization }
+      after(:create) { |user, context| user.add_role(:staff, context.organization) }
     end
 
     trait :staff_admin do
-      staff_account { association :staff_account, :admin, organization: organization }
+      staff_account { association :staff_account, organization: organization }
+      after(:create) { |user, context| user.add_role(:admin, context.organization) }
     end
 
     trait :deactivated_staff do
       staff_account { association :staff_account, :deactivated, organization: organization }
+      after(:create) { |user, context| user.add_role(:staff, context.organization) }
     end
 
     trait :adopter_without_profile do

@@ -3,6 +3,7 @@ class AdoptablePetPolicy < ApplicationPolicy
 
   def show?
     staff? || published?
+    # permission?(:manage_pets) || published?
   end
 
   private

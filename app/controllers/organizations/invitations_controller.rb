@@ -10,11 +10,11 @@ class Organizations::InvitationsController < Devise::InvitationsController
   end
 
   def create
-    @user = User.new(user_params.merge(password: SecureRandom.hex(8)).except(:staff_account_attributes))
+    @user = User.new(user_params.merge(password: SecureRandom.hex(8)).except(:roles))
     @user.staff_account = StaffAccount.new
 
     if @user.save
-      @user.staff_account.add_role(user_params[:staff_account_attributes][:roles])
+      @user.add_role(user_params[:roles], Current.organization)
       @user.invite!(current_user)
       redirect_to staff_index_path, notice: "Invite sent!"
     else
@@ -26,8 +26,7 @@ class Organizations::InvitationsController < Devise::InvitationsController
 
   def user_params
     params.require(:user)
-      .permit(:first_name, :last_name, :email,
-        staff_account_attributes: [:roles])
+      .permit(:first_name, :last_name, :email, :roles)
   end
 
   def after_accept_path_for(_resource)

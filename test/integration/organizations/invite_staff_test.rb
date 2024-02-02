@@ -11,7 +11,7 @@ class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
         first_name: "John",
         last_name: "Doe",
         email: "john@example.com",
-        staff_account_attributes: {roles: "admin"}
+        roles: "admin"
       }
     }
     admin = create(:user, :staff_admin)
@@ -30,7 +30,7 @@ class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
     invited_user = User.find_by(email: "john@example.com")
 
     assert invited_user.invited_to_sign_up?
-    assert invited_user.staff_account.has_role?(:admin)
+    assert invited_user.has_role?(:admin, invited_user.organization)
     assert_not invited_user.staff_account.deactivated?
 
     assert_equal ActionMailer::Base.deliveries.count, 1

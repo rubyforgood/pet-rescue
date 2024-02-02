@@ -48,7 +48,7 @@
                       </div>
                       <div class="d-flex justify-content-between border-bottom py-2 mt-4">
                         <span>Role</span>
-                        <span class="text-dark"><%= staff.roles.pluck(:name).join(", ") %></span>
+                        <span class="text-dark"><%= staff.user.roles.pluck(:name).join(", ") %></span>
                       </div>
                       <div class="d-flex justify-content-between border-bottom py-2">
                         <span>Joined</span>
@@ -98,7 +98,7 @@
                         </div>
                       </td>
                       <td>
-                        <%= staff.roles.pluck(:name).join(", ") %>
+                        <%= staff.user.roles.pluck(:name).join(", ") %>
                       </td>
                       <td>
                         <%= staff.created_at.strftime("%d %B, %Y") %>
