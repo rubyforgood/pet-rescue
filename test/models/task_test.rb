@@ -35,4 +35,5 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   should validate_presence_of(:name)
+  should validate_numericality_of(:next_due_date_in_days).only_integer.allow_nil
 end
