@@ -25,6 +25,7 @@ class Organizations::TasksController < Organizations::BaseController
 
   def update
     if @task.update(task_params)
+      Organizations::TaskService.new(@task).create_next
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/pets/tasks/tasks", locals: {task: @task}) }
       end
