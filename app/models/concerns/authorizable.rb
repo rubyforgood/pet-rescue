@@ -7,7 +7,9 @@ STAFF_PERMISSIONS = (
 ).freeze
 
 ADMIN_PERMISSIONS = (
-  STAFF_PERMISSIONS + %i[]
+  STAFF_PERMISSIONS + %i[
+    manage_staff
+  ]
 ).freeze
 
 PERMISSIONS = {
