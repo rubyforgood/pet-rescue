@@ -40,8 +40,14 @@ class TaskTest < ActiveSupport::TestCase
     assert_not task.valid?
   end
 
-  test "does not allow non-recurring task to have due date in days" do
+  test "does not allow non-recurring task to have next due date in days" do
     task = build(:task, recurring: false, due_date: nil, next_due_date_in_days: 5)
+
+    assert_not task.valid?
+  end
+
+  test "does not allow recurring task without due date to have next due date in days" do
+    task = build(:task, recurring: true, due_date: nil, next_due_date_in_days: 5)
 
     assert_not task.valid?
   end
