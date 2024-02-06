@@ -51,4 +51,17 @@ class TasksTest < ApplicationSystemTestCase
     assert_text("recurring task", count: 2)
     assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
   end
+
+  test "doesn't incomplete completed recurring task" do
+    recurring_task = create(:task, recurring: true, completed: true, pet: @pet, name: "completed recurring task")
+    visit pet_path(@pet, active_tab: "tasks")
+
+    within "#edit_task_#{recurring_task.id}" do
+      assert_nothing_raised do
+        accept_alert do
+          find(".form-check").click
+        end
+      end
+    end
+  end
 end
