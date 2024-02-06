@@ -4,6 +4,7 @@ class ApplicationPolicy < ActionPolicy::Base
   # (`user` is added by default).
   # Read more about authorization context: https://actionpolicy.evilmartians.io/#/authorization_context
 
+  pre_check :verify_authenticated!
   authorize :user, allow_nil: true
 
   private
@@ -14,5 +15,10 @@ class ApplicationPolicy < ActionPolicy::Base
     return false unless user
 
     user.permission?(name)
+  end
+  def authenticated? = user.present?
+  def unauthenticated? = !authenticated?
+  def verify_authenticated!
+    deny! if unauthenticated?
   end
 end
