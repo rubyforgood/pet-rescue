@@ -8,6 +8,7 @@ STAFF_PERMISSIONS = (
 
 ADMIN_PERMISSIONS = (
   STAFF_PERMISSIONS + %i[
+    activate_staff
     manage_staff
   ]
 ).freeze

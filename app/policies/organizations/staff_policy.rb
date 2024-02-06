@@ -1,18 +1,19 @@
 class Organizations::StaffPolicy < ApplicationPolicy
-  def deactivate?
   pre_check :verify_organization!, except: %i[index?]
+
+  def index?
     permission?(:manage_staff)
   end
 
   def activate?
-    permission?(:manage_staff)
+    permission?(:activate_staff) && record.user_id != user.id
+  end
+
+  def deactivate?
+    activate?
   end
 
   def update_activation?
-    permission?(:manage_staff)
-  end
-
-  def index?
-    permission?(:manage_staff)
+    activate?
   end
 end
