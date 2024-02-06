@@ -1,5 +1,6 @@
 class Organizations::StaffPolicy < ApplicationPolicy
   def deactivate?
+  pre_check :verify_organization!, except: %i[index?]
     permission?(:manage_staff)
   end
 
