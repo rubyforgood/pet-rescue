@@ -8,9 +8,11 @@ class AdoptablePetsControllerTest < ActionDispatch::IntegrationTest
     @pet = create(:pet)
   end
 
-  test "show is authorized" do
-    assert_authorized_to(:show?, @pet, with: AdoptablePetPolicy) do
-      get adoptable_pet_path(@pet)
+  context "#show" do
+    should "be authorized" do
+      assert_authorized_to(:show?, @pet, with: AdoptablePetPolicy) do
+        get adoptable_pet_path(@pet)
+      end
     end
   end
 end
