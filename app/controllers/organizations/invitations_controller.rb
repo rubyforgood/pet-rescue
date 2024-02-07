@@ -1,10 +1,12 @@
 class Organizations::InvitationsController < Devise::InvitationsController
   include OrganizationScopable
 
-  before_action :require_organization_admin, only: [:new, :create]
   layout "dashboard", only: [:new, :create]
 
   def new
+    authorize! StaffAccount, context: {organization: Current.organization},
+      with: Organizations::InvitationPolicy
+
     @user = User.new
     @staff = StaffAccount.new(user: @user)
   end
@@ -12,6 +14,9 @@ class Organizations::InvitationsController < Devise::InvitationsController
   def create
     @user = User.new(user_params.merge(password: SecureRandom.hex(8)).except(:roles))
     @user.staff_account = StaffAccount.new
+
+    authorize! StaffAccount, context: {organization: @user.organization},
+      with: Organizations::InvitationPolicy
 
     if @user.save
       @user.add_role(user_params[:roles], Current.organization)
