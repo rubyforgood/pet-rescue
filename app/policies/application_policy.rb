@@ -17,7 +17,7 @@ class ApplicationPolicy < ActionPolicy::Base
   # Define shared methods useful for most policies.
 
   def verify_organization!
-    deny! unless record.organization == user.organization
+    deny! unless record.organization_id == user.organization_id
   end
 
   def permission?(name)
