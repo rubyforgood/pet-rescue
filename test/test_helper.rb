@@ -30,9 +30,14 @@ class ActiveSupport::TestCase
     end
   end
 
-  setup do
-    ActsAsTenant.test_tenant = create(:organization, slug: "test")
-    set_organization(ActsAsTenant.test_tenant)
+  setup do |test|
+    if test.is_a?(ActionDispatch::IntegrationTest)
+      ActsAsTenant.test_tenant = create(:organization, slug: "test")
+    else
+      ActsAsTenant.current_tenant = create(:organization, slug: "test")
+    end
+
+    set_organization(ActsAsTenant.current_tenant)
   end
 
   def teardown
