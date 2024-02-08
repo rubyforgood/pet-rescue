@@ -36,6 +36,7 @@ class ActiveSupport::TestCase
   end
 
   def teardown
+    ActsAsTenant.current_tenant = nil
     ActsAsTenant.test_tenant = nil
     Rails.application.routes.default_url_options[:script_name] = ""
   end
