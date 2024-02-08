@@ -1,6 +1,5 @@
 class Organizations::PetsController < Organizations::BaseController
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :attach_images, :attach_files]
-  before_action :active_staff
 
   layout "dashboard"
 
@@ -14,16 +13,10 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def edit
-    return if pet_in_same_organization?(@pet.organization_id)
-
-    redirect_to pets_path, alert: "This pet is not in your organization."
   end
 
   def show
     @active_tab = determine_active_tab
-    return if pet_in_same_organization?(@pet.organization_id)
-
-    redirect_to pets_path, alert: "This pet is not in your organization."
   end
 
   def create
@@ -45,7 +38,7 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def update
-    if pet_in_same_organization?(@pet.organization_id) && @pet.update(pet_params)
+    if @pet.update(pet_params)
       respond_to do |format|
         format.html { redirect_to @pet, notice: "Pet updated successfully." }
         format.turbo_stream if params[:pet][:toggle] == "true"
@@ -56,9 +49,7 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def destroy
-    @pet = Pet.find(params[:id])
-
-    if pet_in_same_organization?(@pet.organization_id) && @pet.destroy
+    if @pet.destroy
       redirect_to pets_path, notice: "Pet deleted.", status: :see_other
     else
       redirect_to pets_path, alert: "Error."
@@ -111,6 +102,8 @@ class Organizations::PetsController < Organizations::BaseController
 
   def set_pet
     @pet = Pet.find(params[:id])
+
+    authorize! @pet
   end
 
   def determine_active_tab
