@@ -4,7 +4,7 @@ require "test_helper"
 
 class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
   setup do
-    @org = ActsAsTenant.test_tenant
+    @org = ActsAsTenant.current_tenant
     @org_profile = @org.profile
     admin = create(:user, :staff_admin, organization: @org)
     sign_in admin

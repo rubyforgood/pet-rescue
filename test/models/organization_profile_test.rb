@@ -7,7 +7,7 @@ class OrganizationProfileTest < ActiveSupport::TestCase
   end
 
   test "should belong to an organization" do
-    organization = ActsAsTenant.test_tenant
+    organization = ActsAsTenant.current_tenant
     organization_profile = build(:organization_profile, organization: organization)
 
     assert_equal organization_profile.organization.slug, "test"
