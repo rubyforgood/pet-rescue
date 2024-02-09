@@ -4,11 +4,17 @@ class Organizations::PetsController < Organizations::BaseController
   layout "dashboard"
 
   def index
+    authorize! Pet, context: {organization: Current.organization},
+      with: Organizations::PetPolicy
+
     @q = Pet.ransack(params[:q])
-    @pets = @q.result
+    @pets = authorized_scope(@q.result, with: Organizations::PetPolicy)
   end
 
   def new
+    authorize! Pet, context: {organization: Current.organization},
+      with: Organizations::PetPolicy
+
     @pet = Pet.new
   end
 
@@ -21,6 +27,9 @@ class Organizations::PetsController < Organizations::BaseController
 
   def create
     @pet = Pet.new(pet_params)
+
+    authorize! Pet, context: {organization: @pet.organization},
+      with: Organizations::PetPolicy
 
     ActiveRecord::Base.transaction do
       @pet.save!
@@ -57,7 +66,7 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def attach_images
-    if pet_in_same_organization?(@pet.organization_id) && @pet.images.attach(params[:pet][:images])
+    if @pet.images.attach(params[:pet][:images])
       redirect_to pet_path(@pet, active_tab: "photos"), notice: "Upload successful."
     else
       @active_tab = "photos"
@@ -68,7 +77,7 @@ class Organizations::PetsController < Organizations::BaseController
   end
 
   def attach_files
-    if pet_in_same_organization?(@pet.organization_id) && @pet.files.attach(params[:pet][:files])
+    if @pet.files.attach(params[:pet][:files])
       redirect_to pet_path(@pet, active_tab: "files"), notice: "Upload successful."
     else
       @active_tab = "files"
