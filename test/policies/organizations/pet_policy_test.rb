@@ -58,7 +58,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
         end
       end
 
-      context "when user is admin" do
+      context "when user is staff admin" do
         setup do
           @user = create(:user, :staff_admin)
         end
@@ -139,7 +139,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
         end
       end
 
-      context "when user is admin" do
+      context "when user is staff admin" do
         setup do
           @user = create(:user, :staff_admin)
         end
