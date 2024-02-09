@@ -12,7 +12,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
   context "#deactivate" do
     should "be authorized" do
       assert_authorized_to(
-        :deactivate?, @staff, with: Organizations::StaffPolicy
+        :activate?, @staff, with: Organizations::StaffPolicy
       ) do
         post staff_deactivate_url(@staff)
       end
@@ -32,7 +32,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
   context "#update_activation" do
     should "be authorized" do
       assert_authorized_to(
-        :update_activation?, @staff, with: Organizations::StaffPolicy
+        :activate?, @staff, with: Organizations::StaffPolicy
       ) do
         post staff_update_activation_url(@staff)
       end

@@ -14,7 +14,7 @@ class Organizations::InvitationControllerTest < ActionDispatch::IntegrationTest
   context "#new" do
     should "be authorized" do
       assert_authorized_to(
-        :new?, StaffAccount,
+        :create?, StaffAccount,
         context: {organization: @organization},
         with: Organizations::InvitationPolicy
       ) do
