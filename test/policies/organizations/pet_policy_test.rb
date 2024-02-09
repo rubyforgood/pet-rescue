@@ -2,7 +2,9 @@ require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
 class Organizations::PetPolicyTest < ActiveSupport::TestCase
-  context "context action" do
+  include PetRescue::PolicyAssertions
+
+  context "context only action" do
     setup do
       @organization = ActsAsTenant.current_tenant
       @policy = -> {
@@ -11,9 +13,9 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
       }
     end
 
-    context "#index?" do
+    context "#manage?" do
       setup do
-        @action = -> { @policy.call.apply(:index?) }
+        @action = -> { @policy.call.apply(:manage?) }
       end
 
       context "when user is nil" do
@@ -64,118 +66,24 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
         should "return true" do
           assert_equal @action.call, true
         end
+      end
+    end
+
+    context "#index?" do
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :index?, :manage?
       end
     end
 
     context "#new?" do
-      setup do
-        @action = -> { @policy.call.apply(:new?) }
-      end
-
-      context "when user is nil" do
-        setup do
-          @user = nil
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is adopter" do
-        setup do
-          @user = create(:user, :adopter_without_profile)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
-      context "when user is deactivated staff" do
-        setup do
-          @user = create(:user, :deactivated_staff)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is admin" do
-        setup do
-          @user = create(:user, :staff_admin)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :new?, :manage?
       end
     end
 
     context "#create?" do
-      setup do
-        @action = -> { @policy.call.apply(:create?) }
-      end
-
-      context "when user is nil" do
-        setup do
-          @user = nil
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is adopter" do
-        setup do
-          @user = create(:user, :adopter_without_profile)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
-      context "when user is deactivated staff" do
-        setup do
-          @user = create(:user, :deactivated_staff)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is admin" do
-        setup do
-          @user = create(:user, :staff_admin)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :create?, :manage?
       end
     end
   end
@@ -258,428 +166,38 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
     end
 
     context "#show?" do
-      setup do
-        @action = -> { @policy.call.apply(:show?) }
-      end
-
-      context "when user is nil" do
-        setup do
-          @user = nil
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is adopter" do
-        setup do
-          @user = create(:user, :adopter_without_profile)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
-      context "when user is deactivated staff" do
-        setup do
-          @user = create(:user, :deactivated_staff)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is admin" do
-        setup do
-          @user = create(:user, :staff_admin)
-        end
-
-        context "when pet is from a different organization" do
-          setup do
-            @other_organization = create(:organization)
-            ActsAsTenant.with_tenant(@other_organization) do
-              @pet = create(:pet, organization: @other_organization)
-            end
-          end
-
-          should "return false" do
-            assert_equal @action.call, false
-          end
-        end
-
-        context "when pet is from the same organization" do
-          should "return true" do
-            assert_equal @action.call, true
-          end
-        end
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :show?, :manage?
       end
     end
 
     context "#edit?" do
-      setup do
-        @action = -> { @policy.call.apply(:edit?) }
-      end
-
-      context "when user is nil" do
-        setup do
-          @user = nil
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is adopter" do
-        setup do
-          @user = create(:user, :adopter_without_profile)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
-      context "when user is deactivated staff" do
-        setup do
-          @user = create(:user, :deactivated_staff)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is admin" do
-        setup do
-          @user = create(:user, :staff_admin)
-        end
-
-        context "when pet is from a different organization" do
-          setup do
-            @other_organization = create(:organization)
-            ActsAsTenant.with_tenant(@other_organization) do
-              @pet = create(:pet, organization: @other_organization)
-            end
-          end
-
-          should "return false" do
-            assert_equal @action.call, false
-          end
-        end
-
-        context "when pet is from the same organization" do
-          should "return true" do
-            assert_equal @action.call, true
-          end
-        end
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :edit?, :manage?
       end
     end
 
     context "#update?" do
-      setup do
-        @action = -> { @policy.call.apply(:update?) }
-      end
-
-      context "when user is nil" do
-        setup do
-          @user = nil
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is adopter" do
-        setup do
-          @user = create(:user, :adopter_without_profile)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
-      context "when user is deactivated staff" do
-        setup do
-          @user = create(:user, :deactivated_staff)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is admin" do
-        setup do
-          @user = create(:user, :staff_admin)
-        end
-
-        context "when pet is from a different organization" do
-          setup do
-            @other_organization = create(:organization)
-            ActsAsTenant.with_tenant(@other_organization) do
-              @pet = create(:pet, organization: @other_organization)
-            end
-          end
-
-          should "return false" do
-            assert_equal @action.call, false
-          end
-        end
-
-        context "when pet is from the same organization" do
-          should "return true" do
-            assert_equal @action.call, true
-          end
-        end
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :update?, :manage?
       end
     end
 
     context "#destroy?" do
-      setup do
-        @action = -> { @policy.call.apply(:destroy?) }
-      end
-
-      context "when user is nil" do
-        setup do
-          @user = nil
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is adopter" do
-        setup do
-          @user = create(:user, :adopter_without_profile)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
-      context "when user is deactivated staff" do
-        setup do
-          @user = create(:user, :deactivated_staff)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is admin" do
-        setup do
-          @user = create(:user, :staff_admin)
-        end
-
-        context "when pet is from a different organization" do
-          setup do
-            @other_organization = create(:organization)
-            ActsAsTenant.with_tenant(@other_organization) do
-              @pet = create(:pet, organization: @other_organization)
-            end
-          end
-
-          should "return false" do
-            assert_equal @action.call, false
-          end
-        end
-
-        context "when pet is from the same organization" do
-          should "return true" do
-            assert_equal @action.call, true
-          end
-        end
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :destroy?, :manage?
       end
     end
 
     context "#attach_images?" do
-      setup do
-        @action = -> { @policy.call.apply(:attach_images?) }
-      end
-
-      context "when user is nil" do
-        setup do
-          @user = nil
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is adopter" do
-        setup do
-          @user = create(:user, :adopter_without_profile)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
-      context "when user is deactivated staff" do
-        setup do
-          @user = create(:user, :deactivated_staff)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is admin" do
-        setup do
-          @user = create(:user, :staff_admin)
-        end
-
-        context "when pet is from a different organization" do
-          setup do
-            @other_organization = create(:organization)
-            ActsAsTenant.with_tenant(@other_organization) do
-              @pet = create(:pet, organization: @other_organization)
-            end
-          end
-
-          should "return false" do
-            assert_equal @action.call, false
-          end
-        end
-
-        context "when pet is from the same organization" do
-          should "return true" do
-            assert_equal @action.call, true
-          end
-        end
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :attach_images?, :manage?
       end
     end
 
     context "#attach_files?" do
-      setup do
-        @action = -> { @policy.call.apply(:attach_files?) }
-      end
-
-      context "when user is nil" do
-        setup do
-          @user = nil
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is adopter" do
-        setup do
-          @user = create(:user, :adopter_without_profile)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
-      context "when user is deactivated staff" do
-        setup do
-          @user = create(:user, :deactivated_staff)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when user is admin" do
-        setup do
-          @user = create(:user, :staff_admin)
-        end
-
-        context "when pet is from a different organization" do
-          setup do
-            @other_organization = create(:organization)
-            ActsAsTenant.with_tenant(@other_organization) do
-              @pet = create(:pet, organization: @other_organization)
-            end
-          end
-
-          should "return false" do
-            assert_equal @action.call, false
-          end
-        end
-
-        context "when pet is from the same organization" do
-          should "return true" do
-            assert_equal @action.call, true
-          end
-        end
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :attach_files?, :manage?
       end
     end
   end
