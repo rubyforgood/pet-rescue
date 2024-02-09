@@ -4,7 +4,8 @@ class Organizations::StaffController < Organizations::BaseController
   layout "dashboard"
 
   def index
-    authorize! StaffAccount, with: Organizations::StaffPolicy
+    authorize! StaffAccount, context: {organization: Current.organization},
+      with: Organizations::StaffPolicy
 
     @staff_accounts = authorized_scope(
       StaffAccount.all,

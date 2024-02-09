@@ -1,11 +1,11 @@
 class Organizations::InvitationPolicy < ApplicationPolicy
-  authorize :organization
+  pre_check :verify_organization!
 
   def new?
     create?
   end
 
   def create?
-    permission?(:invite_staff) && organization.id == user.organization_id
+    permission?(:invite_staff)
   end
 end

@@ -1,5 +1,5 @@
 class Organizations::StaffPolicy < ApplicationPolicy
-  pre_check :verify_organization!, except: %i[index?]
+  pre_check :verify_organization!
 
   def index?
     permission?(:manage_staff)

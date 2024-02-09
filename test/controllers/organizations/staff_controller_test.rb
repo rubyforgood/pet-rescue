@@ -5,6 +5,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
   include ActionPolicy::TestHelper
 
   setup do
+    @organization = ActsAsTenant.current_tenant
     @staff = create(:staff_account)
   end
 
@@ -41,7 +42,9 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
   context "#index" do
     should "be authorized" do
       assert_authorized_to(
-        :index?, StaffAccount, with: Organizations::StaffPolicy
+        :index?, StaffAccount,
+        context: {organization: @organization},
+        with: Organizations::StaffPolicy
       ) do
         get staff_index_url
       end
@@ -50,7 +53,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
     context "when user is authorized" do
       setup do
         user = create(:user, :staff_admin)
-        set_organization(user.organization)
+        set_organization(@organization)
         sign_in user
       end
 
