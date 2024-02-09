@@ -8,11 +8,4 @@ class Organizations::PetPolicy < ApplicationPolicy
   def manage?
     permission?(:manage_pets)
   end
-
-  private
-
-  def verify_active_staff!
-    deny! unless user.staff_account
-    deny! if user.staff_account.deactivated?
-  end
 end

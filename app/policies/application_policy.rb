@@ -24,10 +24,10 @@ class ApplicationPolicy < ActionPolicy::Base
     deny! unless user.organization_id == organization.id
   end
 
-  # def verify_active_staff!
-  #   deny! unless user.staff_account
-  #   deny! if user.staff_account.deactivated?
-  # end
+  def verify_active_staff!
+    deny! unless user.staff_account
+    deny! if user.staff_account.deactivated?
+  end
 
   def permission?(name)
     return false unless user
