@@ -4,7 +4,6 @@ class UsersTest < ApplicationSystemTestCase
   setup do
     @user = create(:user, :activated_staff)
     @organization = @user.organization
-    set_organization(@organization)
   end
 
   test "user can log out" do

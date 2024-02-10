@@ -4,6 +4,7 @@ class RootsControllerTest < ActionDispatch::IntegrationTest
   setup do
     set_organization(nil)
   end
+
   context "GET #index" do
     should "get the root url" do
       get root_url

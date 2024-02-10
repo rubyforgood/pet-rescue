@@ -4,7 +4,6 @@ class RegistrationTest < ApplicationSystemTestCase
   setup do
     @user = create(:user, :activated_staff)
     @organization = @user.organization
-    set_organization(@organization)
 
     visit root_url
     click_on "Log In"

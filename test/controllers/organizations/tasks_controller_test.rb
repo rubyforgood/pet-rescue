@@ -4,12 +4,13 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @user = create(:user, :activated_staff, :staff_admin)
-    set_organization(@user.organization)
     @organization = ActsAsTenant.current_tenant
+
+    user = create(:user, :staff_admin)
+    sign_in user
+
     @pet = create(:pet)
     @task = create(:task, pet: @pet)
-    sign_in @user
   end
 
   test "should get new" do

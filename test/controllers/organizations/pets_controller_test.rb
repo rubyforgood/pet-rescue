@@ -147,7 +147,6 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
       @user = create(:user, :activated_staff)
       @pet = create(:pet)
       @default_pet_tasks = create(:default_pet_task)
-      set_organization(@user.organization)
       sign_in @user
     end
 

@@ -54,7 +54,6 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
       context "when user is authorized" do
         setup do
           user = create(:user, :staff_admin)
-          set_organization(@organization)
           sign_in user
         end
 
@@ -71,7 +70,6 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
 
   test "update activation should respond with turbo_stream when toggled on staff page" do
     user = create(:user, :staff_admin)
-    set_organization(user.organization)
     sign_in user
 
     post staff_update_activation_url(@staff), as: :turbo_stream

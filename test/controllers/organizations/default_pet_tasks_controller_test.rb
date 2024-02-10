@@ -4,7 +4,6 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
   setup do
     @user = create(:user, :staff_admin)
     @default_pet_task = create(:default_pet_task)
-    set_organization(@user.organization)
     @organization = @user.organization
     sign_in @user
   end
