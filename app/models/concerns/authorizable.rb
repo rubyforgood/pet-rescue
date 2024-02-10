@@ -3,6 +3,7 @@ ADOPTER_PERMISSIONS = %i[].freeze
 STAFF_PERMISSIONS = (
   ADOPTER_PERMISSIONS + %i[
     manage_pets
+    manage_tasks
   ]
 ).freeze
 
@@ -28,8 +29,14 @@ module Authorizable
   end
 
   def permission?(name)
-    roles.any? do |role|
-      PERMISSIONS.fetch(role.name.to_sym).include?(name)
+    permissions.include?(name)
+  end
+
+  private
+
+  def permissions
+    roles.reduce([]) do |permissions, role|
+      permissions.concat(PERMISSIONS.fetch(role.name.to_sym))
     end
   end
 end
