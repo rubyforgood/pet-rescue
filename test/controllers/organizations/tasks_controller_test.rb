@@ -1,16 +1,91 @@
 require "test_helper"
+require "action_policy/test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @organization = ActsAsTenant.current_tenant
-
     user = create(:user, :staff_admin)
     sign_in user
 
     @pet = create(:pet)
     @task = create(:task, pet: @pet)
+  end
+
+  context "authorization" do
+    include ActionPolicy::TestHelper
+
+    context "#new" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, Task,
+          context: {pet: @pet},
+          with: TaskPolicy
+        ) do
+          get new_pet_task_url(@pet)
+        end
+      end
+    end
+
+    context "#create" do
+      setup do
+        @task = build(:task, pet: @pet)
+        @params = {
+          task: {
+            name: @task.name,
+            description: @task.description,
+            completed: @task.completed
+          }
+        }
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, Task,
+          context: {pet: @pet},
+          with: TaskPolicy
+        ) do
+          post pet_tasks_url(@pet), params: @params
+        end
+      end
+    end
+
+    context "#edit" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @task,
+          with: TaskPolicy
+        ) do
+          get edit_pet_task_url(@pet, @task)
+        end
+      end
+    end
+
+    context "#update" do
+      setup do
+        @params = {task: {name: "better name"}}
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @task,
+          with: TaskPolicy
+        ) do
+          patch pet_task_url(@pet, @task), params: @params
+        end
+      end
+    end
+
+    context "#destroy" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @task,
+          with: TaskPolicy
+        ) do
+          delete pet_task_url(@pet, @task)
+        end
+      end
+    end
   end
 
   test "should get new" do
