@@ -1,4 +1,4 @@
-class TaskPolicy < ApplicationPolicy
+class Organizations::TaskPolicy < ApplicationPolicy
   authorize :pet, optional: true
 
   pre_check :verify_organization!

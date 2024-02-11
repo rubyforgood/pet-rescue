@@ -20,7 +20,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, Task,
           context: {pet: @pet},
-          with: TaskPolicy
+          with: Organizations::TaskPolicy
         ) do
           get new_pet_task_url(@pet)
         end
@@ -43,7 +43,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, Task,
           context: {pet: @pet},
-          with: TaskPolicy
+          with: Organizations::TaskPolicy
         ) do
           post pet_tasks_url(@pet), params: @params
         end
@@ -54,7 +54,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :manage?, @task,
-          with: TaskPolicy
+          with: Organizations::TaskPolicy
         ) do
           get edit_pet_task_url(@pet, @task)
         end
@@ -69,7 +69,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :manage?, @task,
-          with: TaskPolicy
+          with: Organizations::TaskPolicy
         ) do
           patch pet_task_url(@pet, @task), params: @params
         end
@@ -80,7 +80,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :manage?, @task,
-          with: TaskPolicy
+          with: Organizations::TaskPolicy
         ) do
           delete pet_task_url(@pet, @task)
         end

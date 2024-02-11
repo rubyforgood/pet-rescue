@@ -1,4 +1,4 @@
-class Organizations::StaffPolicy < ApplicationPolicy
+class Organizations::StaffAccountPolicy < ApplicationPolicy
   pre_check :verify_organization!
 
   alias_rule :deactivate?, :update_activation?, to: :activate?

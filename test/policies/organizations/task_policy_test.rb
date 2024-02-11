@@ -1,7 +1,7 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class TaskPolicyTest < ActiveSupport::TestCase
+class Organizations::TaskPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   context "context only action" do
@@ -9,7 +9,7 @@ class TaskPolicyTest < ActiveSupport::TestCase
       @organization = ActsAsTenant.current_tenant
       @pet = create(:pet)
       @policy = -> {
-        TaskPolicy.new(Task, user: @user,
+        Organizations::TaskPolicy.new(Task, user: @user,
           organization: @organization,
           pet: @pet)
       }
@@ -89,7 +89,7 @@ class TaskPolicyTest < ActiveSupport::TestCase
       @pet = create(:pet)
       @task = create(:task, pet: @pet)
       @policy = -> {
-        TaskPolicy.new(@task, user: @user,
+        Organizations::TaskPolicy.new(@task, user: @user,
           organization: @pet.organization)
       }
     end

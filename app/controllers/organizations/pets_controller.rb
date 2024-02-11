@@ -4,16 +4,14 @@ class Organizations::PetsController < Organizations::BaseController
   layout "dashboard"
 
   def index
-    authorize! Pet, context: {organization: Current.organization},
-      with: Organizations::PetPolicy
+    authorize! Pet, context: {organization: Current.organization}
 
     @q = Pet.ransack(params[:q])
-    @pets = authorized_scope(@q.result, with: Organizations::PetPolicy)
+    @pets = authorized_scope(@q.result)
   end
 
   def new
-    authorize! Pet, context: {organization: Current.organization},
-      with: Organizations::PetPolicy
+    authorize! Pet, context: {organization: Current.organization}
 
     @pet = Pet.new
   end
@@ -28,8 +26,7 @@ class Organizations::PetsController < Organizations::BaseController
   def create
     @pet = Pet.new(pet_params)
 
-    authorize! Pet, context: {organization: @pet.organization},
-      with: Organizations::PetPolicy
+    authorize! Pet, context: {organization: @pet.organization}
 
     ActiveRecord::Base.transaction do
       @pet.save!

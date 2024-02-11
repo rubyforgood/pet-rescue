@@ -1,12 +1,12 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class Organizations::StaffPolicyTest < ActiveSupport::TestCase
+class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   setup do
     @staff = create(:staff_account)
-    @policy = -> { Organizations::StaffPolicy.new(@staff, user: @user) }
+    @policy = -> { Organizations::StaffAccountPolicy.new(@staff, user: @user) }
   end
 
   context "#index?" do

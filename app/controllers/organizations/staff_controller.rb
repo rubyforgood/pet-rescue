@@ -4,13 +4,9 @@ class Organizations::StaffController < Organizations::BaseController
   layout "dashboard"
 
   def index
-    authorize! StaffAccount, context: {organization: Current.organization},
-      with: Organizations::StaffPolicy
+    authorize! StaffAccount, context: {organization: Current.organization}
 
-    @staff_accounts = authorized_scope(
-      StaffAccount.all,
-      with: Organizations::StaffPolicy
-    )
+    @staff_accounts = authorized_scope(StaffAccount.all)
   end
 
   def deactivate
@@ -42,6 +38,6 @@ class Organizations::StaffController < Organizations::BaseController
   def set_staff_account
     @staff_account = StaffAccount.find(params[:staff_id])
 
-    authorize! @staff_account, with: Organizations::StaffPolicy
+    authorize! @staff_account
   end
 end

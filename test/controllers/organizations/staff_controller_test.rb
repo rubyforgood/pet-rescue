@@ -13,7 +13,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
     context "#deactivate" do
       should "be authorized" do
         assert_authorized_to(
-          :activate?, @staff, with: Organizations::StaffPolicy
+          :activate?, @staff, with: Organizations::StaffAccountPolicy
         ) do
           post staff_deactivate_url(@staff)
         end
@@ -23,7 +23,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
     context "#activate" do
       should "be authorized" do
         assert_authorized_to(
-          :activate?, @staff, with: Organizations::StaffPolicy
+          :activate?, @staff, with: Organizations::StaffAccountPolicy
         ) do
           post staff_activate_url(@staff)
         end
@@ -33,7 +33,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
     context "#update_activation" do
       should "be authorized" do
         assert_authorized_to(
-          :activate?, @staff, with: Organizations::StaffPolicy
+          :activate?, @staff, with: Organizations::StaffAccountPolicy
         ) do
           post staff_update_activation_url(@staff)
         end
@@ -45,7 +45,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :index?, StaffAccount,
           context: {organization: @organization},
-          with: Organizations::StaffPolicy
+          with: Organizations::StaffAccountPolicy
         ) do
           get staff_index_url
         end
@@ -59,7 +59,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
 
         should "have authorized scope" do
           assert_have_authorized_scope(
-            type: :active_record_relation, with: Organizations::StaffPolicy
+            type: :active_record_relation, with: Organizations::StaffAccountPolicy
           ) do
             get staff_index_url
           end
