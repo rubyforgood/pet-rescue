@@ -17,6 +17,10 @@ class TaskPolicy < ApplicationPolicy
     @pet || record.pet
   end
 
+  def organization
+    @organization || pet.organization
+  end
+
   def verify_pet!
     deny! unless allowed_to?(:manage?, pet, with: Organizations::PetPolicy)
   end
