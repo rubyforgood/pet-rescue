@@ -27,17 +27,7 @@ class Task < ApplicationRecord
 
   default_scope { order(created_at: :asc) }
 
-  def determine_shading_class
-    if completed?
-      "bg-success-subtle"
-    elsif due_date.present?
-      check_due_date
-    end
-  end
-
-  def check_due_date
-    if due_date < Date.today
-      "bg-danger-subtle"
-    end
+  def overdue?
+    due_date < Time.current if due_date
   end
 end
