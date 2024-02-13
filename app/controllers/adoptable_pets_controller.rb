@@ -2,10 +2,10 @@ class AdoptablePetsController < Organizations::BaseController
   # skip_verify_authorized only: %i[index]
 
   def index
-    @pets = Pet.includes(:adopter_applications, images_attachments: :blob)
-      .published
-      .where
-      .missing(:match)
+    @pets = authorized_scope(
+      Pet.includes(:adopter_applications, images_attachments: :blob),
+      with: AdoptablePetPolicy
+    )
   end
 
   def show

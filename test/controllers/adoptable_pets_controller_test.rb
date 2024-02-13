@@ -8,10 +8,20 @@ class AdoptablePetsControllerTest < ActionDispatch::IntegrationTest
     @pet = create(:pet)
   end
 
+  context "#index" do
+    should "have authorized scope" do
+      assert_have_authorized_scope(
+        type: :active_record_relation, with: AdoptablePetPolicy
+      ) do
+        get adoptable_pets_url
+      end
+    end
+  end
+
   context "#show" do
     should "be authorized" do
       assert_authorized_to(:show?, @pet, with: AdoptablePetPolicy) do
-        get adoptable_pet_path(@pet)
+        get adoptable_pet_url(@pet)
       end
     end
   end
