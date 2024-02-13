@@ -4,7 +4,6 @@ class LoginTest < ApplicationSystemTestCase
   setup do
     @user = create(:user, :activated_staff)
     @organization = @user.organization
-    set_organization(@organization)
   end
 
   context "when logging in as a staff member" do

@@ -1,16 +1,16 @@
 class AdoptablePetsController < Organizations::BaseController
+  # skip_verify_authorized only: %i[index]
+
   def index
-    @pets = Pet.includes(:adopter_applications, images_attachments: :blob)
-      .published
-      .where
-      .missing(:match)
+    @pets = authorized_scope(
+      Pet.includes(:adopter_applications, images_attachments: :blob),
+      with: AdoptablePetPolicy
+    )
   end
 
   def show
     @pet = Pet.find(params[:id])
-    unless @pet.published
-      redirect_to adoptable_pets_path, alert: "You can only view published pets."
-    end
+    authorize! @pet, with: AdoptablePetPolicy
 
     if AdopterApplication.adoption_exists?(current_user&.adopter_account&.id, @pet.id)
       @adoption_application = AdopterApplication.where(pet_id: @pet.id,

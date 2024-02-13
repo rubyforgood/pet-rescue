@@ -4,7 +4,6 @@ class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
   setup do
     @match = create(:adopter_application, :adoption_pending)
     @pet = @match.pet
-    set_organization(@pet.organization)
     @pet_count = Pet.unadopted.published.count
   end
 

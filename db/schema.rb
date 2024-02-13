@@ -226,14 +226,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_133430) do
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
   end
 
-  create_table "staff_accounts_roles", id: false, force: :cascade do |t|
-    t.bigint "staff_account_id"
-    t.bigint "role_id"
-    t.index ["role_id"], name: "index_staff_accounts_roles_on_role_id"
-    t.index ["staff_account_id", "role_id"], name: "index_staff_accounts_roles_on_staff_account_id_and_role_id"
-    t.index ["staff_account_id"], name: "index_staff_accounts_roles_on_staff_account_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -271,6 +263,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_133430) do
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

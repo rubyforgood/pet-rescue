@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :adopter_account do
     transient do
-      organization { ActsAsTenant.test_tenant }
+      organization { ActsAsTenant.current_tenant }
     end
 
     user do
@@ -104,7 +104,7 @@ FactoryBot.define do
     phone_number { Faker::PhoneNumber.phone_number }
     about_us { Faker::Lorem.paragraph(sentence_count: 4) }
     location
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
   end
 
   factory :pet do
@@ -117,7 +117,7 @@ FactoryBot.define do
     weight_to { 20 }
     weight_unit { "lb" }
     species { Faker::Number.within(range: 0..1) }
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
     placement_type { Faker::Number.within(range: 0..2) }
     published { true }
 
@@ -131,24 +131,18 @@ FactoryBot.define do
   end
 
   factory :match do
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
     pet { association :pet, organization: organization }
     adopter_account { association :adopter_account, :with_adopter_profile, organization: organization }
   end
 
   factory :staff_account do
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
     user { association :user, organization: organization }
     deactivated_at { nil }
 
     trait :deactivated do
       deactivated_at { DateTime.now }
-    end
-
-    trait :admin do
-      after :create do |staff_account|
-        staff_account.add_role(:admin, staff_account.organization)
-      end
     end
   end
 
@@ -162,7 +156,7 @@ FactoryBot.define do
   factory :default_pet_task do
     name { "MyString" }
     description { "MyText" }
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
   end
 
   factory :user do
@@ -173,18 +167,21 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     tos_agreement { true }
 
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
 
     trait :activated_staff do
       staff_account { association :staff_account, organization: organization }
+      after(:create) { |user, context| user.add_role(:staff, context.organization) }
     end
 
     trait :staff_admin do
-      staff_account { association :staff_account, :admin, organization: organization }
+      staff_account { association :staff_account, organization: organization }
+      after(:create) { |user, context| user.add_role(:admin, context.organization) }
     end
 
     trait :deactivated_staff do
       staff_account { association :staff_account, :deactivated, organization: organization }
+      after(:create) { |user, context| user.add_role(:staff, context.organization) }
     end
 
     trait :adopter_without_profile do
