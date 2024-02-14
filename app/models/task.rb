@@ -23,7 +23,6 @@ class Task < ApplicationRecord
   belongs_to :pet
 
   validates :name, presence: true
-  validates :description, presence: true
 
   default_scope { order(created_at: :asc) }
 
