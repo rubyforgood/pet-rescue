@@ -25,45 +25,10 @@ class Task < ApplicationRecord
   belongs_to :pet
 
   validates :name, presence: true
-  validates :description, presence: true
-  validates :next_due_date_in_days, numericality: {only_integer: true, allow_nil: true}
-  validate :next_due_date_when_sensible
 
-<<<<<<< HEAD
-  scope :is_not_completed, -> { where(completed: false).or(where(completed: nil)) }
-  scope :is_completed, -> { where(completed: true) }
-  scope :has_due_date, -> { where.not(due_date: nil).order(due_date: :asc) }
-  scope :no_due_date, -> { where(due_date: nil).order(updated_at: :desc) }
-
-  def overdue?
-    due_date_passed? && !completed
-  end
-
-  def due_date_passed?
-    due_date < Time.current if due_date
-  end
-
-  def self.list_ordered
-    Task.is_not_completed.has_due_date +
-      Task.is_not_completed.no_due_date +
-      Task.is_completed.has_due_date +
-      Task.is_completed.no_due_date
-  end
-
-  private
-
-  def next_due_date_when_sensible
-    if next_due_date_in_days && (!due_date || !recurring)
-      errors.add(:base, "A task must be recurring and have a due date in order to set next due date in days value.")
-    elsif !next_due_date_in_days && (recurring && due_date)
-      errors.add(:base, "Recurring tasks with due dates must set a next due date in days value.")
-    end
-  end
-=======
   default_scope { order(created_at: :asc) }
 
   def overdue?
     due_date < Time.current if due_date
   end
->>>>>>> 88db27d (Add colour shading to background of each task depending on its 'status'  (#460))
 end
