@@ -26,4 +26,8 @@ class Task < ApplicationRecord
   validates :description, presence: true
 
   default_scope { order(created_at: :asc) }
+
+  def overdue?
+    due_date < Time.current if due_date
+  end
 end
