@@ -17,7 +17,7 @@
         <ul class="list-group">
           <% @pet.tasks.list_ordered.each do |task| %>
             <%= turbo_frame_tag task do %>
-              <li class="list-group-item <%= class_names({ 'bg-danger-subtle': task.overdue?, 'bg-success-subtle': task.completed }) %>">
+              <li class="list-group-item <%= class_names({ 'bg-danger-subtle': task.overdue? && !task.completed, 'bg-success-subtle': task.completed }) %>">
                 <div class="d-flex justify-content-between
                             align-items-center">
                   <div class="d-flex align-items-center">

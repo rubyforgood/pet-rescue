@@ -29,6 +29,7 @@ class Task < ApplicationRecord
   validates :next_due_date_in_days, numericality: {only_integer: true, allow_nil: true}
   validate :next_due_date_when_sensible
 
+<<<<<<< HEAD
   scope :is_not_completed, -> { where(completed: false).or(where(completed: nil)) }
   scope :is_completed, -> { where(completed: true) }
   scope :has_due_date, -> { where.not(due_date: nil).order(due_date: :asc) }
@@ -58,4 +59,11 @@ class Task < ApplicationRecord
       errors.add(:base, "Recurring tasks with due dates must set a next due date in days value.")
     end
   end
+=======
+  default_scope { order(created_at: :asc) }
+
+  def overdue?
+    due_date < Time.current if due_date
+  end
+>>>>>>> 88db27d (Add colour shading to background of each task depending on its 'status'  (#460))
 end
