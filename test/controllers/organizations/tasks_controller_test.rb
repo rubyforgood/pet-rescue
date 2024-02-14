@@ -6,7 +6,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:user, :activated_staff, :staff_admin)
     set_organization(@user.organization)
-    @organization = ActsAsTenant.test_tenant
+    @organization = ActsAsTenant.current_tenant
     @pet = create(:pet)
     @task = create(:task, pet: @pet)
     sign_in @user
