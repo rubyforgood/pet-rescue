@@ -205,6 +205,7 @@
       "contributions": [
         "code"
       ]
+<<<<<<< HEAD
     },
     {
       "login": "Developer3027",
@@ -214,6 +215,8 @@
       "contributions": [
         "code"
       ]
+=======
+>>>>>>> 87c526d (docs: add mononoken as a contributor for code (#469))
     }
   ],
   "contributorsPerLine": 7,
