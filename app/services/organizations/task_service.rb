@@ -4,16 +4,14 @@ class Organizations::TaskService
   end
 
   def create_next
-    if need_next?
-      Task.create(
-        pet_id: @task.pet_id,
-        name: @task.name,
-        description: @task.description,
-        recurring: true,
-        next_due_date_in_days: @task.next_due_date_in_days,
-        due_date: next_due_date
-      )
-    end
+    Task.create(
+      pet_id: @task.pet_id,
+      name: @task.name,
+      description: @task.description,
+      recurring: true,
+      next_due_date_in_days: @task.next_due_date_in_days,
+      due_date: next_due_date
+    )
   end
 
   private
@@ -26,10 +24,6 @@ class Organizations::TaskService
     else
       @task.due_date + @task.next_due_date_in_days.days
     end
-  end
-
-  def need_next?
-    @task.recurring && @task.completed_previously_changed?(from: false, to: true)
   end
 
   def overdue?
