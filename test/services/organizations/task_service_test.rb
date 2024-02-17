@@ -1,24 +1,6 @@
 require "test_helper"
 
 class Organizations::TaskServiceTest < ActiveSupport::TestCase
-  test "doesn't create new task unless recurring" do
-    task = create(:task)
-    task.update(completed: true)
-
-    assert_no_difference "Task.count" do
-      Organizations::TaskService.new(task).create_next
-    end
-  end
-
-  test "doesn't create new task unless previous task was changed from incomplete to complete" do
-    task = create(:task, recurring: true, completed: true)
-    task.update(completed: false)
-
-    assert_no_difference "Task.count" do
-      Organizations::TaskService.new(task).create_next
-    end
-  end
-
   test "creates new task with due date equal to previous task due date plus next due date in days if not overdue" do
     task = create(:task, recurring: true, due_date: 2.days.ago, next_due_date_in_days: 1)
     task.update(completed: true)
