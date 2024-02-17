@@ -30,6 +30,9 @@ class Task < ApplicationRecord
   validate :next_due_date_when_sensible
 
   default_scope { order(created_at: :asc) }
+  def overdue?
+    due_date < Time.current if due_date
+  end
 
   private
 
