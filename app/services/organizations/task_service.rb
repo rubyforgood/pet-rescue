@@ -19,14 +19,10 @@ class Organizations::TaskService
   def next_due_date
     return nil unless @task.due_date
 
-    if overdue?
+    if @task.due_date_passed?
       @task.updated_at + @task.next_due_date_in_days.days
     else
       @task.due_date + @task.next_due_date_in_days.days
     end
-  end
-
-  def overdue?
-    @task.due_date < @task.updated_at
   end
 end
