@@ -1,4 +1,4 @@
-<%= bootstrap_form_with model: task, url: url do |f| %>
+<%= bootstrap_form_with model: task, url: url, data: {controller: "task-form"} do |f| %>
   <div class="m-3">
     <div class='row'>
       <div class='col-9'>
@@ -8,7 +8,7 @@
         <%= f.date_field :due_date, 
                           class: 'form-control', 
                           id: "due-date",
-                          onchange: "document.getElementById('next-due').disabled = !document.getElementById('recur').checked || !this.value;" %>
+                          data: {task_form_target: :dueDate, action: "change->task-form#updateDueInDaysField"} %>
       </div>
     </div>
   </div>
@@ -17,13 +17,14 @@
       <%= f.check_box :recurring, 
                       { class: "form-check-input",  
                       id: "recur",
-                      onchange: "document.getElementById('next-due').disabled = !this.checked || !document.getElementById('due-date').value;"} %>
+                      data: {task_form_target: :recurring, action: "change->task-form#updateDueInDaysField"}} %>
       <div class="w-75">
         <%= f.number_field :next_due_date_in_days, 
                           label: "Next due date in (days)", 
                           id: "next-due", 
                           class: 'form-control',
-                          disabled: task.next_due_date_in_days ? false : true %>
+                          disabled: task.next_due_date_in_days ? false : true,
+                          data: {task_form_target: :daysField} %>
       </div>
     </div>
   </div>
