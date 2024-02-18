@@ -28,6 +28,7 @@ module Authorizable
 
   ADMIN_PERMISSIONS = (
     STAFF_PERMISSIONS + %i[
+      manage_organization_profile
       activate_staff
       invite_staff
       manage_staff

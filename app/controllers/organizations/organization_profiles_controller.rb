@@ -1,12 +1,12 @@
 class Organizations::OrganizationProfilesController < Organizations::BaseController
   layout "dashboard"
 
+  before_action :set_organization_profile, only: %i[edit update]
+
   def edit
-    @organization_profile = OrganizationProfile.first
   end
 
   def update
-    @organization_profile = OrganizationProfile.first
     if @organization_profile.update(organization_profile_params)
       redirect_to edit_organization_profile_path, notice: "Your profile has been updated!"
     else
@@ -24,5 +24,11 @@ class Organizations::OrganizationProfilesController < Organizations::BaseControl
       :avatar,
       location_attributes: %i[city_town country province_state]
     )
+  end
+
+  def set_organization_profile
+    @organization_profile = OrganizationProfile.first
+
+    authorize! @organization_profile
   end
 end
