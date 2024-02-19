@@ -64,4 +64,20 @@ class TasksTest < ApplicationSystemTestCase
       end
     end
   end
+
+  test "allows user to update a recurring task by making it un-recurring" do
+    due_date = (Date.today + 1.day)
+    recurring_task = create(:task, recurring: true, completed: false, pet: @pet, name: "recurring task", due_date: due_date, next_due_date_in_days: 5)
+    visit pet_path(@pet, active_tab: "tasks")
+
+    click_link("Edit")
+    within "#task_#{recurring_task.id}" do
+      uncheck "recur"
+    end
+
+    assert_equal "", find("#next-due").value
+
+    click_on "Update Task"
+    assert_no_text "Update Task"
+  end
 end

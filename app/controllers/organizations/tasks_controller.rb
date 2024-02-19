@@ -24,6 +24,7 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def update
+    reset_next_due_if_missing
     if @task.update(task_params)
       if @task.recurring && @task.completed_previously_changed?(from: false, to: true)
         Organizations::TaskService.new(@task).create_next
@@ -71,5 +72,11 @@ class Organizations::TasksController < Organizations::BaseController
 
   def task_params
     params.require(:task).permit(:name, :description, :completed, :due_date, :recurring, :next_due_date_in_days)
+  end
+
+  def reset_next_due_if_missing
+    unless task_params.has_key?(:next_due_date_in_days)
+      @task.next_due_date_in_days = nil
+    end
   end
 end
