@@ -82,7 +82,7 @@ ActsAsTenant.with_tenant(@organization) do
     zipcode: "12345"
   )
 
-  @adopter_profile_one = AdopterProfile.create!(
+  @adopter_foster_profile_one = AdopterFosterProfile.create!(
     location_id: @location_one.id,
     adopter_account_id: @adopter_account_one.id,
     phone_number: "250 548 7721",
@@ -126,7 +126,7 @@ ActsAsTenant.with_tenant(@organization) do
     zipcode: "12345"
   )
 
-  @adopter_profile_two = AdopterProfile.create!(
+  @adopter_foster_profile_two = AdopterFosterProfile.create!(
     location_id: @location_two.id,
     adopter_account_id: @adopter_account_two.id,
     phone_number: "250 548 7721",
@@ -173,7 +173,7 @@ ActsAsTenant.with_tenant(@organization) do
     zipcode: "12345"
   )
 
-  @adopter_profile_three = AdopterProfile.create!(
+  @adopter_foster_profile_three = AdopterFosterProfile.create!(
     location_id: @location_three.id,
     adopter_account_id: @adopter_account_three.id,
     phone_number: "250 548 7721",

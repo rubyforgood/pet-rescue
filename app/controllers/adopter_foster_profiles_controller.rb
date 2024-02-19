@@ -1,4 +1,4 @@
-class AdopterProfilesController < ApplicationController
+class AdopterFosterProfilesController < ApplicationController
   # staff and admin cannot create a profile
   before_action :authenticate_user!
   before_action :check_if_adopter, only: [:new, :create, :update, :show]
@@ -8,18 +8,18 @@ class AdopterProfilesController < ApplicationController
   # https://guides.rubyonrails.org/association_basics.html#the-belongs-to-association
   def new
     if profile_nil?
-      @adopter_profile = AdopterProfile.new
-      @adopter_profile.build_location
+      @adopter_foster_profile = AdopterFosterProfile.new
+      @adopter_foster_profile.build_location
     else
       redirect_to profile_path
     end
   end
 
   def create
-    @adopter_profile = AdopterProfile.new(adopter_profile_params)
+    @adopter_foster_profile = AdopterFosterProfile.new(adopter_foster_profile_params)
 
     respond_to do |format|
-      if @adopter_profile.save
+      if @adopter_foster_profile.save
         format.html { redirect_to profile_path, notice: "Profile created" }
       else
         format.html { render :new, status: :unprocessable_entity, alert: "Error" }
@@ -28,17 +28,17 @@ class AdopterProfilesController < ApplicationController
   end
 
   def show
-    @adopter_profile = current_user.adopter_account.adopter_profile
+    @adopter_foster_profile = current_user.adopter_account.adopter_foster_profile
   end
 
   def edit
-    @adopter_profile = current_user.adopter_account.adopter_profile
+    @adopter_foster_profile = current_user.adopter_account.adopter_foster_profile
   end
 
   def update
-    @adopter_profile = current_user.adopter_account.adopter_profile
+    @adopter_foster_profile = current_user.adopter_account.adopter_foster_profile
     respond_to do |format|
-      if @adopter_profile.update(adopter_profile_params)
+      if @adopter_foster_profile.update(adopter_foster_profile_params)
         format.html { redirect_to profile_path, notice: "Profile updated" }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,11 +49,11 @@ class AdopterProfilesController < ApplicationController
   private
 
   def profile_nil?
-    AdopterProfile.where(adopter_account_id: current_user.adopter_account.id)[0].nil?
+    AdopterFosterProfile.where(adopter_account_id: current_user.adopter_account.id)[0].nil?
   end
 
-  def adopter_profile_params
-    params.require(:adopter_profile).permit(:adopter_account_id,
+  def adopter_foster_profile_params
+    params.require(:adopter_foster_profile).permit(:adopter_account_id,
       :phone_number,
       :contact_method,
       :ideal_pet,

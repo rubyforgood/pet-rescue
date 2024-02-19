@@ -10,11 +10,11 @@ export default class extends Controller {
 
     for (let i = 0; i < nodeList.length; i++) {
       let child = nodeList[i];
-      if (child.id == 'adopter_profile_fenced_access_false' &&
+      if (child.id == 'adopter_foster_profile_fenced_access_false' &&
           child.checked == true) {
           this.show()
       } else if (child.type == 'radio' &&
-                 child.id != 'adopter_profile_fenced_access_true' &&
+                 child.id != 'adopter_foster_profile_fenced_access_true' &&
                  child.value == 'true' && 
                  child.checked == true) {
                  this.show()

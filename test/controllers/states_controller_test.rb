@@ -4,7 +4,7 @@ class StatesControllerTest < ActionDispatch::IntegrationTest
   test "should return turbo stream with the states in it" do
     create(:user, :adopter_with_profile)
     name = "adopter[address_attributes][state]"
-    target = "adopter_profile_location_attributes_province_state"
+    target = "adopter_foster_profile_location_attributes_province_state"
 
     get country_states_path(:country),
       headers: {"Accept" => "text/vnd.turbo-stream.html"},

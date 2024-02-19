@@ -1,4 +1,4 @@
-module AdopterProfileHelper
+module AdopterFosterProfileHelper
   def provinces_states
     [
       [

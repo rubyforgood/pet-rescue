@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: adopter_profiles
+# Table name: adopter_foster_profiles
 #
 #  id                 :bigint           not null, primary key
 #  activities         :text
@@ -50,9 +50,7 @@
 #  fk_rails_...  (adopter_account_id => adopter_accounts.id)
 #  fk_rails_...  (location_id => locations.id)
 #
-class AdopterProfile < ApplicationRecord
-  self.table_name = "adopter_foster_profiles"
-
+class AdopterFosterProfile < ApplicationRecord
   belongs_to :location, dependent: :destroy
   belongs_to :adopter_account
   accepts_nested_attributes_for :location
