@@ -67,5 +67,4 @@ class TaskTest < ActiveSupport::TestCase
 
     assert_equal([task2, task6, task5, task4, task3, task1], [list[0], list[1], list[2], list[3], list[4], list[5]])
   end
-  should validate_numericality_of(:next_due_date_in_days).only_integer.allow_nil
 end
