@@ -29,7 +29,10 @@ class Task < ApplicationRecord
   validates :next_due_date_in_days, numericality: {only_integer: true, allow_nil: true}
   validate :next_due_date_when_sensible
 
-  default_scope { order(created_at: :asc) }
+  scope :is_not_completed, -> { where(completed: false).or(where(completed: nil)) }
+  scope :is_completed, -> { where(completed: true) }
+  scope :has_due_date, -> { where.not(due_date: nil).order(due_date: :asc) }
+  scope :no_due_date, -> { where(due_date: nil).order(updated_at: :desc) }
 
   def overdue?
     due_date_passed? && !completed
@@ -37,6 +40,13 @@ class Task < ApplicationRecord
 
   def due_date_passed?
     due_date < Time.current if due_date
+  end
+
+  def self.list_ordered
+    Task.is_not_completed.has_due_date +
+      Task.is_not_completed.no_due_date +
+      Task.is_completed.has_due_date +
+      Task.is_completed.no_due_date
   end
 
   private
