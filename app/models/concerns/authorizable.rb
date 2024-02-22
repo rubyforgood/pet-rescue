@@ -23,14 +23,15 @@ module Authorizable
     ADOPTER_PERMISSIONS + %i[
       manage_pets
       manage_tasks
+      view_organization_dashboard
     ]
   ).freeze
 
   ADMIN_PERMISSIONS = (
     STAFF_PERMISSIONS + %i[
-      manage_organization_profile
       activate_staff
       invite_staff
+      manage_organization_profile
       manage_staff
     ]
   ).freeze
