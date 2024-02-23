@@ -34,6 +34,24 @@ class TaskTest < ActiveSupport::TestCase
     assert_equal "New description", task.description
   end
 
+  test "does not allow recurring task with no due date to have next due date in days" do
+    task = build(:task, recurring: true, due_date: nil, next_due_date_in_days: 5)
+
+    assert_not task.valid?
+  end
+
+  test "does not allow non-recurring task to have next due date in days" do
+    task = build(:task, recurring: false, due_date: nil, next_due_date_in_days: 5)
+
+    assert_not task.valid?
+  end
+
+  test "does not allow recurring task without due date to have next due date in days" do
+    task = build(:task, recurring: true, due_date: nil, next_due_date_in_days: 5)
+
+    assert_not task.valid?
+  end
+
   should validate_presence_of(:name)
 
   test "should return tasks list in the correct order" do
@@ -49,4 +67,5 @@ class TaskTest < ActiveSupport::TestCase
 
     assert_equal([task2, task6, task5, task4, task3, task1], [list[0], list[1], list[2], list[3], list[4], list[5]])
   end
+  should validate_numericality_of(:next_due_date_in_days).only_integer.allow_nil
 end
