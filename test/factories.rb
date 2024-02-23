@@ -22,7 +22,11 @@ FactoryBot.define do
     profile_show { true }
     status { 1 }
 
-    adopter_account
+    transient do
+      user { build(:user, :adopter_with_profile) }
+    end
+
+    adopter_account { association :adopter_account, user: user }
     pet
 
     trait :adoption_pending do
@@ -186,10 +190,12 @@ FactoryBot.define do
 
     trait :adopter_without_profile do
       adopter_account
+      after(:build) { |user, context| user.add_role(:adopter, context.organization) }
     end
 
     trait :adopter_with_profile do
       association :adopter_account, :with_adopter_profile
+      after(:build) { |user, context| user.add_role(:adopter, context.organization) }
     end
   end
 end
