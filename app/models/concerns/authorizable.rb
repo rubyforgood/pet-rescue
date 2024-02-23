@@ -17,7 +17,11 @@ module Authorizable
     end
   end
 
-  ADOPTER_PERMISSIONS = %i[].freeze
+  ADOPTER_PERMISSIONS = %i[
+    create_adopter_applications
+    view_adopter_applications
+    withdraw_adopter_applications
+  ].freeze
 
   STAFF_PERMISSIONS = (
     ADOPTER_PERMISSIONS + %i[
