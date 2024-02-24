@@ -51,9 +51,8 @@ Rails.application.routes.draw do
   get "/terms_and_conditions", to: "static_pages#terms_and_conditions"
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
-  get "/my_applications", to: "adopter_applications#index"
-  post "create_my_application", to: "adopter_applications#create"
-  patch "my_application", to: "adopter_applications#update"
+  resources :adopter_applications, path: "applications",
+    only: %i[index create update]
 
   post "create_adoption", to: "matches#create"
   delete "revoke_adoption", to: "matches#delete"
