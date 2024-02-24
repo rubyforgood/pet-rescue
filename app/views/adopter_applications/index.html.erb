@@ -59,12 +59,13 @@
               <!--withdraw button-->
               <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
                           align-items-center">
-                <%= button_to 'Withdraw', 
-                            my_application_path(application: { id: app.id, 
-                                                               status: 'withdrawn' }),  
-                            data: { turbo: "false" },
-                            method: 'patch',
-                            class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
+                <%= form_with model: app do |form| %>
+                  <%= form.hidden_field :status, value: "withdrawn" %>
+                  <%= form.submit t(".withdraw"),
+                    data: { turbo: false },
+                    class: "btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0"
+                  %>
+                <% end %>
               </div>
             <% end %>
 
@@ -72,12 +73,13 @@
                 <!--remove button-->
                 <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
                             align-items-center">
-                  <%= button_to t('.remove'),
-                              my_application_path(application: { id: app.id, 
-                                                                      profile_show: false }),  
-                              data: { turbo: 'false' },
-                              method: 'patch',
-                              class: 'btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0' %>
+                  <%= form_with model: app do |form| %>
+                    <%= form.hidden_field :profile_show, value: false %>
+                    <%= form.submit t('.remove'),
+                      data: { turbo: false },
+                      class: "btn btn-outline-dark mt-3 mt-md-0 mb-3 mb-md-0"
+                    %>
+                  <% end %>
                 </div>
               <% end %>
           </div>

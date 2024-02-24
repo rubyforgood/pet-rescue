@@ -12,9 +12,15 @@ class AdoptablePetsController < Organizations::BaseController
       redirect_to adoptable_pets_path, alert: "You can only view published pets."
     end
 
-    if AdopterApplication.adoption_exists?(current_user&.adopter_account&.id, @pet.id)
-      @adoption_application = AdopterApplication.where(pet_id: @pet.id,
-        adopter_account_id: current_user.adopter_account.id).first
+    if current_user
+      @adoption_application =
+        AdopterApplication.find_by(
+          pet_id: @pet.id,
+          adopter_account_id: current_user.adopter_account.id
+        ) ||
+        @pet.adopter_applications.build(
+          adopter_account: current_user.adopter_account
+        )
     end
 
     return unless @pet.match
