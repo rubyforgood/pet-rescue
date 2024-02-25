@@ -22,9 +22,5 @@ class AdoptablePetsController < Organizations::BaseController
           adopter_account: current_user.adopter_account
         )
     end
-
-    return unless @pet.match
-
-    redirect_to adoptable_pets_path, alert: "You can only view pets that need adoption."
   end
 end

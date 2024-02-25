@@ -6,7 +6,9 @@ class AdoptablePetPolicy < ApplicationPolicy
   end
 
   def show?
-    permission?(:manage_pets) || published?
+    allow! if permission?(:manage_pets)
+
+    published? && !record.application_paused && !record.match
   end
 
   private

@@ -28,7 +28,7 @@ class AdoptablePetPolicyTest < ActiveSupport::TestCase
 
       context "when user is adopter" do
         setup do
-          @user = create(:user, :adopter_without_profile)
+          @user = create(:user, :adopter_with_profile)
         end
 
         should "return false" do
@@ -55,6 +55,17 @@ class AdoptablePetPolicyTest < ActiveSupport::TestCase
 
       should "return true" do
         assert_equal @action.call, true
+      end
+    end
+
+    context "when pet already has a match" do
+      setup do
+        @pet = create(:pet, :adopted)
+        @user = create(:user, :adopter_with_profile)
+      end
+
+      should "return false" do
+        assert_equal @action.call, false
       end
     end
   end
