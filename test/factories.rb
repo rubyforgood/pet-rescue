@@ -26,7 +26,10 @@ FactoryBot.define do
       user { build(:user, :adopter_with_profile) }
     end
 
-    adopter_account { association :adopter_account, user: user }
+    adopter_account do
+      user.adopter_account || association(:adopter_account, user: user)
+    end
+
     pet
 
     trait :adoption_pending do
@@ -195,7 +198,7 @@ FactoryBot.define do
     end
 
     trait :adopter_with_profile do
-      association :adopter_account, :with_adopter_profile
+      adopter_account { association :adopter_account, :with_adopter_profile }
       after(:build) { |user, context| user.add_role(:adopter, context.organization) }
     end
   end
