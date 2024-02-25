@@ -8,6 +8,7 @@ class ApplicationPolicy < ActionPolicy::Base
 
   pre_check :verify_authenticated!
 
+  # Default authorized_scope; override for individual policies if necessary.
   relation_scope do |relation|
     relation.where(organization: user.organization)
   end
