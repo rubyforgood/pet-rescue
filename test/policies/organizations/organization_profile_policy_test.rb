@@ -37,9 +37,9 @@ class Organizations::OrganizationProfilePolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is active staff" do
+    context "when user is deactivated staff" do
       setup do
-        @user = create(:user, :activated_staff)
+        @user = create(:user, :deactivated_staff)
       end
 
       should "return false" do
@@ -47,9 +47,9 @@ class Organizations::OrganizationProfilePolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is deactivated staff" do
+    context "when user is active staff" do
       setup do
-        @user = create(:user, :deactivated_staff)
+        @user = create(:user, :activated_staff)
       end
 
       should "return false" do

@@ -40,16 +40,6 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
       end
 
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
       context "when user is deactivated staff" do
         setup do
           @user = create(:user, :deactivated_staff)
@@ -57,6 +47,16 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
 
         should "return false" do
           assert_equal @action.call, false
+        end
+      end
+
+      context "when user is active staff" do
+        setup do
+          @user = create(:user, :activated_staff)
+        end
+
+        should "return true" do
+          assert_equal @action.call, true
         end
       end
 
@@ -119,16 +119,6 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
       end
 
-      context "when user is active staff" do
-        setup do
-          @user = create(:user, :activated_staff)
-        end
-
-        should "return true" do
-          assert_equal @action.call, true
-        end
-      end
-
       context "when user is deactivated staff" do
         setup do
           @user = create(:user, :deactivated_staff)
@@ -136,6 +126,16 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
 
         should "return false" do
           assert_equal @action.call, false
+        end
+      end
+
+      context "when user is active staff" do
+        setup do
+          @user = create(:user, :activated_staff)
+        end
+
+        should "return true" do
+          assert_equal @action.call, true
         end
       end
 
