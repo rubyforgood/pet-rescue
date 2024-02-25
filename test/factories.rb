@@ -1,4 +1,10 @@
 FactoryBot.define do
+  factory :page_text do
+    organization { nil }
+    hero { "MyString" }
+    about { "MyText" }
+  end
+
   factory :adopter_account do
     transient do
       organization { ActsAsTenant.current_tenant }
