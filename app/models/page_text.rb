@@ -19,4 +19,7 @@
 #
 class PageText < ApplicationRecord
   acts_as_tenant(:organization)
+
+  validates :hero, presence: true, allow_nil: true
+  validates :about, presence: true, allow_nil: true
 end

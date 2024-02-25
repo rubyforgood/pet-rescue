@@ -1,10 +1,4 @@
 FactoryBot.define do
-  factory :page_text do
-    organization { nil }
-    hero { "MyString" }
-    about { "MyText" }
-  end
-
   factory :adopter_account do
     transient do
       organization { ActsAsTenant.current_tenant }
@@ -110,6 +104,12 @@ FactoryBot.define do
     phone_number { Faker::PhoneNumber.phone_number }
     about_us { Faker::Lorem.paragraph(sentence_count: 4) }
     location
+    organization { ActsAsTenant.current_tenant }
+  end
+
+  factory :page_text do
+    hero { "MyString" }
+    about { Faker::Lorem.sentence }
     organization { ActsAsTenant.current_tenant }
   end
 
