@@ -1,10 +1,6 @@
 FactoryBot.define do
   factory :adopter_account do
-    transient do
-      organization { ActsAsTenant.current_tenant }
-    end
-
-    user { association :user, organization: organization }
+    user { association :user }
 
     trait :with_adopter_profile do
       after(:build) do |account|
@@ -13,7 +9,7 @@ FactoryBot.define do
     end
 
     after(:build) do |_account, context|
-      context.user.add_role(:adopter, context.organization)
+      context.user.add_role(:adopter, context.user.organization)
     end
   end
 end

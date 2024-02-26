@@ -11,14 +11,12 @@ FactoryBot.define do
 
     factory :adopter do
       adopter_account do
-        association :adopter_account, user: instance,
-          organization: organization
+        association :adopter_account, user: instance
       end
 
       trait :with_profile do
         adopter_account do
-          association :adopter_account, :with_adopter_profile, user: instance,
-            organization: organization
+          association :adopter_account, :with_adopter_profile, user: instance
         end
       end
     end
