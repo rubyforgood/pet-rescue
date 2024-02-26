@@ -13,7 +13,13 @@ FactoryBot.define do
     end
 
     trait :with_adopter_profile do
-      adopter_profile { association :adopter_profile, adopter_account: instance }
+      after(:build) do |account|
+        build(:adopter_profile, adopter_account: account)
+      end
+    end
+
+    after(:build) do |_account, context|
+      context.user.add_role(:adopter, context.organization)
     end
   end
 
@@ -23,11 +29,16 @@ FactoryBot.define do
     status { 1 }
 
     transient do
-      user { build(:user, :adopter_with_profile) }
+      user { nil }
     end
 
     adopter_account do
-      user.adopter_account || association(:adopter_account, user: user)
+      if user
+        user.adopter_account ||
+          association(:adopter_account, :with_adopter_profile, user: user)
+      else
+        association :adopter_account, :with_adopter_profile
+      end
     end
 
     pet
@@ -194,12 +205,12 @@ FactoryBot.define do
 
     trait :adopter_without_profile do
       adopter_account
-      after(:build) { |user, context| user.add_role(:adopter, context.organization) }
     end
 
     trait :adopter_with_profile do
-      adopter_account { association :adopter_account, :with_adopter_profile }
-      after(:build) { |user, context| user.add_role(:adopter, context.organization) }
+      adopter_account do
+        association(:adopter_account, :with_adopter_profile, user: instance)
+      end
     end
   end
 end
