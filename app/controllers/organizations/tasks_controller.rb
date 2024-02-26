@@ -24,7 +24,13 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def update
+    @task.next_due_date_in_days = nil unless task_params.dig(:next_due_date_in_days)
+
     if @task.update(task_params)
+      if @task.recurring && @task.completed_previously_changed?(from: false, to: true)
+        Organizations::TaskService.new(@task).create_next
+      end
+
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/pets/tasks/tasks", locals: {task: @task}) }
       end
@@ -66,6 +72,6 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :completed, :due_date)
+    params.require(:task).permit(:name, :description, :completed, :due_date, :recurring, :next_due_date_in_days)
   end
 end

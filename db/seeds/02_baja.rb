@@ -238,11 +238,13 @@ ActsAsTenant.with_tenant(@organization) do
     )
     pet.images.attach(io: File.open(path), filename: "hero.jpg")
 
-    DefaultPetTask.all.each do |task|
+    due_dates = [Date.today - 1.day, Date.today, Date.today + 30.days]
+    DefaultPetTask.all.each_with_index do |task, index|
       Task.create!(
         pet_id: pet.id,
         name: task.name,
-        description: task.description
+        description: task.description,
+        due_date: due_dates[index]
       )
     end
   end

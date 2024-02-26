@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_31_185014) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_02_201249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,6 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_31_185014) do
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "due_in_days"
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
 
@@ -236,11 +237,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_31_185014) do
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.boolean "completed"
+    t.boolean "completed", default: false
     t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "due_date"
+    t.boolean "recurring", default: false
+    t.integer "next_due_date_in_days"
     t.index ["pet_id"], name: "index_tasks_on_pet_id"
   end
 

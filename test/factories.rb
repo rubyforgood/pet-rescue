@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :adopter_account do
     transient do
-      organization { ActsAsTenant.test_tenant }
+      organization { ActsAsTenant.current_tenant }
     end
 
     user do
@@ -104,7 +104,7 @@ FactoryBot.define do
     phone_number { Faker::PhoneNumber.phone_number }
     about_us { Faker::Lorem.paragraph(sentence_count: 4) }
     location
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
   end
 
   factory :pet do
@@ -117,7 +117,7 @@ FactoryBot.define do
     weight_to { 20 }
     weight_unit { "lb" }
     species { Faker::Number.within(range: 0..1) }
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
     placement_type { Faker::Number.within(range: 0..2) }
     published { true }
 
@@ -131,13 +131,13 @@ FactoryBot.define do
   end
 
   factory :match do
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
     pet { association :pet, organization: organization }
     adopter_account { association :adopter_account, :with_adopter_foster_profile, organization: organization }
   end
 
   factory :staff_account do
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
     user { association :user, organization: organization }
     deactivated_at { nil }
 
@@ -157,12 +157,15 @@ FactoryBot.define do
     description { "MyText" }
     completed { false }
     pet
+    recurring { false }
+    due_date { nil }
+    next_due_date_in_days { nil }
   end
 
   factory :default_pet_task do
     name { "MyString" }
     description { "MyText" }
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
   end
 
   factory :user do
@@ -173,7 +176,7 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     tos_agreement { true }
 
-    organization { ActsAsTenant.test_tenant }
+    organization { ActsAsTenant.current_tenant }
 
     trait :activated_staff do
       staff_account { association :staff_account, organization: organization }
