@@ -20,7 +20,7 @@ class UserTest < ActiveSupport::TestCase
       user = create(:user)
       assert user.valid?
 
-      user2 = build(:user, email: user.email, organization: user.organization)
+      user2 = build(:user, email: user.email)
       assert user2.invalid?
     end
   end

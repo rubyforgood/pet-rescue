@@ -3,7 +3,7 @@ require "test_helper"
 class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:staff)
-    @pet = create(:pet, organization: @user.staff_account.organization)
+    @pet = create(:pet)
     sign_in @user
   end
 

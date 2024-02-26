@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :staff_account do
-    organization { ActsAsTenant.current_tenant }
-    user { association :user, organization: organization }
+    user { association :user }
     deactivated_at { nil }
 
     trait :deactivated do

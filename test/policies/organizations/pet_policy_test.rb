@@ -148,7 +148,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
           setup do
             @other_organization = create(:organization)
             ActsAsTenant.with_tenant(@other_organization) do
-              @pet = create(:pet, organization: @other_organization)
+              @pet = create(:pet)
             end
           end
 

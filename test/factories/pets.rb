@@ -5,7 +5,6 @@ FactoryBot.define do
     breed { Faker::Creature::Dog.breed }
     description { Faker::Lorem.sentence }
     name { Faker::Creature::Dog.name }
-    organization { ActsAsTenant.current_tenant }
     placement_type { Faker::Number.within(range: 0..2) }
     published { true }
     sex { Faker::Creature::Dog.gender }
@@ -19,7 +18,7 @@ FactoryBot.define do
     end
 
     trait :adopted do
-      match { association :match, organization: organization }
+      match { association :match }
     end
   end
 end

@@ -7,8 +7,6 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     tos_agreement { true }
 
-    organization { ActsAsTenant.current_tenant }
-
     factory :adopter do
       adopter_account do
         association :adopter_account, user: instance
@@ -23,22 +21,19 @@ FactoryBot.define do
 
     factory :staff do
       staff_account do
-        association :staff_account, user: instance,
-          organization: organization
+        association :staff_account, user: instance
       end
 
       trait :deactivated do
         staff_account do
-          association :staff_account, :deactivated, user: instance,
-            organization: organization
+          association :staff_account, :deactivated, user: instance
         end
       end
     end
 
     factory :staff_admin do
       staff_account do
-        association :staff_account, :admin, user: instance,
-          organization: organization
+        association :staff_account, :admin, user: instance
       end
     end
   end
