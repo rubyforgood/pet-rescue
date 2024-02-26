@@ -163,6 +163,16 @@ FactoryBot.define do
     trait :deactivated do
       deactivated_at { DateTime.now }
     end
+
+    trait :admin do
+      after(:build) do |_account, context|
+        context.user.add_role(:admin, context.organization)
+      end
+    end
+
+    after(:build) do |_account, context|
+      context.user.add_role(:staff, context.organization)
+    end
   end
 
   factory :task do
@@ -188,28 +198,38 @@ FactoryBot.define do
 
     organization { ActsAsTenant.current_tenant }
 
-    trait :activated_staff do
-      staff_account { association :staff_account, organization: organization }
-      after(:create) { |user, context| user.add_role(:staff, context.organization) }
-    end
-
-    trait :staff_admin do
-      staff_account { association :staff_account, organization: organization }
-      after(:create) { |user, context| user.add_role(:admin, context.organization) }
-    end
-
-    trait :deactivated_staff do
-      staff_account { association :staff_account, :deactivated, organization: organization }
-      after(:create) { |user, context| user.add_role(:staff, context.organization) }
-    end
-
-    trait :adopter_without_profile do
-      adopter_account
-    end
-
-    trait :adopter_with_profile do
+    factory :adopter do
       adopter_account do
-        association(:adopter_account, :with_adopter_profile, user: instance)
+        association :adopter_account, user: instance,
+          organization: organization
+      end
+
+      trait :with_profile do
+        adopter_account do
+          association :adopter_account, :with_adopter_profile, user: instance,
+            organization: organization
+        end
+      end
+    end
+
+    factory :staff do
+      staff_account do
+        association :staff_account, user: instance,
+          organization: organization
+      end
+
+      trait :deactivated do
+        staff_account do
+          association :staff_account, :deactivated, user: instance,
+            organization: organization
+        end
+      end
+    end
+
+    factory :staff_admin do
+      staff_account do
+        association :staff_account, :admin, user: instance,
+          organization: organization
       end
     end
   end

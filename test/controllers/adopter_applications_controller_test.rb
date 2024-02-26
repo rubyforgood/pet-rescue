@@ -6,7 +6,7 @@ class AdopterApplicationsControllerTest < ActionDispatch::IntegrationTest
     include ActionPolicy::TestHelper
 
     setup do
-      @user = create(:user, :adopter_with_profile)
+      @user = create(:adopter, :with_profile)
       sign_in @user
     end
 

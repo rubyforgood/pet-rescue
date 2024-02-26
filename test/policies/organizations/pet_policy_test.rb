@@ -30,7 +30,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is adopter" do
         setup do
-          @user = create(:user, :adopter_without_profile)
+          @user = create(:adopter)
         end
 
         should "return false" do
@@ -40,7 +40,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is deactivated staff" do
         setup do
-          @user = create(:user, :deactivated_staff)
+          @user = create(:staff, :deactivated)
         end
 
         should "return false" do
@@ -50,7 +50,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is active staff" do
         setup do
-          @user = create(:user, :activated_staff)
+          @user = create(:staff)
         end
 
         should "return true" do
@@ -60,7 +60,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:user, :staff_admin)
+          @user = create(:staff_admin)
         end
 
         should "return true" do
@@ -111,7 +111,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is adopter" do
         setup do
-          @user = create(:user, :adopter_without_profile)
+          @user = create(:adopter)
         end
 
         should "return false" do
@@ -121,7 +121,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is deactivated staff" do
         setup do
-          @user = create(:user, :deactivated_staff)
+          @user = create(:staff, :deactivated)
         end
 
         should "return false" do
@@ -131,7 +131,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is active staff" do
         setup do
-          @user = create(:user, :activated_staff)
+          @user = create(:staff)
         end
 
         should "return true" do
@@ -141,7 +141,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:user, :staff_admin)
+          @user = create(:staff_admin)
         end
 
         context "when pet is from a different organization" do

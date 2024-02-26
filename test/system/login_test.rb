@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class LoginTest < ApplicationSystemTestCase
   setup do
-    @user = create(:user, :activated_staff)
+    @user = create(:staff)
     @organization = @user.organization
   end
 

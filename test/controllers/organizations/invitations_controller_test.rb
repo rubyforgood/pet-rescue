@@ -7,7 +7,7 @@ class Organizations::InvitationControllerTest < ActionDispatch::IntegrationTest
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      user = create(:user, :staff_admin)
+      user = create(:staff_admin)
       sign_in user
     end
 

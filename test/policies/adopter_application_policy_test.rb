@@ -18,7 +18,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
     context "when user is adopter with profile" do
       setup do
-        @user = create(:user, :adopter_with_profile)
+        @user = create(:adopter, :with_profile)
       end
 
       context "when there are applications that do not belong to user" do
@@ -79,7 +79,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
     context "when user is adopter without profile" do
       setup do
-        @user = create(:user, :adopter_without_profile)
+        @user = create(:adopter)
       end
 
       should "return false" do
@@ -89,7 +89,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
     context "when user is adopter with profile" do
       setup do
-        @user = create(:user, :adopter_with_profile)
+        @user = create(:adopter, :with_profile)
       end
 
       should "return true" do
@@ -130,7 +130,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
     context "when user is adopter without profile" do
       setup do
-        @user = create(:user, :adopter_without_profile)
+        @user = create(:adopter)
       end
 
       should "return false" do
@@ -140,7 +140,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
     context "when user is adopter with profile" do
       setup do
-        @user = create(:user, :adopter_with_profile)
+        @user = create(:adopter, :with_profile)
       end
 
       context "when pet application is paused" do
@@ -170,6 +170,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user has not applied for the pet" do
           should "return true" do
+            # debugger
             assert_equal @action.call, true
           end
         end
@@ -203,7 +204,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       context "when adopter account does not belong to user" do
         context "when user is adopter" do
           setup do
-            @user = create(:user, :adopter_without_profile)
+            @user = create(:adopter)
           end
 
           should "return false" do
@@ -213,7 +214,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user is active staff" do
           setup do
-            @user = create(:user, :activated_staff)
+            @user = create(:staff)
           end
 
           should "return false" do
@@ -223,7 +224,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user is staff admin" do
           setup do
-            @user = create(:user, :staff_admin)
+            @user = create(:staff_admin)
           end
 
           should "return false" do

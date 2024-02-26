@@ -8,7 +8,7 @@ class Organizations::DashboardControllerTest < ActionDispatch::IntegrationTest
     setup do
       @organization = ActsAsTenant.current_tenant
 
-      user = create(:user, :activated_staff)
+      user = create(:staff)
       sign_in user
     end
 

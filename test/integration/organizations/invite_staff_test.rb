@@ -2,7 +2,7 @@ require "test_helper"
 
 class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
   setup do
-    user = create(:user, :staff_admin)
+    user = create(:staff_admin)
     sign_in user
 
     @user_invitation_params = {
@@ -13,7 +13,7 @@ class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
         roles: "admin"
       }
     }
-    admin = create(:user, :staff_admin)
+    admin = create(:staff_admin)
     sign_in admin
   end
 

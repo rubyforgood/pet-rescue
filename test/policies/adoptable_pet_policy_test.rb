@@ -28,7 +28,7 @@ class AdoptablePetPolicyTest < ActiveSupport::TestCase
 
       context "when user is adopter" do
         setup do
-          @user = create(:user, :adopter_with_profile)
+          @user = create(:adopter, :with_profile)
         end
 
         should "return false" do
@@ -38,7 +38,7 @@ class AdoptablePetPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff" do
         setup do
-          @user = create(:user, :activated_staff)
+          @user = create(:staff)
         end
 
         should "return true" do
@@ -61,7 +61,7 @@ class AdoptablePetPolicyTest < ActiveSupport::TestCase
     context "when pet already has a match" do
       setup do
         @pet = create(:pet, :adopted)
-        @user = create(:user, :adopter_with_profile)
+        @user = create(:adopter, :with_profile)
       end
 
       should "return false" do

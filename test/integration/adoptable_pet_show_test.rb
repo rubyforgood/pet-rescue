@@ -11,7 +11,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   test "adopter without a profile sees complete my profile prompt and link" do
     skip("while new ui is implemented")
     # pet = create(:pet)
-    # sign_in create(:user, :adopter_without_profile)
+    # sign_in create(:adopter)
 
     # get "/adoptable_pets/#{pet.id}"
 
@@ -23,7 +23,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   test "adopter with a profile sees love this pooch question and apply button" do
     skip("while new ui is implemented")
     #   pet = create(:pet)
-    #   sign_in create(:user, :adopter_with_profile)
+    #   sign_in create(:adopter, :with_profile)
 
     #   get "/adoptable_pets/#{pet.id}"
 
@@ -37,7 +37,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   test "adopter application sees application status" do
     skip("while new ui is implemented")
     # pet = create(:pet, :adoption_pending)
-    # user = create(:user, :adopter_with_profile, organization: pet.organization)
+    # user = create(:adopter, :with_profile, organization: pet.organization)
     # create(:adopter_application, adopter_account: user.adopter_account, pet: pet, status: :awaiting_review)
     # sign_in user
 

@@ -6,7 +6,7 @@ class AdopterProfileReviewTest < ActionDispatch::IntegrationTest
     # first_name = "Bob"
     # last_name = "Bobberson"
     # staff_user = create(:user, :verified_staff)
-    # adopter_user = create(:user, :adopter_with_profile, first_name: first_name, last_name: last_name)
+    # adopter_user = create(:adopter, :with_profile, first_name: first_name, last_name: last_name)
     # sign_in staff_user
 
     # get "/profile_reviews/#{adopter_user.adopter_account.adopter_profile.id}"
@@ -16,8 +16,8 @@ class AdopterProfileReviewTest < ActionDispatch::IntegrationTest
   end
 
   test "deactivated staff cannot access an adopter profile" do
-    staff_user = create(:user, :deactivated_staff)
-    adopter_user = create(:user, :adopter_with_profile)
+    staff_user = create(:staff, :deactivated)
+    adopter_user = create(:adopter, :with_profile)
     sign_in staff_user
 
     get "/profile_reviews/#{adopter_user.adopter_account.adopter_profile.id}"
