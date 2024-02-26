@@ -4,13 +4,7 @@ FactoryBot.define do
       organization { ActsAsTenant.current_tenant }
     end
 
-    user do
-      if organization
-        association :user, organization: organization
-      else
-        association :user
-      end
-    end
+    user { association :user, organization: organization }
 
     trait :with_adopter_profile do
       after(:build) do |account|
