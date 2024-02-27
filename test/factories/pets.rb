@@ -20,5 +20,15 @@ FactoryBot.define do
     trait :adopted do
       match { association :match }
     end
+
+    trait :with_image do
+      after(:build) do |pet|
+        pet.images.attach(
+          io: File.open(Rails.root.join("test", "fixtures", "files", "test.png")),
+          filename: "test.png",
+          content_type: "image/png"
+        )
+      end
+    end
   end
 end
