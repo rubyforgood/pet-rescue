@@ -1,10 +1,29 @@
 require "test_helper"
+require "action_policy/test_helper"
 
 class AttachmentsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @user = create(:staff)
-    @pet = create(:pet)
-    sign_in @user
+  context "authorization" do
+    include ActionPolicy::TestHelper
+
+    setup do
+      user = create(:staff)
+      pet = create(:pet, :with_image)
+      @attachment = pet.images.last
+
+      sign_in user
+    end
+
+    context "#purge" do
+      should "be authorized" do
+        assert_authorized_to(
+          :purge?, @attachment,
+          with: AttachmentPolicy
+        ) do
+          delete purge_attachment_url(@attachment),
+            headers: {"HTTP_REFERER" => "http://www.example.com/"}
+        end
+      end
+    end
   end
 
   teardown do
@@ -12,6 +31,13 @@ class AttachmentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   context "DELETE #purge" do
+    setup do
+      @user = create(:staff)
+      @pet = create(:pet)
+
+      sign_in @user
+    end
+
     should "deletes the attachment and redirects to request referrer with flash" do
       image = fixture_file_upload("test.png", "image/png")
 

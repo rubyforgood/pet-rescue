@@ -29,8 +29,10 @@ module Authorizable
     ADOPTER_PERMISSIONS.excluding(
       %i[
         create_adopter_profiles
+        manage_adopter_profiles
       ]
     ) + %i[
+      purge_attachments
       manage_pets
       manage_tasks
       view_organization_dashboard
