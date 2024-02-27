@@ -1,6 +1,6 @@
 require "test_helper"
 
-class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
+class AttachmentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @user = create(:staff)
     @pet = create(:pet)
