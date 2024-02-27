@@ -1,4 +1,6 @@
 class Organizations::PetsController < Organizations::BaseController
+  verify_authorized
+
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :attach_images, :attach_files]
 
   layout "dashboard"

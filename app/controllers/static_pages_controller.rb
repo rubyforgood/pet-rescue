@@ -1,5 +1,8 @@
 class StaticPagesController < ApplicationController
-  # skip_verify_authorized only: %i[about_us cookie_policy donate faq partners privacy_policy terms_and_conditions]
+  verify_authorized
+
+  skip_verify_authorized only: %i[about_us cookie_policy donate faq partners
+    privacy_policy terms_and_conditions]
 
   def home
     if !current_tenant

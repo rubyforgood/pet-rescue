@@ -1,5 +1,7 @@
 class RootController < ApplicationController
-  # skip_verify_authorized only: %i[index]
+  verify_authorized
+
+  skip_verify_authorized only: %i[index]
 
   def index
     if Current.organization

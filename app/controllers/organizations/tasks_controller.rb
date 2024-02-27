@@ -1,4 +1,6 @@
 class Organizations::TasksController < Organizations::BaseController
+  verify_authorized
+
   before_action :set_pet, only: %i[new create edit update destroy]
   before_action :set_task, only: %i[edit update destroy]
 

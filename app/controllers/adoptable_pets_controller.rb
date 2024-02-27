@@ -1,5 +1,7 @@
 class AdoptablePetsController < Organizations::BaseController
-  # skip_verify_authorized only: %i[index]
+  verify_authorized
+
+  skip_verify_authorized only: %i[index]
 
   def index
     @pets = authorized_scope(

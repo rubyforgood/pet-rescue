@@ -1,4 +1,6 @@
 class AdopterApplicationsController < ApplicationController
+  verify_authorized
+
   before_action :authenticate_user!
 
   def index
