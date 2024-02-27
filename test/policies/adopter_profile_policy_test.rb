@@ -17,61 +17,56 @@ class AdopterProfilePolicyTest < ActiveSupport::TestCase
   context "#create?" do
     setup do
       @policy = -> { AdopterProfilePolicy.new(AdopterProfile, user: @user) }
+      @action = -> { @policy.call.apply(:create?) }
     end
 
-    context "#create?" do
+    context "when user is nil" do
       setup do
-        @action = -> { @policy.call.apply(:create?) }
+        @user = nil
       end
 
-      context "when user is nil" do
-        setup do
-          @user = nil
-        end
+      should "return false" do
+        assert_equal @action.call, false
+      end
+    end
 
-        should "return false" do
-          assert_equal @action.call, false
-        end
+    context "when user is adopter without profile" do
+      setup do
+        @user = create(:adopter)
       end
 
-      context "when user is adopter without profile" do
-        setup do
-          @user = create(:adopter)
-        end
+      should "return true" do
+        assert_equal @action.call, true
+      end
+    end
 
-        should "return true" do
-          assert_equal @action.call, true
-        end
+    context "when user is adopter with profile" do
+      setup do
+        @user = create(:adopter, :with_profile)
       end
 
-      context "when user is adopter with profile" do
-        setup do
-          @user = create(:adopter, :with_profile)
-        end
+      should "return false" do
+        assert_equal @action.call, false
+      end
+    end
 
-        should "return false" do
-          assert_equal @action.call, false
-        end
+    context "when user is staff" do
+      setup do
+        @user = create(:staff)
       end
 
-      context "when user is staff" do
-        setup do
-          @user = create(:staff)
-        end
+      should "return false" do
+        assert_equal @action.call, false
+      end
+    end
 
-        should "return false" do
-          assert_equal @action.call, false
-        end
+    context "when user is staff admin" do
+      setup do
+        @user = create(:staff_admin)
       end
 
-      context "when user is staff admin" do
-        setup do
-          @user = create(:staff_admin)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
+      should "return false" do
+        assert_equal @action.call, false
       end
     end
   end
