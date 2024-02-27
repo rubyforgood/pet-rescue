@@ -1,4 +1,4 @@
-class AttachmentPolicy < ApplicationPolicy
+class ActiveStorage::AttachmentPolicy < ApplicationPolicy
   pre_check :verify_organization!
   pre_check :verify_active_staff!
 

@@ -1,14 +1,14 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class AttachmentPolicyTest < ActiveSupport::TestCase
+class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   context "existing record action" do
     setup do
       @pet = create(:pet, :with_image)
       @attachment = @pet.images.last
-      @policy = -> { AttachmentPolicy.new(@attachment, user: @user) }
+      @policy = -> { ActiveStorage::AttachmentPolicy.new(@attachment, user: @user) }
     end
 
     context "#purge?" do

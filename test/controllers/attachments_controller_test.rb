@@ -17,7 +17,7 @@ class AttachmentsControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :purge?, @attachment,
-          with: AttachmentPolicy
+          with: ActiveStorage::AttachmentPolicy
         ) do
           delete purge_attachment_url(@attachment),
             headers: {"HTTP_REFERER" => "http://www.example.com/"}
