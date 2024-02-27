@@ -21,10 +21,16 @@ module Authorizable
     create_adopter_applications
     view_adopter_applications
     withdraw_adopter_applications
+    create_adopter_profiles
+    manage_adopter_profiles
   ].freeze
 
   STAFF_PERMISSIONS = (
-    ADOPTER_PERMISSIONS + %i[
+    ADOPTER_PERMISSIONS.excluding(
+      %i[
+        create_adopter_profiles
+      ]
+    ) + %i[
       manage_pets
       manage_tasks
       view_organization_dashboard
