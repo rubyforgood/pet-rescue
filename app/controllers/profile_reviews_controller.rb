@@ -5,6 +5,6 @@ class ProfileReviewsController < ApplicationController
   before_action :active_staff
 
   def show
-    @adopter_profile = AdopterProfile.find(params[:id])
+    @adopter_foster_profile = AdopterFosterProfile.find(params[:id])
   end
 end

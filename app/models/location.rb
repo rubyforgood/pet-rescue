@@ -11,7 +11,7 @@
 #  updated_at     :datetime         not null
 #
 class Location < ApplicationRecord
-  has_one :adopter_profile
+  has_one :adopter_foster_profile
   has_one :organization_profile
 
   validates :country, presence: true, length: {maximum: 50, message: "50 characters maximum"}

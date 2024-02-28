@@ -1,15 +1,15 @@
 require "test_helper"
 
-class AdopterProfileFormTest < ActionDispatch::IntegrationTest
+class AdopterFosterProfileFormTest < ActionDispatch::IntegrationTest
   test "All errors and their custom messages appear on blank form submission" do
     skip("while new ui is implemented")
     # user = create(:user, :adopter_without_profile)
     # sign_in user
 
     # post(
-    #   "/adopter_profile",
+    #   "/adopter_foster_profile",
     #   params: {
-    #     adopter_profile:
+    #     adopter_foster_profile:
     #       {
     #         adopter_account_id: user.adopter_account.id,
     #         phone_number: "",
@@ -82,9 +82,9 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
     # sign_in user
 
     # put(
-    #   "/adopter_profile",
+    #   "/adopter_foster_profile",
     #   params: {
-    #     adopter_profile:
+    #     adopter_foster_profile:
     #     {
     #       adopter_account_id: user.adopter_account.id,
     #       phone_number: "1234567"
@@ -102,9 +102,9 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
     # sign_in user
 
     # put(
-    #   "/adopter_profile",
+    #   "/adopter_foster_profile",
     #   params: {
-    #     adopter_profile:
+    #     adopter_foster_profile:
     #     {
     #       adopter_account_id: user.adopter_account.id,
     #       phone_number: "123456789101112"
@@ -121,21 +121,21 @@ class AdopterProfileFormTest < ActionDispatch::IntegrationTest
     # user = create(:user, :adopter_with_profile)
     # sign_in user
 
-    # get "/adopter_profile/edit"
+    # get "/adopter_foster_profile/edit"
 
-    # a = assert_select "form input[type=radio][id=adopter_profile_shared_ownership_false]"
+    # a = assert_select "form input[type=radio][id=adopter_foster_profile_shared_ownership_false]"
     # assert_equal a[0].attributes["checked"].value, "checked"
-    # a = assert_select "form input[type=radio][id=adopter_profile_fenced_access_true]"
+    # a = assert_select "form input[type=radio][id=adopter_foster_profile_fenced_access_true]"
     # assert_equal a[0].attributes["checked"].value, "checked"
-    # a = assert_select "form input[type=radio][id=adopter_profile_do_you_rent_false]"
+    # a = assert_select "form input[type=radio][id=adopter_foster_profile_do_you_rent_false]"
     # assert_equal a[0].attributes["checked"].value, "checked"
-    # a = assert_select "form input[type=radio][id=adopter_profile_other_pets_false]"
+    # a = assert_select "form input[type=radio][id=adopter_foster_profile_other_pets_false]"
     # assert_equal a[0].attributes["checked"].value, "checked"
-    # a = assert_select "form input[type=radio][id=adopter_profile_checked_shelter_true]"
+    # a = assert_select "form input[type=radio][id=adopter_foster_profile_checked_shelter_true]"
     # assert_equal a[0].attributes["checked"].value, "checked"
-    # a = assert_select "form input[type=radio][id=adopter_profile_surrendered_pet_false]"
+    # a = assert_select "form input[type=radio][id=adopter_foster_profile_surrendered_pet_false]"
     # assert_equal a[0].attributes["checked"].value, "checked"
-    # a = assert_select "form input[type=radio][id=adopter_profile_visit_laventana_false]"
+    # a = assert_select "form input[type=radio][id=adopter_foster_profile_visit_laventana_false]"
     # assert_equal a[0].attributes["checked"].value, "checked"
   end
 end

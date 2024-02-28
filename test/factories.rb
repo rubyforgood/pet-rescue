@@ -12,8 +12,8 @@ FactoryBot.define do
       end
     end
 
-    trait :with_adopter_profile do
-      adopter_profile { association :adopter_profile, adopter_account: instance }
+    trait :with_adopter_foster_profile do
+      adopter_foster_profile { association :adopter_foster_profile, adopter_account: instance }
     end
   end
 
@@ -35,7 +35,7 @@ FactoryBot.define do
     end
   end
 
-  factory :adopter_profile do
+  factory :adopter_foster_profile do
     phone_number { "250-598-8843" }
     contact_method { "Phone" }
     ideal_pet { "Huge and soft" }
@@ -88,8 +88,8 @@ FactoryBot.define do
     province_state { Faker::Address.state }
     zipcode { Faker::Address.zip_code }
 
-    trait :with_adopter_profile do
-      adopter_profile
+    trait :with_adopter_foster_profile do
+      adopter_foster_profile
     end
   end
 
@@ -133,7 +133,7 @@ FactoryBot.define do
   factory :match do
     organization { ActsAsTenant.current_tenant }
     pet { association :pet, organization: organization }
-    adopter_account { association :adopter_account, :with_adopter_profile, organization: organization }
+    adopter_account { association :adopter_account, :with_adopter_foster_profile, organization: organization }
   end
 
   factory :staff_account do
@@ -195,7 +195,7 @@ FactoryBot.define do
     end
 
     trait :adopter_with_profile do
-      association :adopter_account, :with_adopter_profile
+      association :adopter_account, :with_adopter_foster_profile
     end
   end
 end
