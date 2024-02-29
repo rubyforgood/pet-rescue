@@ -206,6 +206,9 @@
         "code"
       ]
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 43f3db3 (docs: add Developer3027 as a contributor for code (#483))
     },
     {
       "login": "Developer3027",
@@ -215,8 +218,11 @@
       "contributions": [
         "code"
       ]
+<<<<<<< HEAD
 =======
 >>>>>>> 87c526d (docs: add mononoken as a contributor for code (#469))
+=======
+>>>>>>> 43f3db3 (docs: add Developer3027 as a contributor for code (#483))
     }
   ],
   "contributorsPerLine": 7,
