@@ -279,4 +279,6 @@ ActsAsTenant.with_tenant(@organization) do
   end
 
   @match.assign_checklist_template(@checklist_template)
+
+  PageText.create!(hero: nil, about: nil)
 end

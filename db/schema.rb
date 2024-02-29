@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_02_201249) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -187,6 +187,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_02_201249) do
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
   end
 
+  create_table "page_texts", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.string "hero"
+    t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_page_texts_on_organization_id"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
@@ -290,6 +299,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_02_201249) do
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"
+  add_foreign_key "page_texts", "organizations"
   add_foreign_key "pets", "organizations"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"

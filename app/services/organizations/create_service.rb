@@ -39,6 +39,7 @@ class Organizations::CreateService
       create_staff_account
       add_admin_role_to_staff_account
       send_email
+      create_page_text
     end
   rescue => e
     raise "An error occurred: #{e.message}"
@@ -99,5 +100,11 @@ class Organizations::CreateService
       organization: @organization
     )
       .create_new_org_and_admin(@organization.slug).deliver_now
+  end
+
+  def create_page_text
+    ActsAsTenant.with_tenant(@organization) do
+      PageText.create!
+    end
   end
 end

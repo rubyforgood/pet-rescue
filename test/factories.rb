@@ -107,6 +107,12 @@ FactoryBot.define do
     organization { ActsAsTenant.current_tenant }
   end
 
+  factory :page_text do
+    hero { "MyString" }
+    about { Faker::Lorem.sentence }
+    organization { ActsAsTenant.current_tenant }
+  end
+
   factory :pet do
     birth_date { Faker::Date.backward(days: 7) }
     breed { Faker::Creature::Dog.breed }
