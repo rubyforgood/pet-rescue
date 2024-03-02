@@ -28,6 +28,7 @@ module Authorizable
   STAFF_PERMISSIONS = (
     ADOPTER_PERMISSIONS.excluding(
       %i[
+        create_adopter_applications
         create_adopter_profiles
         manage_adopter_profiles
       ]
