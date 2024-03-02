@@ -2,7 +2,7 @@ require "test_helper"
 
 class Organizations::HomeControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @organization = create(:organization)
+    @organization = ActsAsTenant.current_tenant
   end
 
   context "GET #index" do
