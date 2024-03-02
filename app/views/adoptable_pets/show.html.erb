@@ -110,12 +110,14 @@
                     </div>
                   <% else %>
                     <h4 class="mb-4 mt-3">In love with this pooch?</h4>
-                    <%= button_to t('.apply_to_adopt'),
-                                  create_my_application_path(application: {
-                                    pet_id: @pet.id,
-                                    adopter_account_id: current_user.adopter_account.id}),
-
-                                  class: 'custom-btn-pink' %>
+                    <%= form_with model: @adoption_application do |form| %>
+                      <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
+                      <%= form.hidden_field :adopter_account_id, value: @adoption_application.adopter_account_id %>
+                      <%= form.submit t(".apply_to_adopt"),
+                        class: "custom-btn-pink",
+                        data: {turbo: false}
+                      %>
+                    <% end %>
                   <% end %>
                 <% elsif current_user.adopter_account %>
                   <h4 class='mb-4 mt-3'>
