@@ -65,7 +65,7 @@ en:
               blank: "Pet must exist"
             adopter_account:
               blank: "Adopter account must exist"
-        adopter_profile:
+        adopter_foster_profile:
           attributes:
             location:
               blank: "Location must exist"
@@ -367,17 +367,17 @@ en:
       withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
       remove: "Remove"
       withdraw: "Withdraw"
-  adopter_profiles:
+  adopter_foster_profiles:
     form:
       please_fix_the_errors: "Please fix the errors highlighted below."
       preferred_contact_method: "Preferred contact method"
     edit:
       edit_profile: "Edit Profile"
     new:
-      adopter_profile: "Adopter Profile"
+      adopter_foster_profile: "Adopter Foster Profile"
       help_us_learn_more: "The following questions help us learn more about you so we can match you with the right pooch."
     show:
-      adopter_profile: "Adopter Profile"
+      adopter_foster_profile: "Adopter Foster Profile"
       edit_profile: "Edit Profile"
       your_ideal_pet: "Your ideal pet"
       your_lifestyle: "Your lifestyle"

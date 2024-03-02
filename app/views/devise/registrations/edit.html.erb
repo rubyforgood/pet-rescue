@@ -65,27 +65,6 @@
           </div> <!--col-->
         </div> <!--row-->
 
-        <!--cancel my account section-->
-        <div class="row mt-5">
-          <div class="col-md-6 mx-auto">
-            <h4 class="mb-2">Unhappy?</h4>
-            <p>Type 'goodbye' below then click the button to permanently delete your account.</p>
-
-            <div data-controller="delete">
-              <input type="text" data-action="input->delete#showButton"
-                    data-delete-target="input" class="form-control mt-2">
-
-              <%= button_to "Delete my account", registration_path(resource_name),
-                          class: 'btn custom-btn-pink mt-3 mb-3',
-                          data: { confirm: 'Are you sure?',
-                                  turbo: 'false',
-                                  delete_target: 'button' },
-                          method: 'delete',
-                          disabled: true %>
-            </div>
-          </div>
-        </div> <!--row-->
-
       </div><!--container-->
     </section>
   <% end %>
