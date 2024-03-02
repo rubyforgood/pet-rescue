@@ -67,7 +67,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is adopter without adopter account" do
+    context "when user not associated with adopter account" do
       setup do
         @user = create(:user)
       end
@@ -118,7 +118,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is adopter without adopter account" do
+    context "when user not associated with adopter account" do
       setup do
         @user = create(:user)
       end
