@@ -1,6 +1,6 @@
 orga_location = Location.create!(
-  country: "USA",
-  province_state: "Nevada",
+  country: "US",
+  province_state: "NV",
   city_town: "BajaCity",
   zipcode: "12346"
 )
@@ -8,7 +8,7 @@ orga_location = Location.create!(
 @organization = Organization.create!(
   name: "Baja",
   slug: "baja",
-  profile: OrganizationProfile.new(email: "baja@email.com", phone_number: "123 456 7891", location: orga_location, about_us: "We help pets find their forever homes!")
+  profile: OrganizationProfile.new(email: "baja@email.com", phone_number: "250 816 8212", location: orga_location, about_us: "We help pets find their forever homes!")
 )
 
 ActsAsTenant.with_tenant(@organization) do
