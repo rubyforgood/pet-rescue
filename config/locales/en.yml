@@ -40,8 +40,8 @@ en:
     sex: "Sex"
     weight: "Weight"
     about: "About"
-    'yes': "Yes"
-    'no': "No"
+    "yes": "Yes"
+    "no": "No"
     download: "Download"
     save: "Save"
     delete: "Delete"
@@ -57,13 +57,13 @@ en:
       models:
         adopter_account:
           attributes:
-            user:  
+            user:
               blank: "User must exist"
         pet_adoption:
           attributes:
-            pet:  
+            pet:
               blank: "Pet must exist"
-            adopter_account:  
+            adopter_account:
               blank: "Adopter account must exist"
         adopter_foster_profile:
           attributes:
@@ -131,15 +131,15 @@ en:
               blank: "Please tell us how you heard about us"
         checklist_assignment:
           attributes:
-            checklist_template_item:  
+            checklist_template_item:
               blank: "Checklist template item must exist"
-            match:  
+            match:
               blank: "Match must exist"
         checklist_assignment_item:
           attributes:
-            checklist_template:  
+            checklist_template:
               blank: "Checklist template must exist"
-            name:  
+            name:
               blank: "Name can't be blank"
             expected_duration_days:
               blank: "Expected duration days can't be blank"
@@ -147,75 +147,75 @@ en:
               greater_than_or_equal_to: "Expected duration days must be greater than or equal to 0"
         contact:
           attributes:
-            name:  
+            name:
               blank: "Name can't be blank"
-            email:  
+            email:
               blank: "Email can't be blank"
-            message:  
+            message:
               blank: "Message can't be blank"
         default_pet_task:
           attributes:
-            organization:  
+            organization:
               blank: "Organization must exist"
-            name:  
+            name:
               blank: "Name can't be blank"
-            description:  
+            description:
               blank: "Description can't be blank"
         donation:
           attributes:
-            amount:  
+            amount:
               blank: "Amount can't be blank"
-            currency:  
+            currency:
               blank: "Currency can't be blank"
         location:
           attributes:
-            country:  
+            country:
               blank: "Please enter a country"
-            city_town: 
+            city_town:
               blank: "Please enter a city or town"
-            province_state:  
+            province_state:
               blank: "Please enter a province or state"
         match:
           attributes:
-            organization:  
+            organization:
               blank: "Organization must exist"
-            pet:  
+            pet:
               blank: "Pet must exist"
-            adopter_account:  
+            adopter_account:
               blank: "Adopter account must exist"
-            organization_id: 
+            organization_id:
               different_organization: "must belong to same organization as pet"
         organization_profile:
           attributes:
-            location:  
+            location:
               blank: "Location must exist"
-            organization:  
+            organization:
               blank: "Organization must exist"
-            email:  
+            email:
               invalid: "Email is invalid"
-            phone_number:  
+            phone_number:
               invalid: "Phone Number is invalid"
         organization:
           attributes:
-            profile:  
+            profile:
               blank: "Profile must exist"
         pet:
           attributes:
-            organization:  
+            organization:
               blank: "Organization must exist"
-            name: 
+            name:
               blank: "Name can't be blank"
-            birth_date:  
+            birth_date:
               blank: "Birth date can't be blank"
-            breed:  
+            breed:
               blank: "Breed can't be blank"
-            sex:  
+            sex:
               blank: "Sex can't be blank"
-            species:  
+            species:
               blank: "Species can't be blank"
-            placement_type: 
+            placement_type:
               blank: "Placement type can't be blank"
-            weight_from: 
+            weight_from:
               blank: "Weight From can't be blank"
               not_a_number: "Weight From is not a number"
             weight_to:
@@ -225,7 +225,7 @@ en:
             weight_unit:
               blank: "Weight unit can't be blank"
               inclusion: "Weight unit is not included in the list"
-            description: 
+            description:
               blank: "Description can't be blank"
             files:
               content_type_invalid: "must be PNG, JPEG, or PDF"
@@ -237,30 +237,30 @@ en:
               file_size_out_of_range: "Image size must be between 10kb and 1Mb"
         staff_account:
           attributes:
-            organization: 
+            organization:
               blank: "Organization must exist"
-            user:  
+            user:
               blank: "User must exist"
         task:
           attributes:
-            pet: 
+            pet:
               blank: "Pet must exist"
-            name: 
+            name:
               blank: "Name can't be blank"
-            description: 
+            description:
               blank: "Description can't be blank"
         user:
           attributes:
-            organization: 
+            organization:
               blank: "Organization must exist"
-            email: 
+            email:
               blank: "Email can't be blank"
               taken: "Email is already registered"
-            password: 
+            password:
               blank: "Password can't be blank"
-            first_name: 
+            first_name:
               blank: "First name can't be blank"
-            last_name: 
+            last_name:
               blank: "Last name can't be blank"
     models:
       location: Location
@@ -315,13 +315,13 @@ en:
   organizations:
     default_pet_tasks:
       index:
-        default_pet_tasks: 'Default Pet Tasks'
-        create_default_task: 'Create Default Task'
-        are_you_sure_delete: 'Are you sure you want to delete this default pet task?'
+        default_pet_tasks: "Default Pet Tasks"
+        create_default_task: "Create Default Task"
+        are_you_sure_delete: "Are you sure you want to delete this default pet task?"
       new:
-        new_default_pet_task: 'New Default Pet Task'
+        new_default_pet_task: "New Default Pet Task"
       edit:
-        edit_default_pet_task: 'Edit Default Pet Task'
+        edit_default_pet_task: "Edit Default Pet Task"
     pets:
       show:
         pause_applications: "Pause Applications?"
@@ -366,6 +366,7 @@ en:
       found_a_home: "This pooch has found a home!"
       withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
       remove: "Remove"
+      withdraw: "Withdraw"
   adopter_foster_profiles:
     form:
       please_fix_the_errors: "Please fix the errors highlighted below."
