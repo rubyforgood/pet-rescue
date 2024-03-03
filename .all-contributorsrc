@@ -205,6 +205,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Developer3027",
+      "name": "Mason Roberts",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44660994?v=4",
+      "profile": "https://mason-roberts.dev",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
