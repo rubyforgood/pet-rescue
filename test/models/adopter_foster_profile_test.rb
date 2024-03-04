@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class AdopterFosterProfileTest < ActiveSupport::TestCase
   test "foster_account should refer to a User" do
