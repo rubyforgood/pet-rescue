@@ -81,8 +81,11 @@ ActsAsTenant.with_tenant(@organization) do
     city_town: "Canmore",
     zipcode: "12345"
   )
+  # foster_account_test = FosterAccount.new(user_id: @user_adopter_one.id)
 
+  # binding.pry
   @foster_account_one = FosterAccount.create!(user_id: @user_adopter_one.id)
+  # binding.pry
 
   @adopter_foster_profile_one = AdopterFosterProfile.create!(
     location_id: @location_one.id,
