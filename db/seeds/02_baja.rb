@@ -73,7 +73,7 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
+  # @adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
 
   # @location_one = Location.create!(
   #   country: "Canada",
