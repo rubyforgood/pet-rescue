@@ -81,11 +81,12 @@ ActsAsTenant.with_tenant(@organization) do
     city_town: "Canmore",
     zipcode: "12345"
   )
-  # foster_account_test = FosterAccount.new(user_id: @user_adopter_one.id)
 
-  # binding.pry
   @foster_account_one = FosterAccount.create!(user_id: @user_adopter_one.id)
   # binding.pry
+  # puts "Creating AdopterFosterProfile with FosterAccount ID: #{@foster_account_two.id}"
+  # puts "Creating AdopterFosterProfile with FosterAccount ID: #{@foster_account_one.id}"
+  # puts "Creating AdopterFosterProfile with FosterAccount ID: #{@foster_account_three.id}"
 
   @adopter_foster_profile_one = AdopterFosterProfile.create!(
     location_id: @location_one.id,
@@ -132,9 +133,12 @@ ActsAsTenant.with_tenant(@organization) do
     zipcode: "12345"
   )
 
+  @foster_account_two = FosterAccount.create!(user_id: @user_adopter_two.id)
+
   @adopter_foster_profile_two = AdopterFosterProfile.create!(
     location_id: @location_two.id,
     adopter_account_id: @adopter_account_two.id,
+    foster_account_id: @foster_account_two.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
@@ -179,9 +183,12 @@ ActsAsTenant.with_tenant(@organization) do
     zipcode: "12345"
   )
 
+  @foster_account_three = FosterAccount.create!(user_id: @user_adopter_three.id)
+
   @adopter_foster_profile_three = AdopterFosterProfile.create!(
     location_id: @location_three.id,
     adopter_account_id: @adopter_account_three.id,
+    foster_account_id: @foster_account_three.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
