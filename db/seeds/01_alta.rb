@@ -25,8 +25,6 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_one.id
   )
 
-  
-
   @staff_account_one.add_role(:admin, @organizaton)
 
   @user_staff_two = User.create!(
