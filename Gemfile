@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.3"
+gem "rails", "~> 7.0.8.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -54,7 +54,7 @@ gem "bootstrap_form", "~> 5.3"
 # Devise Authentication
 gem "devise"
 
-gem "devise_invitable", "~> 2.0.0"
+gem "devise_invitable", "~> 2.0.9"
 
 # Use Sass to process CSS
 gem "dartsass-rails"
