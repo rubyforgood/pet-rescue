@@ -25,6 +25,8 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_one.id
   )
 
+  
+
   @staff_account_one.add_role(:admin, @organizaton)
 
   @user_staff_two = User.create!(
@@ -52,6 +54,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @adopter_account_one = AdopterAccount.create!(user_id: @user_adopter_one.id)
+  @foster_account_one = FosterAccount.create!(user_id: @user_adopter_one.id)
 
   @user_adopter_two = User.create!(
     email: "adopter2@alta.com",
@@ -63,6 +66,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @adopter_account_two = AdopterAccount.create!(user_id: @user_adopter_two.id)
+  @foster_account_two = FosterAccount.create!(user_id: @user_adopter_two.id)
 
   @user_adopter_three = User.create!(
     email: "adopter3@alta.com",
@@ -74,6 +78,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
+  @foster_account_three = FosterAccount.create!(user_id: @user_adopter_three.id)
 
   @location_one = Location.create!(
     country: "Canada",
@@ -85,6 +90,7 @@ ActsAsTenant.with_tenant(@organization) do
   @adopter_foster_profile_one = AdopterFosterProfile.create!(
     location_id: @location_one.id,
     adopter_account_id: @adopter_account_one.id,
+    foster_account_id: @foster_account_one.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
@@ -129,6 +135,7 @@ ActsAsTenant.with_tenant(@organization) do
   @adopter_foster_profile_two = AdopterFosterProfile.create!(
     location_id: @location_two.id,
     adopter_account_id: @adopter_account_two.id,
+    foster_account_id: @foster_account_two.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
@@ -176,6 +183,7 @@ ActsAsTenant.with_tenant(@organization) do
   @adopter_foster_profile_three = AdopterFosterProfile.create!(
     location_id: @location_three.id,
     adopter_account_id: @adopter_account_three.id,
+    foster_account_id: @foster_account_three.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
