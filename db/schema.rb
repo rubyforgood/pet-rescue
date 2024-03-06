@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_06_190616) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,7 +98,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
     t.text "visit_dates"
     t.text "referral_source"
     t.bigint "location_id", null: false
+    t.bigint "foster_account_id"
     t.index ["adopter_account_id"], name: "index_adopter_foster_profiles_on_adopter_account_id"
+    t.index ["foster_account_id"], name: "index_adopter_foster_profiles_on_foster_account_id"
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
   end
 
@@ -145,6 +147,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "foster_accounts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_foster_accounts_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -290,11 +299,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_foster_profiles", "adopter_accounts"
+  add_foreign_key "adopter_foster_profiles", "foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "checklist_assignments", "checklist_template_items"
   add_foreign_key "checklist_assignments", "matches"
   add_foreign_key "checklist_template_items", "checklist_templates"
   add_foreign_key "default_pet_tasks", "organizations"
+  add_foreign_key "foster_accounts", "users"
   add_foreign_key "matches", "adopter_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
