@@ -1,6 +1,77 @@
 require "test_helper"
+require "action_policy/test_helper"
 
 class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::IntegrationTest
+  context "authorization" do
+    include ActionPolicy::TestHelper
+
+    setup do
+      @organization = ActsAsTenant.current_tenant
+      @adopter_application = create(:adopter_application)
+
+      user = create(:staff)
+      sign_in user
+    end
+
+    context "index" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, AdopterApplication,
+          context: {organization: @organization},
+          with: Organizations::AdopterApplicationReviewPolicy
+        ) do
+          get adoption_application_reviews_url
+        end
+      end
+
+      should "have authorized scope" do
+        assert_have_authorized_scope(
+          type: :active_record_relation,
+          with: Organizations::AdopterApplicationReviewPolicy
+        ) do
+          get adoption_application_reviews_url
+        end
+      end
+    end
+
+    context "#edit" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @adopter_application,
+          with: Organizations::AdopterApplicationReviewPolicy
+        ) do
+          get edit_adoption_application_review_url(@adopter_application)
+        end
+      end
+    end
+
+    context "#update" do
+      setup do
+        loop do
+          @new_status = AdopterApplication.statuses.keys.sample
+          break if @new_status != @adopter_application.status
+        end
+
+        @params = {
+          adopter_application: {
+            status: @new_status
+          }
+        }
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @adopter_application,
+          with: Organizations::AdopterApplicationReviewPolicy
+        ) do
+          patch adoption_application_review_url(@adopter_application),
+            params: @params,
+            headers: {"HTTP_REFERER" => "http://www.example.com/"}
+        end
+      end
+    end
+  end
+
   context "Filtering adoption applications" do
     setup do
       @user = create(:staff)

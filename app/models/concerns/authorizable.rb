@@ -33,6 +33,7 @@ module Authorizable
         manage_adopter_profiles
       ]
     ) + %i[
+      review_adopter_applications
       purge_attachments
       manage_pets
       manage_tasks
