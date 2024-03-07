@@ -5,8 +5,8 @@ FactoryBot.define do
     province_state { Faker::Address.state }
     zipcode { Faker::Address.zip_code }
 
-    trait :with_adopter_profile do
-      adopter_profile
+    trait :with_profile do
+      adopter_foster_profile
     end
   end
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   }
 
   resources :adoptable_pets, only: [:index, :show]
-  resource :adopter_profile, except: :destroy, as: "profile"
+  resource :adopter_foster_profile, except: :destroy, as: "profile"
   resources :checklist_templates
   resources :donations, only: [:create]
 
@@ -62,5 +62,5 @@ Rails.application.routes.draw do
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 
-  resolve("adopter_profile") { [:adopter_profile] }
+  resolve("adopter_foster_profile") { [:adopter_foster_profile] }
 end

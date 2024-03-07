@@ -27,7 +27,7 @@
         <div class="dropdown-menu dropdown-menu-end pb-0" aria-labelledby="dropdownUser" style='z-index: 1000'>
           <% if user_signed_in? %>
             <ul class="list-unstyled">
-              <% if current_user.adopter_account && current_user.adopter_account.adopter_profile.nil? %>
+              <% if current_user.adopter_account && current_user.adopter_account.adopter_foster_profile.nil? %>
                 <li>
                   <%= link_to new_profile_path, class: 'dropdown-item' do %>
                     <i class="fe fe-user me-2"></i> My Profile

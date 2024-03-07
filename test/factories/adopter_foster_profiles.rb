@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :adopter_profile do
+  factory :adopter_foster_profile do
     phone_number { "250-598-8843" }
     contact_method { "Phone" }
     ideal_pet { "Huge and soft" }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_01_133430) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_133430) do
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
-  create_table "adopter_profiles", force: :cascade do |t|
+  create_table "adopter_foster_profiles", force: :cascade do |t|
     t.bigint "adopter_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,8 +98,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_133430) do
     t.text "visit_dates"
     t.text "referral_source"
     t.bigint "location_id", null: false
-    t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
-    t.index ["location_id"], name: "index_adopter_profiles_on_location_id"
+    t.index ["adopter_account_id"], name: "index_adopter_foster_profiles_on_adopter_account_id"
+    t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
   end
 
   create_table "checklist_assignments", force: :cascade do |t|
@@ -187,6 +187,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_133430) do
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
   end
 
+  create_table "page_texts", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.string "hero"
+    t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_page_texts_on_organization_id"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
@@ -229,11 +238,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_133430) do
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
-    t.boolean "completed"
+    t.boolean "completed", default: false
     t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "due_date"
+    t.boolean "recurring", default: false
+    t.integer "next_due_date_in_days"
     t.index ["pet_id"], name: "index_tasks_on_pet_id"
   end
 
@@ -278,8 +289,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_133430) do
   add_foreign_key "adopter_accounts", "users"
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
-  add_foreign_key "adopter_profiles", "adopter_accounts"
-  add_foreign_key "adopter_profiles", "locations"
+  add_foreign_key "adopter_foster_profiles", "adopter_accounts"
+  add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "checklist_assignments", "checklist_template_items"
   add_foreign_key "checklist_assignments", "matches"
   add_foreign_key "checklist_template_items", "checklist_templates"
@@ -288,6 +299,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_133430) do
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"
+  add_foreign_key "page_texts", "organizations"
   add_foreign_key "pets", "organizations"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"

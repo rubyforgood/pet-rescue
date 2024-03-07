@@ -11,9 +11,9 @@ FactoryBot.define do
     adopter_account do
       if user
         user.adopter_account ||
-          association(:adopter_account, :with_adopter_profile, user: user)
+          association(:adopter_account, :with_profile, user: user)
       else
-        association :adopter_account, :with_adopter_profile
+        association :adopter_account, :with_profile
       end
     end
 

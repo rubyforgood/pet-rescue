@@ -9,7 +9,7 @@
   </div> <!--container-->
 </header>
 
-<section class="pb-5" id="adopter_profile">
+<section class="pb-5" id="adopter_foster_profile">
   <div class="container">
     <% if @applications.empty? %>
       <p class='text-center'><%= t '.your_adoption_applications' %></p>
@@ -43,7 +43,7 @@
                 <p><%= t '.we_will_be_in_contact' %></p>
               <% elsif app.status == 'under_review' %>
                 <p>
-                  <%= "#{t '.keep_an_eye_on'} #{current_user.adopter_account.adopter_profile.contact_method}" %>
+                  <%= "#{t '.keep_an_eye_on'} #{current_user.adopter_account.adopter_foster_profile.contact_method}" %>
                 </p>
               <% elsif app.status == 'adoption_pending' %>
                 <p><%= t '.almost_adopted' %></p>

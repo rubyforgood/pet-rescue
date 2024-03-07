@@ -210,4 +210,40 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_turbo_stream action: "remove", target: @task
   end
+
+  test "should create a new task when recurring task is completed" do
+    task = create(:task, pet: @pet, recurring: true)
+
+    assert_difference "Task.count", 1 do
+      patch pet_task_path(@pet, task, format: :turbo_stream), params: {
+        task: {
+          completed: true
+        }
+      }
+    end
+  end
+
+  test "should not create a new task if non-recurring task is completed" do
+    task = create(:task, pet: @pet, recurring: false)
+
+    assert_no_difference "Task.count" do
+      patch pet_task_path(@pet, task, format: :turbo_stream), params: {
+        task: {
+          completed: true
+        }
+      }
+    end
+  end
+
+  test "should not create a new task if recurring task is updated but not completed" do
+    task = create(:task, pet: @pet, recurring: true, completed: true)
+
+    assert_no_difference "Task.count" do
+      patch pet_task_path(@pet, task, format: :turbo_stream), params: {
+        task: {
+          completed: false
+        }
+      }
+    end
+  end
 end

@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-23-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -163,7 +163,7 @@ Build upon stakeholder partnerships to foster and encourage their active involve
 ## Preparation Work (Before code)
 These are just some of the documents put together before writing any code:
 * Slide deck to pitch idea to client: [here](https://docs.google.com/presentation/d/1d4gjzADk7BcxmQEVZlesheGUen9d1E3RzrVvskMhVxo/edit?usp=sharing)
-* Figma site design: [here](https://www.figma.com/file/x3iM31l8csY7mT0VwKykhT/BPR---Wireframes---Ami?node-id=530186%3A154&t=mgRlseVd2LTKPX4o-1)
+* Figma site design: [here](https://www.figma.com/file/0jVgYASUJy0KiX3BVc3dFM/Tasks?type=design&node-id=0-1&mode=design)
 * Model association diagram: [here](https://lucid.app/lucidchart/a915c03c-3c09-454d-837b-f3d2768f5722/edit?viewport_loc=-25%2C-973%2C3565%2C2341%2C0_0&invitationId=inv_85cf2967-7b33-4030-903f-9655e767cbbf)
 
 
@@ -202,6 +202,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Thrillberg"><img src="https://avatars.githubusercontent.com/u/10481391?v=4?s=100" width="100px;" alt="Eric Tillberg"/><br /><sub><b>Eric Tillberg</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Thrillberg" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Tomaszabc"><img src="https://avatars.githubusercontent.com/u/131488886?v=4?s=100" width="100px;" alt="Tomaszabc"/><br /><sub><b>Tomaszabc</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Tomaszabc" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/atbalaji"><img src="https://avatars.githubusercontent.com/u/18101543?v=4?s=100" width="100px;" alt="BALAJI . A . T "/><br /><sub><b>BALAJI . A . T </b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=atbalaji" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mononoken"><img src="https://avatars.githubusercontent.com/u/81536479?v=4?s=100" width="100px;" alt="Ken Maeshima"/><br /><sub><b>Ken Maeshima</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=mononoken" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://mason-roberts.dev"><img src="https://avatars.githubusercontent.com/u/44660994?v=4?s=100" width="100px;" alt="Mason Roberts"/><br /><sub><b>Mason Roberts</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Developer3027" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

@@ -1,12 +1,12 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class AdopterProfilePolicyTest < ActiveSupport::TestCase
+class AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   context "#new?" do
     setup do
-      @policy = -> { AdopterProfilePolicy.new(AdopterProfile, user: @user) }
+      @policy = -> { AdopterFosterProfilePolicy.new(AdopterFosterProfile, user: @user) }
     end
 
     should "be an alias to :manage?" do
@@ -16,7 +16,7 @@ class AdopterProfilePolicyTest < ActiveSupport::TestCase
 
   context "#create?" do
     setup do
-      @policy = -> { AdopterProfilePolicy.new(AdopterProfile, user: @user) }
+      @policy = -> { AdopterFosterProfilePolicy.new(AdopterFosterProfile, user: @user) }
       @action = -> { @policy.call.apply(:create?) }
     end
 
@@ -73,8 +73,8 @@ class AdopterProfilePolicyTest < ActiveSupport::TestCase
 
   context "existing record action" do
     setup do
-      @profile = create(:adopter_profile)
-      @policy = -> { AdopterProfilePolicy.new(@profile, user: @user) }
+      @profile = create(:adopter_foster_profile)
+      @policy = -> { AdopterFosterProfilePolicy.new(@profile, user: @user) }
     end
 
     context "#manage?" do

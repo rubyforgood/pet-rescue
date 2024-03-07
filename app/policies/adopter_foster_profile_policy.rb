@@ -1,4 +1,4 @@
-class AdopterProfilePolicy < ApplicationPolicy
+class AdopterFosterProfilePolicy < ApplicationPolicy
   def create?
     permission?(:create_adopter_profiles) && no_profile?
   end
@@ -10,7 +10,7 @@ class AdopterProfilePolicy < ApplicationPolicy
   private
 
   def no_profile?
-    user&.adopter_account&.adopter_profile.nil?
+    user&.adopter_account&.adopter_foster_profile.nil?
   end
 
   def owner?

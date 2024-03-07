@@ -14,7 +14,7 @@ FactoryBot.define do
 
       trait :with_profile do
         adopter_account do
-          association :adopter_account, :with_adopter_profile, user: instance
+          association :adopter_account, :with_profile, user: instance
         end
       end
     end

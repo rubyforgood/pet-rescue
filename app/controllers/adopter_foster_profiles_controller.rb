@@ -1,4 +1,4 @@
-class AdopterProfilesController < ApplicationController
+class AdopterFosterProfilesController < ApplicationController
   verify_authorized
 
   before_action :authenticate_user!
@@ -6,15 +6,15 @@ class AdopterProfilesController < ApplicationController
   before_action :set_profile, only: %i[show edit update]
 
   def new
-    @adopter_profile = AdopterProfile.new
-    @adopter_profile.build_location
+    @adopter_foster_profile = AdopterFosterProfile.new
+    @adopter_foster_profile.build_location
   end
 
   def create
-    @adopter_profile = AdopterProfile.new(adopter_profile_params)
+    @adopter_foster_profile = AdopterFosterProfile.new(adopter_foster_profile_params)
 
     respond_to do |format|
-      if @adopter_profile.save
+      if @adopter_foster_profile.save
         format.html { redirect_to profile_path, notice: "Profile created" }
       else
         format.html { render :new, status: :unprocessable_entity, alert: "Error" }
@@ -30,7 +30,7 @@ class AdopterProfilesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @adopter_profile.update(adopter_profile_params)
+      if @adopter_foster_profile.update(adopter_foster_profile_params)
         format.html { redirect_to profile_path, notice: "Profile updated" }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -41,12 +41,12 @@ class AdopterProfilesController < ApplicationController
   private
 
   def set_profile
-    @adopter_profile = current_user.adopter_account.adopter_profile
-    authorize! @adopter_profile
+    @adopter_foster_profile = current_user.adopter_account.adopter_foster_profile
+    authorize! @adopter_foster_profile
   end
 
-  def adopter_profile_params
-    params.require(:adopter_profile).permit(:adopter_account_id,
+  def adopter_foster_profile_params
+    params.require(:adopter_foster_profile).permit(:adopter_account_id,
       :phone_number,
       :contact_method,
       :ideal_pet,

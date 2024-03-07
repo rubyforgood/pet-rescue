@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class AdopterProfilesControllerTest < ActionDispatch::IntegrationTest
+class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -13,8 +13,8 @@ class AdopterProfilesControllerTest < ActionDispatch::IntegrationTest
     context "#new" do
       should "be authorized" do
         assert_authorized_to(
-          :create?, AdopterProfile,
-          with: AdopterProfilePolicy
+          :create?, AdopterFosterProfile,
+          with: AdopterFosterProfilePolicy
         ) do
           get new_profile_url
         end
@@ -23,29 +23,29 @@ class AdopterProfilesControllerTest < ActionDispatch::IntegrationTest
 
     context "#create" do
       setup do
-        @profile = build(:adopter_profile,
+        @profile = build(:adopter_foster_profile,
           adopter_account: @user.adopter_account)
       end
 
       should "be authorized" do
         assert_authorized_to(
-          :create?, AdopterProfile,
-          with: AdopterProfilePolicy
+          :create?, AdopterFosterProfile,
+          with: AdopterFosterProfilePolicy
         ) do
-          post profile_url, params: attributes_for(:adopter_profile)
+          post profile_url, params: attributes_for(:adopter_foster_profile)
         end
       end
     end
 
     context "#show" do
       setup do
-        @profile = create(:adopter_profile,
+        @profile = create(:adopter_foster_profile,
           adopter_account: @user.adopter_account)
       end
 
       should "be authorized" do
         assert_authorized_to(
-          :manage?, @profile, with: AdopterProfilePolicy
+          :manage?, @profile, with: AdopterFosterProfilePolicy
         ) do
           get profile_url
         end
@@ -54,13 +54,13 @@ class AdopterProfilesControllerTest < ActionDispatch::IntegrationTest
 
     context "#edit" do
       setup do
-        @profile = create(:adopter_profile,
+        @profile = create(:adopter_foster_profile,
           adopter_account: @user.adopter_account)
       end
 
       should "be authorized" do
         assert_authorized_to(
-          :manage?, @profile, with: AdopterProfilePolicy
+          :manage?, @profile, with: AdopterFosterProfilePolicy
         ) do
           get edit_profile_url
         end
@@ -69,16 +69,16 @@ class AdopterProfilesControllerTest < ActionDispatch::IntegrationTest
 
     context "#update" do
       setup do
-        @profile = create(:adopter_profile,
+        @profile = create(:adopter_foster_profile,
           adopter_account: @user.adopter_account)
-        @params = {adopter_profile: {
+        @params = {adopter_foster_profile: {
           experience: "heaps"
         }}
       end
 
       should "be authorized" do
         assert_authorized_to(
-          :manage?, @profile, with: AdopterProfilePolicy
+          :manage?, @profile, with: AdopterFosterProfilePolicy
         ) do
           patch profile_url, params: @params
         end
