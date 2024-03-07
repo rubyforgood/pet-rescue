@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :foster_account do
+    user { nil }
+  end
+
   factory :adopter_account do
     transient do
       organization { ActsAsTenant.current_tenant }
