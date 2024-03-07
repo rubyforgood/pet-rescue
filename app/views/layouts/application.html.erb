@@ -5,6 +5,7 @@
   <body>
     <%= render "layouts/shared/flash_messages" %>
     <% if Current.tenant.present? %>
+      <!-- //? set to org_navbar to review ?// -->
       <%= render partial: "layouts/shared/navbar" %>
     <% else %>
       <%= render partial: "layouts/shared/no_tenant_navbar" %>
