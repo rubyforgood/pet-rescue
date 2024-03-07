@@ -56,7 +56,7 @@
 class AdopterFosterProfile < ApplicationRecord
   belongs_to :location, dependent: :destroy
   belongs_to :adopter_account
-  belongs_to :foster_account, class_name: "User", foreign_key: :adopter_account_id
+  belongs_to :foster_account
   accepts_nested_attributes_for :location
   validates_associated :location
 

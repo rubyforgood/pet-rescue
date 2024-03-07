@@ -17,8 +17,5 @@
 #
 class FosterAccount < ApplicationRecord
   belongs_to :user
-<<<<<<< HEAD
-  has_one :adopter_foster_profile
-=======
->>>>>>> 8375ada (Update FosterAccount migration)
+  has_one :adopter_foster_profile, dependent: :destroy
 end
