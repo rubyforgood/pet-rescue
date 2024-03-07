@@ -83,10 +83,6 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @foster_account_one = FosterAccount.create!(user_id: @user_adopter_one.id)
-  # binding.pry
-  # puts "Creating AdopterFosterProfile with FosterAccount ID: #{@foster_account_two.id}"
-  # puts "Creating AdopterFosterProfile with FosterAccount ID: #{@foster_account_one.id}"
-  # puts "Creating AdopterFosterProfile with FosterAccount ID: #{@foster_account_three.id}"
 
   @adopter_foster_profile_one = AdopterFosterProfile.create!(
     location_id: @location_one.id,
