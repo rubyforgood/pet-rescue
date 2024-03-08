@@ -17,5 +17,5 @@
 #
 class FosterAccount < ApplicationRecord
   belongs_to :user
-  has_one :adopter_foster_profile, dependent: :destroy
+  has_one :adopter_foster_profile, as: :parent
 end

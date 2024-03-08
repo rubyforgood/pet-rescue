@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_07_173132) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_08_000045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +56,18 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_173132) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
   create_table "adopter_accounts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,6 +88,48 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_173132) do
   end
 
   create_table "adopter_foster_profiles", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "phone_number"
+    t.string "contact_method"
+    t.string "country"
+    t.string "province_state"
+    t.string "city_town"
+    t.text "ideal_pet"
+    t.text "lifestyle_fit"
+    t.text "activities"
+    t.integer "alone_weekday"
+    t.integer "alone_weekend"
+    t.text "experience"
+    t.text "contingency_plan"
+    t.boolean "shared_ownership"
+    t.text "shared_owner"
+    t.string "housing_type"
+    t.boolean "fenced_access"
+    t.text "fenced_alternative"
+    t.text "location_day"
+    t.text "location_night"
+    t.boolean "do_you_rent"
+    t.boolean "pets_allowed"
+    t.integer "adults_in_home"
+    t.integer "kids_in_home"
+    t.boolean "other_pets"
+    t.text "describe_pets"
+    t.boolean "checked_shelter"
+    t.boolean "surrendered_pet"
+    t.text "describe_surrender"
+    t.string "annual_cost"
+    t.boolean "visit_laventana"
+    t.text "visit_dates"
+    t.text "referral_source"
+    t.bigint "location_id", null: false
+    t.string "parent_type"
+    t.bigint "parent_id"
+    t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
+    t.index ["parent_type", "parent_id"], name: "index_adopter_foster_profiles_on_parent"
+  end
+
+  create_table "adopter_profiles", force: :cascade do |t|
     t.bigint "adopter_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -98,10 +166,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_173132) do
     t.text "visit_dates"
     t.text "referral_source"
     t.bigint "location_id", null: false
-    t.bigint "foster_account_id"
-    t.index ["adopter_account_id"], name: "index_adopter_foster_profiles_on_adopter_account_id"
-    t.index ["foster_account_id"], name: "index_adopter_foster_profiles_on_foster_account_id"
-    t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
+    t.index ["adopter_account_id"], name: "index_adopter_profiles_on_adopter_account_id"
+    t.index ["location_id"], name: "index_adopter_profiles_on_location_id"
   end
 
   create_table "checklist_assignments", force: :cascade do |t|
@@ -147,6 +213,24 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_173132) do
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "form_questions", force: :cascade do |t|
+    t.bigint "form_id", null: false
+    t.bigint "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["form_id"], name: "index_form_questions_on_form_id"
+    t.index ["question_id"], name: "index_form_questions_on_question_id"
+  end
+
+  create_table "forms", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "organization_id"
+    t.index ["organization_id"], name: "index_forms_on_organization_id"
   end
 
   create_table "foster_accounts", force: :cascade do |t|
@@ -224,6 +308,26 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_173132) do
     t.index ["organization_id"], name: "index_pets_on_organization_id"
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "text"
+    t.integer "input_type", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "responses", force: :cascade do |t|
+    t.bigint "submission_id", null: false
+    t.bigint "question_id", null: false
+    t.string "string_value"
+    t.integer "integer_value"
+    t.boolean "boolean_value"
+    t.text "array_value", array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_responses_on_question_id"
+    t.index ["submission_id"], name: "index_responses_on_submission_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -250,6 +354,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_173132) do
     t.index ["role_id"], name: "index_staff_accounts_roles_on_role_id"
     t.index ["staff_account_id", "role_id"], name: "index_staff_accounts_roles_on_staff_account_id_and_role_id"
     t.index ["staff_account_id"], name: "index_staff_accounts_roles_on_staff_account_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.bigint "form_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["form_id"], name: "index_submissions_on_form_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -298,13 +411,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_173132) do
   add_foreign_key "adopter_accounts", "users"
   add_foreign_key "adopter_applications", "adopter_accounts"
   add_foreign_key "adopter_applications", "pets"
-  add_foreign_key "adopter_foster_profiles", "adopter_accounts"
-  add_foreign_key "adopter_foster_profiles", "foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "checklist_assignments", "checklist_template_items"
   add_foreign_key "checklist_assignments", "matches"
   add_foreign_key "checklist_template_items", "checklist_templates"
   add_foreign_key "default_pet_tasks", "organizations"
+  add_foreign_key "form_questions", "forms"
+  add_foreign_key "form_questions", "questions"
   add_foreign_key "foster_accounts", "users"
   add_foreign_key "matches", "adopter_accounts"
   add_foreign_key "matches", "pets"
@@ -312,7 +425,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_07_173132) do
   add_foreign_key "organization_profiles", "organizations"
   add_foreign_key "page_texts", "organizations"
   add_foreign_key "pets", "organizations"
+  add_foreign_key "responses", "questions"
+  add_foreign_key "responses", "submissions"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
+  add_foreign_key "submissions", "forms"
   add_foreign_key "tasks", "pets"
 end
