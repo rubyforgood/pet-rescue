@@ -24,43 +24,47 @@
 </section>
 
 
-<!-- HOW TO APPLY FOR ADOPTION -->
+<!-- ADOPTION -->
 <section class="pt-5 pb-5 bg-white" id="how_to_apply">
   <div class="container mb-md-5 mt-md-5">
 
     <!--section heading-->
     <div class="text-center mb-5">
-      <h2 class="section-heading text-uppercase underline">
-        How to apply for adoption
+      <h2 class="section-heading text-uppercase text-xl">
+        Adopt
       </h2>
     </div>
 
-    <div class="row text-center">
-      <div class="col-md-3 pb-3">
-        <span>
-            <%= image_tag('sign_up.svg', width: '100') %>
-        </span>
-        <h4 class="my-3">1. Create Account</h4>
+    <div class="d-flex justify-content-around align-items-center flex-wrap">
+      <div class="card" style="width: 14rem;">
+        <%= image_tag('dog.jpeg', width: '500px', alt: "Adorable Dog", class: "card-img-top rounded-top-1") %>
+        <div class="card-body">
+          <p class="card-text text-black ">Adoptable Dogs <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
+        </div>
       </div>
-      <div class="col-md-3 pb-3">
-        <span>
-            <%= image_tag('profile.svg', width: '100') %>
-        </span>
-        <h4 class="my-3">2. Complete a Profile</h4>
+      <div class="card" style="width: 14rem;">
+        <%= image_tag('cat.jpeg', width: '500px', alt: "Adorable Cat", class: "card-img-top rounded-top-1") %>
+        <div class="card-body">
+          <p class="card-text text-black ">Adoptable Cats <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
+        </div>
       </div>
-      <div class="col-md-3 pb-3">
-        <span>
-            <%= image_tag('dog.svg', width: '100') %>
-        </span>
-        <h4 class="my-3">3. Browse pets</h4>
+      <div class="card" style="width: 14rem;">
+        <%= image_tag('spider.jpeg', width: '500px', alt: "Adorable Dog", class: "card-img-top rounded-top-1") %>
+        <div class="card-body">
+          <p class="card-text text-black ">Adoptable Spiders <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
+        </div>
       </div>
-      <div class="col-md-3 pb-3">
-        <span>
-            <%= image_tag('click.svg', width: '100') %>
-        </span>
-        <h4 class="my-3">4. Click apply</h4>
+      <div class="card" style="width: 14rem;">
+        <%= image_tag('red-panda.jpeg', width: '500px', alt: "Adorable Dog", class: "card-img-top rounded-top-1") %>
+        <div class="card-body">
+          <p class="card-text text-black ">Adoptable Red Pandas <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
+        </div>
       </div>
     </div> <!--row-->
+    <div class="d-flex justify-content-end align-items-center mt-4">
+      <%= link_to "Browse All Pets", adoptable_pets_path, class: "text-primary fs-3 me-1" %>
+      <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+    </div>
   </div> <!--container-->
 </section>
 
