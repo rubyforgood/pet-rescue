@@ -24,17 +24,17 @@
 </section>
 
 
-<!-- ADOPTION -->
+<!--//? ADOPTION -->
 <section class="pt-5 pb-5" id="adopt">
   <div class="container mb-md-5 mt-md-5">
 
-    <!--section heading-->
+    <!--//? section heading -->
     <div class="text-center mb-5">
       <h2 class="section-heading text-uppercase text-xl">
         Adopt
       </h2>
     </div>
-    <!-- bootstrap cards -->
+    <!--//? bootstrap cards -->
     <div class="d-flex justify-content-around align-items-center flex-wrap">
       <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
         <%= image_tag('dog.jpeg', width: '500px', alt: "Adorable Dog", class: "card-img-top rounded-top-1") %>
@@ -61,7 +61,7 @@
         </div>
       </div>
     </div>
-    <!-- Adopt all link -->
+    <!--//? Adopt all link -->
     <div class="d-flex justify-content-end align-items-center mt-3">
       <%= link_to "Browse All Pets", adoptable_pets_path, class: "text-primary fs-3 me-1" %>
       <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
@@ -81,10 +81,11 @@
     </div>
 
     <!--//? cards section - info (not bootstrap card)  -->
-    <div class="d-flex flex-wrap justify-content-around align-items-center">
+    <div class="d-flex flex-wrap justify-content-around align-items-center px-4">
+
       <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="mb-3">
-          <%= image_tag('paw-account.svg', width: '150') %>
+          <%= image_tag('paw-account.svg', width: '150', alt: "Create and account") %>
         </div>
         <div>
           <p class="text-black">
@@ -94,7 +95,7 @@
       </div>
       <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="mb-3">
-          <%= image_tag('paw-profile.svg', width: '150') %>
+          <%= image_tag('paw-profile.svg', width: '150', alt: "Complete the profile") %>
         </div>
         <div>
           <p class="text-black">
@@ -104,7 +105,7 @@
       </div>
       <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="mb-3">
-          <%= image_tag('paw-browse.svg', width: '150') %>
+          <%= image_tag('paw-browse.svg', width: '150', alt: "Browse the pets") %>
         </div>
         <div>
           <p class="text-black">
@@ -114,7 +115,7 @@
       </div>
       <div class="d-flex flex-column justify-content-center align-items-center">
         <div class="mb-3">
-          <%= image_tag('paw-click.svg', width: '150') %>
+          <%= image_tag('paw-click.svg', width: '150', alt: "Click apply") %>
         </div>
         <div>
           <p class="text-black">
@@ -122,7 +123,9 @@
           </p>
         </div>
       </div>
+
     </div>
+
   </div>
 </section>
 
