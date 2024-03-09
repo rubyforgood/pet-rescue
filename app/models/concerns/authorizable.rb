@@ -35,6 +35,7 @@ module Authorizable
     ) + %i[
       review_adopter_applications
       purge_attachments
+      manage_default_pet_tasks
       manage_pets
       manage_tasks
       view_organization_dashboard

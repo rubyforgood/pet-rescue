@@ -1,4 +1,6 @@
 class Organizations::DefaultPetTasksController < Organizations::BaseController
+  verify_authorized
+
   layout "dashboard"
 
   before_action :verify_organization_for_current_user
