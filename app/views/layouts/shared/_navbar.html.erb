@@ -101,3 +101,9 @@
     </div>
   </div>
 </nav>
+<!--  Demo banner-->
+<% if Rails.env.staging? %>
+  <div class="container-fluid m-0 p-2 text-center bg-danger-soft display-6">
+    This is a demo site
+  </div>
+<%  end %>
