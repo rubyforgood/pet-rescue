@@ -1,11 +1,110 @@
 require "test_helper"
+require "action_policy/test_helper"
 
 class Organizations::DefaultPetTasksControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = create(:staff_admin)
+    @organization = ActsAsTenant.current_tenant
     @default_pet_task = create(:default_pet_task)
-    @organization = @user.organization
-    sign_in @user
+
+    user = create(:staff)
+    sign_in user
+  end
+
+  context "authorization" do
+    include ActionPolicy::TestHelper
+
+    context "new" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, DefaultPetTask,
+          context: {organization: @organization},
+          with: Organizations::DefaultPetTaskPolicy
+        ) do
+          get new_default_pet_task_url
+        end
+      end
+    end
+
+    context "create" do
+      setup do
+        @params = {
+          default_pet_task: attributes_for(:default_pet_task)
+        }
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, DefaultPetTask,
+          context: {organization: @organization},
+          with: Organizations::DefaultPetTaskPolicy
+        ) do
+          post default_pet_tasks_url, params: @params
+        end
+      end
+    end
+
+    context "index" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, DefaultPetTask,
+          context: {organization: @organization},
+          with: Organizations::DefaultPetTaskPolicy
+        ) do
+          get default_pet_tasks_url
+        end
+      end
+
+      should "have authorized scope" do
+        assert_have_authorized_scope(
+          type: :active_record_relation,
+          with: Organizations::DefaultPetTaskPolicy
+        ) do
+          get default_pet_tasks_url
+        end
+      end
+    end
+
+    context "#edit" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @default_pet_task,
+          with: Organizations::DefaultPetTaskPolicy
+        ) do
+          get edit_default_pet_task_url(@default_pet_task)
+        end
+      end
+    end
+
+    context "#update" do
+      setup do
+        @params = {
+          default_pet_task: {
+            name: "new name"
+          }
+        }
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @default_pet_task,
+          with: Organizations::DefaultPetTaskPolicy
+        ) do
+          patch default_pet_task_url(@default_pet_task),
+            params: @params
+        end
+      end
+    end
+
+    context "#destroy" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @default_pet_task,
+          with: Organizations::DefaultPetTaskPolicy
+        ) do
+          delete default_pet_task_url(@default_pet_task)
+        end
+      end
+    end
   end
 
   teardown do
@@ -66,9 +165,11 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
     end
 
     should "not visit edit page of inexistent task" do
-      assert_raises(ActiveRecord::RecordNotFound) do
-        get edit_default_pet_task_path(id: DefaultPetTask.order(:id).last.id + 1)
-      end
+      get edit_default_pet_task_path(id: DefaultPetTask.order(:id).last.id + 1)
+
+      assert_response :redirect
+      follow_redirect!
+      assert_equal flash.alert, "Default Pet Task not found."
     end
   end
 
@@ -116,7 +217,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "Failed to delete default pet task."
+      assert_equal flash.alert, "Default Pet Task not found."
     end
   end
 end
