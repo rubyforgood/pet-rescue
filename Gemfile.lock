@@ -108,7 +108,8 @@ GEM
     bootstrap_form (5.3.2)
       actionpack (>= 6.1)
       activemodel (>= 6.1)
-    brakeman (6.0.1)
+    brakeman (6.1.2)
+      racc
     builder (3.2.4)
     capybara (3.39.2)
       addressable
