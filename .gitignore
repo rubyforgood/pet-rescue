@@ -47,6 +47,7 @@
 # IDE
 .idea
 .vscode
+/.env
 
 # OS
 .DS_Store
