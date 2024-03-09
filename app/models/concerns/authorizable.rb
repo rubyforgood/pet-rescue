@@ -36,6 +36,7 @@ module Authorizable
       review_adopter_applications
       purge_attachments
       manage_default_pet_tasks
+      manage_matches
       manage_pets
       manage_tasks
       view_organization_dashboard
