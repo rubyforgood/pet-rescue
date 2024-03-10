@@ -34,6 +34,7 @@ module Authorizable
       ]
     ) + %i[
       review_adopter_applications
+      view_adopter_profiles
       purge_attachments
       manage_default_pet_tasks
       manage_matches
