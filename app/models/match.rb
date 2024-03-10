@@ -41,7 +41,7 @@ class Match < ApplicationRecord
   end
 
   def withdraw_application
-    adopter_application.withdraw
+    adopter_application&.withdraw
   end
 
   def retire_applications(application_class: AdopterApplication)
