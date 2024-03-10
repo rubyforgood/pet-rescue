@@ -18,7 +18,9 @@
           </div>
         </div>
         <div>
-          <%= link_to 'Become an adopter', new_user_registration_path, class: 'btn btn-primary btn-sm d-none d-md-block' %>
+          <% unless current_user %>
+            <%= link_to t('general.become_an_adopter'), new_user_registration_path, class: 'btn btn-primary btn-sm d-none d-md-block' %>
+          <% end %>
         </div>
       </div>
     </div>

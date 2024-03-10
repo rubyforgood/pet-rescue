@@ -45,9 +45,9 @@
   <td class="align-middle">
     <span>
       <% if params[:active_tab] == 'applications' || @applications_tab == true %>
-        <%= app.notes.truncate(10) %>
+        <%= app.notes&.truncate(10) %>
       <% else %>
-        <%= app.notes.truncate(30) %>
+        <%= app.notes&.truncate(30) %>
       <% end %>
     </span>
     <button type="button" class="btn btn-outline-primary border border-0" data-bs-toggle="modal" data-bs-target="#notesModal<%= app.id %>">
