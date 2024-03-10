@@ -59,7 +59,7 @@ class User < ApplicationRecord
   has_one :staff_account, dependent: :destroy
   has_one :adopter_account, dependent: :destroy
 
-  accepts_nested_attributes_for :adopter_account, :staff_account
+  accepts_nested_attributes_for :adopter_account
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)
