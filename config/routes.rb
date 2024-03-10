@@ -54,8 +54,7 @@ Rails.application.routes.draw do
   resources :adopter_applications, path: "applications",
     only: %i[index create update]
 
-  post "create_adoption", to: "matches#create"
-  delete "revoke_adoption", to: "matches#delete"
+  resources :matches, only: %i[create destroy]
 
   get "/contacts", to: "contacts#create"
   get "/contacts/new", to: "contacts#new", as: "new_contact"
