@@ -10,20 +10,18 @@ class MatchesController < ApplicationController
     ))
 
     if @match.save
-      set_statuses_to_adoption_made
+      @match.retire_applications
+
       redirect_back_or_to dashboard_index_path, notice: "Pet successfully adopted."
     else
       redirect_back_or_to dashboard_index_path, alert: "Error."
     end
   end
 
-    @successful_application = @match.adopter_account
-      .adopter_applications
-      .where(pet_id: @match.pet_id)[0]
-    AdopterApplication.set_status_to_withdrawn(@successful_application)
-
   def destroy
     if @match.destroy
+      @match.withdraw_application
+
       redirect_to pets_path, notice: "Adoption reverted & application set to 'Withdrawn'"
     else
       redirect_to pets_path, alert: "Failed to revert adoption"
@@ -36,15 +34,6 @@ class MatchesController < ApplicationController
     params.permit(:pet_id, :adopter_account_id)
   end
 
-  # set status on all applications for a pet
-  def set_statuses_to_adoption_made
-    @applications = Pet.find(params[:pet_id]).adopter_applications
-    @applications.each do |app|
-      unless app.status == "withdrawn"
-        app.status = "adoption_made"
-        app.save
-      end
-    end
   def set_pet
     @pet = Pet.find(match_params[:pet_id])
   end
