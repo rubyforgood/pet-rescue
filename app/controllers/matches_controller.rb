@@ -43,7 +43,7 @@ class MatchesController < ApplicationController
   end
 
   def get_pet_id
-    return params[:pet_id] if params[:pet_id]
+    return match_params[:pet_id] if match_params[:pet_id]
 
     Match.find(params[:id]).pet_id
   end
