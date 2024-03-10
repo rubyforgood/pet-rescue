@@ -29,7 +29,9 @@
     <% if app.status == 'successful_applicant' %>
       <!--create adoption button-->
       <%= button_to "New Adoption", matches_path, method: :post,
-        params: {pet_id: app.pet_id, adopter_account_id: app.adopter_account_id},
+        params: {match:
+          {pet_id: app.pet_id, adopter_account_id: app.adopter_account_id}
+        },
         class: "btn btn-outline-primary",
         data: { turbo_method: :post, 
                 turbo_confirm: "Click OK to finalize this adoption." 
