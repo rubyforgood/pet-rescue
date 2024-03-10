@@ -1,9 +1,10 @@
 require "test_helper"
 
-class AdopterApplicationTest < ActionDispatch::IntegrationTest
-  # setup do
-  #   @pet_id = create(:pet).id
-  # end
+class AdopterApplicationIntegrationTest < ActionDispatch::IntegrationTest
+  setup do
+    @organization = create(:organization)
+    @pet_id = create(:pet, organization: @organization).id
+  end
 
   test "adopter user without profile cannot apply for pet and sees flash error" do
     skip("while new ui is implemented")
