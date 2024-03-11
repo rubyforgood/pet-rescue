@@ -154,7 +154,7 @@ gem "chartkick", "~> 5.0"
 gem "city-state", "~> 1.1.0"
 
 # Adds a simple way to fetch with Javascript
-gem "requestjs-rails", "~> 0.0.10"
+gem "requestjs-rails", "~> 0.0.11"
 
 # Add ability to set user roles
 gem "rolify"
