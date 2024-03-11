@@ -30,8 +30,7 @@ class RegistrationsController < Devise::RegistrationsController
       :password,
       :signup_role,
       :tos_agreement,
-      adopter_account_attributes: [:user_id],
-      staff_account_attributes: [:user_id])
+      adopter_account_attributes: [:user_id])
   end
 
   def account_update_params
