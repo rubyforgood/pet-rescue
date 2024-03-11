@@ -25,7 +25,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_one.id
   )
 
-  @staff_account_one.user.add_role(:admin, @organization)
+  @user_staff_one.add_role(:admin, @organization)
 
   @user_staff_two = User.create!(
     email: "staff2@baja.com",
@@ -40,7 +40,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_two.id
   )
 
-  @staff_account_two.user.add_role(:admin, @organization)
+  @user_staff_two.add_role(:admin, @organization)
 
   @user_adopter_one = User.create!(
     email: "adopter1@baja.com",
@@ -53,6 +53,8 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_account_one = AdopterAccount.create!(user_id: @user_adopter_one.id)
 
+  @user_adopter_one.add_role(:adopter, @organization)
+
   @user_adopter_two = User.create!(
     email: "adopter2@baja.com",
     first_name: "Kamala",
@@ -64,6 +66,8 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_account_two = AdopterAccount.create!(user_id: @user_adopter_two.id)
 
+  @user_adopter_two.add_role(:adopter, @organization)
+
   @user_adopter_three = User.create!(
     email: "adopter3@baja.com",
     first_name: "Bad",
@@ -74,6 +78,8 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
+
+  @user_adopter_three.add_role(:adopter, @organization)
 
   @location_one = Location.create!(
     country: "Canada",
