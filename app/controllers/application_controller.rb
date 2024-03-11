@@ -32,4 +32,10 @@ class ApplicationController < ActionController::Base
   def pet_in_same_organization?(org_id)
     current_user.staff_account.organization_id == org_id
   end
+
+  rescue_from ActionPolicy::Unauthorized do |ex|
+    flash[:alert] = "You are not authorized to perform this action."
+
+    redirect_back fallback_location: root_path
+  end
 end
