@@ -1,6 +1,4 @@
 class Organizations::StaffController < Organizations::BaseController
-  verify_authorized
-
   before_action :set_staff_account, only: [:deactivate, :activate, :update_activation]
 
   layout "dashboard"

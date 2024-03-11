@@ -1,6 +1,4 @@
 class AdopterFosterProfilesController < ApplicationController
-  verify_authorized
-
   before_action :authenticate_user!
   before_action :authorize!, only: %i[new create]
   before_action :set_profile, only: %i[show edit update]

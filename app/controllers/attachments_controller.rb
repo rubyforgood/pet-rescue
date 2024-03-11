@@ -1,6 +1,4 @@
 class AttachmentsController < ApplicationController
-  verify_authorized
-
   before_action :active_staff
 
   def purge

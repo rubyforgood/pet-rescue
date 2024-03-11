@@ -1,6 +1,4 @@
 class ContactsController < ApplicationController
-  verify_authorized
-
   skip_verify_authorized only: %i[new create]
 
   def new

@@ -1,6 +1,4 @@
 class Organizations::AdoptionApplicationReviewsController < Organizations::BaseController
-  verify_authorized
-
   before_action :set_adopter_application, only: %i[edit update]
 
   layout "dashboard"

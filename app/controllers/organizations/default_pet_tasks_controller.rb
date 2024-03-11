@@ -1,6 +1,4 @@
 class Organizations::DefaultPetTasksController < Organizations::BaseController
-  verify_authorized
-
   before_action :context_authorize!, only: %i[index new create]
   before_action :set_task, only: %i[edit update destroy]
 

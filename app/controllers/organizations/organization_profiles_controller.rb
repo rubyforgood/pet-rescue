@@ -1,6 +1,4 @@
 class Organizations::OrganizationProfilesController < Organizations::BaseController
-  verify_authorized
-
   layout "dashboard"
 
   before_action :set_organization_profile, only: %i[edit update]

@@ -1,6 +1,4 @@
 class Organizations::DashboardController < Organizations::BaseController
-  verify_authorized
-
   layout "dashboard"
 
   def index

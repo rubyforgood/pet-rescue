@@ -1,6 +1,4 @@
 class Organizations::InvitationsController < Devise::InvitationsController
-  verify_authorized
-
   include OrganizationScopable
 
   layout "dashboard", only: [:new, :create]

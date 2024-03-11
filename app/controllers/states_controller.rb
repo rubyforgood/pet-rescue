@@ -1,5 +1,4 @@
 class StatesController < ApplicationController
-  verify_authorized
   skip_verify_authorized only: %i[index]
 
   def index
