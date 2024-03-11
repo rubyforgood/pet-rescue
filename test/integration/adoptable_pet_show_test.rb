@@ -1,37 +1,103 @@
 require "test_helper"
 
 class AdoptablePetShowTest < ActionDispatch::IntegrationTest
-  test "unauthenticated users see create account prompt and link" do
-    skip("while new ui is implemented")
-    # pet = create(:pet)
-
-    # get "/adoptable_pets/#{pet.id}"
+  setup do
+    @available_pet = create(:pet)
+    set_organization(@available_pet.organization)
+    @pet_in_draft = create(:pet, published: false)
+    @pet_pending_adoption = create(:pet, :adoption_pending)
+    @adopted_pet = create(:pet, :adopted)
+    @staff_user = create(:staff_account).user
+    @adopter_user = create(:adopter_account).user
+    create(:adopter_foster_profile, adopter_account: @adopter_user.adopter_account)
   end
 
-  test "adopter without a profile sees complete my profile prompt and link" do
-    skip("while new ui is implemented")
-    # pet = create(:pet)
-    # sign_in create(:adopter)
-
-    # get "/adoptable_pets/#{pet.id}"
-
-    # check_messages
-    # assert_select "h4", "Complete your profile to apply for this pet"
-    # assert_select "a", "Complete my profile"
+  teardown do
+    check_messages
+    :after_teardown
   end
 
-  test "adopter with a profile sees love this pooch question and apply button" do
-    skip("while new ui is implemented")
-    #   pet = create(:pet)
-    #   sign_in create(:adopter, :with_profile)
+  test "unauthenticated users can see an available pet" do
+    get adoptable_pet_path(@available_pet)
 
-    #   get "/adoptable_pets/#{pet.id}"
+    assert_response :success
+    assert_cannot_apply_to_adopt
+  end
 
-    #   check_messages
-    #   assert_select "h4", "In love with this pooch?"
-    #   assert_select "form" do
-    #     assert_select "button", "Apply to Adopt"
-    # end
+  test "unauthenticated users can see a pet with a pending adoption" do
+    get adoptable_pet_path(@pet_pending_adoption)
+
+    assert_response :success
+  end
+
+  test "unauthenticated users cannot see an unpublished pet" do
+    get adoptable_pet_path(@pet_in_draft)
+
+    assert_response :redirect
+  end
+
+  test "unauthenticated users cannot see an adopted pet" do
+    get adoptable_pet_path(@adopted_pet)
+
+    assert_response :redirect
+  end
+
+  test "staff can see an available pet" do
+    sign_in @staff_user
+    get adoptable_pet_path(@available_pet)
+
+    assert_response :success
+  end
+
+  test "staff can see a pet with a pending adoption" do
+    sign_in @staff_user
+    get adoptable_pet_path(@pet_pending_adoption)
+
+    assert_response :success
+    assert_cannot_apply_to_adopt
+  end
+
+  test "staff cannot see an unpublished pet" do
+    sign_in @staff_user
+    get adoptable_pet_path(@pet_in_draft)
+
+    assert_response :redirect
+  end
+
+  test "staff cannot see an adopted pet" do
+    sign_in @staff_user
+    get adoptable_pet_path(@adopted_pet)
+
+    assert_response :redirect
+  end
+
+  test "adopter can see and apply to an available pet" do
+    sign_in @adopter_user
+    get adoptable_pet_path(@available_pet)
+
+    assert_response :success
+    assert_can_apply_to_adopt
+  end
+
+  test "adopter can see a pet with a pending adoption" do
+    sign_in @adopter_user
+    get adoptable_pet_path(@pet_pending_adoption)
+
+    assert_response :success
+  end
+
+  test "adopter cannot see an unpublished pet" do
+    sign_in @adopter_user
+    get adoptable_pet_path(@pet_in_draft)
+
+    assert_response :redirect
+  end
+
+  test "adopter cannot see an adopted pet" do
+    sign_in @adopter_user
+    get adoptable_pet_path(@adopted_pet)
+
+    assert_response :redirect
   end
 
   test "adopter application sees application status" do
@@ -47,20 +113,6 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     # assert_select "h4.me-2", "Application Awaiting Review"
   end
 
-  test "staff do not see an adopt button only log out button" do
-    skip("while new ui is implemented")
-    # pet = create(:pet)
-    # sign_in create(:user, :verified_staff)
-
-    # get "/adoptable_pets/#{pet.id}"
-
-    # check_messages
-    # assert_select "form" do
-    #   assert_select "button", "Log Out"
-    # end
-    # assert_select "form", count: 1
-  end
-
   test "pet name shows adoption pending if it has any applications with that status" do
     skip("while new ui is implemented")
     # pet = create(:pet, :adoption_pending)
@@ -71,27 +123,11 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     # assert_select "h1", "#{pet.name} (Adoption Pending)"
   end
 
-  test "an adopted pet can't be shown as an adoptable pet" do
-    skip("while new ui is implemented")
-    # adopted_pet = create(:pet, :adopted)
-
-    # get "/adoptable_pets/#{adopted_pet.id}"
-
-    # assert_response :redirect
-    # follow_redirect!
-    # check_messages
-    # assert_equal "You can only view pets that need adoption.", flash[:alert]
+  def assert_can_apply_to_adopt
+    assert_select "input[type='submit']", value: "Apply to Adopt"
   end
 
-  test "a drafted pet can't be shown" do
-    skip("while new ui is implemented")
-    # drafted_pet = create(:pet, published: false)
-    #
-    # get "/adoptable_pets/#{drafted_pet.id}"
-    #
-    # assert_response :redirect
-    # follow_redirect!
-    # check_messages
-    # assert_equal "You can only view published pets.", flash[:alert]
+  def assert_cannot_apply_to_adopt
+    assert_select "input[type='submit']", value: "Apply to Adopt", count: 0
   end
 end

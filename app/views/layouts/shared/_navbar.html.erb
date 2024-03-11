@@ -1,12 +1,14 @@
 <nav class="navbar navbar-expand-lg bg-transparent shadow-none px-0 py-3">
   <div class="container-fluid px-4">
-    <%= link_to home_index_path, class: 'navbar-brand' do %>
+    <%= image_tag('png/logo.png', width: '40px', height: '35px', alt: 'Organization logo',
+                    class: 'pe-2') %>
+    <%= link_to home_index_path, class: 'navbar-brand fw-bold text-black' do %>
       <%= Current.organization.name %>
     <% end %>
 
     <div class="d-flex align-items-center order-lg-3">
       <div>
-        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default3" aria-controls="navbar-default3" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler collapsed me-1" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-default3" aria-controls="navbar-default3" aria-expanded="false" aria-label="Toggle navigation">
           <span class="icon-bar top-bar mt-0"></span>
           <span class="icon-bar middle-bar"></span>
           <span class="icon-bar bottom-bar"></span>
@@ -74,17 +76,23 @@
     <!-- Button -->
 
     <!-- Collapse -->
-    <div class="collapse navbar-collapse" id="navbar-default3">
+    <div class="justify-content-end collapse navbar-collapse " id="navbar-default3">
       <ul class="navbar-nav">
 
+        <li class='nav-item'>
+          <%= active_link_to 'Adopt', new_user_registration_path, class: 'nav-link' %>
+        </li>
+        <li class='nav-item'>
+          <%= active_link_to 'Get Involved', '#', class: 'nav-link' %>
+        </li>
         <li class='nav-item'>
           <%= active_link_to 'About Us', about_us_path, class: 'nav-link' %>
         </li>
         <li class='nav-item'>
           <%= active_link_to 'Partners', partners_path, class: 'nav-link' %>
         </li>
-        <li class="nav-item d-block d-md-none">
-          <%= active_link_to 'Adopt', new_user_registration_path, class: 'nav-link' %>
+        <li class="nav-item">
+          <%= active_link_to 'Donate', donate_path, class: 'nav-link' %>
         </li>
         <li class="nav-item d-block d-md-none">
           <%= active_link_to 'Log In', new_user_session_path, class: 'nav-link' %>
@@ -93,3 +101,9 @@
     </div>
   </div>
 </nav>
+<!--  Demo banner-->
+<% if Rails.env.staging? %>
+  <div class="container-fluid m-0 p-2 text-center bg-danger-soft display-6">
+    This is a demo site
+  </div>
+<%  end %>

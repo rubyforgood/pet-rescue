@@ -1,49 +1,22 @@
-<section class="py-lg-16 py-5 my-5">
-  <div class="container">
-    <div class="row d-flex align-items-center">
-      <div class="col-xxl-5  col-xl-6 col-lg-6 col-12">
-        <div>
-          <h1 class="display-2 fw-bold mb-3">Rescue pets in <%= Current.organization.location.city_town %> at <u class="text-warning"><span class="text-primary"> <%= Current.organization.name %></span></u></h1>
-          <p class="lead mb-4">Rescue a really cute pet and be a hero</p>
-          <ul class="list-unstyled mb-5">
-            <li class="mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--geeks-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </svg>
-              <span class="ms-2">Dogs are awesome</span>
-            </li>
-            <li class="mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--geeks-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </svg>
-              <span class="ms-2">Cats are awesome</span>
-            </li>
-            <li class="mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--geeks-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </svg>
-              <span class="ms-2">Spiders are awesome</span>
-            </li>
-            <li class="mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--geeks-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </svg>
-              <span class="ms-2">Red pandas are awesome</span>
-            </li>
-          </ul>
-          <%= link_to adoptable_pets_path, class: "btn btn-dark btn-lg" do %>
-            Yes! I want to adopt a pet!
-          <% end %>
-        </div>
-      </div>
-      <div class="col-xxl-5 offset-xxl-1 col-xl-6 col-lg-6 col-12 d-lg-flex justify-content-end">
-        <div class="mt-12 mt-lg-0 position-relative">
-          <div class="position-absolute top-0 start-0 translate-middle  d-none d-md-block">
-            <%= image_tag "svg/graphics-2.svg", alt: "graphics-2" %>
+<!-- HERO  -->
+<section id="hero">
+  <div class="bg-image" style="background-image: url('https://s3-alpha-sig.figma.com/img/63f3/6682/f3d01915a2694e2800941735ae233aea?Expires=1710115200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NeEXnwv7fYMa0QoOK4BbY3E5pEm8wzMFUqP5EsyKHHwYhvf-beJe-IpoY3pjc0ZAQIjPRlHvNY6sLzO0tvptUfSkoYZ91tjhYoyw2YuJ18Qf2P2k8NM86NboAv6Js3Vl6Iu-2g9J7vkz~xoue6zWmaiYpvV0nAcQG-PtEWTn5IMuU60jvVhEUy3~J2W6FvC8x9T4VSkzDKj~hplKzJSQWhaW~2ou9GMdgmx0tJMffsVCG7vHmiYf1WGFcs1CRPHEBf4UYihBadnEJfDccIQ-bIL1qJU9Uv3eklX63z6PmVxyBlAZnNU0iSGi0s8LIqtTTbCl~4IAhVe~1qC4IBLCcA__'); background-position: center; background-size: cover;">
+    <div class="mask py-lg-16 py-5" style="background-color: rgba(255, 255, 255, 0.8);">
+      <div class="container">
+        <div class="d-flex row justify-content-center  align-items-center">
+          <div class="d-flex justify-content-center">
+            <h1 class="display-2 fw-bold mb-1 text-primary "><%= Current.organization.name %></h1>
+          </div>  
+          <div class="d-flex justify-content-center ">
+            <p class="lead mb-4 text-black text-uppercase ">Where every paw finds a home</p>
           </div>
-          <%= image_tag "danielle_3.jpg", alt: "hero", class: "img-fluid rounded-4 w-100 position-relative" %>
-          <div class="position-absolute top-100 start-100 translate-middle  d-none d-md-block">
-            <%= image_tag "svg/graphics-1.svg", alt: "graphics-1" %>
+          <div class="d-flex justify-content-center">
+          <%= link_to '#', class: "btn btn-dark btn-lg rounded-1 me-2" do %>
+              Volunteer
+            <% end %>
+            <%= link_to adoptable_pets_path, class: "btn btn-primary btn-lg rounded-1 ms-2" do %>
+              Donate
+            <% end %>
           </div>
         </div>
       </div>
@@ -51,46 +24,51 @@
   </div>
 </section>
 
-
-<!-- HOW TO APPLY FOR ADOPTION -->
-<section class="pt-5 pb-5 bg-white" id="how_to_apply">
+<!-- ADOPTION -->
+<section class="pt-5 pb-5" id="adopt">
   <div class="container mb-md-5 mt-md-5">
 
     <!--section heading-->
     <div class="text-center mb-5">
-      <h2 class="section-heading text-uppercase underline">
-        How to apply for adoption
+      <h2 class="section-heading text-uppercase text-xl">
+        Adopt
       </h2>
     </div>
-
-    <div class="row text-center">
-      <div class="col-md-3 pb-3">
-        <span>
-            <%= image_tag('sign_up.svg', width: '100') %>
-        </span>
-        <h4 class="my-3">1. Create Account</h4>
+    <!-- bootstrap cards -->
+    <div class="d-flex justify-content-around align-items-center flex-wrap">
+      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
+        <%= image_tag('dog.jpeg', width: '500px', alt: "Adorable Dog", class: "card-img-top rounded-top-1") %>
+        <div class="card-body">
+          <p class="card-text text-black ">Adoptable Dogs <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
+        </div>
       </div>
-      <div class="col-md-3 pb-3">
-        <span>
-            <%= image_tag('profile.svg', width: '100') %>
-        </span>
-        <h4 class="my-3">2. Complete a Profile</h4>
+      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
+        <%= image_tag('cat.jpeg', width: '500px', alt: "Adorable Cat", class: "card-img-top rounded-top-1") %>
+        <div class="card-body">
+          <p class="card-text text-black ">Adoptable Cats <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
+        </div>
       </div>
-      <div class="col-md-3 pb-3">
-        <span>
-            <%= image_tag('dog.svg', width: '100') %>
-        </span>
-        <h4 class="my-3">3. Browse pets</h4>
+      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
+        <%= image_tag('spider.jpeg', width: '500px', alt: "Adorable Dog", class: "card-img-top rounded-top-1") %>
+        <div class="card-body">
+          <p class="card-text text-black ">Adoptable Spiders <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
+        </div>
       </div>
-      <div class="col-md-3 pb-3">
-        <span>
-            <%= image_tag('click.svg', width: '100') %>
-        </span>
-        <h4 class="my-3">4. Click apply</h4>
+      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
+        <%= image_tag('red-panda.jpeg', width: '500px', alt: "Adorable Dog", class: "card-img-top rounded-top-1") %>
+        <div class="card-body">
+          <p class="card-text text-black ">Adoptable Red Pandas <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
+        </div>
       </div>
-    </div> <!--row-->
-  </div> <!--container-->
+    </div>
+    <!-- Adopt all link -->
+    <div class="d-flex justify-content-end align-items-center mt-3">
+      <%= link_to "Browse All Pets", adoptable_pets_path, class: "text-primary fs-3 me-1" %>
+      <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
+    </div>
+  </div>
 </section>
+
 
 <!-- ABOUT US-->
 <section class="bg-light pt-5 pb-5" id="about_us">

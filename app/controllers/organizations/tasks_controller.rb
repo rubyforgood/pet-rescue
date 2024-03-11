@@ -30,7 +30,7 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def update
-    @task.next_due_date_in_days = nil unless task_params.dig(:next_due_date_in_days)
+    @task.next_due_date_in_days = nil unless task_params.dig(:next_due_date_in_days) || task_params.dig(:completed)
 
     respond_to do |format|
       if @task.update(task_params)

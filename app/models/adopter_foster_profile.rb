@@ -42,8 +42,8 @@
 #
 # Indexes
 #
-#  index_adopter_profiles_on_adopter_account_id  (adopter_account_id)
-#  index_adopter_profiles_on_location_id         (location_id)
+#  index_adopter_foster_profiles_on_adopter_account_id  (adopter_account_id)
+#  index_adopter_foster_profiles_on_location_id         (location_id)
 #
 # Foreign Keys
 #
