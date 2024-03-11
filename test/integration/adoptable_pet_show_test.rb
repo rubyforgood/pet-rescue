@@ -57,18 +57,18 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     assert_cannot_apply_to_adopt
   end
 
-  test "staff cannot see an unpublished pet" do
+  test "staff can see an unpublished pet" do
     sign_in @staff_user
     get adoptable_pet_path(@pet_in_draft)
 
-    assert_response :redirect
+    assert_response :success
   end
 
-  test "staff cannot see an adopted pet" do
+  test "staff can see an adopted pet" do
     sign_in @staff_user
     get adoptable_pet_path(@adopted_pet)
 
-    assert_response :redirect
+    assert_response :success
   end
 
   test "adopter can see and apply to an available pet" do
