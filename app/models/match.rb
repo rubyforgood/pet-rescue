@@ -40,11 +40,23 @@ class Match < ApplicationRecord
     end
   end
 
+  def withdraw_application
+    adopter_application&.withdraw
+  end
+
+  def retire_applications(application_class: AdopterApplication)
+    application_class.retire_applications(pet_id: pet_id)
+  end
+
   private
 
   def belongs_to_same_organization_as_pet
     if organization_id != pet.organization_id
       errors.add(:organization_id, :different_organization)
     end
+  end
+
+  def adopter_application
+    AdopterApplication.find_by(pet:, adopter_account:)
   end
 end
