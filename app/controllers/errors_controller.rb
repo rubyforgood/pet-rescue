@@ -1,4 +1,7 @@
 class ErrorsController < ApplicationController
+  verify_authorized
+  skip_verify_authorized
+
   def not_found
     render status: 404
   end
