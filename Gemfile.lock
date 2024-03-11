@@ -252,7 +252,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.0.2)
+    marcel (1.0.4)
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.5)
@@ -357,8 +357,8 @@ GEM
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
-    requestjs-rails (0.0.10)
-      rails (>= 6.0.0)
+    requestjs-rails (0.0.11)
+      railties (>= 6.1.0)
     responders (3.1.1)
       actionpack (>= 5.2)
       railties (>= 5.2)
@@ -508,7 +508,7 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n
   ransack
-  requestjs-rails (~> 0.0.10)
+  requestjs-rails (~> 0.0.11)
   rolify
   shoulda (~> 4.0)
   shoulda-matchers
