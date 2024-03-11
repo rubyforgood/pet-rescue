@@ -2,6 +2,8 @@ require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
 class AdoptablePetPolicyTest < ActiveSupport::TestCase
+  include PetRescue::PolicyAssertions
+
   def setup
     @policy = -> { AdoptablePetPolicy.new(@pet, user: @user) }
   end
