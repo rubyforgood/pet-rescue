@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       post "activate", to: "staff#activate"
       post "update_activation", to: "staff#update_activation"
     end
+
+    get "task/cancel", to: "tasks#cancel"
   end
 
   resources :profile_reviews, only: [:show]
