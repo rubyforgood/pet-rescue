@@ -27,10 +27,10 @@ class Match < ApplicationRecord
 
   validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
 
-  after_create_commit :send_checklist_reminder
+  after_create_commit :send_reminder
 
-  def send_checklist_reminder
-    MatchMailer.checklist_reminder(self).deliver_later
+  def send_reminder
+    MatchMailer.reminder(self).deliver_later
   end
 
   def withdraw_application
