@@ -1,4 +1,12 @@
 <%= bootstrap_form_with model: task, url: url, data: {controller: "task-form"} do |f| %>
+    <% if task.errors.any? %>
+    <div class="alert alert-danger mx-3">
+      <% task.errors.full_messages.each do |message| %>
+        <span><%= message %></span>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="m-3">
     <div class='row'>
       <div class='col-9'>
@@ -32,6 +40,7 @@
     <%= f.text_area :description, class: 'form-control', rows: 3 %>
   </div>
   <div class="m-3">
-    <%= f.submit class: 'btn btn-primary' %>
+    <%= f.submit class: 'btn btn-primary' %> 
+    <%= link_to "Cancel", task_cancel_path(task_id: task.id, pet_id: task.pet.id), class: "btn btn-outline-danger", data: {turbo_stream: true} %>
   </div>
 <% end %>
