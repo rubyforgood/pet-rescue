@@ -64,11 +64,6 @@ FactoryBot.define do
     location
   end
 
-  factory :checklist_template do
-    description { Faker::Lorem.paragraph }
-    name { Faker::Lorem.word }
-  end
-
   factory :location do
     city_town { Faker::Address.city }
     sequence(:country) { |n| "Country#{n}" }

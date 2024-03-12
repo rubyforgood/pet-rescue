@@ -264,21 +264,5 @@ ActsAsTenant.with_tenant(@organization) do
     )
   end
 
-  @checklist_template = ChecklistTemplate.create!(
-    name: "vaccinations",
-    description: "Get your dog vaccinated"
-  )
-
-  5.times do
-    @checklist_template.items.create!(
-      name: Faker::Verb.base,
-      description: Faker::Quote.famous_last_words,
-      expected_duration_days: rand(1..10),
-      required: [true, false].sample
-    )
-  end
-
-  @match.assign_checklist_template(@checklist_template)
-
   PageText.create!(hero: nil, about: nil)
 end
