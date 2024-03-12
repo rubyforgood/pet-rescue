@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AdopterApplicationTest < ActionDispatch::IntegrationTest
+class AdopterApplicationIntegrationTest < ActionDispatch::IntegrationTest
   setup do
     @organization = create(:organization)
     @pet_id = create(:pet, organization: @organization).id

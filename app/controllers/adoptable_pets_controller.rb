@@ -12,7 +12,7 @@ class AdoptablePetsController < Organizations::BaseController
       redirect_to adoptable_pets_path, alert: "You can only view published pets."
     end
 
-    if current_user
+    if current_user&.adopter_account
       @adoption_application =
         AdopterApplication.find_by(
           pet_id: @pet.id,

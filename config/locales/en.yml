@@ -35,6 +35,7 @@ en:
     attach: "Attach"
     adoption_pending: "(Adoption Pending)"
     age: "Age"
+    become_an_adopter: "Become an adopter"
     breed: "Breed"
     application: "Application"
     sex: "Sex"
@@ -52,6 +53,7 @@ en:
     submit: "Submit"
     status: "Status"
     back: "Back"
+    are_you_sure_delete_pet: "Are you sure you want to delete this pet?"
   activerecord:
     errors:
       models:
@@ -330,14 +332,12 @@ en:
         view_adopter: "View Adopter"
         revoke_adoption: "Revoke Adoption"
         are_you_sure_revoke: "Are you sure you want to revoke this adoption?"
-        are_you_sure_delete: "Are you sure you want to delete this pet?"
         application:
           active: "Applications are active"
           paused: "Applications are paused"
       form:
         uploaded_images: "Uploaded Images"
       index:
-        are_you_sure_delete: "Are you sure you want to delete this pet?"
         our_pets: "Our pets"
         filter: "Filter by adoption status"
         select:

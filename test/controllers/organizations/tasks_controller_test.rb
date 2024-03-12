@@ -135,8 +135,20 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_turbo_stream action: "remove", target: @task
   end
 
-  test "should create a new task when recurring task is completed" do
+  test "should create a new task when recurring task without due date is completed" do
     task = create(:task, pet: @pet, recurring: true)
+
+    assert_difference "Task.count", 1 do
+      patch pet_task_path(@pet, task, format: :turbo_stream), params: {
+        task: {
+          completed: true
+        }
+      }
+    end
+  end
+
+  test "should create a new task when recurring task with due date is completed" do
+    task = create(:task, pet: @pet, recurring: true, due_date: Date.today + 2, next_due_date_in_days: 4)
 
     assert_difference "Task.count", 1 do
       patch pet_task_path(@pet, task, format: :turbo_stream), params: {
