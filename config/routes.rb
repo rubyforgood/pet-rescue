@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :checklist_template_items
-
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions",
