@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_12_020045) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_12_020653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,13 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_12_020045) do
     t.bigint "location_id", null: false
     t.index ["adopter_account_id"], name: "index_adopter_foster_profiles_on_adopter_account_id"
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
-  end
-
-  create_table "checklist_templates", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "default_pet_tasks", force: :cascade do |t|
