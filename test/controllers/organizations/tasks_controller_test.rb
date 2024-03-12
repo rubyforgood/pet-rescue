@@ -182,4 +182,11 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
       }
     end
   end
+
+  test "cancel action should respond with turbo stream" do
+    get task_cancel_url(task_id: @task.id, pet_id: @pet.id), as: :turbo_stream
+
+    assert_response :success
+    assert_turbo_stream action: "update", target: @task
+  end
 end
