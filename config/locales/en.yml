@@ -131,22 +131,6 @@ en:
               blank: "Please fill in"
             referral_source:
               blank: "Please tell us how you heard about us"
-        checklist_assignment:
-          attributes:
-            checklist_template_item:
-              blank: "Checklist template item must exist"
-            match:
-              blank: "Match must exist"
-        checklist_assignment_item:
-          attributes:
-            checklist_template:
-              blank: "Checklist template must exist"
-            name:
-              blank: "Name can't be blank"
-            expected_duration_days:
-              blank: "Expected duration days can't be blank"
-              not_a_number: "Expected duration days is not a number"
-              greater_than_or_equal_to: "Expected duration days must be greater than or equal to 0"
         contact:
           attributes:
             name:

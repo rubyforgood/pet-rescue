@@ -64,11 +64,6 @@ FactoryBot.define do
     location
   end
 
-  factory :checklist_assignment do
-    checklist_template_item
-    match
-  end
-
   factory :checklist_template do
     description { Faker::Lorem.paragraph }
     name { Faker::Lorem.word }
