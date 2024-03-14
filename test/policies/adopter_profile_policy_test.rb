@@ -9,7 +9,7 @@ class AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       @policy = -> { AdopterFosterProfilePolicy.new(AdopterFosterProfile, user: @user) }
     end
 
-    should "be an alias to :manage?" do
+    should "be an alias to :create?" do
       assert_alias_rule @policy.call, :new?, :create?
     end
   end
