@@ -1,14 +1,14 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class Organizations::AdopterApplicationReviewPolicyTest < ActiveSupport::TestCase
+class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   context "context only action" do
     setup do
       @organization = ActsAsTenant.current_tenant
       @policy = -> {
-        Organizations::AdopterApplicationReviewPolicy.new(
+        Organizations::AdopterApplicationPolicy.new(
           AdopterApplication, organization: @organization, user: @user
         )
       }
@@ -105,7 +105,7 @@ class Organizations::AdopterApplicationReviewPolicyTest < ActiveSupport::TestCas
     setup do
       @adopter_application = create(:adopter_application)
       @policy = -> {
-        Organizations::AdopterApplicationReviewPolicy.new(
+        Organizations::AdopterApplicationPolicy.new(
           @adopter_application, user: @user
         )
       }

@@ -18,7 +18,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
         assert_authorized_to(
           :manage?, AdopterApplication,
           context: {organization: @organization},
-          with: Organizations::AdopterApplicationReviewPolicy
+          with: Organizations::AdopterApplicationPolicy
         ) do
           get adoption_application_reviews_url
         end
@@ -27,7 +27,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       should "have authorized scope" do
         assert_have_authorized_scope(
           type: :active_record_relation,
-          with: Organizations::AdopterApplicationReviewPolicy
+          with: Organizations::AdopterApplicationPolicy
         ) do
           get adoption_application_reviews_url
         end
@@ -38,7 +38,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       should "be authorized" do
         assert_authorized_to(
           :manage?, @adopter_application,
-          with: Organizations::AdopterApplicationReviewPolicy
+          with: Organizations::AdopterApplicationPolicy
         ) do
           get edit_adoption_application_review_url(@adopter_application)
         end
@@ -62,7 +62,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       should "be authorized" do
         assert_authorized_to(
           :manage?, @adopter_application,
-          with: Organizations::AdopterApplicationReviewPolicy
+          with: Organizations::AdopterApplicationPolicy
         ) do
           patch adoption_application_review_url(@adopter_application),
             params: @params,

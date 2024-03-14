@@ -5,12 +5,11 @@ class Organizations::AdoptionApplicationReviewsController < Organizations::BaseC
 
   def index
     authorize! AdopterApplication,
-      context: {organization: current_user.organization},
-      with: Organizations::AdopterApplicationReviewPolicy
+      context: {organization: current_user.organization}
 
     @q = authorized_scope(
       Pet.org_pets_with_apps(current_user.staff_account.organization_id),
-      with: Organizations::AdopterApplicationReviewPolicy
+      with: Organizations::AdopterApplicationPolicy
     ).ransack(params[:q])
     @pets_with_applications = @q.result.includes(:adopter_applications)
     @pet = selected_pet
@@ -47,7 +46,7 @@ class Organizations::AdoptionApplicationReviewsController < Organizations::BaseC
 
   def set_adopter_application
     @application = AdopterApplication.find(params[:id])
-    authorize! @application, with: Organizations::AdopterApplicationReviewPolicy
+    authorize! @application
   end
 
   # use where to return a relation for the view
