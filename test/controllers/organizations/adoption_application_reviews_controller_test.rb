@@ -27,7 +27,7 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       should "have authorized scope" do
         assert_have_authorized_scope(
           type: :active_record_relation,
-          with: Organizations::AdopterApplicationPolicy
+          with: Organizations::PetPolicy
         ) do
           get adoption_application_reviews_url
         end

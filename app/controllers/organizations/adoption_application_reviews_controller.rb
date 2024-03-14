@@ -8,8 +8,7 @@ class Organizations::AdoptionApplicationReviewsController < Organizations::BaseC
       context: {organization: current_user.organization}
 
     @q = authorized_scope(
-      Pet.org_pets_with_apps(current_user.staff_account.organization_id),
-      with: Organizations::AdopterApplicationPolicy
+      Pet.org_pets_with_apps(current_user.staff_account.organization_id)
     ).ransack(params[:q])
     @pets_with_applications = @q.result.includes(:adopter_applications)
     @pet = selected_pet
