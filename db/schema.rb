@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_14_171529) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_14_180027) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,6 +101,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_14_171529) do
     t.bigint "parent_id"
     t.bigint "adopter_account_id"
     t.bigint "foster_account_id"
+    t.bigint "adopter_foster_account_id"
+    t.index ["adopter_foster_account_id"], name: "index_adopter_foster_profiles_on_adopter_foster_account_id"
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
     t.index ["parent_type", "parent_id"], name: "index_adopter_foster_profiles_on_parent"
   end
@@ -271,6 +273,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_14_171529) do
   add_foreign_key "adopter_applications", "adopter_foster_accounts", column: "adopter_account_id"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_foster_accounts", "users"
+  add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "foster_accounts", "users"
