@@ -1,10 +1,10 @@
 class Organizations::PageTextsController < Organizations::BaseController
   def edit
-    @page_text = Current.organization.page_text
+    @page_text = current_user.organization.page_text
   end
 
   def update
-    @page_text = Current.organization.page_text
+    @page_text = current_user.organization.page_text
     if @page_text.update(page_text_params)
       redirect_to dashboard_path, notice: "Page text updated successfully!"
     else
