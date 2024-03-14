@@ -53,6 +53,7 @@
 class AdopterFosterProfile < ApplicationRecord
   belongs_to :location, dependent: :destroy
   belongs_to :adopter_account
+  belongs_to :caretaker, polymorphic: true, optional: true
   accepts_nested_attributes_for :location
   validates_associated :location
 

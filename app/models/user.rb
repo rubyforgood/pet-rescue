@@ -58,6 +58,7 @@ class User < ApplicationRecord
 
   has_one :staff_account, dependent: :destroy
   has_one :adopter_account, dependent: :destroy
+  has_one :adopter_foster_profile, dependent: :destroy
 
   accepts_nested_attributes_for :adopter_account
 
