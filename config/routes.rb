@@ -17,7 +17,11 @@ Rails.application.routes.draw do
 
     resources :home, only: [:index]
     resources :pets do
-      resources :tasks, only: [:new, :create, :edit, :update, :destroy]
+      resources :tasks, only: [:new, :create, :edit, :update, :destroy] do
+        collection do
+          get "cancel", to: "tasks#cancel"
+        end
+      end
       post "attach_images", on: :member, to: "pets#attach_images"
       post "attach_files", on: :member, to: "pets#attach_files"
     end
@@ -30,8 +34,6 @@ Rails.application.routes.draw do
       post "activate", to: "staff#activate"
       post "update_activation", to: "staff#update_activation"
     end
-
-    get "task/cancel", to: "tasks#cancel"
   end
 
   resources :profile_reviews, only: [:show]

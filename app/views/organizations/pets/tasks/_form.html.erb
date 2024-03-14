@@ -41,6 +41,6 @@
   </div>
   <div class="m-3">
     <%= f.submit class: 'btn btn-primary me-2' %> 
-    <%= link_to "Cancel", task_cancel_path(task_id: task.id, pet_id: task.pet.id), class: "btn btn-outline-danger ms-2", data: {turbo_stream: true} %>
+    <%= link_to "Cancel", cancel_pet_tasks_path(pet_id: task.pet.id, task_id: task.id), class: "btn btn-outline-danger ms-2", data: {turbo_stream: true} %>
   </div>
 <% end %>

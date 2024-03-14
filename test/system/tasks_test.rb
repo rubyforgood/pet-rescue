@@ -98,7 +98,7 @@ class TasksTest < ApplicationSystemTestCase
   test "can close new task form with cancel button without redirecting" do
     visit pet_path(@pet, active_tab: "tasks")
     click_link(href: new_pet_task_path(@pet))
-    click_link(href: task_cancel_path(task_id: nil, pet_id: @pet.id))
+    click_link(href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: nil))
 
     assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
     assert_no_text "Cancel"
@@ -108,7 +108,7 @@ class TasksTest < ApplicationSystemTestCase
     task = create(:task, pet: @pet)
     visit pet_path(@pet, active_tab: "tasks")
     click_link(href: edit_pet_task_path(@pet, task))
-    click_link(href: task_cancel_path(task_id: task.id, pet_id: @pet.id))
+    click_link(href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: task.id))
 
     assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
     assert_no_text "Cancel"
@@ -123,10 +123,10 @@ class TasksTest < ApplicationSystemTestCase
     click_link(href: edit_pet_task_path(@pet, task1))
     click_link(href: edit_pet_task_path(@pet, task2))
 
-    assert_link "Cancel", href: task_cancel_path(task_id: task2.id, pet_id: @pet.id)
+    assert_link "Cancel", href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: task2.id)
 
-    click_link(href: task_cancel_path(task_id: task2.id, pet_id: @pet.id))
+    click_link(href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: task2.id))
     assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
-    assert_link "Cancel", href: task_cancel_path(task_id: task1.id, pet_id: @pet.id)
+    assert_link "Cancel", href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: task1.id)
   end
 end
