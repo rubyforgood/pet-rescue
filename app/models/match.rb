@@ -17,7 +17,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_...  (adopter_account_id => adopter_accounts.id)
+#  fk_rails_...  (adopter_account_id => adopter_foster_accounts.id)
 #  fk_rails_...  (pet_id => pets.id)
 #
 class Match < ApplicationRecord

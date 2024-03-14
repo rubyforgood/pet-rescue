@@ -42,13 +42,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_14_171529) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "adopter_accounts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_adopter_accounts_on_user_id"
-  end
-
   create_table "adopter_applications", force: :cascade do |t|
     t.bigint "pet_id", null: false
     t.bigint "adopter_account_id", null: false
@@ -62,14 +55,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_14_171529) do
   end
 
   create_table "adopter_foster_accounts", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_adopter_foster_accounts_on_user_id"
   end
 
   create_table "adopter_foster_profiles", force: :cascade do |t|
-    t.bigint "adopter_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone_number"
@@ -105,8 +97,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_14_171529) do
     t.text "visit_dates"
     t.text "referral_source"
     t.bigint "location_id", null: false
-    t.index ["adopter_account_id"], name: "index_adopter_foster_profiles_on_adopter_account_id"
+    t.string "parent_type"
+    t.bigint "parent_id"
+    t.bigint "adopter_account_id"
+    t.bigint "foster_account_id"
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
+    t.index ["parent_type", "parent_id"], name: "index_adopter_foster_profiles_on_parent"
   end
 
   create_table "default_pet_tasks", force: :cascade do |t|
@@ -265,14 +261,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_14_171529) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "adopter_accounts", "users"
-  add_foreign_key "adopter_applications", "adopter_accounts"
+  add_foreign_key "adopter_applications", "adopter_foster_accounts", column: "adopter_account_id"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_foster_accounts", "users"
-  add_foreign_key "adopter_foster_profiles", "adopter_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "default_pet_tasks", "organizations"
-  add_foreign_key "matches", "adopter_accounts"
+  add_foreign_key "foster_accounts", "users"
+  add_foreign_key "matches", "adopter_foster_accounts", column: "adopter_account_id"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"
