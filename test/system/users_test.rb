@@ -31,6 +31,6 @@ class UsersTest < ApplicationSystemTestCase
     refute has_button?("Sign out")
     expected_path = "/" + @organization.slug + "/home"
     assert has_current_path?(expected_path)
-    assert_text "WHERE EVERY PAW FINDS A HOME"
+    assert_text "Where every paw finds a home"
   end
 end
