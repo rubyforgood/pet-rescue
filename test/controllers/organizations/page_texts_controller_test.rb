@@ -17,7 +17,7 @@ class Organizations::PageTextsControllerTest < ActionDispatch::IntegrationTest
 
   context "PATCH #update" do
     should "update page text" do
-      patch page_text_path(@page_text), params: { page_text: { hero: "Super Dog", about: "canine caped crusader" } }
+      patch page_text_path(@page_text), params: {page_text: {hero: "Super Dog", about: "canine caped crusader"}}
       assert_response :redirect
       follow_redirect!
       assert_response :success
