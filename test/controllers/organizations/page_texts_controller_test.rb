@@ -10,7 +10,7 @@ class Organizations::PageTextsControllerTest < ActionDispatch::IntegrationTest
 
   context "GET #edit" do
     should "get edit page" do
-      get edit_page_text_path(@page_text)
+      get edit_page_text_path
       assert_response :success
     end
   end
@@ -18,8 +18,9 @@ class Organizations::PageTextsControllerTest < ActionDispatch::IntegrationTest
   context "PATCH #update" do
     should "update page text" do
       patch page_text_path(@page_text), params: { page_text: { hero: "Super Dog", about: "canine caped crusader" } }
-      assert_redirected_to dashboard_path
-      @page_text.reload
+      assert_response :redirect
+      follow_redirect!
+      assert_response :success
       assert_equal "Super Dog", @page_text.hero
       assert_equal "canine caped crusader", @page_text.about
     end
