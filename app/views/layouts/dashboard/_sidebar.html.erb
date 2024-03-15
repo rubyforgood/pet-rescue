@@ -54,6 +54,11 @@
           <% end %>
         </li>
         <li class="nav-item">
+          <%= active_link_to edit_page_text_path(@page_text), class: "nav-link" do %>
+            <i class="nav-icon fe fe-file-text me-2"></i> Page Text
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= active_link_to staff_index_path, class: "nav-link" do %>
             <i class="nav-icon fe fe-users me-2"></i> Staff
           <% end %>
