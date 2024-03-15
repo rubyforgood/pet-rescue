@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
+    resources :page_texts, only: [:edit, :update]
     resources :staff do
       post "deactivate", to: "staff#deactivate"
       post "activate", to: "staff#activate"

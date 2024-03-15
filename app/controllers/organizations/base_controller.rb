@@ -8,4 +8,12 @@
 
 class Organizations::BaseController < ApplicationController
   include OrganizationScopable
+
+  before_action :set_current_organization
+
+  private
+
+  def set_current_organization
+    Current.organization = current_user.organization
+  end
 end
