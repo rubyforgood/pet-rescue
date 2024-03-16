@@ -24,20 +24,21 @@ class Match < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :pet
   belongs_to :adopter_account
-  has_many :checklist_assignments, dependent: :destroy
 
   validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
 
-  after_create_commit :send_checklist_reminder
+  after_create_commit :send_reminder
 
-  def send_checklist_reminder
-    MatchMailer.checklist_reminder(self).deliver_later
+  def send_reminder
+    MatchMailer.reminder(self).deliver_later
   end
 
-  def assign_checklist_template(checklist_template)
-    checklist_template.items.each do |item|
-      checklist_assignments.create!(checklist_template_item: item)
-    end
+  def withdraw_application
+    adopter_application&.withdraw
+  end
+
+  def retire_applications(application_class: AdopterApplication)
+    application_class.retire_applications(pet_id: pet_id)
   end
 
   private
@@ -46,5 +47,9 @@ class Match < ApplicationRecord
     if organization_id != pet.organization_id
       errors.add(:organization_id, :different_organization)
     end
+  end
+
+  def adopter_application
+    AdopterApplication.find_by(pet:, adopter_account:)
   end
 end

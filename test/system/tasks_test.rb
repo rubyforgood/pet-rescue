@@ -39,7 +39,7 @@ class TasksTest < ApplicationSystemTestCase
     assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
   end
 
-  test "marking a recurring task as complete creates and displays a new task without redirecting" do
+  test "marking a recurring task without due date as complete creates and displays a new task without redirecting" do
     recurring_task = create(:task, recurring: true, pet: @pet, name: "recurring task")
 
     visit pet_path(@pet, active_tab: "tasks")
@@ -49,6 +49,20 @@ class TasksTest < ApplicationSystemTestCase
     end
 
     assert_text("recurring task", count: 2)
+    assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
+  end
+
+  test "marking a recurring task with due date as complete creates and displays a new task without redirecting" do
+    due_date = (Date.today + 2.days)
+    recurring_task_with_due_date = create(:task, recurring: true, pet: @pet, name: "recurring task with due date", due_date: due_date, next_due_date_in_days: 4)
+
+    visit pet_path(@pet, active_tab: "tasks")
+
+    within("#edit_task_#{recurring_task_with_due_date.id}") do
+      check "task_completed"
+    end
+
+    assert_text("recurring task with due date", count: 2)
     assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
   end
 
