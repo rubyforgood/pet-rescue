@@ -53,14 +53,18 @@ class AdopterApplication < ApplicationRecord
     applications.any? { |app| app.profile_show == true }
   end
 
-  # set application status to withdrawn e.g. if reverting an adoption
-  def self.set_status_to_withdrawn(adopter_application)
-    adopter_application.status = :withdrawn
-    adopter_application.save
+  def self.retire_applications(pet_id:)
+    where(pet_id:).each do |adopter_application|
+      adopter_application.update!(status: :adoption_made)
+    end
   end
 
   def applicant_name
     "#{adopter_account.user.last_name}, #{adopter_account.user.first_name}"
+  end
+
+  def withdraw
+    update!(status: :withdrawn)
   end
 
   ransacker :applicant_name do

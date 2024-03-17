@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :checklist_template_items
-
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions",
@@ -9,7 +7,6 @@ Rails.application.routes.draw do
 
   resources :adoptable_pets, only: [:index, :show]
   resource :adopter_foster_profile, except: :destroy, as: "profile"
-  resources :checklist_templates
   resources :donations, only: [:create]
 
   scope module: :organizations do
@@ -54,8 +51,7 @@ Rails.application.routes.draw do
   resources :adopter_applications, path: "applications",
     only: %i[index create update]
 
-  post "create_adoption", to: "matches#create"
-  delete "revoke_adoption", to: "matches#delete"
+  resources :matches, only: %i[create destroy]
 
   get "/contacts", to: "contacts#create"
   get "/contacts/new", to: "contacts#new", as: "new_contact"
