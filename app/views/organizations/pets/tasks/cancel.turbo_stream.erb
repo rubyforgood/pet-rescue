@@ -1,0 +1,7 @@
+<% unless @task.id %>
+  <%= turbo_stream.update @task, "" %>
+<% else %>
+  <%= turbo_stream.update @task do %>
+    <%= render partial: "organizations/pets/tasks/task", locals: { task: @task } %>
+  <% end %>
+<% end %>
