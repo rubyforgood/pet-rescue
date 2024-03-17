@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["menu"];
+  static targets = ["button", "menu"];
 
   initialize() {
     this.close();
@@ -13,9 +13,13 @@ export default class extends Controller {
 
   open() {
     this.menuTarget.hidden = false;
+    this.menuTarget.setAttribute("aria-hidden", "false");
+    this.buttonTarget.setAttribute("aria-expanded", "true");
   }
 
   close() {
     this.menuTarget.hidden = true;
+    this.menuTarget.setAttribute("aria-hidden", "true");
+    this.buttonTarget.setAttribute("aria-expanded", "false");
   }
 }

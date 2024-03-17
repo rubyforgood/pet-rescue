@@ -20,13 +20,13 @@
       <% end %>
 
       <div class="dropdown ms-2 list-unstyled position-relative" data-controller="dropdown">
-        <button class="btn p-0 border-0" data-action="dropdown#toggle" aria-expanded="false">
+        <button class="btn p-0 border-0" id="nav-dropdown-button" data-action="dropdown#toggle" data-dropdown-target="button" aria-expanded="false">
           <% if user_signed_in? %>
            <%= render_avatar_partial %>
           <% end %>
         </button>
 
-        <div class="aria-dropdown-menu position-absolute end-0" data-dropdown-target="menu" hidden aria-labelledby="dropdownUser" style='z-index: 1000'>
+        <div class="aria-dropdown-menu position-absolute end-0" data-dropdown-target="menu" hidden aria-hidden="true" aria-labelledby="nav-dropdown-button" style='z-index: 1000'>
           <% if user_signed_in? %>
             <ul class="list-unstyled">
               <% if current_user.adopter_account && current_user.adopter_account.adopter_foster_profile.nil? %>
