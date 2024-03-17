@@ -1,5 +1,5 @@
 class Organizations::TasksController < Organizations::BaseController
-  before_action :set_pet, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_pet, only: [:new, :create, :edit, :update, :destroy, :cancel]
   before_action :set_task, only: [:edit, :update]
 
   def new
@@ -51,6 +51,13 @@ class Organizations::TasksController < Organizations::BaseController
     end
   rescue ActiveRecord::RecordNotFound
     redirect_to pets_path
+  end
+
+  def cancel
+    @task = params[:task_id] ? @pet.tasks.find(params[:task_id]) : @pet.tasks.build
+    respond_to do |format|
+      format.turbo_stream { render "organizations/pets/tasks/cancel" }
+    end
   end
 
   private
