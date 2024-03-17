@@ -9,3 +9,18 @@
 label.required:after {
   content: " *";
 }
+
+.aria-dropdown-menu {
+  display: block;
+  background-color: white;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: var(--geeks-dropdown-shadow);
+  color: var(--geeks-gray-800);
+  font-size: 0.875rem;
+  line-height: 1.2rem;
+  margin: 1.125rem 0;
+  min-width: 12rem;
+  padding: 1rem 0;
+  top: 28px;
+}
