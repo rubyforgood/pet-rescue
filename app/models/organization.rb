@@ -13,7 +13,8 @@
 #  index_organizations_on_slug  (slug) UNIQUE
 #
 class Organization < ApplicationRecord
-  resourcify # rolify
+  # Rolify resource
+  resourcify
 
   has_many :staff_accounts
   has_many :users, through: :staff_accounts

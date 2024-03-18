@@ -1,18 +1,11 @@
 class AdopterFosterProfilesController < ApplicationController
-  # staff and admin cannot create a profile
   before_action :authenticate_user!
-  before_action :check_if_adopter, only: [:new, :create, :update, :show]
+  before_action :authorize!, only: %i[new create]
+  before_action :set_profile, only: %i[show edit update]
 
-  # only allow new profile if one does not exist
-  # belongs_to for location provides new method build_location
-  # https://guides.rubyonrails.org/association_basics.html#the-belongs-to-association
   def new
-    if profile_nil?
-      @adopter_foster_profile = AdopterFosterProfile.new
-      @adopter_foster_profile.build_location
-    else
-      redirect_to profile_path
-    end
+    @adopter_foster_profile = AdopterFosterProfile.new
+    @adopter_foster_profile.build_location
   end
 
   def create
@@ -28,15 +21,12 @@ class AdopterFosterProfilesController < ApplicationController
   end
 
   def show
-    @adopter_foster_profile = current_user.adopter_account.adopter_foster_profile
   end
 
   def edit
-    @adopter_foster_profile = current_user.adopter_account.adopter_foster_profile
   end
 
   def update
-    @adopter_foster_profile = current_user.adopter_account.adopter_foster_profile
     respond_to do |format|
       if @adopter_foster_profile.update(adopter_foster_profile_params)
         format.html { redirect_to profile_path, notice: "Profile updated" }
@@ -48,8 +38,9 @@ class AdopterFosterProfilesController < ApplicationController
 
   private
 
-  def profile_nil?
-    AdopterFosterProfile.where(adopter_account_id: current_user.adopter_account.id)[0].nil?
+  def set_profile
+    @adopter_foster_profile = current_user.adopter_account.adopter_foster_profile
+    authorize! @adopter_foster_profile
   end
 
   def adopter_foster_profile_params
