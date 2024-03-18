@@ -56,6 +56,6 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
 
   def context_authorize!
     authorize! DefaultPetTask,
-      context: {organization: current_user.organization}
+      context: {organization: Current.organization}
   end
 end

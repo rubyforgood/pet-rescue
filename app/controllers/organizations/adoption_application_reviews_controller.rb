@@ -5,7 +5,7 @@ class Organizations::AdoptionApplicationReviewsController < Organizations::BaseC
 
   def index
     authorize! AdopterApplication,
-      context: {organization: current_user.organization}
+      context: {organization: Current.organization}
 
     @q = authorized_scope(
       Pet.org_pets_with_apps(current_user.staff_account.organization_id)
