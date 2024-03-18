@@ -12,11 +12,11 @@ class Organizations::InvitationsController < Devise::InvitationsController
   end
 
   def create
+    authorize! StaffAccount, context: {organization: Current.organization},
+      with: Organizations::InvitationPolicy
+
     @user = User.new(user_params.merge(password: SecureRandom.hex(8)).except(:roles))
     @user.staff_account = StaffAccount.new
-
-    authorize! StaffAccount, context: {organization: @user.organization},
-      with: Organizations::InvitationPolicy
 
     if @user.save
       @user.add_role(user_params[:roles], Current.organization)
