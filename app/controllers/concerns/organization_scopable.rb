@@ -19,7 +19,7 @@ module OrganizationScopable
       :index?, Pet, namespace: Organizations,
       context: {organization: Current.organization}
     )
-      pets_path
+      dashboard_index_path
     else
       adoptable_pets_path
     end
