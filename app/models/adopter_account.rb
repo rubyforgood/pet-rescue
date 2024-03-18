@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: adopter_accounts
+# Table name: adopter_accounts 
 #
 #  id         :bigint           not null, primary key
 #  created_at :datetime         not null
