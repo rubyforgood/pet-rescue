@@ -1,6 +1,6 @@
 
   <%= bootstrap_form_with model: profile, :url => profile_path do |form| %>
-  <%= form.hidden_field :adopter_account_id, value: current_user.adopter_account.id %> 
+  <%= form.hidden_field :adopter_foster_account_id, value: current_user.adopter_foster_account.id %>
   
   <% if profile.errors.count > 0 %>
     <div class="alert alert-danger mt-1" role="alert">
