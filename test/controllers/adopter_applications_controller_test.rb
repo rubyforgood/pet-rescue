@@ -33,7 +33,7 @@ class AdopterApplicationsControllerTest < ActionDispatch::IntegrationTest
         @pet = create(:pet)
         @params = {adopter_application: {
           pet_id: @pet.id,
-          adopter_account_id: @user.adopter_account.id
+          adopter_foster_account_id: @user.adopter_foster_account.id
         }}
       end
 

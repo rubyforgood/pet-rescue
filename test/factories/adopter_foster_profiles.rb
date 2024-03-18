@@ -24,7 +24,7 @@ FactoryBot.define do
     visit_laventana { false }
     referral_source { "friends" }
 
-    adopter_account
+    adopter_foster_account
     location
   end
 end

@@ -5,7 +5,7 @@
 #  id                        :bigint           not null, primary key
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
-#  adopter_foster_account_id :integer
+#  adopter_foster_account_id :bigint
 #  organization_id           :bigint           not null
 #  pet_id                    :bigint           not null
 #

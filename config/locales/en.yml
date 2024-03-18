@@ -57,7 +57,7 @@ en:
   activerecord:
     errors:
       models:
-        adopter_account:
+        adopter_foster_account:
           attributes:
             user:
               blank: "User must exist"
@@ -65,13 +65,13 @@ en:
           attributes:
             pet:
               blank: "Pet must exist"
-            adopter_account:
+            adopter_foster_account:
               blank: "Adopter account must exist"
         adopter_foster_profile:
           attributes:
             location:
               blank: "Location must exist"
-            adopter_account:
+            adopter_foster_account:
               blank: "Adopter account must exist"
             phone_number:
               invalid: "Phone number is invalid"
@@ -167,7 +167,7 @@ en:
               blank: "Organization must exist"
             pet:
               blank: "Pet must exist"
-            adopter_account:
+            adopter_foster_account:
               blank: "Adopter account must exist"
             organization_id:
               different_organization: "must belong to same organization as pet"

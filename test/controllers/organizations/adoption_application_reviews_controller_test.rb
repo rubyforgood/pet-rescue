@@ -86,10 +86,10 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
       setup do
         @pet1 = create(:pet, name: "Pango")
         @pet2 = create(:pet, name: "Tycho")
-        adopter_account1 = create(:adopter_account, :with_profile)
-        adopter_account2 = create(:adopter_account, :with_profile)
-        create(:adopter_application, pet: @pet1, adopter_account: adopter_account1)
-        create(:adopter_application, pet: @pet2, adopter_account: adopter_account2)
+        adopter_foster_account1 = create(:adopter_foster_account, :with_profile)
+        adopter_foster_account2 = create(:adopter_foster_account, :with_profile)
+        create(:adopter_application, pet: @pet1, adopter_foster_account: adopter_foster_account1)
+        create(:adopter_application, pet: @pet2, adopter_foster_account: adopter_foster_account2)
       end
 
       should "return applications for a specific pet name" do
@@ -103,12 +103,12 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
     context "by applicant name" do
       setup do
         @pet = create(:pet)
-        adopter_account1 = create(:adopter_account, :with_profile,
+        adopter_foster_account1 = create(:adopter_foster_account, :with_profile,
           user: create(:user, first_name: "David", last_name: "Attenborough"))
-        adopter_account2 = create(:adopter_account, :with_profile,
+        adopter_foster_account2 = create(:adopter_foster_account, :with_profile,
           user: create(:user, first_name: "Jane", last_name: "Goodall"))
-        create(:adopter_application, pet: @pet, adopter_account: adopter_account1)
-        create(:adopter_application, pet: @pet, adopter_account: adopter_account2)
+        create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account1)
+        create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account2)
       end
 
       should "return applications for a specific applicant name" do
@@ -122,10 +122,10 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
     context "Filtering by application status" do
       setup do
         @pet = create(:pet)
-        adopter_account1 = create(:adopter_account, :with_profile)
-        adopter_account2 = create(:adopter_account, :with_profile)
-        @application_under_review = create(:adopter_application, pet: @pet, adopter_account: adopter_account1, status: :under_review)
-        @application_awaiting_review = create(:adopter_application, pet: @pet, adopter_account: adopter_account2, status: :awaiting_review)
+        adopter_foster_account1 = create(:adopter_foster_account, :with_profile)
+        adopter_foster_account2 = create(:adopter_foster_account, :with_profile)
+        @application_under_review = create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account1, status: :under_review)
+        @application_awaiting_review = create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account2, status: :awaiting_review)
       end
 
       should "return pets only with applications of the specified status" do

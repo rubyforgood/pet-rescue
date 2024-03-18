@@ -1,0 +1,61 @@
+<nav class="navbar navbar-vertical">
+  <div class="vh-100" data-simplebar>
+    <!-- Brand logo -->
+    <p class="navbar-brand flex-column">
+      <% if Current.organization.profile.avatar.attached? %>
+        <%= image_tag Current.organization.profile.avatar, alt: current_organization_name, title: current_organization_name, class: 'rounded-1' %>
+      <% else %>
+        <%= current_organization_name %>
+      <% end %>
+    </p>
+
+    <!-- Navbar nav -->
+    <ul class="navbar-nav flex-column" id="sideNavbar">
+      <li class="nav-item">
+        <div class="navbar-heading">Menu</div>
+      </li>
+
+      <li class="nav-item">
+        <%= active_link_to dashboard_index_path, class: "nav-link" do %>
+          <i class="nav-icon fe fe-home me-2"></i> Dashboard
+        <% end %>
+      </li>
+      <% if current_user.adopter_foster_account %>
+        <li class="nav-item">
+          <%= active_link_to adoption_application_reviews_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-file-text me-2"></i> Adoption Applications
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to adoption_application_reviews_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-file-text me-2"></i> Adopted Pets
+          <% end %>
+        </li>
+      <% end %>
+
+      <% if current_user.adopter_foster_account %>
+        <li class="nav-item">
+          <%= active_link_to foster_application_reviews_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-file-text me-2"></i> Foster Applications
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= active_link_to foster_application_reviews_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-file-text me-2"></i> Fostered Pets
+          <% end %>
+        </li>
+      <% end %>
+
+      <!-- Nav item -->
+      <li class="nav-item">
+        <div class="nav-divider"></div>
+      </li>
+
+      <li class="nav-item">
+        <%= active_link_to edit_user_registration_path, class: "nav-link" do %>
+          <i class="nav-icon fe fe-file-text me-2"></i> Account Settings
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -37,7 +37,7 @@
 #  visit_laventana           :boolean
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
-#  adopter_foster_account_id :integer
+#  adopter_foster_account_id :bigint
 #  location_id               :bigint           not null
 #
 # Indexes

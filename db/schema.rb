@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_18_183003) do
     t.integer "status", default: 0
     t.text "notes"
     t.boolean "profile_show", default: true
-    t.integer "adopter_foster_account_id"
+    t.bigint "adopter_foster_account_id"
     t.index ["adopter_foster_account_id"], name: "index_adopter_applications_on_adopter_foster_account_id"
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
@@ -97,7 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_18_183003) do
     t.text "visit_dates"
     t.text "referral_source"
     t.bigint "location_id", null: false
-    t.integer "adopter_foster_account_id"
+    t.bigint "adopter_foster_account_id"
     t.index ["adopter_foster_account_id"], name: "index_adopter_foster_profiles_on_adopter_foster_account_id"
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
   end
@@ -133,7 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_18_183003) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "organization_id", null: false
-    t.integer "adopter_foster_account_id"
+    t.bigint "adopter_foster_account_id"
     t.index ["adopter_foster_account_id"], name: "index_matches_on_adopter_foster_account_id"
     t.index ["organization_id"], name: "index_matches_on_organization_id"
     t.index ["pet_id"], name: "index_matches_on_pet_id"

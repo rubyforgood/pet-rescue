@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
 
   context "associations" do
     should have_one(:staff_account).dependent(:destroy)
-    should have_one(:adopter_account).dependent(:destroy)
+    should have_one(:adopter_foster_account).dependent(:destroy)
   end
 
   context "validations" do

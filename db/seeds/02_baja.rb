@@ -51,7 +51,7 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_one = AdopterAccount.create!(user_id: @user_adopter_one.id)
+  @adopter_foster_account_one = AdopterFosterAccount.create!(user_id: @user_adopter_one.id)
 
   @user_adopter_one.add_role(:adopter, @organization)
 
@@ -64,7 +64,7 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_two = AdopterAccount.create!(user_id: @user_adopter_two.id)
+  @adopter_foster_account_two = AdopterFosterAccount.create!(user_id: @user_adopter_two.id)
 
   @user_adopter_two.add_role(:adopter, @organization)
 
@@ -77,7 +77,7 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
+  @adopter_foster_account_three = AdopterFosterAccount.create!(user_id: @user_adopter_three.id)
 
   @user_adopter_three.add_role(:adopter, @organization)
 
@@ -90,7 +90,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_foster_profile_one = AdopterFosterProfile.create!(
     location_id: @location_one.id,
-    adopter_account_id: @adopter_account_one.id,
+    adopter_foster_account_id: @adopter_foster_account_one.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
@@ -134,7 +134,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_foster_profile_two = AdopterFosterProfile.create!(
     location_id: @location_two.id,
-    adopter_account_id: @adopter_account_two.id,
+    adopter_foster_account_id: @adopter_foster_account_two.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
@@ -181,7 +181,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_foster_profile_three = AdopterFosterProfile.create!(
     location_id: @location_three.id,
-    adopter_account_id: @adopter_account_three.id,
+    adopter_foster_account_id: @adopter_foster_account_three.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
@@ -257,7 +257,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @match = Match.create!(
     pet_id: Pet.first.id,
-    adopter_account_id: @adopter_account_one.id
+    adopter_foster_account_id: @adopter_foster_account_one.id
   )
 
   10.times do
@@ -265,7 +265,7 @@ ActsAsTenant.with_tenant(@organization) do
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..5),
-      adopter_account: AdopterAccount.joins(:user).where(users: {organization_id: @organization.id}).sample,
+      adopter_foster_account: AdopterFosterAccount.joins(:user).where(users: {organization_id: @organization.id}).sample,
       pet: Pet.all.sample
     )
   end

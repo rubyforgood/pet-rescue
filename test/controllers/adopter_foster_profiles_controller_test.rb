@@ -24,7 +24,7 @@ class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
     context "#create" do
       setup do
         @profile = build(:adopter_foster_profile,
-          adopter_account: @user.adopter_account)
+          adopter_foster_account: @user.adopter_foster_account)
       end
 
       should "be authorized" do
@@ -40,7 +40,7 @@ class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
     context "#show" do
       setup do
         @profile = create(:adopter_foster_profile,
-          adopter_account: @user.adopter_account)
+          adopter_foster_account: @user.adopter_foster_account)
       end
 
       should "be authorized" do
@@ -55,7 +55,7 @@ class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
     context "#edit" do
       setup do
         @profile = create(:adopter_foster_profile,
-          adopter_account: @user.adopter_account)
+          adopter_foster_account: @user.adopter_foster_account)
       end
 
       should "be authorized" do
@@ -70,7 +70,7 @@ class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
     context "#update" do
       setup do
         @profile = create(:adopter_foster_profile,
-          adopter_account: @user.adopter_account)
+          adopter_foster_account: @user.adopter_foster_account)
         @params = {adopter_foster_profile: {
           experience: "heaps"
         }}

@@ -8,7 +8,7 @@
 #  status                    :integer          default("awaiting_review")
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
-#  adopter_foster_account_id :integer
+#  adopter_foster_account_id :bigint
 #  pet_id                    :bigint           not null
 #
 # Indexes

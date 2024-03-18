@@ -43,7 +43,7 @@
                 <p><%= t '.we_will_be_in_contact' %></p>
               <% elsif app.status == 'under_review' %>
                 <p>
-                  <%= "#{t '.keep_an_eye_on'} #{current_user.adopter_account.adopter_foster_profile.contact_method}" %>
+                  <%= "#{t '.keep_an_eye_on'} #{current_user.adopter_foster_account.adopter_foster_profile.contact_method}" %>
                 </p>
               <% elsif app.status == 'adoption_pending' %>
                 <p><%= t '.almost_adopted' %></p>

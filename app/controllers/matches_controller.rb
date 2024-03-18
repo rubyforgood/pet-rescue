@@ -31,7 +31,7 @@ class MatchesController < ApplicationController
   private
 
   def match_params
-    params.require(:match).permit(:pet_id, :adopter_account_id)
+    params.require(:match).permit(:pet_id, :adopter_foster_account_id)
   end
 
   def set_pet

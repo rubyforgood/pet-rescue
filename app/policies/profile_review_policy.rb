@@ -9,6 +9,6 @@ class ProfileReviewPolicy < ApplicationPolicy
   private
 
   def organization
-    @organization || record.adopter_account.user.organization
+    @organization || record.adopter_foster_account.user.organization
   end
 end

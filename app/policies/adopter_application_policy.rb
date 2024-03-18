@@ -5,7 +5,7 @@ class AdopterApplicationPolicy < ApplicationPolicy
   pre_check :verify_pet_appliable!, only: %i[create?]
 
   relation_scope do |relation|
-    relation.where(adopter_account_id: user.adopter_account.id)
+    relation.where(adopter_foster_account_id: user.adopter_foster_account.id)
   end
 
   def update?
@@ -23,11 +23,11 @@ class AdopterApplicationPolicy < ApplicationPolicy
   private
 
   def applicant?
-    user.id == record.adopter_account.user_id
+    user.id == record.adopter_foster_account.user_id
   end
 
   def already_applied?
-    user.adopter_account.adopter_applications.any? do |application|
+    user.adopter_foster_account.adopter_applications.any? do |application|
       application.pet_id == pet.id
     end
   end

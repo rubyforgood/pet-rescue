@@ -15,7 +15,7 @@ class AdopterApplicationIntegrationTest < ActionDispatch::IntegrationTest
     # post "/create_my_application",
     #   params: {application:
     #     {
-    #       adopter_account_id: user.id,
+    #       adopter_foster_account_id: user.id,
     #       pet_id: @pet_id
     #     }}
 
@@ -35,7 +35,7 @@ class AdopterApplicationIntegrationTest < ActionDispatch::IntegrationTest
     # post "/create_my_application",
     #   params: {application:
     #     {
-    #       adopter_account_id: nil,
+    #       adopter_foster_account_id: nil,
     #       pet_id: @pet_id
     #     }}
 
@@ -57,7 +57,7 @@ class AdopterApplicationIntegrationTest < ActionDispatch::IntegrationTest
     # post "/create_my_application",
     #   params: {application:
     #     {
-    #       adopter_account_id: adopter_with_profile.adopter_account.id,
+    #       adopter_foster_account_id: adopter_with_profile.adopter_foster_account.id,
     #       pet_id: @pet_id
     #     }}
 
@@ -83,7 +83,7 @@ class AdopterApplicationIntegrationTest < ActionDispatch::IntegrationTest
     # post "/create_my_application",
     #   params: {application:
     #     {
-    #       adopter_account_id: adopter_with_profile.adopter_account.id,
+    #       adopter_foster_account_id: adopter_with_profile.adopter_foster_account.id,
     #       pet_id: paused_pet.id
     #     }}
 
