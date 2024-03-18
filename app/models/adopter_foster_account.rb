@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # == Schema Information
 #
 # Table name: adopter_foster_accounts
@@ -15,6 +16,8 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
+=======
+>>>>>>> 610a426 (Update with AdopterFosterAccount files)
 class AdopterFosterAccount < ApplicationRecord
   belongs_to :user
   has_one :adopter_foster_profile, as: :caretaker
