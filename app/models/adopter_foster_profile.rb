@@ -37,22 +37,22 @@
 #  visit_laventana    :boolean
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  adopter_account_id :bigint           not null
+#  adopter_foster_account_id :bigint           not null
 #  location_id        :bigint           not null
 #
 # Indexes
 #
-#  index_adopter_foster_profiles_on_adopter_account_id  (adopter_account_id)
+#  index_adopter_foster_profiles_on_adopter_foster_account_id  (adopter_foster_account_id)
 #  index_adopter_foster_profiles_on_location_id         (location_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (adopter_account_id => adopter_accounts.id)
+#  fk_rails_...  (adopter_foster_account_id => adopter_foster_accounts.id)
 #  fk_rails_...  (location_id => locations.id)
 #
 class AdopterFosterProfile < ApplicationRecord
   belongs_to :location, dependent: :destroy
-  belongs_to :adopter_account
+  belongs_to :adopter_foster_account
   accepts_nested_attributes_for :location
   validates_associated :location
 

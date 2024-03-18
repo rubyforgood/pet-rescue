@@ -15,7 +15,7 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class AdopterAccount < ApplicationRecord
+class AdopterFosterAccount < ApplicationRecord
   belongs_to :user
   has_one :adopter_foster_profile, dependent: :destroy
   has_many :adopter_applications, dependent: :destroy
