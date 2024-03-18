@@ -58,14 +58,6 @@ class Organizations::TasksController < Organizations::BaseController
     redirect_to pets_path
   end
 
-  # def cancel
-  #   @task = params[:task_id] ? @pet.tasks.find(params[:task_id]) : @pet.tasks.build
-
-  #   respond_to do |format|
-  #     format.turbo_stream { render "organizations/pets/tasks/cancel" }
-  #   end
-  # end
-
   private
 
   def set_pet
