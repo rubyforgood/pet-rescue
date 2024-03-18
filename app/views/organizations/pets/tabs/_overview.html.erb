@@ -14,49 +14,49 @@
           </div>
         </div>
       </div>
-
       <div class="card-body table-responsive">
-
         <table class="table">
           <div>
             <tr>
               <th>Sex</th>
-              <th>Breed</th> 
+              <th>Breed</th>
               <th>Weight</th>
-              <th>Placement Type</th>
-              <th>Application Status</th>
-              <th>Publish Status</th>
+              <% if @pet.match.nil? %>
+                <th>Placement Type</th>
+                <th>Application Status</th>
+                <th>Publish Status</th>
+              <% end %>
             </tr>
           </div>
-
           <tr>
             <td>
               <p class="text-dark mb-0 fw-semibold"><%= @pet.sex %></p>
             </td>
             <td>
               <p class="text-dark mb-0 fw-semibold"><%= @pet.breed %></p>
-            </td> 
+            </td>
             <td>
               <p class="text-dark mb-0 fw-semibold">
                 <%= "#{@pet.weight_from} - #{@pet.weight_to} #{@pet.weight_unit}" %>
               </p>
             </td>
-            <td>
-              <p class="text-dark mb-0 fw-semibold"><%= @pet.placement_type %></p>
-            </td>
-            <td>
-              <p class="text-dark mb-0 fw-semibold">
-                <%= @pet.application_paused == false ? t('.application.active') : t('.application.paused') %>
-              </p>
-            </td>
-            <td>
-              <p class="text-dark mb-0 fw-semibold">
-                <%= @pet.published == true ? t('.published.published') : t('.published.draft') %>
-              </p>
-            </td>
+            <% if @pet.match.nil? %>
+              <td>
+                <p class="text-dark mb-0 fw-semibold"><%= @pet.placement_type %></p>
+              </td>
+              <td>
+                <p class="text-dark mb-0 fw-semibold">
+                  <%= @pet.application_paused == false ? t('.application.active') : t('.application.paused') %>
+                </p>
+              </td>
+              <td>
+                <p class="text-dark mb-0 fw-semibold">
+                  <%= @pet.published == true ? t('.published.published') : t('.published.draft') %>
+                </p>
+              </td>
+            <% end %>
           </tr>
         </table>
-
         <p class="mt-5"><%= @pet.description %> </p>
       </div>
     </div>
