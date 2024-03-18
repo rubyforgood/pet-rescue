@@ -15,7 +15,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Log in"
 
     assert current_path.include?(@organization.slug)
-    assert has_current_path?(pets_path)
+    assert has_current_path?(dashboard_index_path)
 
     using_wait_time(5) do
       find("#dropdownUser").hover
