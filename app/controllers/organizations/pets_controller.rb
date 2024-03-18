@@ -21,6 +21,13 @@ class Organizations::PetsController < Organizations::BaseController
 
   def show
     @active_tab = determine_active_tab
+    return unless @active_tab == "tasks"
+
+    @task = params[:task_id] ? @pet.tasks.find(params[:task_id]) : @pet.tasks.build
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def create
