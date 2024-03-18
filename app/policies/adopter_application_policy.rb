@@ -1,7 +1,7 @@
 class AdopterApplicationPolicy < ApplicationPolicy
   authorize :pet, optional: true
 
-  pre_check :verify_adopter_profile!
+  pre_check :verify_profile!
   pre_check :verify_pet_appliable!, only: %i[create?]
 
   relation_scope do |relation|
@@ -32,7 +32,7 @@ class AdopterApplicationPolicy < ApplicationPolicy
     end
   end
 
-  def verify_adopter_profile!
+  def verify_profile!
     deny! unless user.adopter_account.present?
     deny! unless user.adopter_account.adopter_foster_profile.present?
   end
