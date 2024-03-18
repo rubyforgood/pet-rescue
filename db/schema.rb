@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_18_153825) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_18_174108) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,7 +98,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_18_153825) do
     t.text "visit_dates"
     t.text "referral_source"
     t.bigint "location_id", null: false
+    t.integer "adopter_foster_account_id"
     t.index ["adopter_account_id"], name: "index_adopter_foster_profiles_on_adopter_account_id"
+    t.index ["adopter_foster_account_id"], name: "index_adopter_foster_profiles_on_adopter_foster_account_id"
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
   end
 

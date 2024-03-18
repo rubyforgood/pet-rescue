@@ -5,19 +5,19 @@
 #  id                 :bigint           not null, primary key
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  adopter_foster_account_id :bigint           not null
+#  adopter_account_id :bigint           not null
 #  organization_id    :bigint           not null
 #  pet_id             :bigint           not null
 #
 # Indexes
 #
-#  index_matches_on_adopter_foster_account_id  (adopter_foster_account_id)
+#  index_matches_on_adopter_account_id  (adopter_account_id)
 #  index_matches_on_organization_id     (organization_id)
 #  index_matches_on_pet_id              (pet_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (adopter_foster_account_id => adopter_foster_accounts.id)
+#  fk_rails_...  (adopter_account_id => adopter_foster_accounts.id)
 #  fk_rails_...  (pet_id => pets.id)
 #
 class Match < ApplicationRecord
