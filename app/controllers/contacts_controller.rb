@@ -1,4 +1,6 @@
 class ContactsController < ApplicationController
+  skip_verify_authorized only: %i[new create]
+
   def new
     @contact = Contact.new
   end

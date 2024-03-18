@@ -66,7 +66,7 @@
                 <% end %>
               </li>
             </ul>
-            <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
+            <% if current_user.staff_account && current_user.has_role?(:admin, current_user.staff_account.organization) %>
               <div class="ms-4">*Admin*</div>
             <% end %>
           <% end %>

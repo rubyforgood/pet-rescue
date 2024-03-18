@@ -2,15 +2,15 @@ require "application_system_test_case"
 
 class TasksTest < ApplicationSystemTestCase
   setup do
-    @user = create(:user, :activated_staff)
-    @organization = @user.organization
-    set_organization(@organization)
+    user = create(:staff)
     @pet = create(:pet)
-    sign_in @user
+
+    sign_in user
   end
 
   test "creates a recurring task with a due date without redirecting" do
     due_date = (Date.today + 1.day)
+
     visit pet_path(@pet, active_tab: "tasks")
 
     click_link(href: new_pet_task_path(@pet))

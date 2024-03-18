@@ -50,7 +50,7 @@ class AdopterApplicationIntegrationTest < ActionDispatch::IntegrationTest
     skip("while new ui is implemented")
     # verified_staff = create(:staff_account, organization: @organization)
     # org_staff = create(:user, staff_account: verified_staff)
-    # adopter_with_profile = create(:user, :adopter_with_profile)
+    # adopter_with_profile = create(:adopter, :with_profile)
     # sign_in adopter_with_profile
     # before_count = AdopterApplication.all.count
 
@@ -76,7 +76,7 @@ class AdopterApplicationIntegrationTest < ActionDispatch::IntegrationTest
   test "adopter user with profile cannot apply for a paused pet and sees flash error" do
     skip("while new ui is implemented")
     # paused_pet = create(:pet, :application_paused_opening_soon)
-    # adopter_with_profile = create(:user, :adopter_with_profile)
+    # adopter_with_profile = create(:adopter, :with_profile)
     # sign_in adopter_with_profile
     # before_count = AdopterApplication.all.count
 

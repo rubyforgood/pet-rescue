@@ -1,10 +1,10 @@
 class MatchesController < ApplicationController
-  before_action :active_staff, :same_organization?
-
   before_action :set_pet, only: %i[create]
   before_action :set_match, only: %i[destroy]
 
   def create
+    authorize! context: {organization: @pet.organization}
+
     @match = Match.new(match_params.merge(
       organization_id: @pet.organization_id
     ))
@@ -40,18 +40,6 @@ class MatchesController < ApplicationController
 
   def set_match
     @match = Match.find(params[:id])
-  end
-
-  def get_pet_id
-    return match_params[:pet_id] if match_params[:pet_id]
-
-    Match.find(params[:id]).pet_id
-  end
-
-  # staff and pet in the same org?
-  def same_organization?
-    return if current_user.staff_account.organization_id == Pet.find(get_pet_id).organization.id
-
-    redirect_to root_path, alert: "Unauthorized action."
+    authorize! @match
   end
 end

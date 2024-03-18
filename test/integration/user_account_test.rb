@@ -80,7 +80,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
 
   test "error messages should appear if edit profile form is submitted without data" do
     skip("while new ui is implemented")
-    # sign_in create(:user, :adopter_without_profile)
+    # sign_in create(:adopter)
 
     # put(
     #   "/users",
@@ -106,7 +106,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
 
   test "user cannot update their profile with invalid password and should see error message" do
     skip("while new ui is implemented")
-    # user = create(:user, :adopter_without_profile)
+    # user = create(:adopter)
     # sign_in user
 
     # put(
