@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_18_174108) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_18_174956) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,7 +50,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_18_174108) do
     t.integer "status", default: 0
     t.text "notes"
     t.boolean "profile_show", default: true
+    t.integer "adopter_foster_account_id"
     t.index ["adopter_account_id"], name: "index_adopter_applications_on_adopter_account_id"
+    t.index ["adopter_foster_account_id"], name: "index_adopter_applications_on_adopter_foster_account_id"
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 

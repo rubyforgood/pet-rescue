@@ -2,19 +2,21 @@
 #
 # Table name: adopter_applications
 #
-#  id                 :bigint           not null, primary key
-#  notes              :text
-#  profile_show       :boolean          default(TRUE)
-#  status             :integer          default("awaiting_review")
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  adopter_account_id :bigint           not null
-#  pet_id             :bigint           not null
+#  id                        :bigint           not null, primary key
+#  notes                     :text
+#  profile_show              :boolean          default(TRUE)
+#  status                    :integer          default("awaiting_review")
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  adopter_account_id        :bigint           not null
+#  adopter_foster_account_id :integer
+#  pet_id                    :bigint           not null
 #
 # Indexes
 #
-#  index_adopter_applications_on_adopter_account_id  (adopter_account_id)
-#  index_adopter_applications_on_pet_id              (pet_id)
+#  index_adopter_applications_on_adopter_account_id         (adopter_account_id)
+#  index_adopter_applications_on_adopter_foster_account_id  (adopter_foster_account_id)
+#  index_adopter_applications_on_pet_id                     (pet_id)
 #
 # Foreign Keys
 #
