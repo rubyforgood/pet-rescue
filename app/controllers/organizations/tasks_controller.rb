@@ -1,4 +1,6 @@
 class Organizations::TasksController < Organizations::BaseController
+  skip_verify_authorized only: %i[cancel]
+
   before_action :set_pet, only: %i[new create edit update destroy cancel]
   before_action :set_task, only: %i[edit update destroy]
 
@@ -60,6 +62,7 @@ class Organizations::TasksController < Organizations::BaseController
 
   def cancel
     @task = params[:task_id] ? @pet.tasks.find(params[:task_id]) : @pet.tasks.build
+
     respond_to do |format|
       format.turbo_stream { render "organizations/pets/tasks/cancel" }
     end
