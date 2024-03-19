@@ -27,5 +27,9 @@ FactoryBot.define do
       status { 3 }
       profile_show { false }
     end
+
+    trait :successful_applicant do
+      status { 4 }
+    end
   end
 end
