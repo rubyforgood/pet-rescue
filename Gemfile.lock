@@ -305,7 +305,7 @@ GEM
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
-    pg (1.5.3)
+    pg (1.5.6)
     phonelib (0.8.7)
     popper_js (2.11.8)
     pry (0.14.2)
@@ -511,7 +511,7 @@ DEPENDENCIES
   letter_opener
   mocha
   nice_partials
-  pg (~> 1.1)
+  pg (~> 1.5)
   phonelib
   pry (~> 0.14.2)
   puma (~> 5.6)
