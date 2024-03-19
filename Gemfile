@@ -13,7 +13,7 @@ gem "sprockets-rails"
 gem "figaro"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.6"
@@ -165,3 +165,6 @@ gem "gretel", "~> 4.5"
 gem "ransack"
 
 gem "rails-controller-testing"
+
+# Use Action Policy for authorization framework
+gem "action_policy", "~> 0.6.8"

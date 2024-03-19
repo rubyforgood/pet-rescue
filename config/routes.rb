@@ -14,12 +14,16 @@ Rails.application.routes.draw do
 
     resources :home, only: [:index]
     resources :pets do
-      resources :tasks, only: [:new, :create, :edit, :update, :destroy]
+      resources :tasks, only: [:new, :create, :edit, :update, :destroy] do
+        collection do
+          get "cancel", to: "tasks#cancel"
+        end
+      end
       post "attach_images", on: :member, to: "pets#attach_images"
       post "attach_files", on: :member, to: "pets#attach_files"
     end
     resources :default_pet_tasks
-    resources :dashboard
+    resources :dashboard, only: [:index]
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
     resources :staff do

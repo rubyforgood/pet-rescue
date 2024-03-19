@@ -2,15 +2,15 @@ require "application_system_test_case"
 
 class TasksTest < ApplicationSystemTestCase
   setup do
-    @user = create(:user, :activated_staff)
-    @organization = @user.organization
-    set_organization(@organization)
+    user = create(:staff)
     @pet = create(:pet)
-    sign_in @user
+
+    sign_in user
   end
 
   test "creates a recurring task with a due date without redirecting" do
     due_date = (Date.today + 1.day)
+
     visit pet_path(@pet, active_tab: "tasks")
 
     click_link(href: new_pet_task_path(@pet))
@@ -93,5 +93,40 @@ class TasksTest < ApplicationSystemTestCase
 
     click_on "Update Task"
     assert_no_text "Update Task"
+  end
+
+  test "can close new task form with cancel button without redirecting" do
+    visit pet_path(@pet, active_tab: "tasks")
+    click_link(href: new_pet_task_path(@pet))
+    click_link(href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: nil))
+
+    assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
+    assert_no_text "Cancel"
+  end
+
+  test "can close edit task form with cancel button without redirecting" do
+    task = create(:task, pet: @pet)
+    visit pet_path(@pet, active_tab: "tasks")
+    click_link(href: edit_pet_task_path(@pet, task))
+    click_link(href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: task.id))
+
+    assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
+    assert_no_text "Cancel"
+  end
+
+  test "can close one open task form with its cancel button without closing other open task forms" do
+    task1 = create(:task, pet: @pet)
+    task2 = create(:task, pet: @pet)
+
+    visit pet_path(@pet, active_tab: "tasks")
+
+    click_link(href: edit_pet_task_path(@pet, task1))
+    click_link(href: edit_pet_task_path(@pet, task2))
+
+    assert_link "Cancel", href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: task2.id)
+
+    click_link(href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: task2.id))
+    assert has_current_path?(pet_path(@pet, active_tab: "tasks"))
+    assert_link "Cancel", href: cancel_pet_tasks_path(pet_id: @pet.id, task_id: task1.id)
   end
 end

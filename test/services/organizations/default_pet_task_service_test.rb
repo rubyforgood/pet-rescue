@@ -2,9 +2,8 @@ require "test_helper"
 
 class Organizations::DefaultPetTaskServiceTest < ActiveSupport::TestCase
   test "creates tasks from the organization's default tasks" do
-    organization = create(:organization)
-    default_task = create(:default_pet_task, organization: organization)
-    pet = create(:pet, organization: organization)
+    default_task = create(:default_pet_task)
+    pet = create(:pet)
 
     Organizations::DefaultPetTaskService.new(pet).create_tasks
 
@@ -14,9 +13,8 @@ class Organizations::DefaultPetTaskServiceTest < ActiveSupport::TestCase
   end
 
   test "creates tasks with due_date set based on the default task's due_in_days" do
-    organization = create(:organization)
-    create(:default_pet_task, organization: organization, due_in_days: 5)
-    pet = create(:pet, organization: organization)
+    create(:default_pet_task, due_in_days: 5)
+    pet = create(:pet)
 
     Organizations::DefaultPetTaskService.new(pet).create_tasks
 

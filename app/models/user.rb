@@ -34,6 +34,7 @@
 #
 class User < ApplicationRecord
   include Avatarable
+  include Authorizable
 
   acts_as_tenant(:organization)
   default_scope do

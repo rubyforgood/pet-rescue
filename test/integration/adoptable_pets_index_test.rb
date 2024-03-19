@@ -3,7 +3,6 @@ require "test_helper"
 class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
   setup do
     @available_pet = create(:pet)
-    set_organization(@available_pet.organization)
     @pet_in_draft = create(:pet, published: false)
     @pet_pending_adoption = create(:pet, :adoption_pending)
     @adopted_pet = create(:pet, :adopted)

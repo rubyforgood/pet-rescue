@@ -1,10 +1,80 @@
 require "test_helper"
+require "action_policy/test_helper"
 
 class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::IntegrationTest
+  context "authorization" do
+    include ActionPolicy::TestHelper
+
+    setup do
+      @organization = ActsAsTenant.current_tenant
+      @adopter_application = create(:adopter_application)
+
+      user = create(:staff)
+      sign_in user
+    end
+
+    context "index" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, AdopterApplication,
+          context: {organization: @organization},
+          with: Organizations::AdopterApplicationPolicy
+        ) do
+          get adoption_application_reviews_url
+        end
+      end
+
+      should "have authorized scope" do
+        assert_have_authorized_scope(
+          type: :active_record_relation,
+          with: Organizations::PetPolicy
+        ) do
+          get adoption_application_reviews_url
+        end
+      end
+    end
+
+    context "#edit" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @adopter_application,
+          with: Organizations::AdopterApplicationPolicy
+        ) do
+          get edit_adoption_application_review_url(@adopter_application)
+        end
+      end
+    end
+
+    context "#update" do
+      setup do
+        loop do
+          @new_status = AdopterApplication.statuses.keys.sample
+          break if @new_status != @adopter_application.status
+        end
+
+        @params = {
+          adopter_application: {
+            status: @new_status
+          }
+        }
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @adopter_application,
+          with: Organizations::AdopterApplicationPolicy
+        ) do
+          patch adoption_application_review_url(@adopter_application),
+            params: @params,
+            headers: {"HTTP_REFERER" => "http://www.example.com/"}
+        end
+      end
+    end
+  end
+
   context "Filtering adoption applications" do
     setup do
-      @user = create(:user, :activated_staff)
-      set_organization(@user.organization)
+      @user = create(:staff)
       sign_in @user
     end
 
@@ -14,10 +84,10 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
 
     context "by pet name" do
       setup do
-        @pet1 = create(:pet, name: "Pango", organization: @user.staff_account.organization)
-        @pet2 = create(:pet, name: "Tycho", organization: @user.staff_account.organization)
-        adopter_account1 = create(:adopter_account, :with_adopter_foster_profile, organization: @user.staff_account.organization)
-        adopter_account2 = create(:adopter_account, :with_adopter_foster_profile, organization: @user.staff_account.organization)
+        @pet1 = create(:pet, name: "Pango")
+        @pet2 = create(:pet, name: "Tycho")
+        adopter_account1 = create(:adopter_account, :with_profile)
+        adopter_account2 = create(:adopter_account, :with_profile)
         create(:adopter_application, pet: @pet1, adopter_account: adopter_account1)
         create(:adopter_application, pet: @pet2, adopter_account: adopter_account2)
       end
@@ -32,13 +102,11 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
 
     context "by applicant name" do
       setup do
-        @pet = create(:pet, organization: @user.staff_account.organization)
-        adopter_account1 = create(:adopter_account, :with_adopter_foster_profile,
-          user: create(:user, first_name: "David", last_name: "Attenborough",
-            organization: @user.staff_account.organization))
-        adopter_account2 = create(:adopter_account, :with_adopter_foster_profile,
-          user: create(:user, first_name: "Jane", last_name: "Goodall",
-            organization: @user.staff_account.organization))
+        @pet = create(:pet)
+        adopter_account1 = create(:adopter_account, :with_profile,
+          user: create(:user, first_name: "David", last_name: "Attenborough"))
+        adopter_account2 = create(:adopter_account, :with_profile,
+          user: create(:user, first_name: "Jane", last_name: "Goodall"))
         create(:adopter_application, pet: @pet, adopter_account: adopter_account1)
         create(:adopter_application, pet: @pet, adopter_account: adopter_account2)
       end
@@ -53,9 +121,9 @@ class Organizations::AdoptionApplicationReviewsControllerTest < ActionDispatch::
 
     context "Filtering by application status" do
       setup do
-        @pet = create(:pet, organization: @user.staff_account.organization)
-        adopter_account1 = create(:adopter_account, :with_adopter_foster_profile, organization: @user.staff_account.organization)
-        adopter_account2 = create(:adopter_account, :with_adopter_foster_profile, organization: @user.staff_account.organization)
+        @pet = create(:pet)
+        adopter_account1 = create(:adopter_account, :with_profile)
+        adopter_account2 = create(:adopter_account, :with_profile)
         @application_under_review = create(:adopter_application, pet: @pet, adopter_account: adopter_account1, status: :under_review)
         @application_awaiting_review = create(:adopter_application, pet: @pet, adopter_account: adopter_account2, status: :awaiting_review)
       end

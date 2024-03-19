@@ -57,18 +57,18 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     assert_cannot_apply_to_adopt
   end
 
-  test "staff cannot see an unpublished pet" do
+  test "staff can see an unpublished pet" do
     sign_in @staff_user
     get adoptable_pet_path(@pet_in_draft)
 
-    assert_response :redirect
+    assert_response :success
   end
 
-  test "staff cannot see an adopted pet" do
+  test "staff can see an adopted pet" do
     sign_in @staff_user
     get adoptable_pet_path(@adopted_pet)
 
-    assert_response :redirect
+    assert_response :success
   end
 
   test "adopter can see and apply to an available pet" do
@@ -103,7 +103,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
   test "adopter application sees application status" do
     skip("while new ui is implemented")
     # pet = create(:pet, :adoption_pending)
-    # user = create(:user, :adopter_with_profile, organization: pet.organization)
+    # user = create(:adopter, :with_profile, organization: pet.organization)
     # create(:adopter_application, adopter_account: user.adopter_account, pet: pet, status: :awaiting_review)
     # sign_in user
 
