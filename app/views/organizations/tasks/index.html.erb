@@ -24,7 +24,7 @@
         </div>
         <ul class="list-group">
           <% @tasks.each do |task| %>
-            <%= render partial: "organizations/pets/tasks/task", locals: { task: task } %>
+            <%= render partial: "organizations/tasks/task", locals: { task: task } %>
           <% end %>
         </ul>
       </div>

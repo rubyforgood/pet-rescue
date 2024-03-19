@@ -33,7 +33,7 @@ class Organizations::TasksController < Organizations::BaseController
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}), status: :bad_request }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}), status: :bad_request }
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -54,7 +54,7 @@ class Organizations::TasksController < Organizations::BaseController
         format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_pet_#{@pet.id}", partial: "organizations/pets/tabs/tasks", locals: {task: @task}) }
         format.html { redirect_to pet_url(@pet, active_tab: "tasks") }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}), status: :bad_request }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}), status: :bad_request }
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
