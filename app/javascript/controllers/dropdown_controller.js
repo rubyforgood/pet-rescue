@@ -5,6 +5,15 @@ export default class extends Controller {
 
   initialize() {
     this.close();
+    this.closeMenuOnOutsideClick = this.closeMenuOnOutsideClick.bind(this);
+  }
+
+  connect() {
+    window.addEventListener("click", this.closeMenuOnOutsideClick);
+  }
+
+  disconnect() {
+    window.removeEventListener("click", this.closeMenuOnOutsideClick);
   }
 
   toggle() {
@@ -21,5 +30,13 @@ export default class extends Controller {
     this.menuTarget.hidden = true;
     this.menuTarget.setAttribute("aria-hidden", "true");
     this.buttonTarget.setAttribute("aria-expanded", "false");
+  }
+
+  closeMenuOnOutsideClick(event) {
+    if (this.element === event.target || this.element.contains(event.target)) {
+      return;
+    }
+
+    this.close();
   }
 }
