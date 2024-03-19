@@ -1,4 +1,4 @@
-<turbo-frame id="tasks_list" class="col-md-12 col-xl-8 col-12">
+<%= turbo_frame_tag dom_id(@pet, :tasks) do %>
   <div class="row">
     <div class="col-12 mb-4">
       <div class="card">
@@ -23,13 +23,11 @@
           <%= turbo_frame_tag Task.new %>
         </div>
         <ul class="list-group">
-          <% @pet.tasks.list_ordered.each do |task| %>
-            <%= turbo_frame_tag task do %>
-              <%= render partial: "organizations/pets/tasks/task", locals: { task: task } %>
-            <% end %>
+          <% @tasks.each do |task| %>
+            <%= render partial: "organizations/pets/tasks/task", locals: { task: task } %>
           <% end %>
         </ul>
       </div>
     </div>
   </div>
-</turbo-frame>
+<% end %>
