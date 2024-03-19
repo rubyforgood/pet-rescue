@@ -88,6 +88,16 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should get index" do
+    get pet_tasks_url(@pet)
+    assert_response :success
+  end
+
+  test "should get show" do
+    get pet_task_url(@pet, @task, format: :turbo_stream)
+    assert_response :success
+    assert_equal Mime[:turbo_stream], response.media_type
+  end
   test "should get new" do
     get new_pet_task_url(@pet)
     assert_response :success
