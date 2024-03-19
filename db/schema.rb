@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_18_183003) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_19_222900) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -258,10 +258,13 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_18_183003) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "adopter_applications", "adopter_foster_accounts"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_foster_accounts", "users"
+  add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "default_pet_tasks", "organizations"
+  add_foreign_key "matches", "adopter_foster_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"
