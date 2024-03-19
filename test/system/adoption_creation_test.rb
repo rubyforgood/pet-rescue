@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class AdoptionApplicationReviewsTest < ApplicationSystemTestCase
+class AdoptionCreationTest < ApplicationSystemTestCase
   setup do
     user = create(:staff)
     @pet = create(:pet)
