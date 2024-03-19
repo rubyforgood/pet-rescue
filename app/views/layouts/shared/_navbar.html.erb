@@ -26,6 +26,7 @@
           <% end %>
         </button>
 
+        <!-- Use "aria-dropdown-menu" here to avoid the theme's default hover-open behavior for accessibility concerns. -->
         <div class="aria-dropdown-menu position-absolute end-0" data-dropdown-target="menu" hidden aria-hidden="true" aria-labelledby="nav-dropdown-button" style='z-index: 1000'>
           <% if user_signed_in? %>
             <ul class="list-unstyled">

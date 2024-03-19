@@ -1,5 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
+// Dropdown menu controller
+// Use only where theme dropdown menu defaults (hover-open) are undesirable.
 export default class extends Controller {
   static targets = ["button", "menu"];
 
