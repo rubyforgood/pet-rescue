@@ -160,7 +160,7 @@ gem "requestjs-rails", "~> 0.0.11"
 # Add ability to set user roles
 gem "rolify"
 
-gem "gretel", "~> 4.5"
+gem "gretel", "~> 5.0"
 
 gem "ransack"
 
