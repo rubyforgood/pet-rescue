@@ -5,7 +5,7 @@ class Organizations::TaskPolicy < ApplicationPolicy
   pre_check :verify_active_staff!
   pre_check :verify_pet!
 
-  alias_rule :create?, :new?, to: :manage?
+  alias_rule :create?, :new?, :index?, to: :manage?
 
   def manage?
     permission?(:manage_tasks)

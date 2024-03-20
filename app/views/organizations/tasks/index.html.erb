@@ -23,9 +23,7 @@
           <%= turbo_frame_tag Task.new %>
         </div>
         <ul class="list-group">
-          <% @tasks.each do |task| %>
-            <%= render partial: "organizations/tasks/task", locals: { task: task } %>
-          <% end %>
+          <%= render @tasks %>
         </ul>
       </div>
     </div>

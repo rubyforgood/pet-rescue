@@ -9,7 +9,14 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def index
-    authorize! Pet, context: {organization: Current.organization}
+    authorize! Task, context: {pet: @pet}
+
+    if params[:cancel] == "true"
+      respond_to do |format|
+        format.html
+        format.turbo_stream { render turbo_stream: turbo_stream.update("new_task", "") }
+      end
+    end
 
     @tasks = @pet.tasks.list_ordered
   end
