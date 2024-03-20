@@ -212,9 +212,9 @@ GEM
     google-protobuf (3.23.4-arm64-darwin)
     google-protobuf (3.23.4-x86_64-darwin)
     google-protobuf (3.23.4-x86_64-linux)
-    gretel (4.5.0)
-      actionview (>= 5.1, < 7.1)
-      railties (>= 5.1, < 7.1)
+    gretel (5.0.0)
+      actionview (>= 5.1, < 7.2)
+      railties (>= 5.1, < 7.2)
     guard (2.18.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
@@ -504,7 +504,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   figaro
-  gretel (~> 4.5)
+  gretel (~> 5.0)
   guard (~> 2.18)
   guard-livereload (~> 2.5, >= 2.5.2)
   importmap-rails
