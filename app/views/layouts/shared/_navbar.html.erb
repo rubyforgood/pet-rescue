@@ -19,14 +19,15 @@
         <%= active_link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
       <% end %>
 
-      <li class="dropdown ms-2 list-unstyled">
-        <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
+      <div class="dropdown ms-2 list-unstyled position-relative" data-controller="dropdown">
+        <button class="btn p-0 border-0" id="nav-dropdown-button" data-action="dropdown#toggle" data-dropdown-target="button" aria-expanded="false">
           <% if user_signed_in? %>
            <%= render_avatar_partial %>
           <% end %>
-        </a>
+        </button>
 
-        <div class="dropdown-menu dropdown-menu-end pb-0" aria-labelledby="dropdownUser" style='z-index: 1000'>
+        <%# Use "aria-dropdown-menu" here to avoid the theme's default hover-open behavior for accessibility concerns. %>
+        <div class="aria-dropdown-menu position-absolute end-0" data-dropdown-target="menu" hidden aria-hidden="true" aria-labelledby="nav-dropdown-button" style='z-index: 1000'>
           <% if user_signed_in? %>
             <ul class="list-unstyled">
               <% if current_user.adopter_foster_account && current_user.adopter_foster_account.adopter_foster_profile.nil? %>
@@ -71,12 +72,11 @@
             <% end %>
           <% end %>
         </div>
-      </li>
+      </div>
     </div>
-    <!-- Button -->
 
     <!-- Collapse -->
-    <div class="justify-content-end collapse navbar-collapse " id="navbar-default3">
+    <div class="justify-content-end collapse navbar-collapse" id="navbar-default3">
       <ul class="navbar-nav">
 
         <li class='nav-item'>

@@ -13,7 +13,7 @@ gem "sprockets-rails"
 gem "figaro"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.6"
@@ -160,7 +160,7 @@ gem "requestjs-rails", "~> 0.0.11"
 # Add ability to set user roles
 gem "rolify"
 
-gem "gretel", "~> 4.5"
+gem "gretel", "~> 5.0"
 
 gem "ransack"
 
