@@ -1,10 +1,10 @@
 class AdopterFosterProfilePolicy < ApplicationPolicy
   def create?
-    permission?(:create_adopter_profiles) && no_profile?
+    permission?(:create_adopter_foster_profiles) && no_profile?
   end
 
   def manage?
-    owner? && permission?(:manage_adopter_profiles)
+    owner? && permission?(:manage_adopter_foster_profiles)
   end
 
   private

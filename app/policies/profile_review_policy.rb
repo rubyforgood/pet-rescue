@@ -3,7 +3,7 @@ class ProfileReviewPolicy < ApplicationPolicy
   pre_check :verify_active_staff!
 
   def show?
-    permission?(:view_adopter_profiles)
+    permission?(:view_adopter_foster_profiles)
   end
 
   private
