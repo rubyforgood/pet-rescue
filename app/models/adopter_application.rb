@@ -13,6 +13,7 @@
 #
 # Indexes
 #
+#  index_adopter_applications_on_account_and_pet            (pet_id,adopter_foster_account_id) UNIQUE
 #  index_adopter_applications_on_adopter_foster_account_id  (adopter_foster_account_id)
 #  index_adopter_applications_on_pet_id                     (pet_id)
 #
