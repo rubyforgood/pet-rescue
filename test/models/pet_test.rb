@@ -51,7 +51,7 @@ class PetTest < ActiveSupport::TestCase
     end
 
     should "include pets that have been adopted" do
-      adopted_pet = create(:pet, :adopted, :adoption_pending)
+      adopted_pet = create(:pet, :adopted)
       res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
 
       assert res.include?(adopted_pet)

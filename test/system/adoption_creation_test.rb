@@ -10,7 +10,7 @@ class AdoptionCreationTest < ApplicationSystemTestCase
   end
 
   context "creating an adoption" do
-    should "should display adopeted pet's applications after it has been adopted" do
+    should "should display adopted pet's applications after it has been adopted" do
       visit adoption_application_reviews_url
       accept_confirm do
         click_on "New Adoption"
