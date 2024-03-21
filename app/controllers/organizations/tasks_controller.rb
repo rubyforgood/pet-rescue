@@ -1,13 +1,31 @@
 class Organizations::TasksController < Organizations::BaseController
-  skip_verify_authorized only: %i[cancel]
-
-  before_action :set_pet, only: %i[new create edit update destroy cancel]
-  before_action :set_task, only: %i[edit update destroy]
+  before_action :set_pet, only: %i[new show index create edit update destroy]
+  before_action :set_task, only: %i[show edit update destroy]
 
   def new
     authorize! Task, context: {pet: @pet}
 
     @task = @pet.tasks.build
+  end
+
+  def index
+    authorize! Task, context: {pet: @pet}
+
+    if params[:cancel] == "true"
+      respond_to do |format|
+        format.html
+        format.turbo_stream { render turbo_stream: turbo_stream.update("new_task", "") }
+      end
+    end
+
+    @tasks = @pet.tasks.list_ordered
+  end
+
+  def show
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def create
@@ -17,12 +35,12 @@ class Organizations::TasksController < Organizations::BaseController
 
     if @task.save
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/pets/tasks/tasks", locals: {task: @task}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_pet_#{@pet.id}", partial: "organizations/pets/tabs/tasks", locals: {task: @task}) }
         format.html { redirect_to pet_url(@pet, active_tab: "tasks") }
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}), status: :bad_request }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}), status: :bad_request }
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -40,10 +58,10 @@ class Organizations::TasksController < Organizations::BaseController
           Organizations::TaskService.new(@task).create_next
         end
 
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/pets/tasks/tasks", locals: {task: @task}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_pet_#{@pet.id}", partial: "organizations/pets/tabs/tasks", locals: {task: @task}) }
         format.html { redirect_to pet_url(@pet, active_tab: "tasks") }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}), status: :bad_request }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}), status: :bad_request }
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
@@ -58,14 +76,6 @@ class Organizations::TasksController < Organizations::BaseController
     end
   rescue ActiveRecord::RecordNotFound
     redirect_to pets_path
-  end
-
-  def cancel
-    @task = params[:task_id] ? @pet.tasks.find(params[:task_id]) : @pet.tasks.build
-
-    respond_to do |format|
-      format.turbo_stream { render "organizations/pets/tasks/cancel" }
-    end
   end
 
   private

@@ -1,0 +1,3 @@
+<%= turbo_stream.update @task do %>
+  <%= render partial: "organizations/tasks/task", locals: { task: @task } %>
+<% end %>
