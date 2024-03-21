@@ -9,7 +9,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "creates a recurring task with a due date without redirecting" do
-    due_date = (Date.today + 1.day)
+    due_date = (Date.today + 3.day)
 
     visit pet_path(@pet, active_tab: "tasks")
 
