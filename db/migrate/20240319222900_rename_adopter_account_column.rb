@@ -4,12 +4,8 @@ class RenameAdopterAccountColumn < ActiveRecord::Migration[7.0]
     rename_column :adopter_foster_profiles, :adopter_account_id, :adopter_foster_account_id
     rename_column :matches, :adopter_account_id, :adopter_foster_account_id
 
-    add_index :adopter_applications, :adopter_foster_account_id
-    add_index :adopter_foster_profiles, :adopter_foster_account_id
-    add_index :matches, :adopter_foster_account_id
-
-    add_foreign_key :adopter_applications, :adopter_foster_accounts, column: :adopter_foster_account_id
-    add_foreign_key :adopter_foster_profiles, :adopter_foster_accounts, column: :adopter_foster_account_id
-    add_foreign_key :matches, :adopter_foster_accounts, column: :adopter_foster_account_id
+    remove_index :adopter_foster_profiles, name: "index_adopter_foster_profiles_on_adopter_foster_account_id"
+    # Ensure only one AdopterFosterProfile per AdopterFosterAccount with unique: true
+    add_index :adopter_foster_profiles, :adopter_foster_account_id, unique: true
   end
 end

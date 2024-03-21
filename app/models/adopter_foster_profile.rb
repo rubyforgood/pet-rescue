@@ -37,12 +37,12 @@
 #  visit_laventana           :boolean
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
-#  adopter_foster_account_id :bigint
+#  adopter_foster_account_id :bigint           not null
 #  location_id               :bigint           not null
 #
 # Indexes
 #
-#  index_adopter_foster_profiles_on_adopter_foster_account_id  (adopter_foster_account_id)
+#  index_adopter_foster_profiles_on_adopter_foster_account_id  (adopter_foster_account_id) UNIQUE
 #  index_adopter_foster_profiles_on_location_id                (location_id)
 #
 # Foreign Keys
