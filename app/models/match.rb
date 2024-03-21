@@ -26,6 +26,7 @@ class Match < ApplicationRecord
   belongs_to :adopter_foster_account
 
   validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
+  validates :pet, uniqueness: true
 
   after_create_commit :send_reminder
 
