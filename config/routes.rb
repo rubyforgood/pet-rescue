@@ -14,11 +14,7 @@ Rails.application.routes.draw do
 
     resources :home, only: [:index]
     resources :pets do
-      resources :tasks, only: [:new, :create, :edit, :update, :destroy] do
-        collection do
-          get "cancel", to: "tasks#cancel"
-        end
-      end
+      resources :tasks
       post "attach_images", on: :member, to: "pets#attach_images"
       post "attach_files", on: :member, to: "pets#attach_files"
     end
