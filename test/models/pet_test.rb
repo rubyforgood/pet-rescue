@@ -39,4 +39,22 @@ class PetTest < ActiveSupport::TestCase
       assert_not pet.has_adoption_pending?
     end
   end
+
+  context ".org_pets_with_apps(staff_org_id)" do
+    should "return pets for organization that have adopter applications" do
+      pet_with_app = create(:pet, :adoption_pending)
+      pet_without_app = create(:pet)
+      res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
+
+      assert res.include?(pet_with_app)
+      assert_not res.include?(pet_without_app)
+    end
+
+    should "include pets that have been adopted" do
+      adopted_pet = create(:pet, :adopted)
+      res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
+
+      assert res.include?(adopted_pet)
+    end
+  end
 end
