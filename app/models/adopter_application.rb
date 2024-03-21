@@ -32,6 +32,12 @@ class AdopterApplication < ApplicationRecord
     :successful_applicant,
     :adoption_made]
 
+  validates :adopter_foster_account,
+    uniqueness: {
+      scope: :pet,
+      message: "has already applied for this pet."
+    }
+
   # remove adoption_made status as not necessary for staff
   def self.app_review_statuses
     AdopterApplication.statuses.keys.map do |status|
