@@ -7,6 +7,7 @@ class Organizations::DefaultPetTaskService
 
   def default_tasks_array
     @default_pet_tasks.map do |task|
+      next_due = (task.recurring.!) ? nil : task.due_in_days
       {
         pet_id: @pet.id,
         name: task.name,
@@ -14,7 +15,7 @@ class Organizations::DefaultPetTaskService
         completed: false,
         due_date: task.due_in_days&.days&.from_now&.beginning_of_day,
         recurring: task.recurring,
-        next_due_date_in_days: task.due_in_days
+        next_due_date_in_days: next_due
       }
     end
   end
