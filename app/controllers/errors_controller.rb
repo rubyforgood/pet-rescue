@@ -9,7 +9,7 @@ class ErrorsController < ApplicationController
     render status: 500
   end
 
-  def restricted_access
+  def unprocessable_content
     render status: 422
   end
 end
