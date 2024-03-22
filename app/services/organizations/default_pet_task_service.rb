@@ -12,7 +12,9 @@ class Organizations::DefaultPetTaskService
         name: task.name,
         description: task.description,
         completed: false,
-        due_date: task.due_in_days&.days&.from_now&.beginning_of_day
+        due_date: task.due_in_days&.days&.from_now&.beginning_of_day,
+        recurring: task.recurring,
+        next_due_date_in_days: task.due_in_days
       }
     end
   end
