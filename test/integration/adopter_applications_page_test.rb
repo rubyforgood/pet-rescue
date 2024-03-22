@@ -20,7 +20,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     # create(
     #   :adopter_application,
     #   status: 0,
-    #   adopter_account: user.adopter_account,
+    #   adopter_foster_account: user.adopter_foster_account,
     #   pet: pet
     # )
     # sign_in user
@@ -39,7 +39,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   test "Adopter with account can withdraw an application and see remove button" do
     skip("while new ui is implemented")
     # user = create(:adopter, :with_profile)
-    # application = create(:adopter_application, status: 0, adopter_account: user.adopter_account)
+    # application = create(:adopter_application, status: 0, adopter_foster_account: user.adopter_foster_account)
     # sign_in user
 
     # patch(
@@ -60,7 +60,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   test "Adopter with account can remove an application from the page" do
     skip("while new ui is implemented")
     # user = create(:adopter, :with_profile)
-    # application = create(:adopter_application, status: 0, adopter_account: user.adopter_account)
+    # application = create(:adopter_application, status: 0, adopter_foster_account: user.adopter_foster_account)
     # sign_in user
 
     # patch(
@@ -85,7 +85,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
     # application = create(
     #   :adopter_application,
     #   status: 0,
-    #   adopter_account: user.adopter_account,
+    #   adopter_foster_account: user.adopter_foster_account,
     #   pet: pet
     # )
     # sign_in user
@@ -113,7 +113,7 @@ class AdopterApplicationsPageTest < ActionDispatch::IntegrationTest
   test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
     skip("while new ui is implemented")
     #   user = create(:adopter, :with_profile)
-    #   application = create(:adopter_application, status: 0, adopter_account: user.adopter_account)
+    #   application = create(:adopter_application, status: 0, adopter_foster_account: user.adopter_foster_account)
     #   sign_in user
 
     #   get "/my_applications"

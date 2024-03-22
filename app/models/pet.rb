@@ -92,7 +92,7 @@ class Pet < ApplicationRecord
   end
 
   def self.org_pets_with_apps(staff_org_id)
-    org_pets(staff_org_id).includes(adopter_applications: [adopter_account: [:user]]).where
+    org_pets(staff_org_id).includes(adopter_applications: [adopter_foster_account: [:user]]).where
       .not(adopter_applications: {id: nil}).references(:users)
   end
 

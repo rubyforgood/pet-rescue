@@ -15,11 +15,11 @@ class MatchesControllerTest < ActionDispatch::IntegrationTest
         @organization = ActsAsTenant.current_tenant
 
         pet = create(:pet)
-        adopter_account = create(:adopter_account, :with_profile)
+        adopter_foster_account = create(:adopter_foster_account, :with_profile)
         @params = {
           match: {
             pet_id: pet.id,
-            adopter_account_id: adopter_account.id
+            adopter_foster_account_id: adopter_foster_account.id
           }
         }
       end

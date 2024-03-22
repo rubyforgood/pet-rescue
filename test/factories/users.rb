@@ -8,13 +8,13 @@ FactoryBot.define do
     tos_agreement { true }
 
     factory :adopter do
-      adopter_account do
-        association :adopter_account, user: instance
+      adopter_foster_account do
+        association :adopter_foster_account, user: instance
       end
 
       trait :with_profile do
-        adopter_account do
-          association :adopter_account, :with_profile, user: instance
+        adopter_foster_account do
+          association :adopter_foster_account, :with_profile, user: instance
         end
       end
     end

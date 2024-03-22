@@ -30,13 +30,13 @@
         <div class="aria-dropdown-menu position-absolute end-0" data-dropdown-target="menu" hidden aria-hidden="true" aria-labelledby="nav-dropdown-button" style='z-index: 1000'>
           <% if user_signed_in? %>
             <ul class="list-unstyled">
-              <% if current_user.adopter_account && current_user.adopter_account.adopter_foster_profile.nil? %>
+              <% if current_user.adopter_foster_account && current_user.adopter_foster_account.adopter_foster_profile.nil? %>
                 <li>
                   <%= link_to new_profile_path, class: 'dropdown-item' do %>
                     <i class="fe fe-user me-2"></i> My Profile
                   <% end %>
                 </li>
-              <% elsif current_user.adopter_account %>
+              <% elsif current_user.adopter_foster_account %>
                 <li>
                   <%= link_to profile_path, class: 'dropdown-item' do %>
                     <i class="fe fe-user me-2"></i> My Profile

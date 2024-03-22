@@ -31,7 +31,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:adopter, :with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # application = create(:adopter_application, adopter_account: adopter_user.adopter_account, pet: pet)
+    # application = create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
     # sign_in staff_user
 
     # get "/adopter_applications"
@@ -47,7 +47,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:adopter, :with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # application = create(:adopter_application, adopter_account: adopter_user.adopter_account, status: 0, pet: pet)
+    # application = create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, status: 0, pet: pet)
     # sign_in staff_user
 
     # assert_changes "AdopterApplication.find(application.id).status", from: "awaiting_review", to: "under_review" do
@@ -89,7 +89,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:adopter, :with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # application = create(:adopter_application, adopter_account: adopter_user.adopter_account, pet: pet)
+    # application = create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
     # sign_in staff_user
 
     # put(
@@ -139,7 +139,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:adopter, :with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # application = create(:adopter_application, adopter_account: adopter_user.adopter_account, pet: pet)
+    # application = create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
     # sign_in staff_user
 
     # put(
@@ -163,14 +163,14 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:adopter, :with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # create(:adopter_application, adopter_account: adopter_user.adopter_account, pet: pet)
+    # create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
     # sign_in staff_user
 
     # get "/adopter_applications"
 
     # assert_select "a", {count: 1, text: pet.name}
 
-    # post "/create_adoption", params: {adopter_account_id: adopter_user.adopter_account.id, pet_id: pet.id}
+    # post "/create_adoption", params: {adopter_foster_account_id: adopter_user.adopter_foster_account.id, pet_id: pet.id}
 
     # assert_equal "Pet successfully adopted.", flash[:notice]
 
@@ -184,11 +184,11 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:adopter, :with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # create(:adopter_application, adopter_account: adopter_user.adopter_account, pet: pet)
+    # create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
     # sign_in staff_user
 
     # assert_changes "Match.count", from: 0, to: 1 do
-    #   post "/create_adoption", params: {adopter_account_id: adopter_user.adopter_account.id, pet_id: pet.id}
+    #   post "/create_adoption", params: {adopter_foster_account_id: adopter_user.adopter_foster_account.id, pet_id: pet.id}
     # end
   end
 
@@ -197,7 +197,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:adopter, :with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # application = create(:adopter_application, adopter_account: adopter_user.adopter_account, pet: pet)
+    # application = create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
     # sign_in adopter_user
 
     # patch "/my_application", params: {application: {id: application.id, status: "withdrawn"}}
@@ -233,7 +233,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # pet = create(:pet, organization: staff_user.staff_account.organization)
     # sign_in staff_user
 
-    # post "/create_adoption", params: {adopter_account_id: adopter_user.adopter_account.id, pet_id: pet.id}
+    # post "/create_adoption", params: {adopter_foster_account_id: adopter_user.adopter_foster_account.id, pet_id: pet.id}
 
     # assert_response :redirect
     # follow_redirect!
@@ -245,7 +245,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # staff_user = create(:user, :verified_staff)
     # adopter_user = create(:adopter, :with_profile)
     # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # create(:adopter_application, adopter_account: adopter_user.adopter_account, pet: pet)
+    # create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
     # sign_in staff_user
 
     # get "/adopter_applications"
