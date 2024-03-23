@@ -23,7 +23,8 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   context "active staff" do
     setup do
-      sign_in create(:staff_account).user
+      @staff_account = create(:staff_account)
+      sign_in @staff_account.user
     end
 
     should "see all applications" do
@@ -55,87 +56,21 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       @under_review_app.reload
       assert_equal("some notes", @under_review_app.notes)
     end
-  end
 
-  context "deactivated staff" do
-    setup do
-      sign_in create(:staff_account, :deactivated).user
+    context "deactivated staff" do
+      setup do
+        sign_in create(:staff_account, :deactivated).user
+      end
+
+      should_eventually "not see any applications" do
+        get adoption_application_reviews_path
+
+        assert_response :redirect
+        follow_redirect!
+        follow_redirect!
+        assert_equal "Unauthorized action.", flash[:alert]
+      end
     end
-
-    should_eventually "not see any applications" do
-      get adoption_application_reviews_path
-
-      assert_response :redirect
-      follow_redirect!
-      follow_redirect!
-      assert_equal "Unauthorized action.", flash[:alert]
-    end
-  end
-
-  test "when Successful Applicant is selected, button to Create Adoption shows" do
-    skip("while new ui is implemented")
-    # staff_user = create(:user, :verified_staff)
-    # adopter_user = create(:adopter, :with_profile)
-    # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # application = create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
-    # sign_in staff_user
-
-    # put(
-    #   "/adopter_applications/#{application.id}",
-    #   params: {
-    #     adopter_application:
-    #       {
-    #         status: "successful_applicant", notes: ""
-    #       },
-    #     commit: "Save",
-    #     id: application.id
-    #   }
-    # )
-
-    # follow_redirect!
-    # assert_select "a", "Create Adoption"
-  end
-
-  test "after making the http request to create an adoption, a new Adoption is created" do
-    skip("while new ui is implemented")
-    # staff_user = create(:user, :verified_staff)
-    # adopter_user = create(:adopter, :with_profile)
-    # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
-    # sign_in staff_user
-
-    # assert_changes "Match.count", from: 0, to: 1 do
-    #   post "/create_adoption", params: {adopter_foster_account_id: adopter_user.adopter_foster_account.id, pet_id: pet.id}
-    # end
-  end
-
-  test "the filter works to show applications for a given pet and for all pets" do
-    skip("while new ui is implemented")
-    # staff_user = create(:user, :verified_staff)
-    # adopter_user = create(:adopter, :with_profile)
-    # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
-    # sign_in staff_user
-
-    # get "/adopter_applications"
-
-    # assert_select(
-    #   "div.card",
-    #   # count of all unadopted pets with an application for a given org
-    #   {count: Pet.org_pets_with_apps(staff_user.staff_account.organization_id).count}
-    # )
-
-    # get "/adopter_applications", params: {pet_id: pet.id}
-
-    # assert_select "div.card", {count: 1}
-    # assert_select "h4", pet.name.to_s
-
-    # get "/adopter_applications", params: {pet_id: ""}
-
-    # assert_select(
-    #   "div.card",
-    #   {count: Pet.org_pets_with_apps(staff_user.staff_account.organization_id).count}
-    # )
   end
 
   def verify_application_elements(application)
