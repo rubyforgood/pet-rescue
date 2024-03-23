@@ -63,9 +63,6 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  # Per the deprecation warning in rails server output re this config, set it to true
-  config.active_storage.replace_on_assign_to_many = true
-
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

@@ -43,6 +43,18 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       @awaiting_review_app.reload
       assert_equal "under_review", @awaiting_review_app.status
     end
+
+    should "be able to add a note to an application" do
+      patch adoption_application_review_path(@under_review_app.id),
+        params: {adopter_application: {notes: "some notes"}},
+        headers: {"HTTP_REFERER" => "example.com"}
+
+      assert_response :redirect
+      follow_redirect!
+
+      @under_review_app.reload
+      assert_equal("some notes", @under_review_app.notes)
+    end
   end
 
   context "deactivated staff" do
@@ -58,33 +70,6 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       follow_redirect!
       assert_equal "Unauthorized action.", flash[:alert]
     end
-  end
-
-  test "verified staff can add notes to an application" do
-    skip("while new ui is implemented")
-    # staff_user = create(:user, :verified_staff)
-    # adopter_user = create(:adopter, :with_profile)
-    # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # application = create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
-    # sign_in staff_user
-
-    # put(
-    #   "/adopter_applications/#{application.id}",
-    #   params: {
-    #     adopter_application:
-    #       {
-    #         status: "under_review", notes: "some notes"
-    #       },
-    #     commit: "Save",
-    #     id: application.id
-    #   }
-    # )
-
-    # assert_response :redirect
-
-    # get "/adopter_applications/#{application.id}/edit"
-
-    # assert_select "textarea", "some notes"
   end
 
   test "when Successful Applicant is selected, button to Create Adoption shows" do
@@ -111,27 +96,6 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # assert_select "a", "Create Adoption"
   end
 
-  test "after making the http request to create an adoption, the application disappears" do
-    skip("while new ui is implemented")
-    # staff_user = create(:user, :verified_staff)
-    # adopter_user = create(:adopter, :with_profile)
-    # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
-    # sign_in staff_user
-
-    # get "/adopter_applications"
-
-    # assert_select "a", {count: 1, text: pet.name}
-
-    # post "/create_adoption", params: {adopter_foster_account_id: adopter_user.adopter_foster_account.id, pet_id: pet.id}
-
-    # assert_equal "Pet successfully adopted.", flash[:notice]
-
-    # get "/adopter_applications"
-
-    # assert_select "a", {count: 0, text: pet.name}
-  end
-
   test "after making the http request to create an adoption, a new Adoption is created" do
     skip("while new ui is implemented")
     # staff_user = create(:user, :verified_staff)
@@ -143,54 +107,6 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     # assert_changes "Match.count", from: 0, to: 1 do
     #   post "/create_adoption", params: {adopter_foster_account_id: adopter_user.adopter_foster_account.id, pet_id: pet.id}
     # end
-  end
-
-  test "Staff can revert withdraw and remove by an adopter and the application reappears for adopter" do
-    skip("while new ui is implemented")
-    # staff_user = create(:user, :verified_staff)
-    # adopter_user = create(:adopter, :with_profile)
-    # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # application = create(:adopter_application, adopter_foster_account: adopter_user.adopter_foster_account, pet: pet)
-    # sign_in adopter_user
-
-    # patch "/my_application", params: {application: {id: application.id, status: "withdrawn"}}
-    # patch "/my_application", params: {application: {id: application.id, profile_show: "false"}}
-
-    # assert_select "h3", {count: 0, text: pet.name}
-
-    # sign_in staff_user
-
-    # patch(
-    #   "/adopter_applications/#{application.id}",
-    #   params: {
-    #     adopter_application:
-    #       {
-    #         status: "under_review", notes: "", profile_show: "true"
-    #       },
-    #     commit: "Save",
-    #     id: application.id
-    #   }
-    # )
-
-    # sign_in adopter_user
-
-    # get "/my_applications"
-
-    # assert_select "h3", {count: 1, text: pet.name}
-  end
-
-  test "unverified staff cannot create an adoption" do
-    skip("while new ui is implemented")
-    # staff_user = create(:user, :unverified_staff)
-    # adopter_user = create(:user, :adopter_with_profile)
-    # pet = create(:pet, organization: staff_user.staff_account.organization)
-    # sign_in staff_user
-
-    # post "/create_adoption", params: {adopter_foster_account_id: adopter_user.adopter_foster_account.id, pet_id: pet.id}
-
-    # assert_response :redirect
-    # follow_redirect!
-    # assert_equal "Unauthorized action.", flash[:alert]
   end
 
   test "the filter works to show applications for a given pet and for all pets" do
