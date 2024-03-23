@@ -8,7 +8,8 @@ orga_location = Location.create!(
 @organization = Organization.create!(
   name: "Baja",
   slug: "baja",
-  profile: OrganizationProfile.new(email: "baja@email.com", phone_number: "250 816 8212", location: orga_location, about_us: "We help pets find their forever homes!")
+  profile: OrganizationProfile.new(email: "baja@email.com", phone_number: "250 816 8212", location: orga_location, about_us: "We help pets find their forever homes!"),
+  page_text: PageText.new(hero: "hero text", about: "about us text")
 )
 
 ActsAsTenant.with_tenant(@organization) do
