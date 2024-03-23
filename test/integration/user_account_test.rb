@@ -43,41 +43,6 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     # assert_equal AdopterFosterAccount.last.user_id, User.last.id
   end
 
-  test "Staff user can sign up with an unverified staff account belonging to organization id 1 and see success flash" do
-    skip("while new ui is implemented")
-    # post(
-    #   "/users",
-    #   params: {
-    #     user: {
-    #       staff_account_attributes: {
-    #         user_id: ""
-    #       },
-    #       email: "abc@123.com",
-    #       first_name: "Ima",
-    #       last_name: "Staff",
-    #       password: "password",
-    #       password_confirmation: "password",
-    #       tos_agreement: "1"
-    #     },
-    #     commit: "Create Account"
-    #   }
-    # )
-
-    # mail = ActionMailer::Base.deliveries
-    # assert_equal "hello@test.test.localhost", mail[0].from.join, "from email is incorrect"
-    # assert_equal "abc@123.com", mail[0].to.join, "to email is incorrect"
-    # assert_equal "Welcome to Baja Pet Rescue", mail[0].subject, "subject is incorrect"
-
-    # ActionMailer::Base.deliveries = []
-
-    # assert_response :redirect
-    # follow_redirect!
-
-    # assert_equal "Welcome! You have signed up successfully.", flash[:notice]
-    # assert(User.find_by(first_name: "Ima"))
-    # assert(StaffAccount.find_by(organization_id: @organization.id))
-  end
-
   test "error messages should appear if edit profile form is submitted without data" do
     skip("while new ui is implemented")
     # sign_in create(:adopter)
