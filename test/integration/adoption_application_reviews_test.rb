@@ -17,7 +17,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       assert_response :redirect
       follow_redirect!
       follow_redirect!
-      assert_equal "Unauthorized action.", flash[:alert]
+      assert_equal "You are not authorized to perform this action.", flash[:alert]
     end
   end
 
@@ -224,7 +224,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   def verify_application_elements(application)
     assert_select "tr[id='adopter_application_#{application.id}']" do
-      adopter = application.adopter_account.user
+      adopter = application.adopter_foster_account.user
       assert_select "a", text: "#{adopter.last_name}, #{adopter.first_name}"
       assert_select "button", text: application.status.titleize
     end
