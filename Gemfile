@@ -16,7 +16,7 @@ gem "figaro"
 gem "pg", "~> 1.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.6"
+gem "puma", "~> 6.4.1"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -49,7 +49,7 @@ gem "bootsnap", require: false
 gem "bootstrap"
 
 # add bootstrap_form gem
-gem "bootstrap_form", "~> 5.4"
+gem "bootstrap_form", "~> 5.3"
 
 # Devise Authentication
 gem "devise"
