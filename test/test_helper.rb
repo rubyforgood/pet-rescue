@@ -21,6 +21,14 @@ class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 
+  parallelize_setup do |worker|
+    SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
+  end
+
+  parallelize_teardown do
+    SimpleCov.result
+  end
+
   # Devise test helpers
   include Devise::Test::IntegrationHelpers
 
