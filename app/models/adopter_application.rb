@@ -13,6 +13,7 @@
 #
 # Indexes
 #
+#  index_adopter_applications_on_account_and_pet            (pet_id,adopter_foster_account_id) UNIQUE
 #  index_adopter_applications_on_adopter_foster_account_id  (adopter_foster_account_id)
 #  index_adopter_applications_on_pet_id                     (pet_id)
 #
@@ -31,6 +32,12 @@ class AdopterApplication < ApplicationRecord
     :withdrawn,
     :successful_applicant,
     :adoption_made]
+
+  validates :adopter_foster_account,
+    uniqueness: {
+      scope: :pet,
+      message: "has already applied for this pet."
+    }
 
   # remove adoption_made status as not necessary for staff
   def self.app_review_statuses
