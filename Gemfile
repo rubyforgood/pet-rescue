@@ -148,9 +148,6 @@ group :test do
   gem "mocha"
 end
 
-# Add chartkick for charts generation
-gem "chartkick", "~> 5.0"
-
 # Adds location data for cities and states around the world
 gem "city-state", "~> 1.1.0"
 
