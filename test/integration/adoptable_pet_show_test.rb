@@ -74,7 +74,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     context "an adopter" do
       setup do
         adopter_user = create(:adopter_foster_account).user
-        create(:adopter_foster_profile, adopter_foster_account: adopter_user.adopter_account)
+        create(:adopter_foster_profile, adopter_foster_account: adopter_user.adopter_foster_account)
 
         sign_in adopter_user
       end
