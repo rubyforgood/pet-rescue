@@ -6,26 +6,6 @@ class AdopterApplicationIntegrationTest < ActionDispatch::IntegrationTest
     @pet_id = create(:pet, organization: @organization).id
   end
 
-  test "adopter user without profile cannot apply for pet and sees flash error" do
-    skip("while new ui is implemented")
-    # user = create(:user)
-    # sign_in user
-    # before_count = AdopterApplication.all.count
-
-    # post "/create_my_application",
-    #   params: {application:
-    #     {
-    #       adopter_foster_account_id: user.id,
-    #       pet_id: @pet_id
-    #     }}
-
-    # assert_response :redirect
-    # follow_redirect!
-    # assert_equal "Unauthorized action.", flash[:alert]
-
-    # assert_equal before_count, AdopterApplication.all.count
-  end
-
   test "staff user sees flash error if they apply for a pet" do
     skip("while new ui is implemented")
     # verified_staff = create(:user, :verified_staff)

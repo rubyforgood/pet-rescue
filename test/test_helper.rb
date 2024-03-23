@@ -21,14 +21,11 @@ class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 
-  parallelize_setup do |worker|
-    SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
-  end
-
   parallelize_teardown do
-    SimpleCov.result
+    if ENV["COVERAGE"]
+      SimpleCov.result
+    end
   end
-
   # Devise test helpers
   include Devise::Test::IntegrationHelpers
 
@@ -78,7 +75,10 @@ class ActiveSupport::TestCase
 end
 
 class ActionDispatch::IntegrationTest
-  parallelize_setup do |i|
-    ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{i}"
+  parallelize_setup do |worker|
+    ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{worker}"
+    if ENV["COVERAGE"]
+      SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
+    end
   end
 end
