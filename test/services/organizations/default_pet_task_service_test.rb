@@ -20,4 +20,24 @@ class Organizations::DefaultPetTaskServiceTest < ActiveSupport::TestCase
 
     assert_equal 5.days.from_now.beginning_of_day, pet.tasks.first.due_date
   end
+
+  test "creates tasks with recurring" do
+    create(:default_pet_task, recurring: true)
+    pet = create(:pet)
+
+    Organizations::DefaultPetTaskService.new(pet).create_tasks
+
+    assert pet.tasks.first.recurring?
+  end
+
+  test "creates tasks with recurring and due in days" do
+    create(:default_pet_task, recurring: true, due_in_days: 5)
+    pet = create(:pet)
+
+    Organizations::DefaultPetTaskService.new(pet).create_tasks
+
+    assert pet.tasks.first.recurring?
+    assert_equal 5, pet.tasks.first.next_due_date_in_days
+    assert_equal 5.days.from_now.beginning_of_day, pet.tasks.first.due_date
+  end
 end

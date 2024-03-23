@@ -8,8 +8,8 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     @pet_pending_adoption = create(:pet, :adoption_pending)
     @adopted_pet = create(:pet, :adopted)
     @staff_user = create(:staff_account).user
-    @adopter_user = create(:adopter_account).user
-    create(:adopter_foster_profile, adopter_account: @adopter_user.adopter_account)
+    @adopter_user = create(:adopter_foster_account).user
+    create(:adopter_foster_profile, adopter_foster_account: @adopter_user.adopter_foster_account)
   end
 
   teardown do
@@ -104,7 +104,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     skip("while new ui is implemented")
     # pet = create(:pet, :adoption_pending)
     # user = create(:adopter, :with_profile, organization: pet.organization)
-    # create(:adopter_application, adopter_account: user.adopter_account, pet: pet, status: :awaiting_review)
+    # create(:adopter_application, adopter_foster_account: user.adopter_foster_account, pet: pet, status: :awaiting_review)
     # sign_in user
 
     # get "/adoptable_pets/#{pet.id}"

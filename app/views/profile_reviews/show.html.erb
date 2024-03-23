@@ -5,7 +5,7 @@
     <!--page heading-->
     <div class="text-center mb-5">
       <h1 class="section-heading text-uppercase underline">
-        <%= @adopter_foster_profile.adopter_account.user.first_name %> <%= @adopter_foster_profile.adopter_account.user.last_name %>'s Profile
+        <%= @adopter_foster_profile.adopter_foster_account.user.first_name %> <%= @adopter_foster_profile.adopter_foster_account.user.last_name %>'s Profile
       </h1>
     </div>
 
@@ -19,7 +19,7 @@
             <div class="row mb-3 bigger">
               <p class="col-lg-4"><strong>Email</strong></p>
               <p class="col-lg-6 text-muted">
-                <%= @adopter_foster_profile.adopter_account.user.email %>
+                <%= @adopter_foster_profile.adopter_foster_account.user.email %>
               </p>
             </div>
             <div class="row mb-3 bigger">

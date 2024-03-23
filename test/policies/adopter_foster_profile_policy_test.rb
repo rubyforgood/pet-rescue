@@ -115,7 +115,7 @@ class AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
 
         context "when profile belongs to user" do
           setup do
-            @user = @profile.adopter_account.user
+            @user = @profile.adopter_foster_account.user
           end
 
           should "return true" do

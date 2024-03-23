@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.4"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.8.1"
+gem "rails", "~> 7.1.3.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -16,7 +16,7 @@ gem "figaro"
 gem "pg", "~> 1.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.6"
+gem "puma", "~> 6.4.1"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -49,7 +49,7 @@ gem "bootsnap", require: false
 gem "bootstrap"
 
 # add bootstrap_form gem
-gem "bootstrap_form", "~> 5.3"
+gem "bootstrap_form", "~> 5.4"
 
 # Devise Authentication
 gem "devise"
@@ -147,9 +147,6 @@ group :test do
   # Adds ability to stub out methods in tests easier
   gem "mocha"
 end
-
-# Add chartkick for charts generation
-gem "chartkick", "~> 5.0"
 
 # Adds location data for cities and states around the world
 gem "city-state", "~> 1.1.0"

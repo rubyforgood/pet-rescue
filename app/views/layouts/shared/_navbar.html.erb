@@ -30,13 +30,13 @@
         <div class="aria-dropdown-menu position-absolute end-0" data-dropdown-target="menu" hidden aria-hidden="true" aria-labelledby="nav-dropdown-button" style='z-index: 1000'>
           <% if user_signed_in? %>
             <ul class="list-unstyled">
-              <% if current_user.adopter_account && current_user.adopter_account.adopter_foster_profile.nil? %>
+              <% if current_user.adopter_foster_account && current_user.adopter_foster_account.adopter_foster_profile.nil? %>
                 <li>
                   <%= link_to new_profile_path, class: 'dropdown-item' do %>
                     <i class="fe fe-user me-2"></i> My Profile
                   <% end %>
                 </li>
-              <% elsif current_user.adopter_account %>
+              <% elsif current_user.adopter_foster_account %>
                 <li>
                   <%= link_to profile_path, class: 'dropdown-item' do %>
                     <i class="fe fe-user me-2"></i> My Profile
@@ -94,8 +94,8 @@
         <li class="nav-item">
           <%= active_link_to 'Donate', donate_path, class: 'nav-link' %>
         </li>
-        <li class="nav-item d-block d-md-none">
-          <%= active_link_to 'Log In', new_user_session_path, class: 'nav-link' %>
+        <li class="nav-item d-block d-lg-none">
+          <%= button_to 'Log Out', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'nav-link' %>
         </li>
       </ul>
     </div>

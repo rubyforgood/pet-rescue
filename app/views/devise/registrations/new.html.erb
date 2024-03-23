@@ -18,8 +18,8 @@
 
           <%= render "devise/shared/error_messages", resource: resource %>
 
-          <%# adopter_account built in registrations controller #new %>
-          <%= f.fields_for :adopter_account do |fields| %>
+          <%# adopter_foster_account built in registrations controller #new %>
+          <%= f.fields_for :adopter_foster_account do |fields| %>
             <%= fields.hidden_field :user_id %>
           <% end %>
 

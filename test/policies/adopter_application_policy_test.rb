@@ -235,7 +235,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when adopter account belongs to user" do
         setup do
-          @user = @adopter_application.adopter_account.user
+          @user = @adopter_application.adopter_foster_account.user
         end
 
         should "return true" do

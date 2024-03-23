@@ -19,6 +19,7 @@ FactoryBot.define do
 
     trait :adopted do
       match { association :match }
+      adopter_applications { build_list(:adopter_application, 1, :successful_applicant) }
     end
 
     trait :with_image do

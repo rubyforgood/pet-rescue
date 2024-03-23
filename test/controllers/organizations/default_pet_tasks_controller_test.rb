@@ -132,7 +132,8 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
           default_pet_task: {
             name: "New Task",
             description: "Descrition of new Task",
-            due_in_days: 5
+            due_in_days: 5,
+            recurring: true
           }
         }
       end

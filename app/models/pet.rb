@@ -91,11 +91,9 @@ class Pet < ApplicationRecord
     Pet.where(organization_id: staff_org_id)
   end
 
-  # all pets under an organization with applications and no adoptions
   def self.org_pets_with_apps(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(adopter_applications: [adopter_account: [:user]]).where
-      .not(adopter_applications: {id: nil}).includes(:match)
-      .where(match: {id: nil})
+    org_pets(staff_org_id).includes(adopter_applications: [adopter_foster_account: [:user]]).where
+      .not(adopter_applications: {id: nil}).references(:users)
   end
 
   # all unadopted pets under all organizations

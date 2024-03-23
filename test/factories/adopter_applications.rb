@@ -8,12 +8,12 @@ FactoryBot.define do
       user { nil }
     end
 
-    adopter_account do
+    adopter_foster_account do
       if user
-        user.adopter_account ||
-          association(:adopter_account, :with_profile, user: user)
+        user.adopter_foster_account ||
+          association(:adopter_foster_account, :with_profile, user: user)
       else
-        association :adopter_account, :with_profile
+        association :adopter_foster_account, :with_profile
       end
     end
 
@@ -26,6 +26,10 @@ FactoryBot.define do
     trait :withdrawn do
       status { 3 }
       profile_show { false }
+    end
+
+    trait :successful_applicant do
+      status { 4 }
     end
   end
 end

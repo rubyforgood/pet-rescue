@@ -16,7 +16,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     #   "/users",
     #   params: {
     #     user: {
-    #       adopter_account_attributes: {
+    #       adopter_foster_account_attributes: {
     #         user_id: ""
     #       },
     #       email: "foo@bar.baz",
@@ -40,7 +40,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
 
     # assert_equal "Welcome! You have signed up successfully.", flash[:notice]
     # assert(User.find_by(first_name: "Foo"))
-    # assert_equal AdopterAccount.last.user_id, User.last.id
+    # assert_equal AdopterFosterAccount.last.user_id, User.last.id
   end
 
   test "Staff user can sign up with an unverified staff account belonging to organization id 1 and see success flash" do
@@ -149,7 +149,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     #   "/users",
     #   params: {
     #     user: {
-    #       adopter_account_attributes: {
+    #       adopter_foster_account_attributes: {
     #         user_id: ""
     #       },
     #       email: "",
