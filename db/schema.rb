@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_19_222900) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_22_083755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_19_222900) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "due_in_days"
+    t.boolean "recurring", default: false
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
 

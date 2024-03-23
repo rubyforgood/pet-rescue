@@ -6,6 +6,7 @@
 #  description     :string
 #  due_in_days     :integer
 #  name            :string           not null
+#  recurring       :boolean          default(FALSE)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :bigint           not null
