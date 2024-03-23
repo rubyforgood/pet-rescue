@@ -5,7 +5,7 @@ require "test_helper"
 class MatchTest < ActiveSupport::TestCase
   context "associations" do
     should belong_to(:pet)
-    should belong_to(:adopter_account)
+    should belong_to(:adopter_foster_account)
   end
 
   setup do

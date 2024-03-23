@@ -200,16 +200,6 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
 
       assert_template :edit
     end
-    should "allow recurring to be updated with Turbo Stream" do
-      patch default_pet_task_path(@default_pet_task), params: {
-        default_pet_task: {
-          recurring: true
-        }
-      }, as: :turbo_stream
-
-      assert_response :success
-      assert_turbo_stream action: "replace", target: @default_pet_task
-    end
   end
 
   context "DELETE #destroy" do

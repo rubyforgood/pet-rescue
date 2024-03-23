@@ -28,10 +28,7 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
 
   def update
     if @task.update(task_params)
-      respond_to do |format|
-        format.html { redirect_to default_pet_tasks_path, notice: "Default pet task updated successfully." }
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("default_pet_task_#{@task.id}", partial: "recurring", locals: {task: @task}) }
-      end
+      redirect_to default_pet_tasks_path, notice: "Default pet task updated successfully."
     else
       render :edit, status: :unprocessable_entity
     end

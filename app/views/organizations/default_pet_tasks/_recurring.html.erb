@@ -1,7 +1,0 @@
-  <%= bootstrap_form_with model: task, html: { id: dom_id(task)} do |f| %>
-  <%= f.check_box :recurring,
-                          { class: "form-check-input",
-                            id: "recur",
-                            hide_label: true,
-                            onchange: "this.form.requestSubmit()"} %>
-<% end %>

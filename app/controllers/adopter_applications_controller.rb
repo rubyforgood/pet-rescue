@@ -45,7 +45,7 @@ class AdopterApplicationsController < ApplicationController
   def application_params
     params.require(:adopter_application).permit(
       :pet_id,
-      :adopter_account_id,
+      :adopter_foster_account_id,
       :status,
       :profile_show
     )

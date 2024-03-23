@@ -21,20 +21,20 @@ module Authorizable
     create_adopter_applications
     view_adopter_applications
     withdraw_adopter_applications
-    create_adopter_profiles
-    manage_adopter_profiles
+    create_adopter_foster_profiles
+    manage_adopter_foster_profiles
   ].freeze
 
   STAFF_PERMISSIONS = (
     ADOPTER_PERMISSIONS.excluding(
       %i[
         create_adopter_applications
-        create_adopter_profiles
-        manage_adopter_profiles
+        create_adopter_foster_profiles
+        manage_adopter_foster_profiles
       ]
     ) + %i[
       review_adopter_applications
-      view_adopter_profiles
+      view_adopter_foster_profiles
       purge_attachments
       manage_default_pet_tasks
       manage_matches

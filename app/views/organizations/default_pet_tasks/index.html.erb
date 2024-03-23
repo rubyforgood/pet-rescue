@@ -17,7 +17,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Due After</th>
-                <th scope="col">Recurrence</th>
+                <th scope="col">Recurring</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -34,7 +34,7 @@
                     <%= task.due_in_days ? pluralize(task.due_in_days, "day") : "" %>
                   </td>
                   <td>
-                    <%= render "recurring", task: task %>
+                    <%= task.recurring? ? "Yes" : "No" %>
                   </td>
                   <% if current_user.staff_account %>
                     <td>

@@ -11,7 +11,7 @@ class AdopterFosterProfileFormTest < ActionDispatch::IntegrationTest
     #   params: {
     #     adopter_foster_profile:
     #       {
-    #         adopter_account_id: user.adopter_account.id,
+    #         adopter_foster_account_id: user.adopter_foster_account.id,
     #         phone_number: "",
     #         contact_method: "",
     #         country: "",
@@ -86,7 +86,7 @@ class AdopterFosterProfileFormTest < ActionDispatch::IntegrationTest
     #   params: {
     #     adopter_foster_profile:
     #     {
-    #       adopter_account_id: user.adopter_account.id,
+    #       adopter_foster_account_id: user.adopter_foster_account.id,
     #       phone_number: "1234567"
     #     },
     #     commit: "Save profile"
@@ -106,7 +106,7 @@ class AdopterFosterProfileFormTest < ActionDispatch::IntegrationTest
     #   params: {
     #     adopter_foster_profile:
     #     {
-    #       adopter_account_id: user.adopter_account.id,
+    #       adopter_foster_account_id: user.adopter_foster_account.id,
     #       phone_number: "123456789101112"
     #     },
     #     commit: "Save profile"

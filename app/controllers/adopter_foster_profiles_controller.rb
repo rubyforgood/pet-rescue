@@ -39,12 +39,12 @@ class AdopterFosterProfilesController < ApplicationController
   private
 
   def set_profile
-    @adopter_foster_profile = current_user.adopter_account.adopter_foster_profile
+    @adopter_foster_profile = current_user.adopter_foster_account.adopter_foster_profile
     authorize! @adopter_foster_profile
   end
 
   def adopter_foster_profile_params
-    params.require(:adopter_foster_profile).permit(:adopter_account_id,
+    params.require(:adopter_foster_profile).permit(:adopter_foster_account_id,
       :phone_number,
       :contact_method,
       :ideal_pet,
