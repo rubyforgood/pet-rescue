@@ -2,7 +2,7 @@
   <div class="vh-100" data-simplebar>
     <!-- Brand logo -->
     <p class="navbar-brand flex-column">
-      <%= active_link_to home_index_path, class: "nav-link" do %>
+      <%= link_to home_index_path, class: "nav-link" do %>
         <% if Current.organization.profile.avatar.attached? %>
           <%= image_tag Current.organization.profile.avatar, alt: current_organization_name, title: current_organization_name, class: 'rounded-1' %>
         <% else %>
