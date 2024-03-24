@@ -8,7 +8,7 @@ class UserTest < ActiveSupport::TestCase
 
   context "associations" do
     should have_one(:staff_account).dependent(:destroy)
-    should have_one(:adopter_account).dependent(:destroy)
+    should have_one(:adopter_foster_account).dependent(:destroy)
   end
 
   context "validations" do
@@ -20,14 +20,14 @@ class UserTest < ActiveSupport::TestCase
       user = create(:user)
       assert user.valid?
 
-      user2 = build(:user, email: user.email, organization: user.organization)
+      user2 = build(:user, email: user.email)
       assert user2.invalid?
     end
   end
 
   context ".organization_staff" do
     should "return all users with staff accounts" do
-      user = create(:user, :activated_staff)
+      user = create(:staff)
       organization = user.staff_account.organization
       assert_includes User.organization_staff(organization.id), user
 

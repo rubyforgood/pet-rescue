@@ -2,9 +2,8 @@ require "application_system_test_case"
 
 class RegistrationTest < ApplicationSystemTestCase
   setup do
-    @user = create(:user, :activated_staff)
+    @user = create(:staff)
     @organization = @user.organization
-    set_organization(@organization)
 
     visit root_url
     click_on "Log In"

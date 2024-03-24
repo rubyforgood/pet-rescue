@@ -1,4 +1,6 @@
 class DonationsController < ApplicationController
+  skip_verify_authorized only: %i[create]
+
   def create
     @mapped_response = PaypalResponseMapper.new(params) if params[:source] == "Paypal"
 

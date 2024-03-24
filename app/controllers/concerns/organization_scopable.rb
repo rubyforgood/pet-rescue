@@ -15,20 +15,17 @@ module OrganizationScopable
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if resource_or_scope.staff_account&.deactivated?
-      adoptable_pets_path
+    if allowed_to?(
+      :index?, Pet, namespace: Organizations,
+      context: {organization: Current.organization}
+    )
+      dashboard_index_path
     else
-      pets_path
+      adoptable_pets_path
     end
   end
 
   def after_sign_out_path_for(resource_or_scope)
     adoptable_pets_path
-  end
-
-  def verify_organization_for_current_user
-    if current_user.blank? || current_user.organization.id != ActsAsTenant.current_tenant.id
-      redirect_to root_path, alert: "Wrong organization."
-    end
   end
 end

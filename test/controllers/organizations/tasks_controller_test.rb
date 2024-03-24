@@ -1,17 +1,103 @@
 require "test_helper"
+require "action_policy/test_helper"
 
 class TasksControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @user = create(:user, :activated_staff, :staff_admin)
-    set_organization(@user.organization)
-    @organization = ActsAsTenant.current_tenant
+    user = create(:staff_admin)
+    sign_in user
+
     @pet = create(:pet)
     @task = create(:task, pet: @pet)
-    sign_in @user
   end
 
+  context "authorization" do
+    include ActionPolicy::TestHelper
+
+    context "#new" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, Task,
+          context: {pet: @pet},
+          with: Organizations::TaskPolicy
+        ) do
+          get new_pet_task_url(@pet)
+        end
+      end
+    end
+
+    context "#create" do
+      setup do
+        @task = build(:task, pet: @pet)
+        @params = {
+          task: {
+            name: @task.name,
+            description: @task.description,
+            completed: @task.completed
+          }
+        }
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, Task,
+          context: {pet: @pet},
+          with: Organizations::TaskPolicy
+        ) do
+          post pet_tasks_url(@pet), params: @params
+        end
+      end
+    end
+
+    context "#edit" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @task,
+          with: Organizations::TaskPolicy
+        ) do
+          get edit_pet_task_url(@pet, @task)
+        end
+      end
+    end
+
+    context "#update" do
+      setup do
+        @params = {task: {name: "better name"}}
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @task,
+          with: Organizations::TaskPolicy
+        ) do
+          patch pet_task_url(@pet, @task), params: @params
+        end
+      end
+    end
+
+    context "#destroy" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @task,
+          with: Organizations::TaskPolicy
+        ) do
+          delete pet_task_url(@pet, @task)
+        end
+      end
+    end
+  end
+
+  test "should get index" do
+    get pet_tasks_url(@pet)
+    assert_response :success
+  end
+
+  test "should get show" do
+    get pet_task_url(@pet, @task, format: :turbo_stream)
+    assert_response :success
+    assert_equal Mime[:turbo_stream], response.media_type
+  end
   test "should get new" do
     get new_pet_task_url(@pet)
     assert_response :success

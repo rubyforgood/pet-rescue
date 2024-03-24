@@ -25,7 +25,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_one.id
   )
 
-  @staff_account_one.add_role(:admin, @organizaton)
+  @user_staff_one.add_role(:admin, @organization)
 
   @user_staff_two = User.create!(
     email: "staff2@alta.com",
@@ -40,7 +40,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_two.id
   )
 
-  @staff_account_two.add_role(:admin, @organizaton)
+  @user_staff_two.add_role(:admin, @organization)
 
   @user_adopter_one = User.create!(
     email: "adopter1@alta.com",
@@ -51,7 +51,9 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_one = AdopterAccount.create!(user_id: @user_adopter_one.id)
+  @adopter_foster_account_one = AdopterFosterAccount.create!(user_id: @user_adopter_one.id)
+
+  @user_adopter_one.add_role(:adopter, @organization)
 
   @user_adopter_two = User.create!(
     email: "adopter2@alta.com",
@@ -62,7 +64,9 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_two = AdopterAccount.create!(user_id: @user_adopter_two.id)
+  @adopter_foster_account_two = AdopterFosterAccount.create!(user_id: @user_adopter_two.id)
+
+  @user_adopter_two.add_role(:adopter, @organization)
 
   @user_adopter_three = User.create!(
     email: "adopter3@alta.com",
@@ -73,7 +77,9 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
+  @adopter_foster_account_three = AdopterFosterAccount.create!(user_id: @user_adopter_three.id)
+
+  @user_adopter_three.add_role(:adopter, @organization)
 
   @location_one = Location.create!(
     country: "Canada",
@@ -84,7 +90,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_foster_profile_one = AdopterFosterProfile.create!(
     location_id: @location_one.id,
-    adopter_account_id: @adopter_account_one.id,
+    adopter_foster_account_id: @adopter_foster_account_one.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
@@ -128,7 +134,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_foster_profile_two = AdopterFosterProfile.create!(
     location_id: @location_two.id,
-    adopter_account_id: @adopter_account_two.id,
+    adopter_foster_account_id: @adopter_foster_account_two.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
@@ -175,7 +181,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_foster_profile_three = AdopterFosterProfile.create!(
     location_id: @location_three.id,
-    adopter_account_id: @adopter_account_three.id,
+    adopter_foster_account_id: @adopter_foster_account_three.id,
     phone_number: "250 548 7721",
     contact_method: "phone",
     ideal_pet: 'I love a pet with energy and a gentle spirit.
@@ -251,17 +257,23 @@ ActsAsTenant.with_tenant(@organization) do
 
   @match = Match.create!(
     pet_id: Pet.first.id,
-    adopter_account_id: @adopter_account_one.id
+    adopter_foster_account_id: @adopter_foster_account_one.id
   )
 
   10.times do
-    AdopterApplication.create!(
+    adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
-      status: rand(0..5),
-      adopter_account: AdopterAccount.joins(:user).where(users: {organization_id: @organization.id}).sample,
+      status: rand(0..4),
+      adopter_foster_account: AdopterFosterAccount.all.sample,
       pet: Pet.all.sample
     )
+
+    if adopter_application.valid?
+      adopter_application.save!
+    else
+      redo
+    end
   end
 
   PageText.create!(hero: nil, about: nil)

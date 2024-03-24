@@ -1,21 +1,19 @@
 class Organizations::StaffController < Organizations::BaseController
-  before_action :require_organization_admin
-  before_action :set_staff_account, only: [:update_activation, :deactivate, :activate]
+  before_action :set_staff_account, only: [:deactivate, :activate, :update_activation]
+
   layout "dashboard"
 
   def index
-    @staff_accounts = StaffAccount.all
+    authorize! StaffAccount, context: {organization: Current.organization}
+
+    @staff_accounts = authorized_scope(StaffAccount.all)
   end
 
   def deactivate
-    if @staff_account.user != current_user
-      @staff_account.deactivate
-      respond_to do |format|
-        format.html { redirect_to staff_index_path, notice: "Staff account deactivated." }
-        format.turbo_stream { render "organizations/staff/update" }
-      end
-    else
-      redirect_to staff_index_path, alert: "You can't deactivate yourself."
+    @staff_account.deactivate
+    respond_to do |format|
+      format.html { redirect_to staff_index_path, notice: "Staff account deactivated." }
+      format.turbo_stream { render "organizations/staff/update" }
     end
   end
 
@@ -38,6 +36,8 @@ class Organizations::StaffController < Organizations::BaseController
   private
 
   def set_staff_account
-    @staff_account = StaffAccount.where(organization: current_tenant).find(params[:staff_id])
+    @staff_account = StaffAccount.find(params[:staff_id])
+
+    authorize! @staff_account
   end
 end

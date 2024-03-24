@@ -34,6 +34,7 @@
 #
 class User < ApplicationRecord
   include Avatarable
+  include Authorizable
 
   acts_as_tenant(:organization)
   default_scope do
@@ -57,9 +58,9 @@ class User < ApplicationRecord
   #   allow_nil: false, on: :create
 
   has_one :staff_account, dependent: :destroy
-  has_one :adopter_account, dependent: :destroy
+  has_one :adopter_foster_account, dependent: :destroy
 
-  accepts_nested_attributes_for :adopter_account
+  accepts_nested_attributes_for :adopter_foster_account
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)

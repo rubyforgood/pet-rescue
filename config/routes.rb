@@ -14,12 +14,12 @@ Rails.application.routes.draw do
 
     resources :home, only: [:index]
     resources :pets do
-      resources :tasks, only: [:new, :create, :edit, :update, :destroy]
+      resources :tasks
       post "attach_images", on: :member, to: "pets#attach_images"
       post "attach_files", on: :member, to: "pets#attach_files"
     end
     resources :default_pet_tasks
-    resources :dashboard
+    resources :dashboard, only: [:index]
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
     resources :staff do
@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   end
 
   match "/404", to: "errors#not_found", via: :all
-  match "/422", to: "errors#restricted_access", via: :all
+  match "/422", to: "errors#unprocessable_content", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
 
   root "root#index"

@@ -22,7 +22,6 @@
 class StaffAccount < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :user
-  rolify
 
   def email
     user.email.to_s
