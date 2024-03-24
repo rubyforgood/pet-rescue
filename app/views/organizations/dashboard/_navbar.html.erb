@@ -7,7 +7,7 @@
          </a>
          <!-- Navbar nav -->
          <ul class="navbar-nav flex-column" id="sideNavbar">
-          <% if current_user.staff_account && current_user.staff_account.has_role?(:admin, current_user.staff_account.organization) %>
+          <% if current_user.staff_account && current_user.has_role?(:admin, current_user.staff_account.organization) %>
             <li class="nav-item">
                     <a class="nav-link @@if (context.page_group !== 'courses') { collapsed }" href="#"
                         data-bs-toggle="collapse" data-bs-target="#navCourses" aria-expanded="false"
@@ -46,12 +46,6 @@
                              <a class="nav-link @@if (context.page === 'allcourses') { active }"
                                  href="@@webRoot/pages/dashboard/admin-course-overview.html">
                                  Manage
-                             </a>
-                         </li>
-                         <li class="nav-item">
-                             <a class="nav-link @@if (context.page === 'allcourses') { active }"
-                                 href="@@webRoot/pages/dashboard/admin-course-overview.html">
-                                 Checklists
                              </a>
                          </li>
                      </ul>

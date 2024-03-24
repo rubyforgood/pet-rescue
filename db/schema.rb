@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_22_214921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,27 +42,28 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "adopter_accounts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.index ["user_id"], name: "index_adopter_accounts_on_user_id"
-  end
-
   create_table "adopter_applications", force: :cascade do |t|
     t.bigint "pet_id", null: false
-    t.bigint "adopter_account_id", null: false
+    t.bigint "adopter_foster_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.text "notes"
     t.boolean "profile_show", default: true
-    t.index ["adopter_account_id"], name: "index_adopter_applications_on_adopter_account_id"
+    t.index ["adopter_foster_account_id"], name: "index_adopter_applications_on_adopter_foster_account_id"
+    t.index ["pet_id", "adopter_foster_account_id"], name: "index_adopter_applications_on_account_and_pet", unique: true
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
+  create_table "adopter_foster_accounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_adopter_foster_accounts_on_user_id"
+  end
+
   create_table "adopter_foster_profiles", force: :cascade do |t|
-    t.bigint "adopter_account_id", null: false
+    t.bigint "adopter_foster_account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "phone_number"
@@ -98,36 +99,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
     t.text "visit_dates"
     t.text "referral_source"
     t.bigint "location_id", null: false
-    t.index ["adopter_account_id"], name: "index_adopter_foster_profiles_on_adopter_account_id"
+    t.index ["adopter_foster_account_id"], name: "index_adopter_foster_profiles_on_adopter_foster_account_id", unique: true
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
-  end
-
-  create_table "checklist_assignments", force: :cascade do |t|
-    t.bigint "checklist_template_item_id", null: false
-    t.bigint "match_id", null: false
-    t.datetime "completed_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["checklist_template_item_id"], name: "index_checklist_assignments_on_checklist_template_item_id"
-    t.index ["match_id"], name: "index_checklist_assignments_on_match_id"
-  end
-
-  create_table "checklist_template_items", force: :cascade do |t|
-    t.bigint "checklist_template_id", null: false
-    t.string "name", null: false
-    t.text "description"
-    t.integer "expected_duration_days", null: false
-    t.boolean "required", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["checklist_template_id"], name: "index_checklist_template_items_on_checklist_template_id"
-  end
-
-  create_table "checklist_templates", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "default_pet_tasks", force: :cascade do |t|
@@ -137,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "due_in_days"
+    t.boolean "recurring", default: false
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
 
@@ -160,11 +134,11 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
     t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "adopter_account_id", null: false
+    t.bigint "adopter_foster_account_id", null: false
     t.bigint "organization_id", null: false
-    t.index ["adopter_account_id"], name: "index_matches_on_adopter_account_id"
+    t.index ["adopter_foster_account_id"], name: "index_matches_on_adopter_foster_account_id"
     t.index ["organization_id"], name: "index_matches_on_organization_id"
-    t.index ["pet_id"], name: "index_matches_on_pet_id"
+    t.index ["pet_id"], name: "index_matches_on_pet_id", unique: true
   end
 
   create_table "organization_profiles", force: :cascade do |t|
@@ -235,14 +209,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
   end
 
-  create_table "staff_accounts_roles", id: false, force: :cascade do |t|
-    t.bigint "staff_account_id"
-    t.bigint "role_id"
-    t.index ["role_id"], name: "index_staff_accounts_roles_on_role_id"
-    t.index ["staff_account_id", "role_id"], name: "index_staff_accounts_roles_on_staff_account_id_and_role_id"
-    t.index ["staff_account_id"], name: "index_staff_accounts_roles_on_staff_account_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -284,18 +250,23 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_25_160909) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_roles", id: false, force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "role_id"
+    t.index ["role_id"], name: "index_users_roles_on_role_id"
+    t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+    t.index ["user_id"], name: "index_users_roles_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "adopter_accounts", "users"
-  add_foreign_key "adopter_applications", "adopter_accounts"
+  add_foreign_key "adopter_applications", "adopter_foster_accounts"
   add_foreign_key "adopter_applications", "pets"
-  add_foreign_key "adopter_foster_profiles", "adopter_accounts"
+  add_foreign_key "adopter_foster_accounts", "users"
+  add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
-  add_foreign_key "checklist_assignments", "checklist_template_items"
-  add_foreign_key "checklist_assignments", "matches"
-  add_foreign_key "checklist_template_items", "checklist_templates"
   add_foreign_key "default_pet_tasks", "organizations"
-  add_foreign_key "matches", "adopter_accounts"
+  add_foreign_key "matches", "adopter_foster_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"

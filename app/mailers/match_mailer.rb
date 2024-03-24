@@ -1,11 +1,11 @@
 class MatchMailer < ApplicationMailer
-  def checklist_reminder(match)
+  def reminder(match)
     @match = match
 
-    @adopter_account = match.adopter_account
-    @user = @adopter_account.user
+    @adopter_foster_account = match.adopter_foster_account
+    @user = @adopter_foster_account.user
     @pet = match.pet
 
-    mail to: @user.email, subject: "#{@pet.name}'s Checklist Reminder"
+    mail to: @user.email, subject: "#{@pet.name}'s Reminder"
   end
 end

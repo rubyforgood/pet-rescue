@@ -2,57 +2,57 @@
 #
 # Table name: adopter_foster_profiles
 #
-#  id                 :bigint           not null, primary key
-#  activities         :text
-#  adults_in_home     :integer
-#  alone_weekday      :integer
-#  alone_weekend      :integer
-#  annual_cost        :string
-#  checked_shelter    :boolean
-#  city_town          :string
-#  contact_method     :string
-#  contingency_plan   :text
-#  country            :string
-#  describe_pets      :text
-#  describe_surrender :text
-#  do_you_rent        :boolean
-#  experience         :text
-#  fenced_access      :boolean
-#  fenced_alternative :text
-#  housing_type       :string
-#  ideal_pet          :text
-#  kids_in_home       :integer
-#  lifestyle_fit      :text
-#  location_day       :text
-#  location_night     :text
-#  other_pets         :boolean
-#  pets_allowed       :boolean
-#  phone_number       :string
-#  province_state     :string
-#  referral_source    :text
-#  shared_owner       :text
-#  shared_ownership   :boolean
-#  surrendered_pet    :boolean
-#  visit_dates        :text
-#  visit_laventana    :boolean
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  adopter_account_id :bigint           not null
-#  location_id        :bigint           not null
+#  id                        :bigint           not null, primary key
+#  activities                :text
+#  adults_in_home            :integer
+#  alone_weekday             :integer
+#  alone_weekend             :integer
+#  annual_cost               :string
+#  checked_shelter           :boolean
+#  city_town                 :string
+#  contact_method            :string
+#  contingency_plan          :text
+#  country                   :string
+#  describe_pets             :text
+#  describe_surrender        :text
+#  do_you_rent               :boolean
+#  experience                :text
+#  fenced_access             :boolean
+#  fenced_alternative        :text
+#  housing_type              :string
+#  ideal_pet                 :text
+#  kids_in_home              :integer
+#  lifestyle_fit             :text
+#  location_day              :text
+#  location_night            :text
+#  other_pets                :boolean
+#  pets_allowed              :boolean
+#  phone_number              :string
+#  province_state            :string
+#  referral_source           :text
+#  shared_owner              :text
+#  shared_ownership          :boolean
+#  surrendered_pet           :boolean
+#  visit_dates               :text
+#  visit_laventana           :boolean
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#  adopter_foster_account_id :bigint           not null
+#  location_id               :bigint           not null
 #
 # Indexes
 #
-#  index_adopter_profiles_on_adopter_account_id  (adopter_account_id)
-#  index_adopter_profiles_on_location_id         (location_id)
+#  index_adopter_foster_profiles_on_adopter_foster_account_id  (adopter_foster_account_id) UNIQUE
+#  index_adopter_foster_profiles_on_location_id                (location_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (adopter_account_id => adopter_accounts.id)
+#  fk_rails_...  (adopter_foster_account_id => adopter_foster_accounts.id)
 #  fk_rails_...  (location_id => locations.id)
 #
 class AdopterFosterProfile < ApplicationRecord
   belongs_to :location, dependent: :destroy
-  belongs_to :adopter_account
+  belongs_to :adopter_foster_account
   accepts_nested_attributes_for :location
   validates_associated :location
 

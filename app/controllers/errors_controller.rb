@@ -1,4 +1,6 @@
 class ErrorsController < ApplicationController
+  skip_verify_authorized
+
   def not_found
     render status: 404
   end
@@ -7,7 +9,7 @@ class ErrorsController < ApplicationController
     render status: 500
   end
 
-  def restricted_access
+  def unprocessable_content
     render status: 422
   end
 end

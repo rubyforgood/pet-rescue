@@ -1,21 +1,47 @@
 class Organizations::TasksController < Organizations::BaseController
-  before_action :set_pet, only: [:new, :create, :edit, :update, :destroy]
-  before_action :set_task, only: [:edit, :update]
+  before_action :set_pet, only: %i[new show index create edit update destroy]
+  before_action :set_task, only: %i[show edit update destroy]
 
   def new
+    authorize! Task, context: {pet: @pet}
+
     @task = @pet.tasks.build
   end
 
+  def index
+    authorize! Task, context: {pet: @pet}
+
+    if params[:cancel] == "true"
+      respond_to do |format|
+        format.html
+        format.turbo_stream { render turbo_stream: turbo_stream.update("new_task", "") }
+      end
+    end
+
+    @tasks = @pet.tasks.list_ordered
+  end
+
+  def show
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+  end
+
   def create
+    authorize! Task, context: {pet: @pet}
+
     @task = @pet.tasks.build(task_params)
 
     if @task.save
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/pets/tasks/tasks", locals: {task: @task}) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_pet_#{@pet.id}", partial: "organizations/pets/tabs/tasks", locals: {task: @task}) }
+        format.html { redirect_to pet_url(@pet, active_tab: "tasks") }
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}), status: :bad_request }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}), status: :bad_request }
+        format.html { render :new, status: :unprocessable_entity }
       end
     end
   end
@@ -24,25 +50,24 @@ class Organizations::TasksController < Organizations::BaseController
   end
 
   def update
-    @task.next_due_date_in_days = nil unless task_params.dig(:next_due_date_in_days)
+    @task.next_due_date_in_days = nil unless task_params.dig(:next_due_date_in_days) || task_params.dig(:completed)
 
-    if @task.update(task_params)
-      if @task.recurring && @task.completed_previously_changed?(from: false, to: true)
-        Organizations::TaskService.new(@task).create_next
-      end
+    respond_to do |format|
+      if @task.update(task_params)
+        if @task.recurring && @task.completed_previously_changed?(from: false, to: true)
+          Organizations::TaskService.new(@task).create_next
+        end
 
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_list", partial: "organizations/pets/tasks/tasks", locals: {task: @task}) }
-      end
-    else
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/pets/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}), status: :bad_request }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_pet_#{@pet.id}", partial: "organizations/pets/tabs/tasks", locals: {task: @task}) }
+        format.html { redirect_to pet_url(@pet, active_tab: "tasks") }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}), status: :bad_request }
+        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
 
   def destroy
-    @task = Task.find(params[:id])
     @task.destroy
 
     respond_to do |format|
@@ -59,14 +84,14 @@ class Organizations::TasksController < Organizations::BaseController
     @organization = current_user.organization
     raise ActiveRecord::RecordNotFound if @organization.nil?
 
-    pet_id = params[:pet_id] || params[:id]
-    @pet = @organization.pets.find(pet_id)
+    @pet = @organization.pets.find(params[:pet_id] || params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to pets_path unless @pet
   end
 
   def set_task
-    @task = @pet.tasks.find(params[:id])
+    @task = Task.find(params[:id])
+    authorize! @task
   rescue ActiveRecord::RecordNotFound
     redirect_to pets_path
   end

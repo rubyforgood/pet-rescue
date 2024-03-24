@@ -1,10 +1,11 @@
 class Organizations::DashboardController < Organizations::BaseController
   layout "dashboard"
-  before_action :active_staff
 
   def index
     @user = current_user
-    @organization = @user.organization
+    @organization = Current.organization
     @hide_footer = true
+
+    authorize! :dashboard, context: {organization: @organization}
   end
 end

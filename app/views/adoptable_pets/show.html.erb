@@ -18,7 +18,9 @@
           </div>
         </div>
         <div>
-          <%= link_to 'Become an adopter', new_user_registration_path, class: 'btn btn-primary btn-sm d-none d-md-block' %>
+          <% unless current_user %>
+            <%= link_to t('general.become_an_adopter'), new_user_registration_path, class: 'btn btn-primary btn-sm d-none d-md-block' %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -94,8 +96,8 @@
           <div class='text-center d-flex flex-column align-items-center mt-1'>
             <% unless user_signed_in? && current_user.staff_account %>
               <% if user_signed_in? %>
-                <% if current_user.adopter_account && current_user.adopter_account.adopter_foster_profile %>
-                  <% if AdopterApplication.adoption_exists?(current_user.adopter_account.id, @pet.id) %>
+                <% if current_user.adopter_foster_account && current_user.adopter_foster_account.adopter_foster_profile %>
+                  <% if AdopterApplication.adoption_exists?(current_user.adopter_foster_account.id, @pet.id) %>
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2">
                         <%= "#{t(".status." + @adoption_application.status) || t('.status.default')}" %>
@@ -112,14 +114,14 @@
                     <h4 class="mb-4 mt-3">In love with this pooch?</h4>
                     <%= form_with model: @adoption_application do |form| %>
                       <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
-                      <%= form.hidden_field :adopter_account_id, value: @adoption_application.adopter_account_id %>
+                      <%= form.hidden_field :adopter_foster_account_id, value: @adoption_application.adopter_foster_account_id %>
                       <%= form.submit t(".apply_to_adopt"),
                         class: "custom-btn-pink",
                         data: {turbo: false}
                       %>
                     <% end %>
                   <% end %>
-                <% elsif current_user.adopter_account %>
+                <% elsif current_user.adopter_foster_account %>
                   <h4 class='mb-4 mt-3'>
                     <%= t('.complete_your_profile') %>
                   </h4>

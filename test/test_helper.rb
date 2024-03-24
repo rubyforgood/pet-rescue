@@ -14,6 +14,8 @@ require "rails/test_help"
 require "minitest/unit"
 require "mocha/minitest"
 
+Dir[Rails.root.join("test", "support", "**", "*.rb")].sort.each { |f| require f }
+
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   # Run tests in parallel with specified workers
@@ -47,7 +49,6 @@ class ActiveSupport::TestCase
   end
 
   def check_messages
-    assert_response :success
     assert_not response.parsed_body.include?("translation_missing"), "Missing translations, ensure this text is included in en.yml"
   end
 

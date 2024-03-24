@@ -8,7 +8,7 @@ class RegistrationsController < Devise::RegistrationsController
   # no attributes need to be accepted, just create new account with user_id reference
   def new
     build_resource({})
-    resource.build_adopter_account
+    resource.build_adopter_foster_account
     respond_with resource
   end
 
@@ -30,8 +30,7 @@ class RegistrationsController < Devise::RegistrationsController
       :password,
       :signup_role,
       :tos_agreement,
-      adopter_account_attributes: [:user_id],
-      staff_account_attributes: [:user_id])
+      adopter_foster_account_attributes: [:user_id])
   end
 
   def account_update_params

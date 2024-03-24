@@ -1,13 +1,11 @@
 <% breadcrumb :default_pet_tasks_index %>
-
 <%= render "components/dashboard/page" do |p| %>
   <% p.header_title t(".default_pet_tasks") %>
   <% p.actions do %>
     <%= link_to t('.create_default_task'), new_default_pet_task_path, class: "btn btn-primary" %><br>
   <% end %>
-
   <% p.content do %>
-     <!-- row -->
+    <!-- row -->
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <!-- card -->
       <div class="card">
@@ -19,7 +17,7 @@
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Due After</th>
-                <th scope="col">Recurrence</th>
+                <th scope="col">Recurring</th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -36,7 +34,7 @@
                     <%= task.due_in_days ? pluralize(task.due_in_days, "day") : "" %>
                   </td>
                   <td>
-                    -
+                    <%= task.recurring? ? "Yes" : "No" %>
                   </td>
                   <% if current_user.staff_account %>
                     <td>

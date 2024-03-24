@@ -1,10 +1,11 @@
 class Organizations::DefaultPetTasksController < Organizations::BaseController
+  before_action :context_authorize!, only: %i[index new create]
+  before_action :set_task, only: %i[edit update destroy]
+
   layout "dashboard"
 
-  before_action :verify_organization_for_current_user
-
   def index
-    @default_pet_tasks = DefaultPetTask.all
+    @default_pet_tasks = authorized_scope(DefaultPetTask.all)
   end
 
   def new
@@ -23,12 +24,9 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
   end
 
   def edit
-    @task = DefaultPetTask.find(params[:id])
   end
 
   def update
-    @task = DefaultPetTask.find(params[:id])
-
     if @task.update(task_params)
       redirect_to default_pet_tasks_path, notice: "Default pet task updated successfully."
     else
@@ -37,17 +35,27 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
   end
 
   def destroy
-    @task = DefaultPetTask.find(params[:id])
     @task.destroy
 
     redirect_to default_pet_tasks_path, notice: "Default pet task was successfully deleted."
-  rescue ActiveRecord::RecordNotFound
-    redirect_to default_pet_tasks_path, alert: "Failed to delete default pet task."
   end
 
   private
 
   def task_params
-    params.require(:default_pet_task).permit(:name, :description, :due_in_days)
+    params.require(:default_pet_task).permit(:name, :description, :due_in_days, :recurring)
+  end
+
+  def set_task
+    @task = DefaultPetTask.find(params[:id])
+
+    authorize! @task
+  rescue ActiveRecord::RecordNotFound
+    redirect_to default_pet_tasks_path, alert: "Default Pet Task not found."
+  end
+
+  def context_authorize!
+    authorize! DefaultPetTask,
+      context: {organization: Current.organization}
   end
 end

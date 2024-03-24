@@ -1,97 +1,129 @@
 require "test_helper"
 
 class AdoptablePetShowTest < ActionDispatch::IntegrationTest
-  test "unauthenticated users see create account prompt and link" do
-    skip("while new ui is implemented")
-    # pet = create(:pet)
-
-    # get "/adoptable_pets/#{pet.id}"
+  setup do
+    @available_pet = create(:pet)
+    set_organization(@available_pet.organization)
+    @pet_in_draft = create(:pet, published: false)
+    @pet_pending_adoption = create(:pet, :adoption_pending)
+    @adopted_pet = create(:pet, :adopted)
   end
 
-  test "adopter without a profile sees complete my profile prompt and link" do
-    skip("while new ui is implemented")
-    # pet = create(:pet)
-    # sign_in create(:user, :adopter_without_profile)
-
-    # get "/adoptable_pets/#{pet.id}"
-
-    # check_messages
-    # assert_select "h4", "Complete your profile to apply for this pet"
-    # assert_select "a", "Complete my profile"
+  teardown do
+    check_messages
+    :after_teardown
   end
 
-  test "adopter with a profile sees love this pooch question and apply button" do
-    skip("while new ui is implemented")
-    #   pet = create(:pet)
-    #   sign_in create(:user, :adopter_with_profile)
+  context "unauthenticated user" do
+    should "see an available pet" do
+      get adoptable_pet_path(@available_pet)
 
-    #   get "/adoptable_pets/#{pet.id}"
+      assert_response :success
+      assert_select "input[type='submit']", value: "Apply to Adopt", count: 0
+    end
 
-    #   check_messages
-    #   assert_select "h4", "In love with this pooch?"
-    #   assert_select "form" do
-    #     assert_select "button", "Apply to Adopt"
-    # end
+    should "see a pet with a pending adoption" do
+      get adoptable_pet_path(@pet_pending_adoption)
+
+      assert_response :success
+    end
+
+    should "not see an unpublished pet" do
+      get adoptable_pet_path(@pet_in_draft)
+
+      assert_response :redirect
+    end
+
+    should "not see an adopted pet" do
+      get adoptable_pet_path(@adopted_pet)
+
+      assert_response :redirect
+    end
   end
 
-  test "adopter application sees application status" do
-    skip("while new ui is implemented")
-    # pet = create(:pet, :adoption_pending)
-    # user = create(:user, :adopter_with_profile, organization: pet.organization)
-    # create(:adopter_application, adopter_account: user.adopter_account, pet: pet, status: :awaiting_review)
-    # sign_in user
+  context "staff" do
+    setup do
+      sign_in create(:staff_account).user
+    end
 
-    # get "/adoptable_pets/#{pet.id}"
+    should "see an available pet" do
+      get adoptable_pet_path(@available_pet)
 
-    # check_messages
-    # assert_select "h4.me-2", "Application Awaiting Review"
-  end
+      assert_response :success
+    end
 
-  test "staff do not see an adopt button only log out button" do
-    skip("while new ui is implemented")
-    # pet = create(:pet)
-    # sign_in create(:user, :verified_staff)
+    should "see a pet with a pending adoption" do
+      get adoptable_pet_path(@pet_pending_adoption)
 
-    # get "/adoptable_pets/#{pet.id}"
+      assert_response :success
+      assert_select "input[type='submit']", value: "Apply to Adopt", count: 0
+    end
 
-    # check_messages
-    # assert_select "form" do
-    #   assert_select "button", "Log Out"
-    # end
-    # assert_select "form", count: 1
-  end
+    should "see an unpublished pet" do
+      get adoptable_pet_path(@pet_in_draft)
 
-  test "pet name shows adoption pending if it has any applications with that status" do
-    skip("while new ui is implemented")
-    # pet = create(:pet, :adoption_pending)
+      assert_response :success
+    end
 
-    # get "/adoptable_pets/#{pet.id}"
+    should "see an adopted pet" do
+      get adoptable_pet_path(@adopted_pet)
 
-    # check_messages
-    # assert_select "h1", "#{pet.name} (Adoption Pending)"
-  end
+      assert_response :success
+    end
 
-  test "an adopted pet can't be shown as an adoptable pet" do
-    skip("while new ui is implemented")
-    # adopted_pet = create(:pet, :adopted)
+    context "an adopter" do
+      setup do
+        adopter_user = create(:adopter_foster_account).user
+        create(:adopter_foster_profile, adopter_foster_account: adopter_user.adopter_foster_account)
 
-    # get "/adoptable_pets/#{adopted_pet.id}"
+        sign_in adopter_user
+      end
 
-    # assert_response :redirect
-    # follow_redirect!
-    # check_messages
-    # assert_equal "You can only view pets that need adoption.", flash[:alert]
-  end
+      should "see and apply to an available pet" do
+        get adoptable_pet_path(@available_pet)
 
-  test "a drafted pet can't be shown" do
-    skip("while new ui is implemented")
-    # drafted_pet = create(:pet, published: false)
-    #
-    # get "/adoptable_pets/#{drafted_pet.id}"
-    #
-    # assert_response :redirect
-    # follow_redirect!
-    # check_messages
-    # assert_equal "You can only view published pets.", flash[:alert]
+        assert_response :success
+        assert_select "input[type='submit']", value: "Apply to Adopt"
+      end
+
+      should "see a pet with a pending adoption" do
+        get adoptable_pet_path(@pet_pending_adoption)
+
+        assert_response :success
+      end
+
+      should "not see an unpublished pet" do
+        get adoptable_pet_path(@pet_in_draft)
+
+        assert_response :redirect
+      end
+
+      should "not see an adopted pet" do
+        get adoptable_pet_path(@adopted_pet)
+
+        assert_response :redirect
+      end
+
+      should_eventually "adopter application sees application status" do
+        # pet = create(:pet, :adoption_pending)
+        # user = create(:adopter, :with_profile, organization: pet.organization)
+        # create(:adopter_application, adopter_foster_account: user.adopter_foster_account, pet: pet, status: :awaiting_review)
+        # sign_in user
+
+        # get "/adoptable_pets/#{pet.id}"
+
+        # check_messages
+        # assert_select "h4.me-2", "Application Awaiting Review"
+      end
+
+      should_eventually "pet name shows adoption pending if it has any applications with that status" do
+        # pet = create(:pet, :adoption_pending)
+
+        # get "/adoptable_pets/#{pet.id}"
+
+        # check_messages
+        # assert_select "h1", "#{pet.name} (Adoption Pending)"
+      end
+    end
   end
 end

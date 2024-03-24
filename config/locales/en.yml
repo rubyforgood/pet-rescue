@@ -35,6 +35,7 @@ en:
     attach: "Attach"
     adoption_pending: "(Adoption Pending)"
     age: "Age"
+    become_an_adopter: "Become an adopter"
     breed: "Breed"
     application: "Application"
     sex: "Sex"
@@ -52,10 +53,11 @@ en:
     submit: "Submit"
     status: "Status"
     back: "Back"
+    are_you_sure_delete_pet: "Are you sure you want to delete this pet?"
   activerecord:
     errors:
       models:
-        adopter_account:
+        adopter_foster_account:
           attributes:
             user:
               blank: "User must exist"
@@ -63,13 +65,13 @@ en:
           attributes:
             pet:
               blank: "Pet must exist"
-            adopter_account:
+            adopter_foster_account:
               blank: "Adopter account must exist"
         adopter_foster_profile:
           attributes:
             location:
               blank: "Location must exist"
-            adopter_account:
+            adopter_foster_account:
               blank: "Adopter account must exist"
             phone_number:
               invalid: "Phone number is invalid"
@@ -129,22 +131,6 @@ en:
               blank: "Please fill in"
             referral_source:
               blank: "Please tell us how you heard about us"
-        checklist_assignment:
-          attributes:
-            checklist_template_item:
-              blank: "Checklist template item must exist"
-            match:
-              blank: "Match must exist"
-        checklist_assignment_item:
-          attributes:
-            checklist_template:
-              blank: "Checklist template must exist"
-            name:
-              blank: "Name can't be blank"
-            expected_duration_days:
-              blank: "Expected duration days can't be blank"
-              not_a_number: "Expected duration days is not a number"
-              greater_than_or_equal_to: "Expected duration days must be greater than or equal to 0"
         contact:
           attributes:
             name:
@@ -181,7 +167,7 @@ en:
               blank: "Organization must exist"
             pet:
               blank: "Pet must exist"
-            adopter_account:
+            adopter_foster_account:
               blank: "Adopter account must exist"
             organization_id:
               different_organization: "must belong to same organization as pet"
@@ -330,14 +316,12 @@ en:
         view_adopter: "View Adopter"
         revoke_adoption: "Revoke Adoption"
         are_you_sure_revoke: "Are you sure you want to revoke this adoption?"
-        are_you_sure_delete: "Are you sure you want to delete this pet?"
         application:
           active: "Applications are active"
           paused: "Applications are paused"
       form:
         uploaded_images: "Uploaded Images"
       index:
-        are_you_sure_delete: "Are you sure you want to delete this pet?"
         our_pets: "Our pets"
         filter: "Filter by adoption status"
         select:

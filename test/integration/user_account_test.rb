@@ -16,7 +16,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     #   "/users",
     #   params: {
     #     user: {
-    #       adopter_account_attributes: {
+    #       adopter_foster_account_attributes: {
     #         user_id: ""
     #       },
     #       email: "foo@bar.baz",
@@ -40,7 +40,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
 
     # assert_equal "Welcome! You have signed up successfully.", flash[:notice]
     # assert(User.find_by(first_name: "Foo"))
-    # assert_equal AdopterAccount.last.user_id, User.last.id
+    # assert_equal AdopterFosterAccount.last.user_id, User.last.id
   end
 
   test "Staff user can sign up with an unverified staff account belonging to organization id 1 and see success flash" do
@@ -80,7 +80,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
 
   test "error messages should appear if edit profile form is submitted without data" do
     skip("while new ui is implemented")
-    # sign_in create(:user, :adopter_without_profile)
+    # sign_in create(:adopter)
 
     # put(
     #   "/users",
@@ -106,7 +106,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
 
   test "user cannot update their profile with invalid password and should see error message" do
     skip("while new ui is implemented")
-    # user = create(:user, :adopter_without_profile)
+    # user = create(:adopter)
     # sign_in user
 
     # put(
@@ -149,7 +149,7 @@ class UserAccountTest < ActionDispatch::IntegrationTest
     #   "/users",
     #   params: {
     #     user: {
-    #       adopter_account_attributes: {
+    #       adopter_foster_account_attributes: {
     #         user_id: ""
     #       },
     #       email: "",
