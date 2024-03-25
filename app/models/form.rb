@@ -27,4 +27,6 @@ class Form < ApplicationRecord
 
   has_many :form_profiles, dependent: :destroy
   has_many :questions, -> { ordered }, dependent: :destroy
+
+  validates_presence_of :name, :title
 end

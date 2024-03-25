@@ -37,6 +37,7 @@ module Authorizable
       view_adopter_foster_profiles
       purge_attachments
       manage_default_pet_tasks
+      manage_forms
       manage_matches
       manage_pets
       manage_tasks

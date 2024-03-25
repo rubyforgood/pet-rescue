@@ -49,6 +49,11 @@
       </li>
       <% if current_user.staff_account && current_user.has_role?(:admin, current_user.staff_account.organization) %>
         <li class="nav-item">
+          <%= active_link_to forms_path, class: 'nav-link' do %>
+            <i class="nav-icon fe fe-clipboard me-2"></i> Forms
+          <% end %>
+        </li>
+        <li class="nav-item">
           <%= active_link_to edit_organization_profile_path, class: "nav-link" do %>
             <i class="nav-icon fe fe-settings me-2"></i> Settings
           <% end %>

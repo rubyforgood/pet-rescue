@@ -45,6 +45,7 @@ en:
     "no": "No"
     download: "Download"
     save: "Save"
+    cancel: "Cancel"
     delete: "Delete"
     please_select: "Please select"
     male: "Male"
@@ -308,6 +309,27 @@ en:
         new_default_pet_task: "New Default Pet Task"
       edit:
         edit_default_pet_task: "Edit Default Pet Task"
+    forms:
+      not_found: "Form not found."
+      index:
+        forms: "Forms"
+        create_form: "Create Form"
+        confirm_delete: "Are you sure you want to delete this form?"
+      new:
+        new_form: "New Form"
+      create:
+        saved: "Form saved successfully."
+        error: "Error creating form."
+      edit:
+        edit_form: "Edit Form"
+      update:
+        updated: "Form saved successfully."
+      destroy:
+        destroyed: "Form was successfully deleted."
+      form:
+        help_text:
+          title: "What the user sees as the title of the form."
+          instructions: "Additional instructions to aid the user in filling out the form."
     pets:
       show:
         pause_applications: "Pause Applications?"
