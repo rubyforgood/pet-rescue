@@ -21,7 +21,7 @@
                         align-items-center">
               <% if app.pet.images.attached? %>
                 <%= link_to adoptable_pet_path(app.pet.id) do %>
-                  <%= image_tag app.pet.images.first, class: 'app-img rounded' %>
+                  <%= image_tag app.pet.images.first, class: 'app-img rounded card-img-top' %>
                 <% end %>
               <% else %>
                 <%= link_to adoptable_pet_path(app.pet.id) do %>
