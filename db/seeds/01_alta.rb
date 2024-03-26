@@ -227,7 +227,54 @@ ActsAsTenant.with_tenant(@organization) do
     )
   end
 
-  path = Rails.root.join("app", "assets", "images", "hero.jpg")
+  @lifestyle_form = Form.create!(
+    name: 'Lifestyle',
+    description: "Questions regarding the applicant's lifestyle.",
+    title: 'Lifestyle',
+    instructions: 'Please answer these questions about your lifestyle as they pertain to your ability to care for a pet.',
+    organization: @organization
+  )
+
+  FormProfile.create!(
+    form: @lifestyle_form,
+    profile_type: 'adopter',
+    sort_order: 0
+  )
+
+  @ideal_pet_question = Question.create!(
+    name: 'Ideal pet',
+    description: "Brief description of the applicant's ideal pet.",
+    label: 'Your ideal pet',
+    help_text: 'Briefly describe your ideal pet.',
+    required: true,
+    input_type: 'short',
+    sort_order: 0,
+    form: @lifestyle_form
+  )
+
+  @lifestyle_question = Question.create!(
+    name: 'General lifestyle',
+    description: "Brief description of the applicant's lifestyle.",
+    label: 'Your lifestyle',
+    help_text: 'Briefly describe your lifestyle.',
+    required: true,
+    input_type: 'short',
+    sort_order: 1,
+    form: @lifestyle_form
+  )
+
+  @activities_question = Question.create!(
+    name: 'Activities',
+    description: "Brief description of the applicant's activities.",
+    label: 'Your activities',
+    help_text: 'Briefly describe activities you will do with your pet.',
+    required: true,
+    input_type: 'short',
+    sort_order: 2,
+    form: @lifestyle_form
+  )
+
+  path = Rails.root.join('app', 'assets', 'images', 'hero.jpg')
   10.times do
     from_weight = [5, 10, 20, 30, 40, 50, 60].sample
     pet = Pet.create!(
