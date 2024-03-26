@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-8 mx-auto card p-5 bigger">
+    <%= bootstrap_form_with model: [form, question] do |f| %>
+      <div class="form-group">
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_area :description, class: 'form-control', rows: 3 %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :label, class: 'form-control', help: t('.help_text.label') %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_area :help_text, class: 'form-control', rows: 3, help: t('.help_text.help_text') %>
+      </div>
+
+      <div class="form-group">
+        <%= f.check_box :required, class: 'form-check-input' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.select :input_type, [["Short Answer", "short"]], {}, disabled: true %>
+      </div>
+
+      <%= f.submit t('general.save'), class: 'btn btn-primary' %>
+      <%= link_to t('general.cancel'), forms_path, class: 'btn btn-secondary' %>
+    <% end %>
+  </div>
+</div>

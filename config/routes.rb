@@ -20,7 +20,9 @@ Rails.application.routes.draw do
     end
     resources :default_pet_tasks
     resources :dashboard, only: [:index]
-    resources :forms
+    resources :forms do
+      resources :questions
+    end
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
     resources :staff do
@@ -50,7 +52,7 @@ Rails.application.routes.draw do
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
   resources :adopter_applications, path: "applications",
-    only: %i[index create update]
+            only: %i[index create update]
 
   resources :matches, only: %i[create destroy]
 

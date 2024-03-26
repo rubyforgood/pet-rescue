@@ -27,6 +27,11 @@ crumb :forms_index do
   link "Forms", forms_path
 end
 
+crumb :form do |form|
+  link form.name, form_path(form)
+  parent :forms_index
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end
