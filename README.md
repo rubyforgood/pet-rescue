@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-23-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-24-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -206,6 +206,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mononoken"><img src="https://avatars.githubusercontent.com/u/81536479?v=4?s=100" width="100px;" alt="Ken Maeshima"/><br /><sub><b>Ken Maeshima</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=mononoken" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://mason-roberts.dev"><img src="https://avatars.githubusercontent.com/u/44660994?v=4?s=100" width="100px;" alt="Mason Roberts"/><br /><sub><b>Mason Roberts</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Developer3027" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://portfolio-1hab.onrender.com/"><img src="https://avatars.githubusercontent.com/u/61897123?v=4?s=100" width="100px;" alt="Mayank Bhatt"/><br /><sub><b>Mayank Bhatt</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=mayankbhatt07141" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
