@@ -1,12 +1,12 @@
 <!-- footer -->
-<footer class="pt-lg-10 pt-5 footer bg-white">
+<footer class="pt-lg-10 pt-5 footer bg-black text-white">
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-6 col-12">
         <!-- about company -->
         <div class="mb-4">
-          <h3> Pet Rescue </h3>
-          <div class="mt-4">
+          <h3 class="text-white"> Pet Rescue </h3>
+          <div class="mt-4 text-primary">
             <p> We provide a platform for Pet Rescues and Animal Service Organizations </p>
             <!-- social media -->
             <div class="fs-4 mt-4">
@@ -20,13 +20,13 @@
       <div class="offset-lg-1 col-lg-2 col-md-3 col-6">
         <div class="mb-4">
           <!-- list -->
-          <h3 class="fw-bold mb-3">Company</h3>
+          <h3 class="fw-bold mb-3 text-white">Company</h3>
           <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
             <li>
-              <%= active_link_to 'About Us', about_us_path, class: 'nav-link' %>
+              <%= active_link_to 'About Us', about_us_path, class: 'nav-link text-primary' %>
             </li>
             <li>
-              <%= active_link_to 'Partners', partners_path, class: 'nav-link' %>
+              <%= active_link_to 'Partners', partners_path, class: 'nav-link text-primary' %>
             </li>
           </ul>
         </div>
@@ -34,10 +34,10 @@
       <div class="col-lg-3 col-md-12">
         <!-- contact info -->
         <div class="mb-4">
-          <h3 class="fw-bold mb-3">Get in touch</h3>
-          <p>339 McDermott Points Hettingerhaven, NV 15283</p>
-          <p class="mb-1">Email: <a href="#">support@geeksui.com</a></p>
-          <p>Phone: <span class="text-dark fw-semibold">(000) 123 456 789</span></p>
+          <h3 class="fw-bold mb-3 text-white">Get in touch</h3>
+          <span class="text-primary">339 McDermott Points Hettingerhaven, NV 15283</span>
+          <p class="mb-1 text-primary">Email: <a href="#" class="text-info">support@geeksui.com</a></p>
+          <p class="text-primary">Phone: <span class="text-dark fw-semibold text-white">(000) 123 456 789</span></p>
         </div>
       </div>
     </div>
@@ -55,9 +55,9 @@
       <!-- Links -->
       <div class="col-12 col-md-7 col-lg-8 d-md-flex justify-content-end">
         <nav class="nav nav-footer">
-          <a class="nav-link ps-0" href="#">Privacy Policy</a>
-          <a class="nav-link px-2 px-md-3" href="#">Cookie Notice  </a>
-          <a class="nav-link" href="#">Terms of Use</a>
+          <a class="nav-link ps-0 text-white" href="#">Privacy Policy</a>
+          <a class="nav-link px-2 px-md-3 text-white" href="#">Cookie Notice  </a>
+          <a class="nav-link text-white" href="#">Terms of Use</a>
         </nav>
       </div>
     </div>
