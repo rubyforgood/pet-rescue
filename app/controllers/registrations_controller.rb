@@ -12,6 +12,14 @@ class RegistrationsController < Devise::RegistrationsController
     respond_with resource
   end
 
+  def create
+    super do |resource|
+      if resource.persisted?
+        resource.add_role(:adopter, Current.organization)
+      end
+    end
+  end
+
   private
 
   def set_layout
