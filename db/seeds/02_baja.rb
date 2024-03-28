@@ -265,9 +265,14 @@ ActsAsTenant.with_tenant(@organization) do
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..4),
-      adopter_foster_account: AdopterFosterAccount.all.sample,
-      pet: Pet.all.sample
+      adopter_foster_account: AdopterFosterAccount.joins(:user).where(users: { organization_id: @organization.id }).sample,
+      pet: Pet.where(organization_id: @organization.id).sample
     )
+
+    unless AdopterApplication.where(pet_id: adopter_application.pet_id,
+                                    adopter_foster_account_id: adopter_application.adopter_foster_account_id).empty?
+      redo
+    end
 
     if adopter_application.valid?
       adopter_application.save!
