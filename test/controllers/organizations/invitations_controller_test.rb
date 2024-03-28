@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::InvitationControllerTest < ActionDispatch::IntegrationTest
+class Organizations::InvitationsControllerTest < ActionDispatch::IntegrationTest
   context "#create" do
     setup do
       user = create(:staff_admin)
