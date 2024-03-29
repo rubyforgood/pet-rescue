@@ -1,11 +1,10 @@
 class Organizations::PageTextsController < Organizations::BaseController
   layout "dashboard"
+  before_action :set_page_text, only: %i[edit update]
   def edit
-    @page_text = current_user.organization.page_text
   end
 
   def update
-    @page_text = current_user.organization.page_text
     if @page_text.update(page_text_params)
       redirect_to edit_page_text_path, notice: "Page text updated successfully!"
     else
@@ -17,5 +16,11 @@ class Organizations::PageTextsController < Organizations::BaseController
 
   def page_text_params
     params.require(:page_text).permit(:hero, :about)
+  end
+
+  def set_page_text
+    @page_text = current_user.organization.page_text
+
+    authorize! @page_text
   end
 end

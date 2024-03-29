@@ -49,6 +49,7 @@ module Authorizable
       activate_staff
       invite_staff
       manage_organization_profile
+      manage_page_text
       manage_staff
     ]
   ).freeze
