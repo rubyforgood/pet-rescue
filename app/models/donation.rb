@@ -2,13 +2,19 @@
 #
 # Table name: donations
 #
-#  id         :bigint           not null, primary key
-#  amount     :string
-#  currency   :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :bigint           not null, primary key
+#  amount          :string
+#  currency        :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  organization_id :bigint           not null
+#
+# Indexes
+#
+#  index_donations_on_organization_id  (organization_id)
 #
 class Donation < ApplicationRecord
+  acts_as_tenant(:organization)
   validates :amount, presence: true
   validates :currency, presence: true
 
