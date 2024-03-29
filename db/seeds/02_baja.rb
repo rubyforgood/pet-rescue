@@ -261,13 +261,19 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   10.times do
-    AdopterApplication.create!(
+    adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
-      status: rand(0..5),
-      adopter_foster_account: AdopterFosterAccount.joins(:user).where(users: {organization_id: @organization.id}).sample,
+      status: rand(0..4),
+      adopter_foster_account: AdopterFosterAccount.all.sample,
       pet: Pet.all.sample
     )
+
+    if adopter_application.valid?
+      adopter_application.save!
+    else
+      redo
+    end
   end
 
   PageText.create!(hero: nil, about: nil)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_22_083755) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_22_214921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_22_083755) do
     t.text "notes"
     t.boolean "profile_show", default: true
     t.index ["adopter_foster_account_id"], name: "index_adopter_applications_on_adopter_foster_account_id"
+    t.index ["pet_id", "adopter_foster_account_id"], name: "index_adopter_applications_on_account_and_pet", unique: true
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
@@ -137,7 +138,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_22_083755) do
     t.bigint "organization_id", null: false
     t.index ["adopter_foster_account_id"], name: "index_matches_on_adopter_foster_account_id"
     t.index ["organization_id"], name: "index_matches_on_organization_id"
-    t.index ["pet_id"], name: "index_matches_on_pet_id"
+    t.index ["pet_id"], name: "index_matches_on_pet_id", unique: true
   end
 
   create_table "organization_profiles", force: :cascade do |t|

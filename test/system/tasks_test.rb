@@ -9,7 +9,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "creates a recurring task with a due date without redirecting" do
-    due_date = (Date.today + 3.day)
+    due_date = (Date.current + 3.days)
 
     visit pet_path(@pet, active_tab: "tasks")
 
@@ -53,7 +53,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "marking a recurring task with due date as complete creates and displays a new task without redirecting" do
-    due_date = (Date.today + 2.days)
+    due_date = (Date.current + 2.days)
     recurring_task_with_due_date = create(:task, recurring: true, pet: @pet, name: "recurring task with due date", due_date: due_date, next_due_date_in_days: 4)
 
     visit pet_path(@pet, active_tab: "tasks")
@@ -80,7 +80,7 @@ class TasksTest < ApplicationSystemTestCase
   end
 
   test "allows user to update a recurring task by making it un-recurring" do
-    due_date = (Date.today + 1.day)
+    due_date = (Date.current + 1.day)
     recurring_task = create(:task, recurring: true, completed: false, pet: @pet, name: "recurring task", due_date: due_date, next_due_date_in_days: 5)
     visit pet_path(@pet, active_tab: "tasks")
 

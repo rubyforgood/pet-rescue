@@ -8,15 +8,15 @@
           <strong class="d-block" ><%= task.name %></strong>
           <p class='mb-0'> <%= task.description %> </p>
           <% if task.due_date %>
-            <% if task.due_date.to_date == Date.current %>
+            <% if task.due_date.to_date == Date.today %>
               <div class='text-warning'>
                 <i class="fe fe-clock"></i> Due Date - Today
               </div>
-            <% elsif task.due_date.to_date > Date.current %>
+            <% elsif task.due_date.to_date > Date.today %>
               <div class='text-warning'>
                 <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
               </div>
-            <% elsif task.due_date.to_date < Date.current %>
+            <% elsif task.due_date.to_date < Date.today %>
               <div class='text-danger'>
                 <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
               </div>
