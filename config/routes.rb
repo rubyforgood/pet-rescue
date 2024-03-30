@@ -53,8 +53,7 @@ Rails.application.routes.draw do
 
   resources :matches, only: %i[create destroy]
 
-  get "/contacts", to: "contacts#create"
-  get "/contacts/new", to: "contacts#new", as: "new_contact"
+  resources :contacts, only: [:new, :create]
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 
