@@ -14,7 +14,7 @@ class ContactsController < ApplicationController
       ContactsMailer.with(name: params[:name],
         email: params[:email],
         message: params[:message])
-        .send_message(current_tenant.slug).deliver_now
+        .send_message(Current.organization.slug).deliver_now
       redirect_to root_path, notice: "Message sent!"
     else
       render :new, status: :unprocessable_entity
