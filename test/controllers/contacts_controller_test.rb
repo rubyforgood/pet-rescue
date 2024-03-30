@@ -9,13 +9,13 @@ class ContactsControllerTest < ActionDispatch::IntegrationTest
   end
 
   context "create" do
-    should "it creates contact mailer if valid params" do
+    should "create contact mailer if valid params" do
       assert_emails 1 do
         post contacts_url, params: {contact: {name: "test sender", email: "sender@test.com", message: "test message"}}
       end
     end
 
-    should "it returns unprocessable entity if invalid params" do
+    should "return unprocessable entity if invalid params" do
       post contacts_url, params: {contact: {name: "test sender", email: "sender@test.com"}}
       assert_response :unprocessable_entity
     end

@@ -1,7 +1,7 @@
 require "test_helper"
 
 class ContactsMailerTest < ActionMailer::TestCase
-  test "reminder" do
+  test "contacts mailer" do
     org_name = ActsAsTenant.current_tenant.slug
     sender = create(:user)
     message = "this is a test message"
