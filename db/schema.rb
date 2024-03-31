@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_22_214921) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_31_233944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,7 +50,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_22_214921) do
     t.integer "status", default: 0
     t.text "notes"
     t.boolean "profile_show", default: true
+    t.bigint "organization_id", null: false
     t.index ["adopter_foster_account_id"], name: "index_adopter_applications_on_adopter_foster_account_id"
+    t.index ["organization_id"], name: "index_adopter_applications_on_organization_id"
     t.index ["pet_id", "adopter_foster_account_id"], name: "index_adopter_applications_on_account_and_pet", unique: true
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
@@ -59,6 +61,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_22_214921) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.bigint "organization_id", null: false
+    t.index ["organization_id"], name: "index_adopter_foster_accounts_on_organization_id"
     t.index ["user_id"], name: "index_adopter_foster_accounts_on_user_id"
   end
 
@@ -99,8 +103,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_22_214921) do
     t.text "visit_dates"
     t.text "referral_source"
     t.bigint "location_id", null: false
+    t.bigint "organization_id", null: false
     t.index ["adopter_foster_account_id"], name: "index_adopter_foster_profiles_on_adopter_foster_account_id", unique: true
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
+    t.index ["organization_id"], name: "index_adopter_foster_profiles_on_organization_id"
   end
 
   create_table "default_pet_tasks", force: :cascade do |t|
@@ -219,6 +225,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_22_214921) do
     t.datetime "due_date"
     t.boolean "recurring", default: false
     t.integer "next_due_date_in_days"
+    t.bigint "organization_id", null: false
+    t.index ["organization_id"], name: "index_tasks_on_organization_id"
     t.index ["pet_id"], name: "index_tasks_on_pet_id"
   end
 
