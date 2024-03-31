@@ -269,6 +269,10 @@ ActsAsTenant.with_tenant(@organization) do
       pet: Pet.all.sample
     )
 
+    # Prevent duplicate adopter applications.
+    redo if AdopterApplication.where(pet_id: adopter_application.pet_id,
+                                     adopter_foster_account_id: adopter_application.adopter_foster_account_id).exists?
+
     if adopter_application.valid?
       adopter_application.save!
     else
