@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   scope module: :organizations do
     resource :organization_profile, only: %i[edit update]
+    resource :page_text, only: [:edit, :update]
 
     resources :home, only: [:index]
     resources :pets do

@@ -1,0 +1,15 @@
+<% breadcrumb :page_text %>
+
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title "Page Text" %>
+  <% p.header_subtitle "Edit your page" %>
+  <% p.content do %>
+    <section id="account_select">
+      <div>
+        <div>
+          <%= render "form", page_text: @page_text %>
+        </div>
+      </div>
+    </section>
+  <% end %>
+<% end %>
