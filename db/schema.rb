@@ -120,13 +120,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_233944) do
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
 
-  create_table "donations", force: :cascade do |t|
-    t.string "amount"
-    t.string "currency"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "locations", force: :cascade do |t|
     t.string "country"
     t.string "city_town"

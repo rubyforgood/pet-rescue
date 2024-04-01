@@ -8,7 +8,8 @@ orga_location = Location.create!(
 @organization = Organization.create!(
   name: "Alta Pet Rescue",
   slug: "alta",
-  profile: OrganizationProfile.new(email: "alta@email.com", phone_number: "250 816 8212", location: orga_location, about_us: "We get pets into loving homes!")
+  profile: OrganizationProfile.new(email: "alta@email.com", phone_number: "250 816 8212", location: orga_location, about_us: "We get pets into loving homes!"),
+  page_text: PageText.new(hero: "Where every paw finds a hom", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.")
 )
 
 ActsAsTenant.with_tenant(@organization) do
@@ -269,12 +270,14 @@ ActsAsTenant.with_tenant(@organization) do
       pet: Pet.all.sample
     )
 
+    # Prevent duplicate adopter applications.
+    redo if AdopterApplication.where(pet_id: adopter_application.pet_id,
+      adopter_foster_account_id: adopter_application.adopter_foster_account_id).exists?
+
     if adopter_application.valid?
       adopter_application.save!
     else
       redo
     end
   end
-
-  PageText.create!(hero: nil, about: nil)
 end
