@@ -8,7 +8,7 @@ module AvatarHelper
 
       if current_user.avatar.attached?
         partial.avatar do
-          image_tag url_for(current_user.avatar), alt: partial.alt, class: (xl ? 'avatar-xl rounded-circle border border-4 border-white' : 'rounded-circle')
+          image_tag url_for(current_user.avatar), alt: partial.alt, class: (xl ? "avatar-xl rounded-circle border border-4 border-white" : "rounded-circle")
         end
       end
     end
