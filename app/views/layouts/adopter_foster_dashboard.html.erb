@@ -52,66 +52,33 @@
                       <ul class="list-unstyled ms-n2 mb-4">
                         <!-- Nav item -->
                         <li class="nav-item">
-                          <a class="nav-link" href="dashboard-instructor.html">
-                            <i class="fe fe-home nav-icon"></i>
-                            My Dashboard
-                          </a>
+                          <%= active_link_to adopter_foster_dashboard_index_path, class: "nav-link" do %>
+                            <i class="fe fe-home nav-icon"></i> My Dashboard
+                          <% end %>
                         </li>
                         <!-- Nav item -->
                         <li class="nav-item">
-                          <a class="nav-link" href="instructor-courses.html">
-                            <i class="fe fe-book nav-icon"></i>
-                            My Courses
-                          </a>
+                          <%= active_link_to adopter_foster_dashboard_index_path, class: "nav-link" do %>
+                            <i class="fe fe-book nav-icon"></i> My Applications
+                          <% end %>
                         </li>
                         <!-- Nav item -->
                         <li class="nav-item">
-                          <a class="nav-link" href="instructor-reviews.html">
-                            <i class="fe fe-star nav-icon"></i>
-                            Reviews
-                          </a>
+                          <%= active_link_to adopter_foster_dashboard_index_path, class: "nav-link" do %>
+                            <i class="fe fe-star nav-icon"></i> My Pets
+                          <% end %>
                         </li>
                         <!-- Nav item -->
                         <li class="nav-item">
-                          <a class="nav-link" href="instructor-earning.html">
-                            <i class="fe fe-pie-chart nav-icon"></i>
-                            Earnings
-                          </a>
+                          <%= active_link_to adopter_foster_dashboard_index_path, class: "nav-link" do %>
+                            <i class="fe fe-dollar-sign nav-icon"></i> Donate
+                          <% end %>
                         </li>
                         <!-- Nav item -->
                         <li class="nav-item">
-                          <a class="nav-link" href="instructor-order.html">
-                            <i class="fe fe-shopping-bag nav-icon"></i>
-                            Orders
-                          </a>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <a class="nav-link" href="instructor-students.html">
-                            <i class="fe fe-users nav-icon"></i>
-                            Students
-                          </a>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <a class="nav-link" href="instructor-payouts.html">
-                            <i class="fe fe-dollar-sign nav-icon"></i>
-                            Payouts
-                          </a>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item active">
-                          <a class="nav-link" href="instructor-quiz.html">
-                            <i class="fe fe-help-circle nav-icon"></i>
-                            Quiz
-                          </a>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <a class="nav-link" href="instructor-quiz-result.html">
-                            <i class="fe fe-help-circle nav-icon"></i>
-                            Quiz Result
-                          </a>
+                          <%= active_link_to adopter_foster_dashboard_index_path, class: "nav-link" do %>
+                            <i class="fe fe-help-circle nav-icon"></i> FAQ
+                          <% end %>
                         </li>
                       </ul>
                       <!-- Navbar header -->
@@ -119,52 +86,20 @@
                       <ul class="list-unstyled ms-n2 mb-0">
                         <!-- Nav item -->
                         <li class="nav-item">
-                          <a class="nav-link" href="profile-edit.html">
-                            <i class="fe fe-settings nav-icon"></i>
-                            Edit Profile
-                          </a>
+                          <%= active_link_to edit_user_registration_path, class: "nav-link" do %>
+                            <i class="fe fe-settings nav-icon"></i> Edit Settings
+                          <% end %>
                         </li>
                         <!-- Nav item -->
                         <li class="nav-item">
-                          <a class="nav-link" href="security.html">
-                            <i class="fe fe-user nav-icon"></i>
-                            Security
-                          </a>
+                          <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'nav-link' do %>
+                            <i class="fe fe-power nav-icon"></i> Log Out
+                          <% end %>
                         </li>
-                        <!-- Nav item -->
                         <li class="nav-item">
-                          <a class="nav-link" href="social-profile.html">
-                            <i class="fe fe-refresh-cw nav-icon"></i>
-                            Social Profiles
-                          </a>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <a class="nav-link" href="notifications.html">
-                            <i class="fe fe-bell nav-icon"></i>
-                            Notifications
-                          </a>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <a class="nav-link" href="profile-privacy.html">
-                            <i class="fe fe-lock nav-icon"></i>
-                            Profile Privacy
-                          </a>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <a class="nav-link" href="delete-profile.html">
-                            <i class="fe fe-trash nav-icon"></i>
-                            Delete Profile
-                          </a>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <a class="nav-link" href="../index.html">
-                            <i class="fe fe-power nav-icon"></i>
-                            Sign Out
-                          </a>
+                          <%= active_link_to adopter_foster_dashboard_index_path, class: "nav-link" do %>
+                            <i class="fe fe-trash nav-icon"></i> Delete Account
+                          <% end %>
                         </li>
                       </ul>
                     </div>
