@@ -17,10 +17,25 @@
                                   placeholder: "hero text",
                                   class: 'form-control' %>
             </div>
+            <!-- Hero Image Upload -->
+            <div class= "form-group">
+              <%= form.file_field :hero_image,
+                                  label: "Hero Image",
+                                  class: 'form-control'%>
+            </div>
             <!-- About Us -->
             <div class="form-group">
               <%= form.text_area :about, label: "About Us", placeholder: "About Us text", class: 'form-control' %>
             </div>
+            <!-- About Us Image Upload -->
+            <div class= "form-group">
+              <%= form.file_field :about_us_images,
+                                  multiple: true,
+                                  accept: 'image/png, image/jpeg',
+                                  label: "About Us Images",
+                                  class: 'form-control' %>
+            </div>
+            <small class="form-text text-muted">You can upload up to 2 images. </small>
           </form>
         <% end %>
       </div>
