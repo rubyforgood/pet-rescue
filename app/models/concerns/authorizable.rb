@@ -18,6 +18,7 @@ module Authorizable
   end
 
   ADOPTER_PERMISSIONS = %i[
+    view_adopter_foster_dashboard
     create_adopter_applications
     view_adopter_applications
     withdraw_adopter_applications

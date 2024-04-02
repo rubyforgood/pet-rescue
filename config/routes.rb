@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     end
     resources :default_pet_tasks
     resources :dashboard, only: [:index]
+    resources :adopter_foster_dashboard, only: [:index]
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
     resources :staff do
