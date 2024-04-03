@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
   resources :adopter_applications, path: "applications",
-            only: %i[index create update]
+    only: %i[index create update]
 
   resources :matches, only: %i[create destroy]
 

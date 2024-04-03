@@ -1,5 +1,5 @@
-require 'test_helper'
-require 'action_policy/test_helper'
+require "test_helper"
+require "action_policy/test_helper"
 
 class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -11,14 +11,14 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
     sign_in user
   end
 
-  context 'authorization' do
+  context "authorization" do
     include ActionPolicy::TestHelper
 
-    context 'new' do
-      should 'be authorized' do
+    context "new" do
+      should "be authorized" do
         assert_authorized_to(
           :manage?, Question,
-          context: { organization: @organization },
+          context: {organization: @organization},
           with: Organizations::QuestionPolicy
         ) do
           get new_form_question_url(@form)
@@ -26,17 +26,17 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    context 'create' do
+    context "create" do
       setup do
         @params = {
           question: attributes_for(:question)
         }
       end
 
-      should 'be authorized' do
+      should "be authorized" do
         assert_authorized_to(
           :manage?, Question,
-          context: { organization: @organization },
+          context: {organization: @organization},
           with: Organizations::QuestionPolicy
         ) do
           post form_questions_url(@form), params: @params
@@ -44,8 +44,8 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    context 'edit' do
-      should 'be authorized' do
+    context "edit" do
+      should "be authorized" do
         assert_authorized_to(
           :manage?, @question,
           with: Organizations::QuestionPolicy
@@ -55,16 +55,16 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    context 'update' do
+    context "update" do
       setup do
         @params = {
           question: {
-            name: 'new name'
+            name: "new name"
           }
         }
       end
 
-      should 'be authorized' do
+      should "be authorized" do
         assert_authorized_to(
           :manage?, @question,
           with: Organizations::QuestionPolicy
@@ -74,8 +74,8 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
-    context 'destroy' do
-      should 'be authorized' do
+    context "destroy" do
+      should "be authorized" do
         assert_authorized_to(
           :manage?, @question,
           with: Organizations::QuestionPolicy
@@ -86,16 +86,16 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test 'should get new' do
+  test "should get new" do
     get new_form_question_url(@form)
 
     assert_response :success
-    assert_select 'h1', text: 'New Question'
+    assert_select "h1", text: "New Question"
   end
 
-  context 'POST #create' do
-    should 'create new question' do
-      assert_difference('@form.questions.count', 1) do
+  context "POST #create" do
+    should "create new question" do
+      assert_difference("@form.questions.count", 1) do
         post form_questions_url(@form), params: {
           question: attributes_for(:question)
         }
@@ -103,13 +103,13 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, 'Question saved successfully.'
+      assert_equal flash.notice, "Question saved successfully."
     end
 
-    should 'not create question with invalid data' do
-      assert_no_difference('@form.questions.count') do
+    should "not create question with invalid data" do
+      assert_no_difference("@form.questions.count") do
         post form_questions_url(@form), params: {
-          question: { name: '' }
+          question: {name: ""}
         }
       end
 
@@ -117,31 +117,31 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  context 'GET #edit' do
-    should 'visit edit page' do
+  context "GET #edit" do
+    should "visit edit page" do
       get edit_form_question_url(@form, @question)
 
       assert_response :success
-      assert_select 'h1', text: 'Edit Question'
+      assert_select "h1", text: "Edit Question"
     end
 
-    should 'not visit edit page of non-existent form' do
+    should "not visit edit page of non-existent form" do
       get edit_form_question_url(0, @question)
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, 'Form not found.'
+      assert_equal flash.alert, "Form not found."
     end
 
-    should 'not visit edit page of non-existent question' do
+    should "not visit edit page of non-existent question" do
       get edit_form_question_url(@form, id: 0)
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, 'Question not found.'
+      assert_equal flash.alert, "Question not found."
     end
 
-    should 'not visit edit page of form outside of organization' do
+    should "not visit edit page of form outside of organization" do
       o2 = create(:organization)
       f2 = create(:form, organization: o2)
       q2 = create(:question, form: f2)
@@ -150,10 +150,10 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, 'Form not found.'
+      assert_equal flash.alert, "Form not found."
     end
 
-    should 'not visit edit page of question outside of form' do
+    should "not visit edit page of question outside of form" do
       f2 = create(:form, organization: @organization)
       q2 = create(:question, form: f2)
 
@@ -161,102 +161,102 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, 'Question not found.'
+      assert_equal flash.alert, "Question not found."
     end
   end
 
-  context 'PATCH #update' do
-    should 'update question' do
+  context "PATCH #update" do
+    should "update question" do
       patch form_question_url(@form, @question), params: {
         question: {
-          name: 'new name'
+          name: "new name"
         }
       }
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, 'Question saved successfully.'
+      assert_equal flash.notice, "Question saved successfully."
     end
 
-    should 'not update question with invalid data' do
+    should "not update question with invalid data" do
       patch form_question_url(@form, @question), params: {
         question: {
-          name: ''
+          name: ""
         }
       }
 
       assert_template :edit
     end
 
-    should 'not update question belonging to form outside of organization' do
+    should "not update question belonging to form outside of organization" do
       o2 = create(:organization)
       f2 = create(:form, organization: o2)
       q2 = create(:question, form: f2)
 
       patch form_question_url(f2, q2), params: {
         question: {
-          name: 'new name'
+          name: "new name"
         }
       }
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, 'Form not found.'
+      assert_equal flash.alert, "Form not found."
     end
 
-    should 'not update question belonging to other form' do
+    should "not update question belonging to other form" do
       f2 = create(:form, organization: @organization)
       q2 = create(:question, form: f2)
 
       patch form_question_url(@form, q2), params: {
         question: {
-          name: 'new name',
-          label: 'new label'
+          name: "new name",
+          label: "new label"
         }
       }
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, 'Question not found.'
+      assert_equal flash.alert, "Question not found."
     end
   end
 
-  context 'DELETE #destroy' do
-    should 'destroy a question' do
-      assert_difference('@form.questions.count', -1) do
+  context "DELETE #destroy" do
+    should "destroy a question" do
+      assert_difference("@form.questions.count", -1) do
         delete form_question_url(@form, @question)
       end
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, 'Question was successfully deleted.'
+      assert_equal flash.notice, "Question was successfully deleted."
     end
 
-    should 'not destroy a question belonging to another organization' do
+    should "not destroy a question belonging to another organization" do
       o2 = create(:organization)
       f2 = create(:form, organization: o2)
       q2 = create(:question, form: f2)
 
-      assert_no_difference('Question.count') do
+      assert_no_difference("Question.count") do
         delete form_question_url(f2, q2)
       end
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, 'Form not found.'
+      assert_equal flash.alert, "Form not found."
     end
 
-    should 'not destroy a question belonging to another form' do
+    should "not destroy a question belonging to another form" do
       f2 = create(:form, organization: @organization)
       q2 = create(:question, form: f2)
 
-      assert_no_difference('Question.count') do
+      assert_no_difference("Question.count") do
         delete form_question_url(@form, q2)
       end
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, 'Question not found.'
+      assert_equal flash.alert, "Question not found."
     end
   end
 end

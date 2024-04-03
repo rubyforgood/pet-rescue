@@ -17,7 +17,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :manage?, Form,
-          context: { organization: @organization },
+          context: {organization: @organization},
           with: Organizations::FormPolicy
         ) do
           get new_form_url
@@ -35,7 +35,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :manage?, Form,
-          context: { organization: @organization },
+          context: {organization: @organization},
           with: Organizations::FormPolicy
         ) do
           post forms_url, params: @params
@@ -48,7 +48,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
     should "be authorized" do
       assert_authorized_to(
         :manage?, Form,
-        context: { organization: @organization },
+        context: {organization: @organization},
         with: Organizations::FormPolicy
       ) do
         get forms_url
@@ -102,7 +102,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
         with: Organizations::FormPolicy
       ) do
         patch form_url(@form),
-              params: @params
+          params: @params
       end
     end
   end
