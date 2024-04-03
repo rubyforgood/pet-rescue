@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class AdoptablePetsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::AdoptablePetsControllerTest < ActionDispatch::IntegrationTest
   include ActionPolicy::TestHelper
 
   setup do

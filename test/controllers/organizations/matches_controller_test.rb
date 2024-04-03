@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class MatchesControllerTest < ActionDispatch::IntegrationTest
+class Organizations::MatchesControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
