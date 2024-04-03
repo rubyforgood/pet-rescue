@@ -5,9 +5,13 @@
         <div class="d-flex row justify-content-center  align-items-center">
           <div class="d-flex justify-content-center">
             <h1 class="display-2 fw-bold mb-1 text-primary "><%= Current.organization.name %></h1>
-          </div>  
-          <div class="d-flex justify-content-center ">
-            <p class="lead mb-4 text-black"><%= Current.organization.page_text&.hero || "Where every paw finds a home" %></p>
+          </div>
+          <div class="d-flex justify-content-center">
+            <% if Current.organization.page_text&.hero_image&.attached? %>
+              <%= image_tag(Current.organization.page_text.hero_image, class: "img-fluid") %>
+            <% else %>
+              <p class="lead mb-4 text-black"><%= Current.organization.page_text&.hero || "Where every paw finds a home" %></p>
+            <% end %>
           </div>
           <div class="d-flex justify-content-center">
           <%= link_to '#', class: "btn btn-dark btn-lg rounded-1 me-2" do %>
@@ -144,7 +148,7 @@
     <div class="row pb-3">
         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
             <span>
-                <%= image_tag('danielle_2.jpg', 
+                <%= image_tag('danielle_2.jpg',
                     class: 'rounded-5 w-100 px-4 px-lg-0') %>
             </span>
         </div>
@@ -152,6 +156,11 @@
             <p class='justify bigger'>
               <%= Current.organization.page_text&.about || "#{Current.organization.name} was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations."%>
             </p>
+            <% if Current.organization.page_text.about_us_images.attached? %>
+                  <% Current.organization.page_text.about_us_images.each do |image| %>
+                    <%= image_tag(image, class: "rounded-5 w-100 px-4 px-lg-0") %>
+                <% end %>
+            <% end %>
             <p class='text-center'>
               <%= link_to 'Read More', about_us_path, class: 'custom-btn-green mt-5 mb-3' %>
             </p>
