@@ -9,12 +9,14 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  adopter_foster_account_id :bigint           not null
+#  organization_id           :bigint           not null
 #  pet_id                    :bigint           not null
 #
 # Indexes
 #
 #  index_adopter_applications_on_account_and_pet            (pet_id,adopter_foster_account_id) UNIQUE
 #  index_adopter_applications_on_adopter_foster_account_id  (adopter_foster_account_id)
+#  index_adopter_applications_on_organization_id            (organization_id)
 #  index_adopter_applications_on_pet_id                     (pet_id)
 #
 # Foreign Keys
@@ -23,6 +25,7 @@
 #  fk_rails_...  (pet_id => pets.id)
 #
 class AdopterApplication < ApplicationRecord
+  acts_as_tenant(:organization)
   belongs_to :pet
   belongs_to :adopter_foster_account
 
