@@ -53,4 +53,13 @@ class Organizations::PageTextsControllerTest < ActionDispatch::IntegrationTest
       assert_equal "canine caped crusader", @page_text.about
     end
   end
+
+  # context "PATCH #attach_images" do
+  #   should "update page image" do
+  #     patch attach_images_page_text_path(@page_text), params: {page_text: {hero_image: fixture_file_upload("files/test.png", "image/png")}}
+  #     assert_response :redirect
+  #     follow_redirect!
+  #     assert_response :success
+  #   end
+  # end
 end

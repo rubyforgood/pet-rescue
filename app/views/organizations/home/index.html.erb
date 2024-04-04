@@ -1,5 +1,5 @@
 <section id="hero">
-  <div class="bg-image" style="background-image: url('<%= asset_path 'dog-run.png' %>'); background-position: center; background-size: cover;">
+  <div class="bg-image" style="background-image: url('<%= Current.organization.page_text&.hero_image&.attached? ? url_for(Current.organization.page_text.hero_image) : asset_path('dog-run.png') %>'); background-position: center; background-size: cover;">
     <div class="mask py-lg-16 py-5" style="background-color: rgba(255, 255, 255, 0.8);">
       <div class="container">
         <div class="d-flex row justify-content-center  align-items-center">
@@ -7,11 +7,7 @@
             <h1 class="display-2 fw-bold mb-1 text-primary "><%= Current.organization.name %></h1>
           </div>
           <div class="d-flex justify-content-center">
-            <% if Current.organization.page_text&.hero_image&.attached? %>
-              <%= image_tag(Current.organization.page_text.hero_image, class: "img-fluid") %>
-            <% else %>
-              <p class="lead mb-4 text-black"><%= Current.organization.page_text&.hero || "Where every paw finds a home" %></p>
-            <% end %>
+            <p class="lead mb-4 text-black"><%= Current.organization.page_text&.hero || "Where every paw finds a home" %></p>
           </div>
           <div class="d-flex justify-content-center">
           <%= link_to '#', class: "btn btn-dark btn-lg rounded-1 me-2" do %>
