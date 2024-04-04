@@ -49,6 +49,16 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
         @user = create(:staff_admin)
       end
 
+      context "when user's staff account is deactivated" do
+        setup do
+          @user.staff_account.deactivate
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
       should "return true" do
         assert_equal @action.call, true
       end
