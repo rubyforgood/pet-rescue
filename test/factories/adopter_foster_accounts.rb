@@ -3,8 +3,8 @@ FactoryBot.define do
     user { association :user }
 
     trait :with_profile do
-      after(:build) do |account|
-        build(:adopter_foster_profile, adopter_foster_account: account)
+      adopter_foster_profile do
+        association :adopter_foster_profile, adopter_foster_account: instance
       end
     end
 
