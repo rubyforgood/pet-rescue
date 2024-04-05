@@ -1,4 +1,4 @@
-class ProfileReviewPolicy < ApplicationPolicy
+class Organizations::ProfileReviewPolicy < ApplicationPolicy
   pre_check :verify_organization!
   pre_check :verify_active_staff!
 

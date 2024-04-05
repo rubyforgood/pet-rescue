@@ -3,6 +3,6 @@ class Organizations::ProfileReviewsController < Organizations::BaseController
   def show
     @adopter_foster_profile = AdopterFosterProfile.find(params[:id])
 
-    authorize! @adopter_foster_profile, with: ProfileReviewPolicy
+    authorize! @adopter_foster_profile, with: Organizations::ProfileReviewPolicy
   end
 end

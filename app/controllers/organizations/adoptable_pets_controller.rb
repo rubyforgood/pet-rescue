@@ -4,13 +4,13 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   def index
     @pets = authorized_scope(
       Pet.includes(:adopter_applications, images_attachments: :blob),
-      with: AdoptablePetPolicy
+      with: Organizations::AdoptablePetPolicy
     )
   end
 
   def show
     @pet = Pet.find(params[:id])
-    authorize! @pet, with: AdoptablePetPolicy
+    authorize! @pet, with: Organizations::AdoptablePetPolicy
 
     if current_user&.adopter_foster_account
       @adoption_application =

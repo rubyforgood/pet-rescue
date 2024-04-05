@@ -18,7 +18,7 @@ class Organizations::ProfileReviewsControllerTest < ActionDispatch::IntegrationT
       should "be authorized" do
         assert_authorized_to(
           :show?, @profile,
-          with: ProfileReviewPolicy
+          with: Organizations::ProfileReviewPolicy
         ) do
           get profile_review_url(@profile)
         end
