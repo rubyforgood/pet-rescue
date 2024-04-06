@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   match "/500", to: "errors#internal_server_error", via: :all
 
   root "root#index"
+  get "/petrescue_home", to: redirect("https://petrescue.com")
   get "/about_us", to: "static_pages#about_us"
   get "/faq", to: "static_pages#faq"
   get "/partners", to: "static_pages#partners"
