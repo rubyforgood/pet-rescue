@@ -14,12 +14,12 @@ FactoryBot.define do
     weight_unit { "lb" }
 
     trait :adoption_pending do
-      adopter_applications { build_list(:adopter_application, 3, :adoption_pending) }
+      adopter_applications { build_list(:adopter_application, 3, :adoption_pending, pet: instance) }
     end
 
     trait :adopted do
-      match { association :match }
-      adopter_applications { build_list(:adopter_application, 1, :successful_applicant) }
+      match { association :match, pet: instance }
+      adopter_applications { build_list(:adopter_application, 1, :successful_applicant, pet: instance) }
     end
 
     trait :with_image do

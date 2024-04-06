@@ -39,11 +39,13 @@
 #  updated_at                :datetime         not null
 #  adopter_foster_account_id :bigint           not null
 #  location_id               :bigint           not null
+#  organization_id           :bigint           not null
 #
 # Indexes
 #
 #  index_adopter_foster_profiles_on_adopter_foster_account_id  (adopter_foster_account_id) UNIQUE
 #  index_adopter_foster_profiles_on_location_id                (location_id)
+#  index_adopter_foster_profiles_on_organization_id            (organization_id)
 #
 # Foreign Keys
 #
@@ -51,6 +53,7 @@
 #  fk_rails_...  (location_id => locations.id)
 #
 class AdopterFosterProfile < ApplicationRecord
+  acts_as_tenant(:organization)
   belongs_to :location, dependent: :destroy
   belongs_to :adopter_foster_account
   accepts_nested_attributes_for :location

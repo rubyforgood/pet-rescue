@@ -44,7 +44,7 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is staff" do
+    context "when user is active staff" do
       setup do
         @user = create(:staff)
       end
@@ -62,6 +62,16 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
       context "when created staff is for a different organization" do
         setup do
           @organization = create(:organization)
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
+      context "when staff account is deactivated" do
+        setup do
+          @user.staff_account.deactivate
         end
 
         should "return false" do
