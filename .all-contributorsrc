@@ -241,6 +241,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "mehranjavid",
+      "name": "Mehran Javid",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39021904?v=4",
+      "profile": "https://mehranjavid.github.io/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
