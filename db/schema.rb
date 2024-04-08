@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_31_233944) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_08_194612) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -147,7 +147,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_31_233944) do
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "about_us"
+    t.text "facebook_url"
+    t.text "instagram_url"
+    t.text "donation_url"
     t.index ["location_id"], name: "index_organization_profiles_on_location_id"
     t.index ["organization_id"], name: "index_organization_profiles_on_organization_id"
   end
