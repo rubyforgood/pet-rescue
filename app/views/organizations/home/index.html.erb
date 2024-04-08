@@ -7,7 +7,7 @@
             <h1 class="display-2 fw-bold mb-1 text-primary "><%= Current.organization.name %></h1>
           </div>  
           <div class="d-flex justify-content-center ">
-            <p class="lead mb-4 text-black text-uppercase ">Where every paw finds a home</p>
+            <p class="lead mb-4 text-black"><%= Current.organization.page_text&.hero || "Where every paw finds a home" %></p>
           </div>
           <div class="d-flex justify-content-center">
           <%= link_to '#', class: "btn btn-dark btn-lg rounded-1 me-2" do %>
@@ -150,11 +150,7 @@
         </div>
         <div class="col-lg-4 px-4 order-last order-lg-0">
             <p class='justify bigger'>
-              <%=Current.organization.name %> was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.
-            </p>
-            <br>
-            <p class='justify bigger'>
-              In January 2021 Baja Pet Rescue decided to refocus its efforts as a rescue organization only, while the spay/neuter effort is run by a different organization. Baja Pet Rescue is currently being run by founder Danielle Gee and a group of wonderful volunteers.
+              <%= Current.organization.page_text&.about || "#{Current.organization.name} was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations."%>
             </p>
             <p class='text-center'>
               <%= link_to 'Read More', about_us_path, class: 'custom-btn-green mt-5 mb-3' %>

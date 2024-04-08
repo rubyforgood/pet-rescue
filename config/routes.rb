@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   scope module: :organizations do
     resource :organization_profile, only: %i[edit update]
+    resource :page_text, only: [:edit, :update]
 
     resources :home, only: [:index]
     resources :pets do
@@ -53,8 +54,7 @@ Rails.application.routes.draw do
 
   resources :matches, only: %i[create destroy]
 
-  get "/contacts", to: "contacts#create"
-  get "/contacts/new", to: "contacts#new", as: "new_contact"
+  resources :contacts, only: [:new, :create]
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 

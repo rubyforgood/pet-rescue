@@ -11,17 +11,20 @@
 #  recurring             :boolean          default(FALSE)
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
+#  organization_id       :bigint           not null
 #  pet_id                :bigint           not null
 #
 # Indexes
 #
-#  index_tasks_on_pet_id  (pet_id)
+#  index_tasks_on_organization_id  (organization_id)
+#  index_tasks_on_pet_id           (pet_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (pet_id => pets.id)
 #
 class Task < ApplicationRecord
+  acts_as_tenant(:organization)
   belongs_to :pet
 
   validates :name, presence: true
