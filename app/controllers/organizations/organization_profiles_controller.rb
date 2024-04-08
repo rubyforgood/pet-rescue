@@ -20,8 +20,10 @@ class Organizations::OrganizationProfilesController < Organizations::BaseControl
     params.require(:organization_profile).permit(
       :phone_number,
       :email,
-      :about_us,
       :avatar,
+      :facebook_url,
+      :instagram_url,
+      :donation_url,
       location_attributes: %i[city_town country province_state]
     )
   end
