@@ -221,6 +221,7 @@ en:
               content_type_invalid: "Image must be PNG or JPEG"
               limit_out_of_range: "5 maximum"
               file_size_out_of_range: "Image size must be between 10kb and 1Mb"
+              delete_confirmation: "Do you want to delete this image?"
         staff_account:
           attributes:
             organization:
