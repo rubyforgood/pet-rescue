@@ -17,6 +17,10 @@ FactoryBot.define do
           association :adopter_foster_account, :with_profile, user: instance
         end
       end
+
+      after(:build) do |user, _context|
+        user.add_role(:adopter, user.organization)
+      end
     end
 
     factory :staff do
