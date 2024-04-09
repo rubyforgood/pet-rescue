@@ -29,11 +29,6 @@
             <div class="form-group">
               <%= form.text_field :email, placeholder: "john@email.com", class: 'form-control' %>
             </div>
-            
-            <!-- About Us -->
-             <div class="form-group">
-              <%= form.text_field :about_us, placeholder: "We get pets into loving homes!", class: 'form-control' %>
-            </div>
           </form>
         <% end %>
       </div>
@@ -71,6 +66,9 @@
 
       <!-- Third Column -->
       <div class="col-lg-6">
+        <%= form.text_field :facebook_url, label: "Facebook", class: 'form-control' %>
+        <%= form.text_field :instagram_url, label: "Instagram", class: 'form-control' %>
+        <%= form.text_field :donation_url, label: "Donate", class: 'form-control' %>
         <%= render partial: 'partials/avatarable_form', locals: { resource: profile, form: form, picture_shape: 'rectangle' } %>
       </div>
 
