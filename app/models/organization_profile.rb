@@ -36,6 +36,10 @@ class OrganizationProfile < ApplicationRecord
   validates :phone_number, phone: {possible: true, allow_blank: true}
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
+  validates :facebook_url, url: true, allow_blank: true
+  validates :instagram_url, url: true, allow_blank: true
+  validates :donation_url, url: true, allow_blank: true
+
   delegate :name, to: :organization
 
   private
