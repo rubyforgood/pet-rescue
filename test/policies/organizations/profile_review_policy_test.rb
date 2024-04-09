@@ -1,13 +1,13 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class ProfileReviewPolicyTest < ActiveSupport::TestCase
+class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   setup do
     @adopter_foster_profile = create(:adopter_foster_profile)
     @policy = -> {
-      ProfileReviewPolicy.new(
+      Organizations::ProfileReviewPolicy.new(
         @adopter_foster_profile, user: @user
       )
     }

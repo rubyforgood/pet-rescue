@@ -15,11 +15,13 @@ class Organizations::InvitationsController < Devise::InvitationsController
     authorize! StaffAccount, context: {organization: Current.organization},
       with: Organizations::InvitationPolicy
 
-    @user = User.new(user_params.merge(password: SecureRandom.hex(8)).except(:roles))
+    @user = User.new(
+      user_params.merge(password: SecureRandom.hex(8)).except(:roles)
+    )
+    @user.add_role(user_params[:roles], Current.organization)
     @user.staff_account = StaffAccount.new
 
     if @user.save
-      @user.add_role(user_params[:roles], Current.organization)
       @user.invite!(current_user)
       redirect_to staff_index_path, notice: "Invite sent!"
     else

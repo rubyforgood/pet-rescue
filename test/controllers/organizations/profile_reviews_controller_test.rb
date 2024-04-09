@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class ProfileReviewsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::ProfileReviewsControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -18,7 +18,7 @@ class ProfileReviewsControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :show?, @profile,
-          with: ProfileReviewPolicy
+          with: Organizations::ProfileReviewPolicy
         ) do
           get profile_review_url(@profile)
         end
