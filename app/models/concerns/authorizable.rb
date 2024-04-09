@@ -7,6 +7,11 @@ ADOPTER_PERMISSIONS = %i[
   manage_adopter_foster_profiles
 ].freeze
 
+FOSTERER_PERMISSIONS = %i[
+  create_adopter_foster_profiles
+  manage_adopter_foster_profiles
+].freeze
+
 STAFF_PERMISSIONS = (
   ADOPTER_PERMISSIONS.excluding(
     %i[
@@ -39,6 +44,7 @@ ADMIN_PERMISSIONS = (
 
 PERMISSIONS = {
   adopter: ADOPTER_PERMISSIONS,
+  fosterer: FOSTERER_PERMISSIONS,
   staff: STAFF_PERMISSIONS,
   admin: ADMIN_PERMISSIONS
 }.freeze
