@@ -1,15 +1,15 @@
-class AdopterApplicationsController < ApplicationController
+class Organizations::AdopterApplicationsController < Organizations::BaseController
   before_action :authenticate_user!
 
   def index
-    authorize!
+    authorize! with: AdopterApplicationPolicy
 
-    @applications = authorized_scope(AdopterApplication.all)
+    @applications = authorized_scope(AdopterApplication.all, with: AdopterApplicationPolicy)
   end
 
   def create
     @pet = Pet.find(application_params[:pet_id])
-    authorize! context: {pet: @pet}
+    authorize! context: {pet: @pet}, with: AdopterApplicationPolicy
 
     @application = AdopterApplication.new(application_params)
 
@@ -31,7 +31,7 @@ class AdopterApplicationsController < ApplicationController
   # update :status to 'withdrawn' or :profile_show to false
   def update
     @application = AdopterApplication.find(params[:id])
-    authorize! @application
+    authorize! @application, with: AdopterApplicationPolicy
 
     if @application.update(application_params)
       redirect_to adopter_applications_path

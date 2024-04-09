@@ -1,13 +1,13 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class AdoptablePetPolicyTest < ActiveSupport::TestCase
+class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   context "relation_scope" do
     setup do
       @user = build_stubbed(:user)
-      @policy = AdoptablePetPolicy.new(Pet, user: @user)
+      @policy = Organizations::AdoptablePetPolicy.new(Pet, user: @user)
       @unadopted_pet = create(:pet)
       @adopted_pet = create(:pet, :adopted)
     end
@@ -25,7 +25,7 @@ class AdoptablePetPolicyTest < ActiveSupport::TestCase
 
   context "#show?" do
     setup do
-      @policy = -> { AdoptablePetPolicy.new(@pet, user: @user) }
+      @policy = -> { Organizations::AdoptablePetPolicy.new(@pet, user: @user) }
       @action = -> { @policy.call.apply(:show?) }
     end
 

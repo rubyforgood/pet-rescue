@@ -1,14 +1,14 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class MatchPolicyTest < ActiveSupport::TestCase
+class Organizations::MatchPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   context "#create?" do
     setup do
       @organization = ActsAsTenant.current_tenant
       @policy = -> {
-        MatchPolicy.new(Match, user: @user,
+        Organizations::MatchPolicy.new(Match, user: @user,
           organization: @organization)
       }
       @action = -> { @policy.call.apply(:create?) }
@@ -93,7 +93,7 @@ class MatchPolicyTest < ActiveSupport::TestCase
     setup do
       @match = create(:match)
       @policy = -> {
-        MatchPolicy.new(@match, user: @user)
+        Organizations::MatchPolicy.new(@match, user: @user)
       }
       @action = -> { @policy.call.apply(:destroy?) }
     end
