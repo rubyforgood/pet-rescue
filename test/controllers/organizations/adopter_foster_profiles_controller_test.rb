@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
+class Organizations::AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -14,7 +14,7 @@ class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :create?, AdopterFosterProfile,
-          with: AdopterFosterProfilePolicy
+          with: Organizations::AdopterFosterProfilePolicy
         ) do
           get new_profile_url
         end
@@ -30,7 +30,7 @@ class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :create?, AdopterFosterProfile,
-          with: AdopterFosterProfilePolicy
+          with: Organizations::AdopterFosterProfilePolicy
         ) do
           post profile_url, params: attributes_for(:adopter_foster_profile)
         end
@@ -45,7 +45,7 @@ class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
 
       should "be authorized" do
         assert_authorized_to(
-          :manage?, @profile, with: AdopterFosterProfilePolicy
+          :manage?, @profile, with: Organizations::AdopterFosterProfilePolicy
         ) do
           get profile_url
         end
@@ -60,7 +60,7 @@ class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
 
       should "be authorized" do
         assert_authorized_to(
-          :manage?, @profile, with: AdopterFosterProfilePolicy
+          :manage?, @profile, with: Organizations::AdopterFosterProfilePolicy
         ) do
           get edit_profile_url
         end
@@ -78,7 +78,7 @@ class AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
 
       should "be authorized" do
         assert_authorized_to(
-          :manage?, @profile, with: AdopterFosterProfilePolicy
+          :manage?, @profile, with: Organizations::AdopterFosterProfilePolicy
         ) do
           patch profile_url, params: @params
         end

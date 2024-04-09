@@ -5,13 +5,15 @@ Rails.application.routes.draw do
     invitations: "organizations/invitations"
   }
 
-  resources :adoptable_pets, only: [:index, :show]
-  resource :adopter_foster_profile, except: :destroy, as: "profile"
   resources :donations, only: [:create]
 
   scope module: :organizations do
     resource :organization_profile, only: %i[edit update]
     resource :page_text, only: [:edit, :update]
+
+    resource :adopter_foster_profile, except: :destroy, as: "profile"
+    resources :profile_reviews, only: [:show]
+    resources :adoptable_pets, only: [:index, :show]
 
     resources :home, only: [:index]
     resources :pets do
@@ -21,6 +23,8 @@ Rails.application.routes.draw do
     end
     resources :default_pet_tasks
     resources :dashboard, only: [:index]
+    resources :adopter_applications, path: "applications",
+      only: %i[index create update]
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
     resources :staff do
@@ -28,9 +32,9 @@ Rails.application.routes.draw do
       post "activate", to: "staff#activate"
       post "update_activation", to: "staff#update_activation"
     end
-  end
 
-  resources :profile_reviews, only: [:show]
+    resources :matches, only: %i[create destroy]
+  end
 
   resources :countries, only: [] do
     resources :states, only: [:index]
@@ -48,11 +52,6 @@ Rails.application.routes.draw do
   get "/privacy_policy", to: "static_pages#privacy_policy"
   get "/terms_and_conditions", to: "static_pages#terms_and_conditions"
   get "/cookie_policy", to: "static_pages#cookie_policy"
-
-  resources :adopter_applications, path: "applications",
-    only: %i[index create update]
-
-  resources :matches, only: %i[create destroy]
 
   resources :contacts, only: [:new, :create]
 

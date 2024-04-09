@@ -1,4 +1,4 @@
-class AdopterFosterProfilePolicy < ApplicationPolicy
+class Organizations::AdopterFosterProfilePolicy < ApplicationPolicy
   def create?
     permission?(:create_adopter_foster_profiles) && no_profile?
   end

@@ -1,4 +1,4 @@
-class AdoptablePetPolicy < ApplicationPolicy
+class Organizations::AdoptablePetPolicy < ApplicationPolicy
   skip_pre_check :verify_authenticated!, only: %i[show?]
 
   relation_scope do |relation|

@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class MatchesControllerTest < ActionDispatch::IntegrationTest
+class Organizations::MatchesControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -28,7 +28,7 @@ class MatchesControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :create?, Match,
           context: {organization: @organization},
-          with: MatchPolicy
+          with: Organizations::MatchPolicy
         ) do
           post matches_url, params: @params
         end
@@ -43,7 +43,7 @@ class MatchesControllerTest < ActionDispatch::IntegrationTest
       should "be authorized" do
         assert_authorized_to(
           :destroy?, @match,
-          with: MatchPolicy
+          with: Organizations::MatchPolicy
         ) do
           delete match_url(@match)
         end
