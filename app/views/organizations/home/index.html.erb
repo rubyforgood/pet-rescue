@@ -5,7 +5,7 @@
         <div class="d-flex row justify-content-center  align-items-center">
           <div class="d-flex justify-content-center">
             <h1 class="display-2 fw-bold mb-1 text-primary "><%= Current.organization.name %></h1>
-          </div>  
+          </div>
           <div class="d-flex justify-content-center ">
             <p class="lead mb-4 text-black"><%= Current.organization.page_text&.hero || "Where every paw finds a home" %></p>
           </div>
@@ -36,30 +36,22 @@
     </div>
     <!--//? bootstrap cards -->
     <div class="d-flex justify-content-around align-items-center flex-wrap">
-      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-        <%= image_tag('dog.jpeg', width: '500px', alt: "Adorable Dog", class: "card-img-top rounded-top-1") %>
-        <div class="card-body">
-          <p class="card-text text-black ">Adoptable Dogs <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
-        </div>
-      </div>
-      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-        <%= image_tag('cat.jpeg', width: '500px', alt: "Adorable Cat", class: "card-img-top rounded-top-1") %>
-        <div class="card-body">
-          <p class="card-text text-black ">Adoptable Cats <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
-        </div>
-      </div>
-      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-        <%= image_tag('spider.jpeg', width: '500px', alt: "Adorable Spider", class: "card-img-top rounded-top-1") %>
-        <div class="card-body">
-          <p class="card-text text-black ">Adoptable Spiders <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
-        </div>
-      </div>
-      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-        <%= image_tag('red-panda.jpeg', width: '500px', alt: "Adorable Red Panda", class: "card-img-top rounded-top-1") %>
-        <div class="card-body">
-          <p class="card-text text-black ">Adoptable Red Pandas <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
-        </div>
-      </div>
+      <% @pets.each do |pet| %>
+        <%= link_to adoptable_pet_path(pet) do %>
+          <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
+            <%= image_tag(pet.images.first, alt: pet.name,   class: "card-img-top rounded-top-1", height: "181px") %>
+            <div class="card-body">
+              <p class="card-text text-black ">
+                <%= "Adopt #{pet.name} " %>
+                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                </svg>
+              </p>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
     <!--//? Adopt all link -->
     <div class="d-flex justify-content-end align-items-center mt-3">
@@ -144,7 +136,7 @@
     <div class="row pb-3">
         <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
             <span>
-                <%= image_tag('danielle_2.jpg', 
+                <%= image_tag('danielle_2.jpg',
                     class: 'rounded-5 w-100 px-4 px-lg-0') %>
             </span>
         </div>
@@ -196,7 +188,7 @@
           Donate
         </h3>
         <p class='mb-4 bigger'>
-          Donations help us to rescue, treat and adopt more pets. Click here to learn how you can donate. 
+          Donations help us to rescue, treat and adopt more pets. Click here to learn how you can donate.
         </p>
         <p>
           <%= link_to 'Learn more', donate_path, class: 'custom-btn-green' %>
@@ -211,7 +203,7 @@
   <section class="pt-5 pb-5 bg-light" id="cta">
     <div class="container mb-md-5 mt-md-5">
       <div class="row text-center">
-        <div class="col-8 offset-2 border p-5 shadow-sm 
+        <div class="col-8 offset-2 border p-5 shadow-sm
                     rounded bg-white">
           <h3 class='mb-4'>Become an adopter now!</h3>
           <%= link_to 'Create Account', new_user_registration_path ,
@@ -221,4 +213,3 @@
     </div> <!--container-->
   </section>
 <% end %>
-
