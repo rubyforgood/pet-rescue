@@ -7,7 +7,11 @@ class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
   context "relation_scope" do
     setup do
       @user = build_stubbed(:user)
+<<<<<<< HEAD:test/policies/organizations/adoptable_pet_policy_test.rb
       @policy = Organizations::AdoptablePetPolicy.new(Pet, user: @user)
+=======
+      @policy = AdoptablePetPolicy.new(Pet, user: @user)
+>>>>>>> origin/Hero-Image-and-up-to-two-About-Us-images:test/policies/adoptable_pet_policy_test.rb
       @unadopted_pet = create(:pet)
       @adopted_pet = create(:pet, :adopted)
     end
@@ -25,7 +29,11 @@ class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
 
   context "#show?" do
     setup do
+<<<<<<< HEAD:test/policies/organizations/adoptable_pet_policy_test.rb
       @policy = -> { Organizations::AdoptablePetPolicy.new(@pet, user: @user) }
+=======
+      @policy = -> { AdoptablePetPolicy.new(@pet, user: @user) }
+>>>>>>> origin/Hero-Image-and-up-to-two-About-Us-images:test/policies/adoptable_pet_policy_test.rb
       @action = -> { @policy.call.apply(:show?) }
     end
 
