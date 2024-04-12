@@ -54,6 +54,16 @@ class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
         end
       end
 
+      context "when user is fosterer" do
+        setup do
+          @user = create(:fosterer)
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
       context "when user is staff" do
         setup do
           @user = create(:staff)
@@ -82,9 +92,36 @@ class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
         @user = create(:adopter, :with_profile)
       end
 
-      should "return false" do
-        assert_equal @action.call, false
+      context "when user is nil" do
+        setup do
+          @user = nil
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
       end
+
+      context "when user is adopter" do
+        setup do
+          @user = create(:adopter)
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
+      context "when user is fosterer" do
+        setup do
+          @user = create(:fosterer)
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
     end
   end
 end

@@ -96,6 +96,16 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         assert_equal @action.call, true
       end
     end
+
+    context "when user is fosterer with profile" do
+      setup do
+        @user = create(:fosterer, :with_profile)
+      end
+
+      should "return false" do
+        assert_equal @action.call, false
+      end
+    end
   end
 
   context "#create?" do
@@ -176,6 +186,16 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         end
       end
     end
+
+    context "when user is fosterer with profile" do
+      setup do
+        @user = create(:fosterer, :with_profile)
+      end
+
+      should "return false" do
+        assert_equal @action.call, false
+      end
+    end
   end
 
   context "existing record action" do
@@ -205,6 +225,16 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         context "when user is adopter" do
           setup do
             @user = create(:adopter)
+          end
+
+          should "return false" do
+            assert_equal @action.call, false
+          end
+        end
+
+        context "when user is fosterer" do
+          setup do
+            @user = create(:fosterer)
           end
 
           should "return false" do
