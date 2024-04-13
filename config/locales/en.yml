@@ -263,42 +263,43 @@ en:
         select_one: "Select one"
         please_fill_in: "Please fill this field"
         50_characters_maximum: "50 characters maximum"
-  adoptable_pets:
-    index:
-      header: "Up for adoption"
-    show:
-      adoption_process: "Adoption Process"
-      please_read_faq_html: "Please read the <a href='/faq'>FAQ</a> before applying to adopt."
-      please_know_that: "Please know that"
-      please_know_that_items_html: |
-        <li>Adopters must be located in Canada, USA or Mexico</li>
-        <li>There is an adoption fee of $175 USD</li>
-        <li>Every pet will be fully vaccinated and have the necessary
-        paperwork to enter Canada/USA</li>
-        <li>We can usually arrange transport to adopters west of Alberta or
-        Nevada only. Adopters further east will need to arrange
-        transport before an adoption can be approved.</li>
-      after_you_adopt: "After you apply to adopt"
-      after_you_adopt_items_html: |
-        <li>Your application history will be shown on 'My Applications' page</li>
-        <li>Application reviews generally take 4-6 days, depending on volume</li>
-        <li>We will contact you for further discussion if you are shortlisted </li>
-        <li>We work hard to match pets and adopters, so please try again if you are not successful first time round </li>
-      create_an_account: "Create an account to apply for this pet"
-      status:
-        awaiting_review: Application Awaiting Review
-        under_review: Application Under Review
-        adoption_pending: Adoption Pending
-        withdrawn: Application Withdrawn
-        successful_applicant: Successful Applicant
-        adoption_made: Adoption Made
-        default: "Application submitted"
-      apply_to_adopt: "Apply to Adopt"
-      complete_your_profile: "Complete your profile to apply for this pet"
-      complete_my_profile: "Complete my profile"
-      adopt: "Adopt"
-      login: "Log in"
+
   organizations:
+    adoptable_pets:
+      index:
+        header: "Up for adoption"
+      show:
+        adoption_process: "Adoption Process"
+        please_read_faq_html: "Please read the <a href='/faq'>FAQ</a> before applying to adopt."
+        please_know_that: "Please know that"
+        please_know_that_items_html: |
+          <li>Adopters must be located in Canada, USA or Mexico</li>
+          <li>There is an adoption fee of $175 USD</li>
+          <li>Every pet will be fully vaccinated and have the necessary
+          paperwork to enter Canada/USA</li>
+          <li>We can usually arrange transport to adopters west of Alberta or
+          Nevada only. Adopters further east will need to arrange
+          transport before an adoption can be approved.</li>
+        after_you_adopt: "After you apply to adopt"
+        after_you_adopt_items_html: |
+          <li>Your application history will be shown on 'My Applications' page</li>
+          <li>Application reviews generally take 4-6 days, depending on volume</li>
+          <li>We will contact you for further discussion if you are shortlisted </li>
+          <li>We work hard to match pets and adopters, so please try again if you are not successful first time round </li>
+        create_an_account: "Create an account to apply for this pet"
+        status:
+          awaiting_review: Application Awaiting Review
+          under_review: Application Under Review
+          adoption_pending: Adoption Pending
+          withdrawn: Application Withdrawn
+          successful_applicant: Successful Applicant
+          adoption_made: Adoption Made
+          default: "Application submitted"
+        apply_to_adopt: "Apply to Adopt"
+        complete_your_profile: "Complete your profile to apply for this pet"
+        complete_my_profile: "Complete my profile"
+        adopt: "Adopt"
+        login: "Log in"
     default_pet_tasks:
       index:
         default_pet_tasks: "Default Pet Tasks"
@@ -340,57 +341,57 @@ en:
         manage_your_own_account_settings: "You have full control to manage your own account settings."
       edit:
         edit_profile: "Edit Profile"
-  adopter_applications:
-    index:
-      adoption_applications: "Adoption Applications"
-      your_adoption_applications: "Your adoption applications will be listed here."
-      we_will_be_in_contact: "We will be in contact shortly."
-      keep_an_eye_on: "Keep an eye on your"
-      almost_adopted: "This pooch is almost adopted!"
-      found_a_home: "This pooch has found a home!"
-      withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
-      remove: "Remove"
-      withdraw: "Withdraw"
-  adopter_foster_profiles:
-    form:
-      please_fix_the_errors: "Please fix the errors highlighted below."
-      preferred_contact_method: "Preferred contact method"
-    edit:
-      edit_profile: "Edit Profile"
-    new:
-      adopter_foster_profile: "Adopter Foster Profile"
-      help_us_learn_more: "The following questions help us learn more about you so we can match you with the right pooch."
-    show:
-      adopter_foster_profile: "Adopter Foster Profile"
-      edit_profile: "Edit Profile"
-      your_ideal_pet: "Your ideal pet"
-      your_lifestyle: "Your lifestyle"
-      activities: "Activities you will do with your pet"
-      hours_alone_on_weekends: "Hours pet will be alone on weekends"
-      hours_alone_on_weekdays: "Hours pet will be alone on weekdays"
-      pet_care: "Pet Care"
-      your_petcare_experience: "Your pet care experience"
-      petcare_plans_during_emergency_or_vacation: "Pet care plans during emergency or vacation"
-      will_petcare_be_shared: "Will pet care be shared with someone outside household?"
-      details_on_petcare: "Details on shared pet care"
-      household: "Household"
-      phone_number: "Phone Number"
-      contact_method: "Contact Method"
-      country: "Country"
-      province_slash_state: "Province/State"
-      city_slash_town: "City/Town"
-      lifestyle: "Lifestyle"
-      your_plan_to_care: "Your plan to care for the pet without a fenced garden"
-      pets_location_during_the_day: "Pet's location during the day"
-      pets_location_at_night: "Pet's location at night"
-      additional_details: "Additional Details"
-      have_you_checked: "Have you checked your local shelter for adoptable pets?"
-      have_you_had_to_surrender: "Have you ever had to surrender a pet?"
-      details_on_surrender: "Details on surrendering the pet"
-      your_annual_cost: "Your annual cost estimate for pet care"
-      will_you_pick_up_the_pet: "Will you or a friend be in La Ventana in person to pick up the pet?"
-      what_dates_will_you_be: "What dates will you be in La Ventana?"
-      how_did_you_hear: "How did you find out about Baja Pet Rescue?"
+    adopter_applications:
+      index:
+        adoption_applications: "Adoption Applications"
+        your_adoption_applications: "Your adoption applications will be listed here."
+        we_will_be_in_contact: "We will be in contact shortly."
+        keep_an_eye_on: "Keep an eye on your"
+        almost_adopted: "This pooch is almost adopted!"
+        found_a_home: "This pooch has found a home!"
+        withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
+        remove: "Remove"
+        withdraw: "Withdraw"
+    adopter_foster_profiles:
+      form:
+        please_fix_the_errors: "Please fix the errors highlighted below."
+        preferred_contact_method: "Preferred contact method"
+      edit:
+        edit_profile: "Edit Profile"
+      new:
+        adopter_foster_profile: "Adopter Foster Profile"
+        help_us_learn_more: "The following questions help us learn more about you so we can match you with the right pooch."
+      show:
+        adopter_foster_profile: "Adopter Foster Profile"
+        edit_profile: "Edit Profile"
+        your_ideal_pet: "Your ideal pet"
+        your_lifestyle: "Your lifestyle"
+        activities: "Activities you will do with your pet"
+        hours_alone_on_weekends: "Hours pet will be alone on weekends"
+        hours_alone_on_weekdays: "Hours pet will be alone on weekdays"
+        pet_care: "Pet Care"
+        your_petcare_experience: "Your pet care experience"
+        petcare_plans_during_emergency_or_vacation: "Pet care plans during emergency or vacation"
+        will_petcare_be_shared: "Will pet care be shared with someone outside household?"
+        details_on_petcare: "Details on shared pet care"
+        household: "Household"
+        phone_number: "Phone Number"
+        contact_method: "Contact Method"
+        country: "Country"
+        province_slash_state: "Province/State"
+        city_slash_town: "City/Town"
+        lifestyle: "Lifestyle"
+        your_plan_to_care: "Your plan to care for the pet without a fenced garden"
+        pets_location_during_the_day: "Pet's location during the day"
+        pets_location_at_night: "Pet's location at night"
+        additional_details: "Additional Details"
+        have_you_checked: "Have you checked your local shelter for adoptable pets?"
+        have_you_had_to_surrender: "Have you ever had to surrender a pet?"
+        details_on_surrender: "Details on surrendering the pet"
+        your_annual_cost: "Your annual cost estimate for pet care"
+        will_you_pick_up_the_pet: "Will you or a friend be in La Ventana in person to pick up the pet?"
+        what_dates_will_you_be: "What dates will you be in La Ventana?"
+        how_did_you_hear: "How did you find out about Baja Pet Rescue?"  
   staff_accounts:
     status:
       invitation_sent: "Invitation sent"

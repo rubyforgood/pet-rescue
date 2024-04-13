@@ -35,12 +35,14 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
       organization_profile: {
         email: "happy_paws_rescue@gmail.com",
         phone_number: "3038947563",
-        about_us: "Finding pets loving homes across the front range!",
         location_attributes: {
           country: "United States",
           province_state: "Colorado",
           city_town: "Golden"
         },
+        facebook_url: "https://example.com",
+        instagram_url: "https://example.com",
+        donation_url: "https://example.com",
         avatar: fixture_file_upload("/logo.png")
       }
     }
@@ -52,18 +54,20 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
 
     assert_equal "happy_paws_rescue@gmail.com", @org_profile.email
     assert_equal "+13038947563", @org_profile.phone_number
-    assert_equal "Finding pets loving homes across the front range!", @org_profile.about_us
     assert_equal "United States", @org_profile.location.country
     assert_equal "Colorado", @org_profile.location.province_state
     assert_equal "Golden", @org_profile.location.city_town
     assert_equal "logo.png", @org_profile.avatar.filename.sanitized
+    assert_equal "https://example.com", @org_profile.facebook_url
+    assert_equal "https://example.com", @org_profile.instagram_url
+    assert_equal "https://example.com", @org_profile.donation_url
   end
 
   test "organization profile updates with only some form fields to update" do
     patch organization_profile_path(@org_profile), params: {
       organization_profile: {
         phone_number: "3038947542",
-        about_us: "Finding pets loving homes across the Denver Metro area"
+        donation_url: "https://example.com"
       }
     }
     @org_profile.reload
@@ -73,7 +77,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_equal "+13038947542", @org_profile.phone_number
-    assert_equal "Finding pets loving homes across the Denver Metro area", @org_profile.about_us
+    assert_equal "https://example.com", @org_profile.donation_url
   end
 
   test "organization profile does not update with a non valid phone number" do
@@ -91,6 +95,17 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
     patch organization_profile_path(@org_profile), params: {
       organization_profile: {
         email: "happy_pets_bad_email.com"
+      }
+    }
+    @org_profile.reload
+    assert_response :unprocessable_entity
+    assert_select "div.alert.alert-danger.mt-1", text: "Please fix the errors highlighted below."
+  end
+
+  test "organization profile does not update with an invalid url" do
+    patch organization_profile_path(@org_profile), params: {
+      organization_profile: {
+        facebook_url: "not a url"
       }
     }
     @org_profile.reload

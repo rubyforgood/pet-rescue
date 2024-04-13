@@ -25,7 +25,7 @@ class Organizations::OrganizationProfilesControllerTest < ActionDispatch::Integr
 
     context "#update" do
       setup do
-        @params = {about_us: Faker::Lorem.paragraph(sentence_count: 5)}
+        @params = {facebook_url: "https://facebook.com"}
       end
 
       should "be authorized" do
