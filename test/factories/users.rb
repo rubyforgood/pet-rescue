@@ -49,11 +49,20 @@ FactoryBot.define do
           association :staff_account, :deactivated, user: instance
         end
       end
+
+      after(:build) do |user, _context|
+        user.add_role(:staff, user.organization)
+      end
     end
 
     factory :staff_admin do
       staff_account do
-        association :staff_account, :admin, user: instance
+        association :staff_account, user: instance
+      end
+
+      after(:build) do |user, _context|
+        user.add_role(:staff, user.organization)
+        user.add_role(:admin, user.organization)
       end
     end
   end
