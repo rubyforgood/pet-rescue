@@ -122,6 +122,25 @@ class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
         end
       end
 
+      context "when user is staff" do
+        setup do
+          @user = create(:staff)
+        end
+
+        should "return true" do
+          assert_equal @action.call, true
+        end
+      end
+
+      context "when user is admin" do
+        setup do
+          @user = create(:staff_admin)
+        end
+
+        should "return true" do
+          assert_equal @action.call, true
+        end
+      end
     end
   end
 end
