@@ -8,6 +8,7 @@ ADOPTER_PERMISSIONS = %i[
 ].freeze
 
 FOSTERER_PERMISSIONS = %i[
+  view_adopter_foster_dashboard
   create_adopter_foster_profiles
   manage_adopter_foster_profiles
 ].freeze
