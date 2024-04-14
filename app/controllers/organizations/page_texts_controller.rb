@@ -6,7 +6,7 @@ class Organizations::PageTextsController < Organizations::BaseController
 
   def update
     if @page_text.update(page_text_params)
-      Rails.logger.info "Submitted authenticity_token: #{params[:authenticity_token]}"
+      # Rails.logger.info "Submitted authenticity_token: #{params[:authenticity_token]}"
       redirect_to edit_page_text_path, notice: "Page text updated successfully!"
     else
       render :edit, status: :unprocessable_entity

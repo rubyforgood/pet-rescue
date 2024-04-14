@@ -7,17 +7,13 @@ class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
   context "relation_scope" do
     setup do
       @user = build_stubbed(:user)
-<<<<<<< HEAD:test/policies/organizations/adoptable_pet_policy_test.rb
-      @policy = Organizations::AdoptablePetPolicy.new(Pet, user: @user)
-=======
       @policy = AdoptablePetPolicy.new(Pet, user: @user)
->>>>>>> origin/Hero-Image-and-up-to-two-About-Us-images:test/policies/adoptable_pet_policy_test.rb
       @unadopted_pet = create(:pet)
       @adopted_pet = create(:pet, :adopted)
     end
 
     should "return published pets where missing match" do
-      expected = [@unadopted_pet].map(&:id)
+      expected = [@unadopted_pet].map(&:id)g
 
       scoped = @policy
         .apply_scope(Pet.all, type: :active_record_relation)

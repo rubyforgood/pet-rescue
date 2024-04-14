@@ -6,3 +6,4 @@ class PageTextTest < ActiveSupport::TestCase
     should validate_presence_of(:about).allow_nil
   end
 end
+# HERE ERIN
