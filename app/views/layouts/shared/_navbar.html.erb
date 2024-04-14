@@ -19,75 +19,38 @@
         <%= active_link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary mx-2' %>
         <%= active_link_to 'Log In', new_user_session_path, class: 'btn btn-primary' %>
       <% end %>
-
-      <div class="dropdown ms-2 list-unstyled position-relative" data-controller="dropdown">
-        <button class="btn p-0 border-0" id="nav-dropdown-button" data-action="dropdown#toggle" data-dropdown-target="button" aria-expanded="false">
-          <% if user_signed_in? %>
-           <%= render_avatar_partial %>
-          <% end %>
-        </button>
-
-        <%# Use "aria-dropdown-menu" here to avoid the theme's default hover-open behavior for accessibility concerns. %>
-        <div class="aria-dropdown-menu position-absolute end-0" data-dropdown-target="menu" hidden aria-hidden="true" aria-labelledby="nav-dropdown-button" style='z-index: 1000'>
-          <% if user_signed_in? %>
-            <ul class="list-unstyled">
-              <% if current_user.adopter_foster_account %>
-                <li>
-                  <%= link_to adopter_foster_dashboard_index_path, class: 'dropdown-item' do %>
-                    <i class="fe fe-user me-2"></i> Dashboard
-                  <% end %>
-                </li>
-              <% end %>
-              <% if current_user.staff_account && !current_user.staff_account.deactivated? %>
-                <li>
-                  <%= link_to dashboard_index_path, class: 'dropdown-item' do %>
-                    <i class="fe fe-star me-2"></i> Dashboard
-                  <% end %>
-                </li>
-              <% end %>
-              <li>
-                <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
-                  <i class="fe fe-settings me-2"></i> Account Settings
-                <% end %>
-              </li>
-              <div class="dropdown-divider"></div>
-              <li>
-                <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'dropdown-item' do %>
-                  <i class="fe fe-power me-2"></i> Log Out
-                <% end %>
-              </li>
-            </ul>
-            <% if current_user.staff_account && current_user.has_role?(:admin, current_user.staff_account.organization) %>
-              <div class="ms-4">*Admin*</div>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+      <% if user_signed_in? %>
+        <li class="nav-item d-block">
+          <%= button_to 'Log Out', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'ms-2 btn btn-primary' %>
+        </li>
+      <% end %>
     </div>
 
     <!-- Collapse -->
     <div class="justify-content-end collapse navbar-collapse" id="navbar-default3">
       <ul class="navbar-nav">
-
         <li class='nav-item'>
-          <%= active_link_to 'Adopt', new_user_registration_path, class: 'nav-link' %>
+          <%= active_link_to 'Pets', adoptable_pets_path, class: 'nav-link' %>
         </li>
         <li class='nav-item'>
-          <%= active_link_to 'Get Involved', '#', class: 'nav-link' %>
+          <%= active_link_to 'About', about_us_path, class: 'nav-link' %>
         </li>
         <li class='nav-item'>
-          <%= active_link_to 'About Us', about_us_path, class: 'nav-link' %>
-        </li>
-        <li class='nav-item'>
-          <%= active_link_to 'Partners', partners_path, class: 'nav-link' %>
+          <%= active_link_to 'Contact', new_contact_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
           <%= active_link_to 'Donate', donate_path, class: 'nav-link' %>
         </li>
         <% if user_signed_in? %>
-          <li class="nav-item d-block d-lg-none">
-            <%= button_to 'Log Out', destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'nav-link' %>
-          </li>
+          <% if allowed_to?(:index?, with: Organizations::AdopterFosterDashboardPolicy, context: {organization: Current.organization}) %>            <li class='nav-item'>
+              <%= active_link_to 'Dashboard', adopter_foster_dashboard_index_path, class: 'nav-link' %>
+            </li>
+          <% end %>
+          <% if allowed_to?(:index?, with: Organizations::DashboardPolicy, context: {organization: Current.organization}) %>
+            <li class='nav-item'>
+              <%= active_link_to 'Dashboard', dashboard_index_path, class: 'nav-link' %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
     </div>
