@@ -1,0 +1,38 @@
+<!--page heading-->
+<%= render "components/adopter_foster_dashboard/page" do |p| %>
+  <% p.header_title t("dashboard.index.header_title") %>
+  <% p.content do %>
+    <div class="row">
+      <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+        <%= render "components/data_card" do |c| %>
+          <% c.title "Example" %>
+          <% c.icon "users" %>
+          <% c.value '5' %>
+        <% end %>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+        <%= render "components/data_card" do |c| %>
+          <% c.title "Pets" %>
+          <% c.icon "heart" %>
+          <% c.value @organization.pets.count %>
+        <% end %>
+      </div>
+
+      <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+        <%= render "components/data_card" do |c| %>
+          <% c.title "Applications" %>
+          <% c.icon "file-text" %>
+          <% c.value "TBD" %>
+        <% end %>
+      </div>
+
+      <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+        <%= render "components/data_card" do |c| %>
+          <% c.title "Rescues" %>
+          <% c.icon "star" %>
+          <% c.value "TBD" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

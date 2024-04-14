@@ -1,4 +1,5 @@
 ADOPTER_PERMISSIONS = %i[
+  view_adopter_foster_dashboard
   create_adopter_applications
   view_adopter_applications
   withdraw_adopter_applications
@@ -9,6 +10,7 @@ ADOPTER_PERMISSIONS = %i[
 STAFF_PERMISSIONS = (
   ADOPTER_PERMISSIONS.excluding(
     %i[
+      view_adopter_foster_dashboard
       create_adopter_applications
       create_adopter_foster_profiles
       manage_adopter_foster_profiles
