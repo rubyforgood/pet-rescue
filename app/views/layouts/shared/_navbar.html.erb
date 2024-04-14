@@ -42,12 +42,11 @@
           <%= active_link_to 'Donate', donate_path, class: 'nav-link' %>
         </li>
         <% if user_signed_in? %>
-          <% if current_user.adopter_foster_account %>
-            <li class='nav-item'>
+          <% if allowed_to?(:index?, with: Organizations::AdopterFosterDashboardPolicy, context: {organization: Current.organization}) %>            <li class='nav-item'>
               <%= active_link_to 'Dashboard', adopter_foster_dashboard_index_path, class: 'nav-link' %>
             </li>
           <% end %>
-          <% if current_user.staff_account && !current_user.staff_account.deactivated? %>
+          <% if allowed_to?(:index?, with: Organizations::DashboardPolicy, context: {organization: Current.organization}) %>
             <li class='nav-item'>
               <%= active_link_to 'Dashboard', dashboard_index_path, class: 'nav-link' %>
             </li>
