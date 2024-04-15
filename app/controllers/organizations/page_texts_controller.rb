@@ -5,7 +5,9 @@ class Organizations::PageTextsController < Organizations::BaseController
   end
 
   def update
-    if @page_text.update(page_text_params)
+    if image_too_large?(page_text_params[:hero_image])
+      redirect_to edit_page_text_path, alert: "Image is too large."
+    elsif @page_text.update(page_text_params)
       redirect_to edit_page_text_path, notice: "Page text updated successfully!"
     else
       redirect_to edit_page_text_path
@@ -13,6 +15,10 @@ class Organizations::PageTextsController < Organizations::BaseController
   end
 
   private
+
+  def image_too_large?(uploaded_image)
+    uploaded_image.size > 2.megabytes
+  end
 
   def page_text_params
     params.require(:page_text).permit(:hero, :about, :hero_image, about_us_images: [])
