@@ -50,6 +50,26 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       end
     end
 
+    context "when user is fosterer without profile" do
+      setup do
+        @user = create(:fosterer)
+      end
+
+      should "return true" do
+        assert_equal @action.call, true
+      end
+    end
+
+    context "when user is fosterer with profile" do
+      setup do
+        @user = create(:fosterer, :with_profile)
+      end
+
+      should "return false" do
+        assert_equal @action.call, false
+      end
+    end
+
     context "when user is staff" do
       setup do
         @user = create(:staff)
@@ -105,6 +125,38 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       context "when user is adopter with profile" do
         setup do
           @user = create(:adopter, :with_profile)
+        end
+
+        context "when profile does not belong to user" do
+          should "return false" do
+            assert_equal @action.call, false
+          end
+        end
+
+        context "when profile belongs to user" do
+          setup do
+            @user = @profile.adopter_foster_account.user
+          end
+
+          should "return true" do
+            assert_equal @action.call, true
+          end
+        end
+      end
+
+      context "when user is fosterer without profile" do
+        setup do
+          @user = create(:fosterer)
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
+      context "when user is fosterer with profile" do
+        setup do
+          @user = create(:fosterer, :with_profile)
         end
 
         context "when profile does not belong to user" do

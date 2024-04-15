@@ -39,6 +39,16 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
         end
       end
 
+      context "when user is fosterer" do
+        setup do
+          @user = create(:fosterer)
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
       context "when user is activated staff" do
         setup do
           @user = create(:staff)
@@ -129,6 +139,16 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
       context "when user is adopter" do
         setup do
           @user = create(:adopter)
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
+      context "when user is fosterer" do
+        setup do
+          @user = create(:fosterer)
         end
 
         should "return false" do
