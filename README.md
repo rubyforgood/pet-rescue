@@ -1,5 +1,3 @@
-#this will be removed
-
 # Pet Rescue Adoption Application
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
@@ -232,10 +230,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://portfolio-1hab.onrender.com/"><img src="https://avatars.githubusercontent.com/u/61897123?v=4?s=100" width="100px;" alt="Mayank Bhatt"/><br /><sub><b>Mayank Bhatt</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=mayankbhatt07141" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jeevikasirwani"><img src="https://avatars.githubusercontent.com/u/83456541?v=4?s=100" width="100px;" alt="Jeevika Sirwani"/><br /><sub><b>Jeevika Sirwani</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jeevikasirwani" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jp524"><img src="https://avatars.githubusercontent.com/u/85654561?v=4?s=100" width="100px;" alt="Jade"/><br /><sub><b>Jade</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jp524" title="Code">💻</a></td>
-<<<<<<< HEAD
       <td align="center" valign="top" width="14.28%"><a href="https://mehranjavid.github.io/"><img src="https://avatars.githubusercontent.com/u/39021904?v=4?s=100" width="100px;" alt="Mehran Javid"/><br /><sub><b>Mehran Javid</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=mehranjavid" title="Code">💻</a></td>
-=======
->>>>>>> origin/Hero-Image-and-up-to-two-About-Us-images
     </tr>
   </tbody>
 </table>

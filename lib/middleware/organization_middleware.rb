@@ -18,7 +18,6 @@ class OrganizationMiddleware
     Current.organization = Organization.find_by(slug: organization_slug)
 
     if Current.organization.present?
-      Rails.logger.info "CSRF Token from headers: #{env["HTTP_X_CSRF_TOKEN"]}"
       #
       # This is the magic that allows the tenant to be set via the path
       #
