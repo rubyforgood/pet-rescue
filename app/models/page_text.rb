@@ -26,23 +26,11 @@ class PageText < ApplicationRecord
   validates :hero, presence: true, allow_nil: true
   validates :about, presence: true, allow_nil: true
 
-  validates :hero_image, content_type: ["image/png", "image/jpeg"],
-    limit: {max: 1},
-    size: {less_than: 2.megabytes}
+  validates :hero_image, content_type: ['image/png', 'image/jpeg'],
+                         limit: { max: 1 },
+                         size: { less_than: 2.megabytes }
 
-  validates :about_us_images, content_type: ["image/png", "image/jpeg"],
-    limit: {max: 2},
-    size: {less_than: 2.megabytes}
-  
-    validate :custom_validation_for_images
-
-    private
-
-    def custom_validation_for_images
-      # if hero_image.blob.byte_size > 2.megabytes
-      #   errors.add(:hero_image, 'must be less than 2 MB')
-      # end
-    end
-
-    # see if you can write your own private method here to create the error
+  validates :about_us_images, content_type: ['image/png', 'image/jpeg'],
+                              limit: { max: 2 },
+                              size: { less_than: 2.megabytes }
 end

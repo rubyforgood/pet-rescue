@@ -32,9 +32,9 @@
                   <%= link_to t('general.delete'),
                         purge_attachment_path(image.id),
                         data: {
-                          turbo_confirm: t('images.delete_confirmation'),
+                          turbo_confirm: 'Do you want to delete this image?',
                           turbo_method: "delete" },
-                        class: 'btn btn-outline-danger' %>
+                          class: 'btn btn-outline-danger' %>
                   <% end %>
               </td>
             </tr>
