@@ -143,3 +143,4 @@ class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
       end
     end
   end
+end
