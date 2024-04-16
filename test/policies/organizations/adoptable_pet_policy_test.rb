@@ -25,11 +25,7 @@ class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
 
   context "#show?" do
     setup do
-<<<<<<< HEAD:test/policies/organizations/adoptable_pet_policy_test.rb
-      @policy = -> { Organizations::AdoptablePetPolicy.new(@pet, user: @user) }
-=======
       @policy = -> { AdoptablePetPolicy.new(@pet, user: @user) }
->>>>>>> origin/Hero-Image-and-up-to-two-About-Us-images:test/policies/adoptable_pet_policy_test.rb
       @action = -> { @policy.call.apply(:show?) }
     end
 
