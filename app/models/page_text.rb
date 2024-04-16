@@ -26,11 +26,11 @@ class PageText < ApplicationRecord
   validates :hero, presence: true, allow_nil: true
   validates :about, presence: true, allow_nil: true
 
-  validates :hero_image, content_type: ['image/png', 'image/jpeg'],
-                         limit: { max: 1 },
-                         size: { less_than: 2.megabytes }
+  validates :hero_image, content_type: ["image/png", "image/jpeg"],
+    limit: {max: 1},
+    size: {less_than: 2.megabytes}
 
-  validates :about_us_images, content_type: ['image/png', 'image/jpeg'],
-                              limit: { max: 2 },
-                              size: { less_than: 2.megabytes }
+  validates :about_us_images, content_type: ["image/png", "image/jpeg"],
+    limit: {max: 2},
+    size: {less_than: 2.megabytes}
 end

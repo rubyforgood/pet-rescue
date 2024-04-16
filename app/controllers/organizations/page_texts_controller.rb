@@ -13,7 +13,7 @@ class Organizations::PageTextsController < Organizations::BaseController
   end
 
   private
-  
+
   def page_text_params
     params.require(:page_text).permit(:hero, :about, :hero_image, about_us_images: [])
   end
