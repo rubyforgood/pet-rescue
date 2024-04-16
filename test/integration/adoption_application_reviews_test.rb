@@ -21,11 +21,18 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   #   end
   # end
 
+<<<<<<< HEAD
   # context "active staff" do
   #   setup do
   #     @staff_account = create(:staff_account)
   #     sign_in @staff_account.user
   #   end
+=======
+  context "active staff" do
+    setup do
+      sign_in create(:staff)
+    end
+>>>>>>> main
 
   #   should "see all applications" do
   #     get adoption_application_reviews_path

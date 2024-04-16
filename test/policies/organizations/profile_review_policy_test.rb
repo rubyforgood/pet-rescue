@@ -38,6 +38,16 @@ class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
       end
     end
 
+    context "when user is fosterer" do
+      setup do
+        @user = create(:fosterer)
+      end
+
+      should "return false" do
+        assert_equal @action.call, false
+      end
+    end
+
     context "when user is activated staff" do
       setup do
         @user = create(:staff)
