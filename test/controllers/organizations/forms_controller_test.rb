@@ -101,7 +101,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
           with: Organizations::FormPolicy
         ) do
           patch form_url(@form),
-                params: @params
+            params: @params
         end
       end
     end
