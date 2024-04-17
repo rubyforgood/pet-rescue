@@ -4,7 +4,7 @@
 
   <body>
     <%= render "layouts/shared/flash_messages" %>
-    <div id="db-wrapper">
+    <div id="db-wrapper" data-controller="toggle" data-toggle-target="toToggle" data-toggle-change-class="toggled">
       <%= render "layouts/dashboard/sidebar" %>
 
       <!-- Page Content -->
@@ -12,7 +12,7 @@
         <div class="header">
           <!-- navbar -->
           <nav class="navbar-default navbar navbar-expand-lg">
-            <a id="nav-toggle" href="#">
+            <a id="nav-toggle" style="cursor: pointer;" data-action="click->toggle#toggle">
               <i class="fe fe-menu"></i>
             </a>
 

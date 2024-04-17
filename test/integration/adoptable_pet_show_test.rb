@@ -43,7 +43,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
   context "staff" do
     setup do
-      sign_in create(:staff_account).user
+      sign_in create(:staff)
     end
 
     should "see an available pet" do

@@ -23,8 +23,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   context "active staff" do
     setup do
-      @staff_account = create(:staff_account)
-      sign_in @staff_account.user
+      sign_in create(:staff)
     end
 
     should "see all applications" do

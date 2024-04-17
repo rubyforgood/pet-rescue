@@ -34,6 +34,16 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
     end
 
+    context "when user is fosterer" do
+      setup do
+        @user = create(:fosterer)
+      end
+
+      should "return false" do
+        assert_equal @action.call, false
+      end
+    end
+
     context "when user is staff" do
       setup do
         @user = create(:staff)
@@ -47,6 +57,16 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
     context "when user is staff admin" do
       setup do
         @user = create(:staff_admin)
+      end
+
+      context "when user's staff account is deactivated" do
+        setup do
+          @user.staff_account.deactivate
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
       end
 
       should "return true" do
@@ -73,6 +93,16 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
     context "when user is adopter" do
       setup do
         @user = create(:adopter)
+      end
+
+      should "return false" do
+        assert_equal @action.call, false
+      end
+    end
+
+    context "when user is fosterer" do
+      setup do
+        @user = create(:fosterer)
       end
 
       should "return false" do

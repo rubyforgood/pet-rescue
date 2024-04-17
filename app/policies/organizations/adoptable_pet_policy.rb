@@ -1,4 +1,4 @@
-class AdoptablePetPolicy < ApplicationPolicy
+class Organizations::AdoptablePetPolicy < ApplicationPolicy
   skip_pre_check :verify_authenticated!, only: %i[show?]
 
   relation_scope do |relation|
@@ -6,7 +6,7 @@ class AdoptablePetPolicy < ApplicationPolicy
   end
 
   def show?
-    allow! if permission?(:manage_pets)
+    allow! if allowed_to?(:manage?, record, namespace: Organizations)
 
     published? && !record.application_paused && !record.match
   end

@@ -5,13 +5,15 @@ Rails.application.routes.draw do
     invitations: "organizations/invitations"
   }
 
-  resources :adoptable_pets, only: [:index, :show]
-  resource :adopter_foster_profile, except: :destroy, as: "profile"
   resources :donations, only: [:create]
 
   scope module: :organizations do
     resource :organization_profile, only: %i[edit update]
     resource :page_text, only: [:edit, :update]
+
+    resource :adopter_foster_profile, except: :destroy, as: "profile"
+    resources :profile_reviews, only: [:show]
+    resources :adoptable_pets, only: [:index, :show]
 
     resources :home, only: [:index]
     resources :pets do
@@ -21,6 +23,9 @@ Rails.application.routes.draw do
     end
     resources :default_pet_tasks
     resources :dashboard, only: [:index]
+    resources :adopter_foster_dashboard, only: [:index]
+    resources :adopter_applications, path: "applications",
+      only: %i[index create update]
     resources :forms do
       resources :questions
     end
@@ -31,9 +36,9 @@ Rails.application.routes.draw do
       post "activate", to: "staff#activate"
       post "update_activation", to: "staff#update_activation"
     end
-  end
 
-  resources :profile_reviews, only: [:show]
+    resources :matches, only: %i[create destroy]
+  end
 
   resources :countries, only: [] do
     resources :states, only: [:index]
@@ -52,13 +57,7 @@ Rails.application.routes.draw do
   get "/terms_and_conditions", to: "static_pages#terms_and_conditions"
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
-  resources :adopter_applications, path: "applications",
-    only: %i[index create update]
-
-  resources :matches, only: %i[create destroy]
-
-  get "/contacts", to: "contacts#create"
-  get "/contacts/new", to: "contacts#new", as: "new_contact"
+  resources :contacts, only: [:new, :create]
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 
