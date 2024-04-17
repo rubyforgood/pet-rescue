@@ -23,7 +23,7 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Form < ApplicationRecord
-  belongs_to :organization
+  acts_as_tenant(:organization)
 
   has_many :form_profiles, dependent: :destroy
   has_many :questions, -> { ordered }, dependent: :destroy
