@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   setup do
@@ -15,7 +15,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   context 'non-staff' do
-    should 'not see any applications' do # HERE
+    should 'not see any applications' do
       get adoption_application_reviews_path
 
       assert_response :redirect
