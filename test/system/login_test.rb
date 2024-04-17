@@ -11,7 +11,6 @@ class LoginTest < ApplicationSystemTestCase
       filename: "cat.jpeg",
       content_type: "image/jpeg"
     )
-    link
   end
 
   context "when logging in as a staff member" do
