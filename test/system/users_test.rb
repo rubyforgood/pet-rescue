@@ -4,7 +4,7 @@ class UsersTest < ApplicationSystemTestCase
   setup do
     @user = create(:staff)
     @organization = @user.organization
-    @page_text = create(:page_text, organization: @organization)
+    @page_text = create(:page_text, organization: @organization, hero: "Where every paw finds a home")
     @page_text.about_us_images.attach(
       io: File.open(Rails.root.join("app", "assets", "images", "cat.jpeg")),
       filename: "cat.jpeg",
