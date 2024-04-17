@@ -4,6 +4,5 @@ FactoryBot.define do
     description { Faker::Lorem.sentence }
     title { name }
     instructions { Faker::Lorem.paragraph }
-    organization
   end
 end

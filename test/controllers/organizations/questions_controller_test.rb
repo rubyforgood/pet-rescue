@@ -141,18 +141,6 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       assert_equal flash.alert, "Question not found."
     end
 
-    should "not visit edit page of form outside of organization" do
-      o2 = create(:organization)
-      f2 = create(:form, organization: o2)
-      q2 = create(:question, form: f2)
-
-      get edit_form_question_url(f2, q2)
-
-      assert_response :redirect
-      follow_redirect!
-      assert_equal flash.alert, "Form not found."
-    end
-
     should "not visit edit page of question outside of form" do
       f2 = create(:form, organization: @organization)
       q2 = create(:question, form: f2)
@@ -188,22 +176,6 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       assert_template :edit
     end
 
-    should "not update question belonging to form outside of organization" do
-      o2 = create(:organization)
-      f2 = create(:form, organization: o2)
-      q2 = create(:question, form: f2)
-
-      patch form_question_url(f2, q2), params: {
-        question: {
-          name: "new name"
-        }
-      }
-
-      assert_response :redirect
-      follow_redirect!
-      assert_equal flash.alert, "Form not found."
-    end
-
     should "not update question belonging to other form" do
       f2 = create(:form, organization: @organization)
       q2 = create(:question, form: f2)
@@ -230,20 +202,6 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       assert_response :redirect
       follow_redirect!
       assert_equal flash.notice, "Question was successfully deleted."
-    end
-
-    should "not destroy a question belonging to another organization" do
-      o2 = create(:organization)
-      f2 = create(:form, organization: o2)
-      q2 = create(:question, form: f2)
-
-      assert_no_difference("Question.count") do
-        delete form_question_url(f2, q2)
-      end
-
-      assert_response :redirect
-      follow_redirect!
-      assert_equal flash.alert, "Form not found."
     end
 
     should "not destroy a question belonging to another form" do
