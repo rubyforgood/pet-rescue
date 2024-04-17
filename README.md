@@ -16,6 +16,24 @@ Let's get your machine setup to startup the application!
 ⚠️  We assume you already have ruby installed with your preferred version manager. This codebase supports [rbenv](
 https://github.com/rbenv/rbenv) and [asdf](https://github.com/asdf-vm/asdf-ruby).
 
+### PostgreSQL
+
+Installing PostgreSQL is required to run the application.
+
+#### Installing on MacOS
+
+Instructions: https://wiki.postgresql.org/wiki/Homebrew
+
+```sh
+brew install postgresql
+```
+
+#### Running as a service
+
+```sh
+brew services start postgresql
+```
+
 ## 🤝 Contributing Guidelines 
 
 Please feel free to contribute! Priority will be given to pull requests that address outstanding issues and have appropriate test coverage. Focus on issues tagged with the next milestone for higher priority.
@@ -55,7 +73,8 @@ Create a new `config/application.yml` file from the `config/application.example.
 cp config/application.example.yml config/application.yml
 ```
 
-Update your `config/application.yml` by replacing the places that say REPLACE_ME.
+Update your `config/application.yml` by replacing the places that say REPLACE_ME. If you installed and configured PostgreSQL as discussed above
+you can use your username and leave the password blank for development.
 
 Run the setup script to prepare DB and assets
 ```sh
