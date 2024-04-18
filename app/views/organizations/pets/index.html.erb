@@ -116,5 +116,8 @@
         </div>
       </div>
     </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+    </div>
   <% end %>
 <% end %>
