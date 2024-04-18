@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: codespaces-dev
+      POSTGRES_PASSWORD: very-s3kret
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432

@@ -34,6 +34,14 @@ brew install postgresql
 brew services start postgresql
 ```
 
+#### Installing with Docker Compose
+
+Alternatively, you can also use Docker Compose by running
+
+```sh
+docker compose up -d
+```
+
 ## 🤝 Contributing Guidelines 
 
 Please feel free to contribute! Priority will be given to pull requests that address outstanding issues and have appropriate test coverage. Focus on issues tagged with the next milestone for higher priority.
