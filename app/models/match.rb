@@ -3,6 +3,9 @@
 # Table name: matches
 #
 #  id                        :bigint           not null, primary key
+#  end_date                  :datetime
+#  match_type                :integer          not null
+#  start_date                :datetime
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  adopter_foster_account_id :bigint           not null
