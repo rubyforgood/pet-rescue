@@ -54,11 +54,6 @@ Rails.application.routes.draw do
   get "/terms_and_conditions", to: "static_pages#terms_and_conditions"
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
-  resources :adopter_applications, path: "applications",
-    only: %i[index create update]
-
-  resources :matches, only: %i[create destroy]
-
   resources :contacts, only: [:new, :create]
 
   delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
