@@ -33,6 +33,8 @@ class Match < ApplicationRecord
 
   after_create_commit :send_reminder
 
+  enum :match_type, [:adoption, :foster]
+
   def send_reminder
     MatchMailer.reminder(self).deliver_later
   end
