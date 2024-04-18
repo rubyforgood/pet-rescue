@@ -8,7 +8,6 @@
     <div class="row mt-3">
       <div class="col-lg-6">
         <%= form.fields_for :page_text do |page_text_form| %>
-          <!-- Hero Text -->
           <div class="form-group">
             <%= form.text_field :hero,
                                 label: "Hero",
@@ -16,18 +15,15 @@
                                 placeholder: "hero text",
                                 class: 'form-control' %>
           </div>
-          <!-- Hero Image Upload -->
           <div class="form-group">
             <%= form.file_field :hero_image,
                                 label: "Hero Image",
                                 class: 'form-control'%>
           </div>
-          <!-- About Us -->
           <div class="form-group mt-4">
             <%= form.text_area :about, label: "About Us", placeholder: "About Us text", class: 'form-control' %>
             <small class="form-text text-muted">You can upload up to 2 images. </small>
           </div>
-          <!-- About Us Image Upload -->
           <div class="form-group">
             <%= form.file_field :about_us_images,
                                 multiple: true,
@@ -50,7 +46,7 @@
     <div class="mt-5">
       <div class="mt-5">
         <div class="mt-5">
-      <% combined_images  = [@page_text.hero_image.attachment, @page_text.about_us_images].flatten.compact%>
-      <%= render partial: "components/image_attachment_table", locals: { images: combined_images } %>
-    </div>
+          <% combined_images  = [@page_text.hero_image.attachment, @page_text.about_us_images].flatten.compact%>
+          <%= render partial: "components/image_attachment_table", locals: { images: combined_images } %>
+        </div>
 <% end %>
