@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-30-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-31-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -234,6 +234,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dwilsonactual"><img src="https://avatars.githubusercontent.com/u/15931013?v=4?s=100" width="100px;" alt="David Wilson"/><br /><sub><b>David Wilson</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=dwilsonactual" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/gdomingu"><img src="https://avatars.githubusercontent.com/u/4443635?v=4?s=100" width="100px;" alt="Gabe D"/><br /><sub><b>Gabe D</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=gdomingu" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/greggroth"><img src="https://avatars.githubusercontent.com/u/903365?v=4?s=100" width="100px;" alt="Greggory Rothmeier"/><br /><sub><b>Greggory Rothmeier</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=greggroth" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
