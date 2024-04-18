@@ -277,6 +277,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "greggroth",
+      "name": "Greggory Rothmeier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/903365?v=4",
+      "profile": "https://github.com/greggroth",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
