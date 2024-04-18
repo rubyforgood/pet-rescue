@@ -101,7 +101,7 @@ class Organizations::MatchPolicyTest < ActiveSupport::TestCase
 
   context "#destroy?" do
     setup do
-      @match = create(:match)
+      @match = create(:match, match_type: :adoption)
       @policy = -> {
         Organizations::MatchPolicy.new(@match, user: @user)
       }
@@ -146,7 +146,7 @@ class Organizations::MatchPolicyTest < ActiveSupport::TestCase
       context "when match belongs to a different organization" do
         setup do
           ActsAsTenant.with_tenant(create(:organization)) do
-            @match = create(:match)
+            @match = create(:match, match_type: :adoption)
           end
         end
 
@@ -180,7 +180,7 @@ class Organizations::MatchPolicyTest < ActiveSupport::TestCase
       context "when match belongs to a different organization" do
         setup do
           ActsAsTenant.with_tenant(create(:organization)) do
-            @match = create(:match)
+            @match = create(:match, match_type: :adoption)
           end
         end
 
