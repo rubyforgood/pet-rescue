@@ -29,7 +29,7 @@
             <% if Current.tenant&.profile.facebook_url.present? || Current.tenant&.profile.instagram_url.present? %>
               <li class="d-flex gap-3">
                 <% if Current.tenant&.profile.facebook_url.present? %>
-                  <%= link_to Current.tenant&.profile.facebook_url, class: 'nav-link', target: '_blank' do %>
+                  <%= link_to Current.tenant&.profile.facebook_url, class: 'nav-link', target: '_blank', aria: {label: "Find us on facebook" } do %>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" 
                           fill="currentColor" class="bi bi-facebook" 
                           viewBox="0 0 16 16">
@@ -42,7 +42,7 @@
                   <% end %>
                 <% end %>
                 <% if Current.tenant&.profile.instagram_url.present? %>
-                  <%= link_to Current.tenant&.profile.instagram_url, class: 'nav-link', target: '_blank' do %>
+                  <%= link_to Current.tenant&.profile.instagram_url, class: 'nav-link', target: '_blank', aria: {label: "Find us on instagram"} do %>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" 
                           fill="currentColor" class="bi bi-instagram" 
                           viewBox="0 0 16 16">
