@@ -258,7 +258,8 @@ ActsAsTenant.with_tenant(@organization) do
 
   @match = Match.create!(
     pet_id: Pet.first.id,
-    adopter_foster_account_id: @adopter_foster_account_one.id
+    adopter_foster_account_id: @adopter_foster_account_one.id,
+    match_type: :adoption
   )
 
   10.times do
