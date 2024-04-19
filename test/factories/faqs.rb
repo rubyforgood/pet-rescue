@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :faq do
-    question { "MyString" }
-    answer { "MyText" }
-    order { 1 }
-    organization { nil }
+    question { Faker::Lorem.question }
+    answer { Faker::Lorem.sentence }
+    order { nil }
+    organization { ActsAsTenant.current_tenant }
   end
 end
