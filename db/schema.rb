@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_18_120309) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_19_164004) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -118,6 +118,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_120309) do
     t.integer "due_in_days"
     t.boolean "recurring", default: false
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
+  end
+
+  create_table "faqs", force: :cascade do |t|
+    t.string "question", null: false
+    t.text "answer", null: false
+    t.integer "order"
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_faqs_on_organization_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -272,6 +282,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_18_120309) do
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "default_pet_tasks", "organizations"
+  add_foreign_key "faqs", "organizations"
   add_foreign_key "matches", "adopter_foster_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
