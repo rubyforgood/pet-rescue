@@ -31,7 +31,7 @@ class Organizations::MatchesController < Organizations::BaseController
   private
 
   def match_params
-    params.require(:match).permit(:pet_id, :adopter_foster_account_id)
+    params.require(:match).permit(:pet_id, :adopter_foster_account_id, :match_type, :start_date, :end_date)
   end
 
   def set_pet
