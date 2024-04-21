@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   scope module: :organizations do
     resource :organization_profile, only: %i[edit update]
     resource :page_text, only: [:edit, :update]
+    resources :faqs
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
     resources :profile_reviews, only: [:show]
@@ -47,7 +48,7 @@ Rails.application.routes.draw do
 
   root "root#index"
   get "/about_us", to: "static_pages#about_us"
-  get "/faq", to: "static_pages#faq"
+  get "/faq_static", to: "static_pages#faq"
   get "/partners", to: "static_pages#partners"
   get "/donate", to: "static_pages#donate"
   get "/privacy_policy", to: "static_pages#privacy_policy"
