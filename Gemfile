@@ -85,6 +85,9 @@ gem "rails-i18n"
 gem "active_link_to"
 gem "nice_partials"
 
+# needed for pagination
+gem "pagy"
+
 group :development, :test, :staging do
   gem "faker"
 end
