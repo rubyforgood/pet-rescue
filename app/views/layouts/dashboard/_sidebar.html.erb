@@ -47,6 +47,11 @@
           <i class="nav-icon fe fe-file-text me-2"></i> Default Pet Tasks
         <% end %>
       </li>
+      <li class="nav-item">
+        <%= active_link_to faqs_path, class: "nav-link" do %>
+          <i class="nav-icon fe fe-file-text me-2"></i>  FAQ's
+        <% end %>
+      </li>
       <% if current_user.staff_account && current_user.has_role?(:admin, current_user.staff_account.organization) %>
         <li class="nav-item">
           <%= active_link_to edit_organization_profile_path, class: "nav-link" do %>
