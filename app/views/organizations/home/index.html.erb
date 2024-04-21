@@ -39,7 +39,7 @@
       <% @pets.each do |pet| %>
         <%= link_to adoptable_pet_path(pet) do %>
           <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-            <%= image_tag(pet.images.first, alt: pet.name,   class: "card-img-top rounded-top-1", height: "181px") %>
+            <%= image_tag(pet.images.first, alt: pet.name, class: "card-img-top rounded-top-1", height: "181px") %>
             <div class="card-body">
               <p class="card-text text-black ">
                 <%= "Adopt #{pet.name} " %>
