@@ -1,4 +1,5 @@
 class Organizations::FaqsController < Organizations::BaseController
+  before_action :context_authorize!, only: %i[index new create]
   before_action :set_faq, only: %i[show edit update destroy]
 
   # GET /organizations/faqs or /organizations/faqs.json
@@ -62,5 +63,10 @@ class Organizations::FaqsController < Organizations::BaseController
   # Only allow a list of trusted parameters through.
   def faq_params
     params.require(:faq).permit(:question, :answer, :order)
+  end
+
+  def context_authorize!
+    authorize! Faq,
+      context: {organization: Current.organization}
   end
 end
