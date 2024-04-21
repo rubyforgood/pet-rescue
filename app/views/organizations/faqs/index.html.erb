@@ -1,14 +1,41 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Faqs</h1>
-
-<div id="faqs">
-  <% @faqs.each do |faq| %>
-    <%= render faq %>
-    <p>
-      <%= link_to "Show this faq", faq %>
-    </p>
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title t(".faqs") %>
+  <% p.actions do %>
+    <%= link_to t('.create_faq'), new_faq_path, class: "btn btn-primary" %><br>
   <% end %>
-</div>
-
-<%= link_to "New faq", new_faq_path %>
+  <% p.content do %>
+    <!-- row -->
+    <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
+      <!-- card -->
+      <div class="card">
+        <!-- table -->
+        <div class="table-responsive overflow-y-hidden">
+          <table class="table mb-0 text-nowrap table-hover table-centered">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Due After</th>
+                <th scope="col">Recurring</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @faqs.each do |faq| %>
+                <tr>
+                  <td>
+                    <%= faq.question %>
+                  </td>
+                  <td>
+                    <%= faq.answer %>
+                  </td>
+                  <td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

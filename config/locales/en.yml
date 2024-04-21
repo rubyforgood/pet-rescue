@@ -309,6 +309,15 @@ en:
         new_default_pet_task: "New Default Pet Task"
       edit:
         edit_default_pet_task: "Edit Default Pet Task"
+    faqs:
+      index:
+        faqs: "Frequently Asked Questions"
+        create_faq: "Create new FAQ"
+        are_you_sure_delete: "Are you sure you want to delete this FAQ?"
+      new:
+        new_faq: "New FAQ"
+      edit:
+        edit_faq: "Edit FAQ"
     pets:
       show:
         pause_applications: "Pause Applications?"
