@@ -1,5 +1,5 @@
 class Organizations::FaqsController < Organizations::BaseController
-  before_action :context_authorize!, only: %i[index new create]
+  before_action :context_authorize!
   before_action :set_faq, only: %i[show edit update destroy]
 
   # GET /organizations/faqs or /organizations/faqs.json
