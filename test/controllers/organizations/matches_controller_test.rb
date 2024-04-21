@@ -19,7 +19,8 @@ class Organizations::MatchesControllerTest < ActionDispatch::IntegrationTest
         @params = {
           match: {
             pet_id: pet.id,
-            adopter_foster_account_id: adopter_foster_account.id
+            adopter_foster_account_id: adopter_foster_account.id,
+            match_type: :adoption
           }
         }
       end
@@ -37,7 +38,7 @@ class Organizations::MatchesControllerTest < ActionDispatch::IntegrationTest
 
     context "#destroy" do
       setup do
-        @match = create(:match)
+        @match = create(:match, match_type: :adoption)
       end
 
       should "be authorized" do

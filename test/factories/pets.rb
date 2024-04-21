@@ -18,7 +18,7 @@ FactoryBot.define do
     end
 
     trait :adopted do
-      match { association :match, pet: instance }
+      match { association :match, pet: instance, match_type: :adoption }
       adopter_applications { build_list(:adopter_application, 1, :successful_applicant, pet: instance) }
     end
 

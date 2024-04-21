@@ -286,6 +286,16 @@
       "contributions": [
         "code"
       ]
+     },
+     {
+      "login": "tpope",
+      "name": "Tim Pope",
+      "avatar_url": "https://avatars.githubusercontent.com/u/378?v=4",
+      "profile": "https://tpo.pe/",
+
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

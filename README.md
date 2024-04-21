@@ -235,6 +235,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dwilsonactual"><img src="https://avatars.githubusercontent.com/u/15931013?v=4?s=100" width="100px;" alt="David Wilson"/><br /><sub><b>David Wilson</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=dwilsonactual" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/gdomingu"><img src="https://avatars.githubusercontent.com/u/4443635?v=4?s=100" width="100px;" alt="Gabe D"/><br /><sub><b>Gabe D</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=gdomingu" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/greggroth"><img src="https://avatars.githubusercontent.com/u/903365?v=4?s=100" width="100px;" alt="Greggory Rothmeier"/><br /><sub><b>Greggory Rothmeier</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=greggroth" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://tpo.pe/"><img src="https://avatars.githubusercontent.com/u/378?v=4?s=100" width="100px;" alt="Tim Pope"/><br /><sub><b>Tim Pope</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=tpope" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
