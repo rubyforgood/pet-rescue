@@ -1,4 +1,5 @@
 class Organizations::FaqsController < Organizations::BaseController
+  layout "dashboard"
   before_action :context_authorize!
   before_action :set_faq, only: %i[show edit update destroy]
 
