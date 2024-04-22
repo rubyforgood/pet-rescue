@@ -22,7 +22,7 @@ class Organizations::FaqsController < Organizations::BaseController
 
     respond_to do |format|
       if @faq.save
-        format.html { redirect_to faqs_url, notice: "Faq was successfully created." }
+        format.html { redirect_to faqs_url, notice: "FAQ was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -32,7 +32,7 @@ class Organizations::FaqsController < Organizations::BaseController
   def update
     respond_to do |format|
       if @faq.update(faq_params)
-        format.html { redirect_to faqs_url, notice: "Faq was successfully updated." }
+        format.html { redirect_to faqs_url, notice: "FAQ was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -43,7 +43,7 @@ class Organizations::FaqsController < Organizations::BaseController
     @faq.destroy!
 
     respond_to do |format|
-      format.html { redirect_to faqs_url, notice: "Faq was successfully destroyed." }
+      format.html { redirect_to faqs_url, notice: "FAQ was successfully deleted." }
     end
   end
 
@@ -51,6 +51,10 @@ class Organizations::FaqsController < Organizations::BaseController
 
   def set_faq
     @faq = Faq.find(params[:id])
+
+    authorize! @faq
+  rescue ActiveRecord::RecordNotFound
+    redirect_to faqs_path, alert: "FAQ not found."
   end
 
   def faq_params

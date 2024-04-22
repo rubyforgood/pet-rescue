@@ -2,7 +2,11 @@ require "test_helper"
 
 class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @faq = faqs(:one)
+    @organization = ActsAsTenant.current_tenant
+    @faq = create(:faq)
+
+    user = create(:staff)
+    sign_in user
   end
 
   test "should get index" do
@@ -15,34 +19,109 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create faq" do
-    assert_difference("Organizations::Faq.count") do
-      post faqs_url, params: {faq: {create: @faq.create, edit: @faq.edit, index: @faq.index, new: @faq.new}}
-    end
-
-    assert_redirected_to faq_url(Organizations::Faq.last)
-  end
-
   test "should show faq" do
     get faq_url(@faq)
     assert_response :success
   end
 
-  test "should get edit" do
-    get edit_faq_url(@faq)
-    assert_response :success
-  end
+  context "POST #create" do
+    should "create new faq" do
+      assert_difference("@organization.faqs.count", 1) do
+        post faqs_path, params: {
+          faq: {
+            question: "New question?",
+            answer: "New answer"
+          }
+        }
+      end
 
-  test "should update faq" do
-    patch faq_url(@faq), params: {faq: {create: @faq.create, edit: @faq.edit, index: @faq.index, new: @faq.new}}
-    assert_redirected_to faq_url(@faq)
-  end
-
-  test "should destroy faq" do
-    assert_difference("Organizations::Faq.count", -1) do
-      delete faq_url(@faq)
+      assert_response :redirect
+      follow_redirect!
+      assert_equal flash.notice, "FAQ was successfully created."
     end
 
-    assert_redirected_to faqs_url
+    should "not create new default pet task with invalid or missing param" do
+      assert_difference("@organization.faqs.count", 0) do
+        post faqs_path, params: {
+          faq: {
+            question: "",
+            answer: "Answer without question"
+          }
+        }
+        post faqs_path, params: {
+          faq: {
+            question: "Question without answer",
+            answer: ""
+          }
+        }
+      end
+
+      assert_template :new
+    end
+  end
+
+  context "GET #edit" do
+    should "visit edit page" do
+      get edit_faq_path(@faq)
+
+      assert_response :success
+      assert_select "h1", text: "Edit FAQ"
+    end
+
+    should "not visit edit page of inexistent task" do
+      get edit_faq_path(id: Faq.order(:id).last.id + 1)
+
+      assert_response :redirect
+      follow_redirect!
+      assert_equal flash.alert, "FAQ not found."
+    end
+  end
+
+  context "PATCH #update" do
+    should "update FAQ" do
+      assert_changes "@faq.question" do
+        patch faq_path(@faq), params: {
+          faq: {
+            question: @faq.question + " new name"
+          }
+        }
+
+        @faq.reload
+      end
+
+      assert_response :redirect
+      follow_redirect!
+      assert_equal flash.notice, "FAQ was successfully updated."
+    end
+
+    should "not update default pet task with invalid or missing param" do
+      patch faq_path(@faq), params: {
+        faq: {
+          question: ""
+        }
+      }
+
+      assert_template :edit
+    end
+  end
+
+  context "DELETE #destroy" do
+    should "destroy a FAQ" do
+      assert_difference("@organization.faqs.count", -1) do
+        delete faq_path(@faq)
+      end
+
+      assert_response :redirect
+      follow_redirect!
+      assert_equal flash.notice, "FAQ was successfully deleted."
+    end
+
+    should "redirect with error for inexistent FAQ" do
+      delete faq_path(id: Faq.order(:id).last.id + 1)
+
+      assert_response :redirect
+      follow_redirect!
+      assert_equal flash.alert, "FAQ not found."
+    end
   end
 end
