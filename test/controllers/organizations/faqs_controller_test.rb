@@ -1,4 +1,5 @@
 require "test_helper"
+require "action_policy/test_helper"
 
 class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -7,6 +8,107 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
 
     user = create(:staff)
     sign_in user
+  end
+
+  context "authorization" do
+    include ActionPolicy::TestHelper
+
+    context "new" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, Faq,
+          context: {organization: @organization},
+          with: Organizations::FaqPolicy
+        ) do
+          get new_faq_url
+        end
+      end
+    end
+
+    context "create" do
+      setup do
+        @params = {
+          faq: attributes_for(:faq)
+        }
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, Faq,
+          context: {organization: @organization},
+          with: Organizations::FaqPolicy
+        ) do
+          post faqs_url, params: @params
+        end
+      end
+    end
+
+    context "index" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, Faq,
+          context: {organization: @organization},
+          with: Organizations::FaqPolicy
+        ) do
+          get faqs_url
+        end
+      end
+
+      should "have authorized scope" do
+        assert_have_authorized_scope(
+          type: :active_record_relation,
+          with: Organizations::FaqPolicy
+        ) do
+          get faqs_url
+        end
+      end
+    end
+
+    context "#edit" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @faq,
+          with: Organizations::FaqPolicy
+        ) do
+          get edit_faq_url(@faq)
+        end
+      end
+    end
+
+    context "#update" do
+      setup do
+        @params = {
+          faq: {
+            question: "new question"
+          }
+        }
+      end
+
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @faq,
+          with: Organizations::FaqPolicy
+        ) do
+          patch faq_url(@faq),
+            params: @params
+        end
+      end
+    end
+
+    context "#destroy" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @faq,
+          with: Organizations::FaqPolicy
+        ) do
+          delete faq_url(@faq)
+        end
+      end
+    end
+  end
+
+  teardown do
+    :after_teardown
   end
 
   test "should get index" do
