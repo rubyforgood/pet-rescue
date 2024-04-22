@@ -228,7 +228,7 @@ ActsAsTenant.with_tenant(@organization) do
   end
 
   path = Rails.root.join("app", "assets", "images", "hero.jpg")
-  10.times do
+  25.times do
     from_weight = [5, 10, 20, 30, 40, 50, 60].sample
     pet = Pet.create!(
       name: Faker::Creature::Dog.name,
@@ -258,7 +258,8 @@ ActsAsTenant.with_tenant(@organization) do
 
   @match = Match.create!(
     pet_id: Pet.first.id,
-    adopter_foster_account_id: @adopter_foster_account_one.id
+    adopter_foster_account_id: @adopter_foster_account_one.id,
+    match_type: :adoption
   )
 
   10.times do
