@@ -14,23 +14,28 @@
           <table class="table mb-0 text-nowrap table-hover table-centered">
             <thead>
               <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Due After</th>
-                <th scope="col">Recurring</th>
+                <th scope="col">Question</th>
+                <th scope="col">Answer</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <% @faqs.each do |faq| %>
                 <tr>
-                  <td>
+                  <td class="text-wrap">
                     <%= faq.question %>
                   </td>
-                  <td>
+                  <td class="text-wrap">
                     <%= faq.answer %>
                   </td>
-                  <td>
+                    <td>
+                      <div class="text-right">
+                        <div class="d-flex align-items-center justify-content-end">
+                          <%= link_to 'Edit', edit_faq_path(faq), class: 'btn btn-warning m-2' %>
+                          <%= link_to 'Delete', faq_path(faq), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
+                        </div>
+                      </div>
+                    </td>
                 </tr>
               <% end %>
             </tbody>
