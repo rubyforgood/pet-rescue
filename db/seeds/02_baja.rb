@@ -282,5 +282,12 @@ ActsAsTenant.with_tenant(@organization) do
     end
   end
 
+  10.times do
+    Faq.create!(
+      question: Faker::Lorem.question(word_count: 4, random_words_to_add: 10),
+      answer: Faker::Lorem.sentence(word_count: 1, random_words_to_add: 20)
+    )
+  end
+
   PageText.create!(hero: nil, about: nil)
 end
