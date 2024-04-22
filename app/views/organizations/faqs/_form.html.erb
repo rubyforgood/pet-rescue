@@ -1,27 +1,15 @@
-<%= form_with(model: faq) do |form| %>
-  <% if faq.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(faq.errors.count, "error") %> prohibited this faq from being saved:</h2>
-
-      <ul>
-        <% faq.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :question, style: "display: block" %>
-    <%= form.text_field :question %>
+<div class="row">
+  <div class="col-md-8 mx-auto card p-5 bigger">
+    <%= bootstrap_form_with model: faq do |f| %>
+      <div class="form-group">
+        <%= f.text_field :question, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :answer, class: 'form-control', rows: 3 %>
+      </div>
+      <%= f.submit t('general.save'), class: 'btn btn-primary' %>
+      <%= link_to t('general.cancel'), faqs_path, class: 'btn btn-secondary' %>
+    <% end %>
   </div>
+</div>
 
-  <div>
-    <%= form.label :answer, style: "display: block" %>
-    <%= form.text_area :answer %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>

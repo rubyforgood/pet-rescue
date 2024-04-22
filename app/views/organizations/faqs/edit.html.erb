@@ -1,10 +1,15 @@
-<h1>Editing faq</h1>
+<section class="pt-3 pb-5" id="about_us">
+  <div class="container mb-md-5 mt-md-5">
 
-<%= render "form", faq: @faq %>
+    <!--page heading-->
+    <div class="text-center">
+      <h1 class="h4 mb-5">
+        <%= t('.edit_faq') %>
+      </h1>
+    </div>
 
-<br>
+    <!--main section-->
+    <%= render 'form', faq: @faq %>
 
-<div>
-  <%= link_to "Show this faq", @faq %> |
-  <%= link_to "Back to faqs", faqs_path %>
-</div>
+  </div> <!--container-->
+</section>
