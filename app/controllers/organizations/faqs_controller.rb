@@ -12,6 +12,10 @@ class Organizations::FaqsController < Organizations::BaseController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def create
@@ -25,10 +29,13 @@ class Organizations::FaqsController < Organizations::BaseController
   end
 
   def update
-    if @faq.update(faq_params)
-      redirect_to faqs_url, notice: "FAQ was successfully updated."
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @faq.update(faq_params)
+        format.html { redirect_to faqs_url, notice: "FAQ was successfully updated." }
+        format.turbo_stream
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 

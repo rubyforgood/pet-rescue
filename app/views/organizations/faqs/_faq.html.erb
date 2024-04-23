@@ -1,16 +1,15 @@
-<tr>
-  <td class="text-wrap">
-    <%= faq.question %>
-  </td>
-  <td class="text-wrap">
-    <%= faq.answer %>
-  </td>
-  <td>
-    <div class="text-right">
-      <div class="d-flex align-items-center justify-content-end">
-        <%= link_to 'Edit', edit_faq_path(faq), class: 'btn btn-warning m-2' %>
-        <%= link_to 'Delete', faq_path(faq), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
-      </div>
+<div class="card-body d-flex justify-content-between">
+  <div class="d-flex align-items-center">
+    <div>
+      <strong class="d-block fs-4" ><%= faq.question %></strong>
+      <p class="fs-4"> <%= faq.answer %> </p>
     </div>
-  </td>
-</tr>
+  </div>
+  <!-- Right side: Completion status and action buttons -->
+  <div class="text-right">
+    <div class="d-flex align-items-center justify-content-end">
+      <%= link_to 'Edit', edit_faq_path(faq), class: 'btn btn-warning m-2', data: {turbo_stream: true} %>
+      <%= link_to 'Delete', faq_path(faq), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
+    </div>
+  </div>
+</div>

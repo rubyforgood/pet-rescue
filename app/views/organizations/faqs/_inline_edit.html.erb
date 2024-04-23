@@ -1,0 +1,21 @@
+<tr id="<%= dom_id faq %>">
+  <td class="text-wrap">
+    <%= bootstrap_form_with model: faq do |f| %>
+      <%= f.text_field :question, hide_label: true %>
+      <%= f.submit t('general.save'), class: 'btn btn-link' %>
+    <% end %>
+  </td>
+  <td class="text-wrap">
+    <%= bootstrap_form_with model: faq do |f| %>
+      <%= f.text_area :answer, hide_label: true, rows: 3 %>
+      <%= f.submit t('general.save'), class: 'btn btn-link' %>
+    <% end %>
+  </td>
+  <td>
+    <div class="text-right">
+      <div class="d-flex align-items-center justify-content-center">
+        <%= link_to t('general.cancel'), faqs_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </td>
+</tr>
