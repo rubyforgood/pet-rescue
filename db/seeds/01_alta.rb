@@ -228,7 +228,7 @@ ActsAsTenant.with_tenant(@organization) do
   end
 
   path = Rails.root.join("app", "assets", "images", "hero.jpg")
-  10.times do
+  50.times do
     from_weight = [5, 10, 20, 30, 40, 50, 60].sample
     pet = Pet.create!(
       name: Faker::Creature::Dog.name,
