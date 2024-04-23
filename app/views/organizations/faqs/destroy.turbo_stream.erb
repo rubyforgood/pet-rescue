@@ -1,2 +1,2 @@
-<%= turbo_stream.replace @faq, partial: "faq", locals: { faq: @faq} %>
+<%= turbo_stream.remove @faq%>
 <%= turbo_stream.replace "flash", partial: "layouts/shared/flash_messages" %>

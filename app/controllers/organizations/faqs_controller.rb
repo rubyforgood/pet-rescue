@@ -39,9 +39,10 @@ class Organizations::FaqsController < Organizations::BaseController
     respond_to do |format|
       if @faq.update(faq_params)
         format.html { redirect_to faqs_url, notice: "FAQ was successfully updated." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "FAQ was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
+        format.tubo_stream { flash.now[:alert] = "Error updating FAQ" }
       end
     end
   end
@@ -50,7 +51,7 @@ class Organizations::FaqsController < Organizations::BaseController
     @faq.destroy!
     respond_to do |format|
       format.html { redirect_to faqs_url, notice: "FAQ was successfully deleted." }
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@faq) }
+      format.turbo_stream { flash.now[:notice] = "FAQ was successfully deleted." }
     end
   end
 
