@@ -1,21 +1,12 @@
-<tr id="<%= dom_id faq %>">
-  <td class="text-wrap">
-    <%= bootstrap_form_with model: faq do |f| %>
-      <%= f.text_field :question, hide_label: true %>
-      <%= f.submit t('general.save'), class: 'btn btn-link' %>
-    <% end %>
-  </td>
-  <td class="text-wrap">
-    <%= bootstrap_form_with model: faq do |f| %>
-      <%= f.text_area :answer, hide_label: true, rows: 3 %>
-      <%= f.submit t('general.save'), class: 'btn btn-link' %>
-    <% end %>
-  </td>
-  <td>
-    <div class="text-right">
-      <div class="d-flex align-items-center justify-content-center">
-        <%= link_to t('general.cancel'), faqs_path, class: 'btn btn-secondary' %>
-      </div>
+<div id="<%= dom_id faq %>"class="card-body border-bottom">
+  <%= bootstrap_form_with model: faq, class: "p-1" do |f| %>
+    <div class="form-group">
+      <%= f.text_field :question %>
     </div>
-  </td>
-</tr>
+    <div>
+      <%= f.text_area :answer, rows: 3 %>
+    </div>
+    <%= f.submit t('general.save'), class: 'btn btn-primary m-2' %>
+    <%= link_to t('general.cancel'), faq_path(faq), data: {turbo_stream: :true},  class: 'btn btn-secondary m-2' %>
+  <% end %>
+</div>

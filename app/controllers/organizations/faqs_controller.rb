@@ -1,7 +1,7 @@
 class Organizations::FaqsController < Organizations::BaseController
   layout "dashboard"
   before_action :context_authorize!, only: %i[index new create]
-  before_action :set_faq, only: %i[edit update destroy]
+  before_action :set_faq, only: %i[show edit update destroy]
 
   def index
     @faqs = authorized_scope(Faq.all)
@@ -9,6 +9,13 @@ class Organizations::FaqsController < Organizations::BaseController
 
   def new
     @faq = Faq.new
+  end
+
+  def show
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def edit
