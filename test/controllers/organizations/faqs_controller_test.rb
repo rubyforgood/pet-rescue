@@ -64,6 +64,16 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
+    context "#show" do
+      should "be authorized" do
+        assert_authorized_to(
+          :manage?, @faq, with: Organizations::FaqPolicy
+        ) do
+          get faq_url(@faq)
+        end
+      end
+    end
+
     context "#edit" do
       should "be authorized" do
         assert_authorized_to(
@@ -111,14 +121,27 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     :after_teardown
   end
 
-  test "should get index" do
+  should "get index" do
     get faqs_url
     assert_response :success
   end
 
-  test "should get new" do
+  should "get new" do
     get new_faq_url
     assert_response :success
+  end
+
+  context "#show" do
+    should "get show" do
+      get faq_url(@faq)
+      assert_response :success
+    end
+    should "show faq with turbo" do
+      get faq_url(@faq), as: :turbo_stream
+
+      assert_response :success
+      assert_turbo_stream action: "replace", target: @faq
+    end
   end
 
   context "POST #create" do
@@ -172,6 +195,13 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
       follow_redirect!
       assert_equal flash.alert, "FAQ not found."
     end
+
+    should "edit faq with turbo" do
+      get edit_faq_url(@faq), as: :turbo_stream
+
+      assert_response :success
+      assert_turbo_stream action: "replace", target: @faq
+    end
   end
 
   context "PATCH #update" do
@@ -179,7 +209,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
       assert_changes "@faq.question" do
         patch faq_path(@faq), params: {
           faq: {
-            question: @faq.question + " new name"
+            question: @faq.question + " new question"
           }
         }
 
@@ -200,6 +230,17 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
 
       assert_template :edit
     end
+
+    should "update faq with turbo" do
+      patch faq_url(@faq), params: {
+        faq: {
+          question: @faq.question + " new question"
+        }
+      }, as: :turbo_stream
+
+      assert_response :success
+      assert_turbo_stream action: "replace", target: @faq
+    end
   end
 
   context "DELETE #destroy" do
@@ -219,6 +260,13 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
       assert_response :redirect
       follow_redirect!
       assert_equal flash.alert, "FAQ not found."
+    end
+
+    should "delete faq with turbo" do
+      delete faq_url(@faq), as: :turbo_stream
+
+      assert_response :success
+      assert_turbo_stream action: "remove", target: @faq
     end
   end
 end
