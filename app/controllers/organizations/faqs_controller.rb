@@ -48,8 +48,10 @@ class Organizations::FaqsController < Organizations::BaseController
 
   def destroy
     @faq.destroy!
-
-    redirect_to faqs_url, notice: "FAQ was successfully deleted."
+    respond_to do |format|
+      format.html { redirect_to faqs_url, notice: "FAQ was successfully deleted." }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@faq) }
+    end
   end
 
   private
