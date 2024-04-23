@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   scope module: :organizations do
     resource :organization_profile, only: %i[edit update]
     resource :page_text, only: [:edit, :update]
-    resources :faqs
+    resources :faqs, except: [:show]
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
     resources :profile_reviews, only: [:show]

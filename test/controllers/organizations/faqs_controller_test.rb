@@ -121,11 +121,6 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should show faq" do
-    get faq_url(@faq)
-    assert_response :success
-  end
-
   context "POST #create" do
     should "create new faq" do
       assert_difference("@organization.faqs.count", 1) do
