@@ -241,6 +241,16 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
       assert_turbo_stream action: "replace", target: @faq
     end
+
+    should "render inline edit with turbo if error occurs " do
+      patch faq_path(@faq), params: {
+        faq: {
+          question: ""
+        }, as: :turbo_stream
+      }
+      assert_response :unprocessable_entity
+      assert_select "label", text: "Question"
+    end
   end
 
   context "DELETE #destroy" do

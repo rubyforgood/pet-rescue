@@ -1,2 +1,6 @@
-<%= turbo_stream.replace @faq, partial: "faq", locals: { faq: @faq} %>
+<% if alert == "Error updating FAQ"%>
+  <%= turbo_stream.replace @faq, partial: "inline_edit", locals: { faq: @faq } %>
+<% else %>
+  <%= turbo_stream.replace @faq, partial: "faq", locals: { faq: @faq } %>
+<% end %>
 <%= turbo_stream.replace "flash", partial: "layouts/shared/flash_messages" %>

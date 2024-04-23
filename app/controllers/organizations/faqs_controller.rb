@@ -42,7 +42,7 @@ class Organizations::FaqsController < Organizations::BaseController
         format.turbo_stream { flash.now[:notice] = "FAQ was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.tubo_stream { flash.now[:alert] = "Error updating FAQ" }
+        format.turbo_stream { flash.now[:alert] = "Error updating FAQ" }
       end
     end
   end
