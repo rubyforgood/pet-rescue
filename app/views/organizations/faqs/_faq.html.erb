@@ -1,13 +1,12 @@
-<div id="<%= dom_id faq %>"class="card-body d-flex justify-content-between border-bottom">
+<div id="<%= dom_id faq %>"class="card-body d-flex flex-sm-row flex-column justify-content-between border-bottom">
   <div class="d-flex align-items-center">
     <div>
-      <strong class="d-block fs-4" ><%= faq.question %></strong>
-      <p class="fs-4"> <%= faq.answer %> </p>
+      <strong class="d-block fs-4" >Q: <%= faq.question %></strong>
+      <p class="fs-4">A: <%= faq.answer %> </p>
     </div>
   </div>
-  <!-- Right side: Completion status and action buttons -->
   <div class="text-right">
-    <div class="d-flex align-items-center justify-content-end">
+    <div class="d-flex align-items-center sm-justify-content-end justify-content-center">
       <%= link_to 'Edit', edit_faq_path(faq), class: 'btn btn-warning m-2', data: {turbo_stream: true} %>
       <%= link_to 'Delete', faq_path(faq), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
     </div>
