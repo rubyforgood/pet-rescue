@@ -20,24 +20,7 @@
               </tr>
             </thead>
             <tbody>
-              <% @faqs.each do |faq| %>
-                <tr>
-                  <td class="text-wrap">
-                    <%= faq.question %>
-                  </td>
-                  <td class="text-wrap">
-                    <%= faq.answer %>
-                  </td>
-                  <td>
-                    <div class="text-right">
-                      <div class="d-flex align-items-center justify-content-end">
-                        <%= link_to 'Edit', edit_faq_path(faq), class: 'btn btn-warning m-2' %>
-                        <%= link_to 'Delete', faq_path(faq), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              <% end %>
+              <%= render @faqs %>
             </tbody>
           </table>
         </div>

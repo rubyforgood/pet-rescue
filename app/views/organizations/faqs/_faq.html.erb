@@ -1,10 +1,16 @@
-<div id="<%= dom_id faq %>">
-  <p>
-    <strong>Question:</strong>
+<tr>
+  <td class="text-wrap">
     <%= faq.question %>
-  </p>
-  <p>
-    <strong>Answer:</strong>
+  </td>
+  <td class="text-wrap">
     <%= faq.answer %>
-  </p>
-</div>
+  </td>
+  <td>
+    <div class="text-right">
+      <div class="d-flex align-items-center justify-content-end">
+        <%= link_to 'Edit', edit_faq_path(faq), class: 'btn btn-warning m-2' %>
+        <%= link_to 'Delete', faq_path(faq), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
+      </div>
+    </div>
+  </td>
+</tr>
