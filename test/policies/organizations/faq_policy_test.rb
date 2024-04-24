@@ -224,6 +224,12 @@ class Organizations::FaqPolicyTest < ActiveSupport::TestCase
       end
     end
 
+    context "#show?" do
+      should "be an alias to :manage?" do
+        assert_alias_rule @policy.call, :show?, :manage?
+      end
+    end
+
     context "#edit?" do
       should "be an alias to :manage?" do
         assert_alias_rule @policy.call, :edit?, :manage?
