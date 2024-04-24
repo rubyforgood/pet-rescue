@@ -140,7 +140,9 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
       get faq_url(@faq), as: :turbo_stream
 
       assert_response :success
-      assert_turbo_stream action: "replace", target: @faq
+      assert_turbo_stream action: "replace", target: @faq do
+        assert_select "strong", text: "Q: #{@faq.question}"
+      end
     end
   end
 
@@ -200,7 +202,9 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
       get edit_faq_url(@faq), as: :turbo_stream
 
       assert_response :success
-      assert_turbo_stream action: "replace", target: @faq
+      assert_turbo_stream action: "replace", target: @faq do
+        assert_select "form"
+      end
     end
   end
 
@@ -234,22 +238,26 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     should "update faq with turbo" do
       patch faq_url(@faq), params: {
         faq: {
-          question: @faq.question + " new question"
+          question: "new question"
         }
       }, as: :turbo_stream
 
       assert_response :success
-      assert_turbo_stream action: "replace", target: @faq
+      assert_turbo_stream action: "replace", target: @faq do
+        assert_select "strong", text: "Q: new question"
+      end
     end
 
-    should "render inline edit with turbo if error occurs " do
-      patch faq_path(@faq), params: {
+    should "render inline edit with turbo if error occurs" do
+      patch faq_path(@faq, format: :turbo_stream), params: {
         faq: {
           question: ""
-        }, as: :turbo_stream
+        }
       }
-      assert_response :unprocessable_entity
-      assert_select "label", text: "Question"
+
+      assert_turbo_stream action: "replace", target: @faq do
+        assert_select "form"
+      end
     end
   end
 

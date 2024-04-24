@@ -10,7 +10,6 @@ Rails.application.routes.draw do
   scope module: :organizations do
     resource :organization_profile, only: %i[edit update]
     resource :page_text, only: [:edit, :update]
-    resources :faqs
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
     resources :profile_reviews, only: [:show]
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
       post "attach_files", on: :member, to: "pets#attach_files"
     end
     resources :default_pet_tasks
+    resources :faqs
     resources :dashboard, only: [:index]
     resources :adopter_foster_dashboard, only: [:index]
     resources :adopter_applications, path: "applications",
