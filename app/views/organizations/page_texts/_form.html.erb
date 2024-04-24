@@ -20,9 +20,9 @@
                                 label: "Hero Image",
                                 class: 'form-control'%>
           </div>
+          <small class="form-text text-muted"> Images must be .png or .jpeg under 2MB </small>
           <div class="form-group mt-4">
             <%= form.text_area :about, label: "About Us", placeholder: "About Us text", class: 'form-control' %>
-            <small class="form-text text-muted">You can upload up to 2 images. </small>
           </div>
           <div class="form-group">
             <%= form.file_field :about_us_images,
@@ -33,6 +33,7 @@
             <% @page_text.about_us_images.each do |image| %>
               <%= form.hidden_field :about_us_images, multiple: true, value: image.signed_id %>
             <% end %>
+            <small class="form-text text-muted">You can upload up to 2 images. <br> Images must be .png or .jpeg under 2MB </small>
         <% end %>
         </div>
       </div>
