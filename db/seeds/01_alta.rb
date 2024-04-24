@@ -285,7 +285,7 @@ ActsAsTenant.with_tenant(@organization) do
   10.times do
     Faq.create!(
       question: Faker::Lorem.question(word_count: 4, random_words_to_add: 10),
-      answer: Faker::Lorem.sentence(word_count: 1, random_words_to_add: 20)
+      answer: Faker::Lorem.sentence(word_count: 1, random_words_to_add: 50)
     )
   end
 end
