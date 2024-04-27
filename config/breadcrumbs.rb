@@ -27,6 +27,10 @@ crumb :default_pet_tasks_index do
   link "Default Pet Tasks", default_pet_tasks_path
 end
 
+crumb :faqs_index do
+  link "FAQs", faqs_path
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

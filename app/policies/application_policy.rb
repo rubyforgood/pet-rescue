@@ -8,6 +8,14 @@ class ApplicationPolicy < ActionPolicy::Base
 
   pre_check :verify_authenticated!
 
+  # Action Policy defaults https://actionpolicy.evilmartians.io/#/aliases?id=default-rule
+
+  # default_rule :manage?
+  # alias_rule :new?, to: :create?
+  # def index?() = false
+  # def create?() = false
+  # def manage?() = false
+
   # Default authorized_scope; override for individual policies if necessary.
   relation_scope do |relation|
     relation.where(organization: user.organization)
