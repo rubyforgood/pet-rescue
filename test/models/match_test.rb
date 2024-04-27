@@ -8,6 +8,10 @@ class MatchTest < ActiveSupport::TestCase
     should belong_to(:adopter_foster_account)
   end
 
+  context "validations" do
+    should define_enum_for(:match_type)
+  end
+
   setup do
     @match = build_stubbed(:match)
   end

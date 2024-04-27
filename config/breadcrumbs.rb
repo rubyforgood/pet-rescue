@@ -36,6 +36,10 @@ crumb :form do |form|
   parent :forms_index
 end
 
+crumb :faqs_index do
+  link "FAQs", faqs_path
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

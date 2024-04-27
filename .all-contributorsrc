@@ -279,10 +279,37 @@
       ]
     },
     {
+      "login": "greggroth",
+      "name": "Greggory Rothmeier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/903365?v=4",
+      "profile": "https://github.com/greggroth",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "tpope",
       "name": "Tim Pope",
       "avatar_url": "https://avatars.githubusercontent.com/u/378?v=4",
       "profile": "https://tpo.pe/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ipc103",
+      "name": "Ian Candy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6826778?v=4",
+      "profile": "https://github.com/ipc103",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "VonTeacher",
+      "name": "Vaughn Weiss",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17757205?v=4",
+      "profile": "https://vonteacher.github.io",
       "contributions": [
         "code"
       ]

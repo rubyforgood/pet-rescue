@@ -32,6 +32,7 @@ STAFF_PERMISSIONS = (
     manage_pets
     manage_tasks
     view_organization_dashboard
+    manage_faqs
   ]
 ).freeze
 

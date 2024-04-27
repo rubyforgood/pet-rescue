@@ -342,6 +342,17 @@ en:
       saved: "Question saved successfully."
       destroyed: "Question was successfully deleted."
       not_found: "Question not found."
+    faqs:
+      index:
+        faqs: "Frequently Asked Questions"
+        create_faq: "Create new FAQ"
+        are_you_sure_delete: "Are you sure you want to delete this FAQ?"
+      new:
+        new_faq: "New FAQ"
+      edit:
+        edit_faq: "Edit FAQ"
+      faq:
+        are_you_sure_delete: "Are you sure you want to delete this FAQ?"
     pets:
       show:
         pause_applications: "Pause Applications?"
@@ -424,7 +435,7 @@ en:
         your_annual_cost: "Your annual cost estimate for pet care"
         will_you_pick_up_the_pet: "Will you or a friend be in La Ventana in person to pick up the pet?"
         what_dates_will_you_be: "What dates will you be in La Ventana?"
-        how_did_you_hear: "How did you find out about Baja Pet Rescue?"  
+        how_did_you_hear: "How did you find out about Baja Pet Rescue?"
   staff_accounts:
     status:
       invitation_sent: "Invitation sent"
