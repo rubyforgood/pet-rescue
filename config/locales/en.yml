@@ -310,6 +310,38 @@ en:
         new_default_pet_task: "New Default Pet Task"
       edit:
         edit_default_pet_task: "Edit Default Pet Task"
+    forms:
+      not_found: "Form not found."
+      index:
+        forms: "Forms"
+        create_form: "Create Form"
+        confirm_delete: "Are you sure you want to delete this form?"
+      new:
+        new_form: "New Form"
+      create:
+        error: "Error creating form."
+      edit:
+        edit_form: "Edit Form"
+      show:
+        confirm_delete_question: "Are you sure you want to delete this question?"
+      update:
+      destroy:
+      form:
+        help_text:
+          title: "What the user sees as the title of the form."
+          instructions: "Additional instructions to aid the user in filling out the form."
+      saved: "Form saved successfully."
+      updated: "Form saved successfully."
+      destroyed: "Form was successfully deleted."
+    questions:
+      create:
+        error: "Error creating question."
+      update:
+        error: "Error updating question."
+      updated: "Question saved successfully."
+      saved: "Question saved successfully."
+      destroyed: "Question was successfully deleted."
+      not_found: "Question not found."
     faqs:
       index:
         faqs: "Frequently Asked Questions"

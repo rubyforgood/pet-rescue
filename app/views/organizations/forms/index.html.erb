@@ -1,0 +1,50 @@
+<% breadcrumb :forms_index %>
+
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title t(".forms") %>
+
+  <% p.actions do %>
+    <%= link_to t(".create_form"), new_form_path, class: "btn btn-primary" %>
+  <% end %>
+
+  <% p.content do %>
+    <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
+      <!-- card -->
+      <div class="card">
+        <!-- table -->
+        <div class="table-responsive overflow-y-hidden">
+          <table class="table mb-0 text-nowrap table-hover table-centered">
+            <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <% if current_user.staff_account %>
+                <th scope="col"></th>
+              <% end %>
+            </tr>
+            </thead>
+
+            <tbody>
+            <% @forms.each do |form| %>
+              <tr>
+                <td><%= link_to form.name, form_path(form) %></td>
+                <td><%= form.description %></td>
+                <% if current_user.staff_account %>
+                  <td>
+                    <div class="text-right">
+                      <div class="d-flex align-items-center justify-content-end">
+                        <%= link_to 'Edit', edit_form_path(form), class: 'btn btn-warning m-2' %>
+                        <%= link_to 'Delete', form_path(form), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.confirm_delete') } %>
+                      </div>
+                    </div>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

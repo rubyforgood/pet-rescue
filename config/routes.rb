@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     resources :adopter_foster_dashboard, only: [:index]
     resources :adopter_applications, path: "applications",
       only: %i[index create update]
+    resources :forms do
+      resources :questions
+    end
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
     resources :staff do
