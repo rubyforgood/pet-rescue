@@ -1,0 +1,39 @@
+<header class="pt-5 pb-5" >
+  <div class="container">
+    <div class="text-center">
+      <h1 class="section-heading text-uppercase underline">
+        <%= t('.header') %>
+      </h1>
+    </div>
+  </div> <!--container-->
+</header>
+
+<section class="pb-5" id="public_faq">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-12">
+        <div class="accordion accordion-flush" id="accordionExample">
+          <% @faqs.each_with_index do |faq, index| %>
+            <% faq_id = "faq_#{faq.id || index + 1}" %>
+            <div class="border-bottom py-3" id="heading_<%= faq_id %>">
+              <h3 class="mb-0 fw-bold">
+                <a href="#" class="d-flex align-items-center text-inherit active collapsed" data-bs-toggle="collapse" data-bs-target="#collapse_<%= faq_id %>" aria-expanded="false" aria-controls="collapse_<%= faq_id %>">
+                  <span class="me-auto"><%= faq.question %></span>
+                  <span class="collapse-toggle ms-4">
+            <i class="fe fe-plus text-primary"></i>
+          </span>
+                </a>
+              </h3>
+            </div>
+            <div id="collapse_<%= faq_id %>" class="collapse" aria-labelledby="heading_<%= faq_id %>" data-bs-parent="#accordionExample">
+              <div class="py-3 fs-4"><%= faq.answer %></div>
+            </div>
+          <% end %>
+        </div>
+        <div class="mt-8 text-center">
+          <%= link_to t('.more_questions'), new_contact_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    </div>
+  </div> <!--container-->
+</section>
