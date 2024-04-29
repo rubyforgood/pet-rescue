@@ -22,10 +22,14 @@ Rails.application.routes.draw do
       post "attach_files", on: :member, to: "pets#attach_files"
     end
     resources :default_pet_tasks
+    resources :faqs
     resources :dashboard, only: [:index]
     resources :adopter_foster_dashboard, only: [:index]
     resources :adopter_applications, path: "applications",
       only: %i[index create update]
+    resources :forms do
+      resources :questions
+    end
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
     resources :staff do
@@ -47,7 +51,7 @@ Rails.application.routes.draw do
 
   root "root#index"
   get "/about_us", to: "static_pages#about_us"
-  get "/faq", to: "static_pages#faq"
+  get "/faq_static", to: "static_pages#faq"
   get "/partners", to: "static_pages#partners"
   get "/donate", to: "static_pages#donate"
   get "/privacy_policy", to: "static_pages#privacy_policy"

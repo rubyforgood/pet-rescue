@@ -26,10 +26,13 @@ STAFF_PERMISSIONS = (
     view_adopter_foster_profiles
     purge_attachments
     manage_default_pet_tasks
+    manage_forms
+    manage_questions
     manage_matches
     manage_pets
     manage_tasks
     view_organization_dashboard
+    manage_faqs
   ]
 ).freeze
 
