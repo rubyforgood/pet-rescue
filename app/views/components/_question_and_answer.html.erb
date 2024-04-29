@@ -1,0 +1,13 @@
+<div class="border-bottom py-3" id="heading_<%= faq.id %>">
+  <h3 class="mb-0 fw-bold">
+    <a href="#" class="d-flex align-items-center text-inherit active collapsed" data-bs-toggle="collapse" data-bs-target="#collapse_<%= faq.id %>" aria-expanded="false" aria-controls="collapse_<%= faq.id %>">
+      <span class="me-auto"><%= faq.question %></span>
+      <span class="collapse-toggle ms-4">
+          <i class="fe fe-plus text-primary"></i>
+        </span>
+    </a>
+  </h3>
+</div>
+<div id="collapse_<%= faq.id %>" class="collapse" aria-labelledby="heading_<%= faq.id %>" data-bs-parent="#accordionExample">
+  <div class="py-3 fs-4"><%= faq.answer %></div>
+</div>

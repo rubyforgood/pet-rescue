@@ -12,22 +12,9 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-8 col-md-10 col-12">
-        <div class="accordion accordion-flush" id="accordionExample">
-          <% @faqs.each_with_index do |faq, index| %>
-            <% faq_id = "faq_#{faq.id || index + 1}" %>
-            <div class="border-bottom py-3" id="heading_<%= faq_id %>">
-              <h3 class="mb-0 fw-bold">
-                <a href="#" class="d-flex align-items-center text-inherit active collapsed" data-bs-toggle="collapse" data-bs-target="#collapse_<%= faq_id %>" aria-expanded="false" aria-controls="collapse_<%= faq_id %>">
-                  <span class="me-auto"><%= faq.question %></span>
-                  <span class="collapse-toggle ms-4">
-            <i class="fe fe-plus text-primary"></i>
-          </span>
-                </a>
-              </h3>
-            </div>
-            <div id="collapse_<%= faq_id %>" class="collapse" aria-labelledby="heading_<%= faq_id %>" data-bs-parent="#accordionExample">
-              <div class="py-3 fs-4"><%= faq.answer %></div>
-            </div>
+        <div class="accordion accordion-flush" id="accordion-public-faq">
+          <% @faqs.each do |faq| %>
+            <%= render "components/question_and_answer", faq: faq %>
           <% end %>
         </div>
         <div class="mt-8 text-center">
