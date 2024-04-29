@@ -72,7 +72,8 @@
               <!-- heading -->
               <span class="text-uppercase text-primary fw-semibold ls-md"><%= t('.adoption_process') %></span>
               <!-- para -->
-              <p class="fs-3  mb-5"><%= t('.please_read_faq_html') %></p>
+              <p class="fs-3  mb-5"><%= t('.please_read_faq_html', faq_link: link_to('FAQ', public_faq_index_path)) %></p>
+
             </div>
 
             <div class=" row align-items-center ">
