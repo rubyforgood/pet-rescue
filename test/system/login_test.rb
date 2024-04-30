@@ -3,8 +3,8 @@ require "application_system_test_case"
 class LoginTest < ApplicationSystemTestCase
   setup do
     @user = create(:staff)
-    @organization = @user.organization
-    @page_text = create(:page_text, :with_image, organization: @organization)
+    @organization = create(:organization, :with_page_text)
+    @organization.save
     Current.organization = @organization
   end
 
