@@ -4,12 +4,7 @@ class RegistrationTest < ApplicationSystemTestCase
   setup do
     @user = create(:staff)
     @organization = @user.organization
-    @page_text = create(:page_text, organization: @organization)
-    @page_text.about_us_images.attach(
-      io: File.open(Rails.root.join("app", "assets", "images", "cat.jpeg")),
-      filename: "cat.jpeg",
-      content_type: "image/jpeg"
-    )
+    @page_text = create(:page_text, :with_image, organization: @organization)
     Current.organization = @organization
 
     visit root_url
