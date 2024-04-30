@@ -3,8 +3,8 @@ require "application_system_test_case"
 class UsersTest < ApplicationSystemTestCase
   setup do
     @user = create(:staff)
-    @organization = create(:organization, :with_page_text)
-    @organization.save
+    @organization = @user.organization
+    @page_text = create(:page_text, :with_image, organization: @organization, hero: "Where every paw finds a home")
     Current.organization = @organization
   end
 
