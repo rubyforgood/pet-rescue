@@ -8,7 +8,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
     @org_profile = @org.profile
     admin = create(:staff_admin)
     sign_in admin
-    get edit_organization_profile_path(@org_profile)
+    get edit_staff_organization_profile_path(@org_profile)
   end
 
   test "all expected fields are present on the edit organization profile page" do
@@ -31,7 +31,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
   end
 
   test "organization profile updates with the submission of the form" do
-    patch organization_profile_path(@org_profile), params: {
+    patch staff_organization_profile_path(@org_profile), params: {
       organization_profile: {
         email: "happy_paws_rescue@gmail.com",
         phone_number: "3038947563",
@@ -64,7 +64,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
   end
 
   test "organization profile updates with only some form fields to update" do
-    patch organization_profile_path(@org_profile), params: {
+    patch staff_organization_profile_path(@org_profile), params: {
       organization_profile: {
         phone_number: "3038947542",
         donation_url: "https://example.com"
@@ -81,7 +81,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
   end
 
   test "organization profile does not update with a non valid phone number" do
-    patch organization_profile_path(@org_profile), params: {
+    patch staff_organization_profile_path(@org_profile), params: {
       organization_profile: {
         phone_number: "303894754232849320"
       }
@@ -92,7 +92,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
   end
 
   test "organization profile does not update with an invalid email" do
-    patch organization_profile_path(@org_profile), params: {
+    patch staff_organization_profile_path(@org_profile), params: {
       organization_profile: {
         email: "happy_pets_bad_email.com"
       }
@@ -103,7 +103,7 @@ class OrganizationProfile::EditProfileTest < ActionDispatch::IntegrationTest
   end
 
   test "organization profile does not update with an invalid url" do
-    patch organization_profile_path(@org_profile), params: {
+    patch staff_organization_profile_path(@org_profile), params: {
       organization_profile: {
         facebook_url: "not a url"
       }

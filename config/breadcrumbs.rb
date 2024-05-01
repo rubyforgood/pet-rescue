@@ -12,7 +12,7 @@ crumb :dashboard_pet do |pet|
 end
 
 crumb :organization_profile do |organization|
-  link "Edit Profile", edit_organization_profile_path(organization)
+  link "Edit Profile", edit_staff_organization_profile_path(organization)
 end
 
 crumb :page_text do |page_text|

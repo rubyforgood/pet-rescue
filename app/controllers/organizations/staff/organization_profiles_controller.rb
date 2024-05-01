@@ -1,4 +1,4 @@
-class Organizations::OrganizationProfilesController < Organizations::BaseController
+class Organizations::Staff::OrganizationProfilesController < Organizations::BaseController
   layout "dashboard"
 
   before_action :set_organization_profile, only: %i[edit update]
@@ -8,7 +8,7 @@ class Organizations::OrganizationProfilesController < Organizations::BaseControl
 
   def update
     if @organization_profile.update(organization_profile_params)
-      redirect_to edit_organization_profile_path, notice: "Your profile has been updated!"
+      redirect_to edit_staff_organization_profile_path, notice: "Your profile has been updated!"
     else
       render :edit, status: :unprocessable_entity
     end

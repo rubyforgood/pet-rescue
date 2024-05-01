@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::OrganizationProfilesControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::OrganizationProfilesControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -18,7 +18,7 @@ class Organizations::OrganizationProfilesControllerTest < ActionDispatch::Integr
         assert_authorized_to(
           :manage?, @organization_profile, with: Organizations::OrganizationProfilePolicy
         ) do
-          get edit_organization_profile_url(@organization_profile)
+          get edit_staff_organization_profile_url(@organization_profile)
         end
       end
     end
@@ -32,7 +32,7 @@ class Organizations::OrganizationProfilesControllerTest < ActionDispatch::Integr
         assert_authorized_to(
           :manage?, @organization_profile, with: Organizations::OrganizationProfilePolicy
         ) do
-          patch organization_profile_url(@organization_profile), params: @params
+          patch staff_organization_profile_url(@organization_profile), params: @params
         end
       end
     end

@@ -1,4 +1,4 @@
-<%= bootstrap_form_with model: profile, :url => organization_profile_path do |form| %>
+<%= bootstrap_form_with model: profile, :url => staff_organization_profile_path do |form| %>
   <% if profile.errors.count > 0 %>
     <div class="alert alert-danger mt-1" role="alert">
       <%= t '.please_fix_the_errors' %>

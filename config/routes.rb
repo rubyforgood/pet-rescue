@@ -12,7 +12,10 @@ Rails.application.routes.draw do
     resources :adoptable_pets, only: [:index, :show]
     resources :faq, only: [:index]
 
-    resource :organization_profile, only: %i[edit update]
+    namespace :staff do
+      resource :organization_profile, only: %i[edit update]
+    end
+
     resource :page_text, only: [:edit, :update]
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
