@@ -42,7 +42,7 @@
           <%= active_link_to 'Donate', donate_path, class: 'nav-link' %>
         </li>
         <li class="nav-item">
-          <%= active_link_to 'FAQ', public_faq_index_path, class: 'nav-link' %>
+          <%= active_link_to 'FAQ', faq_index_path, class: 'nav-link' %>
         </li>
         <% if user_signed_in? %>
           <% if allowed_to?(:index?, with: Organizations::AdopterFosterDashboardPolicy, context: {organization: Current.organization}) %>            <li class='nav-item'>

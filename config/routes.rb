@@ -9,13 +9,14 @@ Rails.application.routes.draw do
 
   scope module: :organizations do
     resources :home, only: [:index]
+    resources :adoptable_pets, only: [:index, :show]
+    resources :faq, only: [:index]
 
     resource :organization_profile, only: %i[edit update]
     resource :page_text, only: [:edit, :update]
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
     resources :profile_reviews, only: [:show]
-    resources :adoptable_pets, only: [:index, :show]
 
     resources :pets do
       resources :tasks
@@ -24,7 +25,7 @@ Rails.application.routes.draw do
     end
     resources :default_pet_tasks
     resources :faqs
-    resources :public_faq, only: [:index]
+
     resources :dashboard, only: [:index]
     resources :adopter_foster_dashboard, only: [:index]
     resources :adopter_applications, path: "applications",

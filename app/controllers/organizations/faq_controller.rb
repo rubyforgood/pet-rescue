@@ -1,4 +1,4 @@
-class Organizations::PublicFaqController < Organizations::BaseController
+class Organizations::FaqController < Organizations::BaseController
   skip_verify_authorized only: %i[index]
 
   def index
