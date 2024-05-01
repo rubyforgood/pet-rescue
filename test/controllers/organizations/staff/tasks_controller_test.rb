@@ -22,7 +22,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
           context: {pet: @pet},
           with: Organizations::TaskPolicy
         ) do
-          get new_pet_task_url(@pet)
+          get new_staff_pet_task_url(@pet)
         end
       end
     end
@@ -45,7 +45,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
           context: {pet: @pet},
           with: Organizations::TaskPolicy
         ) do
-          post pet_tasks_url(@pet), params: @params
+          post staff_pet_tasks_url(@pet), params: @params
         end
       end
     end
@@ -56,7 +56,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
           :manage?, @task,
           with: Organizations::TaskPolicy
         ) do
-          get edit_pet_task_url(@pet, @task)
+          get edit_staff_pet_task_url(@pet, @task)
         end
       end
     end
@@ -71,7 +71,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
           :manage?, @task,
           with: Organizations::TaskPolicy
         ) do
-          patch pet_task_url(@pet, @task), params: @params
+          patch staff_pet_task_url(@pet, @task), params: @params
         end
       end
     end
@@ -82,37 +82,37 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
           :manage?, @task,
           with: Organizations::TaskPolicy
         ) do
-          delete pet_task_url(@pet, @task)
+          delete staff_pet_task_url(@pet, @task)
         end
       end
     end
   end
 
   test "should get index" do
-    get pet_tasks_url(@pet)
+    get staff_pet_tasks_url(@pet)
     assert_response :success
   end
 
   test "should get show" do
-    get pet_task_url(@pet, @task, format: :turbo_stream)
+    get staff_pet_task_url(@pet, @task, format: :turbo_stream)
     assert_response :success
     assert_equal Mime[:turbo_stream], response.media_type
   end
   test "should get new" do
-    get new_pet_task_url(@pet)
+    get new_staff_pet_task_url(@pet)
     assert_response :success
   end
 
   test "new action should handle missing pet" do
-    get new_pet_task_url(-1)
+    get new_staff_pet_task_url(-1)
     assert_response :redirect
-    assert_redirected_to pets_path
+    assert_redirected_to staff_pets_path
   end
 
   test "edit action should handle non-existent task" do
-    get edit_pet_task_url(@pet, -1)
+    get edit_staff_pet_task_url(@pet, -1)
     assert_response :redirect
-    assert_redirected_to pets_path
+    assert_redirected_to staff_pets_path
   end
 
   test "should allow creating task" do
@@ -121,7 +121,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     current_time = Time.current
 
     assert_difference "Task.count", 1 do
-      post pet_tasks_url(@pet, format: :turbo_stream), params: {
+      post staff_pet_tasks_url(@pet, format: :turbo_stream), params: {
         task: {
           name: "New Task",
           description: "New Task Description",
@@ -144,7 +144,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     current_time = Time.current
 
     assert_no_difference "Task.count" do
-      post pet_tasks_url(@pet, format: :turbo_stream), params: {
+      post staff_pet_tasks_url(@pet, format: :turbo_stream), params: {
         task: {
           name: "",
           description: "New Task Description",
@@ -161,7 +161,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
     current_time = Time.current
 
-    patch pet_task_path(@pet, @task, format: :turbo_stream), params: {
+    patch staff_pet_task_path(@pet, @task, format: :turbo_stream), params: {
       task: {
         name: "Updated Name",
         description: "Updated Description",
@@ -184,7 +184,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     current_time = Time.current
 
     assert_no_changes "@task.name" do
-      patch pet_task_path(@pet, @task, format: :turbo_stream), params: {
+      patch staff_pet_task_path(@pet, @task, format: :turbo_stream), params: {
         task: {
           name: "",
           description: "Updated Description",
@@ -198,23 +198,23 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "should handle non-existent task during update" do
     non_existent_task_id = -1
-    patch pet_task_path(@pet, non_existent_task_id), params: {task: {name: "Updated Name"}}
+    patch staff_pet_task_path(@pet, non_existent_task_id), params: {task: {name: "Updated Name"}}
 
     assert_response :redirect
-    assert_redirected_to pets_path
+    assert_redirected_to staff_pets_path
   end
 
   test "destroy action should handle non-existent task" do
     assert_no_difference "Task.count" do
-      delete pet_task_url(@pet, -1)
+      delete staff_pet_task_url(@pet, -1)
     end
     assert_response :redirect
-    assert_redirected_to pets_path
+    assert_redirected_to staff_pets_path
   end
 
   test "destroy action should remove task with Turbo Stream" do
     assert_difference "Task.count", -1 do
-      delete pet_task_url(@pet, @task), as: :turbo_stream
+      delete staff_pet_task_url(@pet, @task), as: :turbo_stream
     end
 
     assert_response :success
@@ -225,7 +225,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     task = create(:task, pet: @pet, recurring: true)
 
     assert_difference "Task.count", 1 do
-      patch pet_task_path(@pet, task, format: :turbo_stream), params: {
+      patch staff_pet_task_path(@pet, task, format: :turbo_stream), params: {
         task: {
           completed: true
         }
@@ -237,7 +237,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     task = create(:task, pet: @pet, recurring: true, due_date: Date.today + 2, next_due_date_in_days: 4)
 
     assert_difference "Task.count", 1 do
-      patch pet_task_path(@pet, task, format: :turbo_stream), params: {
+      patch staff_pet_task_path(@pet, task, format: :turbo_stream), params: {
         task: {
           completed: true
         }
@@ -249,7 +249,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     task = create(:task, pet: @pet, recurring: false)
 
     assert_no_difference "Task.count" do
-      patch pet_task_path(@pet, task, format: :turbo_stream), params: {
+      patch staff_pet_task_path(@pet, task, format: :turbo_stream), params: {
         task: {
           completed: true
         }
@@ -261,7 +261,7 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     task = create(:task, pet: @pet, recurring: true, completed: true)
 
     assert_no_difference "Task.count" do
-      patch pet_task_path(@pet, task, format: :turbo_stream), params: {
+      patch staff_pet_task_path(@pet, task, format: :turbo_stream), params: {
         task: {
           completed: false
         }

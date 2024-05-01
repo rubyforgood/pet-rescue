@@ -1,4 +1,4 @@
-class Organizations::TasksController < Organizations::BaseController
+class Organizations::Staff::TasksController < Organizations::BaseController
   before_action :set_pet, only: %i[new show index create edit update destroy]
   before_action :set_task, only: %i[show edit update destroy]
 
@@ -35,12 +35,12 @@ class Organizations::TasksController < Organizations::BaseController
 
     if @task.save
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_pet_#{@pet.id}", partial: "organizations/pets/tabs/tasks", locals: {task: @task}) }
-        format.html { redirect_to pet_url(@pet, active_tab: "tasks") }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_pet_#{@pet.id}", partial: "organizations/staff/pets/tabs/tasks", locals: {task: @task}) }
+        format.html { redirect_to staff_pet_url(@pet, active_tab: "tasks") }
       end
     else
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task, url: pet_tasks_path(@task.pet)}), status: :bad_request }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/staff/tasks/form", locals: {task: @task, url: staff_pet_tasks_path(@task.pet)}), status: :bad_request }
         format.html { render :new, status: :unprocessable_entity }
       end
     end
@@ -58,10 +58,10 @@ class Organizations::TasksController < Organizations::BaseController
           Organizations::TaskService.new(@task).create_next
         end
 
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_pet_#{@pet.id}", partial: "organizations/pets/tabs/tasks", locals: {task: @task}) }
-        format.html { redirect_to pet_url(@pet, active_tab: "tasks") }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("tasks_pet_#{@pet.id}", partial: "organizations/staff/pets/tabs/tasks", locals: {task: @task}) }
+        format.html { redirect_to staff_pet_url(@pet, active_tab: "tasks") }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/tasks/form", locals: {task: @task, url: pet_task_path(@task.pet)}), status: :bad_request }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "organizations/staff/tasks/form", locals: {task: @task, url: staff_pet_task_path(@task.pet)}), status: :bad_request }
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
@@ -71,11 +71,11 @@ class Organizations::TasksController < Organizations::BaseController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to pet_path(@pet), notice: "Task was successfully deleted." }
+      format.html { redirect_to staff_pet_path(@pet), notice: "Task was successfully deleted." }
       format.turbo_stream
     end
   rescue ActiveRecord::RecordNotFound
-    redirect_to pets_path
+    redirect_to staff_pets_path
   end
 
   private
@@ -86,14 +86,14 @@ class Organizations::TasksController < Organizations::BaseController
 
     @pet = @organization.pets.find(params[:pet_id] || params[:id])
   rescue ActiveRecord::RecordNotFound
-    redirect_to pets_path unless @pet
+    redirect_to staff_pets_path unless @pet
   end
 
   def set_task
     @task = Task.find(params[:id])
     authorize! @task
   rescue ActiveRecord::RecordNotFound
-    redirect_to pets_path
+    redirect_to staff_pets_path
   end
 
   def task_params

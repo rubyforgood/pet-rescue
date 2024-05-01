@@ -3,11 +3,11 @@ crumb :root do
 end
 
 crumb :dashboard_pets do
-  link "Pets", pets_path
+  link "Pets", staff_pets_path
 end
 
 crumb :dashboard_pet do |pet|
-  link pet.name, pet_path(pet)
+  link pet.name, staff_pet_path(pet)
   parent :dashboard_pets
 end
 

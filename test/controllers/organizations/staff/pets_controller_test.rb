@@ -20,7 +20,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::PetPolicy
         ) do
-          get pets_url
+          get staff_pets_url
         end
       end
 
@@ -28,7 +28,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         assert_have_authorized_scope(
           type: :active_record_relation, with: Organizations::PetPolicy
         ) do
-          get pets_url
+          get staff_pets_url
         end
       end
     end
@@ -40,7 +40,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::PetPolicy
         ) do
-          get new_pet_url
+          get new_staff_pet_url
         end
       end
     end
@@ -58,7 +58,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::PetPolicy
         ) do
-          post pets_url, params: @params
+          post staff_pets_url, params: @params
         end
       end
     end
@@ -68,7 +68,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, @pet, with: Organizations::PetPolicy
         ) do
-          get pet_url(@pet)
+          get staff_pet_url(@pet)
         end
       end
     end
@@ -78,7 +78,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, @pet, with: Organizations::PetPolicy
         ) do
-          get edit_pet_url(@pet)
+          get edit_staff_pet_url(@pet)
         end
       end
     end
@@ -92,7 +92,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, @pet, with: Organizations::PetPolicy
         ) do
-          patch pet_url(@pet), params: @params
+          patch staff_pet_url(@pet), params: @params
         end
       end
     end
@@ -102,7 +102,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, @pet, with: Organizations::PetPolicy
         ) do
-          delete pet_url(@pet)
+          delete staff_pet_url(@pet)
         end
       end
     end
@@ -119,7 +119,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, @pet, with: Organizations::PetPolicy
         ) do
-          post attach_images_pet_url(@pet), params: @params
+          post attach_images_staff_pet_url(@pet), params: @params
         end
       end
     end
@@ -136,7 +136,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, @pet, with: Organizations::PetPolicy
         ) do
-          post attach_files_pet_url(@pet), params: @params
+          post attach_files_staff_pet_url(@pet), params: @params
         end
       end
     end
@@ -159,7 +159,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         image = fixture_file_upload("test.png", "image/png")
 
         assert_difference("@pet.images.count", 1) do
-          post attach_images_pet_path(@pet),
+          post attach_images_staff_pet_path(@pet),
             params: {pet: {images: [image]}}
         end
 
@@ -175,7 +175,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         file = fixture_file_upload("test.png", "image/png")
 
         assert_difference("@pet.files.count", 1) do
-          post attach_files_pet_path(@pet),
+          post attach_files_staff_pet_path(@pet),
             params: {pet: {files: [file]}}
         end
 
@@ -187,14 +187,14 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "update application paused should respond with turbo_stream when toggled on pets page" do
-      patch url_for(@pet), params: {pet: {application_paused: true, toggle: "true"}}, as: :turbo_stream
+      patch staff_pet_url(@pet), params: {pet: {application_paused: true, toggle: "true"}}, as: :turbo_stream
 
       assert_equal Mime[:turbo_stream], response.media_type
       assert_response :success
     end
 
     should "update application paused should respond with html when not on pets page" do
-      patch url_for(@pet), params: {pet: {application_paused: true}}, as: :turbo_stream
+      patch staff_pet_url(@pet), params: {pet: {application_paused: true}}, as: :turbo_stream
 
       assert_equal Mime[:html], response.media_type
       assert_response :redirect
@@ -202,7 +202,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
 
     should "POST default pet tasks are created when pet is created" do
       assert_difference "Pet.count", 1 do
-        post pets_path, params:
+        post staff_pets_path, params:
         {
           "pet" => {
             "organization_id" => @user.organization.id.to_s,

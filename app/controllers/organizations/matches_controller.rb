@@ -22,9 +22,9 @@ class Organizations::MatchesController < Organizations::BaseController
     if @match.destroy
       @match.withdraw_application
 
-      redirect_to pets_path, notice: "Adoption reverted & application set to 'Withdrawn'"
+      redirect_to staff_pets_path, notice: "Adoption reverted & application set to 'Withdrawn'"
     else
-      redirect_to pets_path, alert: "Failed to revert adoption"
+      redirect_to staff_pets_path, alert: "Failed to revert adoption"
     end
   end
 

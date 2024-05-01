@@ -16,15 +16,16 @@ Rails.application.routes.draw do
       resource :organization_profile, only: %i[edit update]
       resource :page_text, only: [:edit, :update]
       resources :profile_reviews, only: [:show]
+
+      resources :pets do
+        resources :tasks
+        post "attach_images", on: :member, to: "pets#attach_images"
+        post "attach_files", on: :member, to: "pets#attach_files"
+      end
     end
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
 
-    resources :pets do
-      resources :tasks
-      post "attach_images", on: :member, to: "pets#attach_images"
-      post "attach_files", on: :member, to: "pets#attach_files"
-    end
     resources :default_pet_tasks
     resources :faqs
 

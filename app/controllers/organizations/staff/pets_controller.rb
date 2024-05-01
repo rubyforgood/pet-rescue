@@ -1,4 +1,4 @@
-class Organizations::PetsController < Organizations::BaseController
+class Organizations::Staff::PetsController < Organizations::BaseController
   before_action :set_pet, only: [:show, :edit, :update, :destroy, :attach_images, :attach_files]
   include ::Pagy::Backend
 
@@ -37,7 +37,7 @@ class Organizations::PetsController < Organizations::BaseController
     end
 
     if @pet.persisted?
-      redirect_to pets_path, notice: "Pet saved successfully."
+      redirect_to staff_pets_path, notice: "Pet saved successfully."
     else
       flash.now[:alert] = "Error creating pet."
       render :new, status: :unprocessable_entity
@@ -47,7 +47,7 @@ class Organizations::PetsController < Organizations::BaseController
   def update
     if @pet.update(pet_params)
       respond_to do |format|
-        format.html { redirect_to @pet, notice: "Pet updated successfully." }
+        format.html { redirect_to staff_pet_path(@pet), notice: "Pet updated successfully." }
         format.turbo_stream if params[:pet][:toggle] == "true"
       end
     else
@@ -57,15 +57,15 @@ class Organizations::PetsController < Organizations::BaseController
 
   def destroy
     if @pet.destroy
-      redirect_to pets_path, notice: "Pet deleted.", status: :see_other
+      redirect_to staff_pets_path, notice: "Pet deleted.", status: :see_other
     else
-      redirect_to pets_path, alert: "Error."
+      redirect_to staff_pets_path, alert: "Error."
     end
   end
 
   def attach_images
     if @pet.images.attach(params[:pet][:images])
-      redirect_to pet_path(@pet, active_tab: "photos"), notice: "Upload successful."
+      redirect_to staff_pet_path(@pet, active_tab: "photos"), notice: "Upload successful."
     else
       @active_tab = "photos"
       @pet.images.last&.purge
@@ -76,7 +76,7 @@ class Organizations::PetsController < Organizations::BaseController
 
   def attach_files
     if @pet.files.attach(params[:pet][:files])
-      redirect_to pet_path(@pet, active_tab: "files"), notice: "Upload successful."
+      redirect_to staff_pet_path(@pet, active_tab: "files"), notice: "Upload successful."
     else
       @active_tab = "files"
       @pet.files.last.purge

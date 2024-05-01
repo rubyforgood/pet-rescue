@@ -2,13 +2,13 @@
 <%= render "components/dashboard/page" do |p| %>
   <% p.header_title t(".our_pets") %>
   <% p.actions do %>
-    <%= link_to t('.create_pet'), new_pet_path, class: "btn btn-primary" %><br>
+    <%= link_to t('.create_pet'), new_staff_pet_path, class: "btn btn-primary" %><br>
   <% end %>
   <% p.content do %>
     <!--filter section-->
     <div>
       <div>
-        <%= search_form_for @q do |f| %>
+        <%= search_form_for [:staff, @q] do |f| %>
           <div class='d-flex justify-content-between align-items-center flex-wrap mb-3'>
             <div class="d-flex gap-3 flex-wrap mb-3">
               <div class="form-group">
@@ -30,7 +30,7 @@
             </div>
             <div class='d-flex flex-column w-100 w-md-auto flex-md-row gap-2'>
               <%= f.submit class: "btn btn-primary" %>
-              <%= link_to "Clear filters", pets_path, class: "btn btn-default"%>
+              <%= link_to "Clear filters", staff_pets_path, class: "btn btn-default"%>
             </div>
           </div>
         <% end %>
@@ -68,7 +68,7 @@
                       </div>
                       <div class="ms-3">
                         <h4 class="mb-0">
-                          <%= link_to pet.name, pet_path(pet), class: 'text-inherit' %>
+                          <%= link_to pet.name, staff_pet_path(pet), class: 'text-inherit' %>
                         </h4>
                       </div>
                     </div>
@@ -96,13 +96,13 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="Dropdown1">
                           <span class="dropdown-header">Settings</span>
-                          <%= link_to pet_path(pet), class: 'dropdown-item' do %>
+                          <%= link_to staff_pet_path(pet), class: 'dropdown-item' do %>
                             <i class="fe fe-edit dropdown-item-icon"></i>Edit Details
                           <% end %>
-                          <%= link_to pet_path(pet), class: 'dropdown-item' do %>
+                          <%= link_to staff_pet_path(pet), class: 'dropdown-item' do %>
                             <i class="fe fe-link dropdown-item-icon"></i>Copy link
                           <% end %>
-                          <%= button_to pet, method: :delete, class: 'dropdown-item', data: { turbo_confirm: t('general.are_you_sure_delete_pet') } do %>
+                          <%= button_to [:staff, pet], method: :delete, class: 'dropdown-item', data: { turbo_confirm: t('general.are_you_sure_delete_pet') } do %>
                             <i class="fe fe-trash dropdown-item-icon"></i>Delete
                           <% end %>
                         </div>

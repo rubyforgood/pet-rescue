@@ -1,12 +1,12 @@
 <div id=<%= "task_toggle_#{task.id}" %>>
-  <%= form_for [@pet, task] do |form| %>
+  <%= form_for [ :staff, @pet, task] do |form| %>
     <div class='form-group'>
       <div class="form-check" 
         data-controller="task-toggle" 
         data-action="click->task-toggle#submit" 
         data-task-toggle-recurring-value="<%= task.recurring %>" 
         data-task-toggle-completed-value="<%= task.completed %>" 
-        data-task-toggle-path-value="<%= pet_task_path(@pet, task) %>"
+        data-task-toggle-path-value="<%= staff_pet_task_path(@pet, task) %>"
       >
         <%= form.check_box :completed, 
                           { class: "form-check-input" } %>

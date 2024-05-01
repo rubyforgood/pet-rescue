@@ -7,8 +7,8 @@
             <h4 class="mb-0">Summary</h4>
           </div>
           <div class="d-flex gap-2">
-            <%= link_to t('general.edit'), edit_pet_path(@pet), class: 'btn btn-outline-dark' %>
-            <%= button_to t('general.delete'), pet_path(@pet), method: :delete, 
+            <%= link_to t('general.edit'), edit_staff_pet_path(@pet), class: 'btn btn-outline-dark' %>
+            <%= button_to t('general.delete'), staff_pet_path(@pet), method: :delete, 
                                                class: 'btn btn-outline-danger', 
                                                data: { turbo_confirm: t('general.are_you_sure_delete_pet') } %>
           </div>

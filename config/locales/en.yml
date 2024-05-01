@@ -357,32 +357,6 @@ en:
       index:
         header: "Frequently Asked Questions"
         more_questions: "More Questions? Contact us"
-    pets:
-      show:
-        pause_applications: "Pause Applications?"
-        why: "Why?"
-        edit_pet: "Edit Pet"
-        view_adopter: "View Adopter"
-        revoke_adoption: "Revoke Adoption"
-        are_you_sure_revoke: "Are you sure you want to revoke this adoption?"
-        application:
-          active: "Applications are active"
-          paused: "Applications are paused"
-      form:
-        uploaded_images: "Uploaded Images"
-      index:
-        our_pets: "Our pets"
-        filter: "Filter by adoption status"
-        select:
-          seeking_adoption: "Seeking Adoption"
-          adopted: "Adopted"
-        filter_by_name: "Filter by name"
-        create_pet: "Create Pet"
-        application:
-          active: "Applications: active"
-          paused: "Applications: paused"
-      new:
-        new_pet_post: "New Pet Post"
     staff:
       organization_profiles:
         form:
@@ -390,6 +364,32 @@ en:
           manage_your_own_account_settings: "You have full control to manage your own account settings."
         edit:
           edit_profile: "Edit Profile"
+      pets:
+        show:
+          pause_applications: "Pause Applications?"
+          why: "Why?"
+          edit_pet: "Edit Pet"
+          view_adopter: "View Adopter"
+          revoke_adoption: "Revoke Adoption"
+          are_you_sure_revoke: "Are you sure you want to revoke this adoption?"
+          application:
+            active: "Applications are active"
+            paused: "Applications are paused"
+        form:
+          uploaded_images: "Uploaded Images"
+        index:
+          our_pets: "Our pets"
+          filter: "Filter by adoption status"
+          select:
+            seeking_adoption: "Seeking Adoption"
+            adopted: "Adopted"
+          filter_by_name: "Filter by name"
+          create_pet: "Create Pet"
+          application:
+            active: "Applications: active"
+            paused: "Applications: paused"
+        new:
+          new_pet_post: "New Pet Post"
     adopter_applications:
       index:
         adoption_applications: "Adoption Applications"

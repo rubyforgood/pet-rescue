@@ -42,7 +42,7 @@ class AttachmentsControllerTest < ActionDispatch::IntegrationTest
       image = fixture_file_upload("test.png", "image/png")
 
       assert_difference("@pet.images.count", 1) do
-        post attach_images_pet_path(@pet),
+        post attach_images_staff_pet_path(@pet),
           params: {pet: {images: [image]}}
       end
 

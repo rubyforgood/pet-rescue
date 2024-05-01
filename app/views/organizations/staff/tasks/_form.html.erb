@@ -41,7 +41,7 @@
     </div>
     <div class="m-3">
       <%= f.submit class: 'btn btn-primary me-2' %>
-      <% cancel = task.id.nil? ? pet_tasks_path(@pet, cancel: true) : pet_task_path(pet_id: task.pet.id) %>
+      <% cancel = task.id.nil? ? staff_pet_tasks_path(@pet, cancel: true) : staff_pet_task_path(pet_id: task.pet.id) %>
       <%= link_to "Cancel", cancel, class: "btn
     btn-outline-danger ms-2", data: {turbo_stream: :true}   %>
     </div>
