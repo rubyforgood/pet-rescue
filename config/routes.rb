@@ -15,10 +15,10 @@ Rails.application.routes.draw do
     namespace :staff do
       resource :organization_profile, only: %i[edit update]
       resource :page_text, only: [:edit, :update]
+      resources :profile_reviews, only: [:show]
     end
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
-    resources :profile_reviews, only: [:show]
 
     resources :pets do
       resources :tasks

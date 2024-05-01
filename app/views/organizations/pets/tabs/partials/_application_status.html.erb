@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(app) %>">
   <!-- applicant -->
   <td class="align-middle col-3">
-    <%= link_to app.applicant_name, profile_review_path(app.adopter_foster_account.adopter_foster_profile),
+    <%= link_to app.applicant_name, staff_profile_review_path(app.adopter_foster_account.adopter_foster_profile),
                             class: "link-underline link-underline-opacity-0"  %>
   </td>
   <!-- status -->

@@ -20,7 +20,7 @@ class Organizations::ProfileReviewsControllerTest < ActionDispatch::IntegrationT
           :show?, @profile,
           with: Organizations::ProfileReviewPolicy
         ) do
-          get profile_review_url(@profile)
+          get staff_profile_review_url(@profile)
         end
       end
     end

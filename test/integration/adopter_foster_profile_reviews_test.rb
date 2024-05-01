@@ -20,8 +20,7 @@ class AdopterFosterProfileReviewTest < ActionDispatch::IntegrationTest
     adopter_user = create(:adopter, :with_profile)
     sign_in staff_user
 
-    get "/profile_reviews/#{adopter_user.adopter_foster_account.adopter_foster_profile.id}"
-
+    get "/staff/profile_reviews/#{adopter_user.adopter_foster_account.adopter_foster_profile.id}"
     assert_response :redirect
     assert_equal "Your account is deactivated.", flash[:alert]
   end
