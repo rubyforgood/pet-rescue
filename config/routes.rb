@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :donations, only: [:create]
 
   scope module: :organizations do
+    resources :home, only: [:index]
+
     resource :organization_profile, only: %i[edit update]
     resource :page_text, only: [:edit, :update]
 
@@ -15,16 +17,21 @@ Rails.application.routes.draw do
     resources :profile_reviews, only: [:show]
     resources :adoptable_pets, only: [:index, :show]
 
-    resources :home, only: [:index]
     resources :pets do
       resources :tasks
       post "attach_images", on: :member, to: "pets#attach_images"
       post "attach_files", on: :member, to: "pets#attach_files"
     end
     resources :default_pet_tasks
+    resources :faqs
+    resources :public_faq, only: [:index]
     resources :dashboard, only: [:index]
+    resources :adopter_foster_dashboard, only: [:index]
     resources :adopter_applications, path: "applications",
       only: %i[index create update]
+    resources :forms do
+      resources :questions
+    end
     resources :adoption_application_reviews, only: [:index, :edit, :update]
     resources :foster_application_reviews, only: [:index]
     resources :staff do
@@ -46,7 +53,6 @@ Rails.application.routes.draw do
 
   root "root#index"
   get "/about_us", to: "static_pages#about_us"
-  get "/faq", to: "static_pages#faq"
   get "/partners", to: "static_pages#partners"
   get "/donate", to: "static_pages#donate"
   get "/privacy_policy", to: "static_pages#privacy_policy"

@@ -250,6 +250,78 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "uoodsq",
+      "name": "Bryan Witherspoon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/765993?v=4",
+      "profile": "http://uoodsq.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "dwilsonactual",
+      "name": "David Wilson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/15931013?v=4",
+      "profile": "https://github.com/dwilsonactual",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gdomingu",
+      "name": "Gabe D",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4443635?v=4",
+      "profile": "https://github.com/gdomingu",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "greggroth",
+      "name": "Greggory Rothmeier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/903365?v=4",
+      "profile": "https://github.com/greggroth",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "tpope",
+      "name": "Tim Pope",
+      "avatar_url": "https://avatars.githubusercontent.com/u/378?v=4",
+      "profile": "https://tpo.pe/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ipc103",
+      "name": "Ian Candy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6826778?v=4",
+      "profile": "https://github.com/ipc103",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "VonTeacher",
+      "name": "Vaughn Weiss",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17757205?v=4",
+      "profile": "https://vonteacher.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Harry-kp",
+      "name": "Harshit Chaudhary",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55315065?v=4",
+      "profile": "https://harry-kp.github.io/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

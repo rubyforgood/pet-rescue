@@ -1,0 +1,12 @@
+<div id="<%= dom_id faq %>"class="card-body border-bottom">
+  <%= bootstrap_form_with model: faq, class: "p-1" do |f| %>
+    <div class="form-group">
+      <%= f.text_field :question %>
+    </div>
+    <div>
+      <%= f.text_area :answer, rows: 3 %>
+    </div>
+    <%= f.submit t('general.save'), class: 'btn btn-primary m-2' %>
+    <%= link_to t('general.cancel'), faq_path(faq), data: {turbo_stream: :true},  class: 'btn btn-secondary m-2' %>
+  <% end %>
+</div>
