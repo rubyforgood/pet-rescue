@@ -20,6 +20,7 @@ class Organizations::PageTextsController < Organizations::BaseController
 
   def set_page_text
     @page_text = current_user.organization.page_text
+    # @page_text = PageText.first
     authorize! @page_text
   end
 end
