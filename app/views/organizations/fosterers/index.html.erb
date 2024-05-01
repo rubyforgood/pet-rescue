@@ -1,0 +1,128 @@
+<% breadcrumb :fosterers_index %>
+
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title "Fosterers" %>
+  <% p.actions do %>
+    <div class='d-flex align-items-center gap-2'>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-12">
+          <!-- Page Header -->
+          <div class="border-bottom d-flex justify-content-between align-items-center">
+            <div class="nav btn-group" role="tablist">
+              <button class="btn btn-outline-secondary" data-bs-toggle="tab" data-bs-target="#tabPaneGrid" role="tab" aria-controls="tabPaneGrid" aria-selected="false" tabindex="-1">
+                <span class="fe fe-grid"></span>
+              </button>
+              <button class="btn btn-outline-secondary active" data-bs-toggle="tab" data-bs-target="#tabPaneList" role="tab" aria-controls="tabPaneList" aria-selected="true">
+                <span class="fe fe-list"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= link_to "Invite Fosterer", "", class: "btn btn-primary" %><br>
+    </div>
+  <% end %>
+
+  <% p.content do %>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-12">
+        <!-- Tab -->
+        <div class="tab-content">
+          <!-- Tab Pane -->
+          <div class="tab-pane fade" id="tabPaneGrid" role="tabpanel" aria-labelledby="tabPaneGrid">
+            <div class='d-flex gap-3'>
+              <% @fosterer_accounts.each do |fosterer| %>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-12">
+                  <!-- Card -->
+                  <div class="card mb-4">
+                    <!-- Card body -->
+                    <div class="card-body">
+                      <div class="text-center">
+                        <div class="position-relative">
+                          <%= image_tag "danielle_3.jpg", alt: "", class: "rounded-circle avatar-xl mb-3" %>
+                          <a href="#" class="position-absolute mt-10 ms-n5">
+                            <span class="status bg-success"></span>
+                          </a>
+                        </div>
+                        <h4 class="mb-0"><%= "#{fosterer.user.first_name} #{fosterer.user.last_name}" %></h4>
+                      </div>
+                      <div class="d-flex justify-content-between border-bottom py-2 mt-4">
+                        <span>Role</span>
+                        <span class="text-dark"><%= fosterer.user.roles.pluck(:name).join(", ") %></span>
+                      </div>
+                      <div class="d-flex justify-content-between border-bottom py-2">
+                        <span>Joined</span>
+                        <span><%= fosterer.created_at.strftime("%d %B, %Y") %></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <!-- Tab Pane -->
+        <div class="tab-pane fade active show" id="tabPaneList" role="tabpanel" aria-labelledby="tabPaneList">
+          <!-- Card -->
+          <div class="card">
+            <!-- Table -->
+            <div class="table-responsive">
+              <table class="table mb-0 text-nowrap table-hover table-centered">
+                <thead>
+                  <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Joined At</th>
+                    <th scope="col">Action</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <% @fosterer_accounts.each do |fosterer| %>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="position-relative">
+                            <%= image_tag "danielle_3.jpg", alt: "", class: "rounded-circle avatar-md me-2" %>
+                            <a href="#" class="position-absolute mt-5 ms-n4">
+                              <span class="status bg-success"></span>
+                            </a>
+                          </div>
+                          <h5 class="mb-0"><%= "#{fosterer.user.first_name} #{fosterer.user.last_name}" %></h5>
+                        </div>
+                      </td>
+                      <td>
+                        <%= fosterer.user.roles.pluck(:name).join(", ") %>
+                      </td>
+                      <td>
+                        <%= fosterer.created_at.strftime("%d %B, %Y") %>
+                      </td>
+                      <td>
+                        <div class="hstack gap-4">
+                          <a href="#" class="fe fe-mail text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Message" data-bs-original-title="Message"></a>
+                          <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i class="fe fe-trash"></i></a>
+                          <span class="dropdown dropstart">
+                            <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" data-bs-toggle="dropdown" data-bs-offset="-20,20" aria-expanded="false">
+                              <i class="fe fe-more-vertical"></i>
+                            </a>
+                            <span class="dropdown-menu">
+                              <span class="dropdown-header">Settings</span>
+                              <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i> Edit</a>
+                            </span>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  <% end %>
+<% end %>
