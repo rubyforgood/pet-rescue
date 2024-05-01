@@ -2,7 +2,9 @@ require "test_helper"
 
 class Organizations::HomeControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @organization = create(:organization)
+    @organization = create(:organization, :with_page_text)
+    @organization.save
+    Current.organization = @organization
   end
 
   context "GET #index" do
