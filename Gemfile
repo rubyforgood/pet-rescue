@@ -160,6 +160,7 @@ gem "requestjs-rails", "~> 0.0.11"
 # Add ability to set user roles
 gem "rolify"
 
+# Add breadcrumb management
 gem "gretel", "~> 5.0"
 
 gem "ransack"
