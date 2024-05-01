@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::PageTextsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::PageTextsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @org = ActsAsTenant.current_tenant
     admin = create(:staff_admin, organization: @org)
@@ -17,7 +17,7 @@ class Organizations::PageTextsControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, @page_text, with: Organizations::PageTextPolicy
         ) do
-          get edit_page_text_url(@page_text)
+          get edit_staff_page_text_url(@page_text)
         end
       end
     end
@@ -31,21 +31,21 @@ class Organizations::PageTextsControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, @page_text, with: Organizations::PageTextPolicy
         ) do
-          patch page_text_url(@page_text), params: @params
+          patch staff_page_text_url(@page_text), params: @params
         end
       end
     end
   end
   context "GET #edit" do
     should "get edit page" do
-      get edit_page_text_path
+      get edit_staff_page_text_path
       assert_response :success
     end
   end
 
   context "PATCH #update" do
     should "update page text" do
-      patch page_text_path(@page_text), params: {page_text: {hero: "Super Dog", about: "canine caped crusader"}}
+      patch staff_page_text_path(@page_text), params: {page_text: {hero: "Super Dog", about: "canine caped crusader"}}
       assert_response :redirect
       follow_redirect!
       assert_response :success

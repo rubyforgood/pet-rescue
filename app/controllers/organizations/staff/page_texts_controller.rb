@@ -1,4 +1,4 @@
-class Organizations::PageTextsController < Organizations::BaseController
+class Organizations::Staff::PageTextsController < Organizations::BaseController
   layout "dashboard"
   before_action :set_page_text, only: %i[edit update]
   def edit
@@ -6,7 +6,7 @@ class Organizations::PageTextsController < Organizations::BaseController
 
   def update
     if @page_text.update(page_text_params)
-      redirect_to edit_page_text_path, notice: "Page text updated successfully!"
+      redirect_to edit_staff_page_text_path, notice: "Page text updated successfully!"
     else
       render :edit, status: :unprocessable_entity
     end

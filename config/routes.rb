@@ -14,9 +14,8 @@ Rails.application.routes.draw do
 
     namespace :staff do
       resource :organization_profile, only: %i[edit update]
+      resource :page_text, only: [:edit, :update]
     end
-
-    resource :page_text, only: [:edit, :update]
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
     resources :profile_reviews, only: [:show]
