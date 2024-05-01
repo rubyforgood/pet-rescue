@@ -23,4 +23,12 @@ class AdopterFosterAccount < ApplicationRecord
   has_one :adopter_foster_profile, dependent: :destroy
   has_many :adopter_applications, dependent: :destroy
   has_many :matches, dependent: :destroy
+
+  scope :adopters, -> {
+    joins(user: :roles).where(roles: {name: "adopter"})
+  }
+
+  scope :fosterers, -> {
+    joins(user: :roles).where(roles: {name: "fosterer"})
+  }
 end
