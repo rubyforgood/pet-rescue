@@ -23,6 +23,7 @@ STAFF_PERMISSIONS = (
     ]
   ) + %i[
     review_adopter_applications
+    view_adopter_foster_accounts
     view_adopter_foster_profiles
     purge_attachments
     manage_default_pet_tasks
