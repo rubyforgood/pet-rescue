@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :matches, only: %i[create destroy]
 
       resources :adoption_application_reviews, only: [:index, :edit, :update]
+      resources :foster_application_reviews, only: [:index]
     end
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
@@ -40,7 +41,6 @@ Rails.application.routes.draw do
       resources :questions
     end
 
-    resources :foster_application_reviews, only: [:index]
     resources :staff do
       post "deactivate", to: "staff#deactivate"
       post "activate", to: "staff#activate"
