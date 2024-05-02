@@ -5,53 +5,45 @@ class Organizations::AdopterFosterAccountPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   setup do
-    @fosterer = create(:adopter_foster_account, user: create(:fosterer))
-    @policy = -> { Organizations::AdopterFosterAccountPolicy.new(@fosterer, user: @user) }
+    @policy = -> {
+      Organizations::AdopterFosterAccountPolicy.new(
+        AdopterFosterAccount, user: @user,
+        organization: ActsAsTenant.current_tenant
+      )
+    }
   end
 
-  context "#index?" do
+  context "relation_scope" do
     setup do
-      @action = -> { @policy.call.apply(:index?) }
-    end
+      @user = build_stubbed(:staff)
+      @account1 = create(:adopter_foster_account)
+      @account2 = create(:adopter_foster_account)
 
-    context "when user is nil" do
-      setup do
-        @user = nil
-      end
-
-      should "return false" do
-        assert_equal @action.call, false
+      ActsAsTenant.with_tenant(create(:organization)) do
+        create(:adopter_foster_account)
       end
     end
 
-    context "when user is adopter" do
-      setup do
-        @user = create(:adopter)
-      end
+    should "return organization's adopter foster accounts" do
+      expected = [@account1, @account2].map(&:id)
 
-      should "return false" do
-        assert_equal @action.call, false
-      end
+      scoped = @policy.call
+        .apply_scope(AdopterFosterAccount.all, type: :active_record_relation)
+        .pluck(:id)
+
+      assert_equal expected, scoped
     end
+  end
 
-    context "when user is fosterer" do
+  context "context only rules" do
+    context "#index?" do
       setup do
-        @user = create(:fosterer)
+        @action = -> { @policy.call.apply(:index?) }
       end
 
-      should "return false" do
-        assert_equal @action.call, false
-      end
-    end
-
-    context "when user is staff" do
-      setup do
-        @user = create(:staff)
-      end
-
-      context "when user's staff account is deactivated" do
+      context "when user is nil" do
         setup do
-          @user.staff_account.deactivate
+          @user = nil
         end
 
         should "return false" do
@@ -59,19 +51,9 @@ class Organizations::AdopterFosterAccountPolicyTest < ActiveSupport::TestCase
         end
       end
 
-      should "return true" do
-        assert_equal @action.call, true
-      end
-    end
-
-    context "when user is staff admin" do
-      setup do
-        @user = create(:staff_admin)
-      end
-
-      context "when user's staff account is deactivated" do
+      context "when user is adopter" do
         setup do
-          @user.staff_account.deactivate
+          @user = create(:adopter)
         end
 
         should "return false" do
@@ -79,8 +61,54 @@ class Organizations::AdopterFosterAccountPolicyTest < ActiveSupport::TestCase
         end
       end
 
-      should "return true" do
-        assert_equal @action.call, true
+      context "when user is fosterer" do
+        setup do
+          @user = create(:fosterer)
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
+      context "when user is staff" do
+        setup do
+          @user = create(:staff)
+        end
+
+        context "when user's staff account is deactivated" do
+          setup do
+            @user.staff_account.deactivate
+          end
+
+          should "return false" do
+            assert_equal @action.call, false
+          end
+        end
+
+        should "return true" do
+          assert_equal @action.call, true
+        end
+      end
+
+      context "when user is staff admin" do
+        setup do
+          @user = create(:staff_admin)
+        end
+
+        context "when user's staff account is deactivated" do
+          setup do
+            @user.staff_account.deactivate
+          end
+
+          should "return false" do
+            assert_equal @action.call, false
+          end
+        end
+
+        should "return true" do
+          assert_equal @action.call, true
+        end
       end
     end
   end
