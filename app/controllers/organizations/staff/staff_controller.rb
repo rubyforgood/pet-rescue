@@ -1,4 +1,4 @@
-class Organizations::StaffController < Organizations::BaseController
+class Organizations::Staff::StaffController < Organizations::BaseController
   before_action :set_staff_account, only: [:deactivate, :activate, :update_activation]
 
   layout "dashboard"
@@ -12,16 +12,16 @@ class Organizations::StaffController < Organizations::BaseController
   def deactivate
     @staff_account.deactivate
     respond_to do |format|
-      format.html { redirect_to staff_index_path, notice: "Staff account deactivated." }
-      format.turbo_stream { render "organizations/staff/update" }
+      format.html { redirect_to staff_staff_index_path, notice: "Staff account deactivated." }
+      format.turbo_stream { render "organizations/staff/staff/update" }
     end
   end
 
   def activate
     @staff_account.activate
     respond_to do |format|
-      format.html { redirect_to staff_index_path, notice: "Staff account activated." }
-      format.turbo_stream { render "organizations/staff/update" }
+      format.html { redirect_to staff_staff_index_path, notice: "Staff account activated." }
+      format.turbo_stream { render "organizations/staff/staff/update" }
     end
   end
 

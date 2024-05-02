@@ -20,7 +20,7 @@ crumb :page_text do |page_text|
 end
 
 crumb :staff_index do
-  link "Staff", staff_index_path
+  link "Staff", staff_staff_index_path
 end
 
 crumb :default_pet_tasks_index do

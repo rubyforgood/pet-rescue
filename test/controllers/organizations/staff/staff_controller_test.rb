@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::StaffControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = ActsAsTenant.current_tenant
     @staff = create(:staff_account)
@@ -15,7 +15,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :activate?, @staff, with: Organizations::StaffAccountPolicy
         ) do
-          post staff_deactivate_url(@staff)
+          post staff_staff_deactivate_url(@staff)
         end
       end
     end
@@ -25,7 +25,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :activate?, @staff, with: Organizations::StaffAccountPolicy
         ) do
-          post staff_activate_url(@staff)
+          post staff_staff_activate_url(@staff)
         end
       end
     end
@@ -35,7 +35,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :activate?, @staff, with: Organizations::StaffAccountPolicy
         ) do
-          post staff_update_activation_url(@staff)
+          post staff_staff_update_activation_url(@staff)
         end
       end
     end
@@ -47,7 +47,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::StaffAccountPolicy
         ) do
-          get staff_index_url
+          get staff_staff_index_url
         end
       end
 
@@ -61,7 +61,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
           assert_have_authorized_scope(
             type: :active_record_relation, with: Organizations::StaffAccountPolicy
           ) do
-            get staff_index_url
+            get staff_staff_index_url
           end
         end
       end
@@ -72,7 +72,7 @@ class Organizations::StaffControllerTest < ActionDispatch::IntegrationTest
     user = create(:staff_admin)
     sign_in user
 
-    post staff_update_activation_url(@staff), as: :turbo_stream
+    post staff_staff_update_activation_url(@staff), as: :turbo_stream
 
     assert_equal Mime[:turbo_stream], response.media_type
     assert_response :success

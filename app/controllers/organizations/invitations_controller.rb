@@ -23,7 +23,7 @@ class Organizations::InvitationsController < Devise::InvitationsController
 
     if @user.save
       @user.invite!(current_user)
-      redirect_to staff_index_path, notice: "Invite sent!"
+      redirect_to staff_staff_index_path, notice: "Invite sent!"
     else
       render :new, status: :unprocessable_entity
     end
