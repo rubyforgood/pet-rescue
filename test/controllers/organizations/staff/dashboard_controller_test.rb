@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::DashboardControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::DashboardControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -19,7 +19,7 @@ class Organizations::DashboardControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::DashboardPolicy
         ) do
-          get dashboard_index_url
+          get staff_dashboard_index_url
         end
       end
     end

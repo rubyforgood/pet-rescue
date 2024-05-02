@@ -19,7 +19,7 @@ module OrganizationScopable
       :index?, with: Organizations::DashboardPolicy,
       context: {organization: Current.organization}
     )
-      dashboard_index_path
+      staff_dashboard_index_path
     elsif allowed_to?(
       :index?, with: Organizations::AdopterFosterDashboardPolicy,
       context: {organization: Current.organization}

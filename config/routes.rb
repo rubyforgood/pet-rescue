@@ -25,11 +25,11 @@ Rails.application.routes.draw do
 
       resources :default_pet_tasks
       resources :faqs
+      resources :dashboard, only: [:index]
     end
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
 
-    resources :dashboard, only: [:index]
     resources :adopter_foster_dashboard, only: [:index]
     resources :adopter_applications, path: "applications",
       only: %i[index create update]

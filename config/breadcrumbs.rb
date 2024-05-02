@@ -1,5 +1,5 @@
 crumb :root do
-  link "Home", dashboard_index_path
+  link "Home", staff_dashboard_index_path
 end
 
 crumb :dashboard_pets do

@@ -28,7 +28,7 @@ class Organizations::AdoptionApplicationReviewsController < Organizations::BaseC
 
     respond_to do |format|
       if @application.update(application_params)
-        format.html { redirect_to dashboard_index_path }
+        format.html { redirect_to staff_dashboard_index_path }
         format.turbo_stream { flash.now[:notice] = "Application was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }

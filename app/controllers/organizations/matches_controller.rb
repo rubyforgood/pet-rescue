@@ -12,9 +12,9 @@ class Organizations::MatchesController < Organizations::BaseController
     if @match.save
       @match.retire_applications
 
-      redirect_back_or_to dashboard_index_path, notice: "Pet successfully adopted."
+      redirect_back_or_to staff_dashboard_index_path, notice: "Pet successfully adopted."
     else
-      redirect_back_or_to dashboard_index_path, alert: "Error."
+      redirect_back_or_to staff_dashboard_index_path, alert: "Error."
     end
   end
 
