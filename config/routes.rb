@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       resources :faqs
       resources :dashboard, only: [:index]
       resources :matches, only: %i[create destroy]
+
+      resources :adoption_application_reviews, only: [:index, :edit, :update]
     end
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
@@ -37,7 +39,7 @@ Rails.application.routes.draw do
     resources :forms do
       resources :questions
     end
-    resources :adoption_application_reviews, only: [:index, :edit, :update]
+
     resources :foster_application_reviews, only: [:index]
     resources :staff do
       post "deactivate", to: "staff#deactivate"

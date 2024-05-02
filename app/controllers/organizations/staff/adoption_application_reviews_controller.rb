@@ -1,4 +1,4 @@
-class Organizations::AdoptionApplicationReviewsController < Organizations::BaseController
+class Organizations::Staff::AdoptionApplicationReviewsController < Organizations::BaseController
   before_action :set_adopter_application, only: %i[edit update]
 
   layout "dashboard"

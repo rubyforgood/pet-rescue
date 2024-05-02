@@ -16,7 +16,7 @@
           <%unless status == "adoption_made" %>
             <li>
               <%= button_to status.titleize,
-              adoption_application_review_path(app, params: { adopter_application: { status: status}}),
+              staff_adoption_application_review_path(app, params: { adopter_application: { status: status}}),
               :method => :patch, class: 'dropdown-item' %>
             </li>
           <% end %>
@@ -71,7 +71,7 @@
           </div>
           <div class="modal-body border-top-0 pt-2">
             <%= bootstrap_form_with model: app, url:
-        adoption_application_review_path(app), method: "Patch" do |form| %>
+        staff_adoption_application_review_path(app), method: "Patch" do |form| %>
               <%= form.text_area :notes, hide_label: true, rows: 5 %>
               <%= form.submit 'Save changes', class: "btn btn-primary
         position-relative float-end", "data-bs-dismiss" => "modal"  %>

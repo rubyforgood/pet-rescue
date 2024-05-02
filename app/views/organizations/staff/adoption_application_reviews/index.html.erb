@@ -6,7 +6,7 @@
         <!-- Ransack Search Form -->
         <div class="row p-4 border rounded-5 mb-5 bg-white">
           <div class="col-xl-12">
-            <%= search_form_for @q, url: adoption_application_reviews_path do |f| %>
+            <%= search_form_for @q, url: staff_adoption_application_reviews_path do |f| %>
               <div class="row">
                 <div class="form-group mb-3 col-md-4">
                   <%= f.label :name_cont, "Pet Name" %>
@@ -24,7 +24,7 @@
               <div class="row">
                 <div class="col-md-12 text-right">
                   <%= f.submit "Search", class: "btn btn-primary" %>
-                  <%= link_to "Clear filters", adoption_application_reviews_path, class: "btn btn-default" %>
+                  <%= link_to "Clear filters", staff_adoption_application_reviews_path, class: "btn btn-default" %>
                 </div>
               </div>
             <% end %>
