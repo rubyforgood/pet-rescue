@@ -24,7 +24,7 @@ crumb :staff_index do
 end
 
 crumb :default_pet_tasks_index do
-  link "Default Pet Tasks", default_pet_tasks_path
+  link "Default Pet Tasks", staff_default_pet_tasks_path
 end
 
 crumb :forms_index do

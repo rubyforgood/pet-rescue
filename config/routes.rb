@@ -22,11 +22,12 @@ Rails.application.routes.draw do
         post "attach_images", on: :member, to: "pets#attach_images"
         post "attach_files", on: :member, to: "pets#attach_files"
       end
+
+      resources :default_pet_tasks
     end
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
 
-    resources :default_pet_tasks
     resources :faqs
 
     resources :dashboard, only: [:index]

@@ -2,7 +2,7 @@
 <%= render "components/dashboard/page" do |p| %>
   <% p.header_title t(".default_pet_tasks") %>
   <% p.actions do %>
-    <%= link_to t('.create_default_task'), new_default_pet_task_path, class: "btn btn-primary" %><br>
+    <%= link_to t('.create_default_task'), new_staff_default_pet_task_path, class: "btn btn-primary" %><br>
   <% end %>
   <% p.content do %>
     <!-- row -->
@@ -40,8 +40,8 @@
                     <td>
                       <div class="text-right">
                         <div class="d-flex align-items-center justify-content-end">
-                          <%= link_to 'Edit', edit_default_pet_task_path(task), class: 'btn btn-warning m-2' %>
-                          <%= link_to 'Delete', default_pet_task_path(task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
+                          <%= link_to 'Edit', edit_staff_default_pet_task_path(task), class: 'btn btn-warning m-2' %>
+                          <%= link_to 'Delete', staff_default_pet_task_path(task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
                         </div>
                       </div>
                     </td>

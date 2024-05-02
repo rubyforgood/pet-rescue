@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::DefaultPetTasksControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = ActsAsTenant.current_tenant
     @default_pet_task = create(:default_pet_task)
@@ -20,7 +20,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
           context: {organization: @organization},
           with: Organizations::DefaultPetTaskPolicy
         ) do
-          get new_default_pet_task_url
+          get new_staff_default_pet_task_url
         end
       end
     end
@@ -38,7 +38,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
           context: {organization: @organization},
           with: Organizations::DefaultPetTaskPolicy
         ) do
-          post default_pet_tasks_url, params: @params
+          post staff_default_pet_tasks_url, params: @params
         end
       end
     end
@@ -50,7 +50,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
           context: {organization: @organization},
           with: Organizations::DefaultPetTaskPolicy
         ) do
-          get default_pet_tasks_url
+          get staff_default_pet_tasks_url
         end
       end
 
@@ -59,7 +59,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
           type: :active_record_relation,
           with: Organizations::DefaultPetTaskPolicy
         ) do
-          get default_pet_tasks_url
+          get staff_default_pet_tasks_url
         end
       end
     end
@@ -70,7 +70,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
           :manage?, @default_pet_task,
           with: Organizations::DefaultPetTaskPolicy
         ) do
-          get edit_default_pet_task_url(@default_pet_task)
+          get edit_staff_default_pet_task_url(@default_pet_task)
         end
       end
     end
@@ -89,7 +89,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
           :manage?, @default_pet_task,
           with: Organizations::DefaultPetTaskPolicy
         ) do
-          patch default_pet_task_url(@default_pet_task),
+          patch staff_default_pet_task_url(@default_pet_task),
             params: @params
         end
       end
@@ -101,7 +101,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
           :manage?, @default_pet_task,
           with: Organizations::DefaultPetTaskPolicy
         ) do
-          delete default_pet_task_url(@default_pet_task)
+          delete staff_default_pet_task_url(@default_pet_task)
         end
       end
     end
@@ -112,14 +112,14 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
   end
 
   test "should get index" do
-    get default_pet_tasks_path
+    get staff_default_pet_tasks_path
 
     assert_response :success
     assert_select "h2", text: "Default Pet Tasks"
   end
 
   test "should get new" do
-    get new_default_pet_task_path
+    get new_staff_default_pet_task_path
 
     assert_response :success
     assert_select "h1", text: "New Default Pet Task"
@@ -128,7 +128,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
   context "POST #create" do
     should "create new default pet task" do
       assert_difference("@organization.default_pet_tasks.count", 1) do
-        post default_pet_tasks_path, params: {
+        post staff_default_pet_tasks_path, params: {
           default_pet_task: {
             name: "New Task",
             description: "Descrition of new Task",
@@ -145,7 +145,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
 
     should "not create new default pet task with invalid or missing param" do
       assert_difference("@organization.default_pet_tasks.count", 0) do
-        post default_pet_tasks_path, params: {
+        post staff_default_pet_tasks_path, params: {
           default_pet_task: {
             name: "",
             description: "Descrition of new Task"
@@ -159,14 +159,14 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
 
   context "GET #edit" do
     should "visit edit page" do
-      get edit_default_pet_task_path(@default_pet_task)
+      get edit_staff_default_pet_task_path(@default_pet_task)
 
       assert_response :success
       assert_select "h1", text: "Edit Default Pet Task"
     end
 
     should "not visit edit page of inexistent task" do
-      get edit_default_pet_task_path(id: DefaultPetTask.order(:id).last.id + 1)
+      get edit_staff_default_pet_task_path(id: DefaultPetTask.order(:id).last.id + 1)
 
       assert_response :redirect
       follow_redirect!
@@ -177,7 +177,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
   context "PATCH #update" do
     should "update default pet task" do
       assert_changes "@default_pet_task.name" do
-        patch default_pet_task_path(@default_pet_task), params: {
+        patch staff_default_pet_task_path(@default_pet_task), params: {
           default_pet_task: {
             name: @default_pet_task.name + " new name"
           }
@@ -192,7 +192,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
     end
 
     should "not update default pet task with invalid or missing param" do
-      patch default_pet_task_path(@default_pet_task), params: {
+      patch staff_default_pet_task_path(@default_pet_task), params: {
         default_pet_task: {
           name: ""
         }
@@ -205,7 +205,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
   context "DELETE #destroy" do
     should "destroy a default pet task" do
       assert_difference("@organization.default_pet_tasks.count", -1) do
-        delete default_pet_task_path(@default_pet_task)
+        delete staff_default_pet_task_path(@default_pet_task)
       end
 
       assert_response :redirect
@@ -214,7 +214,7 @@ class Organizations::DefaultPetTasksControllerTest < ActionDispatch::Integration
     end
 
     should "not visit edit page of inexistent task" do
-      delete default_pet_task_path(id: DefaultPetTask.order(:id).last.id + 1)
+      delete staff_default_pet_task_path(id: DefaultPetTask.order(:id).last.id + 1)
 
       assert_response :redirect
       follow_redirect!

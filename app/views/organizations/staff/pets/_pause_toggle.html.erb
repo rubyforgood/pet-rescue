@@ -1,5 +1,5 @@
 <div id=<%= "pet_pause_toggle_#{pet.id}" %>>
-  <%= form_with model: [ :staff, pet ] do |form| %>
+  <%= form_with model: [:staff, pet] do |form| %>
     <div class='form-group d-flex justify-content-center'>
       <div class="form-check form-switch">
         <%= form.hidden_field :application_paused, value: false %>

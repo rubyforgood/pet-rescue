@@ -301,15 +301,7 @@ en:
         complete_my_profile: "Complete my profile"
         adopt: "Adopt"
         login: "Log in"
-    default_pet_tasks:
-      index:
-        default_pet_tasks: "Default Pet Tasks"
-        create_default_task: "Create Default Task"
-        are_you_sure_delete: "Are you sure you want to delete this default pet task?"
-      new:
-        new_default_pet_task: "New Default Pet Task"
-      edit:
-        edit_default_pet_task: "Edit Default Pet Task"
+    
     forms:
       not_found: "Form not found."
       index:
@@ -358,6 +350,15 @@ en:
         header: "Frequently Asked Questions"
         more_questions: "More Questions? Contact us"
     staff:
+      default_pet_tasks:
+        index:
+          default_pet_tasks: "Default Pet Tasks"
+          create_default_task: "Create Default Task"
+          are_you_sure_delete: "Are you sure you want to delete this default pet task?"
+        new:
+          new_default_pet_task: "New Default Pet Task"
+        edit:
+          edit_default_pet_task: "Edit Default Pet Task"
       organization_profiles:
         form:
           please_fix_the_errors: "Please fix the errors highlighted below."

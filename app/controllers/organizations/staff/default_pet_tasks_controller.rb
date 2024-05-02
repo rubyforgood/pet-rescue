@@ -1,4 +1,4 @@
-class Organizations::DefaultPetTasksController < Organizations::BaseController
+class Organizations::Staff::DefaultPetTasksController < Organizations::BaseController
   before_action :context_authorize!, only: %i[index new create]
   before_action :set_task, only: %i[edit update destroy]
 
@@ -16,7 +16,7 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
     @task = DefaultPetTask.new(task_params)
 
     if @task.save
-      redirect_to default_pet_tasks_path, notice: "Default pet task saved successfully."
+      redirect_to staff_default_pet_tasks_path, notice: "Default pet task saved successfully."
     else
       flash.now[:alert] = "Error creating default pet task."
       render :new, status: :unprocessable_entity
@@ -28,7 +28,7 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
 
   def update
     if @task.update(task_params)
-      redirect_to default_pet_tasks_path, notice: "Default pet task updated successfully."
+      redirect_to staff_default_pet_tasks_path, notice: "Default pet task updated successfully."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
   def destroy
     @task.destroy
 
-    redirect_to default_pet_tasks_path, notice: "Default pet task was successfully deleted."
+    redirect_to staff_default_pet_tasks_path, notice: "Default pet task was successfully deleted."
   end
 
   private
@@ -51,7 +51,7 @@ class Organizations::DefaultPetTasksController < Organizations::BaseController
 
     authorize! @task
   rescue ActiveRecord::RecordNotFound
-    redirect_to default_pet_tasks_path, alert: "Default Pet Task not found."
+    redirect_to staff_default_pet_tasks_path, alert: "Default Pet Task not found."
   end
 
   def context_authorize!
