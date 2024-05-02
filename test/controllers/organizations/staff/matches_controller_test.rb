@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::MatchesControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::MatchesControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -31,7 +31,7 @@ class Organizations::MatchesControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::MatchPolicy
         ) do
-          post matches_url, params: @params
+          post staff_matches_url, params: @params
         end
       end
     end
@@ -46,7 +46,7 @@ class Organizations::MatchesControllerTest < ActionDispatch::IntegrationTest
           :destroy?, @match,
           with: Organizations::MatchPolicy
         ) do
-          delete match_url(@match)
+          delete staff_match_url(@match)
         end
       end
     end

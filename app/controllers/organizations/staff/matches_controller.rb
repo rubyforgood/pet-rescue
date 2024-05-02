@@ -1,4 +1,4 @@
-class Organizations::MatchesController < Organizations::BaseController
+class Organizations::Staff::MatchesController < Organizations::BaseController
   before_action :set_pet, only: %i[create]
   before_action :set_match, only: %i[destroy]
 

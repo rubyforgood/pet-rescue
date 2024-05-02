@@ -28,7 +28,7 @@
   <td class="align-middle text-center col-3">
     <% if app.status == 'successful_applicant' %>
       <!--create adoption button-->
-      <%= button_to "New Adoption", matches_path, method: :post,
+      <%= button_to "New Adoption", staff_matches_path, method: :post,
         params: {match:
           {pet_id: app.pet_id, 
            adopter_foster_account_id: app.adopter_foster_account_id,

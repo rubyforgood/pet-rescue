@@ -26,6 +26,7 @@ Rails.application.routes.draw do
       resources :default_pet_tasks
       resources :faqs
       resources :dashboard, only: [:index]
+      resources :matches, only: %i[create destroy]
     end
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
@@ -43,8 +44,6 @@ Rails.application.routes.draw do
       post "activate", to: "staff#activate"
       post "update_activation", to: "staff#update_activation"
     end
-
-    resources :matches, only: %i[create destroy]
   end
 
   resources :countries, only: [] do
