@@ -36,7 +36,7 @@ class Organizations::AdopterApplicationsController < Organizations::BaseControll
     if @application.update(application_params)
       redirect_to adopter_applications_path
     else
-      redirect_to profile_path, alert: "Error."
+      redirect_to adopter_fosterer_profile_path, alert: "Error."
     end
   end
 

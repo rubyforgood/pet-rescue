@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::AdopterFosterProfilesControllerTest < ActionDispatch::IntegrationTest
+class Organizations::AdopterFosterer::ProfilesControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -16,7 +16,7 @@ class Organizations::AdopterFosterProfilesControllerTest < ActionDispatch::Integ
           :create?, AdopterFosterProfile,
           with: Organizations::AdopterFosterProfilePolicy
         ) do
-          get new_profile_url
+          get new_adopter_fosterer_profile_url
         end
       end
     end
@@ -32,7 +32,7 @@ class Organizations::AdopterFosterProfilesControllerTest < ActionDispatch::Integ
           :create?, AdopterFosterProfile,
           with: Organizations::AdopterFosterProfilePolicy
         ) do
-          post profile_url, params: attributes_for(:adopter_foster_profile)
+          post adopter_fosterer_profile_url, params: attributes_for(:adopter_foster_profile)
         end
       end
     end
@@ -47,7 +47,7 @@ class Organizations::AdopterFosterProfilesControllerTest < ActionDispatch::Integ
         assert_authorized_to(
           :manage?, @profile, with: Organizations::AdopterFosterProfilePolicy
         ) do
-          get profile_url
+          get adopter_fosterer_profile_url
         end
       end
     end
@@ -62,7 +62,7 @@ class Organizations::AdopterFosterProfilesControllerTest < ActionDispatch::Integ
         assert_authorized_to(
           :manage?, @profile, with: Organizations::AdopterFosterProfilePolicy
         ) do
-          get edit_profile_url
+          get edit_adopter_fosterer_profile_url
         end
       end
     end
@@ -80,7 +80,7 @@ class Organizations::AdopterFosterProfilesControllerTest < ActionDispatch::Integ
         assert_authorized_to(
           :manage?, @profile, with: Organizations::AdopterFosterProfilePolicy
         ) do
-          patch profile_url, params: @params
+          patch adopter_fosterer_profile_url, params: @params
         end
       end
     end

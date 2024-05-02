@@ -37,7 +37,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :adopter_foster_profile, except: :destroy, as: "profile"
+    namespace :adopter_fosterer do
+      resource :profile, except: :destroy
+    end
 
     resources :adopter_foster_dashboard, only: [:index]
     resources :adopter_applications, path: "applications",

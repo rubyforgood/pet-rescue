@@ -1,6 +1,6 @@
-class Organizations::AdopterFosterProfilesController < Organizations::BaseController
+class Organizations::AdopterFosterer::ProfilesController < Organizations::BaseController
   before_action :authenticate_user!
-  before_action :authorize!, only: %i[new create]
+  before_action :authorize_with!, only: %i[new create]
   before_action :set_profile, only: %i[show edit update]
 
   def new
@@ -13,7 +13,7 @@ class Organizations::AdopterFosterProfilesController < Organizations::BaseContro
 
     respond_to do |format|
       if @adopter_foster_profile.save
-        format.html { redirect_to profile_path, notice: "Profile created" }
+        format.html { redirect_to adopter_fosterer_profile_path, notice: "Profile created" }
       else
         format.html { render :new, status: :unprocessable_entity, alert: "Error" }
       end
@@ -29,7 +29,7 @@ class Organizations::AdopterFosterProfilesController < Organizations::BaseContro
   def update
     respond_to do |format|
       if @adopter_foster_profile.update(adopter_foster_profile_params)
-        format.html { redirect_to profile_path, notice: "Profile updated" }
+        format.html { redirect_to adopter_fosterer_profile_path, notice: "Profile updated" }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -75,5 +75,9 @@ class Organizations::AdopterFosterProfilesController < Organizations::BaseContro
       :visit_dates,
       :referral_source,
       location_attributes: [:city_town, :country, :province_state, :id])
+  end
+
+  def authorize_with!
+    authorize! AdopterFosterProfile, with: Organizations::AdopterFosterProfilePolicy
   end
 end
