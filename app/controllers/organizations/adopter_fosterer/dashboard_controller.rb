@@ -1,4 +1,4 @@
-class Organizations::AdopterFosterDashboardController < Organizations::BaseController
+class Organizations::AdopterFosterer::DashboardController < Organizations::BaseController
   layout "adopter_foster_dashboard"
 
   def index

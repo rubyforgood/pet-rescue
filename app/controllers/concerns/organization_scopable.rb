@@ -24,7 +24,7 @@ module OrganizationScopable
       :index?, with: Organizations::AdopterFosterDashboardPolicy,
       context: {organization: Current.organization}
     )
-      adopter_foster_dashboard_index_path
+      adopter_fosterer_dashboard_index_path
     else
       adoptable_pets_path
     end
