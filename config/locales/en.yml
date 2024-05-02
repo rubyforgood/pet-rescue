@@ -334,18 +334,8 @@ en:
       saved: "Question saved successfully."
       destroyed: "Question was successfully deleted."
       not_found: "Question not found."
-    faqs:
-      index:
-        faqs: "Frequently Asked Questions"
-        create_faq: "Create new FAQ"
-        are_you_sure_delete: "Are you sure you want to delete this FAQ?"
-      new:
-        new_faq: "New FAQ"
-      edit:
-        edit_faq: "Edit FAQ"
-      faq:
-        are_you_sure_delete: "Are you sure you want to delete this FAQ?"
-    faq:
+  
+    faq: # public faq
       index:
         header: "Frequently Asked Questions"
         more_questions: "More Questions? Contact us"
@@ -359,6 +349,17 @@ en:
           new_default_pet_task: "New Default Pet Task"
         edit:
           edit_default_pet_task: "Edit Default Pet Task"
+      faqs:
+        index:
+          faqs: "Frequently Asked Questions"
+          create_faq: "Create new FAQ"
+          are_you_sure_delete: "Are you sure you want to delete this FAQ?"
+        new:
+          new_faq: "New FAQ"
+        edit:
+          edit_faq: "Edit FAQ"
+        faq:
+          are_you_sure_delete: "Are you sure you want to delete this FAQ?"
       organization_profiles:
         form:
           please_fix_the_errors: "Please fix the errors highlighted below."

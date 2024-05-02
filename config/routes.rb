@@ -24,11 +24,10 @@ Rails.application.routes.draw do
       end
 
       resources :default_pet_tasks
+      resources :faqs
     end
 
     resource :adopter_foster_profile, except: :destroy, as: "profile"
-
-    resources :faqs
 
     resources :dashboard, only: [:index]
     resources :adopter_foster_dashboard, only: [:index]

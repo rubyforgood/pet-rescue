@@ -1,4 +1,4 @@
-class Organizations::FaqsController < Organizations::BaseController
+class Organizations::Staff::FaqsController < Organizations::BaseController
   layout "dashboard"
   before_action :context_authorize!, only: %i[index new create]
   before_action :set_faq, only: %i[show edit update destroy]
@@ -29,7 +29,7 @@ class Organizations::FaqsController < Organizations::BaseController
     @faq = Faq.new(faq_params)
 
     if @faq.save
-      redirect_to faqs_url, notice: "FAQ was successfully created."
+      redirect_to staff_faqs_url, notice: "FAQ was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -38,7 +38,7 @@ class Organizations::FaqsController < Organizations::BaseController
   def update
     respond_to do |format|
       if @faq.update(faq_params)
-        format.html { redirect_to faqs_url, notice: "FAQ was successfully updated." }
+        format.html { redirect_to staff_faqs_url, notice: "FAQ was successfully updated." }
         format.turbo_stream { flash.now[:notice] = "FAQ was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +50,7 @@ class Organizations::FaqsController < Organizations::BaseController
   def destroy
     @faq.destroy!
     respond_to do |format|
-      format.html { redirect_to faqs_url, notice: "FAQ was successfully deleted." }
+      format.html { redirect_to staff_faqs_url, notice: "FAQ was successfully deleted." }
       format.turbo_stream { flash.now[:notice] = "FAQ was successfully deleted." }
     end
   end
@@ -62,7 +62,7 @@ class Organizations::FaqsController < Organizations::BaseController
 
     authorize! @faq
   rescue ActiveRecord::RecordNotFound
-    redirect_to faqs_path, alert: "FAQ not found."
+    redirect_to staff_faqs_path, alert: "FAQ not found."
   end
 
   def faq_params

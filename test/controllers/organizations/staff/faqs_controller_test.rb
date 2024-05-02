@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::FaqsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = ActsAsTenant.current_tenant
     @faq = create(:faq)
@@ -20,7 +20,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::FaqPolicy
         ) do
-          get new_faq_url
+          get new_staff_faq_url
         end
       end
     end
@@ -38,7 +38,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::FaqPolicy
         ) do
-          post faqs_url, params: @params
+          post staff_faqs_url, params: @params
         end
       end
     end
@@ -50,7 +50,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::FaqPolicy
         ) do
-          get faqs_url
+          get staff_faqs_url
         end
       end
 
@@ -59,7 +59,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
           type: :active_record_relation,
           with: Organizations::FaqPolicy
         ) do
-          get faqs_url
+          get staff_faqs_url
         end
       end
     end
@@ -69,7 +69,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
         assert_authorized_to(
           :manage?, @faq, with: Organizations::FaqPolicy
         ) do
-          get faq_url(@faq)
+          get staff_faq_url(@faq)
         end
       end
     end
@@ -80,7 +80,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @faq,
           with: Organizations::FaqPolicy
         ) do
-          get edit_faq_url(@faq)
+          get edit_staff_faq_url(@faq)
         end
       end
     end
@@ -99,7 +99,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @faq,
           with: Organizations::FaqPolicy
         ) do
-          patch faq_url(@faq),
+          patch staff_faq_url(@faq),
             params: @params
         end
       end
@@ -111,7 +111,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @faq,
           with: Organizations::FaqPolicy
         ) do
-          delete faq_url(@faq)
+          delete staff_faq_url(@faq)
         end
       end
     end
@@ -122,22 +122,22 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
   end
 
   should "get index" do
-    get faqs_url
+    get staff_faqs_url
     assert_response :success
   end
 
   should "get new" do
-    get new_faq_url
+    get new_staff_faq_url
     assert_response :success
   end
 
   context "#show" do
     should "get show" do
-      get faq_url(@faq)
+      get staff_faq_url(@faq)
       assert_response :success
     end
     should "show faq with turbo" do
-      get faq_url(@faq), as: :turbo_stream
+      get staff_faq_url(@faq), as: :turbo_stream
 
       assert_response :success
       assert_turbo_stream action: "replace", target: @faq do
@@ -149,7 +149,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
   context "POST #create" do
     should "create new faq" do
       assert_difference("@organization.faqs.count", 1) do
-        post faqs_path, params: {
+        post staff_faqs_path, params: {
           faq: {
             question: "New question?",
             answer: "New answer"
@@ -164,13 +164,13 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
 
     should "not create new default pet task with invalid or missing param" do
       assert_difference("@organization.faqs.count", 0) do
-        post faqs_path, params: {
+        post staff_faqs_path, params: {
           faq: {
             question: "",
             answer: "Answer without question"
           }
         }
-        post faqs_path, params: {
+        post staff_faqs_path, params: {
           faq: {
             question: "Question without answer",
             answer: ""
@@ -184,14 +184,14 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
 
   context "GET #edit" do
     should "visit edit page" do
-      get edit_faq_path(@faq)
+      get edit_staff_faq_path(@faq)
 
       assert_response :success
       assert_select "h1", text: "Edit FAQ"
     end
 
     should "not visit edit page of inexistent task" do
-      get edit_faq_path(id: Faq.order(:id).last.id + 1)
+      get edit_staff_faq_path(id: Faq.order(:id).last.id + 1)
 
       assert_response :redirect
       follow_redirect!
@@ -199,7 +199,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "edit faq with turbo" do
-      get edit_faq_url(@faq), as: :turbo_stream
+      get edit_staff_faq_url(@faq), as: :turbo_stream
 
       assert_response :success
       assert_turbo_stream action: "replace", target: @faq do
@@ -211,7 +211,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
   context "PATCH #update" do
     should "update FAQ" do
       assert_changes "@faq.question" do
-        patch faq_path(@faq), params: {
+        patch staff_faq_path(@faq), params: {
           faq: {
             question: @faq.question + " new question"
           }
@@ -226,7 +226,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "not update default pet task with invalid or missing param" do
-      patch faq_path(@faq), params: {
+      patch staff_faq_path(@faq), params: {
         faq: {
           question: ""
         }
@@ -236,7 +236,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "update faq with turbo" do
-      patch faq_url(@faq), params: {
+      patch staff_faq_url(@faq), params: {
         faq: {
           question: "new question"
         }
@@ -249,7 +249,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "render inline edit with turbo if error occurs" do
-      patch faq_path(@faq, format: :turbo_stream), params: {
+      patch staff_faq_path(@faq, format: :turbo_stream), params: {
         faq: {
           question: ""
         }
@@ -264,7 +264,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
   context "DELETE #destroy" do
     should "destroy a FAQ" do
       assert_difference("@organization.faqs.count", -1) do
-        delete faq_path(@faq)
+        delete staff_faq_path(@faq)
       end
 
       assert_response :redirect
@@ -273,7 +273,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "redirect with error for inexistent FAQ" do
-      delete faq_path(id: Faq.order(:id).last.id + 1)
+      delete staff_faq_path(id: Faq.order(:id).last.id + 1)
 
       assert_response :redirect
       follow_redirect!
@@ -281,7 +281,7 @@ class Organizations::FaqsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "delete faq with turbo" do
-      delete faq_url(@faq), as: :turbo_stream
+      delete staff_faq_url(@faq), as: :turbo_stream
 
       assert_response :success
       assert_turbo_stream action: "remove", target: @faq

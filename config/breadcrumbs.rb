@@ -37,7 +37,7 @@ crumb :form do |form|
 end
 
 crumb :faqs_index do
-  link "FAQs", faqs_path
+  link "FAQs", staff_faqs_path
 end
 
 # crumb :projects do
