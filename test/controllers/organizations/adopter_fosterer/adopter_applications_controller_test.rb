@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::AdopterApplicationsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -15,7 +15,7 @@ class Organizations::AdopterApplicationsControllerTest < ActionDispatch::Integra
         assert_authorized_to(
           :index?, AdopterApplication, with: AdopterApplicationPolicy
         ) do
-          get adopter_applications_url
+          get adopter_fosterer_adopter_applications_url
         end
       end
 
@@ -23,7 +23,7 @@ class Organizations::AdopterApplicationsControllerTest < ActionDispatch::Integra
         assert_have_authorized_scope(
           type: :active_record_relation, with: AdopterApplicationPolicy
         ) do
-          get adopter_applications_url
+          get adopter_fosterer_adopter_applications_url
         end
       end
     end
@@ -43,7 +43,7 @@ class Organizations::AdopterApplicationsControllerTest < ActionDispatch::Integra
           context: {pet: @pet},
           with: AdopterApplicationPolicy
         ) do
-          post adopter_applications_url, params: @params
+          post adopter_fosterer_adopter_applications_url, params: @params
         end
       end
     end
@@ -60,7 +60,7 @@ class Organizations::AdopterApplicationsControllerTest < ActionDispatch::Integra
         assert_authorized_to(
           :update?, @adopter_application, with: AdopterApplicationPolicy
         ) do
-          patch adopter_application_url(@adopter_application), params: @params
+          patch adopter_fosterer_adopter_application_url(@adopter_application), params: @params
         end
       end
     end

@@ -40,10 +40,9 @@ Rails.application.routes.draw do
     namespace :adopter_fosterer do
       resource :profile, except: :destroy
       resources :dashboard, only: [:index]
+      resources :adopter_applications, path: "applications", only: %i[index create update]
     end
 
-    resources :adopter_applications, path: "applications",
-      only: %i[index create update]
     resources :forms do
       resources :questions
     end

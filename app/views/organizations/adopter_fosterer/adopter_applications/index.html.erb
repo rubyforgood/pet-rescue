@@ -59,7 +59,7 @@
               <!--withdraw button-->
               <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
                           align-items-center">
-                <%= form_with model: app do |form| %>
+                <%= form_with model: [:adopter_fosterer, app] do |form| %>
                   <%= form.hidden_field :status, value: "withdrawn" %>
                   <%= form.submit t(".withdraw"),
                     data: { turbo: false },
@@ -73,7 +73,7 @@
                 <!--remove button-->
                 <div class="col-md-3 mb-2 mb-md-0 d-flex justify-content-center 
                             align-items-center">
-                  <%= form_with model: app do |form| %>
+                  <%= form_with model: [:adopter_fosterer, app] do |form| %>
                     <%= form.hidden_field :profile_show, value: false %>
                     <%= form.submit t('.remove'),
                       data: { turbo: false },

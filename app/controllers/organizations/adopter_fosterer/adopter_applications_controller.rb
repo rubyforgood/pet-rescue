@@ -1,4 +1,4 @@
-class Organizations::AdopterApplicationsController < Organizations::BaseController
+class Organizations::AdopterFosterer::AdopterApplicationsController < Organizations::BaseController
   before_action :authenticate_user!
 
   def index
@@ -34,7 +34,7 @@ class Organizations::AdopterApplicationsController < Organizations::BaseControll
     authorize! @application, with: AdopterApplicationPolicy
 
     if @application.update(application_params)
-      redirect_to adopter_applications_path
+      redirect_to adopter_fosterer_adopter_applications_path
     else
       redirect_to adopter_fosterer_profile_path, alert: "Error."
     end
