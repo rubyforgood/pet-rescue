@@ -54,7 +54,7 @@ class Organizations::Staff::QuestionsController < ApplicationController
     @form = organization.forms.find(params[:form_id])
     authorize! @form
   rescue ActiveRecord::RecordNotFound
-    redirect_to staff_forms_path, alert: t("organizations.forms.not_found")
+    redirect_to staff_forms_path, alert: t("organizations.staff.forms.not_found")
   end
 
   def set_question

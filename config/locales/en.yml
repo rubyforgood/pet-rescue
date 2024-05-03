@@ -266,8 +266,6 @@ en:
         50_characters_maximum: "50 characters maximum"
 
   organizations:
-    forms:
-      not_found: "Form not found."
     adoptable_pets:
       index:
         header: "Up for adoption"
