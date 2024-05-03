@@ -288,6 +288,4 @@ ActsAsTenant.with_tenant(@organization) do
       answer: Faker::Lorem.sentence(word_count: 1, random_words_to_add: 50)
     )
   end
-
-  PageText.create!(hero: nil, about: nil)
 end
