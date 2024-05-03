@@ -3,29 +3,50 @@ class Organizations::InvitationsController < Devise::InvitationsController
 
   layout "dashboard", only: [:new, :create]
 
+  # Do not use this action! Use other invitation controllers instead for new.
   def new
-    authorize! StaffAccount, context: {organization: Current.organization},
+    authorize! User, context: {organization: Current.organization},
       with: Organizations::InvitationPolicy
 
     @user = User.new
-    @staff = StaffAccount.new(user: @user)
   end
 
   def create
-    authorize! StaffAccount, context: {organization: Current.organization},
-      with: Organizations::InvitationPolicy
+    case user_params[:roles]
+    when "admin", "staff"
+      authorize! User, context: {organization: Current.organization},
+        with: Organizations::StaffInvitationPolicy
 
-    @user = User.new(
-      user_params.merge(password: SecureRandom.hex(8)).except(:roles)
-    )
-    @user.add_role(user_params[:roles], Current.organization)
-    @user.staff_account = StaffAccount.new
+      @user = User.new(
+        user_params.merge(password: SecureRandom.hex(8)).except(:roles)
+      )
+      @user.add_role(user_params[:roles], Current.organization)
+      @user.build_staff_account
 
-    if @user.save
-      @user.invite!(current_user)
-      redirect_to staff_index_path, notice: "Invite sent!"
+      if @user.save
+        @user.invite!(current_user)
+        redirect_to staff_index_path, notice: "Invite sent!"
+      else
+        render :new, status: :unprocessable_entity
+      end
+    when "fosterer"
+      authorize! User, context: {organization: Current.organization},
+        with: Organizations::FostererInvitationPolicy
+
+      @user = User.new(
+        user_params.merge(password: SecureRandom.hex(8)).except(:roles)
+      )
+      @user.add_role("fosterer", Current.organization)
+      @user.build_adopter_foster_account
+
+      if @user.save
+        @user.invite!(current_user)
+        redirect_to fosterers_path, notice: "Invite sent!"
+      else
+        render :new, status: :unprocessable_entity
+      end
     else
-      render :new, status: :unprocessable_entity
+      :deny
     end
   end
 

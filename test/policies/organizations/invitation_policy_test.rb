@@ -8,7 +8,7 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
     @organization = ActsAsTenant.current_tenant
     @policy = -> {
       Organizations::InvitationPolicy.new(
-        StaffAccount, organization: @organization, user: @user
+        User, organization: @organization, user: @user
       )
     }
   end
@@ -69,30 +69,8 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
         @user = create(:staff_admin)
       end
 
-      context "when created staff is for a different organization" do
-        setup do
-          @organization = create(:organization)
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when staff account is deactivated" do
-        setup do
-          @user.staff_account.deactivate
-        end
-
-        should "return false" do
-          assert_equal @action.call, false
-        end
-      end
-
-      context "when created staff is for the same organization" do
-        should "return true" do
-          assert_equal @action.call, true
-        end
+      should "return false" do
+        assert_equal @action.call, false
       end
     end
   end

@@ -51,7 +51,7 @@ class Organizations::InvitationsControllerTest < ActionDispatch::IntegrationTest
     context "#new" do
       should "be authorized" do
         assert_authorized_to(
-          :create?, StaffAccount,
+          :create?, User,
           context: {organization: @organization},
           with: Organizations::InvitationPolicy
         ) do
@@ -74,9 +74,9 @@ class Organizations::InvitationsControllerTest < ActionDispatch::IntegrationTest
 
       should "be authorized" do
         assert_authorized_to(
-          :create?, StaffAccount,
+          :create?, User,
           context: {organization: @organization},
-          with: Organizations::InvitationPolicy
+          with: Organizations::StaffInvitationPolicy
         ) do
           post user_invitation_url, params: @params
         end

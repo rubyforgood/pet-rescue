@@ -39,6 +39,8 @@ Rails.application.routes.draw do
       post "activate", to: "staff#activate"
       post "update_activation", to: "staff#update_activation"
     end
+
+    resources :staff_invitations, only: %i[new]
     resources :fosterers, only: %i[index]
 
     resources :matches, only: %i[create destroy]
