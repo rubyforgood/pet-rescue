@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions",
-    invitations: "organizations/invitations"
+    invitations: "organizations/staff/invitations"
   }
 
   resources :donations, only: [:create]

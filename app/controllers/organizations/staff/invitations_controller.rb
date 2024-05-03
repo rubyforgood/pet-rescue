@@ -1,4 +1,4 @@
-class Organizations::InvitationsController < Devise::InvitationsController
+class Organizations::Staff::InvitationsController < Devise::InvitationsController
   include OrganizationScopable
 
   layout "dashboard", only: [:new, :create]
