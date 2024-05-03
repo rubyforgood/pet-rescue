@@ -53,6 +53,7 @@
 #  fk_rails_...  (location_id => locations.id)
 #
 class AdopterFosterProfile < ApplicationRecord
+  include Phoneable
   acts_as_tenant(:organization)
   belongs_to :location, dependent: :destroy
   belongs_to :adopter_foster_account
@@ -133,28 +134,9 @@ class AdopterFosterProfile < ApplicationRecord
     visit_laventana == true
   end
 
-  def formatted_phone
-    parsed_phone = Phonelib.parse(phone_number)
-    return phone_number if parsed_phone.invalid?
-
-    formatted =
-      if parsed_phone.country_code == "1" # NANP
-        parsed_phone.full_national # (415) 555-2671;123
-      else
-        parsed_phone.full_international # +44 20 7183 8750
-      end
-    formatted.gsub!(";", " x") # (415) 555-2671 x123
-    formatted
-  end
-
   # used in views to show only the custom error msg without leading attribute
   def custom_messages(attribute)
     errors.where(attribute)
   end
 
-  private
-
-  def normalize_phone
-    self.phone_number = Phonelib.parse(phone_number).full_e164.presence
-  end
 end
