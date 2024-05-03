@@ -37,6 +37,6 @@ class Organizations::InvitationsController < Devise::InvitationsController
   end
 
   def after_accept_path_for(_resource)
-    dashboard_index_path
+    staff_dashboard_index_path
   end
 end
