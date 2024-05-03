@@ -304,6 +304,33 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "VonTeacher",
+      "name": "Vaughn Weiss",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17757205?v=4",
+      "profile": "https://vonteacher.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Harry-kp",
+      "name": "Harshit Chaudhary",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55315065?v=4",
+      "profile": "https://harry-kp.github.io/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "LindseyB",
+      "name": "Lindsey Bieda",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33750?v=4",
+      "profile": "http://rarlindseysmash.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

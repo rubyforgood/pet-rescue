@@ -14,9 +14,6 @@ class StaticPagesController < ApplicationController
   def about_us
   end
 
-  def faq
-  end
-
   def partners
   end
 

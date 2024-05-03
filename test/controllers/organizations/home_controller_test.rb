@@ -2,8 +2,10 @@ require "test_helper"
 
 class Organizations::HomeControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @organization = ActsAsTenant.current_tenant
+    @organization = create(:organization, :with_page_text)
+    @organization.save
     @pets = create_list(:pet, 4, :with_image, organization_id: @organization.id)
+    Current.organization = @organization
   end
 
   context "GET #index" do

@@ -1,0 +1,57 @@
+<% breadcrumb :default_pet_tasks_index %>
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title t(".default_pet_tasks") %>
+  <% p.actions do %>
+    <%= link_to t('.create_default_task'), new_staff_default_pet_task_path, class: "btn btn-primary" %><br>
+  <% end %>
+  <% p.content do %>
+    <!-- row -->
+    <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
+      <!-- card -->
+      <div class="card">
+        <!-- table -->
+        <div class="table-responsive overflow-y-hidden">
+          <table class="table mb-0 text-nowrap table-hover table-centered">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Due After</th>
+                <th scope="col">Recurring</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @default_pet_tasks.each do |task| %>
+                <tr>
+                  <td>
+                    <%= task.name %>
+                  </td>
+                  <td>
+                    <%= task.description %>
+                  </td>
+                  <td>
+                    <%= task.due_in_days ? pluralize(task.due_in_days, "day") : "" %>
+                  </td>
+                  <td>
+                    <%= task.recurring? ? "Yes" : "No" %>
+                  </td>
+                  <% if current_user.staff_account %>
+                    <td>
+                      <div class="text-right">
+                        <div class="d-flex align-items-center justify-content-end">
+                          <%= link_to 'Edit', edit_staff_default_pet_task_path(task), class: 'btn btn-warning m-2' %>
+                          <%= link_to 'Delete', staff_default_pet_task_path(task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
+                        </div>
+                      </div>
+                    </td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
