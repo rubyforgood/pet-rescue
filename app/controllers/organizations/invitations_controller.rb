@@ -47,7 +47,10 @@ class Organizations::InvitationsController < Devise::InvitationsController
         render :new, status: :unprocessable_entity
       end
     else
-      :deny
+      authorize! User, context: {organization: Current.organization},
+        with: Organizations::InvitationPolicy
+
+      redirect_back fallback_location: root_path
     end
   end
 
