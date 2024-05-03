@@ -15,7 +15,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   context "non-staff" do
     should "not see any applications" do
-      get adoption_application_reviews_path
+      get staff_adoption_application_reviews_path
 
       assert_response :redirect
       follow_redirect!
@@ -30,14 +30,14 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     end
 
     should "see all applications" do
-      get adoption_application_reviews_path
+      get staff_adoption_application_reviews_path
 
       assert_response :success
       AdopterApplication.all.each { |application| verify_application_elements application }
     end
 
     should "be able to change the application status" do
-      patch adoption_application_review_path(@awaiting_review_app.id),
+      patch staff_adoption_application_review_path(@awaiting_review_app.id),
         params: {adopter_application: {status: :under_review}},
         headers: {"HTTP_REFERER" => "example.com"}
 
@@ -48,7 +48,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     end
 
     should "be able to add a note to an application" do
-      patch adoption_application_review_path(@under_review_app.id),
+      patch staff_adoption_application_review_path(@under_review_app.id),
         params: {adopter_application: {notes: "some notes"}},
         headers: {"HTTP_REFERER" => "example.com"}
 
@@ -65,7 +65,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       end
 
       should_eventually "not see any applications" do
-        get adoption_application_reviews_path
+        get staff_adoption_application_reviews_path
 
         assert_response :redirect
         follow_redirect!

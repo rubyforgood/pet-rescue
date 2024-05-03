@@ -30,12 +30,13 @@
               <td>
                 <% if image.record.persisted? %>
                   <%= link_to t('general.delete'),
-                        purge_attachment_path(image.id),
+                        staff_purge_attachment_path(image.id),
                         data: {
                           turbo_confirm: 'Do you want to delete this image?',
                           turbo_method: "delete" },
                           class: 'btn btn-outline-danger' %>
                   <% end %>
+
               </td>
             </tr>
           <% end %>
