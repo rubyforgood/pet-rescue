@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     resources :adoptable_pets, only: [:index, :show]
     resources :faq, only: [:index]
 
+    resources :forms do
+      resources :questions
+    end
+
     namespace :staff do
       resource :organization_profile, only: %i[edit update]
       resource :page_text, only: [:edit, :update]
@@ -43,10 +47,6 @@ Rails.application.routes.draw do
       resource :profile, except: :destroy
       resources :dashboard, only: [:index]
       resources :adopter_applications, path: "applications", only: %i[index create update]
-    end
-
-    resources :forms do
-      resources :questions
     end
   end
 
