@@ -46,6 +46,7 @@ class Organizations::Staff::PageTextsControllerTest < ActionDispatch::Integratio
   context "PATCH #update" do
     should "update page text" do
       patch staff_page_text_path(@page_text), params: {page_text: {hero: "Super Dog", about: "canine caped crusader"}}
+      @page_text.reload
       assert_response :redirect
       follow_redirect!
       assert_response :success

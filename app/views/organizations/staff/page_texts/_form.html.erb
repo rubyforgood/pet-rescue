@@ -3,34 +3,51 @@
     <div class="d-lg-flex align-items-center justify-content-between">
       <h3 class="mb-1">Landing page details</h3>
       <p class="text-muted mb-3" style="font-size: 12px;">Edit your landing page.
-      <p>
+      </p>
     </div>
     <div class="row mt-3">
       <div class="col-lg-6">
         <%= form.fields_for :page_text do |page_text_form| %>
-          <form class="mb-3">
-            <!-- Hero Text -->
-            <div class="form-group">
-              <%= form.text_field :hero,
-                                  label: "Hero",
-                                  autofocus: true,
-                                  placeholder: "hero text",
-                                  class: 'form-control' %>
-            </div>
-            <!-- About Us -->
-            <div class="form-group">
-              <%= form.text_area :about, label: "About Us", placeholder: "About Us text", class: 'form-control' %>
-            </div>
-          </form>
+          <div class="form-group">
+            <%= form.text_field :hero,
+                                label: "Hero",
+                                autofocus: true,
+                                placeholder: "hero text",
+                                class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.file_field :hero_image,
+                                label: "Hero Image",
+                                class: 'form-control'%>
+          </div>
+          <small class="form-text text-muted"> Images must be .png or .jpeg under 2MB </small>
+          <div class="form-group mt-4">
+            <%= form.text_area :about, label: "About Us", placeholder: "About Us text", class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <%= form.file_field :about_us_images,
+                                multiple: true,
+                                accept: 'image/png, image/jpeg',
+                                label: "About Us Images",
+                                class: 'form-control' %>
+            <% @page_text.about_us_images.each do |image| %>
+              <%= form.hidden_field :about_us_images, multiple: true, value: image.signed_id %>
+            <% end %>
+            <small class="form-text text-muted">You can upload up to 2 images. <br> Images must be .png or .jpeg under 2MB </small>
         <% end %>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-lg-12">
+          <%= form.submit 'Save page text/images', class: 'btn btn-primary' %>
+          <%= link_to t('general.cancel'), :back, class: 'btn btn-outline-secondary' %>
+        </div>
       </div>
     </div>
-    <div class="row mt-3">
-      <div class="col-lg-12">
-        <%= form.submit 'Save page text', class: 'btn btn-primary' %>
-        <%= link_to t('general.cancel'), :back, class: 'btn btn-outline-secondary' %>
-      </div>
-    </div>
-  </div> <!-- End of Card Body -->
+    <div class="mt-5">
+      <div class="mt-5">
+        <div class="mt-5">
+          <% combined_images  = [@page_text.hero_image.attachment, @page_text.about_us_images].flatten.compact%>
+          <%= render partial: "components/image_attachment_table", locals: { images: combined_images } %>
+        </div>
 <% end %>
-
