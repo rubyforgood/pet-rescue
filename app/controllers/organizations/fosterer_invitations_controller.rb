@@ -1,3 +1,4 @@
+# This controller is meant to be used in conjunction with the devise InvitationsController.
 class Organizations::FostererInvitationsController < Organizations::BaseController
   layout "dashboard", only: %i[new]
 

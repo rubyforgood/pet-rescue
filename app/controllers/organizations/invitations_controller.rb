@@ -3,7 +3,8 @@ class Organizations::InvitationsController < Devise::InvitationsController
 
   layout "dashboard", only: [:new, :create]
 
-  # Do not use this action! Use other invitation controllers instead for new.
+  # This action is for generally creating any User, and it is currently unused.
+  # See the other sub InvitationsControllers for the used `new` actions.
   def new
     authorize! User, context: {organization: Current.organization},
       with: Organizations::InvitationPolicy
@@ -12,6 +13,8 @@ class Organizations::InvitationsController < Devise::InvitationsController
   end
 
   def create
+    # We have different return paths based on the roles provided in the params.
+    # If you extend this, make sure new paths have their own authz!
     case user_params[:roles]
     when "admin", "staff"
       authorize! User, context: {organization: Current.organization},
