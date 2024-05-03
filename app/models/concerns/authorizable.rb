@@ -25,6 +25,7 @@ STAFF_PERMISSIONS = (
     review_adopter_applications
     view_adopter_foster_accounts
     view_adopter_foster_profiles
+    invite_fosterers
     purge_attachments
     manage_default_pet_tasks
     manage_forms

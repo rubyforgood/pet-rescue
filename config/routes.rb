@@ -41,6 +41,8 @@ Rails.application.routes.draw do
     end
 
     resources :staff_invitations, only: %i[new]
+    resources :fosterer_invitations, only: %i[new]
+
     resources :fosterers, only: %i[index]
 
     resources :matches, only: %i[create destroy]
