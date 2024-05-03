@@ -67,6 +67,4 @@ Rails.application.routes.draw do
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
   resources :contacts, only: [:new, :create]
-
-  resolve("adopter_foster_profile") { [:adopter_foster_profile] }
 end
