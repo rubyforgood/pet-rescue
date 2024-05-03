@@ -36,6 +36,7 @@ class Organizations::InvitationsController < Devise::InvitationsController
       @user = User.new(
         user_params.merge(password: SecureRandom.hex(8)).except(:roles)
       )
+      @user.add_role("adopter", Current.organization)
       @user.add_role("fosterer", Current.organization)
       @user.build_adopter_foster_account
 
