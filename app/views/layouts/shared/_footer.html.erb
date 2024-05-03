@@ -78,7 +78,9 @@
           <h3 class="fw-bold mb-3">Get in touch</h3>
           <p><%= Current.tenant.location.city_town %>, <%= Current.tenant.location.province_state %> <%= Current.tenant.location.country %></p>
           <p class="mb-1">Email: <a href="mailto:<%= Current.tenant.profile.email %>"><%= Current.tenant.profile.email %></a></p>
-          <p>Phone: <span class="text-dark fw-semibold"><%= Current.tenant.profile.phone_number %></span></p>
+          <% if Current.tenant.profile.phone_number.present? %>
+            <p>Phone: <span class="text-dark fw-semibold"><%= Current.tenant.profile.formatted_phone_number %></span></p>
+          <% end %>
         </div>
       </div>
     </div>
