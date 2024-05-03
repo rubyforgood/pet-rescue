@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class AttachmentsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::AttachmentsControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -19,7 +19,7 @@ class AttachmentsControllerTest < ActionDispatch::IntegrationTest
           :purge?, @attachment,
           with: ActiveStorage::AttachmentPolicy
         ) do
-          delete purge_attachment_url(@attachment),
+          delete staff_purge_attachment_url(@attachment),
             headers: {"HTTP_REFERER" => "http://www.example.com/"}
         end
       end
@@ -50,7 +50,7 @@ class AttachmentsControllerTest < ActionDispatch::IntegrationTest
       attachment_id = @pet.images.first.id
 
       assert_difference("@pet.images.count", -1) do
-        delete purge_attachment_path(attachment_id),
+        delete staff_purge_attachment_path(attachment_id),
           headers: {"HTTP_REFERER" => "http://www.example.com/"}
       end
 

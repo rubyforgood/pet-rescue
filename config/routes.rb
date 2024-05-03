@@ -35,6 +35,8 @@ Rails.application.routes.draw do
         post "activate", to: "staff#activate"
         post "update_activation", to: "staff#update_activation"
       end
+
+      delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
     end
 
     namespace :adopter_fosterer do
@@ -65,8 +67,6 @@ Rails.application.routes.draw do
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
   resources :contacts, only: [:new, :create]
-
-  delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
 
   resolve("adopter_foster_profile") { [:adopter_foster_profile] }
 end
