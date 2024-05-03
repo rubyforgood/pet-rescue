@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       resources :questions
     end
     resources :adoption_application_reviews, only: [:index, :edit, :update]
-    resources :foster_application_reviews, only: [:index]
+    resources :manage_fosters, only: [:index]
     resources :staff do
       post "deactivate", to: "staff#deactivate"
       post "activate", to: "staff#activate"
