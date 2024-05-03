@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::QuestionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = ActsAsTenant.current_tenant
     @question = create(:question, organization: @organization)
@@ -21,7 +21,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::QuestionPolicy
         ) do
-          get new_form_question_url(@form)
+          get new_staff_form_question_url(@form)
         end
       end
     end
@@ -39,7 +39,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::QuestionPolicy
         ) do
-          post form_questions_url(@form), params: @params
+          post staff_form_questions_url(@form), params: @params
         end
       end
     end
@@ -50,7 +50,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @question,
           with: Organizations::QuestionPolicy
         ) do
-          get edit_form_question_url(@form, @question)
+          get edit_staff_form_question_url(@form, @question)
         end
       end
     end
@@ -69,7 +69,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @question,
           with: Organizations::QuestionPolicy
         ) do
-          patch form_question_url(@form, @question), params: @params
+          patch staff_form_question_url(@form, @question), params: @params
         end
       end
     end
@@ -80,14 +80,14 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @question,
           with: Organizations::QuestionPolicy
         ) do
-          delete form_question_url(@form, @question)
+          delete staff_form_question_url(@form, @question)
         end
       end
     end
   end
 
   test "should get new" do
-    get new_form_question_url(@form)
+    get new_staff_form_question_url(@form)
 
     assert_response :success
     assert_select "h1", text: "New Question"
@@ -96,7 +96,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
   context "POST #create" do
     should "create new question" do
       assert_difference("@form.questions.count", 1) do
-        post form_questions_url(@form), params: {
+        post staff_form_questions_url(@form), params: {
           question: attributes_for(:question)
         }
       end
@@ -108,7 +108,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
 
     should "not create question with invalid data" do
       assert_no_difference("@form.questions.count") do
-        post form_questions_url(@form), params: {
+        post staff_form_questions_url(@form), params: {
           question: {name: ""}
         }
       end
@@ -119,14 +119,14 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
 
   context "GET #edit" do
     should "visit edit page" do
-      get edit_form_question_url(@form, @question)
+      get edit_staff_form_question_url(@form, @question)
 
       assert_response :success
       assert_select "h1", text: "Edit Question"
     end
 
     should "not visit edit page of non-existent form" do
-      get edit_form_question_url(0, @question)
+      get edit_staff_form_question_url(0, @question)
 
       assert_response :redirect
       follow_redirect!
@@ -134,7 +134,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "not visit edit page of non-existent question" do
-      get edit_form_question_url(@form, id: 0)
+      get edit_staff_form_question_url(@form, id: 0)
 
       assert_response :redirect
       follow_redirect!
@@ -145,7 +145,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       f2 = create(:form, organization: @organization)
       q2 = create(:question, form: f2)
 
-      get edit_form_question_url(@form, q2)
+      get edit_staff_form_question_url(@form, q2)
 
       assert_response :redirect
       follow_redirect!
@@ -155,7 +155,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
 
   context "PATCH #update" do
     should "update question" do
-      patch form_question_url(@form, @question), params: {
+      patch staff_form_question_url(@form, @question), params: {
         question: {
           name: "new name"
         }
@@ -167,7 +167,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "not update question with invalid data" do
-      patch form_question_url(@form, @question), params: {
+      patch staff_form_question_url(@form, @question), params: {
         question: {
           name: ""
         }
@@ -180,7 +180,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       f2 = create(:form, organization: @organization)
       q2 = create(:question, form: f2)
 
-      patch form_question_url(@form, q2), params: {
+      patch staff_form_question_url(@form, q2), params: {
         question: {
           name: "new name",
           label: "new label"
@@ -196,7 +196,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
   context "DELETE #destroy" do
     should "destroy a question" do
       assert_difference("@form.questions.count", -1) do
-        delete form_question_url(@form, @question)
+        delete staff_form_question_url(@form, @question)
       end
 
       assert_response :redirect
@@ -209,7 +209,7 @@ class Organizations::QuestionsControllerTest < ActionDispatch::IntegrationTest
       q2 = create(:question, form: f2)
 
       assert_no_difference("Question.count") do
-        delete form_question_url(@form, q2)
+        delete staff_form_question_url(@form, q2)
       end
 
       assert_response :redirect

@@ -1,13 +1,10 @@
-<% breadcrumb :form, @form %>
+<% breadcrumb :forms_index %>
 
 <%= render "components/dashboard/page" do |p| %>
-  <% p.header_title @form.name %>
+  <% p.header_title t(".forms") %>
 
   <% p.actions do %>
-    <div class="d-flex gap-2">
-      <%= link_to t('general.edit'), edit_form_path(@form), class: "btn btn-warning" %>
-      <%= link_to t('.create_question'), new_form_question_path(@form), class: "btn btn-primary" %>
-    </div>
+    <%= link_to t(".create_form"), new_staff_form_path, class: "btn btn-primary" %>
   <% end %>
 
   <% p.content do %>
@@ -28,16 +25,16 @@
             </thead>
 
             <tbody>
-            <% @form.questions.each do |question| %>
+            <% @forms.each do |form| %>
               <tr>
-                <td><%= question.name %></td>
-                <td><%= question.description %></td>
+                <td><%= link_to form.name, staff_form_path(form) %></td>
+                <td><%= form.description %></td>
                 <% if current_user.staff_account %>
                   <td>
                     <div class="text-right">
                       <div class="d-flex align-items-center justify-content-end">
-                        <%= link_to 'Edit', edit_form_question_path(@form, question), class: 'btn btn-warning m-2' %>
-                        <%= link_to 'Delete', form_question_path(@form, question), class: 'btn btn-danger m-2', data: { turbo_method: 'delete', turbo_confirm: t('.confirm_delete_question') } %>
+                        <%= link_to 'Edit', edit_staff_form_path(form), class: 'btn btn-warning m-2' %>
+                        <%= link_to 'Delete', staff_form_path(form), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.confirm_delete') } %>
                       </div>
                     </div>
                   </td>

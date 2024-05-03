@@ -12,10 +12,6 @@ Rails.application.routes.draw do
     resources :adoptable_pets, only: [:index, :show]
     resources :faq, only: [:index]
 
-    resources :forms do
-      resources :questions
-    end
-
     namespace :staff do
       resource :organization_profile, only: %i[edit update]
       resource :page_text, only: [:edit, :update]
@@ -38,6 +34,10 @@ Rails.application.routes.draw do
         post "deactivate", to: "staff#deactivate"
         post "activate", to: "staff#activate"
         post "update_activation", to: "staff#update_activation"
+      end
+
+      resources :forms do
+        resources :questions
       end
 
       delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"

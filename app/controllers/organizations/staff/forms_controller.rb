@@ -1,4 +1,4 @@
-class Organizations::FormsController < ApplicationController
+class Organizations::Staff::FormsController < ApplicationController
   before_action :context_authorize!
   before_action :set_form, only: %i[show edit update destroy]
 
@@ -16,7 +16,7 @@ class Organizations::FormsController < ApplicationController
     @form = organization.forms.new(form_params)
 
     if @form.save
-      redirect_to forms_path, notice: t(".saved")
+      redirect_to staff_forms_path, notice: t(".saved")
     else
       flash.now[:alert] = t(".error")
 
@@ -32,7 +32,7 @@ class Organizations::FormsController < ApplicationController
 
   def update
     if @form.update(form_params)
-      redirect_to forms_path, notice: t(".updated")
+      redirect_to staff_forms_path, notice: t(".updated")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class Organizations::FormsController < ApplicationController
   def destroy
     @form.destroy
 
-    redirect_to forms_path, notice: t(".destroyed")
+    redirect_to staff_forms_path, notice: t(".destroyed")
   end
 
   private
@@ -54,7 +54,7 @@ class Organizations::FormsController < ApplicationController
     @form = organization.forms.find(params[:id])
     authorize! @form
   rescue ActiveRecord::RecordNotFound
-    redirect_to forms_path, alert: t(".not_found")
+    redirect_to staff_forms_path, alert: t(".not_found")
   end
 
   def form_params

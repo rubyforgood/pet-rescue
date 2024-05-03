@@ -28,11 +28,11 @@ crumb :default_pet_tasks_index do
 end
 
 crumb :forms_index do
-  link "Forms", forms_path
+  link "Forms", staff_forms_path
 end
 
 crumb :form do |form|
-  link form.name, form_path(form)
+  link form.name, staff_form_path(form)
   parent :forms_index
 end
 

@@ -1,4 +1,4 @@
-class Organizations::QuestionsController < ApplicationController
+class Organizations::Staff::QuestionsController < ApplicationController
   before_action :context_authorize!
   before_action :set_form
   before_action :set_question, only: %i[show edit update destroy]
@@ -17,7 +17,7 @@ class Organizations::QuestionsController < ApplicationController
     @question = @form.questions.new(question_params)
 
     if @question.save
-      redirect_to form_path(@form), notice: t(".saved")
+      redirect_to staff_form_path(@form), notice: t(".saved")
     else
       flash.now[:alert] = t(".error")
 
@@ -30,7 +30,7 @@ class Organizations::QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to form_path(@form), notice: t(".updated")
+      redirect_to staff_form_path(@form), notice: t(".updated")
     else
       flash.now[:alert] = t(".error")
 
@@ -41,7 +41,7 @@ class Organizations::QuestionsController < ApplicationController
   def destroy
     @question.destroy
 
-    redirect_to form_path(@form), notice: t(".destroyed")
+    redirect_to staff_form_path(@form), notice: t(".destroyed")
   end
 
   private
@@ -54,14 +54,14 @@ class Organizations::QuestionsController < ApplicationController
     @form = organization.forms.find(params[:form_id])
     authorize! @form
   rescue ActiveRecord::RecordNotFound
-    redirect_to forms_path, alert: t("organizations.forms.not_found")
+    redirect_to staff_forms_path, alert: t("organizations.forms.not_found")
   end
 
   def set_question
     @question = @form.questions.find(params[:id])
     authorize! @question
   rescue ActiveRecord::RecordNotFound
-    redirect_to form_path(@form), alert: t(".not_found")
+    redirect_to staff_form_path(@form), alert: t(".not_found")
   end
 
   def question_params

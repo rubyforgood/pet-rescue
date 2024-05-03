@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::FormsControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -20,7 +20,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::FormPolicy
         ) do
-          get new_form_url
+          get new_staff_form_url
         end
       end
     end
@@ -38,7 +38,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::FormPolicy
         ) do
-          post forms_url, params: @params
+          post staff_forms_url, params: @params
         end
       end
     end
@@ -50,7 +50,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::FormPolicy
         ) do
-          get forms_url
+          get staff_forms_url
         end
       end
 
@@ -59,7 +59,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
           type: :active_record_relation,
           with: Organizations::FormPolicy
         ) do
-          get forms_url
+          get staff_forms_url
         end
       end
     end
@@ -70,7 +70,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @form,
           with: Organizations::FormPolicy
         ) do
-          get form_url(@form)
+          get staff_form_url(@form)
         end
       end
     end
@@ -81,7 +81,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @form,
           with: Organizations::FormPolicy
         ) do
-          get edit_form_url(@form)
+          get edit_staff_form_url(@form)
         end
       end
     end
@@ -100,7 +100,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @form,
           with: Organizations::FormPolicy
         ) do
-          patch form_url(@form),
+          patch staff_form_url(@form),
             params: @params
         end
       end
@@ -112,7 +112,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
           :manage?, @form,
           with: Organizations::FormPolicy
         ) do
-          delete form_url(@form)
+          delete staff_form_url(@form)
         end
       end
     end
@@ -127,14 +127,14 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "get index" do
-      get forms_path
+      get staff_forms_path
 
       assert_response :success
       assert_select "h2", text: "Forms"
     end
 
     should "should get new" do
-      get new_form_path
+      get new_staff_form_path
 
       assert_response :success
       assert_select "h1", text: "New Form"
@@ -143,7 +143,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
     context "POST #create" do
       should "create new form" do
         assert_difference("@organization.forms.count", 1) do
-          post forms_path, params: {
+          post staff_forms_path, params: {
             form: attributes_for(:form)
           }
         end
@@ -155,7 +155,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
 
       should "not create new form with missing params" do
         assert_difference("@organization.forms.count", 0) do
-          post forms_path, params: {
+          post staff_forms_path, params: {
             form: {
               name: "",
               title: ""
@@ -169,14 +169,14 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
 
     context "GET #show" do
       should "visit show page" do
-        get form_path(@form)
+        get staff_form_path(@form)
 
         assert_response :success
         assert_select "h2", text: @form.name
       end
 
       should "not visit show page of non-existent form" do
-        get form_path(id: Form.order(:id).last.id + 1)
+        get staff_form_path(id: Form.order(:id).last.id + 1)
 
         assert_response :redirect
         follow_redirect!
@@ -186,14 +186,14 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
 
     context "GET #edit" do
       should "visit edit page" do
-        get edit_form_path(@form)
+        get edit_staff_form_path(@form)
 
         assert_response :success
         assert_select "h1", text: "Edit Form"
       end
 
       should "not visit edit page of non-existent task" do
-        get edit_form_path(id: Form.order(:id).last.id + 1)
+        get edit_staff_form_path(id: Form.order(:id).last.id + 1)
 
         assert_response :redirect
         follow_redirect!
@@ -204,7 +204,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
     context "PATCH #update" do
       should "update form" do
         assert_changes "@form.name" do
-          patch form_path(@form), params: {
+          patch staff_form_path(@form), params: {
             form: {
               name: Faker::Lorem.sentence
             }
@@ -219,7 +219,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
       end
 
       should "not update form with missing param" do
-        patch form_path(@form), params: {
+        patch staff_form_path(@form), params: {
           form: {
             name: ""
           }
@@ -232,7 +232,7 @@ class Organizations::FormsControllerTest < ActionDispatch::IntegrationTest
     context "DELETE #destroy" do
       should "destroy a form" do
         assert_difference("@organization.forms.count", -1) do
-          delete form_path(@form)
+          delete staff_form_path(@form)
         end
 
         assert_response :redirect
