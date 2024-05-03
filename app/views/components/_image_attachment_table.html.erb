@@ -10,26 +10,32 @@
         </tr>
       </thead>
       <tbody>
-        <% if @pet.images.attached? %>
-          <% @pet.images.each do |image| %>
+        <% if images.any?  %>
+          <% images.each do |image| %>
             <tr>
               <td>
                 <div class="d-flex align-items-center">
                   <div class="icon-shape img-4by3-lg rounded-3">
-                    <%= link_to(image_tag(image, class: 'card-img'), rails_blob_path(image, disposition: 'attachment')) %>
+                    <% if image.record.persisted? %>
+                      <%= link_to(image_tag(image, class: 'card-img'), rails_blob_path(image, disposition: 'attachment')) %>
+                    <% end %>
                   </div>
                 </div>
               </td>
               <td>
-                <%= link_to image.filename.to_s, rails_blob_path(image, disposition: 'attachment') %>
+                <% if image.record.persisted? %>
+                  <%= link_to image.filename.to_s, rails_blob_path(image, disposition: 'attachment') %>
+                <% end %>
               </td>
               <td>
-                <%= link_to t('general.delete'),
-                      purge_attachment_path(image.id),
-                      data: {
-                        turbo_confirm: "Do you want to delete this image?",
-                        turbo_method: "delete" },
-                      class: 'btn btn-outline-danger' %>
+                <% if image.record.persisted? %>
+                  <%= link_to t('general.delete'),
+                        purge_attachment_path(image.id),
+                        data: {
+                          turbo_confirm: 'Do you want to delete this image?',
+                          turbo_method: "delete" },
+                          class: 'btn btn-outline-danger' %>
+                  <% end %>
               </td>
             </tr>
           <% end %>

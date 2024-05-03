@@ -4,6 +4,8 @@ class LoginTest < ApplicationSystemTestCase
   setup do
     @user = create(:staff)
     @organization = @user.organization
+    @page_text = create(:page_text, :with_image, organization: @organization)
+    Current.organization = @organization
   end
 
   context "when logging in as a staff member" do

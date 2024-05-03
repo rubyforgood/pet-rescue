@@ -4,6 +4,8 @@ class UsersTest < ApplicationSystemTestCase
   setup do
     @user = create(:staff)
     @organization = @user.organization
+    @page_text = create(:page_text, :with_image, organization: @organization, hero: "Where every paw finds a home")
+    Current.organization = @organization
   end
 
   test "user can log out" do
