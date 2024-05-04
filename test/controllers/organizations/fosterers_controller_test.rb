@@ -16,7 +16,7 @@ class Organizations::FosterersControllerTest < ActionDispatch::IntegrationTest
           context: {organization: @organization},
           with: Organizations::AdopterFosterAccountPolicy
         ) do
-          get fosterers_url
+          get staff_fosterers_url
         end
       end
 
@@ -31,7 +31,7 @@ class Organizations::FosterersControllerTest < ActionDispatch::IntegrationTest
             type: :active_record_relation,
             with: Organizations::AdopterFosterAccountPolicy
           ) do
-            get fosterers_url
+            get staff_fosterers_url
           end
         end
       end

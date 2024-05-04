@@ -1,47 +1,47 @@
 crumb :root do
-  link "Home", dashboard_index_path
+  link "Home", staff_dashboard_index_path
 end
 
 crumb :dashboard_pets do
-  link "Pets", pets_path
+  link "Pets", staff_pets_path
 end
 
 crumb :dashboard_pet do |pet|
-  link pet.name, pet_path(pet)
+  link pet.name, staff_pet_path(pet)
   parent :dashboard_pets
 end
 
 crumb :organization_profile do |organization|
-  link "Edit Profile", edit_organization_profile_path(organization)
+  link "Edit Profile", edit_staff_organization_profile_path(organization)
 end
 
 crumb :page_text do |page_text|
-  link "Edit Page Text", edit_page_text_path(page_text)
+  link "Edit Page Text", edit_staff_page_text_path(page_text)
 end
 
 crumb :staff_index do
-  link "Staff", staff_index_path
+  link "Staff", staff_staff_index_path
 end
 
 crumb :default_pet_tasks_index do
-  link "Default Pet Tasks", default_pet_tasks_path
+  link "Default Pet Tasks", staff_default_pet_tasks_path
 end
 
 crumb :forms_index do
-  link "Forms", forms_path
+  link "Forms", staff_forms_path
 end
 
 crumb :form do |form|
-  link form.name, form_path(form)
+  link form.name, staff_form_path(form)
   parent :forms_index
 end
 
 crumb :faqs_index do
-  link "FAQs", faqs_path
+  link "FAQs", staff_faqs_path
 end
 
 crumb :fosterers_index do
-  link "Fosterers", fosterers_path
+  link "Fosterers", staff_fosterers_path
 end
 
 # crumb :projects do

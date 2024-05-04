@@ -4,6 +4,8 @@ class RegistrationTest < ApplicationSystemTestCase
   setup do
     @user = create(:staff)
     @organization = @user.organization
+    @page_text = create(:page_text, :with_image, organization: @organization)
+    Current.organization = @organization
 
     visit root_url
     click_on "Log In"

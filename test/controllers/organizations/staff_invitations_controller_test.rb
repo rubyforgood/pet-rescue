@@ -18,7 +18,7 @@ class Organizations::StaffInvitationsControllerTest < ActionDispatch::Integratio
           context: {organization: @organization},
           with: Organizations::StaffInvitationPolicy
         ) do
-          get new_staff_invitation_url
+          get new_staff_staff_invitation_url
         end
       end
     end

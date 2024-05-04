@@ -72,7 +72,7 @@
               <!-- heading -->
               <span class="text-uppercase text-primary fw-semibold ls-md"><%= t('.adoption_process') %></span>
               <!-- para -->
-              <p class="fs-3  mb-5"><%= t('.please_read_faq_html', faq_link: link_to('FAQ', public_faq_index_path)) %></p>
+              <p class="fs-3  mb-5"><%= t('.please_read_faq_html', faq_link: link_to('FAQ', faq_index_path)) %></p>
 
             </div>
 
@@ -113,7 +113,7 @@
                     </div>
                   <% else %>
                     <h4 class="mb-4 mt-3">In love with this pooch?</h4>
-                    <%= form_with model: @adoption_application do |form| %>
+                    <%= form_with model: [:adopter_fosterer, @adoption_application] do |form| %>
                       <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
                       <%= form.hidden_field :adopter_foster_account_id, value: @adoption_application.adopter_foster_account_id %>
                       <%= form.submit t(".apply_to_adopt"),
@@ -126,7 +126,7 @@
                   <h4 class='mb-4 mt-3'>
                     <%= t('.complete_your_profile') %>
                   </h4>
-                  <%= link_to t('.complete_my_profile'), new_profile_path,
+                  <%= link_to t('.complete_my_profile'), new_adopter_fosterer_profile_path,
                               class: 'custom-btn-pink' %>
                 <% end %>
               <% else %>

@@ -1,0 +1,49 @@
+<%= turbo_frame_tag task do %>
+  <%= bootstrap_form_with model: task, url: url, data: {controller: "task-form"} do |f| %>
+    <% if task.errors.any? %>
+      <div class="alert alert-danger mx-3">
+        <% task.errors.full_messages.each do |message| %>
+          <span><%= message %></span>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="m-3">
+      <div class='row'>
+        <div class='col-9'>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class='col-3'>
+          <%= f.date_field :due_date, 
+                          class: 'form-control', 
+                          id: "due-date",
+                          data: {task_form_target: :dueDate, action: "change->task-form#updateDueInDaysField"} %>
+        </div>
+      </div>
+    </div>
+    <div class="m-3">
+      <div class="d-flex flex-row justify-content-between align-items-end gap-2">
+        <%= f.check_box :recurring, 
+                      { class: "form-check-input",  
+                      id: "recur",
+                      data: {task_form_target: :recurring, action: "change->task-form#updateDueInDaysField"}} %>
+        <div class="w-75">
+          <%= f.number_field :next_due_date_in_days, 
+                          label: "Next due date in (days)", 
+                          id: "next-due", 
+                          class: 'form-control',
+                          disabled: task.next_due_date_in_days ? false : true,
+                          data: {task_form_target: :daysField} %>
+        </div>
+      </div>
+    </div>
+    <div class="m-3">
+      <%= f.text_area :description, class: 'form-control', rows: 3 %>
+    </div>
+    <div class="m-3">
+      <%= f.submit class: 'btn btn-primary me-2' %>
+      <% cancel = task.id.nil? ? staff_pet_tasks_path(@pet, cancel: true) : staff_pet_task_path(pet_id: task.pet.id) %>
+      <%= link_to "Cancel", cancel, class: "btn
+    btn-outline-danger ms-2", data: {turbo_stream: :true}   %>
+    </div>
+  <% end %>
+<% end %>

@@ -18,7 +18,7 @@ class Organizations::FostererInvitationsControllerTest < ActionDispatch::Integra
           context: {organization: @organization},
           with: Organizations::FostererInvitationPolicy
         ) do
-          get new_fosterer_invitation_url
+          get new_staff_fosterer_invitation_url
         end
       end
     end

@@ -2,50 +2,56 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions",
-    invitations: "organizations/invitations"
+    invitations: "organizations/staff/invitations"
   }
 
   resources :donations, only: [:create]
 
   scope module: :organizations do
     resources :home, only: [:index]
-
-    resource :organization_profile, only: %i[edit update]
-    resource :page_text, only: [:edit, :update]
-
-    resource :adopter_foster_profile, except: :destroy, as: "profile"
-    resources :profile_reviews, only: [:show]
     resources :adoptable_pets, only: [:index, :show]
+    resources :faq, only: [:index]
 
-    resources :pets do
-      resources :tasks
-      post "attach_images", on: :member, to: "pets#attach_images"
-      post "attach_files", on: :member, to: "pets#attach_files"
+    namespace :staff do
+      resource :organization_profile, only: %i[edit update]
+      resource :page_text, only: [:edit, :update]
+      resources :profile_reviews, only: [:show]
+
+      resources :pets do
+        resources :tasks
+        post "attach_images", on: :member, to: "pets#attach_images"
+        post "attach_files", on: :member, to: "pets#attach_files"
+      end
+
+      resources :default_pet_tasks
+      resources :faqs
+      resources :dashboard, only: [:index]
+      resources :matches, only: %i[create destroy]
+
+      resources :adoption_application_reviews, only: [:index, :edit, :update]
+      resources :manage_fosters, only: [:index]
+      resources :fosterers, only: %i[index]
+      resources :staff do
+        post "deactivate", to: "staff#deactivate"
+        post "activate", to: "staff#activate"
+        post "update_activation", to: "staff#update_activation"
+      end
+
+      resources :staff_invitations, only: %i[new]
+      resources :fosterer_invitations, only: %i[new]
+
+      resources :forms do
+        resources :questions
+      end
+
+      delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
     end
-    resources :default_pet_tasks
-    resources :faqs
-    resources :public_faq, only: [:index]
-    resources :dashboard, only: [:index]
-    resources :adopter_foster_dashboard, only: [:index]
-    resources :adopter_applications, path: "applications",
-      only: %i[index create update]
-    resources :forms do
-      resources :questions
+
+    namespace :adopter_fosterer do
+      resource :profile, except: :destroy
+      resources :dashboard, only: [:index]
+      resources :adopter_applications, path: "applications", only: %i[index create update]
     end
-    resources :adoption_application_reviews, only: [:index, :edit, :update]
-    resources :foster_application_reviews, only: [:index]
-    resources :staff do
-      post "deactivate", to: "staff#deactivate"
-      post "activate", to: "staff#activate"
-      post "update_activation", to: "staff#update_activation"
-    end
-
-    resources :staff_invitations, only: %i[new]
-    resources :fosterer_invitations, only: %i[new]
-
-    resources :fosterers, only: %i[index]
-
-    resources :matches, only: %i[create destroy]
   end
 
   resources :countries, only: [] do
@@ -65,8 +71,4 @@ Rails.application.routes.draw do
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
   resources :contacts, only: [:new, :create]
-
-  delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
-
-  resolve("adopter_foster_profile") { [:adopter_foster_profile] }
 end
