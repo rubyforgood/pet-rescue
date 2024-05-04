@@ -50,4 +50,3 @@ class PhoneableTest < ActiveSupport::TestCase
     end
   end
 end
-

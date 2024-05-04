@@ -138,5 +138,4 @@ class AdopterFosterProfile < ApplicationRecord
   def custom_messages(attribute)
     errors.where(attribute)
   end
-
 end
