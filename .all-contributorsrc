@@ -331,6 +331,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "sean-dickinson",
+      "name": "Sean Dickinson",
+      "avatar_url": "https://avatars.githubusercontent.com/u/90267290?v=4",
+      "profile": "https://github.com/sean-dickinson",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
