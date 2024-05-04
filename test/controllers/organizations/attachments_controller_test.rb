@@ -123,6 +123,7 @@ class Organizations::AttachmentsControllerTest < ActionDispatch::IntegrationTest
     should 'prevent user from deleting avatar that is not thiers' do
       delete purge_avatar_path(@user2.avatar_attachment),
              headers: { 'HTTP_REFERER' => 'http://www.example.com/' }
+      assert_not_nil(@user2.avatar_attachment)
 
       assert_response :redirect
       follow_redirect!
