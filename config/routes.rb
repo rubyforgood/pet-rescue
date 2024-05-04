@@ -39,10 +39,10 @@ Rails.application.routes.draw do
       resources :forms do
         resources :questions
       end
-
-      delete 'attachments/:id/purge', to: 'attachments#purge', as: 'purge_attachment'
     end
-    delete 'attachments/:id/purge', to: 'attachments#purge_avatar', as: 'purge_avatar'
+    delete 'staff/attachments/:id/purge', to: 'attachments#purge', as: 'staff_purge_attachment'
+
+    delete 'attachments/:id/purge_avatar', to: 'attachments#purge_avatar', as: 'purge_avatar'
 
     namespace :adopter_fosterer do
       resource :profile, except: :destroy
