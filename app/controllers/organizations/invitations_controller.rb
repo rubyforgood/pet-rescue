@@ -30,7 +30,7 @@ class Organizations::InvitationsController < Devise::InvitationsController
         @user.invite!(current_user)
         redirect_to staff_index_path, notice: "Invite sent!"
       else
-        render :new, status: :unprocessable_entity
+        render "organizations/staff_invitations/new", status: :unprocessable_entity
       end
     when "fosterer"
       authorize! User, context: {organization: Current.organization},
@@ -47,7 +47,7 @@ class Organizations::InvitationsController < Devise::InvitationsController
         @user.invite!(current_user)
         redirect_to fosterers_path, notice: "Invite sent!"
       else
-        render :new, status: :unprocessable_entity
+        render "organizations/fosterer_invitations/new", status: :unprocessable_entity
       end
     else
       authorize! User, context: {organization: Current.organization},
