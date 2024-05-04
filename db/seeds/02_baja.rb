@@ -82,6 +82,34 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_three.add_role(:adopter, @organization)
 
+  @user_fosterer_one = User.create!(
+    email: "fosterer1@baja.com",
+    first_name: "Simon",
+    last_name: "Petrikov",
+    password: "123456",
+    password_confirmation: "123456",
+    tos_agreement: 1
+  )
+
+  @user_fosterer_one.create_adopter_foster_account!
+
+  @user_fosterer_one.add_role(:adopter, @organization)
+  @user_fosterer_one.add_role(:fosterer, @organization)
+
+  @user_fosterer_two = User.create!(
+    email: "fosterer2@baja.com",
+    first_name: "Finn",
+    last_name: "Mertens",
+    password: "123456",
+    password_confirmation: "123456",
+    tos_agreement: 1
+  )
+
+  @user_fosterer_two.create_adopter_foster_account!
+
+  @user_fosterer_two.add_role(:adopter, @organization)
+  @user_fosterer_two.add_role(:fosterer, @organization)
+
   @location_one = Location.create!(
     country: "Canada",
     province_state: "Alberta",
