@@ -120,7 +120,7 @@ class Organizations::AttachmentsControllerTest < ActionDispatch::IntegrationTest
       assert_equal "Avatar removed", flash[:notice]
     end
 
-    should "prevent user from deleting avatar that is not thiers" do
+    should "prevent user from deleting avatar that is not theirs" do
       delete purge_avatar_path(@user2.avatar_attachment),
         headers: {"HTTP_REFERER" => "http://www.example.com/"}
       assert_not_nil(@user2.avatar_attachment)
