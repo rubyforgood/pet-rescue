@@ -46,10 +46,6 @@
                         </div>
                         <h4 class="mb-0"><%= "#{fosterer.user.first_name} #{fosterer.user.last_name}" %></h4>
                       </div>
-                      <div class="d-flex justify-content-between border-bottom py-2 mt-4">
-                        <span>Role</span>
-                        <span class="text-dark"><%= fosterer.user.roles.pluck(:name).join(", ") %></span>
-                      </div>
                       <div class="d-flex justify-content-between border-bottom py-2">
                         <span>Joined</span>
                         <span><%= fosterer.created_at.strftime("%d %B, %Y") %></span>
@@ -71,7 +67,6 @@
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Role</th>
                     <th scope="col">Joined At</th>
                     <th scope="col">Action</th>
 
@@ -91,9 +86,6 @@
                           </div>
                           <h5 class="mb-0"><%= "#{fosterer.user.first_name} #{fosterer.user.last_name}" %></h5>
                         </div>
-                      </td>
-                      <td>
-                        <%= fosterer.user.roles.pluck(:name).join(", ") %>
                       </td>
                       <td>
                         <%= fosterer.created_at.strftime("%d %B, %Y") %>
