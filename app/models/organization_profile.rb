@@ -25,6 +25,7 @@
 #
 class OrganizationProfile < ApplicationRecord
   include Avatarable
+  include Phoneable
 
   belongs_to :location
   acts_as_tenant(:organization, inverse_of: :profile)

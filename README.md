@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-36-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-37-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
@@ -242,6 +242,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://rarlindseysmash.com"><img src="https://avatars.githubusercontent.com/u/33750?v=4?s=100" width="100px;" alt="Lindsey Bieda"/><br /><sub><b>Lindsey Bieda</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=LindseyB" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/sean-dickinson"><img src="https://avatars.githubusercontent.com/u/90267290?v=4?s=100" width="100px;" alt="Sean Dickinson"/><br /><sub><b>Sean Dickinson</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=sean-dickinson" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
