@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: 'registrations',
-    sessions: 'users/sessions',
-    invitations: 'organizations/staff/invitations'
+    registrations: "registrations",
+    sessions: "users/sessions",
+    invitations: "organizations/staff/invitations"
   }
 
   resources :donations, only: [:create]
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
       resources :pets do
         resources :tasks
-        post 'attach_images', on: :member, to: 'pets#attach_images'
-        post 'attach_files', on: :member, to: 'pets#attach_files'
+        post "attach_images", on: :member, to: "pets#attach_images"
+        post "attach_files", on: :member, to: "pets#attach_files"
       end
 
       resources :default_pet_tasks
@@ -31,23 +31,22 @@ Rails.application.routes.draw do
       resources :adoption_application_reviews, only: %i[index edit update]
       resources :manage_fosters, only: [:index]
       resources :staff do
-        post 'deactivate', to: 'staff#deactivate'
-        post 'activate', to: 'staff#activate'
-        post 'update_activation', to: 'staff#update_activation'
+        post "deactivate", to: "staff#deactivate"
+        post "activate", to: "staff#activate"
+        post "update_activation", to: "staff#update_activation"
       end
 
       resources :forms do
         resources :questions
       end
     end
-    delete 'staff/attachments/:id/purge', to: 'attachments#purge', as: 'staff_purge_attachment'
-
-    delete 'attachments/:id/purge_avatar', to: 'attachments#purge_avatar', as: 'purge_avatar'
+    delete "staff/attachments/:id/purge", to: "attachments#purge", as: "staff_purge_attachment"
+    delete "attachments/:id/purge_avatar", to: "attachments#purge_avatar", as: "purge_avatar"
 
     namespace :adopter_fosterer do
       resource :profile, except: :destroy
       resources :dashboard, only: [:index]
-      resources :adopter_applications, path: 'applications', only: %i[index create update]
+      resources :adopter_applications, path: "applications", only: %i[index create update]
     end
   end
 
@@ -55,17 +54,17 @@ Rails.application.routes.draw do
     resources :states, only: [:index]
   end
 
-  match '/404', to: 'errors#not_found', via: :all
-  match '/422', to: 'errors#unprocessable_content', via: :all
-  match '/500', to: 'errors#internal_server_error', via: :all
+  match "/404", to: "errors#not_found", via: :all
+  match "/422", to: "errors#unprocessable_content", via: :all
+  match "/500", to: "errors#internal_server_error", via: :all
 
-  root 'root#index'
-  get '/about_us', to: 'static_pages#about_us'
-  get '/partners', to: 'static_pages#partners'
-  get '/donate', to: 'static_pages#donate'
-  get '/privacy_policy', to: 'static_pages#privacy_policy'
-  get '/terms_and_conditions', to: 'static_pages#terms_and_conditions'
-  get '/cookie_policy', to: 'static_pages#cookie_policy'
+  root "root#index"
+  get "/about_us", to: "static_pages#about_us"
+  get "/partners", to: "static_pages#partners"
+  get "/donate", to: "static_pages#donate"
+  get "/privacy_policy", to: "static_pages#privacy_policy"
+  get "/terms_and_conditions", to: "static_pages#terms_and_conditions"
+  get "/cookie_policy", to: "static_pages#cookie_policy"
 
   resources :contacts, only: %i[new create]
 end
