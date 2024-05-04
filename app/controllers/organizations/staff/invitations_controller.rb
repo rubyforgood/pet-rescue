@@ -65,6 +65,18 @@ class Organizations::Staff::InvitationsController < Devise::InvitationsControlle
   end
 
   def after_accept_path_for(_resource)
-    staff_dashboard_index_path
+    if allowed_to?(
+      :index?, with: Organizations::DashboardPolicy,
+      context: {organization: Current.organization}
+    )
+      staff_dashboard_index_path
+    elsif allowed_to?(
+      :index?, with: Organizations::AdopterFosterDashboardPolicy,
+      context: {organization: Current.organization}
+    )
+      adopter_fosterer_dashboard_index_path
+    else
+      root_path
+    end
   end
 end
