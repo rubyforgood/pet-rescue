@@ -100,4 +100,33 @@ class Organizations::AttachmentsControllerTest < ActionDispatch::IntegrationTest
       assert_equal 'Attachment removed', flash[:notice]
     end
   end
+
+  context '#purge_avatar' do
+    setup do
+      @user1 = create(:adopter, :with_avatar)
+      @user2 = create(:adopter, :with_avatar)
+
+      sign_in @user1
+    end
+
+    should 'delete the avatar and redirects to request referrer with flash' do
+      delete purge_avatar_path(@user1.avatar_attachment),
+             headers: { 'HTTP_REFERER' => 'http://www.example.com/' }
+      @user1.reload
+      assert_nil(@user1.avatar_attachment)
+
+      assert_response :redirect
+      follow_redirect!
+      assert_equal 'Avatar removed', flash[:notice]
+    end
+
+    should 'prevent user from deleting avatar that is not thiers' do
+      delete purge_avatar_path(@user2.avatar_attachment),
+             headers: { 'HTTP_REFERER' => 'http://www.example.com/' }
+
+      assert_response :redirect
+      follow_redirect!
+      assert_equal 'You are not authorized to perform this action.', flash[:alert]
+    end
+  end
 end
