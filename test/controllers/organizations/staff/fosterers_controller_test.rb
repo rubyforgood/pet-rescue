@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::FosterersControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::FosterersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = ActsAsTenant.current_tenant
   end

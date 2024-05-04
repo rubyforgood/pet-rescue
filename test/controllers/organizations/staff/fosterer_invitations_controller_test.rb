@@ -1,13 +1,13 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::StaffInvitationsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::FostererInvitationsControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      user = create(:staff_admin)
+      user = create(:staff)
       sign_in user
     end
 
@@ -16,9 +16,9 @@ class Organizations::StaffInvitationsControllerTest < ActionDispatch::Integratio
         assert_authorized_to(
           :create?, User,
           context: {organization: @organization},
-          with: Organizations::StaffInvitationPolicy
+          with: Organizations::FostererInvitationPolicy
         ) do
-          get new_staff_staff_invitation_url
+          get new_staff_fosterer_invitation_url
         end
       end
     end
