@@ -9,12 +9,12 @@ Rails.application.routes.draw do
 
   scope module: :organizations do
     resources :home, only: [:index]
-    resources :adoptable_pets, only: [:index, :show]
+    resources :adoptable_pets, only: %i[index show]
     resources :faq, only: [:index]
 
     namespace :staff do
       resource :organization_profile, only: %i[edit update]
-      resource :page_text, only: [:edit, :update]
+      resource :page_text, only: %i[edit update]
       resources :profile_reviews, only: [:show]
 
       resources :pets do
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
       resources :dashboard, only: [:index]
       resources :matches, only: %i[create destroy]
 
-      resources :adoption_application_reviews, only: [:index, :edit, :update]
+      resources :adoption_application_reviews, only: %i[index edit update]
       resources :manage_fosters, only: [:index]
       resources :staff do
         post "deactivate", to: "staff#deactivate"
@@ -39,9 +39,9 @@ Rails.application.routes.draw do
       resources :forms do
         resources :questions
       end
-
-      delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
     end
+    delete "staff/attachments/:id/purge", to: "attachments#purge", as: "staff_purge_attachment"
+    delete "attachments/:id/purge_avatar", to: "attachments#purge_avatar", as: "purge_avatar"
 
     namespace :adopter_fosterer do
       resource :profile, except: :destroy
@@ -66,5 +66,5 @@ Rails.application.routes.draw do
   get "/terms_and_conditions", to: "static_pages#terms_and_conditions"
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
-  resources :contacts, only: [:new, :create]
+  resources :contacts, only: %i[new create]
 end

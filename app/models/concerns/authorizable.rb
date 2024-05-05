@@ -5,12 +5,14 @@ ADOPTER_PERMISSIONS = %i[
   withdraw_adopter_applications
   create_adopter_foster_profiles
   manage_adopter_foster_profiles
+  purge_avatar
 ].freeze
 
 FOSTERER_PERMISSIONS = %i[
   view_adopter_foster_dashboard
   create_adopter_foster_profiles
   manage_adopter_foster_profiles
+  purge_avatar
 ].freeze
 
 STAFF_PERMISSIONS = (

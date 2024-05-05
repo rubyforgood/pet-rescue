@@ -7,6 +7,16 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     tos_agreement { true }
 
+    trait :with_avatar do
+      after(:build) do |user|
+        user.avatar.attach(
+          io: File.open(Rails.root.join("test", "fixtures", "files", "test.png")),
+          filename: "test.png",
+          content_type: "image/png"
+        )
+      end
+    end
+
     factory :adopter do
       adopter_foster_account do
         association :adopter_foster_account, user: instance
