@@ -97,8 +97,18 @@
           <div class='text-center d-flex flex-column align-items-center mt-1'>
             <% unless user_signed_in? && current_user.staff_account %>
               <% if user_signed_in? %>
-                <% if current_user.adopter_foster_account && current_user.adopter_foster_account.adopter_foster_profile %>
-                  <% if AdopterApplication.adoption_exists?(current_user.adopter_foster_account.id, @pet.id) %>
+                <% if allowed_to?(:create?, with: AdopterApplicationPolicy, context: {pet: @pet, user: current_user}) %>
+                  <h4 class="mb-4 mt-3">In love with this pooch?</h4>
+                  <%= form_with model: [:adopter_fosterer, @adoption_application] do |form| %>
+                    <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
+                    <%= form.hidden_field :adopter_foster_account_id, value: @adoption_application.adopter_foster_account_id %>
+                    <%= form.submit t(".apply_to_adopt"),
+                      class: "custom-btn-pink",
+                      data: {turbo: false}
+                    %>
+                  <% end %>
+                <% else %>
+                  <% if AdopterApplication.adoption_exists?(current_user.adopter_foster_account&.id, @pet.id) %>
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2">
                         <%= "#{t(".status." + @adoption_application.status) || t('.status.default')}" %>
@@ -111,23 +121,13 @@
                         <%= image_tag('green_check.png', height: '21') %>
                       <% end %>
                     </div>
-                  <% else %>
-                    <h4 class="mb-4 mt-3">In love with this pooch?</h4>
-                    <%= form_with model: [:adopter_fosterer, @adoption_application] do |form| %>
-                      <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
-                      <%= form.hidden_field :adopter_foster_account_id, value: @adoption_application.adopter_foster_account_id %>
-                      <%= form.submit t(".apply_to_adopt"),
-                        class: "custom-btn-pink",
-                        data: {turbo: false}
-                      %>
-                    <% end %>
+                  <% elsif allowed_to?(:create?, with: Organizations::AdopterFosterProfilePolicy, context: {user: current_user}) %>
+                    <h4 class='mb-4 mt-3'>
+                      <%= t('.complete_your_profile') %>
+                    </h4>
+                    <%= link_to t('.complete_my_profile'), new_adopter_fosterer_profile_path,
+                                class: 'custom-btn-pink' %>
                   <% end %>
-                <% elsif current_user.adopter_foster_account %>
-                  <h4 class='mb-4 mt-3'>
-                    <%= t('.complete_your_profile') %>
-                  </h4>
-                  <%= link_to t('.complete_my_profile'), new_adopter_fosterer_profile_path,
-                              class: 'custom-btn-pink' %>
                 <% end %>
               <% else %>
                 <h4 class="mb-4 mt-3">
