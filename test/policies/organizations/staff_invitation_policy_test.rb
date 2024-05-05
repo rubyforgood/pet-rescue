@@ -1,27 +1,21 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
+class Organizations::StaffInvitationPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   setup do
     @organization = ActsAsTenant.current_tenant
     @policy = -> {
-      Organizations::InvitationPolicy.new(
+      Organizations::StaffInvitationPolicy.new(
         User, organization: @organization, user: @user
       )
     }
   end
 
   context "#new?" do
-    should "be an alias to :create?" do
-      assert_alias_rule @policy.call, :new?, :create?
-    end
-  end
-
-  context "#create?" do
     setup do
-      @action = -> { @policy.call.apply(:create?) }
+      @action = -> { @policy.call.apply(:new?) }
     end
 
     context "when user is nil" do
@@ -69,8 +63,30 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
         @user = create(:staff_admin)
       end
 
-      should "return false" do
-        assert_equal @action.call, false
+      context "when created staff is for a different organization" do
+        setup do
+          @organization = create(:organization)
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
+      context "when staff account is deactivated" do
+        setup do
+          @user.staff_account.deactivate
+        end
+
+        should "return false" do
+          assert_equal @action.call, false
+        end
+      end
+
+      context "when created staff is for the same organization" do
+        should "return true" do
+          assert_equal @action.call, true
+        end
       end
     end
   end

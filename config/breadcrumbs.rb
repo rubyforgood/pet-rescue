@@ -40,6 +40,10 @@ crumb :faqs_index do
   link "FAQs", staff_faqs_path
 end
 
+crumb :fosterers_index do
+  link "Fosterers", staff_fosterers_path
+end
+
 # crumb :projects do
 #   link "Projects", projects_path
 # end

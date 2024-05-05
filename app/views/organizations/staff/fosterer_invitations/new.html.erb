@@ -1,0 +1,24 @@
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title "Invite Fosterer" %>
+
+  <% p.actions do %>
+    <%= link_to "Back to fosterers", staff_fosterers_path, class: "btn btn-primary" %>
+  <% end %>
+
+  <% p.content do %>
+    <section class="container-fluid p-4">
+      <!-- row -->
+      <div class="row">
+        <div class="offset-xl-3 col-xl-6 col-md-12 col-12">
+          <!-- card -->
+          <div class="card">
+            <!-- card body -->
+            <div class="card-body p-lg-6">
+              <%= render "organizations/staff/fosterer_invitations/form", user: @user %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% end %>
+<% end %>

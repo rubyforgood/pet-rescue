@@ -30,11 +30,15 @@ Rails.application.routes.draw do
 
       resources :adoption_application_reviews, only: %i[index edit update]
       resources :manage_fosters, only: [:index]
+      resources :fosterers, only: %i[index]
       resources :staff do
         post "deactivate", to: "staff#deactivate"
         post "activate", to: "staff#activate"
         post "update_activation", to: "staff#update_activation"
       end
+
+      resources :staff_invitations, only: %i[new]
+      resources :fosterer_invitations, only: %i[new]
 
       resources :forms do
         resources :questions

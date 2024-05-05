@@ -1,7 +1,7 @@
-<% breadcrumb :staff_index %>
+<% breadcrumb :fosterers_index %>
 
 <%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Staff" %>
+  <% p.header_title "Fosterers" %>
   <% p.actions do %>
     <div class='d-flex align-items-center gap-2'>
       <div class="row">
@@ -19,7 +19,7 @@
           </div>
         </div>
       </div>
-      <%= link_to "Invite Staff", new_staff_staff_invitation_path, class: "btn btn-primary" %><br>
+      <%= link_to "Invite Fosterer", new_staff_fosterer_invitation_path, class: "btn btn-primary" %><br>
     </div>
   <% end %>
 
@@ -31,7 +31,7 @@
           <!-- Tab Pane -->
           <div class="tab-pane fade" id="tabPaneGrid" role="tabpanel" aria-labelledby="tabPaneGrid">
             <div class='d-flex gap-3'>
-              <% @staff_accounts.each do |staff| %>
+              <% @fosterer_accounts.each do |fosterer| %>
                 <div class="col-xl-3 col-lg-6 col-md-6 col-12">
                   <!-- Card -->
                   <div class="card mb-4">
@@ -44,19 +44,11 @@
                             <span class="status bg-success"></span>
                           </a>
                         </div>
-                        <h4 class="mb-0"><%= "#{staff.user.first_name} #{staff.user.last_name}" %></h4>
-                      </div>
-                      <div class="d-flex justify-content-between border-bottom py-2 mt-4">
-                        <span>Role</span>
-                        <span class="text-dark"><%= staff.user.roles.pluck(:name).join(", ") %></span>
+                        <h4 class="mb-0"><%= "#{fosterer.user.first_name} #{fosterer.user.last_name}" %></h4>
                       </div>
                       <div class="d-flex justify-content-between border-bottom py-2">
                         <span>Joined</span>
-                        <span><%= staff.created_at.strftime("%d %B, %Y") %></span>
-                      </div>
-                      <div class="d-flex justify-content-between pt-2">
-                        <span>Deactivate</span>
-                        <%= render "deactivate_toggle", staff: staff %>
+                        <span><%= fosterer.created_at.strftime("%d %B, %Y") %></span>
                       </div>
                     </div>
                   </div>
@@ -75,16 +67,14 @@
                 <thead>
                   <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Role</th>
                     <th scope="col">Joined At</th>
-                    <th class="text-center" scope="col">Deactivate</th>
                     <th scope="col">Action</th>
 
                   </tr>
                 </thead>
                 <tbody>
 
-                  <% @staff_accounts.each do |staff| %>
+                  <% @fosterer_accounts.each do |fosterer| %>
                     <tr>
                       <td>
                         <div class="d-flex align-items-center">
@@ -94,18 +84,12 @@
                               <span class="status bg-success"></span>
                             </a>
                           </div>
-                          <h5 class="mb-0"><%= "#{staff.user.first_name} #{staff.user.last_name}" %></h5>
+                          <h5 class="mb-0"><%= "#{fosterer.user.first_name} #{fosterer.user.last_name}" %></h5>
                         </div>
                       </td>
                       <td>
-                        <%= staff.user.roles.pluck(:name).join(", ") %>
+                        <%= fosterer.created_at.strftime("%d %B, %Y") %>
                       </td>
-                      <td>
-                        <%= staff.created_at.strftime("%d %B, %Y") %>
-                      </td>
-                      <td>
-                        <%= render "deactivate_toggle", staff: staff %>
-                      </td>                    
                       <td>
                         <div class="hstack gap-4">
                           <a href="#" class="fe fe-mail text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Message" data-bs-original-title="Message"></a>

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :adopter_foster_account do
-    user { association :adopter }
+    user { association :adopter, adopter_foster_account: instance }
 
     trait :with_profile do
       adopter_foster_profile do

@@ -51,7 +51,7 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
     context "#new" do
       should "be authorized" do
         assert_authorized_to(
-          :create?, StaffAccount,
+          :create?, User,
           context: {organization: @organization},
           with: Organizations::InvitationPolicy
         ) do
@@ -66,19 +66,84 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
           user: {
             first_name: "John",
             last_name: "Doe",
-            email: "john@example.com",
-            roles: "staff"
+            email: "john@example.com"
           }
         }
       end
 
-      should "be authorized" do
-        assert_authorized_to(
-          :create?, StaffAccount,
-          context: {organization: @organization},
-          with: Organizations::InvitationPolicy
-        ) do
-          post user_invitation_url, params: @params
+      context "with params including {roles: 'admin'}" do
+        setup do
+          @params[:user][:roles] = "admin"
+        end
+
+        should "be authorized" do
+          assert_authorized_to(
+            :create?, User,
+            context: {organization: @organization},
+            with: Organizations::StaffInvitationPolicy
+          ) do
+            post user_invitation_url, params: @params
+          end
+        end
+      end
+
+      context "with params including {roles: 'staff'}" do
+        setup do
+          @params[:user][:roles] = "staff"
+        end
+
+        should "be authorized" do
+          assert_authorized_to(
+            :create?, User,
+            context: {organization: @organization},
+            with: Organizations::StaffInvitationPolicy
+          ) do
+            post user_invitation_url, params: @params
+          end
+        end
+      end
+
+      context "with params including {roles: 'fosterer'}" do
+        setup do
+          @params[:user][:roles] = "fosterer"
+        end
+
+        should "be authorized" do
+          assert_authorized_to(
+            :create?, User,
+            context: {organization: @organization},
+            with: Organizations::FostererInvitationPolicy
+          ) do
+            post user_invitation_url, params: @params
+          end
+        end
+      end
+
+      context "with params including invalid roles" do
+        setup do
+          @params[:user][:roles] = "wizard"
+        end
+
+        should "be authorized" do
+          assert_authorized_to(
+            :create?, User,
+            context: {organization: @organization},
+            with: Organizations::InvitationPolicy
+          ) do
+            post user_invitation_url, params: @params
+          end
+        end
+      end
+
+      context "with params missing roles" do
+        should "be authorized" do
+          assert_authorized_to(
+            :create?, User,
+            context: {organization: @organization},
+            with: Organizations::InvitationPolicy
+          ) do
+            post user_invitation_url, params: @params
+          end
         end
       end
     end
