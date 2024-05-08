@@ -143,6 +143,65 @@ We use [standard](https://github.com/standardrb/standard) for linting. It provid
 rails standard:fix
 ```
 
+# Authorization
+
+If you find yourself writing a conditional checking the question, "Is the user **allowed** to view/do this?" that is an authorization concern. Pet Rescue utilizes the gem [Action Policy](https://github.com/palkan/action_policy) as our authorization framework. If you are familiar with Pundit, you will see many similarities. If you want to learn more about authorization or have questions about how Action Policy works, [their documentation](https://actionpolicy.evilmartians.io/#/) is excellent. If you would like a quick onboarding to how Action Policy is used in Pet Rescue, see [our wiki page on authorization](https://github.com/rubyforgood/pet-rescue/wiki/Authorization).
+
+```ruby
+# app/controllers/organizations/staff/pets_controller.rb
+class Organizations::Staff::PetsController < Organizations::BaseController
+  before_action :set_pet, only: [:show, :edit, :update, :destroy, :attach_images, :attach_files]
+
+  # Calling a policy in a setter method is a common pattern. We fetch the record and then check the user is authorized for the record.
+  # This also allows for the logic of getting the record and authorizing the user with it is separated from the logic of the controller actions.
+  def set_pet
+    @pet = Pet.find(params[:id])
+
+    # `authorize!` is an Action Policy method: https://actionpolicy.evilmartians.io/#/./behaviour?id=authorize
+    authorize! @pet
+    # `authorize!` uses the `current_user` as a default value for the user context and also has smart lookup for the correct policy to use based on the record passed to it.
+    # Action Policy also will look up the proper rule to match the method it was invoked from. So, calling `authorize!` in `index` will check the `index?` rule by default.
+    # The below code is the same as saying:
+    # authorize! @pet, context: {user: current_user}, with: Organizations::PetPolicy
+  end
+end
+```
+
+```ruby
+# app/controllers/concerns/organization_scopable.rb
+module OrganizationScopable
+  # `allowed_to?` is a predicate version of `authorize!`.
+  # In this use case, we are checking multiple policies to see if the user is allowed to perform the controller `index` action for either dashboard.
+  # If they don't have permission to `index` either dashboard, they get sent to a public route.
+  def after_sign_in_path_for(resource_or_scope)
+    if allowed_to?(
+      :index?, with: Organizations::DashboardPolicy,
+      context: {organization: Current.organization}
+    )
+      staff_dashboard_index_path
+    elsif allowed_to?(
+      :index?, with: Organizations::AdopterFosterDashboardPolicy,
+      context: {organization: Current.organization}
+    )
+      adopter_fosterer_dashboard_index_path
+    else
+      adoptable_pets_path
+    end
+  end
+end
+```
+
+```erb
+  # app/views/organizations/adoptable_pets/show.html.erb
+  <%# `allowed_to?` is also useful for views! Here we use Action Policy to check whether a user is allowed to view a link before rendering the link for the user. %>
+  <%# Note how the `new_adopter_foster_profile_path` matches with `allowed_to?(:new?, AdopterFosterProfile)` %>
+  <% elsif allowed_to?(:new?, AdopterFosterProfile) %>
+    <%= link_to t('.complete_my_profile'), new_adopter_fosterer_profile_path %>
+  <% end %>
+```
+
+A final note, if you want to understand how the policies themself work, check out the [Action Policy documentation](https://actionpolicy.evilmartians.io/#/) and also check out `app/models/concerns/authorizable.rb` to see how we are implementing roles and permissions.
+
 # 🔨 Tools
 
 This [google sheets](https://docs.google.com/spreadsheets/d/1kPDeLicDu1IFkjWEXrWpwT36jtvoMVopEBiX-5L-r1A/edit?usp=sharing) contains a list of tools, their purposes, and who has access to grant permissions.
