@@ -49,12 +49,8 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
     end
 
     context "#new" do
-      should "be authorized" do
-        assert_authorized_to(
-          :create?, User,
-          context: {organization: @organization},
-          with: Organizations::InvitationPolicy
-        ) do
+      should "raise NotImplementedError" do
+        assert_raises(NotImplementedError, "Do not use the 'new' action in Staff::InvitationsController.") do
           get new_user_invitation_url
         end
       end
