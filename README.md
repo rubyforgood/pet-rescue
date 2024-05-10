@@ -143,6 +143,10 @@ We use [standard](https://github.com/standardrb/standard) for linting. It provid
 rails standard:fix
 ```
 
+# Authorization
+
+If you find yourself writing a conditional checking the question, "Is the user **allowed** to view/do this?" that is an authorization concern. Pet Rescue utilizes the gem [Action Policy](https://github.com/palkan/action_policy) as our authorization framework. If you are familiar with Pundit, you will see many similarities. If you want to learn more about authorization or have questions about how Action Policy works, [their documentation](https://actionpolicy.evilmartians.io/#/) is excellent. If you would like a quick onboarding to how Action Policy is used in Pet Rescue, see [our wiki page on authorization](https://github.com/rubyforgood/pet-rescue/wiki/Authorization).
+
 # 🔨 Tools
 
 This [google sheets](https://docs.google.com/spreadsheets/d/1kPDeLicDu1IFkjWEXrWpwT36jtvoMVopEBiX-5L-r1A/edit?usp=sharing) contains a list of tools, their purposes, and who has access to grant permissions.

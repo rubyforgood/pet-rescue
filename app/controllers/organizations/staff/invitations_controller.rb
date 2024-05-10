@@ -6,10 +6,7 @@ class Organizations::Staff::InvitationsController < Devise::InvitationsControlle
   # This action is for generally creating any User, and it is currently unused.
   # See the other sub InvitationsControllers for the used `new` actions.
   def new
-    authorize! User, context: {organization: Current.organization},
-      with: Organizations::InvitationPolicy
-
-    @user = User.new
+    raise NotImplementedError, "Do not use the 'new' action in Staff::InvitationsController."
   end
 
   def create
