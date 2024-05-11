@@ -1,0 +1,11 @@
+<td id="<%= dom_id(staff, "role_grid")%>" >
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <%= staff.user.roles.pluck(:name).join(", ") %>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <%= button_to "staff", staff_user_to_staff_path(staff), class: "dropdown-item" %>
+      <%= button_to "admin", staff_user_to_admin_path(staff), class: "dropdown-item" %>
+    </div>
+  </div>
+</td>

@@ -1,5 +1,5 @@
 class Organizations::Staff::UserRolesController < Organizations::BaseController
-  # before_action :context_authorize!
+  before_action :context_authorize!
   before_action :set_user
 
   def to_staff
@@ -23,7 +23,7 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
   private
 
   def context_authorize!
-    authorize!
+    authorize! with: Organizations::UserRolesPolicy, context: {organization: Current.organization}
   end
 
   def set_user

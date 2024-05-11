@@ -1,0 +1,4 @@
+<div id="<%= dom_id(staff, "role_grid")%>" class="d-flex justify-content-between border-bottom py-2 mt-4">
+  <span>Role</span>
+  <span class="text-dark"><%= staff.user.roles.pluck(:name).join(", ") %></span>
+</div>

@@ -43,6 +43,8 @@ Rails.application.routes.draw do
       resources :forms do
         resources :questions
       end
+      post "user_roles/:id/to_staff", to: "user_roles#to_staff", as: "user_to_staff"
+      post "user_roles/:id/to_admin", to: "user_roles#to_admin", as: "user_to_admin"
     end
     delete "staff/attachments/:id/purge", to: "attachments#purge", as: "staff_purge_attachment"
     delete "attachments/:id/purge_avatar", to: "attachments#purge_avatar", as: "purge_avatar"
