@@ -2,34 +2,37 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
   before_action :set_user
 
   def to_staff
-    @user.transaction do
+    ActiveRecord::Base.transaction do
       @user.add_role :staff, Current.organization
       @user.remove_role :admin, Current.organization
+      raise ActiveRecord::Rollback if @user.has_role?(:admin, Current.organization) || !@user.has_role?(:staff, Current.organization)
+
       respond_to do |format|
         format.html { redirect_to request.referrer, notice: "Account changed to Staff" }
         format.turbo_stream { flash.now[:notice] = "Account changed to Staff" }
       end
     end
-  rescue => e
+
     respond_to do |format|
-      format.html { redirect_to request.referrer, notice: e }
-      format.turbo_stream { flash.now[:notice] = e }
+      format.html { redirect_to request.referrer, notice: "Error changing role" }
+      format.turbo_stream { flash.now[:notice] = "Error changing role" }
     end
   end
 
   def to_admin
-    @user.transaction do
+    ActiveRecord::Base.transaction do
       @user.add_role :admin, Current.organization
       @user.remove_role :staff, Current.organization
+      raise ActiveRecord::Rollback if @user.has_role?(:staff, Current.organization) || !@user.has_role?(:admin, Current.organization)
+
       respond_to do |format|
         format.html { redirect_to request.referrer, notice: "Account changed to Admin" }
         format.turbo_stream { flash.now[:notice] = "Account changed to Admin" }
       end
     end
-  rescue => e
     respond_to do |format|
-      format.html { redirect_to request.referrer, alert: e }
-      format.turbo_stream { flash.now[:alert] = e }
+      format.html { redirect_to request.referrer, alert: "Error changing role" }
+      format.turbo_stream { flash.now[:alert] = "Error changing role" }
     end
   end
 
