@@ -46,7 +46,10 @@
                         </div>
                         <h4 class="mb-0"><%= "#{staff.user.first_name} #{staff.user.last_name}" %></h4>
                       </div>
-                      <%= render "role_grid", staff: staff %>
+                      <div class="d-flex justify-content-between border-bottom py-2 mt-4">
+                        <span>Role</span>
+                        <%= render "role", staff: staff %>
+                      </div>
                       <div class="d-flex justify-content-between border-bottom py-2">
                         <span>Joined</span>
                         <span><%= staff.created_at.strftime("%d %B, %Y") %></span>
@@ -94,8 +97,9 @@
                           <h5 class="mb-0"><%= "#{staff.user.first_name} #{staff.user.last_name}" %></h5>
                         </div>
                       </td>
-                      <%= render "role_list", staff: staff %>
-
+                      <td>
+                        <%= render "role", staff: staff %>
+                      </td>
                       <td>
                         <%= staff.created_at.strftime("%d %B, %Y") %>
                       </td>
