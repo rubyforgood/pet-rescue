@@ -1,6 +1,5 @@
 class Organizations::Staff::UserRolesController < Organizations::BaseController
   before_action :set_user
-  before_action :context_authorize!
 
   def to_staff
     @user.transaction do
@@ -29,8 +28,8 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
     end
   rescue => e
     respond_to do |format|
-      format.html { redirect_to request.referrer, notice: e }
-      format.turbo_stream { flash.now[:notice] = e }
+      format.html { redirect_to request.referrer, alert: e }
+      format.turbo_stream { flash.now[:alert] = e }
     end
   end
 
@@ -38,9 +37,6 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
 
   def set_user
     @user = User.find(params[:id])
-  end
-
-  def context_authorize!
-    authorize! @user, with: Organizations::UserRolesPolicy
+    authorize! @user, with: Organizations::UserRolesPolicy, to: :change_role?
   end
 end
