@@ -4,8 +4,8 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
 
   def to_staff
     @user.transaction do
-      @user.add_role :staff
-      @user.remove_role :admin
+      @user.add_role :staff, Current.organization
+      @user.remove_role :admin, Current.organization
       respond_to do |format|
         format.html { redirect_to request.referrer, notice: "Account changed to Staff" }
         format.turbo_stream { flash.now[:notice] = "Account changed to Staff" }
@@ -20,8 +20,8 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
 
   def to_admin
     @user.transaction do
-      @user.add_role :admin
-      @user.remove_role :staff
+      @user.add_role :admin, Current.organization
+      @user.remove_role :staff, Current.organization
       respond_to do |format|
         format.html { redirect_to request.referrer, notice: "Account changed to Admin" }
         format.turbo_stream { flash.now[:notice] = "Account changed to Admin" }
