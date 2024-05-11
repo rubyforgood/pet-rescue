@@ -1,35 +1,46 @@
 class Organizations::Staff::UserRolesController < Organizations::BaseController
-  before_action :context_authorize!
   before_action :set_user
+  before_action :context_authorize!
 
   def to_staff
-    @user.add_role :staff
-    @user.remove_role :admin
+    @user.transaction do
+      @user.add_role :staff
+      @user.remove_role :admin
+      respond_to do |format|
+        format.html { redirect_to request.referrer, notice: "Account changed to Staff" }
+        format.turbo_stream { flash.now[:notice] = "Account changed to Staff" }
+      end
+    end
+  rescue => e
     respond_to do |format|
-      format.html { redirect_to request.referrer, notice: "Account changed to Staff" }
-      format.turbo_stream { flash.now[:notice] = "Account changed to Staff" }
+      format.html { redirect_to request.referrer, notice: e }
+      format.turbo_stream { flash.now[:notice] = e }
     end
   end
 
   def to_admin
-    @user.add_role :admin
-    @user.remove_role :staff
+    @user.transaction do
+      @user.add_role :admin
+      @user.remove_role :staff
+      respond_to do |format|
+        format.html { redirect_to request.referrer, notice: "Account changed to Admin" }
+        format.turbo_stream { flash.now[:notice] = "Account changed to Admin" }
+      end
+    end
+  rescue => e
     respond_to do |format|
-      format.html { redirect_to request.referrer, notice: "Account changed to Admin" }
-      format.turbo_stream { flash.now[:notice] = "Account changed to Admin" }
+      format.html { redirect_to request.referrer, notice: e }
+      format.turbo_stream { flash.now[:notice] = e }
     end
   end
 
   private
 
-  def context_authorize!
-    authorize! with: Organizations::UserRolesPolicy, context: {organization: Current.organization}
-  end
-
   def set_user
     @user = User.find(params[:id])
-    return unless current_user.id == @user.id
+  end
 
-    redirect_to request.referrer, alert: "You cannot change your own role."
+  def context_authorize!
+    authorize! @user, with: Organizations::UserRolesPolicy
   end
 end
