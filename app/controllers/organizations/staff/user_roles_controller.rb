@@ -9,13 +9,12 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
           format.turbo_stream { flash.now[:notice] = "Account changed to Staff" }
         end
       else
-        raise StandardError
+        respond_to do |format|
+          format.html { redirect_to request.referrer, alert: "Error changing role" }
+          format.turbo_stream { flash.now[:alert] = "Error changing role" }
+        end
+        raise ActiveRecord::Rollback
       end
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to request.referrer, alert: "Error changing role" }
-      format.turbo_stream { flash.now[:alert] = "Error changing role" }
     end
   end
 
@@ -27,13 +26,12 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
           format.turbo_stream { flash.now[:notice] = "Account changed to Admin" }
         end
       else
-        raise StandardError
+        respond_to do |format|
+          format.html { redirect_to request.referrer, alert: "Error changing role" }
+          format.turbo_stream { flash.now[:alert] = "Error changing role" }
+        end
+        raise ActiveRecord::Rollback
       end
-    end
-  rescue
-    respond_to do |format|
-      format.html { redirect_to request.referrer, alert: "Error changing role" }
-      format.turbo_stream { flash.now[:alert] = "Error changing role" }
     end
   end
 
@@ -41,6 +39,7 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
 
   def set_user
     @user = User.find(params[:id])
-    authorize! @user, with: Organizations::UserRolesPolicy, to: :change_role?
+    authorize! @user, with: Organizations::UserRolesPolicy, to: :change_role?,
+      context: {organization: Current.organization}
   end
 end

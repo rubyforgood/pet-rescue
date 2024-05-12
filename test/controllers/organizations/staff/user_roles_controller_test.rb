@@ -16,6 +16,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       should "be authorized" do
         assert_authorized_to(
           :change_role?, @account,
+          context: {organization: @organization},
           with: Organizations::UserRolesPolicy
         ) do
           post staff_user_to_staff_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
@@ -27,6 +28,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       should "be authorized" do
         assert_authorized_to(
           :change_role?, @account,
+          context: {organization: @organization},
           with: Organizations::UserRolesPolicy
         ) do
           post staff_user_to_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
@@ -43,7 +45,6 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       @organization = ActsAsTenant.current_tenant
       @user = create(:staff_admin)
       @account = create(:staff_admin)
-      # @staff = create(:staff)
       sign_in @user
     end
 
@@ -59,13 +60,22 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       has_role = @user.has_role?(:staff, ActsAsTenant.current_tenant)
       assert_equal has_role, false
     end
+
+    should "scope role to organization" do
+      post staff_user_to_staff_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
+      has_strict_role = @account.has_strict_role?(:staff, ActsAsTenant.current_tenant)
+      global_role = @account.has_role?(:staff)
+
+      assert_equal has_strict_role, true
+      assert_equal global_role, false
+    end
   end
 
   context "#to_admin" do
     setup do
       @organization = ActsAsTenant.current_tenant
       @user = create(:staff_admin)
-      @account = create(:staff_admin)
+      @account = create(:staff)
       sign_in @user
     end
 
@@ -74,6 +84,15 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       has_role = @account.has_role?(:admin, ActsAsTenant.current_tenant)
 
       assert_equal has_role, true
+    end
+
+    should "scope role to organization" do
+      post staff_user_to_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
+      has_strict_role = @account.has_strict_role?(:admin, ActsAsTenant.current_tenant)
+      global_role = @account.has_role?(:admin)
+
+      assert_equal has_strict_role, true
+      assert_equal global_role, false
     end
   end
 end
