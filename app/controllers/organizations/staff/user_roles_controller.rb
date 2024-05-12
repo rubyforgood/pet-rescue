@@ -3,33 +3,34 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
 
   def to_staff
     ActiveRecord::Base.transaction do
-      @user.add_role :staff, Current.organization
-      @user.remove_role :admin, Current.organization
-      raise ActiveRecord::Rollback if @user.has_role?(:admin, Current.organization) || !@user.has_role?(:staff, Current.organization)
-
-      respond_to do |format|
-        format.html { redirect_to request.referrer, notice: "Account changed to Staff" }
-        format.turbo_stream { flash.now[:notice] = "Account changed to Staff" }
+      if @user.add_role(:staff, Current.organization) && @user.remove_role(:admin, Current.organization)
+        respond_to do |format|
+          format.html { redirect_to request.referrer, notice: "Account changed to Staff" }
+          format.turbo_stream { flash.now[:notice] = "Account changed to Staff" }
+        end
+      else
+        raise StandardError
       end
     end
-
+  rescue
     respond_to do |format|
-      format.html { redirect_to request.referrer, notice: "Error changing role" }
-      format.turbo_stream { flash.now[:notice] = "Error changing role" }
+      format.html { redirect_to request.referrer, alert: "Error changing role" }
+      format.turbo_stream { flash.now[:alert] = "Error changing role" }
     end
   end
 
   def to_admin
     ActiveRecord::Base.transaction do
-      @user.add_role :admin, Current.organization
-      @user.remove_role :staff, Current.organization
-      raise ActiveRecord::Rollback if @user.has_role?(:staff, Current.organization) || !@user.has_role?(:admin, Current.organization)
-
-      respond_to do |format|
-        format.html { redirect_to request.referrer, notice: "Account changed to Admin" }
-        format.turbo_stream { flash.now[:notice] = "Account changed to Admin" }
+      if @user.add_role(:admin, Current.organization) && @user.remove_role(:staff, Current.organization)
+        respond_to do |format|
+          format.html { redirect_to request.referrer, notice: "Account changed to Admin" }
+          format.turbo_stream { flash.now[:notice] = "Account changed to Admin" }
+        end
+      else
+        raise StandardError
       end
     end
+  rescue
     respond_to do |format|
       format.html { redirect_to request.referrer, alert: "Error changing role" }
       format.turbo_stream { flash.now[:alert] = "Error changing role" }
