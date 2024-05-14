@@ -1,6 +1,8 @@
 class Organizations::Staff::AdoptionApplicationReviewsController < Organizations::BaseController
   before_action :set_adopter_application, only: %i[edit update]
 
+  include ::Pagy::Backend
+
   layout "dashboard"
 
   def index
@@ -18,6 +20,8 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
       status_filter = params[:q]["adopter_applications_status_eq"]
       @pets_with_applications = filter_by_application_status(@pets_with_applications, status_filter)
     end
+
+    @pagy, @pets_with_applications = pagy(@pets_with_applications, items: 5)
   end
 
   def edit
