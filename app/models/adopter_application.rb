@@ -42,6 +42,8 @@ class AdopterApplication < ApplicationRecord
       message: "has already applied for this pet."
     }
 
+  REVIEWS_PER_PAGE = 5
+
   # remove adoption_made status as not necessary for staff
   def self.app_review_statuses
     AdopterApplication.statuses.keys.map do |status|
