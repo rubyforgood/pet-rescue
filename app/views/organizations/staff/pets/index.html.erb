@@ -38,81 +38,14 @@
     </div>
     <!-- row -->
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
-      <!-- card -->
-      <div class="card">
-        <!-- table -->
-        <div class="table-responsive overflow-y-hidden">
-          <table class="table mb-0 text-nowrap table-hover table-centered">
-            <thead>
-              <tr style="height: 70px;">
-                <th scope="col">Name</th>
-                <th scope="col">Sex</th>
-                <th scope="col">Breed</th>
-                <th scope="col">Weight</th>
-                <th class="text-center" scope="col">Pause Applications</th>
-                <th class="text-center" scope="col">Published</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @pets.each do |pet| %>
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center">
-                      <div class="icon-shape icon-lg rounded-3 border">
-                        <% if pet.images.attached? %>
-                          <%= image_tag pet.images.first, class: 'card-img' %>
-                        <% else %>
-                          <%= image_tag('coming_soon.jpg', class: 'card-img') %>
-                        <% end %>
-                      </div>
-                      <div class="ms-3">
-                        <h4 class="mb-0">
-                          <%= link_to pet.name, staff_pet_path(pet), class: 'text-inherit' %>
-                        </h4>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <%= pet.sex %>
-                  </td>
-                  <td>
-                    <%= pet.breed %>
-                  </td>
-                  <td>
-                    <%= "#{pet.weight_from} - #{pet.weight_to} #{pet.weight_unit}" %>
-                  </td>
-                  <td>
-                    <%= render 'pause_toggle', pet: pet %>
-                  </td>
-                  <td>
-                    <%= render 'publish_toggle', pet: pet %>
-                  </td>
-                  <% if current_user.staff_account %>
-                    <td>
-                      <div class="dropdown dropstart">
-                        <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" id="Dropdown1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fe fe-more-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="Dropdown1">
-                          <span class="dropdown-header">Settings</span>
-                          <%= link_to staff_pet_path(pet), class: 'dropdown-item' do %>
-                            <i class="fe fe-edit dropdown-item-icon"></i>Edit Details
-                          <% end %>
-                          <%= link_to staff_pet_path(pet), class: 'dropdown-item' do %>
-                            <i class="fe fe-link dropdown-item-icon"></i>Copy link
-                          <% end %>
-                          <%= button_to [:staff, pet], method: :delete, class: 'dropdown-item', data: { turbo_confirm: t('general.are_you_sure_delete_pet') } do %>
-                            <i class="fe fe-trash dropdown-item-icon"></i>Delete
-                          <% end %>
-                        </div>
-                      </div>
-                    </td>
-                  <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+      <div class="col-xl">
+        <!-- Table layout -->
+        <div class="pet-list-table">
+          <%= render partial: "pet_table", locals: { pets: @pets} %>
+        </div>          
+        <!-- Card-based layout -->
+        <div class="pet-list-cards">
+      <%= render partial:"pet_cards", collection: @pets, as: :pet %>
         </div>
       </div>
     </div>

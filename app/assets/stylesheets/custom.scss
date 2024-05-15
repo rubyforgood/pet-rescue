@@ -6,6 +6,19 @@
 * the theme.
 * -----------------------------------------------------------------------------
 */
+
+@media (max-width: 1199px) {
+  .pet-list-table {
+    display: none; /* Hide the table layout on smaller screens */
+  }
+}
+
+@media (min-width: 1200px) {
+  .pet-list-cards {
+    display: none; /* Hide the card layout on larger screens */
+  }
+}
+
 label.required:after {
   content: " *";
 }
