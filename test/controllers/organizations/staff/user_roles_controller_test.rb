@@ -86,7 +86,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
     end
 
     should "receive alert if role is not changed" do
-      Organizations::Staff::UserRolesController.any_instance.stubs(:change_role).returns(false)
+      User.any_instance.stubs(:change_role).returns(false)
       post staff_user_to_staff_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
 
       assert_response :redirect
@@ -96,7 +96,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
     end
 
     should "receive alert via turbo if role is not changed" do
-      Organizations::Staff::UserRolesController.any_instance.stubs(:change_role).returns(false)
+      User.any_instance.stubs(:change_role).returns(false)
       post staff_user_to_staff_url(@account), as: :turbo_stream
 
       assert_equal flash.alert, "Error changing role"
@@ -141,7 +141,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       assert_equal global_role, false
     end
     should "receive alert if role is not changed" do
-      Organizations::Staff::UserRolesController.any_instance.stubs(:change_role).returns(false)
+      User.any_instance.stubs(:change_role).returns(false)
       post staff_user_to_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
 
       assert_response :redirect
@@ -151,7 +151,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
     end
 
     should "receive alert via turbo if role is not changed" do
-      Organizations::Staff::UserRolesController.any_instance.stubs(:change_role).returns(false)
+      User.any_instance.stubs(:change_role).returns(false)
       post staff_user_to_admin_url(@account), as: :turbo_stream
 
       assert_equal flash.alert, "Error changing role"

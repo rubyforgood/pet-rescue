@@ -2,10 +2,10 @@
 module RoleChangeable
   extend ActiveSupport::Concern
 
-  def change_role(user, previous = nil, new = nil)
+  def change_role(previous, new)
     ActiveRecord::Base.transaction do
-      user.remove_role(previous, user.organization) if previous
-      user.add_role(new, user.organization) if new
+      remove_role(previous, organization)
+      add_role(new, organization)
     end
   rescue
     false

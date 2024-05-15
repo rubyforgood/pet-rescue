@@ -35,6 +35,7 @@
 class User < ApplicationRecord
   include Avatarable
   include Authorizable
+  include RoleChangeable
 
   acts_as_tenant(:organization)
   default_scope do

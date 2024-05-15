@@ -1,10 +1,8 @@
 class Organizations::Staff::UserRolesController < Organizations::BaseController
-  include RoleChangeable
-
   before_action :set_user
 
   def to_staff
-    if change_role(@user, :admin, :staff)
+    if @user.change_role(:admin, :staff)
       respond_to do |format|
         format.html { redirect_to request.referrer, notice: "Account changed to Staff" }
         format.turbo_stream { flash.now[:notice] = "Account changed to Staff" }
@@ -18,7 +16,7 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
   end
 
   def to_admin
-    if change_role(@user, :staff, :admin)
+    if @user.change_role(:staff, :admin)
       respond_to do |format|
         format.html { redirect_to request.referrer, notice: "Account changed to Admin" }
         format.turbo_stream { flash.now[:notice] = "Account changed to Admin" }
