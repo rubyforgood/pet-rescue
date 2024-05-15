@@ -6,8 +6,6 @@
         <tr>
           <th scope="col">Name</th>
           <th scope="col">Sex</th>
-          <th scope="col">Breed</th>
-          <th scope="col">Weight</th>
           <th class="text-center" scope="col">Pause Applications</th>
           <th class="text-center" scope="col">Published</th>
           <th scope="col"></th>
@@ -34,12 +32,6 @@
             </td>
             <td>
               <%= pet.sex %>
-            </td>
-            <td>
-              <%= pet.breed %>
-            </td>
-            <td>
-              <%= "#{pet.weight_from} - #{pet.weight_to} #{pet.weight_unit}" %>
             </td>
             <td>
               <%= render 'pause_toggle', pet: pet %>

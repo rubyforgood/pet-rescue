@@ -169,53 +169,12 @@
   </div> <!--container-->
 </section>
 
-<!--PAGE HIGHLIGHTS-->
-<section class="pt-5 pb-5 bg-white" id="how_to_apply">
-  <div class="container mb-md-5 mt-md-5">
-    <div class="row text-center">
-      <div class="col-md-4 p-3">
-        <h3 class="mb-4">
-          Process
-        </h3>
-        <p class='mb-4 bigger'>
-          Before applying to adopt a pet it is important you read and understand how our process works.
-        </p>
-        <p>
-          <%= link_to 'Learn more', faq_index_path, class: 'custom-btn-green' %>
-        </p>
-      </div>
-      <div class="col-md-4 p-3">
-        <h3 class="mb-4">
-          Partners
-        </h3>
-        <p class='mb-4 bigger'>
-          We have some amazing partners here in La Ventana who help in our pet rescue efforts.
-        </p>
-        <p>
-          <%= link_to 'Learn more', partners_path, class: 'custom-btn-green' %>
-        </p>
-      </div>
-      <div class="col-md-4 p-3">
-        <h3 class="mb-4">
-          Donate
-        </h3>
-        <p class='mb-4 bigger'>
-          Donations help us to rescue, treat and adopt more pets. Click here to learn how you can donate. 
-        </p>
-        <p>
-          <%= link_to 'Learn more', donate_path, class: 'custom-btn-green' %>
-        </p>
-      </div>
-    </div> <!--row-->
-  </div> <!--container-->
-</section>
-
 <% unless user_signed_in? %>
   <!-- CTA -->
   <section class="pt-5 pb-5 bg-light" id="cta">
     <div class="container mb-md-5 mt-md-5">
       <div class="row text-center">
-        <div class="col-8 offset-2 border p-5 shadow-sm 
+        <div class="col-8 offset-2 border p-5 shadow-sm
                     rounded bg-white">
           <h3 class='mb-4'>Become an adopter now!</h3>
           <%= link_to 'Create Account', new_user_registration_path ,
