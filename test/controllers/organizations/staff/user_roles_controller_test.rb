@@ -50,10 +50,25 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
 
     should "change role from admin to staff" do
       post staff_user_to_staff_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
-      has_role = @account.has_role?(:staff, ActsAsTenant.current_tenant)
+      assert_response :redirect
+      follow_redirect!
 
+      assert_equal flash.notice, "Account changed to Staff"
+
+      has_role = @account.has_role?(:staff, ActsAsTenant.current_tenant)
       assert_equal has_role, true
     end
+
+    should "change role from admin to staff with turbo" do
+      post staff_user_to_staff_url(@account), as: :turbo_stream
+
+      assert_response :success
+      assert_turbo_stream(action: "replace", count: 2) do
+        assert_select "button", text: "Staff"
+      end
+      assert_equal flash.notice, "Account changed to Staff"
+    end
+
     should "not allow user to change own role" do
       post staff_user_to_staff_url(@user), headers: {"HTTP_REFERER" => "http://www.example.com/"}
 
@@ -69,6 +84,23 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       assert_equal has_strict_role, true
       assert_equal global_role, false
     end
+
+    should "receive alert if role is not changed" do
+      Organizations::Staff::UserRolesController.any_instance.stubs(:change_role).returns(false)
+      post staff_user_to_staff_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
+
+      assert_response :redirect
+      follow_redirect!
+
+      assert_equal flash.alert, "Error changing role"
+    end
+
+    should "receive alert via turbo if role is not changed" do
+      Organizations::Staff::UserRolesController.any_instance.stubs(:change_role).returns(false)
+      post staff_user_to_staff_url(@account), as: :turbo_stream
+
+      assert_equal flash.alert, "Error changing role"
+    end
   end
 
   context "#to_admin" do
@@ -81,9 +113,23 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
 
     should "change role from staff to admin" do
       post staff_user_to_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
-      has_role = @account.has_role?(:admin, ActsAsTenant.current_tenant)
+      assert_response :redirect
+      follow_redirect!
 
+      assert_equal flash.notice, "Account changed to Admin"
+
+      has_role = @account.has_role?(:admin, ActsAsTenant.current_tenant)
       assert_equal has_role, true
+    end
+
+    should "change role from staff to admin with turbo" do
+      post staff_user_to_admin_url(@account), as: :turbo_stream
+
+      assert_response :success
+      assert_turbo_stream(action: "replace", count: 2) do
+        assert_select "button", text: "Admin"
+      end
+      assert_equal flash.notice, "Account changed to Admin"
     end
 
     should "scope role to organization" do
@@ -93,6 +139,22 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
 
       assert_equal has_strict_role, true
       assert_equal global_role, false
+    end
+    should "receive alert if role is not changed" do
+      Organizations::Staff::UserRolesController.any_instance.stubs(:change_role).returns(false)
+      post staff_user_to_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
+
+      assert_response :redirect
+      follow_redirect!
+
+      assert_equal flash.alert, "Error changing role"
+    end
+
+    should "receive alert via turbo if role is not changed" do
+      Organizations::Staff::UserRolesController.any_instance.stubs(:change_role).returns(false)
+      post staff_user_to_admin_url(@account), as: :turbo_stream
+
+      assert_equal flash.alert, "Error changing role"
     end
   end
 end
