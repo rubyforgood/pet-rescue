@@ -21,7 +21,7 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
       @pets_with_applications = filter_by_application_status(@pets_with_applications, status_filter)
     end
 
-    @pagy, @pets_with_applications = pagy(@pets_with_applications, items: AdopterApplication::REVIEWS_PER_PAGE)
+    @pagy, @pets_with_applications = pagy(@pets_with_applications, items: 10)
   end
 
   def edit
