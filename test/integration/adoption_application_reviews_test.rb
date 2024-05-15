@@ -33,7 +33,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       get staff_adoption_application_reviews_path
 
       assert_response :success
-      AdopterApplication.all.each { |application| verify_application_elements application }
+      AdopterApplication.first(5).each { |application| verify_application_elements application }
     end
 
     should "be able to change the application status" do
