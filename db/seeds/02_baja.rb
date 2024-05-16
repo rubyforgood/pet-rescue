@@ -117,41 +117,55 @@ ActsAsTenant.with_tenant(@organization) do
     zipcode: "12345"
   )
 
+  user_profile_params = ->(adopter_foster_account) {
+    {
+      location_id: @location_one.id,
+      adopter_foster_account_id: adopter_foster_account.id,
+      phone_number: "250 548 7721",
+      contact_method: "phone",
+      ideal_pet: 'I love a pet with energy and a gentle spirit.
+                One that snuggles on the couch in the evening.',
+      lifestyle_fit: 'I work from home during the week and am always
+                    at home. On weekends I do a lot of hiking.',
+      activities: 'We will go to the pet park, daily walks x 2, and
+                see friends with pets regularly',
+      alone_weekday: 2,
+      alone_weekend: 1,
+      experience: 'I have owned many pets an currently have three rescue
+                pets and one foster pet',
+      contingency_plan: 'My neighbour is a good friend and has looked after
+                      my pets multiple times and they get along very well',
+      shared_ownership: true,
+      shared_owner: 'My brother is often taking my pets when his kids are over
+                  for the weekend as they just love the pets',
+      housing_type: "Detached",
+      fenced_access: true,
+      location_day: "In the house",
+      location_night: "In the house",
+      do_you_rent: false,
+      adults_in_home: 2,
+      kids_in_home: 1,
+      other_pets: true,
+      describe_pets: "I have one cat that does not mind pets at all",
+      checked_shelter: true,
+      surrendered_pet: true,
+      describe_surrender: "I had to surrender a cat when I was 19 because of university",
+      annual_cost: "$2,000",
+      visit_laventana: false,
+      referral_source: "my friends friend"
+    }
+  }
+
   @adopter_foster_profile_one = AdopterFosterProfile.create!(
-    location_id: @location_one.id,
-    adopter_foster_account_id: @adopter_foster_account_one.id,
-    phone_number: "250 548 7721",
-    contact_method: "phone",
-    ideal_pet: 'I love a pet with energy and a gentle spirit.
-              One that snuggles on the couch in the evening.',
-    lifestyle_fit: 'I work from home during the week and am always
-                  at home. On weekends I do a lot of hiking.',
-    activities: 'We will go to the pet park, daily walks x 2, and
-              see friends with pets regularly',
-    alone_weekday: 2,
-    alone_weekend: 1,
-    experience: 'I have owned many pets an currently have three rescue
-              pets and one foster pet',
-    contingency_plan: 'My neighbour is a good friend and has looked after
-                    my pets multiple times and they get along very well',
-    shared_ownership: true,
-    shared_owner: 'My brother is often taking my pets when his kids are over
-                for the weekend as they just love the pets',
-    housing_type: "Detached",
-    fenced_access: true,
-    location_day: "In the house",
-    location_night: "In the house",
-    do_you_rent: false,
-    adults_in_home: 2,
-    kids_in_home: 1,
-    other_pets: true,
-    describe_pets: "I have one cat that does not mind pets at all",
-    checked_shelter: true,
-    surrendered_pet: true,
-    describe_surrender: "I had to surrender a cat when I was 19 because of university",
-    annual_cost: "$2,000",
-    visit_laventana: false,
-    referral_source: "my friends friend"
+    user_profile_params.call(@adopter_foster_account_one)
+  )
+
+  @user_fosterer_profile_one = AdopterFosterProfile.create!(
+    user_profile_params.call(@user_fosterer_one.adopter_foster_account)
+  )
+
+  @user_fosterer_profile_two = AdopterFosterProfile.create!(
+    user_profile_params.call(@user_fosterer_two.adopter_foster_account)
   )
 
   @location_two = Location.create!(
