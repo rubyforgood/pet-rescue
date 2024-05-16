@@ -48,6 +48,7 @@ ADMIN_PERMISSIONS = (
     manage_organization_profile
     manage_page_text
     manage_staff
+    change_user_roles
   ]
 ).freeze
 
