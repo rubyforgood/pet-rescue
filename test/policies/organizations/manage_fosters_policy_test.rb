@@ -49,7 +49,7 @@ class Organizations::ManageFostersPolicyTest < ActiveSupport::TestCase
         @user = create(:staff)
       end
 
-      should "return false" do
+      should "return true" do
         assert_equal @action.call, true
       end
     end
