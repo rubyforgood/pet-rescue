@@ -11,16 +11,16 @@ class PetsTest < ApplicationSystemTestCase
     resize_window_to_large
     visit staff_pets_path
 
-    assert_selector ".pet-list-table", visible: true
-    assert_no_selector ".pet-list-cards", visible: true
+    assert_selector ".d-xl-block", visible: true
+    assert_no_selector ".d-xl-none", visible: true
   end
 
   test "displays card view on small screens" do
     resize_window_to_small
     visit staff_pets_path
 
-    assert_selector ".pet-list-cards", visible: true
-    assert_no_selector ".pet-list-table", visible: true
+    assert_selector ".d-xl-none", visible: true
+    assert_no_selector ".d-xl-block", visible: true
   end
 
   private
