@@ -1,27 +1,22 @@
 <div class="col-lg-4 col-md-6 p-0">
-  <%= link_to adoptable_pet_path(pet), class: 'text-decoration-none' do %>
-    <div class="card card-hover m-4" style='overflow: hidden'>
-      <% image = image_tag('coming_soon.jpg', class: 'card-img-top pet-card') %>
-      <% image = image_tag pet.images.first, class: 'card-img-top pet-card' if pet.images.attached? %>
-
-      <%= image %>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item d-flex justify-content-between">
-          <h5 class="card-title text-secondary mb-0">
-            <%= pet.name %>
-          </h5>
-        </li>
-        <% li_classes = %w[list-group-item text-secondary] %>
-        <%= tag.li("Sex: #{pet.sex}", class: li_classes) %>
-        <li class="list-group-item d-flex justify-content-start align-items-center text-secondary">
-          <span class="me-1">Pause Applications:</span>
-          <%= render 'pause_toggle', pet: pet %>
-        </li>
-        <li class="list-group-item d-flex justify-content-start align-items-center text-secondary">
-          <span class="me-1">Published:</span>
-          <%= render 'publish_toggle', pet: pet %>
-        </li>           
-      </ul>
-    </div>
-  <% end %>
+  <div class="card card-hover m-4" style='overflow: hidden'>
+    <%= link_to image_tag(pet.images.attached? ? pet.images.first : 'coming_soon.jpg', class: 'card-img-top pet-card'), staff_pet_path(pet) %>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item d-flex justify-content-between">
+        <h5 class="card-title text-secondary mb-0">
+          <%= link_to pet.name, staff_pet_path(pet) %>
+        </h5>
+      </li>
+      <% li_classes = %w[list-group-item text-secondary] %>
+      <%= tag.li("Sex: #{pet.sex}", class: li_classes) %>
+      <li class="list-group-item d-flex justify-content-start align-items-center text-secondary">
+        <span class="me-1">Pause Applications:</span>
+        <%= render 'pause_toggle', pet: pet %>
+      </li>
+      <li class="list-group-item d-flex justify-content-start align-items-center text-secondary">
+        <span class="me-1">Published:</span>
+        <%= render 'publish_toggle', pet: pet %>
+      </li>           
+    </ul>
+  </div>
 </div>
