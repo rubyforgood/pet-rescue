@@ -3,5 +3,10 @@ FactoryBot.define do
     pet { association :pet }
     adopter_foster_account { association :adopter_foster_account, :with_profile }
     match_type { :adoption }
+
+    factory :foster do
+      match_type { :foster }
+      adopter_foster_account { association :foster_account, :with_profile }
+    end
   end
 end
