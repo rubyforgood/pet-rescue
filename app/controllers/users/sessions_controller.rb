@@ -2,5 +2,5 @@
 
 class Users::SessionsController < Devise::SessionsController
   include OrganizationScopable
-  layout 'application'
+  layout "application"
 end

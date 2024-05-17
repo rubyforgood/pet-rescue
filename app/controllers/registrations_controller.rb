@@ -24,11 +24,11 @@ class RegistrationsController < Devise::RegistrationsController
 
   def set_layout
     if current_user&.staff_account
-      'dashboard'
+      "dashboard"
     elsif current_user&.adopter_foster_account
-      'adopter_foster_dashboard'
+      "adopter_foster_dashboard"
     else
-      'application'
+      "application"
     end
   end
 
