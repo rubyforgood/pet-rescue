@@ -30,6 +30,7 @@ STAFF_PERMISSIONS = (
     invite_fosterers
     purge_attachments
     manage_default_pet_tasks
+    manage_fosters
     manage_forms
     manage_questions
     manage_matches
@@ -47,6 +48,7 @@ ADMIN_PERMISSIONS = (
     manage_organization_profile
     manage_page_text
     manage_staff
+    change_user_roles
   ]
 ).freeze
 

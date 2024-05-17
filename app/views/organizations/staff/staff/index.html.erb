@@ -48,7 +48,7 @@
                       </div>
                       <div class="d-flex justify-content-between border-bottom py-2 mt-4">
                         <span>Role</span>
-                        <span class="text-dark"><%= staff.user.roles.pluck(:name).join(", ") %></span>
+                        <%= render "role", staff: staff %>
                       </div>
                       <div class="d-flex justify-content-between border-bottom py-2">
                         <span>Joined</span>
@@ -98,14 +98,14 @@
                         </div>
                       </td>
                       <td>
-                        <%= staff.user.roles.pluck(:name).join(", ") %>
+                        <%= render "role", staff: staff %>
                       </td>
                       <td>
                         <%= staff.created_at.strftime("%d %B, %Y") %>
                       </td>
                       <td>
                         <%= render "deactivate_toggle", staff: staff %>
-                      </td>                    
+                      </td>
                       <td>
                         <div class="hstack gap-4">
                           <a href="#" class="fe fe-mail text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Message" data-bs-original-title="Message"></a>
@@ -131,6 +131,6 @@
         </div>
       </div>
     </div>
-    </div>
-  <% end %>
+  </div>
+<% end %>
 <% end %>
