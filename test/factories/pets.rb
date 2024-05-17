@@ -5,7 +5,7 @@ FactoryBot.define do
     breed { Faker::Creature::Dog.breed }
     description { Faker::Lorem.sentence }
     name { Faker::Creature::Dog.name }
-    placement_type { Faker::Number.within(range: 0..2) }
+    placement_type { "Adoptable and Fosterable" }
     published { true }
     sex { Faker::Creature::Dog.gender }
     species { Faker::Number.within(range: 0..1) }
