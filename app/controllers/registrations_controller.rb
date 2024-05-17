@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   include OrganizationScopable
-  layout :set_layout, only: [:edit, :update]
+  layout :set_layout, only: [:edit, :update, :new]
 
   after_action :send_email, only: :create
 
@@ -23,10 +23,12 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def set_layout
-    if current_user.staff_account
-      "dashboard"
+    if current_user&.staff_account
+      'dashboard'
+    elsif current_user&.adopter_foster_account
+      'adopter_foster_dashboard'
     else
-      "application"
+      'application'
     end
   end
 
@@ -54,11 +56,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    adoptable_pets_path
-  end
-
-  def after_sign_in_path_for(resource)
-    root_path
+    current_user&.adopter_foster_account ? adopter_fosterer_dashboard_index_path : root_path
   end
 
   # check for id (i.e., record saved) and send mail
