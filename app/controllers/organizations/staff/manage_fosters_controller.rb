@@ -4,8 +4,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
   layout "dashboard"
 
   def index
-    authorize! User, context: {organization: Current.organization},
-      with: Organizations::ManageFostersPolicy
+    authorize! Match, context: {organization: Current.organization}
 
     @q = authorized_scope(Match.fosters).ransack(params[:q])
     @pagy, @paginated_foster_pets = pagy(
