@@ -1,1 +1,49 @@
-<p>OMG this is awesome</p>
+<% @foster_pets.each do |pet, fosters| %>
+  <div class="mb-4">
+    <div class="card">
+      <div class="card-header">
+        <!--pet name-->
+        <h4 class="mb-0"><%= link_to pet.name, staff_pet_path(pet), class: "link-underline link-underline-opacity-0" %></h4>
+      </div>
+      <div class="card-body">
+        <table class="table mb-0 text-nowrap table-hover table-centered">
+          <thead>
+            <tr>
+              <th scope="col">Fosterer</th>
+              <th scope="col">Status</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% fosters.each do |foster|%>
+              <tr id="<%= dom_id(foster) %>">
+                <!-- fosterer -->
+                <td class="align-middle col-3">
+                  <%= link_to foster.fosterer_name(:last_first), "", class: "link-underline link-underline-opacity-0" %>
+                </td>
+                <!-- status -->
+                <td class="align-middle col-3">
+                  <%= foster.foster_status.to_s.titleize %>
+                </td>
+                <!-- start date -->
+                <td class="align-middle col-3">
+                  <%= foster.start_date.strftime("%m/%d/%Y")  %>
+                </td>
+                <!-- end date -->
+                <td class="align-middle col-3">
+                  <%= foster.end_date.strftime("%m/%d/%Y")  %>
+                </td>
+                <!-- buttons -->
+                <td class="align-middle">
+                  <%= "buttons" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>
