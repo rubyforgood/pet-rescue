@@ -40,7 +40,11 @@ class Match < ApplicationRecord
   scope :fosters, -> { where(match_type: :foster) }
 
   def self.ransackable_attributes(auth_object = nil)
-    ["pet_name", "user_name"]
+    %w[]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[pet user]
   end
 
   def fosterer_name(format = :default)
