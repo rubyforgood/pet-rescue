@@ -17,27 +17,27 @@
       </li>
       <li class="nav-item">
         <%= active_link_to staff_dashboard_index_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-home me-2"></i> Dashboard
+          <i class="nav-icon fe fe-home me-2"></i>Dashboard
         <% end %>
       </li>
       <li class="nav-item">
         <%= active_link_to staff_adoption_application_reviews_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-file-text me-2"></i> Adoption Applications
+          <i class="nav-icon fe fe-file-text me-2"></i>Adoption Applications
         <% end %>
       </li>
       <li class="nav-item">
         <%= active_link_to staff_manage_fosters_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-file-text me-2"></i> Foster Applications
+          <i class="nav-icon fe fe-file-text me-2"></i>Fosters
         <% end %>
       </li>
       <li class="nav-item">
         <%= active_link_to staff_pets_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-heart me-2"></i> Pets
+          <i class="nav-icon fe fe-heart me-2"></i>Pets
         <% end %>
       </li>
       <li class="nav-item">
         <%= active_link_to staff_fosterers_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-users me-2"></i> Fosterers
+          <i class="nav-icon fe fe-users me-2"></i>Fosterers
         <% end %>
       </li>
       <!-- Nav item -->
@@ -46,33 +46,33 @@
       </li>
       <li class="nav-item">
         <%= active_link_to staff_default_pet_tasks_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-file-text me-2"></i> Default Pet Tasks
+          <i class="nav-icon fe fe-file-text me-2"></i>Default Pet Tasks
         <% end %>
       </li>
       <li class="nav-item">
         <%= active_link_to staff_faqs_path, class: "nav-link" do %>
-          <i class="nav-icon fe fe-file-text me-2"></i>  FAQs
+          <i class="nav-icon fe fe-file-text me-2"></i>FAQs
         <% end %>
       </li>
       <% if current_user.staff_account && current_user.has_role?(:admin, current_user.staff_account.organization) %>
         <li class="nav-item">
           <%= active_link_to staff_forms_path, class: 'nav-link' do %>
-            <i class="nav-icon fe fe-clipboard me-2"></i> Forms
+            <i class="nav-icon fe fe-clipboard me-2"></i>Forms
           <% end %>
         </li>
         <li class="nav-item">
           <%= active_link_to edit_staff_organization_profile_path, class: "nav-link" do %>
-            <i class="nav-icon fe fe-settings me-2"></i> Settings
+            <i class="nav-icon fe fe-settings me-2"></i>Settings
           <% end %>
         </li>
         <li class="nav-item">
           <%= active_link_to edit_staff_page_text_path(@page_text), class: "nav-link" do %>
-            <i class="nav-icon fe fe-file-text me-2"></i> Page Text
+            <i class="nav-icon fe fe-file-text me-2"></i>Page Text
           <% end %>
         </li>
         <li class="nav-item">
           <%= active_link_to staff_staff_index_path, class: "nav-link" do %>
-            <i class="nav-icon fe fe-users me-2"></i> Staff
+            <i class="nav-icon fe fe-users me-2"></i>Staff
           <% end %>
         </li>
       <% end %>
