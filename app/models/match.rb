@@ -43,6 +43,15 @@ class Match < ApplicationRecord
     ["pet_name", "user_name"]
   end
 
+  def fosterer_name(format = :default)
+    case format
+    when :default
+      "#{user.first_name} #{user.last_name}"
+    when :last_first
+      "#{user.last_name}, #{user.first_name}"
+    end
+  end
+
   def foster_status
     return :not_applicable if start_date.nil? || end_date.nil?
 
