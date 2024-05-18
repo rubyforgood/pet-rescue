@@ -73,24 +73,18 @@
               <span class="text-uppercase text-primary fw-semibold ls-md"><%= t('.adoption_process') %></span>
               <!-- para -->
               <p class="fs-3  mb-5"><%= t('.please_read_faq_html', faq_link: link_to('FAQ', faq_index_path)) %></p>
-
             </div>
 
-            <div class=" row align-items-center ">
-              <div class="mb-6">
-                <h3 class="mb-3 fw-bold"><%= t('.please_know_that') %></h3>
-                <p class="mb-0 fs-4 ">
-                <ul><%= t('.please_know_that_items_html') %></ul>
-                </p>
+            <% if @adoptable_pet_info %>
+              <div class="row align-items-center">
+                <div class="mb-6">
+                  <h3 class="mb-3 fw-bold"><%= t('.important_info') %></h3>
+                  <p class="mb-0 fs-4 ">
+                    <%= @adoptable_pet_info %>
+                  </p>
+                </div>
               </div>
-              <!-- content -->
-              <div class="mb-6">
-                <h3 class="mb-3 fw-bold"><%= t('.after_you_adopt') %></h3>
-                <p class="mb-0 fs-4 ">
-                <ul><%= t('.after_you_adopt_items_html') %></ul>
-                </p>
-              </div>
-            </div>
+            <% end %>
 
           </div>
 

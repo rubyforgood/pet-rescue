@@ -301,6 +301,7 @@ en:
         complete_my_profile: "Complete my profile"
         adopt: "Adopt"
         login: "Log in"
+        important_info: "Important Information"
     faq:
       index:
         header: "Frequently Asked Questions"
