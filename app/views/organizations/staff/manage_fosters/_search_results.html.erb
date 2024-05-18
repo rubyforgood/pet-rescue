@@ -3,7 +3,11 @@
     <div class="card">
       <div class="card-header">
         <!--pet name-->
-        <h4 class="mb-0"><%= link_to pet.name, staff_pet_path(pet), class: "link-underline link-underline-opacity-0" %></h4>
+        <h4 class="mb-0">
+          <%= link_to pet.name, staff_pet_path(pet),
+            class: "link-underline link-underline-opacity-0"
+          %>
+        </h4>
       </div>
       <div class="card-body">
         <table class="table mb-0 text-nowrap table-hover table-centered">
@@ -21,7 +25,9 @@
               <tr id="<%= dom_id(foster) %>">
                 <!-- fosterer -->
                 <td class="align-middle col-3">
-                  <%= link_to foster.fosterer_name(:last_first), "", class: "link-underline link-underline-opacity-0" %>
+                  <%= link_to foster.fosterer_name(:last_first), "",
+                    class: "link-underline link-underline-opacity-0"
+                  %>
                 </td>
                 <!-- status -->
                 <td class="align-middle col-3">
@@ -36,8 +42,17 @@
                   <%= foster.end_date.strftime("%m/%d/%Y")  %>
                 </td>
                 <!-- buttons -->
-                <td class="align-middle">
-                  <%= "buttons" %>
+                <td class="align-middle d-flex gap-2">
+                  <%= link_to "Edit", "",
+                    class: "btn btn-outline-primary"
+                  %>
+                <%= button_to "Delete", staff_manage_foster_path(foster),
+                  method: :delete,
+                  class: "btn btn-outline-danger",
+                  data: {
+                    turbo_confirm: "Click OK to delete this foster." 
+                  }
+                %>
                 </td>
               </tr>
             <% end %>
