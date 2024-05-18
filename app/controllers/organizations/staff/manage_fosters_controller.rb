@@ -16,12 +16,6 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
     @foster_pets = paginated_fosters.group_by(&:pet)
   end
 
-  def edit
-  end
-
-  def update
-  end
-
   def destroy
     @foster.destroy
 
