@@ -7,10 +7,10 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
     authorize! Match, context: {organization: Current.organization}
 
     @q = authorized_scope(Match.fosters).ransack(params[:q])
-    @pagy, @paginated_foster_pets = pagy(
+    @pagy, paginated_fosters = pagy(
       @q.result(distinct: true).includes(:pet, :user),
       items: 10
     )
-    @foster_pets = @paginated_foster_pets.group_by(&:pet)
+    @foster_pets = paginated_fosters.group_by(&:pet)
   end
 end
