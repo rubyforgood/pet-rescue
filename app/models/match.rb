@@ -43,6 +43,20 @@ class Match < ApplicationRecord
     ["pet_name", "user_name"]
   end
 
+  def foster_status
+    return :not_applicable if start_date.nil? || end_date.nil?
+
+    current = Time.current
+
+    if current > end_date
+      :complete
+    elsif current < start_date
+      :upcoming
+    else
+      :current
+    end
+  end
+
   def send_reminder
     MatchMailer.reminder(self).deliver_later
   end
