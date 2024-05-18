@@ -1,4 +1,6 @@
 class Organizations::Staff::ManageFostersController < Organizations::BaseController
+  include ::Pagy::Backend
+
   layout "dashboard"
 
   def index
@@ -6,6 +8,10 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
       with: Organizations::ManageFostersPolicy
 
     @q = authorized_scope(Match.fosters).ransack(params[:q])
-    @foster_pets = @q.result(distinct: true).includes(:pet, :user).group_by(&:pet)
+    @pagy, @paginated_foster_pets = pagy(
+      @q.result(distinct: true).includes(:pet, :user),
+      items: 10
+    )
+    @foster_pets = @paginated_foster_pets.group_by(&:pet)
   end
 end
