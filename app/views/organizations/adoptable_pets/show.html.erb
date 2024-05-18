@@ -75,7 +75,7 @@
               <p class="fs-3  mb-5"><%= t('.please_read_faq_html', faq_link: link_to('FAQ', faq_index_path)) %></p>
             </div>
 
-            <% if @adoptable_pet_info %>
+            <% if @adoptable_pet_info.present? %>
               <div class="row align-items-center">
                 <div class="mb-6">
                   <h3 class="mb-3 fw-bold"><%= t('.important_info') %></h3>
