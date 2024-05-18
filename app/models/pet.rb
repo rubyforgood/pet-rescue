@@ -73,6 +73,7 @@ class Pet < ApplicationRecord
   scope :adopted, -> { Pet.includes(:match).where.not(match: {id: nil}) }
   scope :unadopted, -> { Pet.includes(:match).where(match: {id: nil}) }
   scope :published, -> { where(published: true) }
+  scope :fostered, -> { joins(:match).merge(Match.fosters) }
 
   attr_writer :toggle
 
