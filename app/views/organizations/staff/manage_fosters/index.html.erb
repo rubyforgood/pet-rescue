@@ -10,24 +10,33 @@
               <div class="row">
                 <div class="form-group mb-3 col-md-4">
                   <%= f.label :pet_name_cont, "Pet Name" %>
-                  <%= f.search_field :pet_name_cont, class: "form-control", placeholder: "Enter Pet Name" %>
+                  <%= f.search_field :pet_name_cont,
+                    class: "form-control",
+                    placeholder: "Enter Pet Name"
+                  %>
                 </div>
                 <div class="form-group mb-3 col-md-4">
                   <%= f.label :user_first_name_or_user_last_name_cont, "Fosterer Name" %>
-                  <%= f.search_field :user_first_name_or_user_last_name_cont, class: "form-control", placeholder: "Enter Fosterer Name" %>
-
+                  <%= f.search_field :user_first_name_or_user_last_name_cont,
+                    class: "form-control",
+                    placeholder: "Enter Fosterer Name"
+                  %>
                 </div>
-                <% if false %>
                 <div class="form-group mb-3 col-md-4">
-                  <%= f.label :foster_status_eq, "Application Status" %>
-                  <%= f.select :foster_status_eq, %i[complete current upcoming], { include_blank: "All" }, class: "form-select" %>
+                  <%= f.label :status_eq, "Status" %>
+                  <%= f.select :status_eq,
+                    Match.foster_statuses.map { |status| [status.titleize, status] },
+                    {include_blank: "All"},
+                    class: "form-select"
+                  %>
                 </div>
-                <% end %>
               </div>
               <div class="row">
                 <div class="col-md-12 text-right">
                   <%= f.submit "Search", class: "btn btn-primary" %>
-                  <%= link_to "Clear filters", staff_manage_fosters_path, class: "btn btn-default" %>
+                  <%= link_to "Clear filters", staff_manage_fosters_path,
+                    class: "btn btn-default"
+                  %>
                 </div>
               </div>
             <% end %>

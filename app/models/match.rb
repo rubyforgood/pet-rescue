@@ -39,8 +39,12 @@ class Match < ApplicationRecord
 
   scope :fosters, -> { where(match_type: :foster) }
 
+  def self.foster_statuses
+    ["complete", "upcoming", "current"]
+  end
+
   def self.ransackable_attributes(auth_object = nil)
-    %w[]
+    %w[status]
   end
 
   def self.ransackable_associations(auth_object = nil)
@@ -56,7 +60,7 @@ class Match < ApplicationRecord
     end
   end
 
-  def foster_status
+  def status
     return :not_applicable if start_date.nil? || end_date.nil?
 
     current = Time.current
@@ -92,5 +96,18 @@ class Match < ApplicationRecord
 
   def adopter_application
     AdopterApplication.find_by(pet:, adopter_foster_account:)
+  end
+
+  ransacker :status do
+    Arel.sql(
+      <<~SQL.squish
+        CASE
+          WHEN start_date IS NULL OR end_date IS NULL THEN 'not_applicable'
+          WHEN CURRENT_TIMESTAMP > end_date THEN 'complete'
+          WHEN CURRENT_TIMESTAMP < start_date THEN 'upcoming'
+          ELSE 'current'
+        END
+      SQL
+    )
   end
 end
