@@ -39,6 +39,10 @@ class Match < ApplicationRecord
 
   scope :fosters, -> { where(match_type: :foster) }
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["pet_name", "user_name"]
+  end
+
   def send_reminder
     MatchMailer.reminder(self).deliver_later
   end
