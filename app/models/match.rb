@@ -35,6 +35,8 @@ class Match < ApplicationRecord
 
   enum :match_type, [:adoption, :foster]
 
+  scope :fosters, -> { where(match_type: :foster) }
+
   def send_reminder
     MatchMailer.reminder(self).deliver_later
   end
