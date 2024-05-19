@@ -1,0 +1,54 @@
+<!-- Card -->
+<div class="card mb-4 ">
+  <!-- Card Header -->
+  <div class="card-header">
+    <h4 class="mb-0">Foster</h4>
+  </div>
+  <!-- Card Body -->
+  <div class="card-body">
+    <%= form_with model: foster, url: staff_manage_fosters_path do |form| %>
+      <% if foster.errors.any? %>
+        <div class="alert alert-danger mx-3">
+          <% foster.errors.full_messages.each do |message| %>
+            <span><%= message %></span>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="mb-3 col-12 col-md-4">
+        <%= form.label :pet_id, "Pet", class: "form-label" %>
+        <%= form.select :pet_id,
+          pets.pluck(:name, :id),
+          {}, # Empty options argument
+          class: "form-select"
+        %>
+      </div>
+      <div class="mb-3 col-12 col-md-4">
+        <%= form.label :adopter_foster_account_id, "Fosterer",
+          class: "form-label"
+        %>
+        <%= form.select :adopter_foster_account_id,
+          accounts.map { |account| [account.user.full_name, account.id]},
+          {}, # Empty options argument
+          class: "form-select"
+        %>
+      </div>
+      <div class="mb-3 col-12 col-md-4">
+        <%= form.label :start_date, "Start",
+          class: "form-label"
+        %>
+        <%= form.date_field :start_date,
+          class: "form-control"
+        %>
+      </div>
+      <div class="mb-3 col-12 col-md-4">
+        <%= form.label :end_date, "End",
+          class: "form-label"
+        %>
+        <%= form.date_field :end_date,
+          class: "form-control"
+        %>
+      </div>
+      <%= form.submit "Save", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

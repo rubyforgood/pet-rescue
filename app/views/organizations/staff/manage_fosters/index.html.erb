@@ -1,5 +1,10 @@
 <%= render "components/dashboard/page" do |p| %>
   <% p.header_title "Fosters" %>
+  <% p.actions do %>
+    <%= link_to "Create Foster", new_staff_manage_foster_path,
+      class: "btn btn-primary"
+    %>
+  <% end %>
   <% p.content do %>
     <section class="pb-5" id="about_us">
       <div class="container">

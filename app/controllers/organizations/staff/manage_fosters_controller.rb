@@ -3,11 +3,29 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
 
   layout "dashboard"
 
+  before_action :context_authorize, only: %i[new create index]
   before_action :set_foster, only: %i[destroy]
 
-  def index
-    authorize! Match, context: {organization: Current.organization}
+  def new
+    @pets = Pet.fosterable.order(:name)
+    @accounts = AdopterFosterAccount.fosterers.order(:last_name)
+    @foster = Match.new
+  end
 
+  def create
+    @foster = Match.new(match_params.merge(match_type: :foster))
+
+    if @foster.save
+      redirect_to action: :index
+    else
+      @pets = Pet.fosterable.order(:name)
+      @accounts = AdopterFosterAccount.fosterers.order(:last_name)
+
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def index
     @q = authorized_scope(Match.fosters).ransack(params[:q])
     @pagy, paginated_fosters = pagy(
       @q.result(distinct: true).includes(:pet, :user),
@@ -24,6 +42,19 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
   end
 
   private
+
+  def match_params
+    params.require(:match).permit(
+      :pet_id,
+      :adopter_foster_account_id,
+      :start_date,
+      :end_date
+    )
+  end
+
+  def context_authorize
+    authorize! Match, context: {organization: Current.organization}
+  end
 
   def set_foster
     @foster = Match.find(params[:id])
