@@ -35,7 +35,12 @@
           class: "form-control"
         %>
       </div>
-      <%= form.submit "Save", class: "btn btn-primary" %>
+      <div>
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to "Cancel", staff_manage_fosters_path,
+          class: "btn btn-secondary"
+        %>
+      </div>
     <% end %>
   </div>
 </div>
