@@ -16,7 +16,7 @@
 #
 #  index_matches_on_adopter_foster_account_id  (adopter_foster_account_id)
 #  index_matches_on_organization_id            (organization_id)
-#  index_matches_on_pet_id                     (pet_id) UNIQUE
+#  index_matches_on_pet_id                     (pet_id)
 #
 # Foreign Keys
 #
@@ -31,7 +31,6 @@ class Match < ApplicationRecord
   has_one :user, through: :adopter_foster_account
 
   validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
-  validates :pet, uniqueness: true
 
   after_create_commit :send_reminder
 

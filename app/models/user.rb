@@ -74,7 +74,7 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[match]
+    %w[matches]
   end
 
   # used in views to show only the custom error msg without leading attribute

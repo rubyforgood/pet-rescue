@@ -21,7 +21,7 @@
               <th>Sex</th>
               <th>Breed</th>
               <th>Weight</th>
-              <% if @pet.match.nil? %>
+              <% if @pet.matches.empty? %>
                 <th>Placement Type</th>
                 <th>Application Status</th>
                 <th>Publish Status</th>
@@ -40,7 +40,7 @@
                 <%= "#{@pet.weight_from} - #{@pet.weight_to} #{@pet.weight_unit}" %>
               </p>
             </td>
-            <% if @pet.match.nil? %>
+            <% if @pet.matches.empty? %>
               <td>
                 <p class="text-dark mb-0 fw-semibold"><%= @pet.placement_type %></p>
               </td>
