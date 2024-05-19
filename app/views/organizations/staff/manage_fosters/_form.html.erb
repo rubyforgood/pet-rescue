@@ -2,7 +2,9 @@
 <div class="card mb-4 ">
   <!-- Card Body -->
   <div class="card-body">
-    <%= form_with model: foster, url: staff_manage_fosters_path do |form| %>
+    <%= bootstrap_form_with model: foster,
+      url: staff_manage_fosters_path do |form|
+    %>
       <% if foster.errors.any? %>
         <div class="alert alert-danger mx-3">
           <% foster.errors.full_messages.each do |message| %>
@@ -11,35 +13,24 @@
         </div>
       <% end %>
       <div class="mb-3 col-12 col-md-4">
-        <%= form.label :pet_id, "Pet", class: "form-label" %>
         <%= form.select :pet_id,
           pets.pluck(:name, :id),
-          {}, # Empty options argument
           class: "form-select"
         %>
       </div>
       <div class="mb-3 col-12 col-md-4">
-        <%= form.label :adopter_foster_account_id, "Fosterer",
-          class: "form-label"
-        %>
         <%= form.select :adopter_foster_account_id,
           accounts.map { |account| [account.user.full_name, account.id]},
-          {}, # Empty options argument
+          label: "Fosterer",
           class: "form-select"
         %>
       </div>
       <div class="mb-3 col-12 col-md-4">
-        <%= form.label :start_date, "Start",
-          class: "form-label"
-        %>
         <%= form.date_field :start_date,
           class: "form-control"
         %>
       </div>
       <div class="mb-3 col-12 col-md-4">
-        <%= form.label :end_date, "End",
-          class: "form-label"
-        %>
         <%= form.date_field :end_date,
           class: "form-control"
         %>
