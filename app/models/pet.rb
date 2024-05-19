@@ -74,6 +74,9 @@ class Pet < ApplicationRecord
   scope :unadopted, -> { Pet.includes(:match).where(match: {id: nil}) }
   scope :published, -> { where(published: true) }
   scope :fostered, -> { joins(:match).merge(Match.fosters) }
+  scope :fosterable, -> {
+    where(placement_type: ["Fosterable", "Adoptable and Fosterable"])
+  }
 
   attr_writer :toggle
 
