@@ -31,7 +31,9 @@
                 </td>
                 <!-- status -->
                 <td class="align-middle col-3">
-                  <%= foster.status.to_s.titleize %>
+                  <div class="badge <%= status_classes(foster.status) %>">
+                    <%= foster.status.to_s.titleize %>
+                  </div>
                 </td>
                 <!-- start date -->
                 <td class="align-middle col-3">
