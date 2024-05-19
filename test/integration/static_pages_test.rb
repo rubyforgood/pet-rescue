@@ -66,17 +66,16 @@ class StaticPagesTest < ActionDispatch::IntegrationTest
 
   context "with a tenant" do
     setup do
-      organization = create(:organization)
-      set_organization(organization)
+      @organization = create(:organization)
     end
 
     should "return 404 for the about us page" do
-      get "/about_us"
+      get "/#{@organization.slug}/about_us"
       assert_response :not_found
     end
 
     should "return 404 for the partners page" do
-      get "/partners"
+      get "/#{@organization.slug}/partners"
       assert_response :not_found
     end
   end
