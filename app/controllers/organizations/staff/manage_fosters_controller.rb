@@ -28,7 +28,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
   def index
     @q = authorized_scope(Match.fosters).ransack(params[:q])
     @pagy, paginated_fosters = pagy(
-      @q.result(distinct: true).includes(:pet, :user),
+      @q.result(distinct: true).includes(:pet, :user).order(:pet_id),
       items: 10
     )
     @foster_pets = paginated_fosters.group_by(&:pet)
