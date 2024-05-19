@@ -52,12 +52,7 @@ class Match < ApplicationRecord
   end
 
   def fosterer_name(format = :default)
-    case format
-    when :default
-      "#{user.first_name} #{user.last_name}"
-    when :last_first
-      "#{user.last_name}, #{user.first_name}"
-    end
+    user.full_name(format)
   end
 
   def status

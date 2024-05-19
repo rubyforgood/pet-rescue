@@ -89,4 +89,13 @@ class User < ApplicationRecord
   def inactive_message
     staff_account.deactivated_at ? :deactivated : super
   end
+
+  def full_name(format = :default)
+    case format
+    when :default
+      "#{first_name} #{last_name}"
+    when :last_first
+      "#{last_name}, #{first_name}"
+    end
+  end
 end
