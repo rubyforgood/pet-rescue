@@ -2,12 +2,13 @@
 #
 # Table name: page_texts
 #
-#  id              :bigint           not null, primary key
-#  about           :text
-#  hero            :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  organization_id :bigint           not null
+#  id                 :bigint           not null, primary key
+#  about              :text
+#  adoptable_pet_info :text
+#  hero               :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  organization_id    :bigint           not null
 #
 # Indexes
 #
