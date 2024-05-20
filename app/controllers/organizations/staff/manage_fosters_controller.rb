@@ -37,11 +37,15 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
   end
 
   def edit
+    session[:page] = params[:page] if params[:page]
   end
 
   def update
     if @foster.update(match_params)
-      redirect_to action: :index
+      page = session.delete(:page)
+
+      flash[:success] = "Foster for #{@foster.pet.name} successfully updated."
+      redirect_to action: :index, page: page
     else
       render :edit, status: :unprocessable_entity
     end
@@ -51,7 +55,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
     @foster.destroy
 
     flash[:success] = "Foster for #{@foster.pet.name} deleted."
-    redirect_to action: :index
+    redirect_to action: :index, page: params[:page]
   end
 
   private
