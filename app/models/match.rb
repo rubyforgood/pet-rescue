@@ -25,7 +25,7 @@
 #
 class Match < ApplicationRecord
   acts_as_tenant(:organization)
-  belongs_to :pet
+  belongs_to :pet, touch: true
   belongs_to :adopter_foster_account
 
   has_one :user, through: :adopter_foster_account
