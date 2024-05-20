@@ -4,7 +4,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
   layout "dashboard"
 
   before_action :context_authorize, only: %i[new create index]
-  before_action :set_foster, only: %i[destroy]
+  before_action :set_foster, only: %i[edit update destroy]
 
   def new
     @pets = Pet.fosterable.order(:name)
@@ -34,6 +34,17 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
       items: 10
     )
     @foster_pets = paginated_fosters.group_by(&:pet)
+  end
+
+  def edit
+  end
+
+  def update
+    if @foster.update(match_params)
+      redirect_to action: :index
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

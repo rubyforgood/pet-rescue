@@ -48,8 +48,13 @@ crumb :fosters do
   link "Fosters", staff_manage_fosters_path
 end
 
-crumb :new_foster do |issue|
+crumb :new_foster do
   link "New Foster", new_staff_manage_foster_path
+  parent :fosters
+end
+
+crumb :edit_foster do |foster|
+  link "Edit Foster", edit_staff_manage_foster_path(foster.id)
   parent :fosters
 end
 
