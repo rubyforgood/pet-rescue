@@ -100,11 +100,6 @@ class Pet < ApplicationRecord
       .not(adopter_applications: {id: nil}).references(:users)
   end
 
-  # all unadopted pets under all organizations
-  def self.all_unadopted_pets
-    Pet.includes(:matches).where(matches: {id: nil})
-  end
-
   def self.ransackable_attributes(auth_object = nil)
     ["name", "sex", "species"]
   end
