@@ -126,4 +126,19 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
       end
     end
   end
+
+  context "with adoptable pet information" do
+    should "have important information section" do
+      PageText.create(adoptable_pet_info: "some things that should be known")
+      get adoptable_pet_path(@available_pet)
+      assert_select "h3", text: "Important Information", count: 1
+    end
+  end
+
+  context "without adoptable pet information" do
+    should "not have important information section" do
+      get adoptable_pet_path(@available_pet)
+      assert_select "h3", text: "Important Information", count: 0
+    end
+  end
 end

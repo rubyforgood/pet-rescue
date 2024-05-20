@@ -34,6 +34,10 @@
               <%= form.hidden_field :about_us_images, multiple: true, value: image.signed_id %>
             <% end %>
             <small class="form-text text-muted">You can upload up to 2 images. <br> Images must be .png or .jpeg under 2MB </small>
+            <h3 class="mt-4">Adoptable Pet Information</h3>
+            <div class="form-group">
+              <%= form.text_area :adoptable_pet_info, label: "Information for adopters", placeholder: "Anything you would like adopters to know?", class: 'form-control' %>
+            </div>
         <% end %>
         </div>
       </div>

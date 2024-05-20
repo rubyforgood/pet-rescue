@@ -272,21 +272,6 @@ en:
       show:
         adoption_process: "Adoption Process"
         please_read_faq_html: "Please read the %{faq_link} before applying to adopt."
-        please_know_that: "Please know that"
-        please_know_that_items_html: |
-          <li>Adopters must be located in Canada, USA or Mexico</li>
-          <li>There is an adoption fee of $175 USD</li>
-          <li>Every pet will be fully vaccinated and have the necessary
-          paperwork to enter Canada/USA</li>
-          <li>We can usually arrange transport to adopters west of Alberta or
-          Nevada only. Adopters further east will need to arrange
-          transport before an adoption can be approved.</li>
-        after_you_adopt: "After you apply to adopt"
-        after_you_adopt_items_html: |
-          <li>Your application history will be shown on 'My Applications' page</li>
-          <li>Application reviews generally take 4-6 days, depending on volume</li>
-          <li>We will contact you for further discussion if you are shortlisted </li>
-          <li>We work hard to match pets and adopters, so please try again if you are not successful first time round </li>
         create_an_account: "Create an account to apply for this pet"
         status:
           awaiting_review: Application Awaiting Review
@@ -301,6 +286,7 @@ en:
         complete_my_profile: "Complete my profile"
         adopt: "Adopt"
         login: "Log in"
+        important_info: "Important Information"
     faq:
       index:
         header: "Frequently Asked Questions"

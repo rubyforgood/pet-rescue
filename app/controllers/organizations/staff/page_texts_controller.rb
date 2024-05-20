@@ -15,7 +15,7 @@ class Organizations::Staff::PageTextsController < Organizations::BaseController
   private
 
   def page_text_params
-    params.require(:page_text).permit(:hero, :about, :hero_image, about_us_images: [])
+    params.require(:page_text).permit(:hero, :about, :hero_image, :adoptable_pet_info, about_us_images: [])
   end
 
   def set_page_text
