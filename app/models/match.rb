@@ -30,6 +30,15 @@ class Match < ApplicationRecord
 
   has_one :user, through: :adopter_foster_account
 
+  validates :start_date,
+    presence: {if: -> { match_type == "foster" }}
+  validates :end_date,
+    presence: {if: -> { match_type == "foster" }},
+    comparison: {
+      if: -> { !!start_date },
+      greater_than: :start_date, message: "must be after %{value}"
+    }
+
   validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
 
   after_create_commit :send_reminder
