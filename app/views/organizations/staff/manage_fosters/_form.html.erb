@@ -1,16 +1,16 @@
 <!-- Card -->
-<div class="card mb-4 ">
+<ul class="card mb-4 ">
   <!-- Card Body -->
   <div class="card-body">
     <%= bootstrap_form_with model: foster,
       url: staff_manage_fosters_path do |form|
     %>
       <% if foster.errors.any? %>
-        <div class="alert alert-danger mx-3">
+        <ul class="list-group mb-3 col-12 col-md-4">
           <% foster.errors.full_messages.each do |message| %>
-            <span><%= message %></span>
+            <li class="list-group-item list-group-item-danger"><%= message %></li>
           <% end %>
-        </div>
+        </ul>
       <% end %>
       <div class="mb-3 col-12 col-md-4">
         <%= form.select :pet_id,
