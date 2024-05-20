@@ -55,7 +55,7 @@
       </div>
       <div>
         <%= form.submit "Save", class: "btn btn-primary" %>
-        <%= link_to "Cancel", staff_manage_fosters_path,
+        <%= link_to "Cancel", staff_manage_fosters_path(page: params[:page]),
           class: "btn btn-secondary"
         %>
       </div>
