@@ -29,19 +29,13 @@
   </td>
   <!-- buttons -->
   <td class="align-middle col-2-4">
-    <div class="d-flex gap-2">
-      <%= link_to "Edit",
-        edit_staff_manage_foster_path(foster, page: params[:page]),
-        class: "btn btn-outline-secondary"
-      %>
-      <%= button_to "Delete",
-        staff_manage_foster_path(foster, page: params[:page]),
-        method: :delete,
-        class: "btn btn-outline-danger",
-        data: {
-          turbo_confirm: "Click OK to delete this foster."
-        }
-      %>
-    </div>
+    <%= button_to "Delete",
+      staff_manage_foster_path(foster, page: params[:page]),
+      method: :delete,
+      class: "btn btn-outline-danger",
+      data: {
+        turbo_confirm: "Click OK to delete this foster."
+      }
+    %>
   </td>
 </tr>
