@@ -1,7 +1,8 @@
 <tr>
   <!-- fosterer -->
   <td class="w-20 align-middle">
-    <%= link_to foster.fosterer_name(:last_first), "",
+    <%= link_to foster.fosterer_name(:last_first),
+      staff_profile_review_path(foster.adopter_foster_profile),
       class: "link-underline link-underline-opacity-0"
     %>
   </td>

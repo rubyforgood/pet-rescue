@@ -29,6 +29,7 @@ class Match < ApplicationRecord
   belongs_to :adopter_foster_account
 
   has_one :user, through: :adopter_foster_account
+  has_one :adopter_foster_profile, through: :adopter_foster_account
 
   validates :start_date,
     presence: {if: -> { match_type == "foster" }}
