@@ -1,0 +1,17 @@
+<%= turbo_frame_tag dom_id(@foster, attribute) do %>
+  <%= bootstrap_form_with model: @foster, 
+    url: staff_manage_foster_path(@foster) do |form|
+  %>
+    <%= form.date_field attribute,
+      required: true,
+      hide_label: true,
+      class: "form-control"
+    %>
+    <div>
+      <%= form.submit "Save", class: "btn btn-primary" %>
+      <%= link_to "Cancel", staff_manage_fosters_path,
+        class: "btn btn-secondary"
+      %>
+    </div>
+  <% end %>
+<% end %>

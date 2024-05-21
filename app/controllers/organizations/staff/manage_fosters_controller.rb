@@ -38,6 +38,18 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
 
   def edit
     session[:page] = params[:page] if params[:page]
+
+    # Turbo frames are an HTML mime-type
+    if turbo_frame_request?
+      case turbo_frame_request_id
+      when helpers.dom_id(@foster, :start_date)
+        render partial: "date_edit", locals: {attribute: :start_date}
+      when helpers.dom_id(@foster, :end_date)
+        render partial: "date_edit", locals: {attribute: :end_date}
+      end
+    else
+      render :edit
+    end
   end
 
   def update

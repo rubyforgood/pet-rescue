@@ -1,37 +1,47 @@
-<tr id="<%= dom_id(foster) %>">
+<tr>
   <!-- fosterer -->
-  <td class="align-middle col-3">
+  <td class="align-middle col-2-4">
     <%= link_to foster.fosterer_name(:last_first), "",
       class: "link-underline link-underline-opacity-0"
     %>
   </td>
   <!-- status -->
-  <td class="align-middle col-3">
+  <td class="align-middle col-2-4">
     <div class="badge <%= status_classes(foster.status) %>">
       <%= foster.status.to_s.titleize %>
     </div>
   </td>
   <!-- start date -->
-  <td class="align-middle col-3">
-    <%= foster.start_date.strftime("%m/%d/%Y")  %>
+  <td class="align-middle col-2-4">
+    <%= turbo_frame_tag dom_id(foster, :start_date) do %>
+      <%= link_to foster.start_date.strftime("%m/%d/%Y"),
+        edit_staff_manage_foster_path(foster)
+      %>
+    <% end %>
   </td>
   <!-- end date -->
-  <td class="align-middle col-3">
-    <%= foster.end_date.strftime("%m/%d/%Y")  %>
+  <td class="align-middle col-2-4">
+    <%= turbo_frame_tag dom_id(foster, :end_date) do %>
+      <%= link_to foster.end_date.strftime("%m/%d/%Y"),
+        edit_staff_manage_foster_path(foster)
+      %>
+    <% end %>
   </td>
   <!-- buttons -->
-  <td class="align-middle d-flex gap-2">
-    <%= link_to "Edit",
-      edit_staff_manage_foster_path(foster, page: params[:page]),
-      class: "btn btn-outline-secondary"
-    %>
-    <%= button_to "Delete",
-      staff_manage_foster_path(foster, page: params[:page]),
-      method: :delete,
-      class: "btn btn-outline-danger",
-      data: {
-        turbo_confirm: "Click OK to delete this foster." 
-      }
-    %>
+  <td class="align-middle col-2-4">
+    <div class="d-flex gap-2">
+      <%= link_to "Edit",
+        edit_staff_manage_foster_path(foster, page: params[:page]),
+        class: "btn btn-outline-secondary"
+      %>
+      <%= button_to "Delete",
+        staff_manage_foster_path(foster, page: params[:page]),
+        method: :delete,
+        class: "btn btn-outline-danger",
+        data: {
+          turbo_confirm: "Click OK to delete this foster."
+        }
+      %>
+    </div>
   </td>
 </tr>
