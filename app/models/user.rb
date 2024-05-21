@@ -96,6 +96,8 @@ class User < ApplicationRecord
       "#{first_name} #{last_name}"
     when :last_first
       "#{last_name}, #{first_name}"
+    else
+      raise ArgumentError, "Unsupported format: #{format}"
     end
   end
 end
