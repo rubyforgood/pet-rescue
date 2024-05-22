@@ -1,0 +1,17 @@
+<% if liked %>
+  <%= button_to adopter_fosterer_liked_pet_path(id: LikedPet.find_by(user_id: current_user.id, pet_id: pet.id)&.id),
+                class: 'border-0 bg-transparent',
+                method: :delete,
+                data: { turbo_stream: true },
+                id: "like_button_pet_#{pet.id}" do %>
+    <%= image_tag 'liked.svg', height: '25px', class: 'like-icon' %>
+  <% end %>
+<% else %>
+  <%= button_to adopter_fosterer_liked_pets_path(pet_id: pet.id),
+                class: 'border-0 bg-transparent',
+                method: :post,
+                data: { turbo_stream: true },
+                id: "like_button_pet_#{pet.id}" do %>
+    <%= image_tag 'unliked.svg', height: '25px', class: 'like-icon' %>
+  <% end %>
+<% end %>

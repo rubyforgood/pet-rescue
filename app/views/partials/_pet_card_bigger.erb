@@ -4,6 +4,12 @@
       <div>
         <h4 class="mb-0"><%= "#{t('general.about')} #{@pet.name}" %></h4>
       </div>
+
+      <% if current_user&.adopter_foster_account %>
+        <div id="like_button_pet_<%= @pet.id %>" class="d-flex flex-column align-items-center">
+              <%= render partial: 'partials/like_button', locals: { pet: @pet, liked: current_user.liked_pets.include?(@pet) } %>
+        </div>
+      <% end %>
     </div>
 
 
