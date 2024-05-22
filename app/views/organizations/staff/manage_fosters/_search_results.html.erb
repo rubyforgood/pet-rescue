@@ -2,3 +2,8 @@
 <div class="d-none d-xl-block">
   <%= render "foster_pets_table", foster_pets: @foster_pets %>
 </div>
+
+<%# Cards layout %>
+<div class="d-xl-none d-flex flex-wrap">
+  <%= render "foster_pets_cards", foster_pets: @foster_pets %>
+</div>
