@@ -44,7 +44,7 @@
               <%= button_to "Withdraw Application",
             adopter_fosterer_adopter_application_path(app, adopter_application:
             { status: 'withdrawn'}), method: :patch, class: 'btn
-            btn-outline-danger' %>
+            btn-outline-danger', data: { turbo_confirm: 'Withdraw this Application?' } %>
             <% end  %>
           </td>
 
