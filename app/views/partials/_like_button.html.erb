@@ -1,0 +1,5 @@
+<% if liked %>
+  <%= button_to 'Unlike', adopter_fosterer_liked_pet_path(id: LikedPet.where(user_id: current_user.id, pet_id: pet.id)&.first&.id), method: :delete, data: { turbo_stream: true }, id: "like_button_pet_#{pet.id}" %>
+<% else %>
+  <%= button_to 'Like', adopter_fosterer_liked_pets_path(pet_id: pet.id), method: :post, data: { turbo_stream: true }, id: "like_button_pet_#{pet.id}" %>
+<% end %>

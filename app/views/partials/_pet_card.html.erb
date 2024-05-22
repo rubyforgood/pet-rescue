@@ -21,6 +21,9 @@
         <%= tag.li("Weight range: #{[pet.weight_from, pet.weight_to].join("-")} kg", class: li_classes) %>
         <%= tag.li(pet.description, class: li_classes) %>
       </ul>
+      <p id="like_button_pet_<%= pet.id %>">
+        <%= render partial: 'partials/like_button', locals: { pet: pet, liked: current_user.liked_pets.include?(pet) } %>
+      </p>
     </div>
   <% end %>
 </div>
