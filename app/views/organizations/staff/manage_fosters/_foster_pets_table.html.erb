@@ -1,0 +1,32 @@
+<% foster_pets.each do |pet, fosters| %>
+  <div class="mb-4">
+    <div class="card">
+      <div class="card-header">
+        <!--pet name-->
+        <h4 class="mb-0">
+          <%= link_to pet.name, staff_pet_path(pet),
+            class: "link-underline link-underline-opacity-0"
+          %>
+        </h4>
+      </div>
+      <div class="card-body">
+        <table class="table mb-0 text-nowrap table-hover table-centered">
+          <thead>
+            <tr>
+              <th scope="col">Fosterer</th>
+              <th scope="col">Status</th>
+              <th scope="col">Start Date</th>
+              <th scope="col">End Date</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% fosters.each do |foster|%>
+              <%= render "foster", foster: foster %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>
