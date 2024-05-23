@@ -18,9 +18,8 @@
         <tr>
           <td>
             <div class="d-flex align-items-center">
-              <div class="icon-shape icon-lg rounded-3 border">
-                <%= image_tag(pet.images.attached? ? pet.images.first : 'coming_soon.jpg', class: 'card-img') %>
-              </div>
+              <%= image_tag(pet.images.attached? ? pet.images.first :
+              'coming_soon.jpg', class: 'rounded-3', style: "height: 50px; width: 50px; object-fit: cover;") %>
               <div class="ms-3">
                 <h4 class="mb-0">
                   <%= link_to pet.name, adoptable_pet_path(pet) %>
