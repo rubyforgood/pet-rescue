@@ -214,6 +214,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_19_224035) do
     t.text "about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "adoptable_pet_info"
     t.index ["organization_id"], name: "index_page_texts_on_organization_id"
   end
 

@@ -9,6 +9,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   end
 
   def show
+    @adoptable_pet_info = PageText.first&.adoptable_pet_info
     @pet = Pet.find(params[:id])
     authorize! @pet, with: Organizations::AdoptablePetPolicy
 

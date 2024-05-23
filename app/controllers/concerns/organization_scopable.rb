@@ -26,7 +26,7 @@ module OrganizationScopable
     )
       adopter_fosterer_dashboard_index_path
     else
-      adoptable_pets_path
+      root_path
     end
   end
 
