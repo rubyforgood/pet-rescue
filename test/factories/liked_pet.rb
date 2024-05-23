@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :liked_pet do
     pet { association :pet }
-    user { association :user }
+    adopter_foster_account { association :adopter_foster_account }
   end
 end
