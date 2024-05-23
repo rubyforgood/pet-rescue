@@ -10,16 +10,15 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
   end
 
   def create
-    @pet = Pet.find(application_params[:pet_id])
     authorize! context: {pet: @pet}, with: Organizations::LikedPetPolicy
 
     @liked_pet = LikedPet.new(adopter_foster_account_id: current_user.adopter_foster_account.id,
-      pet_id: application_params[:pet_id])
+                              pet_id: liked_pet_params[:pet_id])
 
     respond_to do |format|
       if @liked_pet.save
-        format.html { redirect_to request.referrer, notice: "Pet added to your liked pets." }
-        format.turbo_stream { flash.now[:notice] = "Pet added to your liked pets." }
+        format.html { redirect_to request.referrer, notice: "#{@pet.name} added to your liked pets." }
+        format.turbo_stream { flash.now[:notice] = "#{@pet.name} added to your liked pets." }
       else
         format.html { redirect_to request.referrer, alert: "Error, pet was not added to your liked pets." }
         format.turbo_stream { flash.now[:alert] = "Error, pet was not added to your liked pets." }
@@ -28,13 +27,14 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
   end
 
   def destroy
-    @liked_pet = LikedPet.find(application_params[:id])
+    @liked_pet = LikedPet.find(liked_pet_params[:id])
+    @pet = @liked_pet.pet
     authorize! context: {pet: @liked_pet.pet}, with: Organizations::LikedPetPolicy
 
     respond_to do |format|
       if @liked_pet.destroy
-        format.html { redirect_to request.referrer, notice: "Pet removed from your liked pets." }
-        format.turbo_stream { flash.now[:notice] = "Pet removed from your liked pets." }
+        format.html { redirect_to request.referrer, notice: "#{@pet.name} removed from your liked pets." }
+        format.turbo_stream { flash.now[:notice] = "#{@pet.name} removed from your liked pets." }
       else
         format.html { redirect_to request.referrer, alert: "Error, pet was not removed from your liked pets." }
         format.turbo_stream { flash.now[:alert] = "Error, pet was not removed from your liked pets." }
@@ -44,11 +44,11 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
 
   private
 
-  def application_params
+  def liked_pet_params
     params.permit(:pet_id, :id, :_method, :authenticity_token)
   end
 
   def set_pet
-    @pet = Pet.find(application_params[:pet_id])
+    @pet = Pet.find(liked_pet_params[:pet_id])
   end
 end
