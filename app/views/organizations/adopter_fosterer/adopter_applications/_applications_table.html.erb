@@ -35,7 +35,7 @@
             <%= app.human_enum_name(:status) %>
           </td>
           <td>
-            <% unless app.status == 'withdrawn' %>
+            <% unless app.status == 'withdrawn' || app.status == 'adoption_made'%>
               <%= button_to t("dashboard.applications.withdraw_application"),
               adopter_fosterer_adopter_application_path(app, adopter_application:
               { status: 'withdrawn'}), method: :patch, class: 'btn

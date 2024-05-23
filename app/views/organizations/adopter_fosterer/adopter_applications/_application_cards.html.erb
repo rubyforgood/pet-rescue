@@ -10,7 +10,6 @@
       </h5>
     </li>
     <% li_classes = %w[list-group-item text-secondary] %>
-
     <li class="list-group-item d-flex flex-wrap justify-content-between text-secondary">
       <span class="fw-semibold"><%= t("dashboard.applications.created")%>:</span>
       <%= l application.created_at.to_date, format: :long %>
@@ -22,8 +21,7 @@
       </div>
     </li>
     <li class="list-group-item d-flex justify-content-center">
-      <% unless application.status == 'withdrawn' %>
-
+      <% unless application.status == 'withdrawn' || application.status == 'adoption_made'%>
         <%= button_to t("dashboard.applications.withdraw_application"),
               adopter_fosterer_adopter_application_path(application, adopter_application:
               { status: 'withdrawn'}), method: :patch, class: 'btn
@@ -31,8 +29,6 @@
             t("dashboard.applications.confirm_withdraw") + " for " +
             pet.name.capitalize + "?"} %>
       <% end  %>
-
     </li>
-
   </ul>
 </div>
