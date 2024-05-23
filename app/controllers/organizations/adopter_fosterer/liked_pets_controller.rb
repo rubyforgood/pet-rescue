@@ -13,7 +13,7 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
     authorize! context: {pet: @pet}, with: Organizations::LikedPetPolicy
 
     @liked_pet = LikedPet.new(adopter_foster_account_id: current_user.adopter_foster_account.id,
-                              pet_id: liked_pet_params[:pet_id])
+      pet_id: liked_pet_params[:pet_id])
 
     respond_to do |format|
       if @liked_pet.save
