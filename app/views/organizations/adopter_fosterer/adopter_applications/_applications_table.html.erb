@@ -1,14 +1,13 @@
-  <%= turbo_refreshes_with method: :morph, scroll: :preserve  %>
+<%= turbo_refreshes_with method: :morph, scroll: :preserve  %>
 
 <!-- table -->
 <div class="card">
   <table class="table mb-0 text-nowrap table-hover table-centered">
     <thead>
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Created</th>
-        <th class="text-center" scope="col">Status</th>
-        <th class="text-center" scope="col"></th>
+        <th scope="col"><%= t("dashboard.applications.name")%></th>
+        <th scope="col"><%= t("dashboard.applications.created")%></th>
+        <th scope="col"><%= t("dashboard.applications.status")%></th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -21,7 +20,7 @@
             <div class="d-flex align-items-center">
               <div class="icon-shape icon-lg rounded-3 border">
                 <% if app.pet.images.attached? %>
-                  <%image_tag app.pet.images.first, class: 'card-img' %>
+                  <%= image_tag app.pet.images.first, class: 'card-img' %>
                 <% else %>
                   <% image_tag('coming_soon.jpg', class: 'card-img') %>
                 <% end %>
@@ -34,20 +33,22 @@
             </div>
           </td>
           <td>
-            <%= app.pet.created_at %>
+            <%# localize date %>
+            <%= l app.pet.created_at.to_date, format: :long %>
           </td>
           <td>
-            <%= app.status.titleize %>
+            <%= app.human_enum_name(:status) %>
           </td>
           <td>
             <% unless app.status == 'withdrawn' %>
-              <%= button_to "Withdraw Application",
-            adopter_fosterer_adopter_application_path(app, adopter_application:
-            { status: 'withdrawn'}), method: :patch, class: 'btn
-            btn-outline-danger', data: { turbo_confirm: 'Withdraw this Application?' } %>
+              <%= button_to t("dashboard.applications.withdraw_application"),
+              adopter_fosterer_adopter_application_path(app, adopter_application:
+              { status: 'withdrawn'}), method: :patch, class: 'btn
+            btn-outline-danger', data: { turbo_confirm:
+            t("dashboard.applications.confirm_withdraw") + " for " +
+            app.pet.name.capitalize + "?"} %>
             <% end  %>
           </td>
-
         </tr>
       <% end %>
     </tbody>
