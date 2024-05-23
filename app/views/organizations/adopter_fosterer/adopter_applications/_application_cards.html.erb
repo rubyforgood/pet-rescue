@@ -1,10 +1,10 @@
 <% pet = application.pet %>
 <div class="card card-hover mx-1 my-4 col-sm-5" style='"overflow: hidden'>
-  <%= link_to image_tag(pet.images.attached? ? pet.images.first : 'coming_soon.jpg', class: 'card-img-top pet-card'), staff_pet_path(pet) %>
+  <%= link_to image_tag(pet.images.attached? ? pet.images.first : 'coming_soon.jpg', class: 'card-img-top pet-card'), adoptable_pet_path(pet) %>
   <ul class="list-group list-group-flush">
     <li class="list-group-item d-flex justify-content-between">
       <h5 class="card-title mb-0 fs-3">
-        <%= link_to pet.name, staff_pet_path(pet) %>
+        <%= link_to pet.name, adoptable_pet_path(pet) %>
       </h5>
     </li>
     <% li_classes = %w[list-group-item text-secondary] %>
@@ -13,7 +13,6 @@
       <span class="fw-semibold"><%= t("dashboard.applications.created")%>:</span>
       <%= l application.created_at.to_date, format: :long %>
     </li>
-    <%# tag.li( t("dashboard.applications.created") + ": #{l application.created_at.to_date, format: :long}", class: li_classes) %>
     <li class="list-group-item d-flex flex-wrap justify-content-between text-secondary">
       <div class="me-1 fw-semibold"><%= t("dashboard.applications.status")%>:</div>
       <div>

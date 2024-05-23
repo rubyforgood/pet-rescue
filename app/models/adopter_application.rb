@@ -28,6 +28,9 @@ class AdopterApplication < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :pet, touch: true
   belongs_to :adopter_foster_account
+
+  broadcasts_refreshes
+
   enum :status, [:awaiting_review,
     :under_review,
     :adoption_pending,
@@ -40,7 +43,6 @@ class AdopterApplication < ApplicationRecord
       scope: :pet,
       message: "has already applied for this pet."
     }
-  broadcasts_refreshes
   # remove adoption_made status as not necessary for staff
   def self.app_review_statuses
     AdopterApplication.statuses.keys.map do |status|

@@ -5,6 +5,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
 
   def index
     authorize! with: AdopterApplicationPolicy
+
     @applications = authorized_scope(AdopterApplication.all, with: AdopterApplicationPolicy)
   end
 
