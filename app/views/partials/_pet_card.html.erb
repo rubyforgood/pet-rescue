@@ -14,13 +14,13 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
           <%= link_to adoptable_pet_path(pet), class: 'text-decoration-none' do %>
-            <h4 class="card-title text-secondary mb-0">
+            <h3 class="card-title text-secondary mb-0">
               <%= pet.name %>
-            </h4>
+            </h3>
           <% end %>
           <% if current_user&.adopter_foster_account %>
             <div class='text-end' id="like_button_pet_<%= pet.id %>">
-              <%= render partial: 'partials/like_button', locals: { pet: pet, liked: current_user&.liked_pets&.include?(pet) } %>
+              <%= render partial: 'partials/like_button', locals: { pet: pet, liked: pet.liked_pets.pluck(:adopter_foster_account_id).include?(current_user.adopter_foster_account.id) } %>
             </div>
           <% end %>
         </li>

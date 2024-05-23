@@ -1,5 +1,5 @@
 <% if liked %>
-  <%= button_to adopter_fosterer_liked_pet_path(id: LikedPet.find_by(user_id: current_user.id, pet_id: pet.id)&.id),
+  <%= button_to adopter_fosterer_liked_pet_path(id: LikedPet.find_by(adopter_foster_account_id: current_user.adopter_foster_account.id, pet_id: pet.id)&.id),
                 class: 'border-0 bg-transparent',
                 method: :delete,
                 data: { turbo_stream: true },

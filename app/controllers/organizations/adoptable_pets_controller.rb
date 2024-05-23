@@ -3,7 +3,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
 
   def index
     @pets = authorized_scope(
-      Pet.includes(:adopter_applications, images_attachments: :blob),
+      Pet.includes(:adopter_applications, :liked_pets, images_attachments: :blob),
       with: Organizations::AdoptablePetPolicy
     )
   end

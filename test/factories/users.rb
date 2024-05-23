@@ -46,6 +46,7 @@ FactoryBot.define do
 
       after(:build) do |user, _context|
         user.add_role(:fosterer, user.organization)
+        user.add_role(:adopter, user.organization)
       end
     end
 

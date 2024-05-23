@@ -1,18 +1,20 @@
 class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseController
   before_action :authenticate_user!
   before_action :set_pet, only: [:create]
-  layout 'adopter_foster_dashboard', only: :index
+  layout "adopter_foster_dashboard", only: :index
 
   def index
-    authorize! with: LikedPetPolicy
-    @liked_pets = current_user.liked_pets
+    authorize! with: Organizations::LikedPetPolicy
+
+    @liked_pets = current_user.adopter_foster_account.liked_pets
   end
 
   def create
     @pet = Pet.find(application_params[:pet_id])
-    authorize! context: {pet: @pet}, with: LikedPetPolicy
+    authorize! context: {pet: @pet}, with: Organizations::LikedPetPolicy
 
-    @liked_pet = LikedPet.new(user_id: current_user.id, pet_id: application_params[:pet_id])
+    @liked_pet = LikedPet.new(adopter_foster_account_id: current_user.adopter_foster_account.id,
+      pet_id: application_params[:pet_id])
 
     respond_to do |format|
       if @liked_pet.save
@@ -27,8 +29,7 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
 
   def destroy
     @liked_pet = LikedPet.find(application_params[:id])
-    @pet = @liked_pet.pet
-    authorize! @liked_pet, with: LikedPetPolicy
+    authorize! context: {pet: @liked_pet.pet}, with: Organizations::LikedPetPolicy
 
     respond_to do |format|
       if @liked_pet.destroy

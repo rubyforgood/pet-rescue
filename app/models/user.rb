@@ -60,8 +60,6 @@ class User < ApplicationRecord
 
   has_one :staff_account, dependent: :destroy
   has_one :adopter_foster_account, dependent: :destroy
-  has_many :liked_pet_associations, class_name: 'LikedPet', dependent: :destroy
-  has_many :liked_pets, through: :liked_pet_associations, source: :pet
 
   accepts_nested_attributes_for :adopter_foster_account
 
