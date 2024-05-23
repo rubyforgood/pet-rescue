@@ -4,10 +4,12 @@
     <%# Card %>
     <div class="card card-hover m-4" style='overflow: hidden'>
       <%# Card image %>
-      <% if pet.images.attached? %>
-        <%= image_tag pet.images.first, class: "card-img-top" %>
-      <% else %>
-        <%= image_tag "coming_soon.jpg", class: "card-img-top" %>
+      <%= link_to staff_pet_path(pet) do %>
+        <% if pet.images.attached? %>
+            <%= image_tag pet.images.first, class: "card-img-top" %>
+        <% else %>
+            <%= image_tag "coming_soon.jpg", class: "card-img-top" %>
+        <% end %>
       <% end %>
       <%# Card header %>
       <div class="card-header">
