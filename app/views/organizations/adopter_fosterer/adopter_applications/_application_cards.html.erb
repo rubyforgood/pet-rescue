@@ -1,5 +1,5 @@
 <% pet = application.pet %>
-<div class="card card-hover mx-2 my-4 col-sm-5" style='overflow: hidden'>
+<div class="card card-hover mx-1 my-4 col-sm-5" style='"overflow: hidden'>
   <%= link_to image_tag(pet.images.attached? ? pet.images.first : 'coming_soon.jpg', class: 'card-img-top pet-card'), staff_pet_path(pet) %>
   <ul class="list-group list-group-flush">
     <li class="list-group-item d-flex justify-content-between">
@@ -22,6 +22,7 @@
     </li>
     <li class="list-group-item d-flex justify-content-center">
       <% unless application.status == 'withdrawn' %>
+
         <%= button_to t("dashboard.applications.withdraw_application"),
               adopter_fosterer_adopter_application_path(application, adopter_application:
               { status: 'withdrawn'}), method: :patch, class: 'btn
@@ -29,6 +30,8 @@
             t("dashboard.applications.confirm_withdraw") + " for " +
             pet.name.capitalize + "?"} %>
       <% end  %>
+
     </li>
+
   </ul>
 </div>
