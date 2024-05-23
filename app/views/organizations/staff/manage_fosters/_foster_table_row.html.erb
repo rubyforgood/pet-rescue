@@ -16,7 +16,8 @@
   <td class="w-20 align-middle">
     <%= turbo_frame_tag dom_id(foster, :start_date) do %>
       <%= link_to foster.start_date.strftime("%m/%d/%Y"),
-        edit_staff_manage_foster_path(foster, page: params[:page])
+        edit_staff_manage_foster_path(foster, page: params[:page]),
+        class: "btn btn-outline-primary"
       %>
     <% end %>
   </td>
@@ -24,7 +25,8 @@
   <td class="w-20 align-middle">
     <%= turbo_frame_tag dom_id(foster, :end_date) do %>
       <%= link_to foster.end_date.strftime("%m/%d/%Y"),
-        edit_staff_manage_foster_path(foster, page: params[:page])
+        edit_staff_manage_foster_path(foster, page: params[:page]),
+        class: "btn btn-outline-primary"
       %>
     <% end %>
   </td>
