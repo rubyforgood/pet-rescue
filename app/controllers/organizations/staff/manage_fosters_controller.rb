@@ -37,8 +37,6 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
   end
 
   def edit
-    session[:page] = params[:page] if params[:page]
-
     # Turbo frames are an HTML mime-type
     if turbo_frame_request?
       case turbo_frame_request_id
@@ -54,10 +52,8 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
 
   def update
     if @foster.update(match_params)
-      page = session.delete(:page)
-
       flash[:success] = "Foster for #{@foster.pet.name} successfully updated."
-      redirect_to action: :index, page: page
+      redirect_to action: :index
     else
       render :edit, status: :unprocessable_entity
     end
