@@ -14,27 +14,23 @@
     <tbody>
       <% applications.each do |app| %>
         <%= turbo_stream_from app %>
-
+        <% pet = app.pet %>
         <tr>
           <td>
             <div class="d-flex align-items-center">
               <div class="icon-shape icon-lg rounded-3 border">
-                <% if app.pet.images.attached? %>
-                  <%= image_tag app.pet.images.first, class: 'card-img' %>
-                <% else %>
-                  <% image_tag('coming_soon.jpg', class: 'card-img') %>
-                <% end %>
+                <%= image_tag(pet.images.attached? ? pet.images.first : 'coming_soon.jpg', class: 'card-img') %>
               </div>
               <div class="ms-3">
                 <h4 class="mb-0">
-                  <%= link_to app.pet.name, adoptable_pet_path(app.pet), class: 'text-inherit' %>
+                  <%= link_to pet.name, adoptable_pet_path(pet) %>
                 </h4>
               </div>
             </div>
           </td>
           <td>
             <%# localize date %>
-            <%= l app.pet.created_at.to_date, format: :long %>
+            <%= l app.created_at.to_date, format: :long %>
           </td>
           <td>
             <%= app.human_enum_name(:status) %>
@@ -46,7 +42,7 @@
               { status: 'withdrawn'}), method: :patch, class: 'btn
             btn-outline-danger', data: { turbo_confirm:
             t("dashboard.applications.confirm_withdraw") + " for " +
-            app.pet.name.capitalize + "?"} %>
+            pet.name.capitalize + "?"} %>
             <% end  %>
           </td>
         </tr>
