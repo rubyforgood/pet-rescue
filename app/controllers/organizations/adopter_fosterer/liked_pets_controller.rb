@@ -19,11 +19,11 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
 
     respond_to do |format|
       if @liked_pet.save
-        format.html { redirect_to request.referrer, notice: "#{@pet.name} added to your liked pets." }
-        format.turbo_stream { flash.now[:notice] = "#{@pet.name} added to your liked pets." }
+        format.html { redirect_to request.referrer, notice: t("organizations.adopter_fosterer.liked_pets.create.success", name: @pet.name) }
+        format.turbo_stream { flash.now[:notice] = t("organizations.adopter_fosterer.liked_pets.create.success", name: @pet.name) }
       else
-        format.html { redirect_to request.referrer, alert: "Error, pet was not added to your liked pets." }
-        format.turbo_stream { flash.now[:alert] = "Error, pet was not added to your liked pets." }
+        format.html { redirect_to request.referrer, alert: t("organizations.adopter_fosterer.liked_pets.create.failed", name: @pet.name) }
+        format.turbo_stream { flash.now[:alert] = t("organizations.adopter_fosterer.liked_pets.create.failed", name: @pet.name) }
       end
     end
   end
@@ -34,11 +34,11 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
 
     respond_to do |format|
       if @liked_pet.destroy
-        format.html { redirect_to request.referrer, notice: "#{@pet.name} removed from your liked pets." }
-        format.turbo_stream { flash.now[:notice] = "#{@pet.name} removed from your liked pets." }
+        format.html { redirect_to request.referrer, notice: t("organizations.adopter_fosterer.liked_pets.destroy.success", name: @pet.name) }
+        format.turbo_stream { flash.now[:notice] = t("organizations.adopter_fosterer.liked_pets.destroy.success", name: @pet.name) }
       else
-        format.html { redirect_to request.referrer, alert: "Error, pet was not removed from your liked pets." }
-        format.turbo_stream { flash.now[:alert] = "Error, pet was not removed from your liked pets." }
+        format.html { redirect_to request.referrer, alert: t("organizations.adopter_fosterer.liked_pets.destroy.failed", name: @pet.name) }
+        format.turbo_stream { flash.now[:alert] = t("organizations.adopter_fosterer.liked_pets.destroy.failed", name: @pet.name) }
       end
     end
   end

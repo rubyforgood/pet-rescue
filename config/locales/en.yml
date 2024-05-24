@@ -428,6 +428,15 @@ en:
           withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
           remove: "Remove"
           withdraw: "Withdraw"
+      liked_pets:
+        index:
+          liked_pets: 'Liked Pets'
+        create:
+          success: "%{name} added to your liked pets."
+          failed: "Error, %{name} not added to your liked pets."
+        destroy:
+          success: "%{name} removed from your liked pets."
+          failed: "Error, %{name} not removed from your liked pets."
   staff_accounts:
     status:
       invitation_sent: "Invitation sent"
