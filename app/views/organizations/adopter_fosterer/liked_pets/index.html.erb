@@ -1,3 +1,11 @@
-<div class="row">
-  <%= render partial:"partials/pet_card", collection: @liked_pets, as: :pet %>
-</div>
+<!--page heading-->
+<%= render "components/adopter_foster_dashboard/page" do |p| %>
+  <% p.header_title 'Liked Pets' %>
+  <% p.content do %>
+    <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
+      <div class="row">
+        <%= render partial:"partials/pet_card", collection: @pets, as: :pet %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

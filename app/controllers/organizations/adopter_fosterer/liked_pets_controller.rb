@@ -6,7 +6,8 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
   def index
     authorize! with: Organizations::LikedPetPolicy
 
-    @liked_pets = current_user.adopter_foster_account.liked_pets
+    @liked_pets = LikedPet.where(adopter_foster_account_id: current_user&.adopter_foster_account.id)
+    @pets = Pet.find(@liked_pets.pluck(:pet_id))
   end
 
   def create

@@ -20,7 +20,7 @@
           <% end %>
           <% if current_user&.adopter_foster_account %>
             <div class='text-end' id="like_button_pet_<%= pet.id %>">
-              <%= render partial: 'partials/like_button', locals: { pet: pet, liked: pet.liked_pets.pluck(:adopter_foster_account_id).include?(current_user.adopter_foster_account.id) } %>
+              <%= render partial: 'partials/like_button', locals: { pet: pet, liked_pet: @liked_pets&.find { |lp| lp.pet_id == pet.id } } %>
             </div>
           <% end %>
         </li>
