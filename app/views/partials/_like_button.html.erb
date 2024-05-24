@@ -1,5 +1,5 @@
 <% if liked_pet %>
-  <%= button_to adopter_fosterer_liked_pet_path(id: liked_pet&.id),
+  <%= button_to adopter_fosterer_liked_pet_path(liked_pet),
                 class: 'border-0 bg-transparent',
                 method: :delete,
                 data: { turbo_stream: true },
@@ -7,7 +7,7 @@
     <%= image_tag 'liked.svg', height: '25px', class: 'like-icon' %>
   <% end %>
 <% else %>
-  <%= button_to adopter_fosterer_liked_pets_path(pet_id: pet.id),
+  <%= button_to adopter_fosterer_liked_pets_path(liked_pet: { pet_id: pet.id }),
                 class: 'border-0 bg-transparent',
                 method: :post,
                 data: { turbo_stream: true },

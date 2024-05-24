@@ -1,6 +1,7 @@
 class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseController
   before_action :authenticate_user!
   before_action :set_pet, only: [:create]
+  before_action :set_liked_pet, only: [:destroy]
   layout "adopter_foster_dashboard", only: :index
 
   def index
@@ -28,9 +29,8 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
   end
 
   def destroy
-    @liked_pet = LikedPet.find(liked_pet_params[:id])
     @pet = @liked_pet.pet
-    authorize! context: {pet: @liked_pet.pet}, with: Organizations::LikedPetPolicy
+    authorize! context: {pet: @pet}, with: Organizations::LikedPetPolicy
 
     respond_to do |format|
       if @liked_pet.destroy
@@ -46,10 +46,14 @@ class Organizations::AdopterFosterer::LikedPetsController < Organizations::BaseC
   private
 
   def liked_pet_params
-    params.permit(:pet_id, :id, :_method, :authenticity_token)
+    params.require(:liked_pet).permit(:pet_id)
   end
 
   def set_pet
     @pet = Pet.find(liked_pet_params[:pet_id])
+  end
+
+  def set_liked_pet
+    @liked_pet = LikedPet.find(params[:id])
   end
 end
