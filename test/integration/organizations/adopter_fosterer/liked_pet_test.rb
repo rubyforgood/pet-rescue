@@ -10,7 +10,7 @@ class Organizations::AdopterFosterer::LikedPetTest < ActionDispatch::Integration
   test "adopter can like a pet" do
     assert_difference "LikedPet.count", 1 do
       post adopter_fosterer_liked_pets_path,
-        params: {pet_id: @pet.id},
+        params: {liked_pet: {pet_id: @pet.id}},
         headers: {"HTTP_REFERER" => "http://www.example.com/"}
     end
   end
