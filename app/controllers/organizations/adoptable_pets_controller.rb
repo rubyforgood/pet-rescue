@@ -1,6 +1,6 @@
 class Organizations::AdoptablePetsController < Organizations::BaseController
   skip_verify_authorized only: %i[index]
-  before_action :set_liked_pets, only: %i[index show]
+  before_action :set_liked_pets, only: %i[index show], if: -> { current_user&.adopter_foster_account }
 
   def index
     @pets = authorized_scope(
@@ -29,6 +29,6 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   private
 
   def set_liked_pets
-    @liked_pets = LikedPet.where(adopter_foster_account_id: current_user&.adopter_foster_account.id)
+    @liked_pets = LikedPet.where(adopter_foster_account_id: current_user.adopter_foster_account.id)
   end
 end
