@@ -298,7 +298,7 @@ ActsAsTenant.with_tenant(@organization) do
     end
   end
 
-  @match = Match.create!(
+  Match.create!(
     pet_id: Pet.first.id,
     adopter_foster_account_id: @adopter_foster_account_one.id,
     match_type: :adoption
