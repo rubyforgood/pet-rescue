@@ -428,7 +428,7 @@ en:
           withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
           remove: "Remove"
           withdraw: "Withdraw"
-      liked_pets:
+      likes:
         index:
           liked_pets: 'Liked Pets'
         create:

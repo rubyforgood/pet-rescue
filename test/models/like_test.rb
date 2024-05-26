@@ -12,7 +12,7 @@ class LikeTest < ActiveSupport::TestCase
     setup do
       @user = create(:adopter)
       @pet = create(:pet)
-      @liked_pet = Like.create!(adopter_foster_account: @user.adopter_foster_account, pet: @pet)
+      @like = Like.create!(adopter_foster_account: @user.adopter_foster_account, pet: @pet)
     end
 
     should validate_uniqueness_of(:adopter_foster_account_id).scoped_to(:pet_id)
