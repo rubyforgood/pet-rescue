@@ -2,11 +2,9 @@ class Organizations::MatchPolicy < ApplicationPolicy
   pre_check :verify_organization!
   pre_check :verify_active_staff!
 
-  def create?
-    permission?(:manage_matches)
-  end
+  alias_rule :new?, :create?, :index?, to: :manage?
 
-  def destroy?
+  def manage?
     permission?(:manage_matches)
   end
 end

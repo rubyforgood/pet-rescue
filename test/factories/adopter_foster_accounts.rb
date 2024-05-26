@@ -7,5 +7,9 @@ FactoryBot.define do
         association :adopter_foster_profile, adopter_foster_account: instance
       end
     end
+
+    factory :foster_account do
+      user { association :fosterer, adopter_foster_account: instance }
+    end
   end
 end

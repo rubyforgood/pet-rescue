@@ -74,4 +74,9 @@ Rails.application.configure do
 
   # Handle ActsAsTenant.test_tenant properly in request specs
   config.middleware.use ActsAsTenant::TestTenantMiddleware
+
+  # Default queue adapter is :async which sometimes causes tests to hang
+  # This fixes hanging
+  # https://github.com/rails/rails/issues/48468
+  config.active_job.queue_adapter = :test
 end
