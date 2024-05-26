@@ -304,6 +304,56 @@ ActsAsTenant.with_tenant(@organization) do
     match_type: :adoption
   )
 
+  @fosterable_pets = Array.new(3) do
+    from_weight = [5, 10, 20, 30, 40, 50, 60].sample
+    Pet.create!(
+      name: Faker::Creature::Dog.name,
+      birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
+      sex: Faker::Creature::Dog.gender,
+      weight_from: from_weight,
+      weight_to: from_weight + 15,
+      weight_unit: Pet::WEIGHT_UNITS.sample,
+      breed: Faker::Creature::Dog.breed,
+      description: Faker::Lorem.sentence,
+      species: 0,
+      placement_type: "Fosterable",
+      published: true
+    )
+  end
+
+  # Complete foster
+  complete_start_date = Time.now - 4.months
+  complete_end_date = complete_start_date + 3.months
+  Match.create!(
+    pet_id: @fosterable_pets[0].id,
+    adopter_foster_account_id: @user_fosterer_one.adopter_foster_account.id,
+    match_type: :foster,
+    start_date: complete_start_date,
+    end_date: complete_end_date
+  )
+
+  # Current foster
+  current_start_date = Time.now - 2.months
+  current_end_date = current_start_date + 6.months
+  Match.create!(
+    pet_id: @fosterable_pets[1].id,
+    adopter_foster_account_id: @user_fosterer_one.adopter_foster_account.id,
+    match_type: :foster,
+    start_date: current_start_date,
+    end_date: current_end_date
+  )
+
+  # Upcoming foster
+  upcoming_start_date = Time.now + 1.week
+  upcoming_end_date = upcoming_start_date + 3.months
+  Match.create!(
+    pet_id: @fosterable_pets[2].id,
+    adopter_foster_account_id: @user_fosterer_two.adopter_foster_account.id,
+    match_type: :foster,
+    start_date: upcoming_start_date,
+    end_date: upcoming_end_date
+  )
+
   10.times do
     adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
