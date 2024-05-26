@@ -71,7 +71,7 @@ class Pet < ApplicationRecord
   ]
 
   scope :adopted, -> { joins(:matches).merge(Match.adoptions) }
-  scope :unadopted, -> { Pet.includes(:matches).where(matches: {id: nil}) }
+  scope :unmatched, -> { includes(:matches).where(matches: {id: nil}) }
   scope :published, -> { where(published: true) }
   scope :fostered, -> { joins(:matches).merge(Match.fosters) }
   scope :fosterable, -> {

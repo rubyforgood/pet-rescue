@@ -4,7 +4,7 @@
     <h1 class='mb-4'>
       We rescue pets in <%=current_tenant.city %>, <%=current_tenant.country %> and rehome them with adopters in Canada and America
     </h1>
-    <%= link_to "Browse #{Pet.unadopted.count} Pets",
+    <%= link_to "Browse #{Pet.unmatched.count} Pets",
                 adoptable_pets_path,
                 class: 'custom-btn-pink' %>
   </div>
