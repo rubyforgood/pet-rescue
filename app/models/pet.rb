@@ -70,7 +70,7 @@ class Pet < ApplicationRecord
     WEIGHT_UNIT_KG
   ]
 
-  scope :adopted, -> { Pet.includes(:matches).where.not(matches: {id: nil}) }
+  scope :adopted, -> { joins(:matches).merge(Match.adoptions) }
   scope :unadopted, -> { Pet.includes(:matches).where(matches: {id: nil}) }
   scope :published, -> { where(published: true) }
   scope :fostered, -> { joins(:matches).merge(Match.fosters) }

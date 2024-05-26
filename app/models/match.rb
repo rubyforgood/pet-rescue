@@ -46,6 +46,7 @@ class Match < ApplicationRecord
 
   enum :match_type, [:adoption, :foster]
 
+  scope :adoptions, -> { where(match_type: :adoption) }
   scope :fosters, -> { where(match_type: :foster) }
 
   def self.foster_statuses
