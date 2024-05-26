@@ -1,18 +1,18 @@
-class Organizations::LikedPetPolicy < ApplicationPolicy
+class Organizations::LikePolicy < ApplicationPolicy
   authorize :pet, optional: true
   pre_check :verify_adopter_foster_account!
   pre_check :verify_pet_likable!, only: %i[create? destroy?]
 
   def index?
-    permission?(:manage_liked_pets)
+    permission?(:manage_likes)
   end
 
   def create?
-    permission?(:manage_liked_pets)
+    permission?(:manage_likes)
   end
 
   def destroy?
-    permission?(:manage_liked_pets)
+    permission?(:manage_likes)
   end
 
   private

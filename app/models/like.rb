@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: liked_pets
+# Table name: likes
 #
 #  id                        :bigint           not null, primary key
 #  created_at                :datetime         not null
@@ -11,10 +11,10 @@
 #
 # Indexes
 #
-#  index_liked_pets_on_adopter_foster_account_id             (adopter_foster_account_id)
-#  index_liked_pets_on_adopter_foster_account_id_and_pet_id  (adopter_foster_account_id,pet_id) UNIQUE
-#  index_liked_pets_on_organization_id                       (organization_id)
-#  index_liked_pets_on_pet_id                                (pet_id)
+#  index_likes_on_adopter_foster_account_id             (adopter_foster_account_id)
+#  index_likes_on_adopter_foster_account_id_and_pet_id  (adopter_foster_account_id,pet_id) UNIQUE
+#  index_likes_on_organization_id                       (organization_id)
+#  index_likes_on_pet_id                                (pet_id)
 #
 # Foreign Keys
 #
@@ -22,7 +22,7 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #  fk_rails_...  (pet_id => pets.id)
 #
-class LikedPet < ApplicationRecord
+class Like < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :adopter_foster_account
   belongs_to :pet

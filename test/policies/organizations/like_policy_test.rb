@@ -1,12 +1,12 @@
 require "test_helper"
 
-class Organizations::LikedPetPolicyTest < ActiveSupport::TestCase
+class Organizations::LikePolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   context "#index?" do
     setup do
       @organization = ActsAsTenant.current_tenant
-      @policy = -> { Organizations::LikedPetPolicy.new(LikedPet, user: @user, organization: @organization) }
+      @policy = -> { Organizations::LikePolicy.new(Like, user: @user, organization: @organization) }
       @action = -> { @policy.call.apply(:index?) }
     end
 
@@ -56,7 +56,7 @@ class Organizations::LikedPetPolicyTest < ActiveSupport::TestCase
       @organization = ActsAsTenant.current_tenant
       @pet = create(:pet)
       @policy = -> {
-        Organizations::LikedPetPolicy.new(LikedPet,
+        Organizations::LikePolicy.new(Like,
           user: @user,
           organization: @organization,
           pet: @pet)
@@ -103,7 +103,7 @@ class Organizations::LikedPetPolicyTest < ActiveSupport::TestCase
       end
 
       @policy = -> {
-        Organizations::LikedPetPolicy.new(LikedPet,
+        Organizations::LikePolicy.new(Like,
           user: @user,
           organization: @organization,
           pet: @pet2)
@@ -137,7 +137,7 @@ class Organizations::LikedPetPolicyTest < ActiveSupport::TestCase
       @organization = ActsAsTenant.current_tenant
       @pet = create(:pet)
       @policy = -> {
-        Organizations::LikedPetPolicy.new(LikedPet,
+        Organizations::LikePolicy.new(Like,
           user: @user,
           organization: @organization,
           pet: @pet)
@@ -184,7 +184,7 @@ class Organizations::LikedPetPolicyTest < ActiveSupport::TestCase
       end
 
       @policy = -> {
-        Organizations::LikedPetPolicy.new(LikedPet,
+        Organizations::LikePolicy.new(Like,
           user: @user,
           organization: @organization,
           pet: @pet2)

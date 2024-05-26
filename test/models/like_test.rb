@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class LikedPetTest < ActiveSupport::TestCase
+class LikeTest < ActiveSupport::TestCase
   context "associations" do
     should belong_to(:pet)
     should belong_to(:adopter_foster_account)
@@ -12,7 +12,7 @@ class LikedPetTest < ActiveSupport::TestCase
     setup do
       @user = create(:adopter)
       @pet = create(:pet)
-      @liked_pet = LikedPet.create!(adopter_foster_account: @user.adopter_foster_account, pet: @pet)
+      @liked_pet = Like.create!(adopter_foster_account: @user.adopter_foster_account, pet: @pet)
     end
 
     should validate_uniqueness_of(:adopter_foster_account_id).scoped_to(:pet_id)

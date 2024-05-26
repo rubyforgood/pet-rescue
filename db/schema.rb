@@ -163,16 +163,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_160107) do
     t.index ["organization_id"], name: "index_forms_on_organization_id"
   end
 
-  create_table "liked_pets", force: :cascade do |t|
+  create_table "likes", force: :cascade do |t|
     t.bigint "adopter_foster_account_id", null: false
     t.bigint "pet_id", null: false
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["adopter_foster_account_id", "pet_id"], name: "index_liked_pets_on_adopter_foster_account_id_and_pet_id", unique: true
-    t.index ["adopter_foster_account_id"], name: "index_liked_pets_on_adopter_foster_account_id"
-    t.index ["organization_id"], name: "index_liked_pets_on_organization_id"
-    t.index ["pet_id"], name: "index_liked_pets_on_pet_id"
+    t.index ["adopter_foster_account_id", "pet_id"], name: "index_likes_on_adopter_foster_account_id_and_pet_id", unique: true
+    t.index ["adopter_foster_account_id"], name: "index_likes_on_adopter_foster_account_id"
+    t.index ["organization_id"], name: "index_likes_on_organization_id"
+    t.index ["pet_id"], name: "index_likes_on_pet_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -351,9 +351,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_160107) do
   add_foreign_key "faqs", "organizations"
   add_foreign_key "form_profiles", "forms"
   add_foreign_key "forms", "organizations"
-  add_foreign_key "liked_pets", "adopter_foster_accounts"
-  add_foreign_key "liked_pets", "organizations"
-  add_foreign_key "liked_pets", "pets"
+  add_foreign_key "likes", "adopter_foster_accounts"
+  add_foreign_key "likes", "organizations"
+  add_foreign_key "likes", "pets"
   add_foreign_key "matches", "adopter_foster_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"

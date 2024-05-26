@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     namespace :adopter_fosterer do
       resource :profile, except: :destroy
       resources :dashboard, only: [:index]
-      resources :liked_pets, only: [:index, :create, :destroy]
+      resources :likes, only: [:index, :create, :destroy]
       resources :adopter_applications, path: "applications", only: %i[index create update]
     end
   end
