@@ -31,6 +31,10 @@
           </div>
         </div>
 
+        <div class="d-flex justify-content-center align-items-center mt-2">
+          <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+        </div>
+
         <!-- Search Results -->
         <%= render 'search_results' %>
 
