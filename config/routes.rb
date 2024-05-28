@@ -29,7 +29,7 @@ Rails.application.routes.draw do
       resources :matches, only: %i[create destroy]
 
       resources :adoption_application_reviews, only: %i[index edit update]
-      resources :manage_fosters, only: [:index]
+      resources :manage_fosters, only: %i[new create index edit update destroy]
       resources :fosterers, only: %i[index]
       resources :staff do
         post "deactivate", to: "staff#deactivate"

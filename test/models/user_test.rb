@@ -36,6 +36,40 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  context "#full_name" do
+    context "format is :default" do
+      should "return `First Last`" do
+        user = create(:user, first_name: "First", last_name: "Last")
+
+        assert_equal "First Last", user.full_name
+      end
+    end
+
+    context "format is :default" do
+      should "return `First Last`" do
+        user = create(:user, first_name: "First", last_name: "Last")
+
+        assert_equal "First Last", user.full_name(:default)
+      end
+    end
+
+    context "format is :last_first" do
+      should "return `Last, First`" do
+        user = create(:user, first_name: "First", last_name: "Last")
+
+        assert_equal "Last, First", user.full_name(:last_first)
+      end
+    end
+
+    context "format is unsupported" do
+      should "raise ArgumentError" do
+        user = create(:user, first_name: "First", last_name: "Last")
+
+        assert_raises(ArgumentError) { user.full_name(:foobar) }
+      end
+    end
+  end
+
   private
 
   def fixture_file

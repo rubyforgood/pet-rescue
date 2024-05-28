@@ -1,1 +1,76 @@
-<p>OMG this is awesome</p>
+<%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
+<% breadcrumb :fosters %>
+
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title "Fosters" %>
+  <% p.actions do %>
+    <%= link_to "Create Foster", new_staff_manage_foster_path,
+      class: "btn btn-primary"
+    %>
+  <% end %>
+  <% p.content do %>
+    <section class="pb-5" id="about_us">
+      <div class="container">
+        <!-- Ransack Search Form -->
+        <div class="row p-4 border rounded-5 mb-5 bg-white">
+          <div class="col-xl-12">
+            <%= search_form_for @q, url: staff_manage_fosters_path do |f| %>
+              <div class="row">
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :pet_name_cont, "Pet Name" %>
+                  <%= f.search_field :pet_name_cont,
+                    class: "form-control",
+                    placeholder: "Enter Pet Name"
+                  %>
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :user_first_name_or_user_last_name_cont, "Fosterer Name" %>
+                  <%= f.search_field :user_first_name_or_user_last_name_cont,
+                    class: "form-control",
+                    placeholder: "Enter Fosterer Name"
+                  %>
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :status_eq, "Status" %>
+                  <%= f.select :status_eq,
+                    Match.foster_statuses.map { |status| [status.titleize, status] },
+                    {include_blank: "All"},
+                    class: "form-select"
+                  %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <%= f.submit "Search", class: "btn btn-primary" %>
+                  <%= link_to "Clear filters", staff_manage_fosters_path,
+                    class: "btn btn-default"
+                  %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mt-2">
+          <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+        </div>
+
+        <!-- Search Results -->
+        <%# Table layout %>
+        <div class="d-none d-xl-block">
+          <%= render "foster_table", foster_pets: @foster_pets %>
+        </div>
+
+        <%# Cards layout %>
+        <div class="d-xl-none d-flex flex-wrap">
+          <%= render "foster_cards", foster_pets: @foster_pets %>
+        </div>
+
+      </div>
+    </section>
+    <div class="d-flex justify-content-center align-items-center mt-2">
+      <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+    </div>
+  <% end %>
+<% end %>
