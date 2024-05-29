@@ -15,6 +15,7 @@
               <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
+                <th scope="col">Species</th>
                 <th scope="col">Due After</th>
                 <th scope="col">Recurring</th>
                 <th scope="col"></th>
@@ -28,6 +29,9 @@
                   </td>
                   <td>
                     <%= task.description %>
+                  </td>
+                  <td>
+                    <%= task.species %>
                   </td>
                   <td>
                     <%= task.due_in_days ? pluralize(task.due_in_days, "day") : "" %>
