@@ -358,14 +358,23 @@
       "contributions": [
         "code"
       ]
-     },
-     {
+    },
+    {
       "login": "elight",
       "name": "Evan Light",
       "avatar_url": "https://avatars.githubusercontent.com/u/10112?v=4",
       "profile": "https://github.com/elight",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "kiryth",
+      "name": "Kirin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/110743903?v=4",
+      "profile": "https://github.com/kiryth",
+      "contributions": [
+        "design"
       ]
     }
   ],
