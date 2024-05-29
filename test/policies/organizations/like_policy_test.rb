@@ -64,44 +64,44 @@ class Organizations::LikePolicyTest < ActiveSupport::TestCase
       }
       @action = -> { @policy.call.apply(:create?) }
     end
-  
+
     context "when user is nil" do
       setup do
         @user = nil
       end
-  
+
       should "return false" do
         assert_equal @action.call, false
       end
     end
-  
+
     context "when user is adopter" do
       setup do
         @user = create(:adopter)
       end
-  
+
       should "return true" do
         assert_equal @action.call, true
       end
     end
-  
+
     context "when user is staff" do
       setup do
         @user = create(:staff)
       end
-  
+
       should "return false" do
         assert_equal @action.call, false
       end
     end
-  
+
     context "with pet belonging to different organization" do
       setup do
         @organization2 = create(:organization)
         ActsAsTenant.with_tenant(@organization2) do
           @pet2 = create(:pet)
         end
-  
+
         @policy = -> {
           Organizations::LikePolicy.new(Like,
             user: @user,
@@ -110,29 +110,29 @@ class Organizations::LikePolicyTest < ActiveSupport::TestCase
         }
         @action = -> { @policy.call.apply(:create?) }
       end
-  
+
       context "when pet does not belong to same org as adopter" do
         setup do
           @user = create(:adopter)
         end
-  
+
         should "return false" do
           assert_equal @action.call, false
         end
       end
-  
+
       context "when pet does not belong to same org as fosterer" do
         setup do
           @user = create(:fosterer)
         end
-  
+
         should "return false" do
           assert_equal @action.call, false
         end
       end
     end
   end
-  
+
   context "#destroy?" do
     setup do
       @organization = ActsAsTenant.current_tenant
