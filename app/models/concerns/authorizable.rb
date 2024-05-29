@@ -6,6 +6,7 @@ ADOPTER_PERMISSIONS = %i[
   create_adopter_foster_profiles
   manage_adopter_foster_profiles
   purge_avatar
+  manage_likes
 ].freeze
 
 FOSTERER_PERMISSIONS = %i[
@@ -22,6 +23,7 @@ STAFF_PERMISSIONS = (
       create_adopter_applications
       create_adopter_foster_profiles
       manage_adopter_foster_profiles
+      manage_likes
     ]
   ) + %i[
     review_adopter_applications

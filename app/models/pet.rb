@@ -33,6 +33,7 @@ class Pet < ApplicationRecord
   has_many :adopter_applications, dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :matches, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many_attached :images
   has_many_attached :files
 

@@ -7,6 +7,7 @@ class PetTest < ActiveSupport::TestCase
     should have_many(:adopter_applications).dependent(:destroy)
     should have_many(:matches).dependent(:destroy)
     should have_many_attached(:images)
+    should have_many(:likes).dependent(:destroy)
   end
 
   context "validations" do
