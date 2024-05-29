@@ -195,7 +195,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_160107) do
     t.datetime "end_date"
     t.index ["adopter_foster_account_id"], name: "index_matches_on_adopter_foster_account_id"
     t.index ["organization_id"], name: "index_matches_on_organization_id"
-    t.index ["pet_id"], name: "index_matches_on_pet_id", unique: true
+    t.index ["pet_id"], name: "index_matches_on_pet_id"
   end
 
   create_table "organization_profiles", force: :cascade do |t|

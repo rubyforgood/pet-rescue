@@ -1,0 +1,51 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve  %>
+
+<!-- table -->
+<div class="card">
+  <table class="table mb-0 text-nowrap table-hover table-centered">
+    <thead>
+      <tr>
+        <th scope="col"><%= t("dashboard.applications.name")%></th>
+        <th scope="col"><%= t("dashboard.applications.created")%></th>
+        <th scope="col"><%= t("dashboard.applications.status")%></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% applications.each do |app| %>
+        <%= turbo_stream_from app %>
+        <% pet = app.pet %>
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+              <%= image_tag(pet.images.attached? ? pet.images.first :
+              'coming_soon.jpg', class: 'rounded-3', style: "height: 50px; width: 50px; object-fit: cover;") %>
+              <div class="ms-3">
+                <h4 class="mb-0">
+                  <%= link_to pet.name, adoptable_pet_path(pet) %>
+                </h4>
+              </div>
+            </div>
+          </td>
+          <td>
+            <%# localize date %>
+            <%= l app.created_at.to_date, format: :long %>
+          </td>
+          <td>
+            <%= app.human_enum_name(:status) %>
+          </td>
+          <td>
+            <% unless app.status == 'withdrawn' || app.status == 'adoption_made'%>
+              <%= button_to t("dashboard.applications.withdraw_application"),
+              adopter_fosterer_adopter_application_path(app, adopter_application:
+              { status: 'withdrawn'}), method: :patch, class: 'btn
+            btn-outline-danger', data: { turbo_confirm:
+            t("dashboard.applications.confirm_withdraw") + " for " +
+            pet.name.capitalize + "?"} %>
+            <% end  %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

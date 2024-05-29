@@ -69,6 +69,14 @@ class User < ApplicationRecord
       .where(staff_account: {organization_id: org_id})
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[first_name last_name]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[matches]
+  end
+
   # used in views to show only the custom error msg without leading attribute
   def custom_messages(attribute)
     errors.where(attribute)
@@ -80,5 +88,16 @@ class User < ApplicationRecord
 
   def inactive_message
     staff_account.deactivated_at ? :deactivated : super
+  end
+
+  def full_name(format = :default)
+    case format
+    when :default
+      "#{first_name} #{last_name}"
+    when :last_first
+      "#{last_name}, #{first_name}"
+    else
+      raise ArgumentError, "Unsupported format: #{format}"
+    end
   end
 end

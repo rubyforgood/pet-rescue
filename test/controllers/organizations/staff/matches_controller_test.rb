@@ -27,7 +27,7 @@ class Organizations::Staff::MatchesControllerTest < ActionDispatch::IntegrationT
 
       should "be authorized" do
         assert_authorized_to(
-          :create?, Match,
+          :manage?, Match,
           context: {organization: @organization},
           with: Organizations::MatchPolicy
         ) do
@@ -43,7 +43,7 @@ class Organizations::Staff::MatchesControllerTest < ActionDispatch::IntegrationT
 
       should "be authorized" do
         assert_authorized_to(
-          :destroy?, @match,
+          :manage?, @match,
           with: Organizations::MatchPolicy
         ) do
           delete staff_match_url(@match)

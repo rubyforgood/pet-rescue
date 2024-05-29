@@ -32,7 +32,6 @@ STAFF_PERMISSIONS = (
     invite_fosterers
     purge_attachments
     manage_default_pet_tasks
-    manage_fosters
     manage_forms
     manage_questions
     manage_matches

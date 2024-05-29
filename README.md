@@ -1,9 +1,9 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-39-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-41-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
+The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to connect shelters with people who are looking to adopt or foster pets.
 
 ---
 
@@ -33,33 +33,6 @@ brew install postgresql
 ```sh
 brew services start postgresql
 ```
-
-## 🤝 Contributing Guidelines 
-
-Please feel free to contribute! Priority will be given to pull requests that address outstanding issues and have appropriate test coverage. Focus on issues tagged with the next milestone for higher priority.
-
-To contribute:
-* Identify an unassigned issue
-* Only work on one issue at a time
-* Request assignment of an issue by adding a comment on the issue
-* Fork the repo if you're not yet a contributor 
-* Ensure that the application runs locally in your browser. When you run the test suite locally, it should pass
-* Create a new branch for the issue using the format `XXX-brief-description-of-feature`, where `XXX` is the issue number
-* Make code changes related to the assigned issue
-* Commit locally using descriptive messages that indicate the affected parts of the application
-* Add tests related to your work(most of the time)
-* Ensure all tests pass successfully; if any fail, fix the issues causing the failures
-* Make a final commit if any code changes are required
-* Push up the branch
-* Create a pull request and fill out the description fields
-* We like to make sure people are recognized for their contributions, so please attribute others by commenting on a pull request with
-
-  ```
-  @all-contributors
-  please add @<username> for <contributions>. 
-  please add @<username> for <contributions>.
-  ```
-  Replace `<contributions>` with `code` or `review`
 
 ## Install & Setup
 
@@ -151,13 +124,38 @@ If you find yourself writing a conditional checking the question, "Is the user *
 
 This [google sheets](https://docs.google.com/spreadsheets/d/1kPDeLicDu1IFkjWEXrWpwT36jtvoMVopEBiX-5L-r1A/edit?usp=sharing) contains a list of tools, their purposes, and who has access to grant permissions.
 
+
+## 🤝 Contributing Guidelines
+
+Please feel free to contribute! Priority will be given to pull requests that address outstanding issues and have appropriate test coverage. Focus on issues tagged with the next milestone for higher priority.
+
+To contribute:
+* Identify an unassigned issue
+* Only work on one issue at a time
+* Request assignment of an issue by adding a comment on the issue
+* Fork the repo if you're not yet a contributor
+* Ensure that the application runs locally in your browser. When you run the test suite locally, it should pass
+* Create a new branch for the issue using the format `XXX-brief-description-of-feature`, where `XXX` is the issue number
+* Make code changes related to the assigned issue
+* Commit locally using descriptive messages that indicate the affected parts of the application
+* Add tests related to your work(most of the time)
+* Ensure all tests pass successfully; if any fail, fix the issues causing the failures
+* Make a final commit if any code changes are required
+* Push up the branch
+* Create a pull request and fill out the description fields
+* We like to make sure people are recognized for their contributions, so please attribute others by commenting on a pull request with
+
+  ```
+  @all-contributors
+  please add @<username> for <contributions>. 
+  please add @<username> for <contributions>.
+  ```
+  Replace `<contributions>` with `code` or `review`
+
 # 📖 About
 
 ## Ruby for Good
 Pet Rescue is one of many projects initiated and run by Ruby for Good. You can find out more about Ruby for Good at https://rubyforgood.org
-
-## Pet Rescue Adoption Sites
-[Baja Pet Rescue](https://www.bajapetrescue.com)
 
 # 🌟 Core Values
 While vision is the destination, and strategy is how we'll get there, core values are what we'll use to handle times of change or uncertainty (both of which are expected, guaranteed to happen, and positive signs of growth!).
@@ -183,11 +181,11 @@ Build upon stakeholder partnerships to foster and encourage their active involve
 
 # 📚Knowledge Base
 
-## Preparation Work (Before code)
-These are just some of the documents put together before writing any code:
-* Slide deck to pitch idea to client: [here](https://docs.google.com/presentation/d/1d4gjzADk7BcxmQEVZlesheGUen9d1E3RzrVvskMhVxo/edit?usp=sharing)
-* Figma site design: [here](https://www.figma.com/file/0jVgYASUJy0KiX3BVc3dFM/Tasks?type=design&node-id=0-1&mode=design)
-* Model association diagram: [here](https://lucid.app/lucidchart/a915c03c-3c09-454d-837b-f3d2768f5722/edit?viewport_loc=-25%2C-973%2C3565%2C2341%2C0_0&invitationId=inv_85cf2967-7b33-4030-903f-9655e767cbbf)
+## Useful resources
+These are some resources that may help with contributing to the codebase
+* [Figma site design](https://www.figma.com/file/0jVgYASUJy0KiX3BVc3dFM/Tasks?type=design&node-id=0-1&mode=design)
+* Model association diagram: Import the schema.rb file into https://dbdiagram.io/d to get the latest version of the diagram
+* [Turbo Rails Tutorial](https://www.hotrails.dev/turbo-rails)
 
 
 ## Contributors ✨
@@ -250,6 +248,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/OliverLeighC"><img src="https://avatars.githubusercontent.com/u/51760107?v=4?s=100" width="100px;" alt="Oliver Coley"/><br /><sub><b>Oliver Coley</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=OliverLeighC" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sarvaiyanidhi"><img src="https://avatars.githubusercontent.com/u/514363?v=4?s=100" width="100px;" alt="Nidhi Sarvaiya"/><br /><sub><b>Nidhi Sarvaiya</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=sarvaiyanidhi" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/elight"><img src="https://avatars.githubusercontent.com/u/10112?v=4?s=100" width="100px;" alt="Evan Light"/><br /><sub><b>Evan Light</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=elight" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/kiryth"><img src="https://avatars.githubusercontent.com/u/110743903?v=4?s=100" width="100px;" alt="Kirin"/><br /><sub><b>Kirin</b></sub></a><br /><a href="#design-kiryth" title="Design">🎨</a></td>
     </tr>
   </tbody>
 </table>

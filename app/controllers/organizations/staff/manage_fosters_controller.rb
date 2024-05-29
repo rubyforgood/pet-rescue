@@ -1,8 +1,89 @@
 class Organizations::Staff::ManageFostersController < Organizations::BaseController
+  include ::Pagy::Backend
+
   layout "dashboard"
 
+  before_action :context_authorize, only: %i[new create index]
+  before_action :set_foster, only: %i[edit update destroy]
+
+  def new
+    @pets = Pet.fosterable.order(:name)
+    @accounts = AdopterFosterAccount.fosterers.order(:last_name)
+    @foster = Match.new
+  end
+
+  def create
+    @foster = Match.new(match_params.merge(match_type: :foster))
+
+    if @foster.save
+      redirect_to action: :index
+    else
+      @pets = Pet.fosterable.order(:name)
+      @accounts = AdopterFosterAccount.fosterers.order(:last_name)
+
+      render :new, status: :unprocessable_entity
+    end
+  end
+
   def index
-    authorize! User, context: {organization: Current.organization},
-      with: Organizations::ManageFostersPolicy
+    @q = authorized_scope(Match.fosters).joins(:pet).ransack(params[:q])
+    @pagy, paginated_fosters = pagy(
+      @q.result
+        .includes(:pet, :user)
+        .order("pets.updated_at DESC"),
+      items: 10
+    )
+    @foster_pets = paginated_fosters.group_by(&:pet)
+  end
+
+  def edit
+    # Turbo frames are an HTML mime-type
+    if turbo_frame_request?
+      case turbo_frame_request_id
+      when helpers.dom_id(@foster, :start_date)
+        render partial: "date_edit", locals: {attribute: :start_date}
+      when helpers.dom_id(@foster, :end_date)
+        render partial: "date_edit", locals: {attribute: :end_date}
+      end
+    else
+      render :edit
+    end
+  end
+
+  def update
+    if @foster.update(match_params)
+      flash[:success] = "Foster for #{@foster.pet.name} successfully updated."
+      redirect_to action: :index
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @foster.destroy
+
+    flash[:success] = "Foster for #{@foster.pet.name} deleted."
+    redirect_to action: :index, page: params[:page]
+  end
+
+  private
+
+  def match_params
+    params.require(:match).permit(
+      :pet_id,
+      :adopter_foster_account_id,
+      :start_date,
+      :end_date
+    )
+  end
+
+  def context_authorize
+    authorize! Match, context: {organization: Current.organization}
+  end
+
+  def set_foster
+    @foster = Match.find(params[:id])
+
+    authorize! @foster
   end
 end

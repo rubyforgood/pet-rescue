@@ -256,6 +256,14 @@ en:
         country: Country
         province_state: Province/State
         city_town: City/Town
+      adopter_application:
+        status:
+          awaiting_review: Awaiting Review
+          under_review: Under Review
+          adoption_pending: Adoption Pending
+          withdrawn: Withdrawn
+          successful_applicant: Successful Applicant
+          adoption_made: Adoption Made
   errors:
     attributes:
       general:

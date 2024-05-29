@@ -1,118 +1,117 @@
 <!DOCTYPE html>
 <html>
-<%= render "layouts/shared/head" %>
-
+  <%= render "layouts/shared/head" %>
   <body>
     <%= render "layouts/shared/flash_messages" %>
     <%= render 'layouts/shared/navbar' %>
 
-      <!-- Page Content -->
-      <main>
-        <section class="pt-5 pb-5">
-          <div class="container">
-            <div class="row align-items-center">
-              <!-- User info -->
-              <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                <!-- Bg -->
-                <div class="rounded-top" style="background: url('/assets/background/profile-bg.jpg') no-repeat; background-size: cover; height: 100px;"></div>
-                <div class="card px-4 pt-2 pb-4 shadow-sm rounded-top-0 rounded-bottom-0 rounded-bottom-md-2">
-                  <div class="d-flex align-items-end justify-content-between">
-                    <div class="d-flex align-items-center">
-                      <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-                        <%= render_avatar_partial(xl: true) %>
-                      </div>
-                      <div class="lh-1">
-                        <h2 class="mb-0"><%= "#{current_user.first_name} #{current_user.last_name}" %></h2>
-                      </div>
+    <!-- Page Content -->
+    <main>
+      <section class="pt-5 pb-5">
+        <div class="container-lg">
+          <div class="row align-items-center">
+            <!-- User info -->
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+              <!-- Bg -->
+              <div class="rounded-top" style="background: url('/assets/background/profile-bg.jpg') no-repeat; background-size: cover; height: 100px;"></div>
+              <div class="card px-4 pt-2 pb-4 shadow-sm rounded-top-0 rounded-bottom-0 rounded-bottom-md-2">
+                <div class="d-flex align-items-end justify-content-between">
+                  <div class="d-flex align-items-center">
+                    <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+                      <%= render_avatar_partial(xl: true) %>
                     </div>
-                    <div>
-                      <a href="add-course.html" class="btn btn-primary d-none d-md-block">Sample Button</a>
+                    <div class="lh-1">
+                      <h2 class="mb-0"><%= "#{current_user.first_name} #{current_user.last_name}" %></h2>
                     </div>
+                  </div>
+                  <div>
+                    <a href="add-course.html" class="btn btn-primary d-none d-md-block">Sample Button</a>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Content -->
+          <!-- Content -->
 
-            <div class="row mt-0 mt-md-4">
-              <div class="col-lg-3 col-md-4 col-12">
-                <!-- Side navbar -->
-                <nav class="navbar navbar-expand-md shadow-sm mb-4 mb-lg-0 sidenav">
-                  <!-- Menu -->
-                  <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
-                  <!-- Button -->
-                  <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fe fe-menu"></span>
-                  </button>
-                  <!-- Collapse navbar -->
-                  <div class="collapse navbar-collapse" id="sidenav">
-                    <div class="navbar-nav flex-column">
-                      <span class="navbar-header">Dashboard</span>
-                      <ul class="list-unstyled ms-n2 mb-4">
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <%= active_link_to adopter_fosterer_dashboard_index_path, class: "nav-link" do %>
-                            <i class="fe fe-home nav-icon"></i> My Dashboard
-                          <% end %>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <%= active_link_to adopter_fosterer_dashboard_index_path, class: "nav-link" do %>
-                            <i class="fe fe-book nav-icon"></i> My Applications
-                          <% end %>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <%= active_link_to adopter_fosterer_likes_path, class: "nav-link" do %>
-                            <i class="fe fe-heart nav-icon"></i> Liked Pets
-                          <% end %>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <%= active_link_to adopter_fosterer_dashboard_index_path, class: "nav-link" do %>
-                            <i class="fe fe-dollar-sign nav-icon"></i> Donate
-                          <% end %>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <%= active_link_to faq_index_path, class: "nav-link" do %>
-                            <i class="fe fe-help-circle nav-icon"></i> FAQ
-                          <% end %>
-                        </li>
-                      </ul>
-                      <!-- Navbar header -->
-                      <span class="navbar-header">Account Settings</span>
-                      <ul class="list-unstyled ms-n2 mb-0">
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <%= active_link_to edit_user_registration_path, class: "nav-link" do %>
-                            <i class="fe fe-settings nav-icon"></i> Edit Settings
-                          <% end %>
-                        </li>
-                        <!-- Nav item -->
-                        <li class="nav-item">
-                          <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'nav-link' do %>
-                            <i class="fe fe-power nav-icon"></i> Log Out
-                          <% end %>
-                        </li>
-                        <li class="nav-item">
-                          <%= active_link_to adopter_fosterer_dashboard_index_path, class: "nav-link" do %>
-                            <i class="fe fe-trash nav-icon"></i> Delete Account
-                          <% end %>
-                        </li>
-                      </ul>
-                    </div>
+          <div class="row mt-0 mt-md-4">
+            <div class="col-lg-3 col-md-4 col-12">
+              <!-- Side navbar -->
+              <nav class="navbar navbar-expand-md shadow-sm mb-4 mb-lg-0 sidenav">
+                <!-- Menu -->
+                <a class="d-xl-none d-lg-none d-md-none text-inherit fw-bold" href="#">Menu</a>
+                <!-- Button -->
+                <button class="navbar-toggler d-md-none icon-shape icon-sm rounded bg-primary text-light" type="button" data-bs-toggle="collapse" data-bs-target="#sidenav" aria-controls="sidenav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="fe fe-menu"></span>
+                </button>
+                <!-- Collapse navbar -->
+                <div class="collapse navbar-collapse" id="sidenav">
+                  <div class="navbar-nav flex-column">
+                    <span class="navbar-header">Dashboard</span>
+                    <ul class="list-unstyled ms-n2 mb-4">
+                      <!-- Nav item -->
+                      <li class="nav-item">
+                        <%= active_link_to adopter_fosterer_dashboard_index_path, class: "nav-link" do %>
+                          <i class="fe fe-home nav-icon"></i> My Dashboard
+                        <% end %>
+                      </li>
+                      <!-- Nav item -->
+                      <li class="nav-item">
+                        <%= active_link_to adopter_fosterer_adopter_applications_path, class: "nav-link" do %>
+                          <i class="fe fe-book nav-icon"></i> <%= t("dashboard.applications.header_title")%>
+                        <% end %>
+                      </li>
+                      <!-- Nav item -->
+                      <li class="nav-item">
+                        <%= active_link_to adopter_fosterer_likes_path, class: "nav-link" do %>
+                          <i class="fe fe-heart nav-icon"></i> Liked Pets
+                        <% end %>
+                      </li>
+                      <!-- Nav item -->
+                      <li class="nav-item">
+                        <%= active_link_to adopter_fosterer_dashboard_index_path, class: "nav-link" do %>
+                          <i class="fe fe-dollar-sign nav-icon"></i> Donate
+                        <% end %>
+                      </li>
+                      <!-- Nav item -->
+                      <li class="nav-item">
+                        <%= active_link_to faq_index_path, class: "nav-link" do %>
+                          <i class="fe fe-help-circle nav-icon"></i> FAQ
+                        <% end %>
+                      </li>
+                    </ul>
+                    <!-- Navbar header -->
+                    <span class="navbar-header">Account Settings</span>
+                    <ul class="list-unstyled ms-n2 mb-0">
+                      <!-- Nav item -->
+                      <li class="nav-item">
+                        <%= active_link_to edit_user_registration_path, class: "nav-link" do %>
+                          <i class="fe fe-settings nav-icon"></i> Edit Settings
+                        <% end %>
+                      </li>
+                      <!-- Nav item -->
+                      <li class="nav-item">
+                        <%= button_to destroy_user_session_path, method: :delete, data: { turbo: false }, class: 'nav-link' do %>
+                          <i class="fe fe-power nav-icon"></i> Log Out
+                        <% end %>
+                      </li>
+                      <li class="nav-item">
+                        <%= active_link_to adopter_fosterer_dashboard_index_path, class: "nav-link" do %>
+                          <i class="fe fe-trash nav-icon"></i> Delete Account
+                        <% end %>
+                      </li>
+                    </ul>
                   </div>
-                </nav>
-              </div>
-              <div class="col-lg-9 col-md-8 col-12">
-                <!-- Card -->
-                <%= yield %>
-              </div>
+                </div>
+              </nav>
+            </div>
+            <div class="col-lg-9 col-md-8 col-12">
+              <!-- Card -->
+              <%= yield %>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+    </main>
   </body>
 </html>

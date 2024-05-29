@@ -13,7 +13,6 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
       Pet.org_pets_with_apps(current_user.staff_account.organization_id)
     ).ransack(params[:q])
     @pets_with_applications = @q.result.includes(:adopter_applications)
-    @pet = selected_pet
 
     # Combining these into a single chained statement does not yield the same result due to how Ransack processes parameters.
     if params[:q].present? && params[:q]["adopter_applications_status_eq"].present?
@@ -50,13 +49,6 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
   def set_adopter_application
     @application = AdopterApplication.find(params[:id])
     authorize! @application
-  end
-
-  # use where to return a relation for the view
-  def selected_pet
-    return if !params[:pet_id] || params[:pet_id] == ""
-
-    Pet.where(id: params[:pet_id])
   end
 
   def filter_by_application_status(pets_relation, status_filter)
