@@ -24,4 +24,8 @@ class Organizations::LikePolicy < ApplicationPolicy
   def verify_adopter_foster_account!
     deny! unless user.adopter_foster_account.present?
   end
+
+  def pet
+    @pet || record.pet
+  end
 end

@@ -5,14 +5,14 @@ class Organizations::AdopterFosterer::LikesController < Organizations::BaseContr
   layout "adopter_foster_dashboard", only: :index
 
   def index
-    authorize! with: Organizations::LikePolicy
+    authorize!
 
     @likes = current_user.adopter_foster_account.likes
     @pets = current_user.adopter_foster_account.liked_pets
   end
 
   def create
-    authorize! context: {pet: @pet}, with: Organizations::LikePolicy
+    authorize! context: {pet: @pet}
 
     @like = Like.new(adopter_foster_account_id: current_user.adopter_foster_account.id,
       pet_id: like_params[:pet_id])
@@ -55,5 +55,6 @@ class Organizations::AdopterFosterer::LikesController < Organizations::BaseContr
 
   def set_like
     @like = Like.find(params[:id])
+    authorize! @like
   end
 end
