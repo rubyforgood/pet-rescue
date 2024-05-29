@@ -15,7 +15,7 @@ class Organizations::AttachmentsController < ApplicationController
       @attachment.purge
       redirect_to request.referrer, notice: "Avatar removed"
     else
-      redirect_to request.referrer, alert: t('errors.authorization_error')
+      redirect_to request.referrer, alert: t("errors.authorization_error")
     end
   end
 end

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActionPolicy::Unauthorized do |ex|
-    flash[:alert] = t('errors.authorization_error')
+    flash[:alert] = t("errors.authorization_error")
 
     redirect_back fallback_location: root_path
   end

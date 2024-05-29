@@ -20,7 +20,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       assert_response :redirect
       follow_redirect!
       follow_redirect!
-      assert_equal I18n.t('errors.authorization_error'), flash[:alert]
+      assert_equal I18n.t("errors.authorization_error"), flash[:alert]
     end
   end
 
