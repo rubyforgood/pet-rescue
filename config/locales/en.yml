@@ -264,7 +264,7 @@ en:
         select_one: "Select one"
         please_fill_in: "Please fill this field"
         50_characters_maximum: "50 characters maximum"
-
+    authorization_error: "You are not authorized to perform this action."
   organizations:
     adoptable_pets:
       index:
@@ -433,3 +433,6 @@ en:
       invitation_sent: "Invitation sent"
       enabled: "Enabled"
       deactivated: "Deactivated"
+  contacts:
+    create:
+      success: "Message sent!"

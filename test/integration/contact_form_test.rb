@@ -43,6 +43,6 @@ class ContactFormTest < ActionDispatch::IntegrationTest
     # follow_redirect!
     # assert_response :success
 
-    # assert_equal flash[:notice], "Message sent!"
+    # assert_equal flash[:notice], I18n.t('.success', scope: 'contacts.create')
   end
 end
