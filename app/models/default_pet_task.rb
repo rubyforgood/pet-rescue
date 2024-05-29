@@ -7,6 +7,7 @@
 #  due_in_days     :integer
 #  name            :string           not null
 #  recurring       :boolean          default(FALSE)
+#  species         :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :bigint           not null
@@ -24,4 +25,6 @@ class DefaultPetTask < ApplicationRecord
 
   validates :name, presence: true
   validates_numericality_of :due_in_days, only_integer: true, greater_than_or_equal_to: 0, allow_nil: true
+
+  enum species: {"All" => nil}.merge(Pet.species)
 end
