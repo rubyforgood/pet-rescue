@@ -23,6 +23,8 @@ class AdopterFosterAccount < ApplicationRecord
   has_one :adopter_foster_profile, dependent: :destroy
   has_many :adopter_applications, dependent: :destroy
   has_many :matches, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_pets, through: :likes, source: :pet
 
   scope :adopters, -> {
     joins(user: :roles).where(roles: {name: "adopter"})

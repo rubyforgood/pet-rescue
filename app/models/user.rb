@@ -100,4 +100,8 @@ class User < ApplicationRecord
       raise ArgumentError, "Unsupported format: #{format}"
     end
   end
+
+  def name_initials
+    full_name.split.map { |part| part[0] }.join.upcase
+  end
 end

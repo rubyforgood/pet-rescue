@@ -78,7 +78,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   def verify_application_elements(application)
     assert_select "tr[id='adopter_application_#{application.id}']" do
       adopter = application.adopter_foster_account.user
-      assert_select "a", text: "#{adopter.last_name}, #{adopter.first_name}"
+      assert_select "a", text: "#{adopter.first_name} #{adopter.last_name}"
       assert_select "button", text: application.status.titleize
     end
   end

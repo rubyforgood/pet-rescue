@@ -21,7 +21,7 @@
                       <%= render_avatar_partial(xl: true) %>
                     </div>
                     <div class="lh-1">
-                      <h2 class="mb-0"><%= "#{current_user.first_name} #{current_user.last_name}" %></h2>
+                      <h2 class="mb-0"><%= "#{current_user.full_name}" %></h2>
                     </div>
                   </div>
                   <div>
@@ -63,8 +63,8 @@
                       </li>
                       <!-- Nav item -->
                       <li class="nav-item">
-                        <%= active_link_to adopter_fosterer_dashboard_index_path, class: "nav-link" do %>
-                          <i class="fe fe-star nav-icon"></i> My Pets
+                        <%= active_link_to adopter_fosterer_likes_path, class: "nav-link" do %>
+                          <i class="fe fe-heart nav-icon"></i> Liked Pets
                         <% end %>
                       </li>
                       <!-- Nav item -->
