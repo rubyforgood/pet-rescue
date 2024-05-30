@@ -102,8 +102,8 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         @user = create(:fosterer, :with_profile)
       end
 
-      should "return false" do
-        assert_equal @action.call, false
+      should "return true" do
+        assert_equal @action.call, true
       end
     end
   end
@@ -192,8 +192,8 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         @user = create(:fosterer, :with_profile)
       end
 
-      should "return false" do
-        assert_equal @action.call, false
+      should "return true" do
+        assert_equal @action.call, true
       end
     end
   end
