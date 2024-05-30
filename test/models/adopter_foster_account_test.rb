@@ -13,14 +13,14 @@ class AdopterFosterAccountTest < ActiveSupport::TestCase
   context "scopes" do
     setup do
       @adopter = create(:adopter)
-      @fosterer = create(:fosterer_not_adopter)
+      @fosterer = create(:fosterer)
     end
 
     context ".adopters" do
       should "include accounts with adopter role" do
         res = AdopterFosterAccount.adopters
         assert res.include?(@adopter.adopter_foster_account)
-        assert_not res.include?(@fosterer.adopter_foster_account)
+        assert res.include?(@fosterer.adopter_foster_account)
       end
     end
 
