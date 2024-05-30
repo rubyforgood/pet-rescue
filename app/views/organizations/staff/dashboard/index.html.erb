@@ -9,8 +9,8 @@
           <% c.icon "list" %>
           <% c.value do %>
             <div>
-              <div> <%= link_to "#{@organization.staff_accounts.count} Not Completed", "" %> </div>
-              <div> <%= link_to "#{@organization.staff_accounts.count} Overdue", "" %> </div>
+              <div> <%= link_to "#{@not_completed_not_overdue_tasks_count} Not Completed", "" %> </div>
+              <div> <%= link_to "#{@not_completed_overdue_tasks_count} Overdue", "" %> </div>
             </div>
           <% end %>
         <% end %>

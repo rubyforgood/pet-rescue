@@ -36,6 +36,9 @@ class Task < ApplicationRecord
   scope :is_completed, -> { where(completed: true) }
   scope :has_due_date, -> { where.not(due_date: nil).order(due_date: :asc) }
   scope :no_due_date, -> { where(due_date: nil).order(updated_at: :desc) }
+  scope :not_overdue, -> { where('(due_date >= ? OR due_date IS NULL)', Time.current) }
+  scope :overdue, -> { where('(due_date < ? )', Time.current) }
+
 
   def overdue?
     due_date_passed? && !completed
