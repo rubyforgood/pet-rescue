@@ -50,6 +50,16 @@ FactoryBot.define do
       end
     end
 
+    factory :fosterer_not_adopter do
+      adopter_foster_account do
+        association :adopter_foster_account, user: instance
+      end
+
+      after(:build) do |user, _context|
+        user.add_role(:fosterer, user.organization)
+      end
+    end
+
     factory :staff do
       staff_account do
         association :staff_account, user: instance

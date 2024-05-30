@@ -6,26 +6,28 @@ class AdopterFosterAccountTest < ActiveSupport::TestCase
     should have_one(:adopter_foster_profile).dependent(:destroy)
     should have_many(:adopter_applications).dependent(:destroy)
     should have_many(:matches).dependent(:destroy)
+    should have_many(:likes).dependent(:destroy)
+    should have_many(:liked_pets).through(:likes).source(:pet)
   end
 
   context "scopes" do
     setup do
       @adopter = create(:adopter)
-      @foster = create(:fosterer)
+      @fosterer = create(:fosterer_not_adopter)
     end
 
     context ".adopters" do
-      should "include accounts with adopter role only" do
+      should "include accounts with adopter role" do
         res = AdopterFosterAccount.adopters
         assert res.include?(@adopter.adopter_foster_account)
-        assert_not res.include?(@foster.adopter_foster_account)
+        assert_not res.include?(@fosterer.adopter_foster_account)
       end
     end
 
     context ".fosterers" do
-      should "include accounts with fosterer role only" do
+      should "include accounts with fosterer role" do
         res = AdopterFosterAccount.fosterers
-        assert res.include?(@foster.adopter_foster_account)
+        assert res.include?(@fosterer.adopter_foster_account)
         assert_not res.include?(@adopter.adopter_foster_account)
       end
     end
