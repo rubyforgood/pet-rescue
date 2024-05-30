@@ -8,25 +8,11 @@ class StaticPagesTest < ActionDispatch::IntegrationTest
     # assert_select "h1", "Be someone's hero adopt a rescue."
   end
 
-  test "About Us page can be accessed" do
-    skip("while new ui is implemented")
-    # get "/about_us"
-    # assert_response :success
-    # assert_select "h1", "About us"
-  end
-
   test "FAQ page can be accessed" do
     skip("while new ui is implemented")
     # get "/faq"
     # assert_response :success
     # assert_select "h1", "Frequently Asked Questions"
-  end
-
-  test "Partners page can be accessed" do
-    skip("while new ui is implemented")
-    # get "/partners"
-    # assert_response :success
-    # assert_select "h1", "Partners"
   end
 
   test "Donate page can be accessed" do
@@ -62,5 +48,35 @@ class StaticPagesTest < ActionDispatch::IntegrationTest
     # get "/cookie_policy"
     # assert_response :success
     # assert_select "h1", "Cookie Policy"
+  end
+
+  context "with no tenant" do
+    should "render the about us page" do
+      get "/about_us"
+      assert_response :success
+      assert_select "h1", "About us"
+    end
+
+    should "render the partners page" do
+      get "/partners"
+      assert_response :success
+      assert_select "h1", "Partners"
+    end
+  end
+
+  context "with a tenant" do
+    setup do
+      @organization = create(:organization)
+    end
+
+    should "return 404 for the about us page" do
+      get "/#{@organization.slug}/about_us"
+      assert_response :not_found
+    end
+
+    should "return 404 for the partners page" do
+      get "/#{@organization.slug}/partners"
+      assert_response :not_found
+    end
   end
 end

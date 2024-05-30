@@ -9,8 +9,4 @@ module Avatarable
       size: {between: 10.kilobyte..1.megabytes,
              message: "size must be between 10kb and 1Mb"}
   end
-
-  def append_avatar=(attachable)
-    avatar.attach(attachable)
-  end
 end

@@ -7,7 +7,7 @@
     <h1><%= @pet.name %> has received a new adoption application</h1>
     <p>
       Great news! You have another adoption application to review for
-      <%= link_to @pet.name, pet_url(@pet, script_name: "/#{@pet.organization.slug}"), target: "_blank" %>
+      <%= link_to @pet.name, staff_pet_url(@pet, script_name: "/#{@pet.organization.slug}"), target: "_blank" %>
     </p>
     <p>
       <%= link_to "Log-in and check the applications", new_user_session_url(script_name: "/#{@pet.organization.slug}"), target: "_blank" %>

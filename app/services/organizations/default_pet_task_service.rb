@@ -11,7 +11,10 @@ class Organizations::DefaultPetTaskService
         pet_id: @pet.id,
         name: task.name,
         description: task.description,
-        completed: false
+        completed: false,
+        due_date: task.due_in_days&.days&.from_now&.beginning_of_day,
+        recurring: task.recurring,
+        next_due_date_in_days: task.recurring? ? task.due_in_days : nil
       }
     end
   end

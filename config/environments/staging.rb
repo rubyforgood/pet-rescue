@@ -40,9 +40,6 @@ Rails.application.configure do
   # Store uploaded files locally for Heroku.
   config.active_storage.service = :local
 
-  # Per the deprecation warning in rails server output re this config, set it to true
-  config.active_storage.replace_on_assign_to_many = true
-
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"

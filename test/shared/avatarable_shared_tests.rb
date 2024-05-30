@@ -7,7 +7,7 @@ module AvatarableSharedTests
         should "behave as avatarable" do
           assert_includes User.included_modules, Avatarable
 
-          assert subject, respond_to?(:append_avatar=)
+          assert subject, respond_to?(:avatar=)
         end
 
         context "validations" do

@@ -14,11 +14,18 @@ require "rails/test_help"
 require "minitest/unit"
 require "mocha/minitest"
 
+Dir[Rails.root.join("test", "support", "**", "*.rb")].sort.each { |f| require f }
+
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 
+  parallelize_teardown do
+    if ENV["COVERAGE"]
+      SimpleCov.result
+    end
+  end
   # Devise test helpers
   include Devise::Test::IntegrationHelpers
 
@@ -30,18 +37,23 @@ class ActiveSupport::TestCase
     end
   end
 
-  setup do
-    ActsAsTenant.test_tenant = create(:organization, slug: "test")
-    set_organization(ActsAsTenant.test_tenant)
+  setup do |test|
+    if test.is_a?(ActionDispatch::IntegrationTest)
+      ActsAsTenant.test_tenant = create(:organization, slug: "test")
+    else
+      ActsAsTenant.current_tenant = create(:organization, slug: "test")
+    end
+
+    set_organization(ActsAsTenant.current_tenant)
   end
 
   def teardown
+    ActsAsTenant.current_tenant = nil
     ActsAsTenant.test_tenant = nil
     Rails.application.routes.default_url_options[:script_name] = ""
   end
 
   def check_messages
-    assert_response :success
     assert_not response.parsed_body.include?("translation_missing"), "Missing translations, ensure this text is included in en.yml"
   end
 
@@ -58,6 +70,15 @@ class ActiveSupport::TestCase
     config.integrate do |with|
       with.test_framework :minitest
       with.library :rails
+    end
+  end
+end
+
+class ActionDispatch::IntegrationTest
+  parallelize_setup do |worker|
+    ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{worker}"
+    if ENV["COVERAGE"]
+      SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
     end
   end
 end

@@ -1,0 +1,16 @@
+<% breadcrumb :faqs_index %>
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title t(".faqs") %>
+  <% p.actions do %>
+    <%= link_to t('.create_faq'), new_staff_faq_path, class: "btn btn-primary" %><br>
+  <% end %>
+  <% p.content do %>
+    <!-- row -->
+    <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
+      <!-- card -->
+      <div class="card">
+        <%= render @faqs %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

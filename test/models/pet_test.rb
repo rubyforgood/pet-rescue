@@ -5,8 +5,9 @@ require "test_helper"
 class PetTest < ActiveSupport::TestCase
   context "associations" do
     should have_many(:adopter_applications).dependent(:destroy)
-    should have_one(:match).dependent(:destroy)
+    should have_many(:matches).dependent(:destroy)
     should have_many_attached(:images)
+    should have_many(:likes).dependent(:destroy)
   end
 
   context "validations" do
@@ -37,6 +38,24 @@ class PetTest < ActiveSupport::TestCase
 
       adopter_application.status = "awaiting_review"
       assert_not pet.has_adoption_pending?
+    end
+  end
+
+  context ".org_pets_with_apps(staff_org_id)" do
+    should "return pets for organization that have adopter applications" do
+      pet_with_app = create(:pet, :adoption_pending)
+      pet_without_app = create(:pet)
+      res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
+
+      assert res.include?(pet_with_app)
+      assert_not res.include?(pet_without_app)
+    end
+
+    should "include pets that have been adopted" do
+      adopted_pet = create(:pet, :adopted)
+      res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
+
+      assert res.include?(adopted_pet)
     end
   end
 end

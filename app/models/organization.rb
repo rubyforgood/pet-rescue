@@ -13,13 +13,17 @@
 #  index_organizations_on_slug  (slug) UNIQUE
 #
 class Organization < ApplicationRecord
-  resourcify # rolify
+  # Rolify resource
+  resourcify
 
   has_many :staff_accounts
   has_many :users, through: :staff_accounts
   has_many :pets
   has_many :default_pet_tasks
+  has_many :forms, dependent: :destroy
+  has_many :faqs
 
   has_one :profile, dependent: :destroy, class_name: "OrganizationProfile", required: true
   has_one :location, through: :profile
+  has_one :page_text, dependent: :destroy
 end

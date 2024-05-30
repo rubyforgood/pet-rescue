@@ -4,7 +4,6 @@
 #
 #  id              :bigint           not null, primary key
 #  deactivated_at  :datetime
-#  verified        :boolean          default(FALSE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :bigint           not null
@@ -23,20 +22,9 @@
 class StaffAccount < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :user
-  rolify
 
   def email
     user.email.to_s
-  end
-
-  def status
-    if user.invited_to_sign_up?
-      :invitation_sent
-    elsif deactivated_at
-      :deactivated
-    else
-      :enabled
-    end
   end
 
   def deactivate
@@ -45,5 +33,9 @@ class StaffAccount < ApplicationRecord
 
   def activate
     update(deactivated_at: nil) if deactivated_at
+  end
+
+  def deactivated?
+    !!deactivated_at
   end
 end

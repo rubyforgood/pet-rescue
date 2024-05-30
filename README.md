@@ -1,9 +1,9 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-41-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to link adopters with pets.
+The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to connect shelters with people who are looking to adopt or foster pets.
 
 ---
 
@@ -16,32 +16,23 @@ Let's get your machine setup to startup the application!
 ⚠️  We assume you already have ruby installed with your preferred version manager. This codebase supports [rbenv](
 https://github.com/rbenv/rbenv) and [asdf](https://github.com/asdf-vm/asdf-ruby).
 
-## 🤝 Contributing Guidelines 
+### PostgreSQL
 
-Please feel free to contribute! Priority will be given to pull requests that address outstanding issues and have appropriate test coverage. Focus on issues tagged with the next milestone for higher priority.
+Installing PostgreSQL is required to run the application.
 
-To contribute:
-* Identify an unassigned issue
-* Only work on one issue at a time
-* Request assignment of an issue by adding a comment on the issue
-* Fork the repo if you're not yet a contributor 
-* Ensure that the application runs locally in your browser. When you run the test suite locally, it should pass
-* Create a new branch for the issue using the format `XXX-brief-description-of-feature`, where `XXX` is the issue number
-* Make code changes related to the assigned issue
-* Commit locally using descriptive messages that indicate the affected parts of the application
-* Add tests related to your work(most of the time)
-* Ensure all tests pass successfully; if any fail, fix the issues causing the failures
-* Make a final commit if any code changes are required
-* Push up the branch
-* Create a pull request and fill out the description fields
-* We like to make sure people are recognized for their contributions, so please attribute others by commenting on a pull request with
+#### Installing on MacOS
 
-  ```
-  @all-contributors
-  please add @<username> for <contributions>. 
-  please add @<username> for <contributions>.
-  ```
-  Replace `<contributions>` with `code` or `review`
+Instructions: https://wiki.postgresql.org/wiki/Homebrew
+
+```sh
+brew install postgresql
+```
+
+#### Running as a service
+
+```sh
+brew services start postgresql
+```
 
 ## Install & Setup
 
@@ -55,7 +46,8 @@ Create a new `config/application.yml` file from the `config/application.example.
 cp config/application.example.yml config/application.yml
 ```
 
-Update your `config/application.yml` by replacing the places that say REPLACE_ME.
+Update your `config/application.yml` by replacing the places that say REPLACE_ME. If you installed and configured PostgreSQL as discussed above
+you can use your username and leave the password blank for development.
 
 Run the setup script to prepare DB and assets
 ```sh
@@ -124,17 +116,46 @@ We use [standard](https://github.com/standardrb/standard) for linting. It provid
 rails standard:fix
 ```
 
+# Authorization
+
+If you find yourself writing a conditional checking the question, "Is the user **allowed** to view/do this?" that is an authorization concern. Pet Rescue utilizes the gem [Action Policy](https://github.com/palkan/action_policy) as our authorization framework. If you are familiar with Pundit, you will see many similarities. If you want to learn more about authorization or have questions about how Action Policy works, [their documentation](https://actionpolicy.evilmartians.io/#/) is excellent. If you would like a quick onboarding to how Action Policy is used in Pet Rescue, see [our wiki page on authorization](https://github.com/rubyforgood/pet-rescue/wiki/Authorization).
+
 # 🔨 Tools
 
 This [google sheets](https://docs.google.com/spreadsheets/d/1kPDeLicDu1IFkjWEXrWpwT36jtvoMVopEBiX-5L-r1A/edit?usp=sharing) contains a list of tools, their purposes, and who has access to grant permissions.
+
+
+## 🤝 Contributing Guidelines
+
+Please feel free to contribute! Priority will be given to pull requests that address outstanding issues and have appropriate test coverage. Focus on issues tagged with the next milestone for higher priority.
+
+To contribute:
+* Identify an unassigned issue
+* Only work on one issue at a time
+* Request assignment of an issue by adding a comment on the issue
+* Fork the repo if you're not yet a contributor
+* Ensure that the application runs locally in your browser. When you run the test suite locally, it should pass
+* Create a new branch for the issue using the format `XXX-brief-description-of-feature`, where `XXX` is the issue number
+* Make code changes related to the assigned issue
+* Commit locally using descriptive messages that indicate the affected parts of the application
+* Add tests related to your work(most of the time)
+* Ensure all tests pass successfully; if any fail, fix the issues causing the failures
+* Make a final commit if any code changes are required
+* Push up the branch
+* Create a pull request and fill out the description fields
+* We like to make sure people are recognized for their contributions, so please attribute others by commenting on a pull request with
+
+  ```
+  @all-contributors
+  please add @<username> for <contributions>. 
+  please add @<username> for <contributions>.
+  ```
+  Replace `<contributions>` with `code` or `review`
 
 # 📖 About
 
 ## Ruby for Good
 Pet Rescue is one of many projects initiated and run by Ruby for Good. You can find out more about Ruby for Good at https://rubyforgood.org
-
-## Pet Rescue Adoption Sites
-[Baja Pet Rescue](https://www.bajapetrescue.com)
 
 # 🌟 Core Values
 While vision is the destination, and strategy is how we'll get there, core values are what we'll use to handle times of change or uncertainty (both of which are expected, guaranteed to happen, and positive signs of growth!).
@@ -160,11 +181,11 @@ Build upon stakeholder partnerships to foster and encourage their active involve
 
 # 📚Knowledge Base
 
-## Preparation Work (Before code)
-These are just some of the documents put together before writing any code:
-* Slide deck to pitch idea to client: [here](https://docs.google.com/presentation/d/1d4gjzADk7BcxmQEVZlesheGUen9d1E3RzrVvskMhVxo/edit?usp=sharing)
-* Figma site design: [here](https://www.figma.com/file/x3iM31l8csY7mT0VwKykhT/BPR---Wireframes---Ami?node-id=530186%3A154&t=mgRlseVd2LTKPX4o-1)
-* Model association diagram: [here](https://lucid.app/lucidchart/a915c03c-3c09-454d-837b-f3d2768f5722/edit?viewport_loc=-25%2C-973%2C3565%2C2341%2C0_0&invitationId=inv_85cf2967-7b33-4030-903f-9655e767cbbf)
+## Useful resources
+These are some resources that may help with contributing to the codebase
+* [Figma site design](https://www.figma.com/file/0jVgYASUJy0KiX3BVc3dFM/Tasks?type=design&node-id=0-1&mode=design)
+* Model association diagram: Import the schema.rb file into https://dbdiagram.io/d to get the latest version of the diagram
+* [Turbo Rails Tutorial](https://www.hotrails.dev/turbo-rails)
 
 
 ## Contributors ✨
@@ -201,6 +222,33 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/nsiwnf"><img src="https://avatars.githubusercontent.com/u/34173394?v=4?s=100" width="100px;" alt="Sree P"/><br /><sub><b>Sree P</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=nsiwnf" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Thrillberg"><img src="https://avatars.githubusercontent.com/u/10481391?v=4?s=100" width="100px;" alt="Eric Tillberg"/><br /><sub><b>Eric Tillberg</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Thrillberg" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Tomaszabc"><img src="https://avatars.githubusercontent.com/u/131488886?v=4?s=100" width="100px;" alt="Tomaszabc"/><br /><sub><b>Tomaszabc</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Tomaszabc" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/atbalaji"><img src="https://avatars.githubusercontent.com/u/18101543?v=4?s=100" width="100px;" alt="BALAJI . A . T "/><br /><sub><b>BALAJI . A . T </b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=atbalaji" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mononoken"><img src="https://avatars.githubusercontent.com/u/81536479?v=4?s=100" width="100px;" alt="Ken Maeshima"/><br /><sub><b>Ken Maeshima</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=mononoken" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://mason-roberts.dev"><img src="https://avatars.githubusercontent.com/u/44660994?v=4?s=100" width="100px;" alt="Mason Roberts"/><br /><sub><b>Mason Roberts</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Developer3027" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://portfolio-1hab.onrender.com/"><img src="https://avatars.githubusercontent.com/u/61897123?v=4?s=100" width="100px;" alt="Mayank Bhatt"/><br /><sub><b>Mayank Bhatt</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=mayankbhatt07141" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jeevikasirwani"><img src="https://avatars.githubusercontent.com/u/83456541?v=4?s=100" width="100px;" alt="Jeevika Sirwani"/><br /><sub><b>Jeevika Sirwani</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jeevikasirwani" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jp524"><img src="https://avatars.githubusercontent.com/u/85654561?v=4?s=100" width="100px;" alt="Jade"/><br /><sub><b>Jade</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jp524" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://mehranjavid.github.io/"><img src="https://avatars.githubusercontent.com/u/39021904?v=4?s=100" width="100px;" alt="Mehran Javid"/><br /><sub><b>Mehran Javid</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=mehranjavid" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="http://uoodsq.github.io"><img src="https://avatars.githubusercontent.com/u/765993?v=4?s=100" width="100px;" alt="Bryan Witherspoon"/><br /><sub><b>Bryan Witherspoon</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=uoodsq" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/dwilsonactual"><img src="https://avatars.githubusercontent.com/u/15931013?v=4?s=100" width="100px;" alt="David Wilson"/><br /><sub><b>David Wilson</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=dwilsonactual" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/gdomingu"><img src="https://avatars.githubusercontent.com/u/4443635?v=4?s=100" width="100px;" alt="Gabe D"/><br /><sub><b>Gabe D</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=gdomingu" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/greggroth"><img src="https://avatars.githubusercontent.com/u/903365?v=4?s=100" width="100px;" alt="Greggory Rothmeier"/><br /><sub><b>Greggory Rothmeier</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=greggroth" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://tpo.pe/"><img src="https://avatars.githubusercontent.com/u/378?v=4?s=100" width="100px;" alt="Tim Pope"/><br /><sub><b>Tim Pope</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=tpope" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ipc103"><img src="https://avatars.githubusercontent.com/u/6826778?v=4?s=100" width="100px;" alt="Ian Candy"/><br /><sub><b>Ian Candy</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/pulls?q=is%3Apr+reviewed-by%3Aipc103" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://vonteacher.github.io"><img src="https://avatars.githubusercontent.com/u/17757205?v=4?s=100" width="100px;" alt="Vaughn Weiss"/><br /><sub><b>Vaughn Weiss</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=VonTeacher" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://harry-kp.github.io/"><img src="https://avatars.githubusercontent.com/u/55315065?v=4?s=100" width="100px;" alt="Harshit Chaudhary"/><br /><sub><b>Harshit Chaudhary</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Harry-kp" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://rarlindseysmash.com"><img src="https://avatars.githubusercontent.com/u/33750?v=4?s=100" width="100px;" alt="Lindsey Bieda"/><br /><sub><b>Lindsey Bieda</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=LindseyB" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/sean-dickinson"><img src="https://avatars.githubusercontent.com/u/90267290?v=4?s=100" width="100px;" alt="Sean Dickinson"/><br /><sub><b>Sean Dickinson</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=sean-dickinson" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/OliverLeighC"><img src="https://avatars.githubusercontent.com/u/51760107?v=4?s=100" width="100px;" alt="Oliver Coley"/><br /><sub><b>Oliver Coley</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=OliverLeighC" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/sarvaiyanidhi"><img src="https://avatars.githubusercontent.com/u/514363?v=4?s=100" width="100px;" alt="Nidhi Sarvaiya"/><br /><sub><b>Nidhi Sarvaiya</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=sarvaiyanidhi" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/elight"><img src="https://avatars.githubusercontent.com/u/10112?v=4?s=100" width="100px;" alt="Evan Light"/><br /><sub><b>Evan Light</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=elight" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/kiryth"><img src="https://avatars.githubusercontent.com/u/110743903?v=4?s=100" width="100px;" alt="Kirin"/><br /><sub><b>Kirin</b></sub></a><br /><a href="#design-kiryth" title="Design">🎨</a></td>
     </tr>
   </tbody>
 </table>

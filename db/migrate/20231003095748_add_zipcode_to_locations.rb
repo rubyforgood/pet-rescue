@@ -4,6 +4,6 @@ class AddZipcodeToLocations < ActiveRecord::Migration[7.0]
   end
 
   def down
-    safety_assured { remove_column :locations, :zipcode, :string }
+    remove_column :locations, :zipcode, :string
   end
 end

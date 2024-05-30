@@ -4,7 +4,7 @@
 
   <body>
     <%= render "layouts/shared/flash_messages" %>
-    <div id="db-wrapper">
+    <div id="db-wrapper" data-controller="toggle" data-toggle-target="toToggle" data-toggle-change-class="toggled">
       <%= render "layouts/dashboard/sidebar" %>
 
       <!-- Page Content -->
@@ -12,7 +12,7 @@
         <div class="header">
           <!-- navbar -->
           <nav class="navbar-default navbar navbar-expand-lg">
-            <a id="nav-toggle" href="#">
+            <a id="nav-toggle" style="cursor: pointer;" data-action="click->toggle#toggle">
               <i class="fe fe-menu"></i>
             </a>
 
@@ -22,18 +22,14 @@
                 <!-- List -->
                 <li class="dropdown ms-2">
                   <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="avatar avatar-md avatar-indicators avatar-online">
-                      <img alt="avatar" src="" class="rounded-circle">
-                    </div>
+                    <%= render_avatar_partial %>
                   </a>
                   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                     <div class="dropdown-item">
                       <div class="d-flex">
-                        <div class="avatar avatar-md avatar-indicators avatar-online">
-                          <img alt="avatar" src="" class="rounded-circle">
-                        </div>
+                        <%= render_avatar_partial %>
                         <div class="ms-3 lh-1">
-                          <h5 class="mb-1"><%= "#{current_user.first_name} #{current_user.last_name}" %></h5>
+                          <h5 class="mb-1"><%= "#{current_user.full_name}" %></h5>
                           <p class="mb-0 text-muted"><%= current_user.email %></p>
                         </div>
                       </div>
@@ -41,7 +37,7 @@
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
                       <li>
-                        <%= link_to dashboard_index_path, class: "dropdown-item" do %>
+                        <%= link_to staff_dashboard_index_path, class: "dropdown-item" do %>
                           <i class="fe fe-home me-2"></i> Dashboard
                         <% end %>
                       </li>

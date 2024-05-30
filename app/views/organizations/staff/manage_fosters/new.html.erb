@@ -1,0 +1,11 @@
+<% breadcrumb :new_foster %>
+
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title do %>
+    New Foster
+  <% end %>
+
+  <% p.content do %>
+    <%= render "form", {foster: @foster, pets: @pets, accounts: @accounts} %>
+  <% end %>
+<% end %>

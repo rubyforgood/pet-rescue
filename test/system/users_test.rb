@@ -2,9 +2,10 @@ require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
   setup do
-    @user = create(:user, :verified_staff)
+    @user = create(:staff)
     @organization = @user.organization
-    set_organization(@organization)
+    @page_text = create(:page_text, :with_image, organization: @organization, hero: "Where every paw finds a home")
+    Current.organization = @organization
   end
 
   test "user can log out" do
@@ -16,7 +17,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Log in"
 
     assert current_path.include?(@organization.slug)
-    assert_equal current_path, pets_path
+    assert has_current_path?(staff_dashboard_index_path)
 
     using_wait_time(5) do
       find("#dropdownUser").hover
@@ -31,7 +32,7 @@ class UsersTest < ApplicationSystemTestCase
     visit root_url
     refute has_button?("Sign out")
     expected_path = "/" + @organization.slug + "/home"
-    assert_equal current_path, expected_path
-    assert_text "Rescue a really cute pet and be a hero"
+    assert has_current_path?(expected_path)
+    assert_text "Where every paw finds a home"
   end
 end

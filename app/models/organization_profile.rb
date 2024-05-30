@@ -3,8 +3,10 @@
 # Table name: organization_profiles
 #
 #  id              :bigint           not null, primary key
-#  about_us        :string
+#  donation_url    :text
 #  email           :string
+#  facebook_url    :text
+#  instagram_url   :text
 #  phone_number    :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -22,8 +24,11 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class OrganizationProfile < ApplicationRecord
+  include Avatarable
+  include Phoneable
+
   belongs_to :location
-  belongs_to :organization, inverse_of: :profile
+  acts_as_tenant(:organization, inverse_of: :profile)
   accepts_nested_attributes_for :location
   validates_associated :location
 
@@ -31,6 +36,10 @@ class OrganizationProfile < ApplicationRecord
 
   validates :phone_number, phone: {possible: true, allow_blank: true}
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+
+  validates :facebook_url, url: true, allow_blank: true
+  validates :instagram_url, url: true, allow_blank: true
+  validates :donation_url, url: true, allow_blank: true
 
   delegate :name, to: :organization
 

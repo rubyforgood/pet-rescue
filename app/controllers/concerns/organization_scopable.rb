@@ -15,10 +15,18 @@ module OrganizationScopable
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    if resource_or_scope.staff_account&.verified
-      pets_path
+    if allowed_to?(
+      :index?, with: Organizations::DashboardPolicy,
+      context: {organization: Current.organization}
+    )
+      staff_dashboard_index_path
+    elsif allowed_to?(
+      :index?, with: Organizations::AdopterFosterDashboardPolicy,
+      context: {organization: Current.organization}
+    )
+      adopter_fosterer_dashboard_index_path
     else
-      adoptable_pets_path
+      root_path
     end
   end
 

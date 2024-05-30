@@ -1,9 +1,7 @@
 class RemoveLatLonFromLocations < ActiveRecord::Migration[7.0]
   def up
-    safety_assured do
-      remove_column :locations, :latitude, :float
-      remove_column :locations, :longitude, :float
-    end
+    remove_column :locations, :latitude, :float
+    remove_column :locations, :longitude, :float
   end
 
   def down

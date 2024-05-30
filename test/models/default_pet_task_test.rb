@@ -2,7 +2,7 @@ require "test_helper"
 
 class DefaultPetTaskTest < ActiveSupport::TestCase
   should validate_presence_of(:name)
-  should validate_presence_of(:description)
+  should validate_numericality_of(:due_in_days).only_integer.is_greater_than_or_equal_to(0).allow_nil
 
   test "should have valid factory" do
     assert build(:default_pet_task).valid?

@@ -4,9 +4,9 @@
     <h1 class='mb-4'>
       We rescue pets in <%=current_tenant.city %>, <%=current_tenant.country %> and rehome them with adopters in Canada and America
     </h1>
-    <%= link_to "Browse #{Pet.unadopted.count} Pets",
+    <%= link_to "Browse #{Pet.unmatched.count} Pets",
                 adoptable_pets_path,
-                class:'custom-btn-pink' %>
+                class: 'custom-btn-pink' %>
   </div>
 </header>
 
@@ -77,10 +77,6 @@
             <p class='justify bigger'>
               In January 2021 Baja Pet Rescue decided to refocus its efforts as a rescue organization only, while the spay/neuter effort is run by a different organization. Baja Pet Rescue is currently being run by founder Danielle Gee and a group of wonderful volunteers.
             </p>
-            <p class='text-center'>
-              <%= link_to 'Read More', about_us_path,
-                  class: 'custom-btn-green mt-5 mb-3' %>
-            </p>
         </div>
         <div class="col-lg-4 col-md-6 d-none d-md-block mb-4 mb-lg-0">
             <span>
@@ -104,7 +100,7 @@
           Before applying to adopt a pet it is important you read and understand how our process works.
         </p>
         <p>
-          <%= link_to 'Learn more', faq_path, class: 'custom-btn-green' %>
+          <%= link_to 'Learn more', faq_static_path, class: 'custom-btn-green' %>
         </p>
       </div>
       <div class="col-md-4 p-3">
@@ -113,9 +109,6 @@
         </h3>
         <p class='mb-4 bigger'>
           We have some amazing partners here in La Ventana who help in our pet rescue efforts.
-        </p>
-        <p>
-          <%= link_to 'Learn more', partners_path, class: 'custom-btn-green' %>
         </p>
       </div>
       <div class="col-md-4 p-3">

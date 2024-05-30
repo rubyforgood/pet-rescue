@@ -8,8 +8,8 @@
 #  breed              :string
 #  description        :text
 #  name               :string
-#  pause_reason       :integer          default("not_paused")
 #  placement_type     :integer          not null
+#  published          :boolean          default(FALSE), not null
 #  sex                :string
 #  species            :integer          not null
 #  weight_from        :integer          not null
@@ -32,13 +32,15 @@ class Pet < ApplicationRecord
 
   has_many :adopter_applications, dependent: :destroy
   has_many :tasks, dependent: :destroy
-  has_one :match, dependent: :destroy
+  has_many :matches, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many_attached :images
   has_many_attached :files
 
   validates :name, presence: true
   validates :birth_date, presence: true
   validates :breed, presence: true
+  validates :published, inclusion: [true, false]
   validates :sex, presence: true
   validates :species, presence: true
   validates :placement_type, presence: true
@@ -50,21 +52,16 @@ class Pet < ApplicationRecord
   validates :description, presence: true, length: {maximum: 1000}
 
   # active storage validations gem
-  validates :images, content_type: {in: ["image/png", "image/jpeg"],
-                                    message: "must be PNG or JPEG"},
-    limit: {max: 5, message: "- 5 maximum"},
-    size: {between: 10.kilobyte..1.megabytes,
-           message: "size must be between 10kb and 1Mb"}
+  validates :images, content_type: {in: ["image/png", "image/jpeg"]},
+    limit: {max: 5},
+    size: {between: 10.kilobyte..1.megabytes}
 
-  validates :files, content_type: {in: ["image/png", "image/jpeg", "application/pdf"],
-                                   message: "must be PNG or JPEG"},
+  validates :files, content_type: {in: ["image/png", "image/jpeg", "application/pdf"]},
     limit: {max: 15, message: "- 15 maximum"},
-    size: {between: 10.kilobyte..2.megabytes,
-           message: "size must be between 10kb and 2Mb"}
+    size: {between: 10.kilobyte..2.megabytes}
 
   enum species: ["Dog", "Cat"]
   enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
-  enum :pause_reason, [:not_paused, :opening_soon, :paused_until_further_notice]
 
   WEIGHT_UNIT_LB = "lb".freeze
   WEIGHT_UNIT_KG = "kg".freeze
@@ -74,21 +71,19 @@ class Pet < ApplicationRecord
     WEIGHT_UNIT_KG
   ]
 
-  scope :adopted, -> { Pet.includes(:match).where.not(match: {id: nil}) }
-  scope :unadopted, -> { Pet.includes(:match).where(match: {id: nil}) }
+  scope :adopted, -> { joins(:matches).merge(Match.adoptions) }
+  scope :unmatched, -> { includes(:matches).where(matches: {id: nil}) }
+  scope :published, -> { where(published: true) }
+  scope :fostered, -> { joins(:matches).merge(Match.fosters) }
+  scope :fosterable, -> {
+    where(placement_type: ["Fosterable", "Adoptable and Fosterable"])
+  }
 
   attr_writer :toggle
 
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?
     adopter_applications.any? { |app| app.status == "adoption_pending" }
-  end
-
-  # remove not_paused status as not necessary for staff
-  def self.app_pause_reasons
-    Pet.pause_reasons.keys.map do |reason|
-      [reason.titleize, reason]
-    end.drop(1)
   end
 
   # active storage: using.attach for appending images per rails guide
@@ -101,16 +96,9 @@ class Pet < ApplicationRecord
     Pet.where(organization_id: staff_org_id)
   end
 
-  # all pets under an organization with applications and no adoptions
   def self.org_pets_with_apps(staff_org_id)
-    Pet.org_pets(staff_org_id).includes(adopter_applications: [adopter_account: [:user]]).where
-      .not(adopter_applications: {id: nil}).includes(:match)
-      .where(match: {id: nil})
-  end
-
-  # all unadopted pets under all organizations
-  def self.all_unadopted_pets
-    Pet.includes(:match).where(match: {id: nil})
+    org_pets(staff_org_id).includes(adopter_applications: [adopter_foster_account: [:user]]).where
+      .not(adopter_applications: {id: nil}).references(:users)
   end
 
   def self.ransackable_attributes(auth_object = nil)

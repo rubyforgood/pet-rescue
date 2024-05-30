@@ -39,6 +39,7 @@ class Organizations::CreateService
       create_staff_account
       add_admin_role_to_staff_account
       send_email
+      create_page_text
     end
   rescue => e
     raise "An error occurred: #{e.message}"
@@ -80,16 +81,15 @@ class Organizations::CreateService
     ActsAsTenant.with_tenant(@organization) do
       @staff_account = StaffAccount.create!(
         organization_id: @organization.id,
-        user_id: @user.id,
-        verified: 1
+        user_id: @user.id
       )
     end
   end
 
   def add_admin_role_to_staff_account
-    @staff_account.add_role(:admin)
+    @user.add_role(:admin)
 
-    if !@staff_account.has_role?(:admin)
+    if !@user.has_role?(:admin)
       raise StandardError, "Failed to add admin role"
     end
   end
@@ -100,5 +100,11 @@ class Organizations::CreateService
       organization: @organization
     )
       .create_new_org_and_admin(@organization.slug).deliver_now
+  end
+
+  def create_page_text
+    ActsAsTenant.with_tenant(@organization) do
+      PageText.create!
+    end
   end
 end
