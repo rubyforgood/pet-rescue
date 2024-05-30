@@ -4,7 +4,7 @@ module AvatarHelper
 
     render partial_name do |partial|
       partial.alt "#{current_user.first_name.first.upcase} Avatar"
-      partial.initials "#{current_user.full_name.split.map { |part| part[0] }.join}".upcase
+      partial.initials current_user.name_initials.to_s
 
       if current_user.avatar.attached?
         partial.avatar do

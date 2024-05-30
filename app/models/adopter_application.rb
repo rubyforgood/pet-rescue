@@ -71,7 +71,7 @@ class AdopterApplication < ApplicationRecord
   end
 
   def applicant_name
-    "#{adopter_foster_account.user.full_name}"
+    adopter_foster_account.user.full_name.to_s
   end
 
   def withdraw
