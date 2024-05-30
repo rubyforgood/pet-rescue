@@ -5,9 +5,14 @@
     <div class="row">
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render "components/data_card" do |c| %>
-          <% c.title "Staff" %>
-          <% c.icon "users" %>
-          <% c.value @organization.staff_accounts.count %>
+          <% c.title "Tasks" %>
+          <% c.icon "list" %>
+          <% c.value do %>
+            <div>
+              <div> <%= link_to "#{@organization.staff_accounts.count} Not Completed", "" %> </div>
+              <div> <%= link_to "#{@organization.staff_accounts.count} Overdue", "" %> </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
