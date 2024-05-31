@@ -186,6 +186,7 @@ These are some resources that may help with contributing to the codebase
 * [Figma site design](https://www.figma.com/file/0jVgYASUJy0KiX3BVc3dFM/Tasks?type=design&node-id=0-1&mode=design)
 * Model association diagram: Import the schema.rb file into https://dbdiagram.io/d to get the latest version of the diagram
 * [Turbo Rails Tutorial](https://www.hotrails.dev/turbo-rails)
+* [Geek UI Documentation](https://geeksui.codescandy.com/geeks/docs/index.html)
 
 
 ## Contributors ✨
