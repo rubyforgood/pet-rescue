@@ -1,4 +1,6 @@
 class Organizations::Staff::DashboardController < Organizations::BaseController
+  before_action :context_authorize!, only: %i[index incomplete_tasks]
+  include Pagy::Backend
   layout "dashboard"
 
   def index
@@ -8,7 +10,33 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
     pet_ids = @organization.pets.pluck(:id)
     @not_completed_not_overdue_tasks_count = Task.where(pet_id: pet_ids).is_not_completed.not_overdue.count
     @not_completed_overdue_tasks_count = Task.where(pet_id: pet_ids).is_not_completed.overdue.count
+  end
 
-    authorize! :dashboard, context: {organization: @organization}
+  def incomplete_tasks
+    @organization = Current.organization
+    @pagy, @pets = pagy(
+      @organization.pets
+                   .left_joins(:tasks)
+                   .select('pets.*, COUNT(tasks.id) AS incomplete_tasks_count')
+                   .where(tasks: { completed: false })
+                   .group('pets.id'),
+      items: 5
+    )
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/incomplete_tasks")
+      end
+      format.html
+    end
+  end
+
+  def overdue_tasks
+  end
+
+  private
+  def context_authorize!
+    authorize! :dashboard,
+      context: {organization: Current.organization}
   end
 end
