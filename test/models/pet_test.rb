@@ -70,4 +70,16 @@ class PetTest < ActiveSupport::TestCase
       assert_not pet.has_adoption_pending?
     end
   end
+
+  context "#is_adopted?" do
+    should "return true if there is an adopter application with 'adoption_pending' status" do
+      pet = Pet.new
+      adopter_application = pet.adopter_applications.new
+      adopter_application.status = "adoption_made"
+      assert pet.is_adopted?
+
+      adopter_application.status = "awaiting_review"
+      assert_not pet.is_adopted?
+    end
+  end
 end
