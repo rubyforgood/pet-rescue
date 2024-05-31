@@ -98,7 +98,7 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when organization context is user's organization" do
           should "return true" do
-            assert_equal  true, @action.call
+            assert_equal true, @action.call
           end
         end
       end

@@ -9,7 +9,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     persisted_user = User.find_by(email: registration_params[:user][:email])
     has_role = persisted_user.has_role?(:adopter, ActsAsTenant.current_tenant)
 
-    assert_equal true, has_role 
+    assert_equal true, has_role
   end
 
   test "should get new with dashboard layout when signed in as staff" do

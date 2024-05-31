@@ -60,7 +60,7 @@ class Organizations::AdoptablePetPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal false,@action.call
+          assert_equal false, @action.call
         end
       end
 
