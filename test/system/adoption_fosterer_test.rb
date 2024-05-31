@@ -3,14 +3,11 @@ require "application_system_test_case"
 class AdoptionFostererTest < ApplicationSystemTestCase
   setup do
     @user = create(:fosterer, :with_profile)
-    @adopter_foster_account = @user.adopter_foster_account
-
     @org = @user.organization
     @page_text = create(:page_text, :with_image, organization: @org)
-    Current.organization = @org
 
     @pet = create(:pet)
-    create(:adopter_application, pet: @pet, adopter_foster_account: @adopter_foster_account, organization: @org)
+    create(:adopter_application, pet: @pet, adopter_foster_account: @user.adopter_foster_account, organization: @org)
 
     sign_in @user
   end
