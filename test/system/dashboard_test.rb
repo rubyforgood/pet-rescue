@@ -17,7 +17,7 @@ class DashboardTest < ApplicationSystemTestCase
   end
 
   test "viewing incomplete tasks" do
-    click_link "Pending"
+    click_link "Incomplete"
     assert_selector "table"
     assert_text "Incomplete Tasks"
 
