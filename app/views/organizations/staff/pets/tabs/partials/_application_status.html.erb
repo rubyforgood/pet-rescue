@@ -7,15 +7,14 @@
   <!-- status -->
   <div class="align-middle col text-nowrap" style="min-width: 220px;">
     <div class="dropdown">
-      <button class="btn dropdown-toggle <%= application_status_classes(app)
-      %>" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= app.status.titleize %>
+      <button class="btn dropdown-toggle <%= application_status_classes(app)%>" data-bs-toggle="dropdown" aria-expanded="false">
+        <%= app.human_enum_name(:status) %>
       </button>
       <ul class="dropdown-menu">
         <% AdopterApplication.statuses.keys.each do |status| %>
           <%unless status == "adoption_made" %>
             <li>
-              <%= button_to status.titleize,
+              <%= button_to t("organizations.staff.pets.application_status.#{status}"),
               staff_adoption_application_review_path(app, params: { adopter_application: { status: status}}),
               :method => :patch, class: 'dropdown-item' %>
             </li>
@@ -66,14 +65,15 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header border-bottom-0 pb-2">
-            <h1 class="modal-title fs-4 ">Edit Notes for <%= app.pet.name %> </h1>
+            <h1 class="modal-title fs-4 "> <%= t("organizations.staff.pets.application_status.edit_notes")%> <%= app.pet.name
+            %> </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body border-top-0 pt-2">
             <%= bootstrap_form_with model: app, url:
         staff_adoption_application_review_path(app), method: "Patch" do |form| %>
               <%= form.text_area :notes, hide_label: true, rows: 5 %>
-              <%= form.submit 'Save changes', class: "btn btn-primary
+              <%= form.submit t("general.save"), class: "btn btn-primary
         position-relative float-end", "data-bs-dismiss" => "modal"  %>
             <% end %>
           </div>
