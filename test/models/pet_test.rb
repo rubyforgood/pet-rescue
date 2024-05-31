@@ -41,7 +41,7 @@ class PetTest < ActiveSupport::TestCase
     end
   end
 
-  context "#adopted?" do
+  context "#is_adopted?" do
     should "return true if there is an adopter application with 'adopted' status" do
       pet = Pet.new
       adopter_application = pet.adopter_applications.new
