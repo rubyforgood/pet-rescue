@@ -41,6 +41,18 @@ class PetTest < ActiveSupport::TestCase
     end
   end
 
+  context "#adopted?" do
+    should "return true if there is an adopter application with 'adopted' status" do
+      pet = Pet.new
+      adopter_application = pet.adopter_applications.new
+      adopter_application.status = "adoption_made"
+      assert pet.is_adopted?
+
+      adopter_application.status = "awaiting_review"
+      assert_not pet.is_adopted?
+    end
+  end
+
   context ".org_pets_with_apps(staff_org_id)" do
     should "return pets for organization that have adopter applications" do
       pet_with_app = create(:pet, :adoption_pending)
