@@ -352,6 +352,16 @@ en:
             paused: "Applications: paused"
         new:
           new_pet_post: "New Pet Post"
+        applications:
+          applicant: "Applicant"
+          status: "Status"
+          notes: "Notes"
+        application_status:
+          edit_notes: "Edit notes for"
+          awaiting_review: "Awaiting Review"
+          under_review: "Under Review"
+          adoption_pending: "Adoption Pending"
+          withdrawn: "Withdrawn"
       forms:
         not_found: "Form not found."
         index:
