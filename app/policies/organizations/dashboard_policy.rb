@@ -9,4 +9,8 @@ class Organizations::DashboardPolicy < ApplicationPolicy
   def incomplete_tasks?
     permission?(:view_organization_dashboard)
   end
+
+  def overdue_tasks?
+    permission?(:view_organization_dashboard)
+  end
 end

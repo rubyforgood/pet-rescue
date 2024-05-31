@@ -1,5 +1,5 @@
 class Organizations::Staff::DashboardController < Organizations::BaseController
-  before_action :context_authorize!, only: %i[index incomplete_tasks]
+  before_action :context_authorize!, only: %i[index incomplete_tasks overdue_tasks]
   include Pagy::Backend
   layout "dashboard"
 
@@ -19,19 +19,37 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
                    .left_joins(:tasks)
                    .select('pets.*, COUNT(tasks.id) AS incomplete_tasks_count')
                    .where(tasks: { completed: false })
+                   .where('tasks.due_date IS NULL OR tasks.due_date >= ?', Time.current)
                    .group('pets.id'),
       items: 5
     )
-
+    @column_name = "Incomplete Tasks"
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/incomplete_tasks")
+        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks", locals: { column_name: @column_name })
       end
-      format.html
+      format.html { render :tasks, locals: { column_name: @column_name } }
     end
   end
 
   def overdue_tasks
+    @organization = Current.organization
+    @pagy, @pets = pagy(
+      @organization.pets
+                   .left_joins(:tasks)
+                   .select('pets.*, COUNT(tasks.id) AS incomplete_tasks_count')
+                   .where(tasks: { completed: false })
+                   .where('tasks.due_date < ?', Time.current)
+                   .group('pets.id'),
+      items: 5
+    )
+    @column_name = "Overdue Tasks"
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks", locals: { column_name: @column_name })
+      end
+      format.html { render :tasks, locals: { column_name: @column_name } }
+    end
   end
 
   private
