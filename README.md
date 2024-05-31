@@ -28,11 +28,28 @@ Instructions: https://wiki.postgresql.org/wiki/Homebrew
 brew install postgresql
 ```
 
-#### Running as a service
+To run postgresql as a service:
 
 ```sh
 brew services start postgresql
 ```
+
+#### Installing via docker
+
+A `docker-compose.yml` is provided that will run postgres inside a local docker container without requiring a full OS install.
+
+Before bringing the image up, you'll need to choose a database username and password by exporting the following environment variables.
+
+Using [direnv] is recommended here, to manage environment variables locally.
+
+```
+export DATABASE_USERNAME=[your username]
+export DATABASE_PASSWORD=[a password]
+```
+
+Once your environment has been set, you may launch the postgres database, and any other dependencies, by running `docker compose up -d`
+
+[direnv]: https://direnv.net/
 
 ## Install & Setup
 
@@ -186,6 +203,7 @@ These are some resources that may help with contributing to the codebase
 * [Figma site design](https://www.figma.com/file/0jVgYASUJy0KiX3BVc3dFM/Tasks?type=design&node-id=0-1&mode=design)
 * Model association diagram: Import the schema.rb file into https://dbdiagram.io/d to get the latest version of the diagram
 * [Turbo Rails Tutorial](https://www.hotrails.dev/turbo-rails)
+* [Geek UI Documentation](https://geeksui.codescandy.com/geeks/docs/index.html)
 
 
 ## Contributors ✨
