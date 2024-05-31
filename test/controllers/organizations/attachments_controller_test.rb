@@ -127,7 +127,7 @@ class Organizations::AttachmentsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
-      assert_equal "You are not authorized to perform this action.", flash[:alert]
+      assert_equal I18n.t("errors.authorization_error"), flash[:alert]
     end
   end
 end
