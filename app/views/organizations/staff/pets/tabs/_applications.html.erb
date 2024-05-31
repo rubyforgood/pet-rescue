@@ -4,21 +4,27 @@
       <h4 class="mb-0"><%= link_to pet.name, staff_pet_path(pet), class: "link-underline link-underline-opacity-0" %></h4>
     </div>
   <% end %>
-  <div class="card-body">
-    <table class="table mb-0 text-nowrap table-hover table-centered">
-      <thead>
-        <tr>
-          <th scope="col">Applicant</th>
-          <th scope="col">Status</th>
-          <th scope="col"></th>
-          <th scope="col">Notes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% applications.each do |app|%>
-          <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+  <div class="card-body px-5">
+    <%# headers %>
+    <div class="row border-bottom px-3 pb-3 pt-1">
+      <div class="col fw-semibold">
+        Applicant
+      </div>
+      <div class="col fw-semibold">
+        Status
+      </div>
+      <div class="col">
+
+      </div>
+      <div class="col fw-semibold">
+        Notes
+      </div>
+    </div>
+    <%# style line %>
+
+    <% applications.each do |app|%>
+      <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
+    <% end %>
+  </tbody>
+</div>
 </div>
