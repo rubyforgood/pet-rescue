@@ -60,7 +60,7 @@ class Organizations::QuestionPolicyTest < ActiveSupport::TestCase
         end
 
         should "return true" do
-          assert_equal false, @action.call
+          assert_equal true, @action.call
         end
       end
     end

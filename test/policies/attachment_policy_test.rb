@@ -53,7 +53,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
 
         context "when attachment's record's organization matches user's" do
           should "return true" do
-            assert_equal false, @action.call
+            assert_equal true, @action.call
           end
         end
 
