@@ -5,12 +5,15 @@ ADOPTER_PERMISSIONS = %i[
   withdraw_adopter_applications
   create_adopter_foster_profiles
   manage_adopter_foster_profiles
+  purge_avatar
+  manage_likes
 ].freeze
 
 FOSTERER_PERMISSIONS = %i[
   view_adopter_foster_dashboard
   create_adopter_foster_profiles
   manage_adopter_foster_profiles
+  purge_avatar
 ].freeze
 
 STAFF_PERMISSIONS = (
@@ -20,16 +23,22 @@ STAFF_PERMISSIONS = (
       create_adopter_applications
       create_adopter_foster_profiles
       manage_adopter_foster_profiles
+      manage_likes
     ]
   ) + %i[
     review_adopter_applications
+    view_adopter_foster_accounts
     view_adopter_foster_profiles
+    invite_fosterers
     purge_attachments
     manage_default_pet_tasks
+    manage_forms
+    manage_questions
     manage_matches
     manage_pets
     manage_tasks
     view_organization_dashboard
+    manage_faqs
   ]
 ).freeze
 
@@ -40,6 +49,7 @@ ADMIN_PERMISSIONS = (
     manage_organization_profile
     manage_page_text
     manage_staff
+    change_user_roles
   ]
 ).freeze
 

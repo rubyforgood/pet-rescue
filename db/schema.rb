@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_08_194612) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_22_160107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -109,6 +109,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_194612) do
     t.index ["organization_id"], name: "index_adopter_foster_profiles_on_organization_id"
   end
 
+  create_table "answers", force: :cascade do |t|
+    t.json "value", null: false
+    t.json "question_snapshot", null: false
+    t.bigint "question_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
   create_table "default_pet_tasks", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
@@ -118,6 +129,50 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_194612) do
     t.integer "due_in_days"
     t.boolean "recurring", default: false
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
+  end
+
+  create_table "faqs", force: :cascade do |t|
+    t.string "question", null: false
+    t.text "answer", null: false
+    t.integer "order"
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_faqs_on_organization_id"
+  end
+
+  create_table "form_profiles", force: :cascade do |t|
+    t.bigint "form_id", null: false
+    t.string "profile_type", null: false
+    t.integer "sort_order", default: 0, null: false
+    t.index ["form_id", "profile_type"], name: "index_form_profiles_on_form_id_and_profile_type", unique: true
+    t.index ["form_id"], name: "index_form_profiles_on_form_id"
+  end
+
+  create_table "forms", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "title", null: false
+    t.text "instructions"
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["organization_id", "name"], name: "index_forms_on_organization_id_and_name", unique: true
+    t.index ["organization_id", "title"], name: "index_forms_on_organization_id_and_title", unique: true
+    t.index ["organization_id"], name: "index_forms_on_organization_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "adopter_foster_account_id", null: false
+    t.bigint "pet_id", null: false
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["adopter_foster_account_id", "pet_id"], name: "index_likes_on_adopter_foster_account_id_and_pet_id", unique: true
+    t.index ["adopter_foster_account_id"], name: "index_likes_on_adopter_foster_account_id"
+    t.index ["organization_id"], name: "index_likes_on_organization_id"
+    t.index ["pet_id"], name: "index_likes_on_pet_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -135,9 +190,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_194612) do
     t.datetime "updated_at", null: false
     t.bigint "adopter_foster_account_id", null: false
     t.bigint "organization_id", null: false
+    t.integer "match_type", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.index ["adopter_foster_account_id"], name: "index_matches_on_adopter_foster_account_id"
     t.index ["organization_id"], name: "index_matches_on_organization_id"
-    t.index ["pet_id"], name: "index_matches_on_pet_id", unique: true
+    t.index ["pet_id"], name: "index_matches_on_pet_id"
   end
 
   create_table "organization_profiles", force: :cascade do |t|
@@ -168,6 +226,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_194612) do
     t.text "about"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "adoptable_pet_info"
     t.index ["organization_id"], name: "index_page_texts_on_organization_id"
   end
 
@@ -188,6 +247,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_194612) do
     t.integer "placement_type", null: false
     t.boolean "published", default: false, null: false
     t.index ["organization_id"], name: "index_pets_on_organization_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.string "label", null: false
+    t.text "help_text"
+    t.string "input_type", default: "short", null: false
+    t.boolean "required", default: false, null: false
+    t.json "options"
+    t.integer "sort_order", default: 0, null: false
+    t.bigint "form_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at", precision: nil
+    t.index ["form_id", "label"], name: "index_questions_on_form_id_and_label", unique: true
+    t.index ["form_id", "name"], name: "index_questions_on_form_id_and_name", unique: true
+    t.index ["form_id"], name: "index_questions_on_form_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -268,13 +345,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_08_194612) do
   add_foreign_key "adopter_foster_accounts", "users"
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
   add_foreign_key "default_pet_tasks", "organizations"
+  add_foreign_key "faqs", "organizations"
+  add_foreign_key "form_profiles", "forms"
+  add_foreign_key "forms", "organizations"
+  add_foreign_key "likes", "adopter_foster_accounts"
+  add_foreign_key "likes", "organizations"
+  add_foreign_key "likes", "pets"
   add_foreign_key "matches", "adopter_foster_accounts"
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"
   add_foreign_key "page_texts", "organizations"
   add_foreign_key "pets", "organizations"
+  add_foreign_key "questions", "forms"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
   add_foreign_key "tasks", "pets"

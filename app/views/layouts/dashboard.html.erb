@@ -29,7 +29,7 @@
                       <div class="d-flex">
                         <%= render_avatar_partial %>
                         <div class="ms-3 lh-1">
-                          <h5 class="mb-1"><%= "#{current_user.first_name} #{current_user.last_name}" %></h5>
+                          <h5 class="mb-1"><%= "#{current_user.full_name}" %></h5>
                           <p class="mb-0 text-muted"><%= current_user.email %></p>
                         </div>
                       </div>
@@ -37,7 +37,7 @@
                     <div class="dropdown-divider"></div>
                     <ul class="list-unstyled">
                       <li>
-                        <%= link_to dashboard_index_path, class: "dropdown-item" do %>
+                        <%= link_to staff_dashboard_index_path, class: "dropdown-item" do %>
                           <i class="fe fe-home me-2"></i> Dashboard
                         <% end %>
                       </li>

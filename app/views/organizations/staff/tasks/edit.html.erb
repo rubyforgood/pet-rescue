@@ -1,0 +1,3 @@
+<%= turbo_frame_tag @task do %>
+  <%= render partial: 'organizations/staff/tasks/form', locals: {task: @task, url: staff_pet_task_path(@task.pet)} %>
+<% end %>

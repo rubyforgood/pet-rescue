@@ -32,7 +32,8 @@ class Pet < ApplicationRecord
 
   has_many :adopter_applications, dependent: :destroy
   has_many :tasks, dependent: :destroy
-  has_one :match, dependent: :destroy
+  has_many :matches, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many_attached :images
   has_many_attached :files
 
@@ -70,9 +71,13 @@ class Pet < ApplicationRecord
     WEIGHT_UNIT_KG
   ]
 
-  scope :adopted, -> { Pet.includes(:match).where.not(match: {id: nil}) }
-  scope :unadopted, -> { Pet.includes(:match).where(match: {id: nil}) }
+  scope :adopted, -> { joins(:matches).merge(Match.adoptions) }
+  scope :unmatched, -> { includes(:matches).where(matches: {id: nil}) }
   scope :published, -> { where(published: true) }
+  scope :fostered, -> { joins(:matches).merge(Match.fosters) }
+  scope :fosterable, -> {
+    where(placement_type: ["Fosterable", "Adoptable and Fosterable"])
+  }
 
   attr_writer :toggle
 
@@ -94,11 +99,6 @@ class Pet < ApplicationRecord
   def self.org_pets_with_apps(staff_org_id)
     org_pets(staff_org_id).includes(adopter_applications: [adopter_foster_account: [:user]]).where
       .not(adopter_applications: {id: nil}).references(:users)
-  end
-
-  # all unadopted pets under all organizations
-  def self.all_unadopted_pets
-    Pet.includes(:match).where(match: {id: nil})
   end
 
   def self.ransackable_attributes(auth_object = nil)

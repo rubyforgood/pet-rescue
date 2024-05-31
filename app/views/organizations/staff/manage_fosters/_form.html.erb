@@ -1,0 +1,64 @@
+<!-- Card -->
+<ul class="card mb-4 ">
+  <!-- Card Body -->
+  <div class="card-body">
+    <%= bootstrap_form_with model: foster,
+      url: foster.persisted? ? staff_manage_foster_path(foster) : staff_manage_fosters_path do |form|
+    %>
+      <% if foster.errors.any? %>
+        <ul class="list-group mb-3 col-12 col-md-4">
+          <% foster.errors.full_messages.each do |message| %>
+            <li class="list-group-item list-group-item-danger">
+              <%= message %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <div class="mb-3 col-12 col-md-4">
+        <% if foster.persisted? %>
+          <div class="form-label text-secondary">Pet</div>
+          <div class="form-select">
+            <%= foster.pet.name %> 
+          </div>
+        <% else %>
+          <%= form.select :pet_id,
+            pets.pluck(:name, :id),
+            class: "form-select"
+          %>
+        <% end %>
+      </div>
+      <div class="mb-3 col-12 col-md-4">
+        <% if foster.persisted? %>
+          <div class="form-label text-secondary">Fosterer</div>
+          <div class="form-select">
+            <%= foster.user.full_name %> 
+          </div>
+        <% else %>
+          <%= form.select :adopter_foster_account_id,
+            accounts.map { |account| [account.user.full_name, account.id]},
+            label: "Fosterer",
+            class: "form-select"
+          %>
+        <% end %>
+      </div>
+      <div class="mb-3 col-12 col-md-4">
+        <%= form.date_field :start_date,
+          required: true,
+          class: "form-control"
+        %>
+      </div>
+      <div class="mb-3 col-12 col-md-4">
+        <%= form.date_field :end_date,
+          required: true,
+          class: "form-control"
+        %>
+      </div>
+      <div>
+        <%= form.submit "Save", class: "btn btn-primary" %>
+        <%= link_to "Cancel", staff_manage_fosters_path(page: params[:page]),
+          class: "btn btn-secondary"
+        %>
+      </div>
+    <% end %>
+  </div>
+</div>

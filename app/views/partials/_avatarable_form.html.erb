@@ -10,7 +10,7 @@
         <%= image_tag resource.avatar, class: 'rounded-1', style: 'max-height:7.5rem;max-width:100%' %>
       <% end %>
       <%= link_to t('general.delete'),
-                  purge_attachment_path(resource.avatar.id),
+                  purge_avatar_path(resource.avatar.id),
                   data: { turbo_method: "delete" },
                   class: 'delete-button' %>
     </div>

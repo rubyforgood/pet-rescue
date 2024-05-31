@@ -45,6 +45,7 @@ en:
     "no": "No"
     download: "Download"
     save: "Save"
+    cancel: "Cancel"
     delete: "Delete"
     please_select: "Please select"
     male: "Male"
@@ -255,6 +256,14 @@ en:
         country: Country
         province_state: Province/State
         city_town: City/Town
+      adopter_application:
+        status:
+          awaiting_review: Awaiting Review
+          under_review: Under Review
+          adoption_pending: Adoption Pending
+          withdrawn: Withdrawn
+          successful_applicant: Successful Applicant
+          adoption_made: Adoption Made
   errors:
     attributes:
       general:
@@ -270,22 +279,7 @@ en:
         header: "Up for adoption"
       show:
         adoption_process: "Adoption Process"
-        please_read_faq_html: "Please read the <a href='/faq'>FAQ</a> before applying to adopt."
-        please_know_that: "Please know that"
-        please_know_that_items_html: |
-          <li>Adopters must be located in Canada, USA or Mexico</li>
-          <li>There is an adoption fee of $175 USD</li>
-          <li>Every pet will be fully vaccinated and have the necessary
-          paperwork to enter Canada/USA</li>
-          <li>We can usually arrange transport to adopters west of Alberta or
-          Nevada only. Adopters further east will need to arrange
-          transport before an adoption can be approved.</li>
-        after_you_adopt: "After you apply to adopt"
-        after_you_adopt_items_html: |
-          <li>Your application history will be shown on 'My Applications' page</li>
-          <li>Application reviews generally take 4-6 days, depending on volume</li>
-          <li>We will contact you for further discussion if you are shortlisted </li>
-          <li>We work hard to match pets and adopters, so please try again if you are not successful first time round </li>
+        please_read_faq_html: "Please read the %{faq_link} before applying to adopt."
         create_an_account: "Create an account to apply for this pet"
         status:
           awaiting_review: Application Awaiting Review
@@ -300,98 +294,157 @@ en:
         complete_my_profile: "Complete my profile"
         adopt: "Adopt"
         login: "Log in"
-    default_pet_tasks:
+        important_info: "Important Information"
+    faq:
       index:
-        default_pet_tasks: "Default Pet Tasks"
-        create_default_task: "Create Default Task"
-        are_you_sure_delete: "Are you sure you want to delete this default pet task?"
-      new:
-        new_default_pet_task: "New Default Pet Task"
-      edit:
-        edit_default_pet_task: "Edit Default Pet Task"
-    pets:
-      show:
-        pause_applications: "Pause Applications?"
-        why: "Why?"
-        edit_pet: "Edit Pet"
-        view_adopter: "View Adopter"
-        revoke_adoption: "Revoke Adoption"
-        are_you_sure_revoke: "Are you sure you want to revoke this adoption?"
-        application:
-          active: "Applications are active"
-          paused: "Applications are paused"
-      form:
-        uploaded_images: "Uploaded Images"
-      index:
-        our_pets: "Our pets"
-        filter: "Filter by adoption status"
-        select:
-          seeking_adoption: "Seeking Adoption"
-          adopted: "Adopted"
-        filter_by_name: "Filter by name"
-        create_pet: "Create Pet"
-        application:
-          active: "Applications: active"
-          paused: "Applications: paused"
-      new:
-        new_pet_post: "New Pet Post"
-    organization_profiles:
-      form:
-        please_fix_the_errors: "Please fix the errors highlighted below."
-        manage_your_own_account_settings: "You have full control to manage your own account settings."
-      edit:
-        edit_profile: "Edit Profile"
-    adopter_applications:
-      index:
-        adoption_applications: "Adoption Applications"
-        your_adoption_applications: "Your adoption applications will be listed here."
-        we_will_be_in_contact: "We will be in contact shortly."
-        keep_an_eye_on: "Keep an eye on your"
-        almost_adopted: "This pooch is almost adopted!"
-        found_a_home: "This pooch has found a home!"
-        withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
-        remove: "Remove"
-        withdraw: "Withdraw"
-    adopter_foster_profiles:
-      form:
-        please_fix_the_errors: "Please fix the errors highlighted below."
-        preferred_contact_method: "Preferred contact method"
-      edit:
-        edit_profile: "Edit Profile"
-      new:
-        adopter_foster_profile: "Adopter Foster Profile"
-        help_us_learn_more: "The following questions help us learn more about you so we can match you with the right pooch."
-      show:
-        adopter_foster_profile: "Adopter Foster Profile"
-        edit_profile: "Edit Profile"
-        your_ideal_pet: "Your ideal pet"
-        your_lifestyle: "Your lifestyle"
-        activities: "Activities you will do with your pet"
-        hours_alone_on_weekends: "Hours pet will be alone on weekends"
-        hours_alone_on_weekdays: "Hours pet will be alone on weekdays"
-        pet_care: "Pet Care"
-        your_petcare_experience: "Your pet care experience"
-        petcare_plans_during_emergency_or_vacation: "Pet care plans during emergency or vacation"
-        will_petcare_be_shared: "Will pet care be shared with someone outside household?"
-        details_on_petcare: "Details on shared pet care"
-        household: "Household"
-        phone_number: "Phone Number"
-        contact_method: "Contact Method"
-        country: "Country"
-        province_slash_state: "Province/State"
-        city_slash_town: "City/Town"
-        lifestyle: "Lifestyle"
-        your_plan_to_care: "Your plan to care for the pet without a fenced garden"
-        pets_location_during_the_day: "Pet's location during the day"
-        pets_location_at_night: "Pet's location at night"
-        additional_details: "Additional Details"
-        have_you_checked: "Have you checked your local shelter for adoptable pets?"
-        have_you_had_to_surrender: "Have you ever had to surrender a pet?"
-        details_on_surrender: "Details on surrendering the pet"
-        your_annual_cost: "Your annual cost estimate for pet care"
-        will_you_pick_up_the_pet: "Will you or a friend be in La Ventana in person to pick up the pet?"
-        what_dates_will_you_be: "What dates will you be in La Ventana?"
-        how_did_you_hear: "How did you find out about Baja Pet Rescue?"  
+        header: "Frequently Asked Questions"
+        more_questions: "More Questions? Contact us"
+    staff:
+      default_pet_tasks:
+        index:
+          default_pet_tasks: "Default Pet Tasks"
+          create_default_task: "Create Default Task"
+          are_you_sure_delete: "Are you sure you want to delete this default pet task?"
+        new:
+          new_default_pet_task: "New Default Pet Task"
+        edit:
+          edit_default_pet_task: "Edit Default Pet Task"
+      faqs:
+        index:
+          faqs: "Frequently Asked Questions"
+          create_faq: "Create new FAQ"
+          are_you_sure_delete: "Are you sure you want to delete this FAQ?"
+        new:
+          new_faq: "New FAQ"
+        edit:
+          edit_faq: "Edit FAQ"
+        faq:
+          are_you_sure_delete: "Are you sure you want to delete this FAQ?"
+      organization_profiles:
+        form:
+          please_fix_the_errors: "Please fix the errors highlighted below."
+          manage_your_own_account_settings: "You have full control to manage your own account settings."
+        edit:
+          edit_profile: "Edit Profile"
+      pets:
+        show:
+          pause_applications: "Pause Applications?"
+          why: "Why?"
+          edit_pet: "Edit Pet"
+          view_adopter: "View Adopter"
+          revoke_adoption: "Revoke Adoption"
+          are_you_sure_revoke: "Are you sure you want to revoke this adoption?"
+          application:
+            active: "Applications are active"
+            paused: "Applications are paused"
+        form:
+          uploaded_images: "Uploaded Images"
+        index:
+          our_pets: "Our pets"
+          filter: "Filter by adoption status"
+          select:
+            seeking_adoption: "Seeking Adoption"
+            adopted: "Adopted"
+          filter_by_name: "Filter by name"
+          create_pet: "Create Pet"
+          application:
+            active: "Applications: active"
+            paused: "Applications: paused"
+        new:
+          new_pet_post: "New Pet Post"
+      forms:
+        not_found: "Form not found."
+        index:
+          forms: "Forms"
+          create_form: "Create Form"
+          confirm_delete: "Are you sure you want to delete this form?"
+        new:
+          new_form: "New Form"
+        create:
+          error: "Error creating form."
+        edit:
+          edit_form: "Edit Form"
+        show:
+          confirm_delete_question: "Are you sure you want to delete this question?"
+        update:
+        destroy:
+        form:
+          help_text:
+            title: "What the user sees as the title of the form."
+            instructions: "Additional instructions to aid the user in filling out the form."
+        saved: "Form saved successfully."
+        updated: "Form saved successfully."
+        destroyed: "Form was successfully deleted."
+      questions:
+        create:
+          error: "Error creating question."
+        update:
+          error: "Error updating question."
+        updated: "Question saved successfully."
+        saved: "Question saved successfully."
+        destroyed: "Question was successfully deleted."
+        not_found: "Question not found."
+    adopter_fosterer:
+      profiles:
+        form:
+          please_fix_the_errors: "Please fix the errors highlighted below."
+          preferred_contact_method: "Preferred contact method"
+        edit:
+          edit_profile: "Edit Profile"
+        new:
+          adopter_foster_profile: "Adopter Foster Profile"
+          help_us_learn_more: "The following questions help us learn more about you so we can match you with the right pooch."
+        show:
+          adopter_foster_profile: "Adopter Foster Profile"
+          edit_profile: "Edit Profile"
+          your_ideal_pet: "Your ideal pet"
+          your_lifestyle: "Your lifestyle"
+          activities: "Activities you will do with your pet"
+          hours_alone_on_weekends: "Hours pet will be alone on weekends"
+          hours_alone_on_weekdays: "Hours pet will be alone on weekdays"
+          pet_care: "Pet Care"
+          your_petcare_experience: "Your pet care experience"
+          petcare_plans_during_emergency_or_vacation: "Pet care plans during emergency or vacation"
+          will_petcare_be_shared: "Will pet care be shared with someone outside household?"
+          details_on_petcare: "Details on shared pet care"
+          household: "Household"
+          phone_number: "Phone Number"
+          contact_method: "Contact Method"
+          country: "Country"
+          province_slash_state: "Province/State"
+          city_slash_town: "City/Town"
+          lifestyle: "Lifestyle"
+          your_plan_to_care: "Your plan to care for the pet without a fenced garden"
+          pets_location_during_the_day: "Pet's location during the day"
+          pets_location_at_night: "Pet's location at night"
+          additional_details: "Additional Details"
+          have_you_checked: "Have you checked your local shelter for adoptable pets?"
+          have_you_had_to_surrender: "Have you ever had to surrender a pet?"
+          details_on_surrender: "Details on surrendering the pet"
+          your_annual_cost: "Your annual cost estimate for pet care"
+          will_you_pick_up_the_pet: "Will you or a friend be in La Ventana in person to pick up the pet?"
+          what_dates_will_you_be: "What dates will you be in La Ventana?"
+          how_did_you_hear: "How did you find out about Baja Pet Rescue?"
+      adopter_applications:
+        index:
+          adoption_applications: "Adoption Applications"
+          your_adoption_applications: "Your adoption applications will be listed here."
+          we_will_be_in_contact: "We will be in contact shortly."
+          keep_an_eye_on: "Keep an eye on your"
+          almost_adopted: "This pooch is almost adopted!"
+          found_a_home: "This pooch has found a home!"
+          withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
+          remove: "Remove"
+          withdraw: "Withdraw"
+      likes:
+        index:
+          liked_pets: 'Liked Pets'
+        create:
+          success: "%{name} added to your liked pets."
+          failed: "Error, %{name} not added to your liked pets."
+        destroy:
+          success: "%{name} removed from your liked pets."
+          failed: "Error, %{name} not removed from your liked pets."
   staff_accounts:
     status:
       invitation_sent: "Invitation sent"

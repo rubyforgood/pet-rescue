@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3.2"
+gem "rails", "~> 7.1.3.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -83,7 +83,12 @@ gem "rails-i18n"
 
 # Provides helper methods to easily add 'active' tag on links
 gem "active_link_to"
+
+# Provides named content areas to Action View through `partial` method
 gem "nice_partials"
+
+# needed for pagination
+gem "pagy"
 
 group :development, :test, :staging do
   gem "faker"
@@ -157,6 +162,7 @@ gem "requestjs-rails", "~> 0.0.11"
 # Add ability to set user roles
 gem "rolify"
 
+# Add breadcrumb management
 gem "gretel", "~> 5.0"
 
 gem "ransack"
@@ -164,4 +170,4 @@ gem "ransack"
 gem "rails-controller-testing"
 
 # Use Action Policy for authorization framework
-gem "action_policy", "~> 0.6.8"
+gem "action_policy", "~> 0.6.9"

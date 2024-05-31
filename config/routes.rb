@@ -2,39 +2,59 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions",
-    invitations: "organizations/invitations"
+    invitations: "organizations/staff/invitations"
   }
 
   resources :donations, only: [:create]
 
   scope module: :organizations do
-    resource :organization_profile, only: %i[edit update]
-    resource :page_text, only: [:edit, :update]
-
-    resource :adopter_foster_profile, except: :destroy, as: "profile"
-    resources :profile_reviews, only: [:show]
-    resources :adoptable_pets, only: [:index, :show]
-
     resources :home, only: [:index]
-    resources :pets do
-      resources :tasks
-      post "attach_images", on: :member, to: "pets#attach_images"
-      post "attach_files", on: :member, to: "pets#attach_files"
-    end
-    resources :default_pet_tasks
-    resources :dashboard, only: [:index]
-    resources :adopter_foster_dashboard, only: [:index]
-    resources :adopter_applications, path: "applications",
-      only: %i[index create update]
-    resources :adoption_application_reviews, only: [:index, :edit, :update]
-    resources :foster_application_reviews, only: [:index]
-    resources :staff do
-      post "deactivate", to: "staff#deactivate"
-      post "activate", to: "staff#activate"
-      post "update_activation", to: "staff#update_activation"
-    end
+    resources :adoptable_pets, only: %i[index show]
+    resources :faq, only: [:index]
 
-    resources :matches, only: %i[create destroy]
+    namespace :staff do
+      resource :organization_profile, only: %i[edit update]
+      resource :page_text, only: %i[edit update]
+      resources :profile_reviews, only: [:show]
+
+      resources :pets do
+        resources :tasks
+        post "attach_images", on: :member, to: "pets#attach_images"
+        post "attach_files", on: :member, to: "pets#attach_files"
+      end
+
+      resources :default_pet_tasks
+      resources :faqs
+      resources :dashboard, only: [:index]
+      resources :matches, only: %i[create destroy]
+
+      resources :adoption_application_reviews, only: %i[index edit update]
+      resources :manage_fosters, only: %i[new create index edit update destroy]
+      resources :fosterers, only: %i[index]
+      resources :staff do
+        post "deactivate", to: "staff#deactivate"
+        post "activate", to: "staff#activate"
+        post "update_activation", to: "staff#update_activation"
+      end
+
+      resources :staff_invitations, only: %i[new]
+      resources :fosterer_invitations, only: %i[new]
+
+      resources :forms do
+        resources :questions
+      end
+      post "user_roles/:id/to_staff", to: "user_roles#to_staff", as: "user_to_staff"
+      post "user_roles/:id/to_admin", to: "user_roles#to_admin", as: "user_to_admin"
+    end
+    delete "staff/attachments/:id/purge", to: "attachments#purge", as: "staff_purge_attachment"
+    delete "attachments/:id/purge_avatar", to: "attachments#purge_avatar", as: "purge_avatar"
+
+    namespace :adopter_fosterer do
+      resource :profile, except: :destroy
+      resources :dashboard, only: [:index]
+      resources :likes, only: [:index, :create, :destroy]
+      resources :adopter_applications, path: "applications", only: %i[index create update]
+    end
   end
 
   resources :countries, only: [] do
@@ -47,16 +67,11 @@ Rails.application.routes.draw do
 
   root "root#index"
   get "/about_us", to: "static_pages#about_us"
-  get "/faq", to: "static_pages#faq"
   get "/partners", to: "static_pages#partners"
   get "/donate", to: "static_pages#donate"
   get "/privacy_policy", to: "static_pages#privacy_policy"
   get "/terms_and_conditions", to: "static_pages#terms_and_conditions"
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
-  resources :contacts, only: [:new, :create]
-
-  delete "attachments/:id/purge", to: "attachments#purge", as: "purge_attachment"
-
-  resolve("adopter_foster_profile") { [:adopter_foster_profile] }
+  resources :contacts, only: %i[new create]
 end
