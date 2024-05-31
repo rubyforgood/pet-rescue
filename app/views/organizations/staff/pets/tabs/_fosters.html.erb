@@ -1,0 +1,29 @@
+<div class="mb-6">
+  <div class="card">
+    <div class="card-body">
+      <table class="table mb-0 text-nowrap table-hover table-centered">
+        <thead>
+          <tr>
+            <th scope="col">Fosterer</th>
+            <th scope="col">Status</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%# Table Layout%>
+          <div class="d-none d-xl-block">
+            <%= render "organizations/staff/pets/tabs/partials/foster_table", fosters: pet.matches.fosters %>
+          </div>
+
+          <%# Card layout %>
+          <div class="d-xl-none d-flex flex-wrap">
+          <%= render "organizations/staff/pets/tabs/partials/foster_cards", fosters: pet.matches.fosters %>
+          </div>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
