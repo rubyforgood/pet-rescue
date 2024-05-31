@@ -17,18 +17,18 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
     @pagy, @pets = pagy(
       @organization.pets
                    .left_joins(:tasks)
-                   .select('pets.*, COUNT(tasks.id) AS incomplete_tasks_count')
-                   .where(tasks: { completed: false })
-                   .where('tasks.due_date IS NULL OR tasks.due_date >= ?', Time.current)
-                   .group('pets.id'),
+                   .select("pets.*, COUNT(tasks.id) AS incomplete_tasks_count")
+                   .where(tasks: {completed: false})
+                   .where("tasks.due_date IS NULL OR tasks.due_date >= ?", Time.current)
+                   .group("pets.id"),
       items: 5
     )
     @column_name = "Incomplete Tasks"
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks", locals: { column_name: @column_name })
+        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks", locals: {column_name: @column_name})
       end
-      format.html { render :tasks, locals: { column_name: @column_name } }
+      format.html { render :tasks, locals: {column_name: @column_name} }
     end
   end
 
@@ -37,22 +37,23 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
     @pagy, @pets = pagy(
       @organization.pets
                    .left_joins(:tasks)
-                   .select('pets.*, COUNT(tasks.id) AS incomplete_tasks_count')
-                   .where(tasks: { completed: false })
-                   .where('tasks.due_date < ?', Time.current)
-                   .group('pets.id'),
+                   .select("pets.*, COUNT(tasks.id) AS incomplete_tasks_count")
+                   .where(tasks: {completed: false})
+                   .where("tasks.due_date < ?", Time.current)
+                   .group("pets.id"),
       items: 5
     )
     @column_name = "Overdue Tasks"
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks", locals: { column_name: @column_name })
+        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks", locals: {column_name: @column_name})
       end
-      format.html { render :tasks, locals: { column_name: @column_name } }
+      format.html { render :tasks, locals: {column_name: @column_name} }
     end
   end
 
   private
+
   def context_authorize!
     authorize! :dashboard,
       context: {organization: Current.organization}

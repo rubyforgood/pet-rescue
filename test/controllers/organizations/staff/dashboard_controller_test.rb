@@ -31,12 +31,12 @@ class Organizations::Staff::DashboardControllerTest < ActionDispatch::Integratio
           context: {organization: @organization},
           with: Organizations::DashboardPolicy
         ) do
-          get incomplete_tasks_staff_dashboard_index_url, headers: { "Turbo-Frame" => "tasks-frame" }
+          get incomplete_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
         end
       end
 
       should "return turbo_stream response" do
-        get incomplete_tasks_staff_dashboard_index_url, headers: { "Turbo-Frame" => "tasks-frame" }
+        get incomplete_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
         assert_response :success
         assert_match "tasks-frame", response.body
       end
@@ -49,12 +49,12 @@ class Organizations::Staff::DashboardControllerTest < ActionDispatch::Integratio
           context: {organization: @organization},
           with: Organizations::DashboardPolicy
         ) do
-          get overdue_tasks_staff_dashboard_index_url, headers: { "Turbo-Frame" => "tasks-frame" }
+          get overdue_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
         end
       end
 
       should "return turbo_stream response" do
-        get overdue_tasks_staff_dashboard_index_url, headers: { "Turbo-Frame" => "tasks-frame" }
+        get overdue_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
         assert_response :success
         assert_match "tasks-frame", response.body
       end
