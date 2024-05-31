@@ -2,7 +2,7 @@
   <div class="bg-image" style="background-image: url('<%= Current.organization.page_text&.hero_image&.attached? ? url_for(Current.organization.page_text.hero_image) : asset_path('dog-run.png') %>'); background-position: center; background-size: cover;">
     <div class="mask py-lg-16 py-5" style="background-color: rgba(255, 255, 255, 0.8);">
       <div class="container">
-        <div class="d-flex row justify-content-center  align-items-center">
+        <div class="d-flex row justify-content-center align-items-center">
           <div class="d-flex justify-content-center">
             <h1 class="display-2 fw-bold mb-1 text-primary "><%= Current.organization.name %></h1>
           </div>
@@ -34,19 +34,22 @@
       </h2>
     </div>
     <!--//? bootstrap cards -->
-    <div class="d-flex justify-content-around align-items-center flex-wrap">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mt-4">
       <% @pets.each do |pet| %>
         <%= link_to adoptable_pet_path(pet) do %>
-          <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-            <%= image_tag(pet.images.first, alt: pet.name, class: "card-img-top rounded-top-1", height: "181px") %>
-            <div class="card-body">
-              <p class="card-text text-black ">
-                <%= "Adopt #{pet.name} " %>
-                <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512">
+          <div class="col">
+            <div class="card featured-pets h-100 mt-4 mt-lg-0">
+              <%= image_tag(pet.images.first, alt: pet.name) %>
+              <div class="card-img-overlay p-0"></div>
+              <div class="card-footer">
+                <p class="card-text text-black">
+                  Adopt <%= pet.name %>
+                </p>
+                <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" viewBox="0 0 448 512">
                   <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                   <path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
                 </svg>
-              </p>
+              </div>
             </div>
           </div>
         <% end %>
