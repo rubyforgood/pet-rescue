@@ -6,11 +6,11 @@
   <% end %>
   <div class="card-body px-5">
     <%# headers %>
-    <div class="row border-bottom px-3 pb-3 pt-1">
+    <div class="row border-bottom pb-3 pt-1">
       <div class="col fw-semibold">
         Applicant
       </div>
-      <div class="col fw-semibold">
+      <div class="col fw-semibold" style="min-width: 220px;">
         Status
       </div>
       <div class="col">
@@ -20,8 +20,6 @@
         Notes
       </div>
     </div>
-    <%# style line %>
-
     <% applications.each do |app|%>
       <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
     <% end %>

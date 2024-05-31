@@ -1,11 +1,11 @@
-<tr id="<%= dom_id(app) %>">
+<div class="row pt-3" id="<%= dom_id(app) %>">
   <!-- applicant -->
-  <td class="align-middle col-3">
+  <div class="align-middle col">
     <%= link_to app.applicant_name, staff_profile_review_path(app.adopter_foster_account.adopter_foster_profile),
                             class: "link-underline link-underline-opacity-0"  %>
-  </td>
+  </div>
   <!-- status -->
-  <td class="align-middle col-3">
+  <div class="align-middle col text-nowrap" style="min-width: 220px;">
     <div class="dropdown">
       <button class="btn dropdown-toggle <%= application_status_classes(app)
       %>" data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,9 +23,9 @@
         <% end %>
       </ul>
     </div>
-  </td>
+  </div>
   <!-- create -->
-  <td class="align-middle text-center col-3">
+  <div class="align-middle text-center col">
     <% if app.status == 'successful_applicant' %>
       <!--create adoption button-->
       <%= button_to "New Adoption", staff_matches_path, method: :post,
@@ -46,14 +46,14 @@
                 disabled>New Adoption</button>
       </span>
     <% end %>
-  </td>
+  </div>
   <!-- notes -->
-  <td class="align-middle">
-    <span>
+  <div class="align-middle col text-nowrap">
+    <span title="<%= app.notes %>">
       <% if params[:active_tab] == 'applications' || @applications_tab == true %>
-        <%= app.notes&.truncate(10) %>
+        <%= app.notes&.truncate(8) %>
       <% else %>
-        <%= app.notes&.truncate(30) %>
+        <%= app.notes&.truncate(20) %>
       <% end %>
     </span>
     <button type="button" class="btn btn-outline-primary border border-0" data-bs-toggle="modal" data-bs-target="#notesModal<%= app.id %>">
@@ -80,5 +80,5 @@
         </div>
       </div>
     </div>
-  </td>
-</tr>
+  </div>
+</div>
