@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_22_160107) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_31_191158) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -118,6 +118,46 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_22_160107) do
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.bigint "author_id", null: false
+    t.bigint "pet_id"
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_chat_messages_on_author_id"
+    t.index ["chat_id"], name: "index_chat_messages_on_chat_id"
+    t.index ["pet_id"], name: "index_chat_messages_on_pet_id"
+  end
+
+  create_table "chat_participants", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "last_seen", precision: nil
+    t.index ["chat_id"], name: "index_chat_participants_on_chat_id"
+    t.index ["user_id"], name: "index_chat_participants_on_user_id"
+  end
+
+  create_table "chat_pets", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.bigint "pet_id", null: false
+    t.index ["chat_id"], name: "index_chat_pets_on_chat_id"
+    t.index ["pet_id"], name: "index_chat_pets_on_pet_id"
+  end
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.bigint "initiated_by_id", null: false
+    t.date "initiated_on", null: false
+    t.text "summary"
+    t.string "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["initiated_by_id"], name: "index_chats_on_initiated_by_id"
+    t.index ["initiated_on"], name: "index_chats_on_initiated_on"
+    t.index ["organization_id"], name: "index_chats_on_organization_id"
   end
 
   create_table "default_pet_tasks", force: :cascade do |t|
