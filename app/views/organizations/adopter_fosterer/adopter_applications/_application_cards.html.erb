@@ -21,14 +21,16 @@
       </div>
     </li>
     <li class="list-group-item d-flex justify-content-center">
-      <% unless application.status == 'withdrawn' || application.status == 'adoption_made'%>
+      <% if application.status == 'withdrawn' %>
+        Display something here please
+      <% elsif application.status != 'adoption_made' %>
         <%= button_to t("dashboard.applications.withdraw_application"),
               adopter_fosterer_adopter_application_path(application, adopter_application:
               { status: 'withdrawn'}), method: :patch, class: 'btn
             btn-outline-danger', data: { turbo_confirm:
             t("dashboard.applications.confirm_withdraw") + " for " +
             pet.name.capitalize + "?"} %>
-      <% end  %>
+      <% end %>
     </li>
   </ul>
 </div>

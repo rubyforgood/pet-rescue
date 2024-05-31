@@ -35,6 +35,12 @@
             <%= app.human_enum_name(:status) %>
           </td>
           <td>
+            <% if app.status == 'withdrawn' %>
+              <%= button_to t("general.delete"),
+              adopter_fosterer_adopter_application_path(app, adopter_application:
+              { profile_show: false }), method: :patch, class: 'btn btn-outline-danger',
+              data: { turbo_confirm: t("dashboard.applications.confirm_delete") } %>
+            <% end %>
             <% unless app.status == 'withdrawn' || app.status == 'adoption_made'%>
               <%= button_to t("dashboard.applications.withdraw_application"),
               adopter_fosterer_adopter_application_path(app, adopter_application:
