@@ -12,9 +12,7 @@
           </div>
           <div class="lh-1">
             <h2 class="mb-0"><%= @pet.name %></h2>
-            <% if @pet.has_adoption_pending? %>
-              <p class="mb-0 d-block"><%= t('general.adoption_pending') %></p>
-            <% end %>
+              <%=  tag.span("Adoption Pending", class: "badge bg-info") if @pet.has_adoption_pending?%>
           </div>
         </div>
         <div>
