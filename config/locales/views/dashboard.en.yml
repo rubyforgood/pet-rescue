@@ -9,4 +9,4 @@ en:
       status: Status
       withdraw_application: Withdraw Application
       confirm_withdraw: Withdraw your application for %{pet_name}?
-      confirm_delete: This will permanently remove this application for your dashboard.
+      confirm_delete: This will permanently remove this application from your dashboard.
