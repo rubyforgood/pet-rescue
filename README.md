@@ -107,6 +107,15 @@ Run ALL tests:
 ```
 ./bin/rails test:all
 ```
+## Troubleshoot
+<details>
+  <summary>Test Error</summary>
+  - System tests Error TCP Connection refused
+  
+  Fix: chromium install
+
+  [Case in point](https://github.com/rubyforgood/pet-rescue/pull/763#issuecomment-2140971709)
+</details>
 
 # 💅 Linting 
 
