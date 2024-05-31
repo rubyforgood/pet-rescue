@@ -3,26 +3,23 @@
     <table class="table mb-0 text-nowrap table-hover table-centered">
       <thead>
         <tr>
-          <th scope="col">Image</th>
           <th scope="col">Name</th>
-          <th scope="col">Sex</th>
-          <th scope="col">Number of Incomplete Tasks</th>
+          <th class="text-center" scope="col">Sex</th>
+          <th class="text-center" scope="col">Number of Incomplete Tasks</th>
         </tr>
       </thead>
       <tbody>
         <% @pets.each do |pet| %>
           <tr>
             <td>
-              <div class="icon-shape icon-lg rounded-3 border">
-                <% if pet.images.attached? %>
-                  <%= image_tag pet.images.first, class: 'card-img' %>
-                <% else %>
-                  <%= image_tag('coming_soon.jpg', class: 'card-img') %>
-                <% end %>
-              </div>
-            </td>
-            <td>
               <div class="d-flex align-items-center">
+                <div class="icon-shape icon-lg rounded-3 border">
+                  <% if pet.images.attached? %>
+                    <%= image_tag pet.images.first, class: 'card-img' %>
+                  <% else %>
+                    <%= image_tag('coming_soon.jpg', class: 'card-img') %>
+                  <% end %>
+                </div>
                 <div class="ms-3">
                   <h4 class="mb-0">
                     <%= link_to pet.name, staff_pet_path(pet), class: 'text-inherit', data: { turbo: false } %>
@@ -30,11 +27,15 @@
                 </div>
               </div>
             </td>
-            <td>
-              <%= pet.sex %>
+             <td>
+              <div class="d-flex justify-content-center">
+                <%= pet.sex %>
+              </div>
             </td>
             <td>
-              <%= pet.incomplete_tasks_count %>
+              <div class="d-flex justify-content-center">
+                <%= link_to pet.incomplete_tasks_count, staff_pet_path(pet, active_tab: 'tasks'), class: 'text-inherit', data: { turbo: false } %>
+              </div>
             </td>
           </tr>
         <% end %>
