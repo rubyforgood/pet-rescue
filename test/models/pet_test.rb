@@ -27,6 +27,50 @@ class PetTest < ActiveSupport::TestCase
     should validate_inclusion_of(:weight_unit).in_array(["lb", "kg"])
     should define_enum_for(:species)
     should define_enum_for(:placement_type)
+
+    context "sensible_placement_type" do
+      context "with unfinished foster match" do
+        setup do
+          @foster_match = create(:foster, start_date: 1.day.ago, end_date: Date.today + 30.days)
+        end
+
+        should "allow Adoptable and Fosterable" do
+          @foster_match.pet.placement_type = "Adoptable and Fosterable"
+          assert @foster_match.pet.valid?
+        end
+
+        should "allow Fosterable" do
+          @foster_match.pet.placement_type = "Fosterable"
+          assert @foster_match.pet.valid?
+        end
+
+        should "not allow Adoptable" do
+          @foster_match.pet.placement_type = "Adoptable"
+          assert @foster_match.pet.invalid?
+        end
+      end
+
+      context "no unfinished foster matches" do
+        setup do
+          @foster_match = create(:foster, start_date: 30.days.ago, end_date: 10.days.ago)
+        end
+
+        should "allow Adoptable and Fosterable" do
+          @foster_match.pet.placement_type = "Adoptable and Fosterable"
+          assert @foster_match.pet.valid?
+        end
+
+        should "allow Fosterable" do
+          @foster_match.pet.placement_type = "Fosterable"
+          assert @foster_match.pet.valid?
+        end
+
+        should "allow Adoptable" do
+          @foster_match.pet.placement_type = "Adoptable"
+          assert @foster_match.pet.valid?
+        end
+      end
+    end
   end
 
   context "#has_adoption_pending?" do

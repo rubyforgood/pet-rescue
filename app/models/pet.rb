@@ -60,6 +60,8 @@ class Pet < ApplicationRecord
     limit: {max: 15, message: "- 15 maximum"},
     size: {between: 10.kilobyte..2.megabytes}
 
+  validate :sensible_placement_type
+
   enum species: ["Dog", "Cat"]
   enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
 
@@ -93,6 +95,12 @@ class Pet < ApplicationRecord
   # active storage: using.attach for appending images per rails guide
   def append_images=(attachables)
     images.attach(attachables)
+  end
+
+  def sensible_placement_type
+    if matches.where(end_date: DateTime.now..).exists? && placement_type == "Adoptable"
+      errors.add(:placement_type, "must include Fosterable")
+    end
   end
 
   # all pets under an organization
