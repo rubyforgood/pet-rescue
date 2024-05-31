@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-41-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-42-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to connect shelters with people who are looking to adopt or foster pets.
@@ -267,6 +267,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sarvaiyanidhi"><img src="https://avatars.githubusercontent.com/u/514363?v=4?s=100" width="100px;" alt="Nidhi Sarvaiya"/><br /><sub><b>Nidhi Sarvaiya</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=sarvaiyanidhi" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/elight"><img src="https://avatars.githubusercontent.com/u/10112?v=4?s=100" width="100px;" alt="Evan Light"/><br /><sub><b>Evan Light</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=elight" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/kiryth"><img src="https://avatars.githubusercontent.com/u/110743903?v=4?s=100" width="100px;" alt="Kirin"/><br /><sub><b>Kirin</b></sub></a><br /><a href="#design-kiryth" title="Design">🎨</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/albertabney"><img src="https://avatars.githubusercontent.com/u/12437051?v=4?s=100" width="100px;" alt="albertabney"/><br /><sub><b>albertabney</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=albertabney" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
