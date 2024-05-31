@@ -7,7 +7,7 @@
         <%= image %>
         <div id="adoption-status" class="position-absolute top-0 end-0 m-2" style="z-index: 100;">
           <%= tag.span("Adoption Pending", class: "badge bg-info") if pet.has_adoption_pending?%>
-          <%= tag.span("Adopted", class: "badge bg-info") if pet.is_adopted?%>
+          <%= tag.span("Adopted", class: "badge bg-warning") if pet.is_adopted?%>
         </div>
       </div>
   <% end %>
