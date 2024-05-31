@@ -86,6 +86,10 @@ class Pet < ApplicationRecord
     adopter_applications.any? { |app| app.status == "adoption_pending" }
   end
 
+  def is_adopted? 
+    adopter_applications.any? { |app| app.status == "adoption_made" }
+  end
+
   # active storage: using.attach for appending images per rails guide
   def append_images=(attachables)
     images.attach(attachables)
