@@ -1,5 +1,4 @@
 class Organizations::AdopterFosterer::AdopterApplicationsController < Organizations::BaseController
-  before_action :authenticate_user!
 
   def index
     authorize! with: AdopterApplicationPolicy

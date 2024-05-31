@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!
   verify_authorized unless: :devise_controller?
 
   before_action :set_current_user
