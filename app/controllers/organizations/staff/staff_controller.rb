@@ -1,4 +1,5 @@
 class Organizations::Staff::StaffController < Organizations::BaseController
+  skip_before_action :authenticate_user!
   before_action :set_staff_account, only: [:deactivate, :activate, :update_activation]
 
   layout "dashboard"
