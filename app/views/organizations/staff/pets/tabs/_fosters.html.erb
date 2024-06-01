@@ -1,29 +1,26 @@
-<div class="mb-6">
-  <div class="card">
-    <div class="card-body">
-      <table class="table mb-0 text-nowrap table-hover table-centered">
-        <thead>
-          <tr>
-            <th scope="col">Fosterer</th>
-            <th scope="col">Status</th>
-            <th scope="col">Start Date</th>
-            <th scope="col">End Date</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <%# Table Layout%>
-          <div class="d-none d-xl-block">
-            <%= render "organizations/staff/pets/tabs/partials/foster_table", fosters: fosters %>
-          </div>
+<div class="card">
+  <div class="card-body px-5">
+    <% #headers %>
+    <div class="row border-bottom pb-3 pt-1">
+      <div class="col fw-semibold">
+        Fosterer
+      </div>
+      <div class="col fw-semibold">
+        Status
+      </div>
+      <div class="col fw-semibold">
+        Start Date
+      </div>
+      <div class="col fw-semibold">
+        End Date
+      </div>
+      <div class="col fw-semibold">
 
-          <%# Card layout %>
-          <div class="d-xl-none d-flex flex-wrap">
-          <%= render "organizations/staff/pets/tabs/partials/foster_cards", fosters: fosters %>
-          </div>
-
-        </tbody>
-      </table>
+      </div>
     </div>
+
+    <% fosters.each do |foster|%>
+      <%= render 'organizations/staff/pets/tabs/partials/foster', foster: foster %>
+    <% end %>
   </div>
 </div>
