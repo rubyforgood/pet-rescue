@@ -1,7 +1,7 @@
 <div class="row pt-3" id="<%= dom_id(app, :card) %>">
             <li class="list-group-item">
             <ul class="list-group list-group-flush d-flex flex-column justify-content-between">
-              
+
               <!-- applicant -->
               <li class="list-group-item">
                 <span>Applicant:</span>
@@ -16,7 +16,7 @@
               <li class="list-group-item">
                 <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
               </li>
-              
+
               <!-- create -->
               <li class="list-group-item">
                 <%= render 'organizations/staff/pets/tabs/partials/application_create_button', app: app %>      
@@ -24,7 +24,7 @@
 
               <!-- notes -->
               <li class="list-group-item">
-                <%= render 'organizations/staff/pets/tabs/partials/application_notes', app: app %>
+                <%= render 'organizations/staff/pets/tabs/partials/application_notes', app: app, modal_id: 'card' %>
               </li>
             </ul>
           </li>
