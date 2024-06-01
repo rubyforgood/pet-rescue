@@ -202,6 +202,7 @@ en:
               blank: "Species can't be blank"
             placement_type:
               blank: "Placement type can't be blank"
+              sensible: "Cannot change placement type to adoptable on pet with active foster"
             weight_from:
               blank: "Weight From can't be blank"
               not_a_number: "Weight From is not a number"
