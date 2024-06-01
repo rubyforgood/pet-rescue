@@ -1,0 +1,26 @@
+<%# Grid cell %>	
+  <div class="col-lg-4 col-md-6 p-0">	
+    <%# Card %>	
+    <div class="card card-hover m-4" style='overflow: hidden'>	
+      <%# Card image %>	
+      <%= link_to staff_pet_path(pet) do %>	
+        <% if pet.images.attached? %>	
+            <%= image_tag pet.images.first, class: "card-img-top" %>	
+        <% else %>	
+            <%= image_tag "coming_soon.jpg", class: "card-img-top" %>	
+        <% end %>	
+      <% end %>	
+      <%# Card header %>	
+      <div class="card-header">	
+        <h4 class="card-title">	
+          <%= link_to pet.name, staff_pet_path(pet) %>	
+        </h4>	
+      </div>	
+      <%# Card body %>	
+      <ul class="list-group list-group-flush">	
+        <% applications.each do |app| %>	
+          <%= render 'organizations/staff/pets/tabs/partials/application_info_card', app: app %>	
+        <% end %>	
+      </ul>	
+    </div>	
+  </div>
