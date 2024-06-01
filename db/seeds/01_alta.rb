@@ -156,6 +156,15 @@ ActsAsTenant.with_tenant(@organization) do
     }
   }
 
+  # USE THE FOLLOWING COMMENT
+
+  # profile_data = {hash: data}
+  # [profile_one, profile_two].each do |profile|
+  #   profile_data[:adopter_foster_account_id] = profile.id
+  #   AdopterFosterProfile.create!(profile_data)
+  # end
+
+
   @adopter_foster_profile_one = AdopterFosterProfile.create!(
     user_profile_params.call(@adopter_foster_account_one)
   )
