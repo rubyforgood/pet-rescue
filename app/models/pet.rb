@@ -99,7 +99,7 @@ class Pet < ApplicationRecord
 
   def sensible_placement_type
     if matches.where(end_date: DateTime.now..).exists? && placement_type == "Adoptable"
-      errors.add(:placement_type, "must include Fosterable")
+      errors.add(:placement_type, I18n.t("activerecord.errors.models.pet.attributes.placement_type.sensible"))
     end
   end
 
