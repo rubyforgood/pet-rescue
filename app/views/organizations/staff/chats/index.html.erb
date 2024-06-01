@@ -1,0 +1,85 @@
+<%= render "components/dashboard/page" do |p| %>
+  <% p.header_title "Chats" %>
+
+  <% p.content do %>
+    <header>
+      <%= form_with url: staff_chats_url, method: "get" do |f| %>
+      <div class="row row-cols-md-auto justify-content-end">
+        <div class="col">
+          <%= f.label :pets, "Choose Pet", class: "form-label visually-hidden" %>
+          <%= f.select :pets, @pet_names, { selected: params[:pets], include_blank: "Choose Pet" }, class: "form-select" %>
+        </div>
+
+        <div class="col">
+        <%= f.submit "filter", class: "btn btn-primary" %>
+        </div>
+      </div>
+      <% end %>
+    </header>
+
+    <% @chats_by_date.each do |date, chats| %>
+      <section class="mt-4">
+        <header>
+          <h3><date><%= date %></date></h3>
+        </header>
+
+        <% chats.each do |chat| %>
+          <%= tag.article class: "card mt-2" do %>
+            <%= tag.div class: "card-header d-inline-flex gap-3 justify-content-start", data: { "bs-toggle": "collapse", "bs-target": "##{dom_id(chat)}" } do %>
+              <strong class=""><%= chat.initiated_by.full_name %></strong>
+              <span class="">
+              <% chat.pets.map(&:name).each do |pet_name| %>
+                <em><%= pet_name %></em>
+              <% end %>
+              </span>
+
+
+              <span class="ms-auto">
+                <%= chat.participants.map(&:user).without(chat.initiated_by).map(&:full_name).join(", ") %>
+              </end>
+            <% end %>
+
+            <%= tag.div class: "card-body collapse", id: dom_id(chat) do %>
+              <div class="row row-lg-auto">
+                <ul class="col">
+                  <% chat.messages.each do |m| %>
+                    <li>
+                      <strong><%= m.author.full_name %></strong>
+                      <span><%= m.content %></span>
+                    </li>
+                  <% end %>
+                </ul>
+
+                <div class="pets col-3">
+                  <% chat.pets.each  do |pet| %>
+                    <div class="card card-hover m-4" style='overflow: hidden'>
+                      <%= link_to image_tag(pet.images.attached? ? pet.images.first : 'coming_soon.jpg', class: 'card-img-top pet-card'), staff_pet_path(pet) %>
+
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between">
+                          <h5 class="card-title text-secondary mb-0">
+                            <%= link_to pet.name, staff_pet_path(pet) %>
+                          </h5>
+                        </li>
+                        <li class="list-group-item text-secondary">
+                          Sex: <%= pet.sex %>
+                        </li>
+                      </ul>
+                    </div>
+                  <% end %>
+
+
+
+                </div>
+              </div>
+            <% end %>
+
+            <%= tag.div class: "card-footer" do %>
+              <%= chat.summary %>
+            <% end if chat.summary.present? %>
+          <% end %>
+        <% end %>
+    </section>
+    <% end %>
+  <% end %>
+<% end %>
