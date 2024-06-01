@@ -2,8 +2,9 @@
 
 <% @collection = @pet.nil? ? @pets_with_applications : @pet %>
 
-  <% @collection.each do |pet| %>
-    <%= render "organizations/staff/pets/tabs/applications", applications: pet.adopter_applications, pet: pet %>
-  <% end %>
-
-  </div>
+<% @collection.each do |pet| %>
+    <!--pet name-->
+    <div class="mb-4">
+      <%= render "organizations/staff/pets/tabs/applications", applications: pet.adopter_applications, pet: pet %>
+    </div>
+<% end %>
