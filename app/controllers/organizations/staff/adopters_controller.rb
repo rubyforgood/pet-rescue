@@ -1,4 +1,4 @@
-class Organizations::Staff::AdoptersController < Organizations::BaseController   
+class Organizations::Staff::AdoptersController < Organizations::BaseController
   layout "dashboard"
 
   def index
