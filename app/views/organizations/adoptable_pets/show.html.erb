@@ -12,7 +12,7 @@
           </div>
           <div class="lh-1">
             <h2 class="mb-0"><%= @pet.name %></h2>
-            <%= tag.span("Adoption Pending", class: "badge bg-info") if @pet.has_adoption_pending? %>
+            <%= content_tag(:span, t('adoption_pending'), class: "badge bg-info") if @pet.has_adoption_pending? %>
           </div>
         </div>
         <div>
