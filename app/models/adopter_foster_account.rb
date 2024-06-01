@@ -3,6 +3,7 @@
 # Table name: adopter_foster_accounts
 #
 #  id              :bigint           not null, primary key
+#  deactivated_at  :datetime
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :bigint           not null
@@ -33,4 +34,16 @@ class AdopterFosterAccount < ApplicationRecord
   scope :fosterers, -> {
     joins(user: :roles).where(roles: {name: "fosterer"})
   }
+
+  def deactivate
+    update(deactivated_at: Time.now) unless deactivated_at
+  end
+
+  def activate
+    update(deactivated_at: nil) if deactivated_at
+  end
+
+  def deactivated?
+    !!deactivated_at
+  end
 end

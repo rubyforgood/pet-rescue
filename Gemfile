@@ -171,3 +171,6 @@ gem "rails-controller-testing"
 
 # Use Action Policy for authorization framework
 gem "action_policy", "~> 0.6.9"
+
+# enable the REPL and local/instance variable inspection
+gem "binding_of_caller"
