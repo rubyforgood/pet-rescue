@@ -362,6 +362,14 @@ en:
           under_review: "Under Review"
           adoption_pending: "Adoption Pending"
           withdrawn: "Withdrawn"
+          successful_applicant: "Successful Applicant"
+        tabs:
+          overview:
+            status:
+              active: "Active"
+              paused: "Paused"
+              published: "Published"
+              draft: "Draft"
       forms:
         not_found: "Form not found."
         index:
@@ -376,6 +384,7 @@ en:
           edit_form: "Edit Form"
         show:
           confirm_delete_question: "Are you sure you want to delete this question?"
+          create_question: "Create Question"
         update:
         destroy:
         form:
@@ -386,6 +395,8 @@ en:
         updated: "Form saved successfully."
         destroyed: "Form was successfully deleted."
       questions:
+        new:
+          new_question: "New Question"
         create:
           error: "Error creating question."
         update:
@@ -394,6 +405,12 @@ en:
         saved: "Question saved successfully."
         destroyed: "Question was successfully deleted."
         not_found: "Question not found."
+        edit:
+          edit_question: "Edit Question"
+        form:
+          help_text:
+            label: "Label"
+            help_text: "help text"
     adopter_fosterer:
       profiles:
         form:
@@ -405,6 +422,13 @@ en:
           adopter_foster_profile: "Adopter Foster Profile"
           help_us_learn_more: "The following questions help us learn more about you so we can match you with the right pooch."
         show:
+          describe_pets: "Description of pets"
+          adults_in_home: "Number of adults in home (over 18)"
+          children_in_home: "Number of children in home (under 18)"
+          pets_in_home: "¿Do you have pets in your home?"
+          rent_question: "¿Do you rent your home or live on a strata property?"
+          fenced_access_question: "¿Do you have access to a fenced garden?"
+          housing_type: "Housing Type"
           adopter_foster_profile: "Adopter Foster Profile"
           edit_profile: "Edit Profile"
           your_ideal_pet: "Your ideal pet"
