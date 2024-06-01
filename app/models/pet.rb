@@ -80,6 +80,7 @@ class Pet < ApplicationRecord
   scope :fosterable, -> {
     where(placement_type: ["Fosterable", "Adoptable and Fosterable"])
   }
+  scope :with_photo, -> { where.associated(:images_attachments) }
 
   attr_writer :toggle
 
