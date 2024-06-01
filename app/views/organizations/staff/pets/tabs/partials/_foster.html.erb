@@ -1,9 +1,9 @@
 <div class="row pt-3" id="<%= dom_id(foster) %>">
-  <!-- foster -->
+  <!-- fosterer -->
   <div class="align-middle col-4">
-  <%= link_to foster.fosterer_name(:last_first),
-      staff_profile_review_path(foster.adopter_foster_profile),
-      class: "link-underline link-underline-opacity-0"%>
+    <%= link_to foster.fosterer_name(:last_first),
+                staff_profile_review_path(foster.adopter_foster_profile),
+                class: "link-underline link-underline-opacity-0" %>
   </div>
   <!-- status -->
   <div class="align-middle col-2">
@@ -13,30 +13,27 @@
   </div>
   <!-- start date -->
   <div class="align-middle col-2">
-      <%= turbo_frame_tag dom_id(foster, :start_date) do %>
+    <%= turbo_frame_tag dom_id(foster, :start_date) do %>
       <%= link_to foster.start_date.strftime("%m/%d/%Y"),
-          edit_staff_manage_foster_path(foster, page: params[:page]),
-          class: "btn btn-outline-primary mb-2 px-2 py-1"
-      %>
+                  edit_staff_manage_foster_path(foster),
+                  class: "btn btn-outline-primary mb-2 px-2 py-1" %>
     <% end %>
   </div>
   <!-- end date -->
   <div class="align-middle col-2">
     <%= turbo_frame_tag dom_id(foster, :end_date) do %>
       <%= link_to foster.end_date.strftime("%m/%d/%Y"),
-        edit_staff_manage_foster_path(foster, page: params[:page]),
-        class: "btn btn-outline-primary mb-2 px-2 py-1"
-      %>
+                  edit_staff_manage_foster_path(foster),
+                  class: "btn btn-outline-primary mb-2 px-2 py-1" %>
     <% end %>
   </div>
+  <!-- delete -->
   <div class="align-middle col-2">
-    <%= button_to "Delete",
-      staff_manage_foster_path(foster, page: params[:page]),
-      method: :delete,
-      class: "btn btn-outline-danger px-2 py-1",
-      data: {
-        turbo_confirm: "Click OK to delete this foster."
-      }
-    %>
+    <%= button_to "Delete", staff_manage_foster_path(foster),
+                  method: :delete,
+                  class: "btn btn-outline-danger px-2 py-1",
+                  data: {
+                    turbo_confirm: "Click OK to delete this foster."
+                  } %>
   </div>
 </div>

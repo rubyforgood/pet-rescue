@@ -337,6 +337,10 @@ en:
           application:
             active: "Applications are active"
             paused: "Applications are paused"
+          status: "Status"
+          fosterer: "Fosterer"
+          start_date: "Start Date"
+          end_date: "End Date"
         form:
           uploaded_images: "Uploaded Images"
         index:
