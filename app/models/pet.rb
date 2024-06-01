@@ -118,10 +118,32 @@ class Pet < ApplicationRecord
   end
 
   def self.ransackable_scopes(auth_object = nil)
-    [:ransack_adopted]
+    %i[ransack_adoption_status ransack_foster_status]
   end
 
-  def self.ransack_adopted(boolean)
-    boolean ? adopted : unadopted
+  def self.ransack_adoption_status(option)
+    case option
+    when 0
+      adopted
+    when 1
+      adoptable
+    when 2
+      where(placement_type: ["Fosterable"])
+    else
+      all
+    end
+  end
+
+  def self.ransack_foster_status(option)
+    case option
+    when 0
+      fostered
+    when 1
+      fosterable
+    when 2
+      where(placement_type: ["Adoptable"])
+    else
+      all
+    end
   end
 end
