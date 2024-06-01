@@ -21,14 +21,17 @@
       </div>
     </li>
     <li class="list-group-item d-flex justify-content-center">
-      <% unless application.status == 'withdrawn' || application.status == 'adoption_made'%>
+      <% if application.status == 'withdrawn' %>
+        <%= button_to t("general.delete"),
+              adopter_fosterer_adopter_application_path(application, adopter_application:
+              { profile_show: false }), method: :patch, class: 'btn btn-outline-danger',
+              data: { turbo_confirm: t("dashboard.applications.confirm_delete") } %>
+      <% elsif application.status != 'adoption_made' %>
         <%= button_to t("dashboard.applications.withdraw_application"),
               adopter_fosterer_adopter_application_path(application, adopter_application:
-              { status: 'withdrawn'}), method: :patch, class: 'btn
-            btn-outline-danger', data: { turbo_confirm:
-            t("dashboard.applications.confirm_withdraw") + " for " +
-            pet.name.capitalize + "?"} %>
-      <% end  %>
+              { status: 'withdrawn'}), method: :patch, class: 'btn btn-outline-danger',
+              data: { turbo_confirm: t("dashboard.applications.confirm_withdraw", pet_name: pet.name.capitalize) } %>
+      <% end %>
     </li>
   </ul>
 </div>
