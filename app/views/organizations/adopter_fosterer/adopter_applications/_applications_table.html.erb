@@ -5,9 +5,9 @@
   <table class="table mb-0 text-nowrap table-hover table-centered">
     <thead>
       <tr>
-        <th scope="col"><%= t("dashboard.applications.name")%></th>
-        <th scope="col"><%= t("dashboard.applications.created")%></th>
-        <th scope="col"><%= t("dashboard.applications.status")%></th>
+        <th scope="col"><%= t("views.dashboard.applications.name")%></th>
+        <th scope="col"><%= t("views.dashboard.applications.created")%></th>
+        <th scope="col"><%= t("views.dashboard.applications.status")%></th>
         <th scope="col"></th>
       </tr>
     </thead>
@@ -40,7 +40,7 @@
               adopter_fosterer_adopter_application_path(app, adopter_application:
               { status: 'withdrawn'}), method: :patch, class: 'btn
             btn-outline-danger', data: { turbo_confirm:
-            t("dashboard.applications.confirm_withdraw") + " for " +
+            t("views.dashboard.applications.confirm_withdraw") + " for " +
             pet.name.capitalize + "?"} %>
             <% end  %>
           </td>

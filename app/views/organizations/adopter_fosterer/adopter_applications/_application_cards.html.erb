@@ -11,11 +11,11 @@
     </li>
     <% li_classes = %w[list-group-item text-secondary] %>
     <li class="list-group-item d-flex flex-wrap justify-content-between text-secondary">
-      <span class="fw-semibold"><%= t("dashboard.applications.created")%>:</span>
+      <span class="fw-semibold"><%= t("views.dashboard.applications.created")%>:</span>
       <%= l application.created_at.to_date, format: :long %>
     </li>
     <li class="list-group-item d-flex flex-wrap justify-content-between text-secondary">
-      <div class="me-1 fw-semibold"><%= t("dashboard.applications.status")%>:</div>
+      <div class="me-1 fw-semibold"><%= t("views.dashboard.applications.status")%>:</div>
       <div>
         <%= application.human_enum_name(:status) %>
       </div>
@@ -26,7 +26,7 @@
               adopter_fosterer_adopter_application_path(application, adopter_application:
               { status: 'withdrawn'}), method: :patch, class: 'btn
             btn-outline-danger', data: { turbo_confirm:
-            t("dashboard.applications.confirm_withdraw") + " for " +
+            t("views.dashboard.applications.confirm_withdraw") + " for " +
             pet.name.capitalize + "?"} %>
       <% end  %>
     </li>
