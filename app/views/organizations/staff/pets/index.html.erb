@@ -24,8 +24,12 @@
                 <%= f.select :species_eq, Pet.species, {include_blank: 'All'}, class: "form-select" %>
               </div>
               <div class="form-group">
-                <%= f.label :ransack_adopted, "Status" %>
-                <%= f.select :ransack_adopted, [['Adopted', true], ['Unadopted', false]], {include_blank: 'All'}, class: "form-select" %>
+                <%= f.label :ransack_adoption_status, "Adoption Status" %>
+                <%= f.select :ransack_adoption_status, [['Adopted', 0], ['Adoptable', 1], ['Not Adoptable', 2]], {include_blank: 'All'}, class: "form-select" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :ransack_foster_status, "Foster Status" %>
+                <%= f.select :ransack_foster_status, [['Fostered', 0], ['Fosterable', 1], ['Not Fosterable', 2]], {include_blank: 'All'}, class: "form-select" %>
               </div>
             </div>
             <div class='d-flex flex-column w-100 w-md-auto flex-md-row gap-2'>
@@ -44,7 +48,7 @@
       <!-- Table layout -->
       <div class="d-none d-xl-block">
         <%= render partial: "pet_table", locals: { pets: @pets} %>
-      </div>          
+      </div>
       <!-- Card-based layout -->
       <div class="d-xl-none d-flex flex-wrap">
         <%= render partial:"pet_cards", collection: @pets, as: :pet %>
