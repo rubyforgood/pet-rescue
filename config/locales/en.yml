@@ -272,7 +272,7 @@ en:
         select_one: "Select one"
         please_fill_in: "Please fill this field"
         50_characters_maximum: "50 characters maximum"
-
+    authorization_error: "You are not authorized to perform this action."
   organizations:
     adoptable_pets:
       index:
@@ -352,6 +352,16 @@ en:
             paused: "Applications: paused"
         new:
           new_pet_post: "New Pet Post"
+        applications:
+          applicant: "Applicant"
+          status: "Status"
+          notes: "Notes"
+        application_status:
+          edit_notes: "Edit notes for"
+          awaiting_review: "Awaiting Review"
+          under_review: "Under Review"
+          adoption_pending: "Adoption Pending"
+          withdrawn: "Withdrawn"
       forms:
         not_found: "Form not found."
         index:
@@ -457,3 +467,6 @@ en:
       enabled: "Enabled"
       deactivated: "Staff account deactivated."
       activated: "Staff account activated."
+  contacts:
+    create:
+      success: "Message sent!"

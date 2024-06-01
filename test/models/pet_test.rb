@@ -29,6 +29,36 @@ class PetTest < ActiveSupport::TestCase
     should define_enum_for(:placement_type)
   end
 
+  context "scopes" do
+    context ".org_pets_with_apps(staff_org_id)" do
+      should "return pets for organization that have adopter applications" do
+        pet_with_app = create(:pet, :adoption_pending)
+        pet_without_app = create(:pet)
+        res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
+
+        assert res.include?(pet_with_app)
+        assert_not res.include?(pet_without_app)
+      end
+
+      should "include pets that have been adopted" do
+        adopted_pet = create(:pet, :adopted)
+        res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
+
+        assert res.include?(adopted_pet)
+      end
+    end
+
+    context ".with_photo" do
+      should "return pets that have a photo on their profile" do
+        pet_with_image = create(:pet, :with_image)
+        pet_without_image = create(:pet)
+
+        assert Pet.with_photo.include?(pet_with_image)
+        assert_not Pet.with_photo.include?(pet_without_image)
+      end
+    end
+  end
+
   context "#has_adoption_pending?" do
     should "return true if there is an adopter application with 'adoption_pending' status" do
       pet = Pet.new
@@ -41,21 +71,15 @@ class PetTest < ActiveSupport::TestCase
     end
   end
 
-  context ".org_pets_with_apps(staff_org_id)" do
-    should "return pets for organization that have adopter applications" do
-      pet_with_app = create(:pet, :adoption_pending)
-      pet_without_app = create(:pet)
-      res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
+  context "#is_adopted?" do
+    should "return true if there is an adopter application with 'adoption_pending' status" do
+      pet = Pet.new
+      adopter_application = pet.adopter_applications.new
+      adopter_application.status = "adoption_made"
+      assert pet.is_adopted?
 
-      assert res.include?(pet_with_app)
-      assert_not res.include?(pet_without_app)
-    end
-
-    should "include pets that have been adopted" do
-      adopted_pet = create(:pet, :adopted)
-      res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
-
-      assert res.include?(adopted_pet)
+      adopter_application.status = "awaiting_review"
+      assert_not pet.is_adopted?
     end
   end
 end

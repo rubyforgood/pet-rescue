@@ -78,12 +78,17 @@ class Pet < ApplicationRecord
   scope :fosterable, -> {
     where(placement_type: ["Fosterable", "Adoptable and Fosterable"])
   }
+  scope :with_photo, -> { where.associated(:images_attachments) }
 
   attr_writer :toggle
 
   # check if pet has any applications with adoption pending status
   def has_adoption_pending?
     adopter_applications.any? { |app| app.status == "adoption_pending" }
+  end
+
+  def is_adopted?
+    adopter_applications.any? { |app| app.status == "adoption_made" }
   end
 
   # active storage: using.attach for appending images per rails guide

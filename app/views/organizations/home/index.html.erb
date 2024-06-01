@@ -2,7 +2,7 @@
   <div class="bg-image" style="background-image: url('<%= Current.organization.page_text&.hero_image&.attached? ? url_for(Current.organization.page_text.hero_image) : asset_path('dog-run.png') %>'); background-position: center; background-size: cover;">
     <div class="mask py-lg-16 py-5" style="background-color: rgba(255, 255, 255, 0.8);">
       <div class="container">
-        <div class="d-flex row justify-content-center  align-items-center">
+        <div class="d-flex row justify-content-center align-items-center">
           <div class="d-flex justify-content-center">
             <h1 class="display-2 fw-bold mb-1 text-primary "><%= Current.organization.name %></h1>
           </div>
@@ -34,31 +34,26 @@
       </h2>
     </div>
     <!--//? bootstrap cards -->
-    <div class="d-flex justify-content-around align-items-center flex-wrap">
-      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-        <%= image_tag('dog.jpeg', width: '500px', alt: "Adorable Dog", class: "card-img-top rounded-top-1") %>
-        <div class="card-body">
-          <p class="card-text text-black ">Adoptable Dogs <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
-        </div>
-      </div>
-      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-        <%= image_tag('cat.jpeg', width: '500px', alt: "Adorable Cat", class: "card-img-top rounded-top-1") %>
-        <div class="card-body">
-          <p class="card-text text-black ">Adoptable Cats <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
-        </div>
-      </div>
-      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-        <%= image_tag('spider.jpeg', width: '500px', alt: "Adorable Spider", class: "card-img-top rounded-top-1") %>
-        <div class="card-body">
-          <p class="card-text text-black ">Adoptable Spiders <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
-        </div>
-      </div>
-      <div class="card rounded-bottom-0 mb-2" style="width: 14rem;">
-        <%= image_tag('red-panda.jpeg', width: '500px', alt: "Adorable Red Panda", class: "card-img-top rounded-top-1") %>
-        <div class="card-body">
-          <p class="card-text text-black ">Adoptable Red Pandas <svg xmlns="http://www.w3.org/2000/svg" height="14" width="12.25" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg></p>
-        </div>
-      </div>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 mt-4">
+      <% @pets.each do |pet| %>
+        <%= link_to adoptable_pet_path(pet) do %>
+          <div class="col">
+            <div class="card featured-pets h-100 mt-4 mt-lg-0">
+              <%= image_tag(pet.images.first, alt: pet.name) %>
+              <div class="card-img-overlay p-0"></div>
+              <div class="card-footer">
+                <p class="card-text text-black">
+                  Adopt <%= pet.name %>
+                </p>
+                <svg xmlns="http://www.w3.org/2000/svg" height="22" width="22" viewBox="0 0 448 512">
+                  <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                  <path fill="#5E3FCB" d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
     <!--//? Adopt all link -->
     <div class="d-flex justify-content-end align-items-center mt-3">
@@ -165,10 +160,49 @@
           <% end %>
         </span>
       </div>
-    </div>
-    <!--row-->
-  </div>
-  <!--container-->
+    </div> <!--row-->
+  </div> <!--container-->
+</section>
+
+<!--PAGE HIGHLIGHTS-->
+<section class="pt-5 pb-5 bg-white" id="how_to_apply">
+  <div class="container mb-md-5 mt-md-5">
+    <div class="row text-center">
+      <div class="col-md-4 p-3">
+        <h3 class="mb-4">
+          Process
+        </h3>
+        <p class='mb-4 bigger'>
+          Before applying to adopt a pet it is important you read and understand how our process works.
+        </p>
+        <p>
+          <%= link_to 'Learn more', faq_index_path, class: 'custom-btn-green' %>
+        </p>
+      </div>
+      <div class="col-md-4 p-3">
+        <h3 class="mb-4">
+          Partners
+        </h3>
+        <p class='mb-4 bigger'>
+          We have some amazing partners here in La Ventana who help in our pet rescue efforts.
+        </p>
+        <p>
+          <%= link_to 'Learn more', partners_path, class: 'custom-btn-green' %>
+        </p>
+      </div>
+      <div class="col-md-4 p-3">
+        <h3 class="mb-4">
+          Donate
+        </h3>
+        <p class='mb-4 bigger'>
+          Donations help us to rescue, treat and adopt more pets. Click here to learn how you can donate.
+        </p>
+        <p>
+          <%= link_to 'Learn more', donate_path, class: 'custom-btn-green' %>
+        </p>
+      </div>
+    </div> <!--row-->
+  </div> <!--container-->
 </section>
 
 <% unless user_signed_in? %>
