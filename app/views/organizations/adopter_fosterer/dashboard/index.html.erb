@@ -5,7 +5,7 @@
     <div class="row">
       <% unless current_user.adopter_foster_account.adopter_foster_profile.present? %>
         <div class="alert alert-warning ">
-          <%= link_to t('.complete_my_profile'), new_adopter_fosterer_profile_path,
+          <%= link_to t('organizations.adoptable_pets.show.complete_my_profile'), new_adopter_fosterer_profile_path,
                             class: 'custom-btn-pink' %>
         </div>
       <% end %>
