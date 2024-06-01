@@ -12,7 +12,7 @@ class Organizations::Staff::StaffController < Organizations::BaseController
   def deactivate
     @staff_account.deactivate
     respond_to do |format|
-      format.html { redirect_to staff_staff_index_path, notice: "Staff account deactivated." }
+      format.html { redirect_to staff_staff_index_path, notice: t(".success") }
       format.turbo_stream { render "organizations/staff/staff/update" }
     end
   end
@@ -20,7 +20,7 @@ class Organizations::Staff::StaffController < Organizations::BaseController
   def activate
     @staff_account.activate
     respond_to do |format|
-      format.html { redirect_to staff_staff_index_path, notice: "Staff account activated." }
+      format.html { redirect_to staff_staff_index_path, notice: t(".success") }
       format.turbo_stream { render "organizations/staff/staff/update" }
     end
   end

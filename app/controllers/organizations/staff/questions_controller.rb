@@ -17,7 +17,7 @@ class Organizations::Staff::QuestionsController < ApplicationController
     @question = @form.questions.new(question_params)
 
     if @question.save
-      redirect_to staff_form_path(@form), notice: t(".saved")
+      redirect_to staff_form_path(@form), notice: t(".success")
     else
       flash.now[:alert] = t(".error")
 
@@ -30,7 +30,7 @@ class Organizations::Staff::QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to staff_form_path(@form), notice: t(".updated")
+      redirect_to staff_form_path(@form), notice: t(".success")
     else
       flash.now[:alert] = t(".error")
 
@@ -41,7 +41,7 @@ class Organizations::Staff::QuestionsController < ApplicationController
   def destroy
     @question.destroy
 
-    redirect_to staff_form_path(@form), notice: t(".destroyed")
+    redirect_to staff_form_path(@form), notice: t(".success")
   end
 
   private
