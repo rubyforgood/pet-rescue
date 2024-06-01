@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  namespace :organizations do
-    namespace :staff do
-      get 'chats/index'
-    end
-  end
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions",
@@ -22,7 +17,7 @@ Rails.application.routes.draw do
       resource :page_text, only: %i[edit update]
       resources :profile_reviews, only: [:show]
 
-      resources :chats, only: %i[index]
+      resources :chats, only: %i[index create]
 
       resources :pets do
         resources :tasks

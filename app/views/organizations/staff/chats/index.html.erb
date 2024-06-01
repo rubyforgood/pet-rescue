@@ -2,18 +2,20 @@
   <% p.header_title "Chats" %>
 
   <% p.content do %>
-    <header>
-      <%= form_with url: staff_chats_url, method: "get" do |f| %>
-      <div class="row row-cols-md-auto justify-content-end">
-        <div class="col">
-          <%= f.label :pets, "Choose Pet", class: "form-label visually-hidden" %>
-          <%= f.select :pets, @pet_names, { selected: params[:pets], include_blank: "Choose Pet" }, class: "form-select" %>
-        </div>
+    <header class="d-flex">
+      <%= button_to "Initiate Chat", staff_chats_url, method: :post, class: "btn btn-primary" %>
 
-        <div class="col">
-        <%= f.submit "filter", class: "btn btn-primary" %>
+      <%= form_with url: staff_chats_url, method: "get", class: "ms-auto" do |f| %>
+        <div class="row row-cols-md-auto justify-content-end">
+          <div class="col">
+            <%= f.label :pets, "Choose Pet", class: "form-label visually-hidden" %>
+            <%= f.select :pets, @pet_names, { selected: params[:pets], include_blank: "Choose Pet" }, class: "form-select" %>
+          </div>
+
+          <div class="col">
+          <%= f.submit "filter", class: "btn btn-primary" %>
+          </div>
         </div>
-      </div>
       <% end %>
     </header>
 
@@ -24,7 +26,7 @@
         </header>
 
         <% chats.each do |chat| %>
-          <%= tag.article class: "card mt-2" do %>
+          <%= tag.article class: "chat card mt-2" do %>
             <%= tag.div class: "card-header d-inline-flex gap-3 justify-content-start", data: { "bs-toggle": "collapse", "bs-target": "##{dom_id(chat)}" } do %>
               <strong class=""><%= chat.initiated_by.full_name %></strong>
               <span class="">
