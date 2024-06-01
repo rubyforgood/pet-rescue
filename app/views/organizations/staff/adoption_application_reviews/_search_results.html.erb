@@ -4,7 +4,14 @@
 
   <% @collection.each do |pet| %>
     <!--pet name-->
-    <div class="mb-4">
-      <%= render "organizations/staff/pets/tabs/applications", applications: pet.adopter_applications, pet: pet %>
+    <%# Table layout %>
+    <div class="d-none d-xl-block">
+      <%= render "organizations/staff/pets/tabs/applications_table", applications: pet.adopter_applications, pet: pet %>
     </div>
+  
+    <%# Cards layout %>
+    <div class="d-xl-none d-flex flex-wrap">
+      <%= render "organizations/staff/pets/tabs/applications_card", applications: pet.adopter_applications, pet: pet %>  
   <% end %>
+
+  </div>

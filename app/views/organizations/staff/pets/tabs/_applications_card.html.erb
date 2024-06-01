@@ -1,0 +1,56 @@
+  <%# Grid cell %>
+  <div class="col-lg-4 col-md-6 p-0">
+    <%# Card %>
+    <div class="card card-hover m-4" style='overflow: hidden'>
+      <%# Card image %>
+      <%= link_to staff_pet_path(pet) do %>
+        <% if pet.images.attached? %>
+            <%= image_tag pet.images.first, class: "card-img-top" %>
+        <% else %>
+            <%= image_tag "coming_soon.jpg", class: "card-img-top" %>
+        <% end %>
+      <% end %>
+      <%# Card header %>
+      <div class="card-header">
+        <h4 class="card-title">
+          <%= link_to pet.name, staff_pet_path(pet) %>
+        </h4>
+      </div>
+      <%# Card body %>
+      <ul class="list-group list-group-flush">
+        <% applications.each do |app| %>
+          <li class="list-group-item">
+            <ul class="list-group list-group-flush d-flex flex-column justify-content-between">
+              
+              <!-- applicant -->
+              <li class="list-group-item">
+                <span>Applicant:</span>
+                <div>
+                  <%= link_to app.applicant_name, 
+                              staff_profile_review_path(app.adopter_foster_account.adopter_foster_profile), 
+                              class: "link-underline link-underline-opacity-0"  %>
+                </div>
+              </li>
+
+              <!-- status -->
+              <li class="list-group-item">
+                <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
+              </li>
+              
+              <!-- create -->
+              <li class="list-group-item">
+                <span>Start date:</span>
+                
+              </li>
+
+              <!-- notes -->
+              <li class="list-group-item">
+                <span>End date:</span>
+
+              </li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
