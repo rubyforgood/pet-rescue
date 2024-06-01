@@ -385,6 +385,12 @@ en:
         destroyed: "Question was successfully deleted."
         not_found: "Question not found."
     adopter_fosterer:
+      adopters:
+        deactivated: "Adopter account deactivated."
+        activated: "Fosterer account activated."
+      fosterers:
+        deactivated: "Fosterer account deactivated."
+        activated: "Fosterer account activated."
       profiles:
         form:
           please_fix_the_errors: "Please fix the errors highlighted below."
@@ -449,4 +455,5 @@ en:
     status:
       invitation_sent: "Invitation sent"
       enabled: "Enabled"
-      deactivated: "Deactivated"
+      deactivated: "Staff account deactivated."
+      activated: "Staff account activated."
