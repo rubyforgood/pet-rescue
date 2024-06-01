@@ -14,12 +14,12 @@
         <tbody>
           <%# Table Layout%>
           <div class="d-none d-xl-block">
-            <%= render "organizations/staff/pets/tabs/partials/foster_table", fosters: pet.matches.fosters %>
+            <%= render "organizations/staff/pets/tabs/partials/foster_table", fosters: fosters %>
           </div>
 
           <%# Card layout %>
           <div class="d-xl-none d-flex flex-wrap">
-          <%= render "organizations/staff/pets/tabs/partials/foster_cards", fosters: pet.matches.fosters %>
+          <%= render "organizations/staff/pets/tabs/partials/foster_cards", fosters: fosters %>
           </div>
 
         </tbody>
