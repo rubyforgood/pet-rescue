@@ -202,6 +202,7 @@ en:
               blank: "Species can't be blank"
             placement_type:
               blank: "Placement type can't be blank"
+              sensible: "Cannot change placement type to adoptable on pet with active foster"
             weight_from:
               blank: "Weight From can't be blank"
               not_a_number: "Weight From is not a number"
@@ -256,6 +257,14 @@ en:
         country: Country
         province_state: Province/State
         city_town: City/Town
+      adopter_application:
+        status:
+          awaiting_review: Awaiting Review
+          under_review: Under Review
+          adoption_pending: Adoption Pending
+          withdrawn: Withdrawn
+          successful_applicant: Successful Applicant
+          adoption_made: Adoption Made
   errors:
     attributes:
       general:
@@ -264,7 +273,7 @@ en:
         select_one: "Select one"
         please_fill_in: "Please fill this field"
         50_characters_maximum: "50 characters maximum"
-
+    authorization_error: "You are not authorized to perform this action."
   organizations:
     adoptable_pets:
       index:
@@ -344,6 +353,16 @@ en:
             paused: "Applications: paused"
         new:
           new_pet_post: "New Pet Post"
+        applications:
+          applicant: "Applicant"
+          status: "Status"
+          notes: "Notes"
+        application_status:
+          edit_notes: "Edit notes for"
+          awaiting_review: "Awaiting Review"
+          under_review: "Under Review"
+          adoption_pending: "Adoption Pending"
+          withdrawn: "Withdrawn"
       forms:
         not_found: "Form not found."
         index:
@@ -428,8 +447,20 @@ en:
           withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
           remove: "Remove"
           withdraw: "Withdraw"
+      likes:
+        index:
+          liked_pets: 'Liked Pets'
+        create:
+          success: "%{name} added to your liked pets."
+          failed: "Error, %{name} not added to your liked pets."
+        destroy:
+          success: "%{name} removed from your liked pets."
+          failed: "Error, %{name} not removed from your liked pets."
   staff_accounts:
     status:
       invitation_sent: "Invitation sent"
       enabled: "Enabled"
       deactivated: "Deactivated"
+  contacts:
+    create:
+      success: "Message sent!"

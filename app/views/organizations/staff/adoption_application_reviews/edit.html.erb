@@ -1,7 +1,6 @@
 <%= render "components/dashboard/page" do |p| %>
   <% p.header_title do %>
-    <%= @application.adopter_foster_account.user.first_name %>
-    <%= @application.adopter_foster_account.user.last_name %>'s application for
+    <%= @application.adopter_foster_account.user.full_name %>'s application for
     <%= @application.pet.name %>
   <% end %>
 

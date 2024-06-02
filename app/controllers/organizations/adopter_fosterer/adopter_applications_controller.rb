@@ -1,10 +1,12 @@
 class Organizations::AdopterFosterer::AdopterApplicationsController < Organizations::BaseController
   before_action :authenticate_user!
+  before_action :set_application, only: %i[update]
+  layout "adopter_foster_dashboard"
 
   def index
     authorize! with: AdopterApplicationPolicy
 
-    @applications = authorized_scope(AdopterApplication.all, with: AdopterApplicationPolicy)
+    @applications = authorized_scope(AdopterApplication.where(profile_show: true), with: AdopterApplicationPolicy)
   end
 
   def create
@@ -30,9 +32,6 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
 
   # update :status to 'withdrawn' or :profile_show to false
   def update
-    @application = AdopterApplication.find(params[:id])
-    authorize! @application, with: AdopterApplicationPolicy
-
     if @application.update(application_params)
       redirect_to adopter_fosterer_adopter_applications_path
     else
@@ -41,6 +40,11 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
   end
 
   private
+
+  def set_application
+    @application = AdopterApplication.find(params[:id])
+    authorize! @application, with: AdopterApplicationPolicy
+  end
 
   def application_params
     params.require(:adopter_application).permit(

@@ -114,7 +114,7 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
       should "return applications for a specific applicant name" do
         get staff_adoption_application_reviews_url, params: {q: {adopter_applications_applicant_name_i_cont: "Attenborough"}}
         assert_response :success
-        assert_select "a.link-underline.link-underline-opacity-0", text: "Attenborough, David"
+        assert_select "a.link-underline.link-underline-opacity-0", text: "David Attenborough"
         refute_match "Goodall, Jane", @response.body
       end
     end

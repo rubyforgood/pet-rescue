@@ -1,21 +1,20 @@
-<tr id="<%= dom_id(app) %>">
+<div class="row pt-3" id="<%= dom_id(app) %>">
   <!-- applicant -->
-  <td class="align-middle col-3">
+  <div class="align-middle col">
     <%= link_to app.applicant_name, staff_profile_review_path(app.adopter_foster_account.adopter_foster_profile),
                             class: "link-underline link-underline-opacity-0"  %>
-  </td>
+  </div>
   <!-- status -->
-  <td class="align-middle col-3">
+  <div class="align-middle col text-nowrap" style="min-width: 220px;">
     <div class="dropdown">
-      <button class="btn dropdown-toggle <%= application_status_classes(app)
-      %>" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= app.status.titleize %>
+      <button class="btn dropdown-toggle <%= application_status_classes(app)%>" data-bs-toggle="dropdown" aria-expanded="false">
+        <%= app.human_enum_name(:status) %>
       </button>
       <ul class="dropdown-menu">
         <% AdopterApplication.statuses.keys.each do |status| %>
           <%unless status == "adoption_made" %>
             <li>
-              <%= button_to status.titleize,
+              <%= button_to t("organizations.staff.pets.application_status.#{status}"),
               staff_adoption_application_review_path(app, params: { adopter_application: { status: status}}),
               :method => :patch, class: 'dropdown-item' %>
             </li>
@@ -23,9 +22,9 @@
         <% end %>
       </ul>
     </div>
-  </td>
+  </div>
   <!-- create -->
-  <td class="align-middle text-center col-3">
+  <div class="align-middle text-center col">
     <% if app.status == 'successful_applicant' %>
       <!--create adoption button-->
       <%= button_to "New Adoption", staff_matches_path, method: :post,
@@ -46,14 +45,14 @@
                 disabled>New Adoption</button>
       </span>
     <% end %>
-  </td>
+  </div>
   <!-- notes -->
-  <td class="align-middle">
-    <span>
+  <div class="align-middle col text-nowrap">
+    <span title="<%= app.notes %>">
       <% if params[:active_tab] == 'applications' || @applications_tab == true %>
-        <%= app.notes&.truncate(10) %>
+        <%= app.notes&.truncate(8) %>
       <% else %>
-        <%= app.notes&.truncate(30) %>
+        <%= app.notes&.truncate(20) %>
       <% end %>
     </span>
     <button type="button" class="btn btn-outline-primary border border-0" data-bs-toggle="modal" data-bs-target="#notesModal<%= app.id %>">
@@ -66,19 +65,20 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header border-bottom-0 pb-2">
-            <h1 class="modal-title fs-4 ">Edit Notes for <%= app.pet.name %> </h1>
+            <h1 class="modal-title fs-4 "> <%= t("organizations.staff.pets.application_status.edit_notes")%> <%= app.pet.name
+            %> </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body border-top-0 pt-2">
             <%= bootstrap_form_with model: app, url:
         staff_adoption_application_review_path(app), method: "Patch" do |form| %>
               <%= form.text_area :notes, hide_label: true, rows: 5 %>
-              <%= form.submit 'Save changes', class: "btn btn-primary
+              <%= form.submit t("general.save"), class: "btn btn-primary
         position-relative float-end", "data-bs-dismiss" => "modal"  %>
             <% end %>
           </div>
         </div>
       </div>
     </div>
-  </td>
-</tr>
+  </div>
+</div>

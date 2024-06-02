@@ -1,7 +1,7 @@
 /**
 * Custom Styling
 * -----------------------------------------------------------------------------
-* [NOTE] Please avoid writing custom css if you can help it! 
+* [NOTE] Please avoid writing custom css if you can help it!
 * Prefer to use the Bootstrap utility classes to override styles or follow
 * the theme.
 * -----------------------------------------------------------------------------
@@ -25,4 +25,22 @@ label.required:after {
   min-width: 12rem;
   padding: 1rem 0;
   top: 28px;
+}
+
+// Custom styling for the Featured Pets cards
+.featured-pets {
+  img {
+    border-radius: var(--geeks-card-inner-border-radius) var(--geeks-card-inner-border-radius) 0 0;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+
+    > p.card-text {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
 }
