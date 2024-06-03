@@ -121,9 +121,9 @@
               <strong><%= t('.will_petcare_be_shared') %></strong>
             </p>
             <% if @adopter_foster_profile.shared_ownership %>
-              <p class="col-lg-6 text-muted"><%= t('.general.yes') %></p>
+              <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
-              <p class="col-lg-6 text-muted"><%= t('.general.no') %></p>
+              <p class="col-lg-6 text-muted"><%= t('general.no') %></p>
             <% end %>
           </div>
 
@@ -142,13 +142,13 @@
           <hr>
           <h4 class="mb-4 mt-4"><%= t('.household') %>></h4>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong><%= t('.Housing type') %></strong></p>
+            <p class="col-lg-4"><strong><%= t('.housing_type') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_foster_profile.housing_type %>
             </p>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong><%= t('.Do you have access to a fenced garden?') %></strong></p>
+            <p class="col-lg-4"><strong><%= t('.fenced_access_question') %></strong></p>
             <% if @adopter_foster_profile.fenced_access %>
               <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
@@ -177,7 +177,7 @@
           </div>
 
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong><%= t('.Do you rent your home or live on a strata property?') %></strong></p>
+            <p class="col-lg-4"><strong><%= t('.rent_question') %></strong></p>
             <% if @adopter_foster_profile.do_you_rent %>
             <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
@@ -195,13 +195,13 @@
           </div>
           <% end %>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong><%= t('.Number of adults in home (over 18)') %></strong></p>
+            <p class="col-lg-4"><strong><%= t('.adults_in_home') %></strong></p>
             <p class="col-lg-6 text-muted">
               <%= @adopter_foster_profile.adults_in_home %>
             </p>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong><%= t('.Number of children in home (under 18)') %></strong></p>
+            <p class="col-lg-4"><strong><%= t('.children_in_home') %></strong></p>
             <% if @adopter_foster_profile.kids_in_home == 0 %>
             <p class="col-lg-6 text-muted"><%= t('general.none') %></p>
             <% else %>
@@ -211,7 +211,7 @@
             <% end %>
           </div>
           <div class="row mb-3 bigger">
-            <p class="col-lg-4"><strong><%= t('.Do you have pets in your home?') %></strong></p>
+            <p class="col-lg-4"><strong><%= t('.pets_in_home') %></strong></p>
             <% if @adopter_foster_profile.other_pets %>
             <p class="col-lg-6 text-muted"><%= t('general.yes') %></p>
             <% else %>
@@ -220,7 +220,7 @@
           </div>
           <% if @adopter_foster_profile.other_pets %>
             <div class="row mb-4 bigger">
-              <p class="col-lg-4"><strong><%= t('.Description of pets') %></strong></p>
+              <p class="col-lg-4"><strong><%= t('.describe_pets') %></strong></p>
               <p class="col-lg-6 text-muted" style="white-space: pre-line;">
                 <%= @adopter_foster_profile.describe_pets %>
               </p>
