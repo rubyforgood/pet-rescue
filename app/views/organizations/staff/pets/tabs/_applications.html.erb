@@ -26,8 +26,8 @@
 </div>
 
 <%# Card %>
-<div class="col d-xl-none">
-  <div class="card card-hover m-4" style='overflow: hidden; width: 350px;'>
+<div class="col-lg-5 d-xl-none">
+  <div class="card card-hover m-2 m-sm-4" style='overflow: hidden; max-width: 350px;'>
     <%# Card image %>
     <%= link_to staff_pet_path(pet) do %>
       <% if pet.images.attached? %>
