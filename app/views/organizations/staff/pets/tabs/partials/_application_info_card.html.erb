@@ -1,31 +1,31 @@
-<div class="row pt-3" id="<%= dom_id(app, :card) %>">
-            <li class="list-group-item">
-            <ul class="list-group list-group-flush d-flex flex-column justify-content-between">
+<div class="pt-3" id="<%= dom_id(app, :card) %>">
+  <li class="list-group-item">
+    <ul class="list-group list-group-flush d-flex flex-column justify-content-between">
 
-              <!-- applicant -->
-              <li class="list-group-item">
-                <span>Applicant:</span>
-                <div>
-                  <%= link_to app.applicant_name, 
+      <!-- applicant -->
+      <li class="list-group-item">
+        <span>Applicant:</span>
+        <div>
+          <%= link_to app.applicant_name, 
                               staff_profile_review_path(app.adopter_foster_account.adopter_foster_profile), 
                               class: "link-underline link-underline-opacity-0"  %>
-                </div>
-              </li>
+        </div>
+      </li>
 
-              <!-- status -->
-              <li class="list-group-item">
-                <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
-              </li>
+      <!-- status -->
+      <li class="list-group-item">
+        <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
+      </li>
 
-              <!-- create -->
-              <li class="list-group-item">
-                <%= render 'organizations/staff/pets/tabs/partials/application_create_button', app: app %>      
-              </li>
+      <!-- create -->
+      <li class="list-group-item">
+        <%= render 'organizations/staff/pets/tabs/partials/application_create_button', app: app %>
+      </li>
 
-              <!-- notes -->
-              <li class="list-group-item">
-                <%= render 'organizations/staff/pets/tabs/partials/application_notes', app: app, modal_id: 'card' %>
-              </li>
-            </ul>
-          </li>
+      <!-- notes -->
+      <li class="list-group-item">
+        <%= render 'organizations/staff/pets/tabs/partials/application_notes', app: app, modal_id: 'card' %>
+      </li>
+    </ul>
+  </li>
 </div>
