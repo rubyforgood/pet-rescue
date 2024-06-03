@@ -1,8 +1,9 @@
+  
 <div class="row pt-3" id="<%= dom_id(app, :table) %>">
   <!-- applicant -->
   <div class="align-middle col">
     <%= link_to app.applicant_name, staff_profile_review_path(app.adopter_foster_account.adopter_foster_profile),
-                            class: "link-underline link-underline-opacity-0"  %>
+                                class: "link-underline link-underline-opacity-0"  %>
   </div>
   <!-- status -->
   <div class="align-middle col text-nowrap" style="min-width: 220px;">
@@ -10,7 +11,7 @@
   </div>
   <!-- create -->
   <div class="align-middle text-center col">
-    <%= render 'organizations/staff/pets/tabs/partials/application_create_button', app: app %> 
+    <%= render 'organizations/staff/pets/tabs/partials/application_create_button', app: app %>
   </div>
   <!-- notes -->
   <div class="align-middle col text-nowrap">
