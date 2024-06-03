@@ -46,10 +46,8 @@
       </h4>
     </div>
     <%# Card body %>
-    <ul class="list-group list-group-flush">
-      <% applications.each do |app| %>
-        <%= render 'organizations/staff/pets/tabs/partials/application_info_card', app: app %>
-      <% end %>
-    </ul>
+    <% applications.each do |app| %>
+      <%= render 'organizations/staff/pets/tabs/partials/application_info_card', app: app %>
+    <% end %>
   </div>
 </div>
