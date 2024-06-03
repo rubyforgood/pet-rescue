@@ -1,4 +1,4 @@
-    <%# Table layout %>
+<%# Table layout %>
 <div class="card d-none d-xl-block mb-4 flex-grow-1">
   <% if current_page?(staff_adoption_application_reviews_path) %>
     <div class="card-header">
@@ -25,12 +25,9 @@
   </div>
 </div>
 
-<%# Cards layout %>
-<%# Grid cell %>
 <%# Card %>
-
-<div class="col">
-  <div class="card card-hover m-4 d-xl-none" style='overflow: hidden; width: 350px;'>
+<div class="col d-xl-none">
+  <div class="card card-hover m-4" style='overflow: hidden; width: 350px;'>
     <%# Card image %>
     <%= link_to staff_pet_path(pet) do %>
       <% if pet.images.attached? %>
