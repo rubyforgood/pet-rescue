@@ -12,7 +12,6 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
   end
 
   def incomplete_tasks
-    @organization = Current.organization
     @pagy, @pets = pagy(
       Pet
       .left_joins(:tasks)
@@ -32,7 +31,6 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
   end
 
   def overdue_tasks
-    @organization = Current.organization
     @pagy, @pets = pagy(
       Pet
       .left_joins(:tasks)
