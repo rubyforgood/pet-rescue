@@ -3,7 +3,7 @@
 
     <!-- applicant -->
     <li class="list-group-item">
-      <span>Applicant:</span>
+      <span><%= t("organizations.staff.pets.applications.applicant")%>:</span>
       <div>
         <%= link_to app.applicant_name, 
                               staff_profile_review_path(app.adopter_foster_account.adopter_foster_profile), 

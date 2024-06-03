@@ -357,6 +357,7 @@ en:
           applicant: "Applicant"
           status: "Status"
           notes: "Notes"
+          new_adoption: "New Adoption"
         application_status:
           edit_notes: "Edit notes for"
           awaiting_review: "Awaiting Review"
