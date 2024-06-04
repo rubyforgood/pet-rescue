@@ -412,6 +412,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "alexanderc360",
+      "name": "Alex Cohen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/33144250?v=4",
+      "profile": "https://github.com/alexanderc360",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
