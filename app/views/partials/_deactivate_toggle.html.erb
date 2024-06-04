@@ -1,0 +1,10 @@
+<div class=<%= "deactivate_toggle_#{account.id}" %>>
+  <%= form_with model: account, url: send("staff_#{role}_update_activation_path", account), method: "post" do |form| %>
+    <div class='form-group d-flex justify-content-center'>
+      <div class="form-check form-switch">
+        <%= form.check_box :deactivated?, { class: "form-check-input",
+         role: "switch", id: "flexSwitchCheckChecked", onchange: "this.form.requestSubmit()" }, true, false %>
+      </div>
+    </div>
+  <% end %>
+</div>

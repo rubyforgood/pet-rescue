@@ -30,7 +30,11 @@ Rails.application.routes.draw do
 
       resources :adoption_application_reviews, only: %i[index edit update]
       resources :manage_fosters, only: %i[new create index edit update destroy]
-      resources :fosterers, only: %i[index]
+      resources :fosterers, only: %i[index] do
+        post "deactivate", to: "fosterers#deactivate"
+        post "activate", to: "fosterers#activate"
+        post "update_activation", to: "fosterers#update_activation"
+      end
       resources :staff do
         post "deactivate", to: "staff#deactivate"
         post "activate", to: "staff#activate"

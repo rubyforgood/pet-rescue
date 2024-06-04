@@ -39,6 +39,7 @@ STAFF_PERMISSIONS = (
     manage_tasks
     view_organization_dashboard
     manage_faqs
+    manage_adopter_foster_accounts
   ]
 ).freeze
 

@@ -50,6 +50,10 @@
                         <span>Joined</span>
                         <span><%= fosterer.created_at.strftime("%d %B, %Y") %></span>
                       </div>
+                      <div class="d-flex justify-content-between pt-2">
+                        <span>Deactivate</span>
+                        <%= render "partials/deactivate_toggle", account: fosterer, role: 'fosterer' %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -68,6 +72,7 @@
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Joined At</th>
+                    <th class="text-center" scope="col">Deactivate</th>
                     <th scope="col">Action</th>
 
                   </tr>
@@ -89,6 +94,9 @@
                       </td>
                       <td>
                         <%= fosterer.created_at.strftime("%d %B, %Y") %>
+                      </td>
+                      <td>
+                        <%= render "partials/deactivate_toggle", account: fosterer, role: 'fosterer' %>
                       </td>
                       <td>
                         <div class="hstack gap-4">
