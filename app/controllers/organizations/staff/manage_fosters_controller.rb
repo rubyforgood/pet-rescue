@@ -64,7 +64,8 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
     @foster.destroy
 
     flash[:success] = "Foster for #{@foster.pet.name} deleted."
-    redirect_to action: :index, page: params[:page]
+
+    redirect_to request.referer
   end
 
   private
