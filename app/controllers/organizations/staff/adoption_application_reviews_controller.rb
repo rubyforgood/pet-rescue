@@ -1,5 +1,4 @@
 class Organizations::Staff::AdoptionApplicationReviewsController < Organizations::BaseController
-  skip_before_action :authenticate_user!
   before_action :set_adopter_application, only: %i[edit update]
 
   include ::Pagy::Backend

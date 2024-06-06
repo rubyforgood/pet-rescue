@@ -1,5 +1,4 @@
 class Organizations::Staff::ManageFostersController < Organizations::BaseController
-  skip_before_action :authenticate_user!
   include ::Pagy::Backend
 
   layout "dashboard"
