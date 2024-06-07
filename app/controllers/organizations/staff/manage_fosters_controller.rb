@@ -16,6 +16,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
     @foster = Match.new(match_params.merge(match_type: :foster))
 
     if @foster.save
+      FosterMailer.reminder(@foster).deliver_later
       redirect_to action: :index
     else
       @pets = Pet.fosterable.order(:name)
@@ -61,9 +62,8 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
 
   def destroy
     @foster.destroy
-
-    flash[:success] = t(".success", @foster.pet.name)
-    redirect_to action: :index, page: params[:page]
+    flash[:success] = "Foster for #{@foster.pet.name} deleted."
+    redirect_to request.referer
   end
 
   private

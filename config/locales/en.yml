@@ -30,7 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  adopters: "Adopters"
+  action: "Action"
   hello: "Hello world"
+  joined_at: "Joined At"
+  joined: "Joined"
+  name: "Name"
+  settings: "Settings"
+  invite_foster: "Invite Foster"
   general:
     attach: "Attach"
     adoption_pending: "(Adoption Pending)"
@@ -226,6 +233,7 @@ en:
               blank: "Species can't be blank"
             placement_type:
               blank: "Placement type can't be blank"
+              sensible: "Cannot change placement type to adoptable on pet with active foster"
             weight_from:
               blank: "Weight From can't be blank"
               not_a_number: "Weight From is not a number"
@@ -428,6 +436,10 @@ en:
           application:
             active: "Applications are active"
             paused: "Applications are paused"
+          status: "Status"
+          fosterer: "Fosterer"
+          start_date: "Start Date"
+          end_date: "End Date"
         form:
           uploaded_images: "Uploaded Images"
         index:
