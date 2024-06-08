@@ -31,7 +31,7 @@ class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
     assert invited_user.has_role?(:admin, invited_user.organization)
     assert_not invited_user.staff_account.deactivated?
 
-    assert_equal ActionMailer::Base.deliveries.count, 1
+    assert_equal 1, ActionMailer::Base.deliveries.count
   end
 
   test "staff admin can not invite existing user to the organization" do
