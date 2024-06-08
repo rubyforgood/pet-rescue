@@ -29,7 +29,7 @@ class Organizations::Staff::FaqsController < Organizations::BaseController
     @faq = Faq.new(faq_params)
 
     if @faq.save
-      redirect_to staff_faqs_url, notice: "FAQ was successfully created."
+      redirect_to staff_faqs_url, notice: t(".success")
     else
       render :new, status: :unprocessable_entity
     end
@@ -38,11 +38,11 @@ class Organizations::Staff::FaqsController < Organizations::BaseController
   def update
     respond_to do |format|
       if @faq.update(faq_params)
-        format.html { redirect_to staff_faqs_url, notice: "FAQ was successfully updated." }
-        format.turbo_stream { flash.now[:notice] = "FAQ was successfully updated." }
+        format.html { redirect_to staff_faqs_url, notice: t(".success") }
+        format.turbo_stream { flash.now[:notice] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.turbo_stream { flash.now[:alert] = "Error updating FAQ" }
+        format.turbo_stream { flash.now[:alert] = t(".error") }
       end
     end
   end
@@ -50,8 +50,8 @@ class Organizations::Staff::FaqsController < Organizations::BaseController
   def destroy
     @faq.destroy!
     respond_to do |format|
-      format.html { redirect_to staff_faqs_url, notice: "FAQ was successfully deleted." }
-      format.turbo_stream { flash.now[:notice] = "FAQ was successfully deleted." }
+      format.html { redirect_to staff_faqs_url, notice: t(".success") }
+      format.turbo_stream { flash.now[:notice] = t(".success") }
     end
   end
 
@@ -62,7 +62,7 @@ class Organizations::Staff::FaqsController < Organizations::BaseController
 
     authorize! @faq
   rescue ActiveRecord::RecordNotFound
-    redirect_to staff_faqs_path, alert: "FAQ not found."
+    redirect_to staff_faqs_path, alert: t(".error")
   end
 
   def faq_params

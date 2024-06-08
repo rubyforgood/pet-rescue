@@ -44,6 +44,10 @@ crumb :fosterers do
   link "Fosterers", staff_fosterers_path
 end
 
+crumb :adopters do
+  link "Adopters", staff_adopters_path
+end
+
 crumb :fosters do
   link "Fosters", staff_manage_fosters_path
 end

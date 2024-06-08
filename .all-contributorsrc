@@ -421,6 +421,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "meg-gutshall",
+      "name": "Meg Gutshall",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37842352?v=4",
+      "profile": "https://meghangutshall.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

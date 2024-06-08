@@ -8,7 +8,7 @@ module OrganizationScopable
 
   def set_tenant
     if Current.organization.blank?
-      redirect_to root_path, alert: "Organization not found."
+      redirect_to root_path, alert: t("general.organization_not_found")
     else
       set_current_tenant(Current.organization)
     end
