@@ -4,7 +4,7 @@ class Organizations::AttachmentsController < ApplicationController
     authorize! @attachment
 
     @attachment.purge
-    redirect_to request.referrer, notice: "Attachment removed"
+    redirect_to request.referrer, notice: t(".success")
   end
 
   def purge_avatar
@@ -13,7 +13,7 @@ class Organizations::AttachmentsController < ApplicationController
 
     if current_user.avatar.id == @attachment.id
       @attachment.purge
-      redirect_to request.referrer, notice: "Avatar removed"
+      redirect_to request.referrer, notice: t(".success")
     else
       redirect_to request.referrer, alert: t("errors.authorization_error")
     end
