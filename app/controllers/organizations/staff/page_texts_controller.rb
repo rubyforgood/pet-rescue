@@ -6,7 +6,7 @@ class Organizations::Staff::PageTextsController < Organizations::BaseController
 
   def update
     if @page_text.update(page_text_params)
-      redirect_to edit_staff_page_text_path, notice: "Page text updated successfully!"
+      redirect_to edit_staff_page_text_path, notice: t(".success")
     else
       redirect_to edit_staff_page_text_path, alert: @page_text.errors.full_messages.to_sentence
     end

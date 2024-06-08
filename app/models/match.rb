@@ -42,8 +42,6 @@ class Match < ApplicationRecord
 
   validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
 
-  after_create_commit :send_reminder
-
   enum :match_type, [:adoption, :foster]
 
   scope :adoptions, -> { where(match_type: :adoption) }
@@ -77,10 +75,6 @@ class Match < ApplicationRecord
     else
       :current
     end
-  end
-
-  def send_reminder
-    MatchMailer.reminder(self).deliver_later
   end
 
   def withdraw_application
