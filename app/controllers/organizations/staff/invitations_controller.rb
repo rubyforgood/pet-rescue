@@ -25,7 +25,7 @@ class Organizations::Staff::InvitationsController < Devise::InvitationsControlle
 
       if @user.save
         @user.invite!(current_user)
-        redirect_to staff_staff_index_path, notice: "Invite sent!"
+        redirect_to staff_staff_index_path, notice: t(".success")
       else
         render "organizations/staff/staff_invitations/new", status: :unprocessable_entity
       end
@@ -42,7 +42,7 @@ class Organizations::Staff::InvitationsController < Devise::InvitationsControlle
 
       if @user.save
         @user.invite!(current_user)
-        redirect_to staff_fosterers_path, notice: "Invite sent!"
+        redirect_to staff_fosterers_path, notice: t(".success")
       else
         render "organizations/staff/fosterer_invitations/new", status: :unprocessable_entity
       end

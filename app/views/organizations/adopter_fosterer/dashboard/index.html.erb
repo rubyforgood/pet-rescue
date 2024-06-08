@@ -26,11 +26,13 @@
       </div>
 
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
-        <%= render "components/data_card" do |c| %>
-          <% c.title "Applications" %>
-          <% c.icon "file-text" %>
-          <% c.value "TBD" %>
-        <% end %>
+         <%= link_to adopter_fosterer_adopter_applications_path, class: "card-link" do %>
+          <%= render "components/data_card" do |c| %>
+            <% c.title "Applications" %> #here erin
+            <% c.icon "file-text" %>
+            <% c.value @application_count %>
+            <% end %>
+          <% end %>
       </div>
 
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
