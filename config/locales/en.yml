@@ -308,6 +308,12 @@ en:
         header: "Frequently Asked Questions"
         more_questions: "More Questions? Contact us"
     staff:
+      tasks:
+        task:
+          recurring: "Recurring"
+        index:
+          new_task: "Add New Task"
+          complete?: "Show Completed"
       default_pet_tasks:
         index:
           default_pet_tasks: "Default Pet Tasks"
