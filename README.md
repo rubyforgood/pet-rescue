@@ -275,6 +275,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Naraveni"><img src="https://avatars.githubusercontent.com/u/170462097?v=4?s=100" width="100px;" alt="Naraveni"/><br /><sub><b>Naraveni</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Naraveni" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/maebeale"><img src="https://avatars.githubusercontent.com/u/7607813?v=4?s=100" width="100px;" alt="maebeale"/><br /><sub><b>maebeale</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/pulls?q=is%3Apr+reviewed-by%3Amaebeale" title="Reviewed Pull Requests">👀</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://meghangutshall.com/"><img src="https://avatars.githubusercontent.com/u/37842352?v=4?s=100" width="100px;" alt="Meg Gutshall"/><br /><sub><b>Meg Gutshall</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=meg-gutshall" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jaxonavena"><img src="https://avatars.githubusercontent.com/u/89274915?v=4?s=100" width="100px;" alt="Jaxon"/><br /><sub><b>Jaxon</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jaxonavena" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
