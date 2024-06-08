@@ -61,7 +61,31 @@ en:
     submit: "Submit"
     status: "Status"
     back: "Back"
+    none: "None"
+    not_found: "Not Found"
     are_you_sure_delete_pet: "Are you sure you want to delete this pet?"
+    organization_not_found: "Organization not found."
+  dashboard: 
+    index: 
+      header_title: Dashboard
+    applications:
+      header_title: Adoption Applications
+      name: Name
+      created: Created
+      status: Status
+      withdraw_application: Withdraw Application
+      confirm_withdraw: Withdraw your application
+  views:
+    dashboard: 
+      index: 
+        header_title: Dashboard
+      applications:
+        header_title: Adoption Applications
+        name: Name
+        created: Created
+        status: Status
+        withdraw_application: Withdraw Application
+        confirm_withdraw: Withdraw your application
   activerecord:
     errors:
       models:
@@ -281,6 +305,7 @@ en:
         please_fill_in: "Please fill this field"
         50_characters_maximum: "50 characters maximum"
     authorization_error: "You are not authorized to perform this action."
+    try_again: "Error. Please try again."
   organizations:
     adoptable_pets:
       index:
@@ -308,13 +333,54 @@ en:
         header: "Frequently Asked Questions"
         more_questions: "More Questions? Contact us"
     staff:
+      user_roles:
+        to_staff:
+          success: "Account changed to Staff"
+          error: "Error changing role"
+        to_admin:
+          success: "Account changed to Admin"
+          error: "Error changing role"
       tasks:
         task:
           recurring: "Recurring"
         index:
           new_task: "Add New Task"
           complete?: "Show Completed"
+        destroy:
+          success: "Task was successfully deleted."
+      page_texts:
+        update:
+          success: "Page text updated successfully!" 
+      matches:
+        create:
+          success: "Pet successfully adopted."
+          error: "Error."
+        destroy:
+          success: "Adoption reverted & application set to 'Withdrawn'"
+          error: "Failed to revert adoption"
+      manage_fosters:
+        update:
+          success: "Foster for %{name} successfully updated."
+        destroy:
+          success: "Foster for %{name} deleted."
+      invitations:
+        create:
+          success: "Invite sent!" 
+      adoption_application_reviews:
+        update:
+          success: "Application was successfully updated."
+          error: "Error updating application"
       default_pet_tasks:
+        create:
+          success: "Default pet task saved successfully."
+          error: "Error creating default pet task."
+        update:
+          success: "Default pet task updated successfully."
+        destroy:
+          success: "Default pet task was successfully deleted."
+        set_task:
+          error:  "Default Pet Task not found."
+        error: "Default Pet Task not found."
         index:
           default_pet_tasks: "Default Pet Tasks"
           create_default_task: "Create Default Task"
@@ -324,6 +390,16 @@ en:
         edit:
           edit_default_pet_task: "Edit Default Pet Task"
       faqs:
+        create:
+          success: "FAQ was successfully created."
+        update:
+          success: "FAQ was successfully updated."
+          error: "Error updating FAQ"
+        destroy:
+          success: "FAQ was successfully deleted."
+        error: "FAQ not found."
+        set_faq:
+          error: "FAQ not found."
         index:
           faqs: "Frequently Asked Questions"
           create_faq: "Create new FAQ"
@@ -335,12 +411,26 @@ en:
         faq:
           are_you_sure_delete: "Are you sure you want to delete this FAQ?"
       organization_profiles:
+        update:
+          success: "Your profile has been updated!"
         form:
           please_fix_the_errors: "Please fix the errors highlighted below."
           manage_your_own_account_settings: "You have full control to manage your own account settings."
         edit:
           edit_profile: "Edit Profile"
       pets:
+        create:
+          success: "Pet saved successfully."
+          error: "Error creating pet."
+        update:
+          success: "Pet updated successfully."
+        destroy:
+          success: "Pet deleted."
+          error: "Error."
+        attach_images:
+          success: "Upload successful."
+        attach_files:
+          success: "Upload successful."
         show:
           pause_applications: "Pause Applications?"
           why: "Why?"
@@ -389,6 +479,8 @@ en:
               published: "Published"
               draft: "Draft"
       forms:
+        set_form: 
+          not_found: "Form not found."
         not_found: "Form not found."
         index:
           forms: "Forms"
@@ -397,6 +489,7 @@ en:
         new:
           new_form: "New Form"
         create:
+          success: "Form saved successfully."
           error: "Error creating form."
         edit:
           edit_form: "Edit Form"
@@ -404,7 +497,9 @@ en:
           confirm_delete_question: "Are you sure you want to delete this question?"
           create_question: "Create Question"
         update:
+          success: "Form saved successfully."
         destroy:
+          success: "Form was successfully deleted."
         form:
           help_text:
             title: "What the user sees as the title of the form."
@@ -413,15 +508,20 @@ en:
         updated: "Form saved successfully."
         destroyed: "Form was successfully deleted."
       questions:
+        set_question:
+          not_found: "Not Found"
         new:
           new_question: "New Question"
         create:
+          success: "Question saved successfully."
           error: "Error creating question."
         update:
+          success: "Question saved successfully."
           error: "Error updating question."
         updated: "Question saved successfully."
-        saved: "Question saved successfully."
-        destroyed: "Question was successfully deleted."
+        saved: "Question saved successfully translated."
+        destroy:
+          success: "Question was successfully deleted."
         not_found: "Question not found."
         edit:
           edit_question: "Edit Question"
@@ -429,8 +529,18 @@ en:
           help_text:
             label: "Label"
             help_text: "help text"
+      staff:
+        deactivate:
+          success: "Staff account deactivated."
+        activate:
+          success: "Staff account activated."
     adopter_fosterer:
       profiles:
+        create:
+          success: "Profile created"
+          error: "Error"
+        update: 
+          success: "Profile updated"
         form:
           please_fix_the_errors: "Please fix the errors highlighted below."
           preferred_contact_method: "Preferred contact method"
@@ -478,6 +588,11 @@ en:
           what_dates_will_you_be: "What dates will you be in La Ventana?"
           how_did_you_hear: "How did you find out about Baja Pet Rescue?"
       adopter_applications:
+        create:
+          success: "Application submitted! %{message}"
+          error: "Error. Please try again."
+        update:
+          error: "Error"
         index:
           adoption_applications: "Adoption Applications"
           your_adoption_applications: "Your adoption applications will be listed here."
@@ -497,6 +612,11 @@ en:
         destroy:
           success: "%{name} removed from your liked pets."
           failed: "Error, %{name} not removed from your liked pets."
+    attachments:
+      purge:
+        success: "Attachment removed"
+      purge_avatar:
+        success: "Avatar removed"
   staff_accounts:
     status:
       invitation_sent: "Invitation sent"

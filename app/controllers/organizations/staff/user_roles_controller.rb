@@ -4,13 +4,13 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
   def to_staff
     if @user.change_role(:admin, :staff)
       respond_to do |format|
-        format.html { redirect_to request.referrer, notice: "Account changed to Staff" }
-        format.turbo_stream { flash.now[:notice] = "Account changed to Staff" }
+        format.html { redirect_to request.referrer, notice: t(".success") }
+        format.turbo_stream { flash.now[:notice] = t(".success") }
       end
     else
       respond_to do |format|
-        format.html { redirect_to request.referrer, alert: "Error changing role" }
-        format.turbo_stream { flash.now[:alert] = "Error changing role" }
+        format.html { redirect_to request.referrer, alert: t(".error") }
+        format.turbo_stream { flash.now[:alert] = t(".error") }
       end
     end
   end
@@ -18,13 +18,13 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
   def to_admin
     if @user.change_role(:staff, :admin)
       respond_to do |format|
-        format.html { redirect_to request.referrer, notice: "Account changed to Admin" }
-        format.turbo_stream { flash.now[:notice] = "Account changed to Admin" }
+        format.html { redirect_to request.referrer, notice: t(".success") }
+        format.turbo_stream { flash.now[:notice] = t(".success") }
       end
     else
       respond_to do |format|
-        format.html { redirect_to request.referrer, alert: "Error changing role" }
-        format.turbo_stream { flash.now[:alert] = "Error changing role" }
+        format.html { redirect_to request.referrer, alert: t(".error") }
+        format.turbo_stream { flash.now[:alert] = t(".error") }
       end
     end
   end

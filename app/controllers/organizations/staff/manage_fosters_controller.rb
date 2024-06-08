@@ -53,7 +53,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
 
   def update
     if @foster.update(match_params)
-      flash[:success] = "Foster for #{@foster.pet.name} successfully updated."
+      flash[:success] = t(".success", @foster.pet.name)
       redirect_to action: :index
     else
       render :edit, status: :unprocessable_entity
@@ -62,9 +62,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
 
   def destroy
     @foster.destroy
-
     flash[:success] = "Foster for #{@foster.pet.name} deleted."
-
     redirect_to request.referer
   end
 
