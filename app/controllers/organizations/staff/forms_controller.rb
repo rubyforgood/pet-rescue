@@ -16,7 +16,7 @@ class Organizations::Staff::FormsController < ApplicationController
     @form = organization.forms.new(form_params)
 
     if @form.save
-      redirect_to staff_forms_path, notice: t(".saved")
+      redirect_to staff_forms_path, notice: t(".success")
     else
       flash.now[:alert] = t(".error")
 
@@ -32,7 +32,7 @@ class Organizations::Staff::FormsController < ApplicationController
 
   def update
     if @form.update(form_params)
-      redirect_to staff_forms_path, notice: t(".updated")
+      redirect_to staff_forms_path, notice: t(".success")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class Organizations::Staff::FormsController < ApplicationController
   def destroy
     @form.destroy
 
-    redirect_to staff_forms_path, notice: t(".destroyed")
+    redirect_to staff_forms_path, notice: t(".success")
   end
 
   private

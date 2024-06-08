@@ -140,7 +140,7 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, "Default pet task saved successfully."
+      assert_equal "Default pet task saved successfully.", flash.notice
     end
 
     should "not create new default pet task with invalid or missing param" do
@@ -170,7 +170,7 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "Default Pet Task not found."
+      assert_equal "Default Pet Task not found.", flash.alert
     end
   end
 
@@ -188,7 +188,7 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, "Default pet task updated successfully."
+      assert_equal "Default pet task updated successfully.", flash.notice
     end
 
     should "not update default pet task with invalid or missing param" do
@@ -210,7 +210,7 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, "Default pet task was successfully deleted."
+      assert_equal "Default pet task was successfully deleted.", flash.notice
     end
 
     should "not visit edit page of inexistent task" do
@@ -218,7 +218,7 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "Default Pet Task not found."
+      assert_equal "Default Pet Task not found.", flash.alert
     end
   end
 end

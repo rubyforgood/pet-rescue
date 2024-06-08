@@ -26,7 +26,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -36,7 +36,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -46,7 +46,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -56,7 +56,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -66,7 +66,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return true" do
-          assert_equal @action.call, true
+          assert_equal true, @action.call
         end
       end
 
@@ -76,7 +76,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return true" do
-          assert_equal @action.call, true
+          assert_equal true, @action.call
         end
       end
     end
@@ -115,7 +115,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -125,7 +125,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -135,7 +135,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -145,7 +145,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -155,7 +155,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return true" do
-          assert_equal @action.call, true
+          assert_equal true, @action.call
         end
       end
 
@@ -173,13 +173,13 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
           end
 
           should "return false" do
-            assert_equal @action.call, false
+            assert_equal false, @action.call
           end
         end
 
         context "when pet is from the same organization" do
           should "return true" do
-            assert_equal @action.call, true
+            assert_equal true, @action.call
           end
         end
       end
@@ -191,7 +191,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
     end

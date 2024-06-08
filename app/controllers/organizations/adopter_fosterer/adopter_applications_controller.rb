@@ -6,7 +6,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
   def index
     authorize! with: AdopterApplicationPolicy
 
-    @applications = authorized_scope(AdopterApplication.all, with: AdopterApplicationPolicy)
+    @applications = authorized_scope(AdopterApplication.where(profile_show: true), with: AdopterApplicationPolicy)
   end
 
   def create
@@ -17,7 +17,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
 
     if @application.save
       redirect_to adoptable_pet_path(@application.pet),
-        notice: "Application submitted! #{MessagesHelper.affirmations.sample}"
+        notice: t(".success", message: MessagesHelper.affirmations.sample)
 
       # mailer
       @org_staff = User.organization_staff(@pet.organization_id)
@@ -26,7 +26,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
         .new_adoption_application.deliver_now
     else
       redirect_to adoptable_pet_path(@pet),
-        alert: "Error. Please try again."
+        alert: t(".error")
     end
   end
 
@@ -35,7 +35,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
     if @application.update(application_params)
       redirect_to adopter_fosterer_adopter_applications_path
     else
-      redirect_to adopter_fosterer_profile_path, alert: "Error."
+      redirect_to adopter_fosterer_profile_path, alert: t(".error")
     end
   end
 
