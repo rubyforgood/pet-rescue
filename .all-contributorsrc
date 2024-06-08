@@ -414,6 +414,24 @@
       ]
     },
     {
+      "login": "maebeale",
+      "name": "maebeale",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7607813?v=4",
+      "profile": "https://github.com/maebeale",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "meg-gutshall",
+      "name": "Meg Gutshall",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37842352?v=4",
+      "profile": "https://meghangutshall.com/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
       "login": "jaxonavena",
       "name": "Jaxon",
       "avatar_url": "https://avatars.githubusercontent.com/u/89274915?v=4",
@@ -421,7 +439,7 @@
       "contributions": [
         "code"
       ]
-    }
+    },
   ],
   "contributorsPerLine": 7,
   "skipCi": true,
