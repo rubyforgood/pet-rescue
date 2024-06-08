@@ -13,9 +13,9 @@ class Organizations::Staff::MatchesController < Organizations::BaseController
       AdoptionMailer.reminder(@match).deliver_later
       @match.retire_applications
 
-      redirect_back_or_to staff_dashboard_index_path, notice: "Pet successfully adopted."
+      redirect_back_or_to staff_dashboard_index_path, notice: t(".success")
     else
-      redirect_back_or_to staff_dashboard_index_path, alert: "Error."
+      redirect_back_or_to staff_dashboard_index_path, alert: t(".error")
     end
   end
 
@@ -23,9 +23,9 @@ class Organizations::Staff::MatchesController < Organizations::BaseController
     if @match.destroy
       @match.withdraw_application
 
-      redirect_to staff_pets_path, notice: "Adoption reverted & application set to 'Withdrawn'"
+      redirect_to staff_pets_path, notice: t(".success")
     else
-      redirect_to staff_pets_path, alert: "Failed to revert adoption"
+      redirect_to staff_pets_path, alert: t(".error")
     end
   end
 
