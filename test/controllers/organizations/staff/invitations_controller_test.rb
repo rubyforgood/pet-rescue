@@ -20,7 +20,7 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
       persisted_user = User.find_by(email: invitation_params[:user][:email])
       has_role = persisted_user.has_role?(:admin, ActsAsTenant.current_tenant)
 
-      assert_equal has_role, true
+      assert_equal true, has_role
     end
 
     should "assign staff role when staff is invited" do
@@ -35,7 +35,7 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
       persisted_user = User.find_by(email: invitation_params[:user][:email])
       has_role = persisted_user.has_role?(:staff, ActsAsTenant.current_tenant)
 
-      assert_equal has_role, true
+      assert_equal true, has_role
     end
   end
 

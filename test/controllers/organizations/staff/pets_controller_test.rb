@@ -165,8 +165,8 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :redirect
         follow_redirect!
-        assert_equal flash.notice, "Upload successful."
-        assert_equal URI.decode_www_form(URI.parse(request.url).query).join("="), "active_tab=photos"
+        assert_equal "Upload successful.", flash.notice
+        assert_equal "active_tab=photos", URI.decode_www_form(URI.parse(request.url).query).join("=")
       end
     end
 
@@ -181,8 +181,8 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :redirect
         follow_redirect!
-        assert_equal flash.notice, "Upload successful."
-        assert_equal URI.decode_www_form(URI.parse(request.url).query).join("="), "active_tab=files"
+        assert_equal "Upload successful.", flash.notice
+        assert_equal "active_tab=files", URI.decode_www_form(URI.parse(request.url).query).join("=")
       end
     end
 
@@ -223,7 +223,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
           }
         }
       end
-      assert_equal Pet.last.tasks.count, 1
+      assert_equal 1, Pet.last.tasks.count
     end
   end
 end

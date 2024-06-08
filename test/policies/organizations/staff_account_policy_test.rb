@@ -20,7 +20,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -30,7 +30,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -40,7 +40,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -50,7 +50,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -65,12 +65,12 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
       should "return true" do
-        assert_equal @action.call, true
+        assert_equal true, @action.call
       end
     end
   end
@@ -86,7 +86,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -96,7 +96,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -106,7 +106,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -116,7 +116,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -126,7 +126,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
       end
 
       should "return true" do
-        assert_equal @action.call, true
+        assert_equal true, @action.call
       end
 
       context "when staff is self" do
@@ -135,7 +135,7 @@ class Organizations::StaffAccountPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
     end

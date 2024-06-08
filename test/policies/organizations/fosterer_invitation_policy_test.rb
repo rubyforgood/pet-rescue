@@ -24,7 +24,7 @@ class Organizations::FostererInvitationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -34,7 +34,7 @@ class Organizations::FostererInvitationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -44,7 +44,7 @@ class Organizations::FostererInvitationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -59,13 +59,13 @@ class Organizations::FostererInvitationPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
       context "when organization context is user's organization" do
         should "return true" do
-          assert_equal @action.call, true
+          assert_equal true, @action.call
         end
       end
     end
@@ -76,7 +76,7 @@ class Organizations::FostererInvitationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -91,7 +91,7 @@ class Organizations::FostererInvitationPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -101,13 +101,13 @@ class Organizations::FostererInvitationPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
       context "when created staff is for the same organization" do
         should "return true" do
-          assert_equal @action.call, true
+          assert_equal true, @action.call
         end
       end
     end

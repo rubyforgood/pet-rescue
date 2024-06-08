@@ -37,9 +37,9 @@ class Organizations::Staff::PetsController < Organizations::BaseController
     end
 
     if @pet.persisted?
-      redirect_to staff_pets_path, notice: "Pet saved successfully."
+      redirect_to staff_pets_path, notice: t(".success")
     else
-      flash.now[:alert] = "Error creating pet."
+      flash.now[:alert] = t(".error")
       render :new, status: :unprocessable_entity
     end
   end
@@ -47,7 +47,7 @@ class Organizations::Staff::PetsController < Organizations::BaseController
   def update
     if @pet.update(pet_params)
       respond_to do |format|
-        format.html { redirect_to staff_pet_path(@pet), notice: "Pet updated successfully." }
+        format.html { redirect_to staff_pet_path(@pet), notice: t(".success") }
         format.turbo_stream if params[:pet][:toggle] == "true"
       end
     else
@@ -59,13 +59,13 @@ class Organizations::Staff::PetsController < Organizations::BaseController
     if @pet.destroy
       redirect_to staff_pets_path, notice: "Pet deleted.", status: :see_other
     else
-      redirect_to staff_pets_path, alert: "Error."
+      redirect_to staff_pets_path, alert: t(".error")
     end
   end
 
   def attach_images
     if @pet.images.attach(params[:pet][:images])
-      redirect_to staff_pet_path(@pet, active_tab: "photos"), notice: "Upload successful."
+      redirect_to staff_pet_path(@pet, active_tab: "photos"), notice: t(".success")
     else
       @active_tab = "photos"
       @pet.images.last&.purge
@@ -76,7 +76,7 @@ class Organizations::Staff::PetsController < Organizations::BaseController
 
   def attach_files
     if @pet.files.attach(params[:pet][:files])
-      redirect_to staff_pet_path(@pet, active_tab: "files"), notice: "Upload successful."
+      redirect_to staff_pet_path(@pet, active_tab: "files"), notice: t(".success")
     else
       @active_tab = "files"
       @pet.files.last.purge
@@ -114,6 +114,6 @@ class Organizations::Staff::PetsController < Organizations::BaseController
   end
 
   def determine_active_tab
-    ["tasks", "applications", "photos", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
+    ["tasks", "applications", "fosters", "photos", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
   end
 end

@@ -12,7 +12,7 @@
           </div>
           <div class="lh-1">
             <h2 class="mb-0"><%= @pet.name %></h2>
-            <%= content_tag(:span, t('adoption_pending'), class: "badge bg-info") if @pet.has_adoption_pending? %>
+            <%= content_tag(:span, t('general.adoption_pending'), class: "badge bg-info") if @pet.has_adoption_pending? %>
           </div>
         </div>
         <div>
@@ -103,7 +103,7 @@
                   <% if AdopterApplication.adoption_exists?(current_user.adopter_foster_account&.id, @pet.id) %>
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2">
-                        <%= "#{t(".status." + @adoption_application.status) || t('.status.default')}" %>
+                        <%= "#{@adoption_application.human_enum_name(@adoption_application.status) || t('.status.default')}" %>
                       </h4>
                       <% if %w[under_review adoption_pending].include?(@adoption_application.status) %>
                         <%= image_tag('pause.png', height: '21') %>
@@ -135,6 +135,8 @@
           </div>
         </div>
       </div>
-    </div> <!-- row -->
-  </div> <!-- container -->
+    </div>
+ <!-- row -->
+  </div>
+ <!-- container -->
 </section>

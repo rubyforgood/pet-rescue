@@ -1,7 +1,7 @@
-<% breadcrumb :fosterers %>
+<% breadcrumb :adopters %>
 
 <%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Fosterers" %>
+  <% p.header_title t(:adopters) %>
   <% p.actions do %>
     <div class='d-flex align-items-center gap-2'>
       <div class="row">
@@ -19,7 +19,6 @@
           </div>
         </div>
       </div>
-      <%= link_to t(:invite_foster), new_staff_fosterer_invitation_path, class: "btn btn-primary" %><br>
     </div>
   <% end %>
 
@@ -31,7 +30,7 @@
           <!-- Tab Pane -->
           <div class="tab-pane fade" id="tabPaneGrid" role="tabpanel" aria-labelledby="tabPaneGrid">
             <div class='d-flex gap-3'>
-              <% @fosterer_accounts.each do |fosterer| %>
+              <% @adopter_accounts.each do |adopter| %>
                 <div class="col-xl-3 col-lg-6 col-md-6 col-12">
                   <!-- Card -->
                   <div class="card mb-4">
@@ -44,11 +43,11 @@
                             <span class="status bg-success"></span>
                           </a>
                         </div>
-                        <h4 class="mb-0"><%= "#{fosterer.user.full_name}" %></h4>
+                        <h4 class="mb-0"><%= "#{adopter.user.full_name}" %></h4>
                       </div>
                       <div class="d-flex justify-content-between border-bottom py-2">
                         <span><%= t(:joined) %></span>
-                        <span><%= fosterer.created_at.strftime("%d %B, %Y") %></span>
+                        <span><%= adopter.created_at.strftime("%d %B, %Y") %></span>
                       </div>
                     </div>
                   </div>
@@ -74,7 +73,7 @@
                 </thead>
                 <tbody>
 
-                  <% @fosterer_accounts.each do |fosterer| %>
+                  <% @adopter_accounts.each do |adopter| %>
                     <tr>
                       <td>
                         <div class="d-flex align-items-center">
@@ -84,11 +83,11 @@
                               <span class="status bg-success"></span>
                             </a>
                           </div>
-                          <h5 class="mb-0"><%= "#{fosterer.user.full_name}" %></h5>
+                          <h5 class="mb-0"><%= "#{adopter.user.full_name}" %></h5>
                         </div>
                       </td>
                       <td>
-                        <%= fosterer.created_at.strftime("%d %B, %Y") %>
+                        <%= adopter.created_at.strftime("%d %B, %Y") %>
                       </td>
                       <td>
                         <div class="hstack gap-4">
@@ -99,7 +98,7 @@
                               <i class="fe fe-more-vertical"></i>
                             </a>
                             <span class="dropdown-menu">
-                              <span class="dropdown-header"><%= t(:settings) %></span>
+                              <span class="dropdown-header"><%=t(:settings) %></span>
                               <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i> Edit</a>
                             </span>
                           </span>

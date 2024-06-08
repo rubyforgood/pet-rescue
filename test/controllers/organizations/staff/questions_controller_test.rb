@@ -103,7 +103,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, "Question saved successfully."
+      assert_equal "Question saved successfully.", flash.notice
     end
 
     should "not create question with invalid data" do
@@ -130,7 +130,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "Form not found."
+      assert_equal "Form not found.", flash.alert
     end
 
     should "not visit edit page of non-existent question" do
@@ -138,7 +138,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "Question not found."
+      assert_equal "Question not found.", flash.alert
     end
 
     should "not visit edit page of question outside of form" do
@@ -149,7 +149,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "Question not found."
+      assert_equal "Question not found.", flash.alert
     end
   end
 
@@ -163,7 +163,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, "Question saved successfully."
+      assert_equal "Question saved successfully.", flash.notice
     end
 
     should "not update question with invalid data" do
@@ -189,7 +189,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "Question not found."
+      assert_equal "Question not found.", flash.alert
     end
   end
 
@@ -201,7 +201,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, "Question was successfully deleted."
+      assert_equal "Question was successfully deleted.", flash.notice
     end
 
     should "not destroy a question belonging to another form" do
@@ -214,7 +214,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "Question not found."
+      assert_equal "Question not found.", flash.alert
     end
   end
 end
