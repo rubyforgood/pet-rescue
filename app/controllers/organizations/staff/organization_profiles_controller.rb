@@ -8,7 +8,7 @@ class Organizations::Staff::OrganizationProfilesController < Organizations::Base
 
   def update
     if @organization_profile.update(organization_profile_params)
-      redirect_to edit_staff_organization_profile_path, notice: "Your profile has been updated!"
+      redirect_to edit_staff_organization_profile_path, notice: t(".success")
     else
       render :edit, status: :unprocessable_entity
     end
