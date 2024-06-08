@@ -26,7 +26,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -36,7 +36,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       end
 
       should "return true" do
-        assert_equal @action.call, true
+        assert_equal true, @action.call
       end
     end
 
@@ -46,7 +46,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -56,7 +56,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       end
 
       should "return true" do
-        assert_equal @action.call, true
+        assert_equal true, @action.call
       end
     end
 
@@ -66,7 +66,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -76,7 +76,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -86,7 +86,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
   end
@@ -108,7 +108,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -118,7 +118,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -129,7 +129,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
 
         context "when profile does not belong to user" do
           should "return false" do
-            assert_equal @action.call, false
+            assert_equal false, @action.call
           end
         end
 
@@ -139,7 +139,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
           end
 
           should "return true" do
-            assert_equal @action.call, true
+            assert_equal true, @action.call
           end
         end
       end
@@ -150,7 +150,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -161,7 +161,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
 
         context "when profile does not belong to user" do
           should "return false" do
-            assert_equal @action.call, false
+            assert_equal false, @action.call
           end
         end
 
@@ -171,7 +171,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
           end
 
           should "return true" do
-            assert_equal @action.call, true
+            assert_equal true, @action.call
           end
         end
       end
@@ -182,7 +182,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -192,7 +192,7 @@ class Organizations::AdopterFosterProfilePolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
     end

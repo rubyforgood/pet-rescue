@@ -159,7 +159,7 @@ class Organizations::Staff::FaqsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, "FAQ was successfully created."
+      assert_equal "FAQ was successfully created.", flash.notice
     end
 
     should "not create new default pet task with invalid or missing param" do
@@ -195,7 +195,7 @@ class Organizations::Staff::FaqsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "FAQ not found."
+      assert_equal "FAQ not found.", flash.alert
     end
 
     should "edit faq with turbo" do
@@ -222,7 +222,7 @@ class Organizations::Staff::FaqsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, "FAQ was successfully updated."
+      assert_equal "FAQ was successfully updated.", flash.notice
     end
 
     should "not update default pet task with invalid or missing param" do
@@ -269,7 +269,7 @@ class Organizations::Staff::FaqsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.notice, "FAQ was successfully deleted."
+      assert_equal "FAQ was successfully deleted.", flash.notice
     end
 
     should "redirect with error for inexistent FAQ" do
@@ -277,7 +277,7 @@ class Organizations::Staff::FaqsControllerTest < ActionDispatch::IntegrationTest
 
       assert_response :redirect
       follow_redirect!
-      assert_equal flash.alert, "FAQ not found."
+      assert_equal "FAQ not found.", flash.alert
     end
 
     should "delete faq with turbo" do

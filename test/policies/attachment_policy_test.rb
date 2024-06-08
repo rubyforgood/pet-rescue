@@ -22,7 +22,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -32,7 +32,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -42,7 +42,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -53,7 +53,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
 
         context "when attachment's record's organization matches user's" do
           should "return true" do
-            assert_equal @action.call, true
+            assert_equal true, @action.call
           end
         end
 
@@ -65,7 +65,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
 
             should "return false" do
               should "return false" do
-                assert_equal @action.call, false
+                assert_equal false, @action.call
               end
             end
           end
@@ -78,7 +78,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -89,7 +89,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
 
         context "when attachment's record's organization matches user's" do
           should "return true" do
-            assert_equal @action.call, true
+            assert_equal true, @action.call
           end
         end
 
@@ -101,7 +101,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
 
             should "return false" do
               should "return false" do
-                assert_equal @action.call, false
+                assert_equal false, @action.call
               end
             end
           end
