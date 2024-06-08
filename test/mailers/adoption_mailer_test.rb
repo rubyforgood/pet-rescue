@@ -1,9 +1,9 @@
 require "test_helper"
 
-class MatchMailerTest < ActionMailer::TestCase
+class AdoptionMailerTest < ActionMailer::TestCase
   test "reminder" do
     match = create(:match, match_type: :adoption)
-    email = MatchMailer.reminder(match)
+    email = AdoptionMailer.reminder(match)
 
     assert_emails 1 do
       email.deliver_now
