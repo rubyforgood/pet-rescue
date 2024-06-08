@@ -277,6 +277,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://meghangutshall.com/"><img src="https://avatars.githubusercontent.com/u/37842352?v=4?s=100" width="100px;" alt="Meg Gutshall"/><br /><sub><b>Meg Gutshall</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=meg-gutshall" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jaxonavena"><img src="https://avatars.githubusercontent.com/u/89274915?v=4?s=100" width="100px;" alt="Jaxon"/><br /><sub><b>Jaxon</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=jaxonavena" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/alexanderc360"><img src="https://avatars.githubusercontent.com/u/33144250?v=4?s=100" width="100px;" alt="Alex Cohen"/><br /><sub><b>Alex Cohen</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=alexanderc360" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/sevilla"><img src="https://avatars.githubusercontent.com/u/1185489?v=4?s=100" width="100px;" alt="Kristine Sevilla"/><br /><sub><b>Kristine Sevilla</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=sevilla" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
