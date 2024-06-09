@@ -6,8 +6,13 @@ services:
       - postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: myapp_development
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: ${DATABASE_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-password}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME:-postgres} -d myapp_development"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   app:
     build: .
@@ -17,11 +22,20 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/myapp_development
+      DATABASE_URL: postgres://${DATABASE_USERNAME:-postgres}:${DATABASE_PASSWORD:-password}@db:5432/myapp_development
       RAILS_ENV: development
+
+  sass:
+    build: .
+    command: bundle exec rails dartsass:watch
+    volumes:
+      - .:/myapp
+    depends_on:
+      app:
+        condition: service_started
 
 volumes:
   postgres-data:
-  bundle:
