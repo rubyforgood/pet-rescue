@@ -25,7 +25,12 @@ Rails.application.routes.draw do
 
       resources :default_pet_tasks
       resources :faqs
-      resources :dashboard, only: [:index]
+      resources :dashboard, only: [:index] do
+        collection do
+          get :incomplete_tasks
+          get :overdue_tasks
+        end
+      end
       resources :matches, only: %i[create destroy]
 
       resources :adoption_application_reviews, only: %i[index edit update]
