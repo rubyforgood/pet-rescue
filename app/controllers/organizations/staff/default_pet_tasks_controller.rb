@@ -5,7 +5,7 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
   layout "dashboard"
 
   def index
-    @default_pet_tasks = authorized_scope(DefaultPetTask.all)
+    @default_pet_tasks = authorized_scope(DefaultPetTask.all).sort_by { |task| task.species }
   end
 
   def new
@@ -43,7 +43,7 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
   private
 
   def task_params
-    params.require(:default_pet_task).permit(:name, :description, :due_in_days, :recurring)
+    params.require(:default_pet_task).permit(:name, :description, :due_in_days, :species, :recurring)
   end
 
   def set_task

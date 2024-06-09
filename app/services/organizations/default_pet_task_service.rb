@@ -2,7 +2,7 @@
 class Organizations::DefaultPetTaskService
   def initialize(pet)
     @pet = pet
-    @default_pet_tasks = DefaultPetTask.all
+    @default_pet_tasks = DefaultPetTask.where(species: DefaultPetTask.species.values_at("All", pet.species))
   end
 
   def default_tasks_array
