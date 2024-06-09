@@ -7,21 +7,29 @@
         <div style="padding: 0 10px; margin-top: 15px;">
           <strong class="d-block" ><%= task.name %></strong>
           <p class='mb-0'> <%= task.description %> </p>
-          <% if task.due_date %>
-            <% if task.due_date.to_date == Date.today %>
-              <div class='text-warning'>
-                <i class="fe fe-clock"></i> Due Date - Today
-              </div>
-            <% elsif task.due_date.to_date > Date.today %>
-              <div class='text-warning'>
-                <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
-              </div>
-            <% elsif task.due_date.to_date < Date.today %>
-              <div class='text-danger'>
-                <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
-              </div>
+          <div class='d-flex'>
+            <% if task.due_date %>
+              <% if task.due_date.to_date == Date.today %>
+                <div class='text-warning'>
+                  <i class="fe fe-clock"></i> Due Date - Today
+                </div>
+              <% elsif task.due_date.to_date > Date.today %>
+                <div class='text-warning'>
+                  <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
+                </div>
+              <% elsif task.due_date.to_date < Date.today %>
+                <div class='text-danger'>
+                  <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
+                </div>
+              <% end %>
+              <% if task.recurring %>
+                <div class='text-black d-flex align-items-center'>
+                  <i class="fe fe-refresh-cw nav-icon mx-2"></i>
+                  <%= t('.recurring') %>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
+          </div>
         </div>
       </div>
       <!-- Right side: Completion status and action buttons -->

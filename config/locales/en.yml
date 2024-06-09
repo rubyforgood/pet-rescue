@@ -341,6 +341,11 @@ en:
           success: "Account changed to Admin"
           error: "Error changing role"
       tasks:
+        task:
+          recurring: "Recurring"
+        index:
+          new_task: "Add New Task"
+          complete?: "Show Completed"
         destroy:
           success: "Task was successfully deleted."
       page_texts:
