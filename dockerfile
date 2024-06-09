@@ -6,7 +6,9 @@ RUN apt-get update -qq && apt-get install -y \
   nodejs \
   postgresql-client \
   build-essential \
-  libpq-dev
+  libpq-dev \
+  chromium-driver
+
 
 # Set up working directory
 WORKDIR /myapp
