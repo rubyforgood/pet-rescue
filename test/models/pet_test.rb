@@ -4,7 +4,7 @@ require "test_helper"
 
 class PetTest < ActiveSupport::TestCase
   context "associations" do
-    should have_many(:adopter_applications).dependent(:destroy)
+    should have_many(:submissions).dependent(:destroy)
     should have_many(:matches).dependent(:destroy)
     should have_many_attached(:images)
     should have_many(:likes).dependent(:destroy)
@@ -106,7 +106,7 @@ class PetTest < ActiveSupport::TestCase
   context "#has_adoption_pending?" do
     should "return true if there is an adopter application with 'adoption_pending' status" do
       pet = Pet.new
-      adopter_application = pet.adopter_applications.new
+      adopter_application = pet.submissions.new
       adopter_application.status = "adoption_pending"
       assert pet.has_adoption_pending?
 
@@ -118,7 +118,7 @@ class PetTest < ActiveSupport::TestCase
   context "#is_adopted?" do
     should "return true if there is an adopter application with 'adoption_pending' status" do
       pet = Pet.new
-      adopter_application = pet.adopter_applications.new
+      adopter_application = pet.submissions.new
       adopter_application.status = "adoption_made"
       assert pet.is_adopted?
 
