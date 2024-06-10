@@ -10,17 +10,17 @@ RUN apt-get update -qq && apt-get install -y \
   chromium-driver
 
 # Set up working directory
-WORKDIR /myapp
+WORKDIR /petrescue
 
 # Copy Gemfile and Gemfile.lock before other files to leverage Docker's caching mechanism
-COPY Gemfile /myapp/Gemfile
-COPY Gemfile.lock /myapp/Gemfile.lock
+COPY Gemfile /petrescue/Gemfile
+COPY Gemfile.lock /petrescue/Gemfile.lock
 
 # Install gems
 RUN gem install bundler && bundle install
 
 # Copy the rest of the application code
-COPY . /myapp
+COPY . /petrescue
 
 # Precompile assets (optional for development, but useful for production)
 RUN bundle exec rails assets:precompile

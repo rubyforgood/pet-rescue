@@ -5,34 +5,34 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: myapp_development
+      POSTGRES_DB: petrescue_development
       POSTGRES_USER: ${DATABASE_USERNAME:-postgres}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-password}
+    ports:
+      - 5432
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME:-postgres} -d myapp_development"]
+      test: ["CMD-SHELL", "pg_isready -U ${DATABASE_USERNAME:-postgres} -d petrescue_development"]
       interval: 10s
-      timeout: 5s
-      retries: 5
 
   app:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     volumes:
-      - .:/myapp
+      - .:/petrescue
     ports:
       - "3000:3000"
     depends_on:
       db:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://${DATABASE_USERNAME:-postgres}:${DATABASE_PASSWORD:-password}@db:5432/myapp_development
+      DATABASE_URL: postgres://${DATABASE_USERNAME:-postgres}:${DATABASE_PASSWORD:-password}@db:5432/petrescue_development
       RAILS_ENV: development
 
   sass:
     build: .
     command: bundle exec rails dartsass:watch
     volumes:
-      - .:/myapp
+      - .:/petrescue
     depends_on:
       app:
         condition: service_started
