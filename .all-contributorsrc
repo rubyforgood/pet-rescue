@@ -457,6 +457,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "cflipse",
+      "name": "Chris Flipse",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3754?v=4",
+      "profile": "http://devcaffeine.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
