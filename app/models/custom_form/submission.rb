@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: adopter_applications
+# Table name: submissions
 #
 #  id                        :bigint           not null, primary key
 #  notes                     :text
@@ -14,17 +14,17 @@
 #
 # Indexes
 #
-#  index_adopter_applications_on_account_and_pet            (pet_id,adopter_foster_account_id) UNIQUE
-#  index_adopter_applications_on_adopter_foster_account_id  (adopter_foster_account_id)
-#  index_adopter_applications_on_organization_id            (organization_id)
-#  index_adopter_applications_on_pet_id                     (pet_id)
+#  index_submissions_on_adopter_foster_account_id             (adopter_foster_account_id)
+#  index_submissions_on_organization_id                       (organization_id)
+#  index_submissions_on_pet_id                                (pet_id)
+#  index_submissions_on_pet_id_and_adopter_foster_account_id  (pet_id,adopter_foster_account_id) UNIQUE
 #
 # Foreign Keys
 #
 #  fk_rails_...  (adopter_foster_account_id => adopter_foster_accounts.id)
 #  fk_rails_...  (pet_id => pets.id)
 #
-class AdopterApplication < ApplicationRecord
+class CustomForm::Submission < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :pet, touch: true
   belongs_to :adopter_foster_account
@@ -45,7 +45,7 @@ class AdopterApplication < ApplicationRecord
     }
   # remove adoption_made status as not necessary for staff
   def self.app_review_statuses
-    AdopterApplication.statuses.keys.map do |status|
+    CustomForm::Submission.statuses.keys.map do |status|
       unless status == "adoption_made"
         [status.titleize, status]
       end
@@ -54,13 +54,13 @@ class AdopterApplication < ApplicationRecord
 
   # check if an adopter has applied to adopt a pet
   def self.adoption_exists?(adopter_foster_account_id, pet_id)
-    AdopterApplication.where(adopter_foster_account_id: adopter_foster_account_id,
+    CustomForm::Submission.where(adopter_foster_account_id: adopter_foster_account_id,
       pet_id: pet_id).exists?
   end
 
   # check if any applications are set to profile_show: true
   def self.any_applications_profile_show_true?(adopter_foster_account_id)
-    applications = AdopterApplication.where(adopter_foster_account_id: adopter_foster_account_id)
+    applications = CustomForm::Submission.where(adopter_foster_account_id: adopter_foster_account_id)
     applications.any? { |app| app.profile_show == true }
   end
 

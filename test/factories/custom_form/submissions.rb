@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :adopter_application do
+  factory :submission, class: "custom_form/submission" do
     notes { Faker::Lorem.paragraph }
     profile_show { true }
     status { 1 }
