@@ -26,6 +26,24 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
           get adopter_fosterer_adopter_applications_url
         end
       end
+
+      should "count the total number of applications" do
+        organization = ActsAsTenant.current_tenant
+        adopter_foster_account = create(:adopter_foster_account, user: @user, organization: organization)
+        create_list(:adopter_application, 2, adopter_foster_account: adopter_foster_account)
+
+        get adopter_fosterer_dashboard_index_path
+
+        assert_equal 2, assigns(:application_count)
+      end
+
+      should "return zero when the total number of adopter applications is nil" do
+        organization = ActsAsTenant.current_tenant
+        _adopter_foster_account = build_stubbed(:adopter_foster_account, user: @user, organization: organization)
+
+        get adopter_fosterer_dashboard_index_path
+        assert_equal 0, assigns(:application_count)
+      end
     end
 
     context "#create" do

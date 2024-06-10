@@ -150,7 +150,7 @@ class Organizations::Staff::FormsControllerTest < ActionDispatch::IntegrationTes
 
         assert_response :redirect
         follow_redirect!
-        assert_equal flash.notice, "Form saved successfully."
+        assert_equal "Form saved successfully.", flash.notice
       end
 
       should "not create new form with missing params" do
@@ -180,7 +180,7 @@ class Organizations::Staff::FormsControllerTest < ActionDispatch::IntegrationTes
 
         assert_response :redirect
         follow_redirect!
-        assert_equal flash.alert, "Form not found."
+        assert_equal "Form not found.", flash.alert
       end
     end
 
@@ -197,7 +197,7 @@ class Organizations::Staff::FormsControllerTest < ActionDispatch::IntegrationTes
 
         assert_response :redirect
         follow_redirect!
-        assert_equal flash.alert, "Form not found."
+        assert_equal "Form not found.", flash.alert
       end
     end
 
@@ -215,7 +215,7 @@ class Organizations::Staff::FormsControllerTest < ActionDispatch::IntegrationTes
 
         assert_response :redirect
         follow_redirect!
-        assert_equal flash.notice, "Form saved successfully."
+        assert_equal "Form saved successfully.", flash.notice
       end
 
       should "not update form with missing param" do
@@ -237,7 +237,7 @@ class Organizations::Staff::FormsControllerTest < ActionDispatch::IntegrationTes
 
         assert_response :redirect
         follow_redirect!
-        assert_equal flash.notice, "Form was successfully deleted."
+        assert_equal "Form was successfully deleted.", flash.notice
       end
     end
   end
