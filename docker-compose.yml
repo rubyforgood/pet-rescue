@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  db:
+  postgres:
     image: postgres:14
     volumes:
       - postgres-data:/var/lib/postgresql/data
@@ -22,10 +22,10 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      db:
+      postgres:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://${DATABASE_USERNAME:-postgres}:${DATABASE_PASSWORD:-password}@db:5432/petrescue_development
+      DATABASE_URL: postgres://${DATABASE_USERNAME:-postgres}:${DATABASE_PASSWORD:-password}@postgres:5432/petrescue_development
       RAILS_ENV: development
 
   sass:
