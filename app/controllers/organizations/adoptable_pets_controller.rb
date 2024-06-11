@@ -4,7 +4,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
 
   def index
     @pets = authorized_scope(
-      Pet.includes(:adopter_applications, images_attachments: :blob),
+      Pet.includes(:submissions, images_attachments: :blob),
       with: Organizations::AdoptablePetPolicy
     )
   end
@@ -16,11 +16,11 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
 
     if current_user&.adopter_foster_account
       @adoption_application =
-        AdopterApplication.find_by(
+        CustomForm::Submission.find_by(
           pet_id: @pet.id,
           adopter_foster_account_id: current_user.adopter_foster_account.id
         ) ||
-        @pet.adopter_applications.build(
+        @pet.submissions.build(
           adopter_foster_account: current_user.adopter_foster_account
         )
     end

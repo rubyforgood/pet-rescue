@@ -27,7 +27,7 @@ class AdopterApplicationPolicy < ApplicationPolicy
   end
 
   def already_applied?
-    user.adopter_foster_account.adopter_applications.any? do |application|
+    user.adopter_foster_account.submissions.any? do |application|
       application.pet_id == pet.id
     end
   end

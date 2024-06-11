@@ -100,7 +100,7 @@
                     %>
                   <% end %>
                 <% else %>
-                  <% if AdopterApplication.adoption_exists?(current_user.adopter_foster_account&.id, @pet.id) %>
+                  <% if CustomForm::Submission.adoption_exists?(current_user.adopter_foster_account&.id, @pet.id) %>
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2">
                         <%= "#{@adoption_application.human_enum_name(@adoption_application.status) || t('.status.default')}" %>
