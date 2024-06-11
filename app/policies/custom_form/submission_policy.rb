@@ -1,4 +1,4 @@
-class AdopterApplicationPolicy < ApplicationPolicy
+class CustomForm::SubmissionPolicy < ApplicationPolicy
   authorize :pet, optional: true
 
   pre_check :verify_profile!

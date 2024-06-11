@@ -1,15 +1,15 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class AdopterApplicationPolicyTest < ActiveSupport::TestCase
+class CustomForm::SubmissionPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   context "relation_scope" do
     setup do
       policy = -> {
-        AdopterApplicationPolicy.new(AdopterApplication, user: @user)
+        CustomForm::SubmissionPolicy.new(CustomForm::Submission, user: @user)
       }
-      target = -> { AdopterApplication.all }
+      target = -> { CustomForm::Submission.all }
       @scope = -> {
         policy.call.apply_scope(target.call, type: :active_record_relation)
           .pluck(:id)
@@ -24,10 +24,10 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       context "when there are applications that do not belong to user" do
         setup do
           @user_applications = [
-            create(:adopter_application, user: @user),
-            create(:adopter_application, user: @user)
+            create(:submission, user: @user),
+            create(:submission, user: @user)
           ]
-          @other_application = create(:adopter_application)
+          @other_application = create(:submission)
         end
 
         should "return only user's applications" do
@@ -39,7 +39,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when user has no applications" do
         setup do
-          @other_application = create(:adopter_application)
+          @other_application = create(:submission)
         end
 
         should "return empty array" do
@@ -52,7 +52,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
   context "#index?" do
     setup do
       @policy = -> {
-        AdopterApplicationPolicy.new(AdopterApplication, user: @user)
+        CustomForm::SubmissionPolicy.new(CustomForm::Submission, user: @user)
       }
       @action = -> { @policy.call.apply(:index?) }
     end
@@ -112,7 +112,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
     setup do
       @pet = create(:pet)
       @policy = -> {
-        AdopterApplicationPolicy.new(AdopterApplication, user: @user,
+        CustomForm::SubmissionPolicy.new(CustomForm::Submission, user: @user,
           pet: @pet)
       }
       @action = -> { @policy.call.apply(:create?) }
@@ -170,7 +170,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user already has an existing application for the pet" do
           setup do
-            @existing_app = create(:adopter_application, user: @user, pet: @pet)
+            @existing_app = create(:submission, user: @user, pet: @pet)
           end
 
           should "return false" do
@@ -200,9 +200,9 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
   context "existing record action" do
     setup do
-      @adopter_application = create(:adopter_application)
+      @adopter_application = create(:submission)
       @policy = -> {
-        AdopterApplicationPolicy.new(@adopter_application, user: @user)
+        CustomForm::SubmissionPolicy.new(@adopter_application, user: @user)
       }
     end
 

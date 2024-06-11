@@ -4,14 +4,14 @@ class Organizations::AdopterFosterer::CustomForm::SubmissionsController < Organi
   layout "adopter_foster_dashboard"
 
   def index
-    authorize! with: AdopterApplicationPolicy
+    authorize! CustomForm::Submission, with: CustomForm::SubmissionPolicy
 
-    @applications = authorized_scope(CustomForm::Submission.where(profile_show: true), with: AdopterApplicationPolicy)
+    @applications = authorized_scope(CustomForm::Submission.where(profile_show: true), with: CustomForm::SubmissionPolicy)
   end
 
   def create
     @pet = Pet.find(application_params[:pet_id])
-    authorize! context: {pet: @pet}, with: AdopterApplicationPolicy
+    authorize! CustomForm::Submission, context: {pet: @pet}, with: CustomForm::SubmissionPolicy
 
     @application = CustomForm::Submission.new(application_params)
 
@@ -43,7 +43,7 @@ class Organizations::AdopterFosterer::CustomForm::SubmissionsController < Organi
 
   def set_application
     @application = CustomForm::Submission.find(params[:id])
-    authorize! @application, with: AdopterApplicationPolicy
+    authorize! @application, with: CustomForm::SubmissionPolicy
   end
 
   def application_params

@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::AdopterFosterer::CustomForm::SubmissionsControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -13,24 +13,24 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
     context "#index" do
       should "be authorized" do
         assert_authorized_to(
-          :index?, AdopterApplication, with: AdopterApplicationPolicy
+          :index?, CustomForm::Submission, with: CustomForm::SubmissionPolicy
         ) do
-          get adopter_fosterer_adopter_applications_url
+          get adopter_fosterer_custom_form_submissions_url
         end
       end
 
       should "have authorized scope" do
         assert_have_authorized_scope(
-          type: :active_record_relation, with: AdopterApplicationPolicy
+          type: :active_record_relation, with: CustomForm::SubmissionPolicy
         ) do
-          get adopter_fosterer_adopter_applications_url
+          get adopter_fosterer_custom_form_submissions_url
         end
       end
 
       should "count the total number of applications" do
         organization = ActsAsTenant.current_tenant
         adopter_foster_account = create(:adopter_foster_account, user: @user, organization: organization)
-        create_list(:adopter_application, 2, adopter_foster_account: adopter_foster_account)
+        create_list(:submission, 2, adopter_foster_account: adopter_foster_account)
 
         get adopter_fosterer_dashboard_index_path
 
@@ -49,7 +49,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
     context "#create" do
       setup do
         @pet = create(:pet)
-        @params = {adopter_application: {
+        @params = {submission: {
           pet_id: @pet.id,
           adopter_foster_account_id: @user.adopter_foster_account.id
         }}
@@ -57,28 +57,28 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
 
       should "be authorized" do
         assert_authorized_to(
-          :create?, AdopterApplication,
+          :create?, CustomForm::Submission,
           context: {pet: @pet},
-          with: AdopterApplicationPolicy
+          with: CustomForm::SubmissionPolicy
         ) do
-          post adopter_fosterer_adopter_applications_url, params: @params
+          post adopter_fosterer_custom_form_submissions_url, params: @params
         end
       end
     end
 
     context "#update" do
       setup do
-        @adopter_application = create(:adopter_application, user: @user)
-        @params = {adopter_application: {
+        @adopter_application = create(:submission, user: @user)
+        @params = {submission: {
           status: "withdrawn"
         }}
       end
 
       should "be authorized" do
         assert_authorized_to(
-          :update?, @adopter_application, with: AdopterApplicationPolicy
+          :update?, @adopter_application, with: CustomForm::SubmissionPolicy
         ) do
-          patch adopter_fosterer_adopter_application_url(@adopter_application), params: @params
+          patch adopter_fosterer_custom_form_submission_url(@adopter_application), params: @params
         end
       end
     end

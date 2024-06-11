@@ -612,6 +612,12 @@ en:
           withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
           remove: "Remove"
           withdraw: "Withdraw"
+      # TODO: remove old translations when finished
+      custom_form: 
+        submissions:
+          create: 
+            success: "Application submitted! %{message}"
+            error: "Error. Please try again."
       likes:
         index:
           liked_pets: 'Liked Pets'
