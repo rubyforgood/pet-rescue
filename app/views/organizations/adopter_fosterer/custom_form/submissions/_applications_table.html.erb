@@ -5,7 +5,7 @@
   <table class="table mb-0 text-nowrap table-hover table-centered">
     <thead>
       <tr>
-        <th scope="col"><%= t("views.dashboard.applications.name")%></th>
+        <th scope="col"><%= t("views.dashboard.applications.name")%></th> #####
         <th scope="col"><%= t("views.dashboard.applications.created")%></th>
         <th scope="col"><%= t("views.dashboard.applications.status")%></th>
         <th scope="col"></th>
@@ -32,17 +32,17 @@
             <%= l app.created_at.to_date, format: :long %>
           </td>
           <td>
-            <%= app.human_enum_name(:status) %>
+            <%= app.human_enum_name(:status) %> #####
           </td>
           <td>
             <% if app.status == 'withdrawn' %>
               <%= button_to t("general.delete"),
-                    adopter_fosterer_adopter_application_path(app, adopter_application:
+                    adopter_fosterer_custom_form_submission_path(app, submission:
                     { profile_show: false }), method: :patch, class: 'btn btn-outline-danger',
                     data: { turbo_confirm: t("dashboard.applications.confirm_delete") } %>
             <% elsif app.status != 'adoption_made'%>
               <%= button_to t("dashboard.applications.withdraw_application"),
-                    adopter_fosterer_adopter_application_path(app, adopter_application:
+                    adopter_fosterer_custom_form_submission_path(app, submission:
                     { status: 'withdrawn'}), method: :patch, class: 'btn  btn-outline-danger',
                     data: { turbo_confirm: t("dashboard.applications.confirm_withdraw", pet_name: pet.name.capitalize) } %>
             <% end  %>

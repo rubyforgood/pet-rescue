@@ -296,6 +296,11 @@ en:
           withdrawn: Withdrawn
           successful_applicant: Successful Applicant
           adoption_made: Adoption Made
+      # TODO: remove old translations when finished
+      custom_form/submission:
+        status:
+          under_review: Under Review
+          withdrawn: Withdrawn
   errors:
     attributes:
       general:

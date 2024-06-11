@@ -1,4 +1,4 @@
-class Organizations::AdopterFosterer::AdopterApplicationsController < Organizations::BaseController
+class Organizations::AdopterFosterer::CustomForm::SubmissionsController < Organizations::BaseController
   before_action :authenticate_user!
   before_action :set_application, only: %i[update]
   layout "adopter_foster_dashboard"
@@ -6,14 +6,14 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
   def index
     authorize! with: AdopterApplicationPolicy
 
-    @applications = authorized_scope(AdopterApplication.where(profile_show: true), with: AdopterApplicationPolicy)
+    @applications = authorized_scope(CustomForm::Submission.where(profile_show: true), with: AdopterApplicationPolicy)
   end
 
   def create
     @pet = Pet.find(application_params[:pet_id])
     authorize! context: {pet: @pet}, with: AdopterApplicationPolicy
 
-    @application = AdopterApplication.new(application_params)
+    @application = CustomForm::Submission.new(application_params)
 
     if @application.save
       redirect_to adoptable_pet_path(@application.pet),
@@ -33,7 +33,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
   # update :status to 'withdrawn' or :profile_show to false
   def update
     if @application.update(application_params)
-      redirect_to adopter_fosterer_adopter_applications_path
+      redirect_to adopter_fosterer_custom_form_submissions_path
     else
       redirect_to adopter_fosterer_profile_path, alert: t(".error")
     end
@@ -42,12 +42,12 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
   private
 
   def set_application
-    @application = AdopterApplication.find(params[:id])
+    @application = CustomForm::Submission.find(params[:id])
     authorize! @application, with: AdopterApplicationPolicy
   end
 
   def application_params
-    params.require(:adopter_application).permit(
+    params.require(:submission).permit(
       :pet_id,
       :adopter_foster_account_id,
       :status,

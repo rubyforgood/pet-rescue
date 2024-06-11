@@ -7,7 +7,7 @@ class AdoptionFostererTest < ApplicationSystemTestCase
     @page_text = create(:page_text, :with_image, organization: @org)
 
     @pet = create(:pet)
-    create(:adopter_application, pet: @pet, adopter_foster_account: @user.adopter_foster_account, organization: @org)
+    create(:submission, pet: @pet, adopter_foster_account: @user.adopter_foster_account, organization: @org)
 
     sign_in @user
   end
@@ -20,7 +20,7 @@ class AdoptionFostererTest < ApplicationSystemTestCase
     end
 
     should "should let user withdraw and then delete applications from their list" do
-      visit adopter_fosterer_adopter_applications_path
+      visit adopter_fosterer_custom_form_submissions_path
       assert_text @pet.name
       assert_text "Under Review"
       accept_confirm do
