@@ -7,7 +7,7 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      @adopter_application = create(:adopter_application)
+      @adopter_application = create(:submission)
 
       user = create(:staff)
       sign_in user
@@ -16,9 +16,9 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
     context "index" do
       should "be authorized" do
         assert_authorized_to(
-          :manage?, AdopterApplication,
+          :manage?, CustomForm::Submission,
           context: {organization: @organization},
-          with: Organizations::AdopterApplicationPolicy
+          with: Organizations::SubmissionPolicy
         ) do
           get staff_adoption_application_reviews_url
         end
@@ -38,7 +38,7 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
       should "be authorized" do
         assert_authorized_to(
           :manage?, @adopter_application,
-          with: Organizations::AdopterApplicationPolicy
+          with: Organizations::SubmissionPolicy
         ) do
           get edit_staff_adoption_application_review_url(@adopter_application)
         end
@@ -48,12 +48,12 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
     context "#update" do
       setup do
         loop do
-          @new_status = AdopterApplication.statuses.keys.sample
+          @new_status = CustomForm::Submission.statuses.keys.sample
           break if @new_status != @adopter_application.status
         end
 
         @params = {
-          adopter_application: {
+          submission: {
             status: @new_status
           }
         }
@@ -62,7 +62,7 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
       should "be authorized" do
         assert_authorized_to(
           :manage?, @adopter_application,
-          with: Organizations::AdopterApplicationPolicy
+          with: Organizations::SubmissionPolicy
         ) do
           patch staff_adoption_application_review_url(@adopter_application),
             params: @params,
@@ -88,8 +88,8 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
         @pet2 = create(:pet, name: "Tycho")
         adopter_foster_account1 = create(:adopter_foster_account, :with_profile)
         adopter_foster_account2 = create(:adopter_foster_account, :with_profile)
-        create(:adopter_application, pet: @pet1, adopter_foster_account: adopter_foster_account1)
-        create(:adopter_application, pet: @pet2, adopter_foster_account: adopter_foster_account2)
+        create(:submission, pet: @pet1, adopter_foster_account: adopter_foster_account1)
+        create(:submission, pet: @pet2, adopter_foster_account: adopter_foster_account2)
       end
 
       should "return applications for a specific pet name" do
@@ -107,12 +107,12 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
           user: create(:user, first_name: "David", last_name: "Attenborough"))
         adopter_foster_account2 = create(:adopter_foster_account, :with_profile,
           user: create(:user, first_name: "Jane", last_name: "Goodall"))
-        create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account1)
-        create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account2)
+        create(:submission, pet: @pet, adopter_foster_account: adopter_foster_account1)
+        create(:submission, pet: @pet, adopter_foster_account: adopter_foster_account2)
       end
 
       should "return applications for a specific applicant name" do
-        get staff_adoption_application_reviews_url, params: {q: {adopter_applications_applicant_name_i_cont: "Attenborough"}}
+        get staff_adoption_application_reviews_url, params: {q: {submissions_applicant_name_i_cont: "Attenborough"}}
         assert_response :success
         assert_select "a.link-underline.link-underline-opacity-0", text: "David Attenborough"
         refute_match "Goodall, Jane", @response.body
@@ -124,12 +124,12 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
         @pet = create(:pet)
         adopter_foster_account1 = create(:adopter_foster_account, :with_profile)
         adopter_foster_account2 = create(:adopter_foster_account, :with_profile)
-        @application_under_review = create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account1, status: :under_review)
-        @application_awaiting_review = create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account2, status: :awaiting_review)
+        @application_under_review = create(:submission, pet: @pet, adopter_foster_account: adopter_foster_account1, status: :under_review)
+        @application_awaiting_review = create(:submission, pet: @pet, adopter_foster_account: adopter_foster_account2, status: :awaiting_review)
       end
 
       should "return pets only with applications of the specified status" do
-        get staff_adoption_application_reviews_url, params: {q: {adopter_applications_status_eq: "under_review"}}
+        get staff_adoption_application_reviews_url, params: {q: {submissions_status_eq: "under_review"}}
         assert_response :success
         assert_select "button.bg-dark-info", text: "Under Review"
         assert_select "button.bg-dark-primary", text: "Awaiting Review", count: 0

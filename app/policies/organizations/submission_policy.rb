@@ -1,4 +1,4 @@
-class Organizations::AdopterApplicationPolicy < ApplicationPolicy
+class Organizations::SubmissionPolicy < ApplicationPolicy
   pre_check :verify_organization!
   pre_check :verify_active_staff!
 

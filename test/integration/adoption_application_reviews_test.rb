@@ -2,12 +2,12 @@ require "test_helper"
 
 class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   setup do
-    @awaiting_review_app = create(:adopter_application, status: :awaiting_review)
-    @under_review_app = create(:adopter_application, status: :under_review)
-    @adoption_pending_app = create(:adopter_application, :adoption_pending)
-    @withdrawn_app = create(:adopter_application, :withdrawn)
-    @successful_applicant_app = create(:adopter_application, status: :successful_applicant)
-    @adoption_made_app = create(:adopter_application, status: :adoption_made)
+    @awaiting_review_app = create(:submission, status: :awaiting_review)
+    @under_review_app = create(:submission, status: :under_review)
+    @adoption_pending_app = create(:submission, :adoption_pending)
+    @withdrawn_app = create(:submission, :withdrawn)
+    @successful_applicant_app = create(:submission, status: :successful_applicant)
+    @adoption_made_app = create(:submission, status: :adoption_made)
     @organization = create(:organization)
     @page_text = create(:page_text, organization: @organization)
     Current.organization = @organization
@@ -33,12 +33,12 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       get staff_adoption_application_reviews_path
 
       assert_response :success
-      AdopterApplication.first(5).each { |application| verify_application_elements application }
+      CustomForm::Submission.first(5).each { |application| verify_application_elements application }
     end
 
     should "be able to change the application status" do
       patch staff_adoption_application_review_path(@awaiting_review_app.id),
-        params: {adopter_application: {status: :under_review}},
+        params: {submission: {status: :under_review}},
         headers: {"HTTP_REFERER" => "example.com"}
 
       assert_response :redirect
@@ -49,7 +49,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     should "be able to add a note to an application" do
       patch staff_adoption_application_review_path(@under_review_app.id),
-        params: {adopter_application: {notes: "some notes"}},
+        params: {submission: {notes: "some notes"}},
         headers: {"HTTP_REFERER" => "example.com"}
 
       assert_response :redirect
@@ -76,7 +76,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   def verify_application_elements(application)
-    assert_select "div[id='adopter_application_#{application.id}']" do
+    assert_select "div[id='custom_form_submission_#{application.id}']" do
       adopter = application.adopter_foster_account.user
       assert_select "a", text: "#{adopter.first_name} #{adopter.last_name}"
       assert_select "button", text: application.status.titleize

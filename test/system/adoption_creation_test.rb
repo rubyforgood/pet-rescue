@@ -4,7 +4,7 @@ class AdoptionCreationTest < ApplicationSystemTestCase
   setup do
     user = create(:staff)
     @pet = create(:pet)
-    create(:adopter_application, :successful_applicant, pet_id: @pet.id)
+    create(:submission, :successful_applicant, pet_id: @pet.id)
 
     sign_in user
   end

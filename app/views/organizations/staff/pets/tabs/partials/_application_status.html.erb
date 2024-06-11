@@ -11,11 +11,11 @@
         <%= app.human_enum_name(:status) %>
       </button>
       <ul class="dropdown-menu">
-        <% AdopterApplication.statuses.keys.each do |status| %>
+        <% CustomForm::Submission.statuses.keys.each do |status| %>
           <%unless status == "adoption_made" %>
             <li>
               <%= button_to t("organizations.staff.pets.application_status.#{status}"),
-              staff_adoption_application_review_path(app, params: { adopter_application: { status: status}}),
+              staff_adoption_application_review_path(app, params: { submission: { status: status}}),
               :method => :patch, class: 'dropdown-item' %>
             </li>
           <% end %>

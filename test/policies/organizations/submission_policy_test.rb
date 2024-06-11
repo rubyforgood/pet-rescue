@@ -1,15 +1,15 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
+class Organizations::SubmissionPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   context "context only action" do
     setup do
       @organization = ActsAsTenant.current_tenant
       @policy = -> {
-        Organizations::AdopterApplicationPolicy.new(
-          AdopterApplication, organization: @organization, user: @user
+        Organizations::SubmissionPolicy.new(
+          CustomForm::Submission, organization: @organization, user: @user
         )
       }
     end
@@ -113,9 +113,9 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
   context "existing record action" do
     setup do
-      @adopter_application = create(:adopter_application)
+      @adopter_application = create(:submission)
       @policy = -> {
-        Organizations::AdopterApplicationPolicy.new(
+        Organizations::SubmissionPolicy.new(
           @adopter_application, user: @user
         )
       }
@@ -164,7 +164,7 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
         context "when application belongs to a different organization" do
           setup do
             ActsAsTenant.with_tenant(create(:organization)) do
-              @adopter_application = create(:adopter_application)
+              @adopter_application = create(:submission)
             end
           end
 
@@ -198,7 +198,7 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
         context "when application belongs to a different organization" do
           setup do
             ActsAsTenant.with_tenant(create(:organization)) do
-              @adopter_application = create(:adopter_application)
+              @adopter_application = create(:submission)
             end
           end
 

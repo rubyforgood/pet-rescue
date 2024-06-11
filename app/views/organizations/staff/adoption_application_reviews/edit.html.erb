@@ -19,7 +19,7 @@
 
               <div class="form-group">
                 <%= form.select(:status, 
-                                AdopterApplication.app_review_statuses, 
+                                CustomForm::Submission.app_review_statuses, 
                                 { label: 'Application status' }, 
                                 {:class => "form-control"}) %>
               </div>

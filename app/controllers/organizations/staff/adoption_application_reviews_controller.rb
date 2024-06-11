@@ -6,17 +6,18 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
   layout "dashboard"
 
   def index
-    authorize! AdopterApplication,
-      context: {organization: Current.organization}
+    authorize! CustomForm::Submission,
+      context: {organization: Current.organization},
+      with: Organizations::SubmissionPolicy
 
     @q = authorized_scope(
       Pet.org_pets_with_apps(current_user.staff_account.organization_id)
     ).ransack(params[:q])
-    @pets_with_applications = @q.result.includes(:adopter_applications)
+    @pets_with_applications = @q.result.includes(:submissions)
 
     # Combining these into a single chained statement does not yield the same result due to how Ransack processes parameters.
-    if params[:q].present? && params[:q]["adopter_applications_status_eq"].present?
-      status_filter = params[:q]["adopter_applications_status_eq"]
+    if params[:q].present? && params[:q]["submissions_status_eq"].present?
+      status_filter = params[:q]["submissions_status_eq"]
       @pets_with_applications = filter_by_application_status(@pets_with_applications, status_filter)
     end
 
@@ -43,15 +44,15 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
   private
 
   def application_params
-    params.require(:adopter_application).permit(:status, :notes, :profile_show)
+    params.require(:submission).permit(:status, :notes, :profile_show)
   end
 
   def set_adopter_application
-    @application = AdopterApplication.find(params[:id])
-    authorize! @application
+    @application = CustomForm::Submission.find(params[:id])
+    authorize! @application, with: Organizations::SubmissionPolicy
   end
 
   def filter_by_application_status(pets_relation, status_filter)
-    pets_relation.joins(:adopter_applications).where(adopter_applications: {status: status_filter})
+    pets_relation.joins(:submissions).where(submissions: {status: status_filter})
   end
 end

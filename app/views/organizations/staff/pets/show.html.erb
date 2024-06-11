@@ -14,7 +14,7 @@
   <% p.content do %>
     <div class="row">
       <div class="col-md-12 col-lg-8 col-12">
-        <%= render partial: "organizations/staff/pets/tabs/#{@active_tab}", locals: { applications: @pet.adopter_applications, pet: @pet, fosters: @pet.matches.fosters } %>
+        <%= render partial: "organizations/staff/pets/tabs/#{@active_tab}", locals: { applications: @pet.submissions, pet: @pet, fosters: @pet.matches.fosters } %>
       </div>
 
       <div class="col-md-12 col-lg-4 col-12">
