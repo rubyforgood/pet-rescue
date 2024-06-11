@@ -14,7 +14,7 @@
       <div class="col-lg-8 col-md-10 col-12">
         <div class="accordion accordion-flush" id="accordion-public-faq">
           <% @faqs.each do |faq| %>
-            <%= render "components/question_and_answer", faq: faq %>
+            <%= render "question_and_answer", faq: faq %>
           <% end %>
         </div>
         <div class="mt-8 text-center">
