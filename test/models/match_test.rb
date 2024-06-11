@@ -31,7 +31,7 @@ class MatchTest < ActiveSupport::TestCase
 
   context "#retire_applications" do
     setup do
-      @application_class = mock("AdopterApplication")
+      @application_class = mock("CustomForm::Submission")
     end
 
     should "send #retire_applications with pet_id to application_class" do

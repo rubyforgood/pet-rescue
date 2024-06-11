@@ -81,7 +81,7 @@ class Match < ApplicationRecord
     adopter_application&.withdraw
   end
 
-  def retire_applications(application_class: AdopterApplication)
+  def retire_applications(application_class: CustomForm::Submission)
     application_class.retire_applications(pet_id: pet_id)
   end
 
@@ -94,7 +94,7 @@ class Match < ApplicationRecord
   end
 
   def adopter_application
-    AdopterApplication.find_by(pet:, adopter_foster_account:)
+    CustomForm::Submission.find_by(pet:, adopter_foster_account:)
   end
 
   ransacker :status do
