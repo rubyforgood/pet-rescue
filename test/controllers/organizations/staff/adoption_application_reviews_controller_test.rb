@@ -53,7 +53,7 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
         end
 
         @params = {
-          submission: {
+          custom_form_submission: {
             status: @new_status
           }
         }

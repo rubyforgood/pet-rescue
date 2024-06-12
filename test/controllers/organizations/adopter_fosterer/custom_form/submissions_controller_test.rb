@@ -49,7 +49,7 @@ class Organizations::AdopterFosterer::CustomForm::SubmissionsControllerTest < Ac
     context "#create" do
       setup do
         @pet = create(:pet)
-        @params = {submission: {
+        @params = {custom_form_submission: {
           pet_id: @pet.id,
           adopter_foster_account_id: @user.adopter_foster_account.id
         }}
@@ -69,7 +69,7 @@ class Organizations::AdopterFosterer::CustomForm::SubmissionsControllerTest < Ac
     context "#update" do
       setup do
         @adopter_application = create(:submission, user: @user)
-        @params = {submission: {
+        @params = {custom_form_submission: {
           status: "withdrawn"
         }}
       end

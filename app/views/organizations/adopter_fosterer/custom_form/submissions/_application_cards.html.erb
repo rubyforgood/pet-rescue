@@ -23,12 +23,12 @@
     <li class="list-group-item d-flex justify-content-center">
       <% if application.status == 'withdrawn' %>
         <%= button_to t("general.delete"),
-              adopter_fosterer_custom_form_submission_path(application, submission:
+              adopter_fosterer_custom_form_submission_path(application, custom_form_submission:
               { profile_show: false }), method: :patch, class: 'btn btn-outline-danger',
               data: { turbo_confirm: t("dashboard.applications.confirm_delete") } %>
       <% elsif application.status != 'adoption_made' %>
         <%= button_to t("dashboard.applications.withdraw_application"),
-              adopter_fosterer_custom_form_submission_path(application, submission:
+              adopter_fosterer_custom_form_submission_path(application, custom_form_submission:
               { status: 'withdrawn'}), method: :patch, class: 'btn btn-outline-danger',
               data: { turbo_confirm: t("dashboard.applications.confirm_withdraw", pet_name: pet.name.capitalize) } %>
       <% end %>

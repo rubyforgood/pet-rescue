@@ -38,7 +38,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     should "be able to change the application status" do
       patch staff_adoption_application_review_path(@awaiting_review_app.id),
-        params: {submission: {status: :under_review}},
+        params: {custom_form_submission: {status: :under_review}},
         headers: {"HTTP_REFERER" => "example.com"}
 
       assert_response :redirect
@@ -49,7 +49,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
     should "be able to add a note to an application" do
       patch staff_adoption_application_review_path(@under_review_app.id),
-        params: {submission: {notes: "some notes"}},
+        params: {custom_form_submission: {notes: "some notes"}},
         headers: {"HTTP_REFERER" => "example.com"}
 
       assert_response :redirect
