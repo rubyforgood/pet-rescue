@@ -9,9 +9,25 @@ The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application
 
 # 🚀 Getting Started
 
-Let's get your machine setup to startup the application!
+Let's get your machine setup to start up the application!
 
-## Prerequisites
+## Docker
+
+Install a containerization app, such as Docker Desktop.
+
+Clone the repo to your local machine and navigate to the directory and run:
+
+`docker-compose build` to build the base image.
+
+`docker-compose up`  to start the containers. You can add the `-d` flag to run silently without logging.
+
+`docker-compose run --rm app bin/setup` to set up and seed the database.
+
+If you need to run migrations at all: `docker-compose run --rm app bin/rails db:migrate`
+
+Visit `localhost:3000` in your browser.
+
+## Local Installation
 
 ⚠️  We assume you already have ruby installed with your preferred version manager. This codebase supports [rbenv](
 https://github.com/rbenv/rbenv) and [asdf](https://github.com/asdf-vm/asdf-ruby).
