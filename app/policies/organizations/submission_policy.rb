@@ -1,16 +1,18 @@
-class Organizations::SubmissionPolicy < ApplicationPolicy
-  pre_check :verify_organization!
-  pre_check :verify_active_staff!
+module Organizations
+  class SubmissionPolicy < ApplicationPolicy
+    pre_check :verify_organization!
+    pre_check :verify_active_staff!
 
-  alias_rule :index?, to: :manage?
+    alias_rule :index?, to: :manage?
 
-  def manage?
-    permission?(:review_adopter_applications)
-  end
+    def manage?
+      permission?(:review_adopter_applications)
+    end
 
-  private
+    private
 
-  def organization
-    @organization || record.pet.organization
+    def organization
+      @organization || record.pet.organization
+    end
   end
 end
