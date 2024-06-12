@@ -15,7 +15,7 @@
           <%unless status == "adoption_made" %>
             <li>
               <%= button_to t("organizations.staff.pets.application_status.#{status}"),
-              staff_adoption_application_review_path(app, params: { submission: { status: status}}),
+              staff_adoption_application_review_path(app, params: { custom_form_submission: { status: status}}),
               :method => :patch, class: 'dropdown-item' %>
             </li>
           <% end %>

@@ -44,7 +44,7 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
   private
 
   def application_params
-    params.require(:submission).permit(:status, :notes, :profile_show)
+    params.require(:custom_form_submission).permit(:status, :notes, :profile_show)
   end
 
   def set_adopter_application
