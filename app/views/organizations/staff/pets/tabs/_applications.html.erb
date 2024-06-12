@@ -1,4 +1,5 @@
-<div class="card">
+<%# Table layout %>
+<div class="card d-none d-xl-block mb-4 flex-grow-1">
   <% if current_page?(staff_adoption_application_reviews_path) %>
     <div class="card-header">
       <h4 class="mb-0"><%= link_to pet.name, staff_pet_path(pet), class: "link-underline link-underline-opacity-0" %></h4>
@@ -13,15 +14,37 @@
       <div class="col fw-semibold" style="min-width: 220px;">
         <%= t("organizations.staff.pets.applications.status")%>
       </div>
-      <div class="col">
-      </div>
+      <div class="col">	</div>
       <div class="col fw-semibold">
         <%= t("organizations.staff.pets.applications.notes")%>
       </div>
     </div>
     <% applications.each do |app|%>
-      <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
+      <%= render 'organizations/staff/pets/tabs/partials/application_info_table', app: app %>
     <% end %>
-  </tbody>
+  </div>
 </div>
+
+<%# Card %>
+<div class="col-lg-5 d-xl-none">
+  <div class="card card-hover m-2 m-sm-4" style='overflow: hidden; max-width: 350px;'>
+    <%# Card image %>
+    <%= link_to staff_pet_path(pet) do %>
+      <% if pet.images.attached? %>
+        <%= image_tag pet.images.first, class: "card-img-top" %>
+      <% else %>
+        <%= image_tag "coming_soon.jpg", class: "card-img-top" %>
+      <% end %>
+    <% end %>
+    <%# Card header %>
+    <div class="card-header">
+      <h4 class="card-title">
+        <%= link_to pet.name, staff_pet_path(pet) %>
+      </h4>
+    </div>
+    <%# Card body %>
+    <% applications.each do |app| %>
+      <%= render 'organizations/staff/pets/tabs/partials/application_info_card', app: app %>
+    <% end %>
+  </div>
 </div>
