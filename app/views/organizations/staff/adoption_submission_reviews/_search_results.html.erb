@@ -1,0 +1,10 @@
+<%# @pet, @pets are defined in the adoption_submission_reviews controller %>
+
+<% @collection = @pet.nil? ? @pets_with_submissions : @pet %>
+
+  <% @collection.each do |pet| %>
+    <!--pet name-->
+    <div class="mb-4">
+      <%= render "organizations/staff/pets/tabs/submissions", submissions: pet.submissions, pet: pet %>
+    </div>
+  <% end %>

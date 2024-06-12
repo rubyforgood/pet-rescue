@@ -10,12 +10,12 @@ class AdoptionCreationTest < ApplicationSystemTestCase
   end
 
   context "creating an adoption" do
-    should "should display adopted pet's applications after it has been adopted" do
-      visit staff_adoption_application_reviews_url
+    should "should display adopted pet's submissions after it has been adopted" do
+      visit staff_adoption_submission_reviews_url
       accept_confirm do
         click_on "New Adoption"
       end
-      assert has_current_path?(staff_adoption_application_reviews_path)
+      assert has_current_path?(staff_adoption_submission_reviews_path)
       assert_text "Adoption Made"
     end
   end

@@ -75,7 +75,7 @@ class PetTest < ActiveSupport::TestCase
 
   context "scopes" do
     context ".org_pets_with_apps(staff_org_id)" do
-      should "return pets for organization that have adopter applications" do
+      should "return pets for organization that have submissions" do
         pet_with_app = create(:pet, :adoption_pending)
         pet_without_app = create(:pet)
         res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
@@ -104,25 +104,25 @@ class PetTest < ActiveSupport::TestCase
   end
 
   context "#has_adoption_pending?" do
-    should "return true if there is an adopter application with 'adoption_pending' status" do
+    should "return true if there is a submission with 'adoption_pending' status" do
       pet = Pet.new
-      adopter_application = pet.submissions.new
-      adopter_application.status = "adoption_pending"
+      submission = pet.submissions.new
+      submission.status = "adoption_pending"
       assert pet.has_adoption_pending?
 
-      adopter_application.status = "awaiting_review"
+      submission.status = "awaiting_review"
       assert_not pet.has_adoption_pending?
     end
   end
 
   context "#is_adopted?" do
-    should "return true if there is an adopter application with 'adoption_pending' status" do
+    should "return true if there is an adopter submission with 'adoption_pending' status" do
       pet = Pet.new
-      adopter_application = pet.submissions.new
-      adopter_application.status = "adoption_made"
+      submission = pet.submissions.new
+      submission.status = "adoption_made"
       assert pet.is_adopted?
 
-      adopter_application.status = "awaiting_review"
+      submission.status = "awaiting_review"
       assert_not pet.is_adopted?
     end
   end

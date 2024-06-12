@@ -12,14 +12,14 @@ class AdoptionFostererTest < ApplicationSystemTestCase
     sign_in @user
   end
 
-  context "adoption applications" do
-    should "should show list of user's adoption applications" do
+  context "submissions" do
+    should "should show list of user's submissions" do
       visit adopter_fosterer_dashboard_index_path
       click_on "Adoption Applications"
       assert_text @pet.name
     end
 
-    should "should let user withdraw and then delete applications from their list" do
+    should "should let user withdraw and then delete submissions from their list" do
       visit adopter_fosterer_custom_form_submissions_path
       assert_text @pet.name
       assert_text "Under Review"

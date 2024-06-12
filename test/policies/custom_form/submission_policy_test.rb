@@ -21,25 +21,25 @@ class CustomForm::SubmissionPolicyTest < ActiveSupport::TestCase
         @user = create(:adopter, :with_profile)
       end
 
-      context "when there are applications that do not belong to user" do
+      context "when there are submissions that do not belong to user" do
         setup do
-          @user_applications = [
+          @user_submissions = [
             create(:submission, user: @user),
             create(:submission, user: @user)
           ]
-          @other_application = create(:submission)
+          @other_submission = create(:submission)
         end
 
-        should "return only user's applications" do
-          expected = @user_applications.map(&:id)
+        should "return only user's submissions" do
+          expected = @user_submissions.map(&:id)
 
           assert_equal(expected, @scope.call)
         end
       end
 
-      context "when user has no applications" do
+      context "when user has no submissions" do
         setup do
-          @other_application = create(:submission)
+          @other_submission = create(:submission)
         end
 
         should "return empty array" do
@@ -153,7 +153,7 @@ class CustomForm::SubmissionPolicyTest < ActiveSupport::TestCase
         @user = create(:adopter, :with_profile)
       end
 
-      context "when pet application is paused" do
+      context "when pet submission is paused" do
         setup do
           @pet = create(:pet, application_paused: true)
         end
@@ -163,14 +163,14 @@ class CustomForm::SubmissionPolicyTest < ActiveSupport::TestCase
         end
       end
 
-      context "when pet application is not paused" do
+      context "when pet submission is not paused" do
         setup do
           @pet = create(:pet, application_paused: false)
         end
 
-        context "when user already has an existing application for the pet" do
+        context "when user already has an existing submission for the pet" do
           setup do
-            @existing_app = create(:submission, user: @user, pet: @pet)
+            @existing_sub = create(:submission, user: @user, pet: @pet)
           end
 
           should "return false" do
@@ -200,9 +200,9 @@ class CustomForm::SubmissionPolicyTest < ActiveSupport::TestCase
 
   context "existing record action" do
     setup do
-      @adopter_application = create(:submission)
+      @adopter_submission = create(:submission)
       @policy = -> {
-        CustomForm::SubmissionPolicy.new(@adopter_application, user: @user)
+        CustomForm::SubmissionPolicy.new(@adopter_submission, user: @user)
       }
     end
 
@@ -265,7 +265,7 @@ class CustomForm::SubmissionPolicyTest < ActiveSupport::TestCase
 
       context "when adopter account belongs to user" do
         setup do
-          @user = @adopter_application.adopter_foster_account.user
+          @user = @adopter_submission.adopter_foster_account.user
         end
 
         should "return true" do

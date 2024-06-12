@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "#{dom_id(@submission)}",
+        partial: "organizations/staff/pets/tabs/partials/submission_status",
+        locals: {sub: @submission}%>
+<%= turbo_stream.replace "flash", partial: "layouts/shared/flash_messages" %>

@@ -6,7 +6,7 @@ module Organizations
     alias_rule :index?, to: :manage?
 
     def manage?
-      permission?(:review_adopter_applications)
+      permission?(:review_adopter_submissions)
     end
 
     private

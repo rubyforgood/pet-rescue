@@ -2,35 +2,35 @@ require "test_helper"
 
 class CustomForm::SubmissionTest < ActiveSupport::TestCase
   setup do
-    @application = create(:submission)
+    @submission = create(:submission)
   end
 
-  context "self.retire_applications" do
-    context "when some applications match pet_id and some do not" do
+  context "self.retire_submissions" do
+    context "when some submissions match pet_id and some do not" do
       setup do
-        @selected_applications = Array.new(3) {
-          create(:submission, pet_id: @application.pet_id)
+        @selected_submissions = Array.new(3) {
+          create(:submission, pet_id: @submission.pet_id)
         }
-        @unselected_applications = Array.new(2) {
+        @unselected_submissions = Array.new(2) {
           create(:submission)
         }
       end
 
-      should "update status of matching applications to :adoption_made" do
-        CustomForm::Submission.retire_applications(pet_id: @application.pet_id)
+      should "update status of matching submissions to :adoption_made" do
+        CustomForm::Submission.retire_submissions(pet_id: @submission.pet_id)
 
-        @selected_applications.each do |application|
-          assert_equal "adoption_made", application.reload.status
+        @selected_submissions.each do |submission|
+          assert_equal "adoption_made", submission.reload.status
         end
       end
 
-      should "not update status of mismatching applications" do
-        cached_statuses = @unselected_applications.map(&:status)
+      should "not update status of mismatching submissions" do
+        cached_statuses = @unselected_submissions.map(&:status)
 
-        CustomForm::Submission.retire_applications(pet_id: @application.pet_id)
+        CustomForm::Submission.retire_submissions(pet_id: @submission.pet_id)
 
-        current_statuses = @unselected_applications.map do |application|
-          application.reload.status
+        current_statuses = @unselected_submissions.map do |submission|
+          submission.reload.status
         end
 
         assert_equal cached_statuses, current_statuses
@@ -40,9 +40,9 @@ class CustomForm::SubmissionTest < ActiveSupport::TestCase
 
   context "#withdraw" do
     should "update status to :withdrawn" do
-      @application.withdraw
+      @submission.withdraw
 
-      assert "withdrawn", @application.status
+      assert "withdrawn", @submission.status
     end
   end
 end

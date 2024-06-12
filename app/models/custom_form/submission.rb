@@ -59,15 +59,15 @@ module CustomForm
         pet_id: pet_id).exists?
     end
 
-    # check if any applications are set to profile_show: true
-    def self.any_applications_profile_show_true?(adopter_foster_account_id)
-      applications = CustomForm::Submission.where(adopter_foster_account_id: adopter_foster_account_id)
-      applications.any? { |app| app.profile_show == true }
+    # check if any submissions are set to profile_show: true
+    def self.any_submissions_profile_show_true?(adopter_foster_account_id)
+      submissions = CustomForm::Submission.where(adopter_foster_account_id: adopter_foster_account_id)
+      submissions.any? { |app| app.profile_show == true }
     end
 
-    def self.retire_applications(pet_id:)
-      where(pet_id:).each do |adopter_application|
-        adopter_application.update!(status: :adoption_made)
+    def self.retire_submissions(pet_id:)
+      where(pet_id:).each do |submission|
+        submission.update!(status: :adoption_made)
       end
     end
 

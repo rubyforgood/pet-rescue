@@ -1,7 +1,7 @@
 <%= render "components/dashboard/page" do |p| %>
   <% p.header_title do %>
-    <%= @application.adopter_foster_account.user.full_name %>'s application for
-    <%= @application.pet.name %>
+    <%= @submission.adopter_foster_account.user.full_name %>'s application for
+    <%= @submission.pet.name %>
   <% end %>
 
   <% p.content do %>
@@ -10,12 +10,12 @@
         <div class="row">
           <div class="col-md-6 mx-auto card p-5 ">
             <div class='d-flex flex-row-reverse'>
-              <%= link_to "#{@application.adopter_foster_account.user.first_name}'s Profile",
-                staff_profile_review_path(@application.adopter_foster_account.adopter_foster_profile.id),
+              <%= link_to "#{@submission.adopter_foster_account.user.first_name}'s Profile",
+                staff_profile_review_path(@submission.adopter_foster_account.adopter_foster_profile.id),
                 class: 'text-decoration-none bigger' %>
             </div>
 
-            <%= bootstrap_form_with model: @application, :url => staff_adoption_application_review_path do |form| %>
+            <%= bootstrap_form_with model: @submission, :url => staff_adoption_submission_review_path do |form| %>
 
               <div class="form-group">
                 <%= form.select(:status, 
@@ -29,7 +29,7 @@
                   class: 'form-control mb-2' %>
               </div>
 
-              <% if @application.profile_show == false %>
+              <% if @submission.profile_show == false %>
                 <div class="form-group" data-controller='reinstate-explanation'>
                   <div class="d-flex align-items-center gap-2">
                     <%= form.check_box :profile_show, {}, true, false, label: 'Reinstate application:' %>

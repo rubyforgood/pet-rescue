@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       end
       resources :matches, only: %i[create destroy]
 
-      resources :adoption_application_reviews, only: %i[index edit update]
+      resources :adoption_submission_reviews, only: %i[index edit update]
       resources :manage_fosters, only: %i[new create index edit update destroy]
       resources :fosterers, only: %i[index]
       resources :adopters, only: %i[index]

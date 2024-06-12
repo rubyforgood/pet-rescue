@@ -1,5 +1,5 @@
 <div class="card">
-  <% if current_page?(staff_adoption_application_reviews_path) %>
+  <% if current_page?(staff_adoption_submission_reviews_path) %>
     <div class="card-header">
       <h4 class="mb-0"><%= link_to pet.name, staff_pet_path(pet), class: "link-underline link-underline-opacity-0" %></h4>
     </div>
@@ -8,19 +8,19 @@
     <%# headers %>
     <div class="row border-bottom pb-3 pt-1">
       <div class="col fw-semibold">
-        <%= t("organizations.staff.pets.applications.applicant")%>
+        <%= t("organizations.staff.pets.submissions.applicant")%>
       </div>
       <div class="col fw-semibold" style="min-width: 220px;">
-        <%= t("organizations.staff.pets.applications.status")%>
+        <%= t("organizations.staff.pets.submissions.status")%>
       </div>
       <div class="col">
       </div>
       <div class="col fw-semibold">
-        <%= t("organizations.staff.pets.applications.notes")%>
+        <%= t("organizations.staff.pets.submissions.notes")%>
       </div>
     </div>
-    <% applications.each do |app|%>
-      <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
+    <% submissions.each do |sub|%>
+      <%= render 'organizations/staff/pets/tabs/partials/submission_status', sub: sub %>
     <% end %>
   </tbody>
 </div>

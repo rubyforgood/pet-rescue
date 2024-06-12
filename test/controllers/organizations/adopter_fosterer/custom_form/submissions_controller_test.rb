@@ -27,22 +27,22 @@ class Organizations::AdopterFosterer::CustomForm::SubmissionsControllerTest < Ac
         end
       end
 
-      should "count the total number of applications" do
+      should "count the total number of submissions" do
         organization = ActsAsTenant.current_tenant
         adopter_foster_account = create(:adopter_foster_account, user: @user, organization: organization)
         create_list(:submission, 2, adopter_foster_account: adopter_foster_account)
 
         get adopter_fosterer_dashboard_index_path
 
-        assert_equal 2, assigns(:application_count)
+        assert_equal 2, assigns(:submission_count)
       end
 
-      should "return zero when the total number of adopter applications is nil" do
+      should "return zero when the total number of submissions is nil" do
         organization = ActsAsTenant.current_tenant
         _adopter_foster_account = build_stubbed(:adopter_foster_account, user: @user, organization: organization)
 
         get adopter_fosterer_dashboard_index_path
-        assert_equal 0, assigns(:application_count)
+        assert_equal 0, assigns(:submission_count)
       end
     end
 
@@ -68,7 +68,7 @@ class Organizations::AdopterFosterer::CustomForm::SubmissionsControllerTest < Ac
 
     context "#update" do
       setup do
-        @adopter_application = create(:submission, user: @user)
+        @submission = create(:submission, user: @user)
         @params = {custom_form_submission: {
           status: "withdrawn"
         }}
@@ -76,9 +76,9 @@ class Organizations::AdopterFosterer::CustomForm::SubmissionsControllerTest < Ac
 
       should "be authorized" do
         assert_authorized_to(
-          :update?, @adopter_application, with: CustomForm::SubmissionPolicy
+          :update?, @submission, with: CustomForm::SubmissionPolicy
         ) do
-          patch adopter_fosterer_custom_form_submission_url(@adopter_application), params: @params
+          patch adopter_fosterer_custom_form_submission_url(@submission), params: @params
         end
       end
     end

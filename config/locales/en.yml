@@ -68,23 +68,23 @@ en:
   dashboard: 
     index: 
       header_title: Dashboard
-    applications:
+    submissions:
       header_title: Adoption Applications
       name: Name
       created: Created
       status: Status
-      withdraw_application: Withdraw Application
+      withdraw_submission: Withdraw Application
       confirm_withdraw: Withdraw your application
   views:
     dashboard: 
       index: 
         header_title: Dashboard
-      applications:
+      submissions:
         header_title: Adoption Applications
         name: Name
         created: Created
         status: Status
-        withdraw_application: Withdraw Application
+        withdraw_submission: Withdraw Application
         confirm_withdraw: Withdraw your application
   activerecord:
     errors:
@@ -366,7 +366,7 @@ en:
       invitations:
         create:
           success: "Invite sent!" 
-      adoption_application_reviews:
+      adoption_submission_reviews:
         update:
           success: "Application was successfully updated."
           error: "Error updating application"
@@ -460,11 +460,11 @@ en:
             paused: "Applications: paused"
         new:
           new_pet_post: "New Pet Post"
-        applications:
+        submissions:
           applicant: "Applicant"
           status: "Status"
           notes: "Notes"
-        application_status:
+        submission_status:
           edit_notes: "Edit notes for"
           awaiting_review: "Awaiting Review"
           under_review: "Under Review"
@@ -595,7 +595,7 @@ en:
           update:
             error: "Error"
           index:
-            adoption_applications: "Adoption Applications"
+            adoption_submissions: "Adoption Applications"
             your_adoption_applications: "Your adoption applications will be listed here."
             we_will_be_in_contact: "We will be in contact shortly."
             keep_an_eye_on: "Keep an eye on your"

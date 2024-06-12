@@ -1,5 +1,5 @@
-class StaffApplicationNotificationMailer < ApplicationMailer
-  def new_adoption_application
+class StaffSubmissionNotificationMailer < ApplicationMailer
+  def new_adoption_submission
     @organization_staff = params[:organization_staff]
     @pet = params[:pet]
 

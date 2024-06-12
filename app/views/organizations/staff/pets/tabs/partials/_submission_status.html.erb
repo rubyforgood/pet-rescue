@@ -1,21 +1,21 @@
-<div class="row pt-3" id="<%= dom_id(app) %>">
+<div class="row pt-3" id="<%= dom_id(sub) %>">
   <!-- applicant -->
   <div class="align-middle col">
-    <%= link_to app.applicant_name, staff_profile_review_path(app.adopter_foster_account.adopter_foster_profile),
+    <%= link_to sub.applicant_name, staff_profile_review_path(sub.adopter_foster_account.adopter_foster_profile),
                             class: "link-underline link-underline-opacity-0"  %>
   </div>
   <!-- status -->
   <div class="align-middle col text-nowrap" style="min-width: 220px;">
     <div class="dropdown">
-      <button class="btn dropdown-toggle <%= application_status_classes(app)%>" data-bs-toggle="dropdown" aria-expanded="false">
-        <%= app.human_enum_name(:status) %>
+      <button class="btn dropdown-toggle <%= submission_status_classes(sub)%>" data-bs-toggle="dropdown" aria-expanded="false">
+        <%= sub.human_enum_name(:status) %>
       </button>
       <ul class="dropdown-menu">
         <% CustomForm::Submission.statuses.keys.each do |status| %>
           <%unless status == "adoption_made" %>
             <li>
-              <%= button_to t("organizations.staff.pets.application_status.#{status}"),
-              staff_adoption_application_review_path(app, params: { custom_form_submission: { status: status}}),
+              <%= button_to t("organizations.staff.pets.submission_status.#{status}"),
+              staff_adoption_submission_review_path(sub, params: { custom_form_submission: { status: status}}),
               :method => :patch, class: 'dropdown-item' %>
             </li>
           <% end %>
@@ -25,12 +25,12 @@
   </div>
   <!-- create -->
   <div class="align-middle text-center col">
-    <% if app.status == 'successful_applicant' %>
+    <% if sub.status == 'successful_applicant' %>
       <!--create adoption button-->
       <%= button_to "New Adoption", staff_matches_path, method: :post,
         params: {match:
-          {pet_id: app.pet_id, 
-           adopter_foster_account_id: app.adopter_foster_account_id,
+          {pet_id: sub.pet_id, 
+           adopter_foster_account_id: sub.adopter_foster_account_id,
            match_type: :adoption}
         },
         class: "btn btn-outline-primary",
@@ -48,30 +48,30 @@
   </div>
   <!-- notes -->
   <div class="align-middle col text-nowrap">
-    <span title="<%= app.notes %>">
-      <% if params[:active_tab] == 'applications' || @applications_tab == true %>
-        <%= app.notes&.truncate(8) %>
+    <span title="<%= sub.notes %>">
+      <% if params[:active_tab] == 'submissions' || @submissions_tab == true %>
+        <%= sub.notes&.truncate(8) %>
       <% else %>
-        <%= app.notes&.truncate(20) %>
+        <%= sub.notes&.truncate(20) %>
       <% end %>
     </span>
-    <button type="button" class="btn btn-outline-primary border border-0" data-bs-toggle="modal" data-bs-target="#notesModal<%= app.id %>">
+    <button type="button" class="btn btn-outline-primary border border-0" data-bs-toggle="modal" data-bs-target="#notesModal<%= sub.id %>">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
         <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
       </svg>
     </button>
     <!-- Modal -->
-    <div class="modal fade" id="notesModal<%= app.id %>" tabindex="-1">
+    <div class="modal fade" id="notesModal<%= sub.id %>" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header border-bottom-0 pb-2">
-            <h1 class="modal-title fs-4 "> <%= t("organizations.staff.pets.application_status.edit_notes")%> <%= app.pet.name
+            <h1 class="modal-title fs-4 "> <%= t("organizations.staff.pets.submission_status.edit_notes")%> <%= sub.pet.name
             %> </h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body border-top-0 pt-2">
-            <%= bootstrap_form_with model: app, url:
-        staff_adoption_application_review_path(app), method: "Patch" do |form| %>
+            <%= bootstrap_form_with model: sub, url:
+        staff_adoption_submission_review_path(sub), method: "Patch" do |form| %>
               <%= form.text_area :notes, hide_label: true, rows: 5 %>
               <%= form.submit t("general.save"), class: "btn btn-primary
         position-relative float-end", "data-bs-dismiss" => "modal"  %>

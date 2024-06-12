@@ -5,7 +5,7 @@
   <% p.nav_tabs do %>
     <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet), text: "Overview", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'tasks'), text: "Tasks", options: { active: :exact } %>
-    <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'applications'), text: "Applications", options: { active: :exact } %>
+    <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'submissions'), text: "Applications", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'fosters'), text: "Fosters", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'photos'), text: "Photos", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'files'), text: "Files", options: { active: :exact } %>
@@ -14,7 +14,7 @@
   <% p.content do %>
     <div class="row">
       <div class="col-md-12 col-lg-8 col-12">
-        <%= render partial: "organizations/staff/pets/tabs/#{@active_tab}", locals: { applications: @pet.submissions, pet: @pet, fosters: @pet.matches.fosters } %>
+        <%= render partial: "organizations/staff/pets/tabs/#{@active_tab}", locals: { submissions: @pet.submissions, pet: @pet, fosters: @pet.matches.fosters } %>
       </div>
 
       <div class="col-md-12 col-lg-4 col-12">

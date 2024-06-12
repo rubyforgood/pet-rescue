@@ -113,10 +113,10 @@ class Organizations::SubmissionPolicyTest < ActiveSupport::TestCase
 
   context "existing record action" do
     setup do
-      @adopter_application = create(:submission)
+      @submission = create(:submission)
       @policy = -> {
         Organizations::SubmissionPolicy.new(
-          @adopter_application, user: @user
+          @submission, user: @user
         )
       }
     end
@@ -161,10 +161,10 @@ class Organizations::SubmissionPolicyTest < ActiveSupport::TestCase
           @user = create(:staff)
         end
 
-        context "when application belongs to a different organization" do
+        context "when submission belongs to a different organization" do
           setup do
             ActsAsTenant.with_tenant(create(:organization)) do
-              @adopter_application = create(:submission)
+              @submission = create(:submission)
             end
           end
 
@@ -173,7 +173,7 @@ class Organizations::SubmissionPolicyTest < ActiveSupport::TestCase
           end
         end
 
-        context "when application belongs to user's organization" do
+        context "when submission belongs to user's organization" do
           should "return true" do
             assert_equal true, @action.call
           end
@@ -195,10 +195,10 @@ class Organizations::SubmissionPolicyTest < ActiveSupport::TestCase
           @user = create(:staff_admin)
         end
 
-        context "when application belongs to a different organization" do
+        context "when submission belongs to a different organization" do
           setup do
             ActsAsTenant.with_tenant(create(:organization)) do
-              @adopter_application = create(:submission)
+              @submission = create(:submission)
             end
           end
 
@@ -207,7 +207,7 @@ class Organizations::SubmissionPolicyTest < ActiveSupport::TestCase
           end
         end
 
-        context "when application belongs to user's organization" do
+        context "when submission belongs to user's organization" do
           should "return true" do
             assert_equal true, @action.call
           end

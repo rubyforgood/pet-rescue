@@ -15,7 +15,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
     authorize! @pet, with: Organizations::AdoptablePetPolicy
 
     if current_user&.adopter_foster_account
-      @adoption_application =
+      @submission =
         CustomForm::Submission.find_by(
           pet_id: @pet.id,
           adopter_foster_account_id: current_user.adopter_foster_account.id

@@ -84,7 +84,7 @@ class Pet < ApplicationRecord
 
   attr_writer :toggle
 
-  # check if pet has any applications with adoption pending status
+  # check if pet has any submissions with adoption pending status
   def has_adoption_pending?
     submissions.any? { |app| app.status == "adoption_pending" }
   end

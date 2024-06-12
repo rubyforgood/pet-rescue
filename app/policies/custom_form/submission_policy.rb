@@ -10,15 +10,15 @@ module CustomForm
     end
 
     def update?
-      applicant? && permission?(:withdraw_adopter_applications)
+      applicant? && permission?(:withdraw_adopter_submissions)
     end
 
     def index?
-      permission?(:view_adopter_applications)
+      permission?(:view_adopter_submissions)
     end
 
     def create?
-      permission?(:create_adopter_applications)
+      permission?(:create_adopter_submissions)
     end
 
     private
@@ -28,8 +28,8 @@ module CustomForm
     end
 
     def already_applied?
-      user.adopter_foster_account.submissions.any? do |application|
-        application.pet_id == pet.id
+      user.adopter_foster_account.submissions.any? do |submission|
+        submission.pet_id == pet.id
       end
     end
 
