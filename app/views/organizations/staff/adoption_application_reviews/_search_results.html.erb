@@ -2,9 +2,9 @@
 
 <% @collection = @pet.nil? ? @pets_with_applications : @pet %>
 
+<div class="d-flex flex-wrap justify-content-center">
   <% @collection.each do |pet| %>
     <!--pet name-->
-    <div class="mb-4">
-      <%= render "organizations/staff/pets/tabs/applications", applications: pet.adopter_applications, pet: pet %>
-    </div>
+    <%= render "organizations/staff/pets/tabs/applications", applications: pet.adopter_applications, pet: pet %>
   <% end %>
+</div>
