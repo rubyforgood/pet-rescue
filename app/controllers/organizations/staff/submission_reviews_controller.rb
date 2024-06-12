@@ -1,4 +1,4 @@
-class Organizations::Staff::AdoptionSubmissionReviewsController < Organizations::BaseController
+class Organizations::Staff::SubmissionReviewsController < Organizations::BaseController
   before_action :set_adopter_submission, only: %i[edit update]
 
   include ::Pagy::Backend

@@ -15,7 +15,7 @@
                 class: 'text-decoration-none bigger' %>
             </div>
 
-            <%= bootstrap_form_with model: @submission, :url => staff_adoption_submission_review_path do |form| %>
+            <%= bootstrap_form_with model: @submission, :url => staff_submission_review_path do |form| %>
 
               <div class="form-group">
                 <%= form.select(:status, 

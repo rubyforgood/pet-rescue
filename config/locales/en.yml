@@ -366,7 +366,7 @@ en:
       invitations:
         create:
           success: "Invite sent!" 
-      adoption_submission_reviews:
+      submission_reviews:
         update:
           success: "Application was successfully updated."
           error: "Error updating application"

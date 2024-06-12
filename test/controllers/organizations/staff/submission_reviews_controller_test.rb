@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::Staff::AdoptionSubmissionReviewsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::SubmissionReviewsControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
@@ -20,7 +20,7 @@ class Organizations::Staff::AdoptionSubmissionReviewsControllerTest < ActionDisp
           context: {organization: @organization},
           with: Organizations::SubmissionPolicy
         ) do
-          get staff_adoption_submission_reviews_url
+          get staff_submission_reviews_url
         end
       end
 
@@ -29,7 +29,7 @@ class Organizations::Staff::AdoptionSubmissionReviewsControllerTest < ActionDisp
           type: :active_record_relation,
           with: Organizations::PetPolicy
         ) do
-          get staff_adoption_submission_reviews_url
+          get staff_submission_reviews_url
         end
       end
     end
@@ -40,7 +40,7 @@ class Organizations::Staff::AdoptionSubmissionReviewsControllerTest < ActionDisp
           :manage?, @submission,
           with: Organizations::SubmissionPolicy
         ) do
-          get edit_staff_adoption_submission_review_url(@submission)
+          get edit_staff_submission_review_url(@submission)
         end
       end
     end
@@ -64,7 +64,7 @@ class Organizations::Staff::AdoptionSubmissionReviewsControllerTest < ActionDisp
           :manage?, @submission,
           with: Organizations::SubmissionPolicy
         ) do
-          patch staff_adoption_submission_review_url(@submission),
+          patch staff_submission_review_url(@submission),
             params: @params,
             headers: {"HTTP_REFERER" => "http://www.example.com/"}
         end
@@ -93,7 +93,7 @@ class Organizations::Staff::AdoptionSubmissionReviewsControllerTest < ActionDisp
       end
 
       should "return submissions for a specific pet name" do
-        get staff_adoption_submission_reviews_url, params: {q: {name_i_cont: "Pango"}}
+        get staff_submission_reviews_url, params: {q: {name_i_cont: "Pango"}}
         assert_response :success
         assert_select "a.link-underline.link-underline-opacity-0", text: "Pango"
         refute_match "Tycho", @response.body
@@ -112,7 +112,7 @@ class Organizations::Staff::AdoptionSubmissionReviewsControllerTest < ActionDisp
       end
 
       should "return submissions for a specific applicant name" do
-        get staff_adoption_submission_reviews_url, params: {q: {submissions_applicant_name_i_cont: "Attenborough"}}
+        get staff_submission_reviews_url, params: {q: {submissions_applicant_name_i_cont: "Attenborough"}}
         assert_response :success
         assert_select "a.link-underline.link-underline-opacity-0", text: "David Attenborough"
         refute_match "Goodall, Jane", @response.body
@@ -129,7 +129,7 @@ class Organizations::Staff::AdoptionSubmissionReviewsControllerTest < ActionDisp
       end
 
       should "return pets only with submissions of the specified status" do
-        get staff_adoption_submission_reviews_url, params: {q: {submissions_status_eq: "under_review"}}
+        get staff_submission_reviews_url, params: {q: {submissions_status_eq: "under_review"}}
         assert_response :success
         assert_select "button.bg-dark-info", text: "Under Review"
         assert_select "button.bg-dark-primary", text: "Awaiting Review", count: 0

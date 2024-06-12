@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
+class SubmissionReviewsTest < ActionDispatch::IntegrationTest
   setup do
     @awaiting_review_sub = create(:submission, status: :awaiting_review)
     @under_review_sub = create(:submission, status: :under_review)
@@ -15,7 +15,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   context "non-staff" do
     should "not see any submissions" do
-      get staff_adoption_submission_reviews_path
+      get staff_submission_reviews_path
 
       assert_response :redirect
       follow_redirect!
@@ -30,14 +30,14 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     end
 
     should "see all submissions" do
-      get staff_adoption_submission_reviews_path
+      get staff_submission_reviews_path
 
       assert_response :success
       CustomForm::Submission.first(5).each { |submission| verify_submission_elements submission }
     end
 
     should "be able to change the submission status" do
-      patch staff_adoption_submission_review_path(@awaiting_review_sub.id),
+      patch staff_submission_review_path(@awaiting_review_sub.id),
         params: {custom_form_submission: {status: :under_review}},
         headers: {"HTTP_REFERER" => "example.com"}
 
@@ -48,7 +48,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     end
 
     should "be able to add a note to an submission" do
-      patch staff_adoption_submission_review_path(@under_review_sub.id),
+      patch staff_submission_review_path(@under_review_sub.id),
         params: {custom_form_submission: {notes: "some notes"}},
         headers: {"HTTP_REFERER" => "example.com"}
 
@@ -65,7 +65,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
       end
 
       should_eventually "not see any submissions" do
-        get staff_adoption_submission_reviews_path
+        get staff_submission_reviews_path
 
         assert_response :redirect
         follow_redirect!
