@@ -59,7 +59,6 @@ Rails.application.routes.draw do
       resource :profile, except: :destroy
       resources :dashboard, only: [:index]
       resources :likes, only: [:index, :create, :destroy]
-      resources :adopter_applications, path: "applications", only: %i[index create update] # TODO: remove after updates
 
       namespace :custom_form do
         resources :submissions, only: %i[index create update]
