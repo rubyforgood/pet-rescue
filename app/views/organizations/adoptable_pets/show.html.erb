@@ -89,7 +89,7 @@
           <div class='text-center d-flex flex-column align-items-center mt-1'>
             <% unless user_signed_in? && current_user.staff_account %>
               <% if user_signed_in? %>
-                <% if allowed_to?(:create?, with: AdopterApplicationPolicy, context: {pet: @pet, user: current_user}) %>
+                <% if allowed_to?(:create?, with: CustomForm::SubmissionPolicy, context: {pet: @pet, user: current_user}) %>
                   <h4 class="mb-4 mt-3">In love with this pooch?</h4>
                   <%= form_with model: [:adopter_fosterer, @adoption_application] do |form| %>
                     <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
