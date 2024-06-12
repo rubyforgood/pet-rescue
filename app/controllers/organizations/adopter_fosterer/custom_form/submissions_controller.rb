@@ -47,7 +47,7 @@ class Organizations::AdopterFosterer::CustomForm::SubmissionsController < Organi
   end
 
   def application_params
-    params.require(:submission).permit(
+    params.require(:custom_form_submission).permit(
       :pet_id,
       :adopter_foster_account_id,
       :status,
