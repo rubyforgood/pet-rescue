@@ -402,7 +402,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   10.times do
-    adopter_application = AdopterApplication.new(
+    adopter_application = CustomForm::Submission.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..4),
@@ -411,7 +411,7 @@ ActsAsTenant.with_tenant(@organization) do
     )
 
     # Prevent duplicate adopter applications.
-    redo if AdopterApplication.where(pet_id: adopter_application.pet_id,
+    redo if CustomForm::Submission.where(pet_id: adopter_application.pet_id,
       adopter_foster_account_id: adopter_application.adopter_foster_account_id).exists?
 
     if adopter_application.valid?
