@@ -1,7 +1,7 @@
-<%= turbo_stream.replace "table_submission_#{@submission.id}",
+<%= turbo_stream.replace "table_custom_form_submission_#{@submission.id}",
         partial: "organizations/staff/pets/tabs/partials/submission_info_table",
         locals: {sub: @submission}%>
-<%= turbo_stream.replace "card_submission_#{@submission.id}",
+<%= turbo_stream.replace "card_custom_form_submission_#{@submission.id}",
         partial: "organizations/staff/pets/tabs/partials/submission_info_card",
         locals: {sub: @submission}%>
 <%= turbo_stream.replace "flash", partial: "layouts/shared/flash_messages" %>
