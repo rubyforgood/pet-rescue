@@ -1,10 +1,9 @@
 ---
-Date: 2024-06-01
+Date: 2024-06-01T00:00:00.000Z
 Topic: Checklists
-Attendance: Ben, Mae, Justin, Chris, Ken
-Status: accepted
+Attendance: 'Ben, Mae, Justin, Chris, Ken'
+Status: incomplete
 ---
-
 # Checklists
 
 ## Questions
@@ -35,3 +34,4 @@ These names will also be easier for developers to grok quickly.
 - Restructure `DefaultPetTask` as `Checklist::Template`
 
 ## Consequences
+

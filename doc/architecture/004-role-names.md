@@ -1,10 +1,9 @@
 ---
-Date: 2024-06-01
+Date: 2024-06-01T00:00:00.000Z
 Topic: Role Names
-Attendance: Ben, Mae, Justin, Chris, Ken
+Attendance: 'Ben, Mae, Justin, Chris, Ken'
 Status: accepted
 ---
-
 # Role Names
 
 ## Context
@@ -37,3 +36,4 @@ We also discussed that it would be better not to refer to those working with the
 ## Consequences
 
 We will have to make sure to make this refactoring across all spots touched. I think this will affect `authorizable.rb`, the policy classes and tests, the factories, and the locations in controller actions that add roles to users.
+
