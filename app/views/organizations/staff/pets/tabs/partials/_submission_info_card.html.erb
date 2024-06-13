@@ -1,0 +1,29 @@
+<div class="pt-2 border-bottom border-3" id="<%= dom_id(sub, :card) %>">
+  <ul class="list-group list-group-flush">
+
+    <!-- applicant -->
+    <li class="list-group-item">
+      <span><%= t("organizations.staff.pets.submissions.applicant")%>:</span>
+      <div>
+        <%= link_to sub.applicant_name, 
+                              staff_profile_review_path(sub.adopter_foster_account.adopter_foster_profile), 
+                              class: "link-underline link-underline-opacity-0"  %>
+      </div>
+    </li>
+
+    <!-- status -->
+    <li class="list-group-item">
+      <%= render 'organizations/staff/pets/tabs/partials/submission_status', sub: sub %>
+    </li>
+
+    <!-- create -->
+    <li class="list-group-item">
+      <%= render 'organizations/staff/pets/tabs/partials/submission_create_button', sub: sub %>
+    </li>
+
+    <!-- notes -->
+    <li class="list-group-item">
+      <%= render 'organizations/staff/pets/tabs/partials/submission_notes', sub: sub, modal_id: 'card' %>
+    </li>
+  </ul>
+</div>

@@ -45,7 +45,7 @@ module CustomForm
         message: "has already applied for this pet."
       }
     # remove adoption_made status as not necessary for staff
-    def self.app_review_statuses
+    def self.sub_review_statuses
       CustomForm::Submission.statuses.keys.map do |status|
         unless status == "adoption_made"
           [status.titleize, status]
@@ -62,7 +62,7 @@ module CustomForm
     # check if any submissions are set to profile_show: true
     def self.any_submissions_profile_show_true?(adopter_foster_account_id)
       submissions = CustomForm::Submission.where(adopter_foster_account_id: adopter_foster_account_id)
-      submissions.any? { |app| app.profile_show == true }
+      submissions.any? { |sub| sub.profile_show == true }
     end
 
     def self.retire_submissions(pet_id:)

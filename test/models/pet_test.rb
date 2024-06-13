@@ -74,19 +74,19 @@ class PetTest < ActiveSupport::TestCase
   end
 
   context "scopes" do
-    context ".org_pets_with_apps(staff_org_id)" do
+    context ".org_pets_with_subs(staff_org_id)" do
       should "return pets for organization that have submissions" do
-        pet_with_app = create(:pet, :adoption_pending)
-        pet_without_app = create(:pet)
-        res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
+        pet_with_sub = create(:pet, :adoption_pending)
+        pet_without_sub = create(:pet)
+        res = Pet.org_pets_with_subs(ActsAsTenant.current_tenant.id)
 
-        assert res.include?(pet_with_app)
-        assert_not res.include?(pet_without_app)
+        assert res.include?(pet_with_sub)
+        assert_not res.include?(pet_without_sub)
       end
 
       should "include pets that have been adopted" do
         adopted_pet = create(:pet, :adopted)
-        res = Pet.org_pets_with_apps(ActsAsTenant.current_tenant.id)
+        res = Pet.org_pets_with_subs(ActsAsTenant.current_tenant.id)
 
         assert res.include?(adopted_pet)
       end

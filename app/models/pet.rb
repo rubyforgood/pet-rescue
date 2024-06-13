@@ -86,11 +86,11 @@ class Pet < ApplicationRecord
 
   # check if pet has any submissions with adoption pending status
   def has_adoption_pending?
-    submissions.any? { |app| app.status == "adoption_pending" }
+    submissions.any? { |sub| sub.status == "adoption_pending" }
   end
 
   def is_adopted?
-    submissions.any? { |app| app.status == "adoption_made" }
+    submissions.any? { |sub| sub.status == "adoption_made" }
   end
 
   # active storage: using.attach for appending images per rails guide
@@ -109,7 +109,7 @@ class Pet < ApplicationRecord
     Pet.where(organization_id: staff_org_id)
   end
 
-  def self.org_pets_with_apps(staff_org_id)
+  def self.org_pets_with_subs(staff_org_id)
     org_pets(staff_org_id).includes(submissions: [adopter_foster_account: [:user]]).where
       .not(submissions: {id: nil}).references(:users)
   end

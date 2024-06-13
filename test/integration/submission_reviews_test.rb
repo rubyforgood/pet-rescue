@@ -76,7 +76,7 @@ class SubmissionReviewsTest < ActionDispatch::IntegrationTest
   end
 
   def verify_submission_elements(submission)
-    assert_select "div[id='custom_form_submission_#{submission.id}']" do
+    assert_select "div[id='table_custom_form_submission_#{submission.id}']" do
       adopter = submission.adopter_foster_account.user
       assert_select "a", text: "#{adopter.first_name} #{adopter.last_name}"
       assert_select "button", text: submission.status.titleize

@@ -71,7 +71,7 @@
       </div>
       <div class="col-lg-6">
         <%= form.text_field :donation_url, label: "Donate", placeholder: "https://example.com", class: 'form-control' %>
-        <%= render partial: 'partials/avatarable_form', locals: { resource: profile, form: form, picture_shape: 'rectangle' } %>
+        <%= render partial: 'shared/avatarable_form', locals: { resource: profile, form: form, picture_shape: 'rectangle' } %>
       </div>
 
     </div>

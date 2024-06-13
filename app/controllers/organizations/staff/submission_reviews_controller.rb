@@ -11,7 +11,7 @@ class Organizations::Staff::SubmissionReviewsController < Organizations::BaseCon
       with: Organizations::SubmissionPolicy
 
     @q = authorized_scope(
-      Pet.org_pets_with_apps(current_user.staff_account.organization_id)
+      Pet.org_pets_with_subs(current_user.staff_account.organization_id)
     ).ransack(params[:q])
     @pets_with_submissions = @q.result.includes(:submissions)
 

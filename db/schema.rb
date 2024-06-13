@@ -215,6 +215,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_194826) do
     t.index ["organization_id"], name: "index_page_texts_on_organization_id"
   end
 
+  create_table "people", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.string "name", null: false
+    t.string "email", null: false
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_people_on_email"
+    t.index ["organization_id"], name: "index_people_on_organization_id"
+  end
+
   create_table "pets", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
@@ -357,6 +368,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_194826) do
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"
   add_foreign_key "page_texts", "organizations"
+  add_foreign_key "people", "organizations"
   add_foreign_key "pets", "organizations"
   add_foreign_key "questions", "forms"
   add_foreign_key "staff_accounts", "organizations"

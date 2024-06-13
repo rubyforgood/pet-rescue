@@ -4,6 +4,7 @@ module Avatarable
   included do
     has_one_attached :avatar
 
+    # TODO:  move these validation strings to a locale file
     validates :avatar, content_type: {in: ["image/png", "image/jpeg"],
                                       message: "must be PNG or JPEG"},
       size: {between: 10.kilobyte..1.megabytes,

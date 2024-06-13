@@ -2,9 +2,9 @@
 
 <% @collection = @pet.nil? ? @pets_with_submissions : @pet %>
 
+<div class="d-flex flex-wrap justify-content-center">
   <% @collection.each do |pet| %>
     <!--pet name-->
-    <div class="mb-4">
-      <%= render "organizations/staff/pets/tabs/submissions", submissions: pet.submissions, pet: pet %>
-    </div>
+    <%= render "organizations/staff/pets/tabs/submissions", submissions: pet.submissions, pet: pet %>
   <% end %>
+</div>
