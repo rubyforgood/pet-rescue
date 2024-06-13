@@ -16,28 +16,28 @@ class MatchTest < ActiveSupport::TestCase
     should define_enum_for(:match_type)
   end
 
-  context "#withdraw_application" do
+  context "#withdraw_submission" do
     setup do
-      @application = mock("adopter_application")
+      @submission = mock("adopter_submission")
     end
 
-    should "send #withdraw to application" do
-      @match.expects(:adopter_application).returns(@application)
-      @application.expects(:withdraw)
+    should "send #withdraw to submission" do
+      @match.expects(:adopter_submission).returns(@submission)
+      @submission.expects(:withdraw)
 
-      @match.withdraw_application
+      @match.withdraw_submission
     end
   end
 
-  context "#retire_applications" do
+  context "#retire_submissions" do
     setup do
-      @application_class = mock("AdopterApplication")
+      @submission_class = mock("CustomForm::Submission")
     end
 
-    should "send #retire_applications with pet_id to application_class" do
-      @application_class.expects(:retire_applications).with(pet_id: @match.pet_id)
+    should "send #retire_submissions with pet_id to submission_class" do
+      @submission_class.expects(:retire_submissions).with(pet_id: @match.pet_id)
 
-      @match.retire_applications(application_class: @application_class)
+      @match.retire_submissions(submission_class: @submission_class)
     end
   end
 

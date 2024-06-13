@@ -1,0 +1,37 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve  %>
+
+<% pet = submission.pet %>
+<div class="card card-hover mx-1 my-4 col-sm-5" style='"overflow: hidden'>
+  <%= link_to image_tag(pet.images.attached? ? pet.images.first : 'coming_soon.jpg', class: 'card-img-top pet-card'), adoptable_pet_path(pet) %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item d-flex justify-content-between">
+      <h5 class="card-title mb-0 fs-3">
+        <%= link_to pet.name, adoptable_pet_path(pet) %>
+      </h5>
+    </li>
+    <% li_classes = %w[list-group-item text-secondary] %>
+    <li class="list-group-item d-flex flex-wrap justify-content-between text-secondary">
+      <span class="fw-semibold"><%= t("views.dashboard.submissions.created")%>:</span>
+      <%= l submission.created_at.to_date, format: :long %>
+    </li>
+    <li class="list-group-item d-flex flex-wrap justify-content-between text-secondary">
+      <div class="me-1 fw-semibold"><%= t("views.dashboard.submissions.status")%>:</div>
+      <div>
+        <%= submission.human_enum_name(:status) %>
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-center">
+      <% if submission.status == 'withdrawn' %>
+        <%= button_to t("general.delete"),
+              adopter_fosterer_custom_form_submission_path(submission, custom_form_submission:
+              { profile_show: false }), method: :patch, class: 'btn btn-outline-danger',
+              data: { turbo_confirm: t("dashboard.submissions.confirm_delete") } %>
+      <% elsif submission.status != 'adoption_made' %>
+        <%= button_to t("dashboard.submissions.withdraw_submission"),
+              adopter_fosterer_custom_form_submission_path(submission, custom_form_submission:
+              { status: 'withdrawn'}), method: :patch, class: 'btn btn-outline-danger',
+              data: { turbo_confirm: t("dashboard.submissions.confirm_withdraw", pet_name: pet.name.capitalize) } %>
+      <% end %>
+    </li>
+  </ul>
+</div>
