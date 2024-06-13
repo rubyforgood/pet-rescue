@@ -1,0 +1,54 @@
+<%= turbo_refreshes_with method: :morph, scroll: :preserve  %>
+
+<!-- table -->
+<div class="card">
+  <table class="table mb-0 text-nowrap table-hover table-centered">
+    <thead>
+      <tr>
+        <th scope="col"><%= t("views.dashboard.submissions.name")%></th>
+        <th scope="col"><%= t("views.dashboard.submissions.created")%></th>
+        <th scope="col"><%= t("views.dashboard.submissions.status")%></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% submissions.each do |sub| %>
+        <%= turbo_stream_from sub %>
+        <% pet = sub.pet %>
+        <tr>
+          <td>
+            <div class="d-flex align-items-center">
+              <%= image_tag(pet.images.attached? ? pet.images.first :
+              'coming_soon.jpg', class: 'rounded-3', style: "height: 50px; width: 50px; object-fit: cover;") %>
+              <div class="ms-3">
+                <h4 class="mb-0">
+                  <%= link_to pet.name, adoptable_pet_path(pet) %>
+                </h4>
+              </div>
+            </div>
+          </td>
+          <td>
+            <%# localize date %>
+            <%= l sub.created_at.to_date, format: :long %>
+          </td>
+          <td>
+            <%= sub.human_enum_name(:status) %>
+          </td>
+          <td>
+            <% if sub.status == 'withdrawn' %>
+              <%= button_to t("general.delete"),
+                    adopter_fosterer_custom_form_submission_path(sub, custom_form_submission:
+                    { profile_show: false }), method: :patch, class: 'btn btn-outline-danger',
+                    data: { turbo_confirm: t("dashboard.submissions.confirm_delete") } %>
+            <% elsif sub.status != 'adoption_made'%>
+              <%= button_to t("dashboard.submissions.withdraw_submission"),
+                    adopter_fosterer_custom_form_submission_path(sub, custom_form_submission:
+                    { status: 'withdrawn'}), method: :patch, class: 'btn  btn-outline-danger',
+                    data: { turbo_confirm: t("dashboard.submissions.confirm_withdraw", pet_name: pet.name.capitalize) } %>
+            <% end  %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
