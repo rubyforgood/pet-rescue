@@ -75,6 +75,31 @@ en:
       status: Status
       withdraw_application: Withdraw Application
       confirm_withdraw: Withdraw your application
+  root:
+    index:
+      title: "Connecting hearts and homes"
+      title_highlight: "worldwide"
+      description: "A free application for pet foster and adoption organizations who want to save time and manage their operations in one place."
+      prod_cuality_1: "Easy to use"
+      prod_cuality_2: "No dowload needed"
+      prod_cuality_3: "Manage operations in one place"
+      prod_cuality_4: "Save time and spend it on what matters"
+      btn_title: "Request an account"
+      subtitle: "Manage your operations"
+      subtitle_highlight: "in one place"
+      subtitle_description: "No more spreadsheets, no more paper, no more headaches."
+      img_sub: "Manage your operation with ease"
+      logistics: "Logistics"
+      logistics_description: "Keep track of your animals in one place."
+      free: "Free for ever!"
+      free_description: "Our platform is free to use for all rescues, forever."
+      manage: "Manage applications"
+      manage_description: "Receive, review and process adoption and foster applications with ease."
+      support: "Support"
+      support_description: "Our team is here to help you with any questions you may have."
+      header: "Header"
+      call_to_action: "…an awesome sentence or two."
+      btn_call_to_action: "Call to action"
   views:
     dashboard: 
       index: 
