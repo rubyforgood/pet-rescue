@@ -90,6 +90,29 @@ gem "nice_partials"
 # needed for pagination
 gem "pagy"
 
+# Adds location data for cities and states around the world
+gem "city-state", "~> 1.1.0"
+
+# Adds a simple way to fetch with Javascript
+gem "requestjs-rails", "~> 0.0.11"
+
+# Add ability to set user roles
+gem "rolify"
+
+# Add breadcrumb management
+gem "gretel", "~> 5.0"
+
+# Use ransack for searching and filtering records
+gem "ransack"
+
+gem "rails-controller-testing"
+
+# Use Action Policy for authorization framework
+gem "action_policy", "~> 0.6.9"
+
+# Use ViewComponent for our presenter pattern framework
+gem "view_component", "~> 3.12"
+
 group :development, :test, :staging do
   gem "faker"
 end
@@ -152,22 +175,3 @@ group :test do
   # Adds ability to stub out methods in tests easier
   gem "mocha"
 end
-
-# Adds location data for cities and states around the world
-gem "city-state", "~> 1.1.0"
-
-# Adds a simple way to fetch with Javascript
-gem "requestjs-rails", "~> 0.0.11"
-
-# Add ability to set user roles
-gem "rolify"
-
-# Add breadcrumb management
-gem "gretel", "~> 5.0"
-
-gem "ransack"
-
-gem "rails-controller-testing"
-
-# Use Action Policy for authorization framework
-gem "action_policy", "~> 0.6.9"
