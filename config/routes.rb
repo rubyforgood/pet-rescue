@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       end
       resources :matches, only: %i[create destroy]
 
-      resources :adoption_application_reviews, only: %i[index edit update]
+      resources :submission_reviews, only: %i[index edit update]
       resources :manage_fosters, only: %i[new create index edit update destroy]
       resources :fosterers, only: %i[index]
       resources :adopters, only: %i[index]
@@ -59,7 +59,10 @@ Rails.application.routes.draw do
       resource :profile, except: :destroy
       resources :dashboard, only: [:index]
       resources :likes, only: [:index, :create, :destroy]
-      resources :adopter_applications, path: "applications", only: %i[index create update]
+
+      namespace :custom_form do
+        resources :submissions, only: %i[index create update]
+      end
     end
   end
 

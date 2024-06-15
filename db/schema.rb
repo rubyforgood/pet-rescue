@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_09_170030) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_10_194826) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,21 +40,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_170030) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
-  end
-
-  create_table "adopter_applications", force: :cascade do |t|
-    t.bigint "pet_id", null: false
-    t.bigint "adopter_foster_account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "status", default: 0
-    t.text "notes"
-    t.boolean "profile_show", default: true
-    t.bigint "organization_id", null: false
-    t.index ["adopter_foster_account_id"], name: "index_adopter_applications_on_adopter_foster_account_id"
-    t.index ["organization_id"], name: "index_adopter_applications_on_organization_id"
-    t.index ["pet_id", "adopter_foster_account_id"], name: "index_adopter_applications_on_account_and_pet", unique: true
-    t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
   create_table "adopter_foster_accounts", force: :cascade do |t|
@@ -298,6 +283,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_170030) do
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
   end
 
+  create_table "submissions", force: :cascade do |t|
+    t.bigint "pet_id", null: false
+    t.bigint "adopter_foster_account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.text "notes"
+    t.boolean "profile_show", default: true
+    t.bigint "organization_id", null: false
+    t.index ["adopter_foster_account_id"], name: "index_submissions_on_adopter_foster_account_id"
+    t.index ["organization_id"], name: "index_submissions_on_organization_id"
+    t.index ["pet_id", "adopter_foster_account_id"], name: "index_submissions_on_pet_id_and_adopter_foster_account_id", unique: true
+    t.index ["pet_id"], name: "index_submissions_on_pet_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -351,8 +351,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_170030) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "adopter_applications", "adopter_foster_accounts"
-  add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_foster_accounts", "users"
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
@@ -375,5 +373,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_09_170030) do
   add_foreign_key "questions", "forms"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
+  add_foreign_key "submissions", "adopter_foster_accounts"
+  add_foreign_key "submissions", "pets"
   add_foreign_key "tasks", "pets"
 end

@@ -114,6 +114,6 @@ class Organizations::Staff::PetsController < Organizations::BaseController
   end
 
   def determine_active_tab
-    ["tasks", "applications", "fosters", "photos", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
+    ["tasks", "submissions", "fosters", "photos", "files"].include?(params[:active_tab]) ? params[:active_tab] : "overview"
   end
 end

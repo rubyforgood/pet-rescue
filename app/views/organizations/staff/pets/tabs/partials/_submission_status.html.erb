@@ -1,0 +1,16 @@
+<div class="dropdown">
+  <button class="btn dropdown-toggle <%= submission_status_classes(sub)%>" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= sub.human_enum_name(:status) %>
+  </button>
+  <ul class="dropdown-menu">
+    <% CustomForm::Submission.statuses.keys.each do |status| %>
+      <%unless status == "adoption_made" %>
+        <li>
+          <%= button_to t("organizations.staff.pets.submission_status.#{status}"),
+                        staff_submission_review_path(sub, params: { custom_form_submission: { status: status}}),
+                        :method => :patch, class: 'dropdown-item' %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>

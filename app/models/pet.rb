@@ -30,7 +30,7 @@
 class Pet < ApplicationRecord
   acts_as_tenant(:organization)
 
-  has_many :adopter_applications, dependent: :destroy
+  has_many :submissions, class_name: "CustomForm::Submission", dependent: :destroy
   has_many :tasks, dependent: :destroy
   has_many :matches, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -84,13 +84,13 @@ class Pet < ApplicationRecord
 
   attr_writer :toggle
 
-  # check if pet has any applications with adoption pending status
+  # check if pet has any submissions with adoption pending status
   def has_adoption_pending?
-    adopter_applications.any? { |app| app.status == "adoption_pending" }
+    submissions.any? { |sub| sub.status == "adoption_pending" }
   end
 
   def is_adopted?
-    adopter_applications.any? { |app| app.status == "adoption_made" }
+    submissions.any? { |sub| sub.status == "adoption_made" }
   end
 
   # active storage: using.attach for appending images per rails guide
@@ -109,9 +109,9 @@ class Pet < ApplicationRecord
     Pet.where(organization_id: staff_org_id)
   end
 
-  def self.org_pets_with_apps(staff_org_id)
-    org_pets(staff_org_id).includes(adopter_applications: [adopter_foster_account: [:user]]).where
-      .not(adopter_applications: {id: nil}).references(:users)
+  def self.org_pets_with_subs(staff_org_id)
+    org_pets(staff_org_id).includes(submissions: [adopter_foster_account: [:user]]).where
+      .not(submissions: {id: nil}).references(:users)
   end
 
   def self.ransackable_attributes(auth_object = nil)
@@ -119,7 +119,7 @@ class Pet < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["adopter_applications"]
+    ["submissions"]
   end
 
   def self.ransackable_scopes(auth_object = nil)
