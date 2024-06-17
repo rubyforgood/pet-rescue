@@ -14,6 +14,8 @@ class DashboardPageComponent < ViewComponent::Base
   renders_many :nav_tabs, "NavTabComponent"
   renders_one :body
 
+  private
+
   def before_render
     breadcrumb crumb, *crumb_options if crumb
     # unless header_title.present?
