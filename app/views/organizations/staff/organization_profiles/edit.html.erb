@@ -1,9 +1,7 @@
-<% breadcrumb :organization_profile %>
-
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Profile Details" %>
-  <% p.header_subtitle "Manage your profile details" %>
-  <% p.content do %>
+<%= render DashboardPageComponent.new(crumb: :organization_profile) do |c| %>
+  <% c.with_header_title { "Profile Details" } %>
+  <% c.with_header_subtitle { "Manage your profile details" } %>
+  <% c.with_body do %>
     <section id="account_select">
       <div>
         <div>

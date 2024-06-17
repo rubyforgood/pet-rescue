@@ -1,8 +1,6 @@
-<% breadcrumb :dashboard_pet, @pet %>
-
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title @pet.name %>
-  <% p.nav_tabs do %>
+<%= render DashboardPageComponent.new(crumb: :dashboard_pet, crumb_options: [@pet]) do |c| %>
+  <% c.with_header_title { @pet.name } %>
+  <% c.with_nav_tabs do %>
     <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet), text: "Overview", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'tasks'), text: "Tasks", options: { active: :exact } %>
     <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'applications'), text: "Applications", options: { active: :exact } %>
@@ -11,7 +9,7 @@
     <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'files'), text: "Files", options: { active: :exact } %>
   <% end %>
 
-  <% p.content do %>
+  <% c.with_body do %>
     <div class="row">
       <div class="col-md-12 col-lg-8 col-12">
         <%= render partial: "organizations/staff/pets/tabs/#{@active_tab}", locals: { applications: @pet.adopter_applications, pet: @pet, fosters: @pet.matches.fosters } %>

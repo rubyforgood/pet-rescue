@@ -1,7 +1,6 @@
-<!--page heading-->
-<%= render "components/adopter_foster_dashboard/page" do |p| %>
-  <% p.header_title t("dashboard.applications.header_title") %>
-  <% p.content do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { t("dashboard.applications.header_title") } %>
+  <% c.with_body do %>
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <!-- Table layout -->
       <div class="d-none d-xl-block">

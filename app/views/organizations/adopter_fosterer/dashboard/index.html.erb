@@ -1,7 +1,6 @@
-<!--page heading-->
-<%= render "components/adopter_foster_dashboard/page" do |p| %>
-  <% p.header_title t("dashboard.index.header_title") %>
-  <% p.content do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { t("dashboard.index.header_title") } %>
+  <% c.with_body do %>
     <div class="row">
       <% unless current_user.adopter_foster_account.adopter_foster_profile.present? %>
         <div class="alert alert-warning ">

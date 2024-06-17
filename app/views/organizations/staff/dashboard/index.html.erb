@@ -1,7 +1,6 @@
-<!--page heading-->
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title t("dashboard.index.header_title") %>
-  <% p.content do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { t("dashboard.index.header_title") } %>
+  <% c.with_body do %>
     <div class="row">
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
@@ -32,7 +31,6 @@
           <% card.with_value { @organization.pets.count.to_s } %>
         <% end %>
       </div>
-
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
           <% card.with_title { "Applications" } %>
@@ -40,7 +38,6 @@
           <% card.with_value { "TBD" } %>
         <% end %>
       </div>
-
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
           <% card.with_title { "Rescues" } %>
@@ -49,7 +46,6 @@
         <% end %>
       </div>
     </div>
-    
     <%= turbo_frame_tag "tasks-frame" %>
   <% end %>
 <% end %>

@@ -1,15 +1,13 @@
 <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
-<% breadcrumb :fosters %>
-
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Fosters" %>
-  <% p.actions do %>
+<%= render DashboardPageComponent.new(crumb: :fosters) do |c| %>
+  <% c.with_header_title { "Fosters" } %>
+  <% c.with_action do %>
     <%= link_to "Create Foster", new_staff_manage_foster_path,
       class: "btn btn-primary"
     %>
   <% end %>
-  <% p.content do %>
+  <% c.with_body do %>
     <section class="pb-5" id="about_us">
       <div class="container">
         <!-- Ransack Search Form -->
@@ -51,22 +49,18 @@
             <% end %>
           </div>
         </div>
-
         <div class="d-flex justify-content-center align-items-center mt-2">
           <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
         </div>
-
         <!-- Search Results -->
         <%# Table layout %>
         <div class="d-none d-xl-block">
           <%= render "foster_table", foster_pets: @foster_pets %>
         </div>
-
         <%# Cards layout %>
         <div class="d-xl-none d-flex flex-wrap">
           <%= render "foster_cards", foster_pets: @foster_pets %>
         </div>
-
       </div>
     </section>
     <div class="d-flex justify-content-center align-items-center mt-2">

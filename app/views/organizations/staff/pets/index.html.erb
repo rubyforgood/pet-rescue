@@ -1,10 +1,9 @@
-<% breadcrumb :dashboard_pets %>
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title t(".our_pets") %>
-  <% p.actions do %>
+<%= render DashboardPageComponent.new(crumb: :dashboard_pets) do |c| %>
+  <% c.with_header_title { t(".our_pets") } %>
+  <% c.with_action do %>
     <%= link_to t('.create_pet'), new_staff_pet_path, class: "btn btn-primary" %><br>
   <% end %>
-  <% p.content do %>
+  <% c.with_body do %>
     <!--filter section-->
     <div>
       <div>

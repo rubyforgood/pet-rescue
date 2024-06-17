@@ -1,11 +1,9 @@
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Invite Staff" %>
-
-  <% p.actions do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { "Invite Staff" } %>
+  <% c.with_action do %>
     <%= link_to "Back to staff", staff_staff_index_path, class: "btn btn-primary" %>
   <% end %>
-
-  <% p.content do %>
+  <% c.with_body do %>
     <section class="container-fluid p-4">
       <!-- row -->
       <div class="row">
