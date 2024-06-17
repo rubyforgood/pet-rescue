@@ -18,7 +18,7 @@
                 <div class="d-flex align-items-end justify-content-between">
                   <div class="d-flex align-items-center">
                     <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
-                      <%= render_avatar_partial(xl: true) %>
+                      <%= render AvatarComponent.new(user: current_user, size: :xl) %>
                     </div>
                     <div class="lh-1">
                       <h2 class="mb-0"><%= "#{current_user.full_name}" %></h2>
