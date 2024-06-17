@@ -4,38 +4,48 @@
   <% p.content do %>
     <div class="row">
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
-        <%= render "components/data_card" do |c| %>
-          <% c.title "Tasks" %>
-          <% c.icon "list" %>
-          <% c.value do %>
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Tasks" } %>
+          <% card.with_icon_name { "list" } %>
+          <% card.with_value do %>
             <div>
-              <div> <%= link_to "#{@not_completed_not_overdue_tasks_count} Incomplete", incomplete_tasks_staff_dashboard_index_path, data: { turbo_frame: "tasks-frame" } %> </div>
-              <div> <%= link_to "#{@not_completed_overdue_tasks_count} Overdue", overdue_tasks_staff_dashboard_index_path, data: { turbo_frame: "tasks-frame" } %> </div>
+              <div>
+                <%= link_to "#{@not_completed_not_overdue_tasks_count} Incomplete",
+                  incomplete_tasks_staff_dashboard_index_path,
+                  data: { turbo_frame: "tasks-frame" }
+                %>
+              </div>
+              <div>
+                <%= link_to "#{@not_completed_overdue_tasks_count} Overdue",
+                  overdue_tasks_staff_dashboard_index_path,
+                  data: { turbo_frame: "tasks-frame" }
+                %>
+              </div>
             </div>
           <% end %>
         <% end %>
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
-        <%= render "components/data_card" do |c| %>
-          <% c.title "Pets" %>
-          <% c.icon "heart" %>
-          <% c.value @organization.pets.count %>
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Pets" } %>
+          <% card.with_icon_name { "heart" } %>
+          <% card.with_value { @organization.pets.count.to_s } %>
         <% end %>
       </div>
 
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
-        <%= render "components/data_card" do |c| %>
-          <% c.title "Applications" %>
-          <% c.icon "file-text" %>
-          <% c.value "TBD" %>
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Applications" } %>
+          <% card.with_icon_name { "file-text" } %>
+          <% card.with_value { "TBD" } %>
         <% end %>
       </div>
 
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
-        <%= render "components/data_card" do |c| %>
-          <% c.title "Rescues" %>
-          <% c.icon "star" %>
-          <% c.value "TBD" %>
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Rescues" } %>
+          <% card.with_icon_name { "star" } %>
+          <% card.with_value { "TBD" } %>
         <% end %>
       </div>
     </div>
