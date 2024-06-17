@@ -10,6 +10,13 @@ class AvatarComponent < ViewComponent::Base
     @size = filter_attribute(size, VALID_SIZES, default: :md)
   end
 
+  def filter_attribute(value, allowed_values, default: nil)
+    return default unless value
+    return value if allowed_values.include?(value)
+
+    default
+  end
+
   private
 
   def image_url
@@ -44,12 +51,5 @@ class AvatarComponent < ViewComponent::Base
     when :xl
       "avatar-initials rounded-circle fs-2"
     end
-  end
-
-  def filter_attribute(value, allowed_values, default: nil)
-    return default unless value
-    return value if allowed_values.include?(value)
-
-    default
   end
 end
