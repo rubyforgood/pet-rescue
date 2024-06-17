@@ -27,7 +27,10 @@
       <!-- Nav tabs -->
       <% if nav_tabs? %>
         <ul class="nav nav-lb-tab mt-n3 gap-1">
-          <%= nav_tabs %>
+          <%# nav_tabs %>
+          <% nav_tabs.each do |tab| %>
+            <%= tab %>
+          <% end %>
         </ul>
       <% end %>
     </div>
