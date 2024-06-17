@@ -1,16 +1,14 @@
-<% breadcrumb :form, @form %>
+<%= render DashboardPageComponent.new(crumb: :form, crumb_options: [@form]) do |c| %>
+  <% c.with_header_title { @form.name } %>
 
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title @form.name %>
-
-  <% p.actions do %>
+  <% c.with_action do %>
     <div class="d-flex gap-2">
       <%= link_to t('general.edit'), edit_staff_form_path(@form), class: "btn btn-warning" %>
       <%= link_to t('.create_question'), new_staff_form_question_path(@form), class: "btn btn-primary" %>
     </div>
   <% end %>
 
-  <% p.content do %>
+  <% c.with_body do %>
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <!-- card -->
       <div class="card">

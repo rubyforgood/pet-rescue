@@ -1,8 +1,6 @@
-<% breadcrumb :adopters %>
-
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title t(:adopters) %>
-  <% p.actions do %>
+<%= render DashboardPageComponent.new(crumb: :adopters) do |c| %>
+  <% c.with_header_title { t(:adopters) } %>
+  <% c.with_action do %>
     <div class='d-flex align-items-center gap-2'>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
@@ -21,8 +19,7 @@
       </div>
     </div>
   <% end %>
-
-  <% p.content do %>
+  <% c.with_body do %>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-12">
         <!-- Tab -->
@@ -68,11 +65,9 @@
                     <th scope="col"><%= t(:name) %></th>
                     <th scope="col"><%= t(:joined_at) %></th>
                     <th scope="col"><%= t(:action) %></th>
-
                   </tr>
                 </thead>
                 <tbody>
-
                   <% @adopter_accounts.each do |adopter| %>
                     <tr>
                       <td>
@@ -108,12 +103,10 @@
                   <% end %>
                 </tbody>
               </table>
-
             </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   <% end %>
 <% end %>
