@@ -1,6 +1,6 @@
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Applications" %>
-  <% p.content do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { "Applications" } %>
+  <% c.with_body do %>
     <section class="pb-5" id="about_us">
       <div class="container">
         <!-- Ransack Search Form -->

@@ -1,11 +1,6 @@
-<% breadcrumb :edit_foster, @foster %>
-
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title do %>
-    Edit Foster
-  <% end %>
-
-  <% p.content do %>
+<%= render DashboardPageComponent.new(crumb: :edit_foster, crumb_options: [@foster]) do |c| %>
+  <% c.with_header_title { "Edit Foster" } %>
+  <% c.with_body do %>
     <%= render "form", {foster: @foster, pets: @pets, accounts: @accounts} %>
   <% end %>
 <% end %>

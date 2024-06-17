@@ -1,7 +1,6 @@
-<!--page heading-->
-<%= render "components/adopter_foster_dashboard/page" do |p| %>
-  <% p.header_title t('organizations.adopter_fosterer.likes.index.liked_pets') %>
-  <% p.content do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { t('organizations.adopter_fosterer.likes.index.liked_pets') } %>
+  <% c.with_body do %>
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <div class="row">
         <%= render partial:"shared/pet_card", collection: @pets, as: :pet %>

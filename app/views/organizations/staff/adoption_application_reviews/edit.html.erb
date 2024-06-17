@@ -1,10 +1,10 @@
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title do %>
     <%= @application.adopter_foster_account.user.full_name %>'s application for
     <%= @application.pet.name %>
   <% end %>
 
-  <% p.content do %>
+  <% c.with_body do %>
     <section class="pb-5" id="about_us">
       <div class="container">
         <div class="row">

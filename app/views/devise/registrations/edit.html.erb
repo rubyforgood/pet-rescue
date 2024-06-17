@@ -1,7 +1,6 @@
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Edit my user settings" %>
-
-  <% p.content do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { "Edit my user settings" } %>
+  <% c.with_body do %>
     <!--main section-->
     <!--form-->
     <section class="pb-5" id="registration_new">
@@ -11,18 +10,15 @@
             <%= bootstrap_form_for(resource, as: resource_name,
                                   url: registration_path(resource_name),
                                   html: { method: :put }) do |f| %>
-
               <div class="form-group mb-3">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email",
                                   class: 'form-control' %>
               </div>
-
               <% if devise_mapping.confirmable? &&
                     resource.pending_reconfirmation? %>
                 <div>Currently waiting confirmation for:
                     <%= resource.unconfirmed_email %></div>
               <% end %>
-
               <div class="form-group mb-3">
                 <%= f.password_field :password, autocomplete: "new-password",
                                       class: 'form-control', label: 'New password' %>
@@ -31,32 +27,26 @@
                   <em><%= @minimum_password_length %> characters minimum</em>
                 <% end %>
               </div>
-
               <div class="form-group mb-3">
                 <%= f.password_field :password_confirmation, autocomplete: "new-password",
                                       class: 'form-control', label: 'Confirm new password' %>
               </div>
-
               <div class="form-group mb-3">
                 <%= f.text_field :first_name,
                                   class: 'form-control' %>
               </div>
-
               <div class="form-group mb-3">
                 <%= f.text_field :last_name,
                                   class: 'form-control' %>
               </div>
-
               <div class="form-group mb-3">
                 <%= f.password_field :current_password,
                                     autocomplete: "current-password",
                                     required: true,
                                     class: 'form-control' %>
-                <i>(we need your current password to confirm your changes)</i><br />
+                <i>(we need your current password to confirm your changes)</i><br/>
               </div>
-
               <%= render partial: 'shared/avatarable_form', locals: { resource: resource, form: f, picture_shape: 'circle' } %>
-
               <div class="actions">
                 <%= f.submit "Update", class: 'btn btn-outline-dark mt-3 mb-3',
                                       data: { turbo: false } %>
@@ -64,12 +54,7 @@
             <% end %>
           </div> <!--col-->
         </div> <!--row-->
-
       </div><!--container-->
     </section>
   <% end %>
 <% end %>
-
-
-
-
