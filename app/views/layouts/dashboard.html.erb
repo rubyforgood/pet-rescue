@@ -22,12 +22,12 @@
                 <!-- List -->
                 <li class="dropdown ms-2">
                   <a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="false">
-                    <%= render_avatar_partial %>
+                    <%= render AvatarComponent.new(user: current_user) %>
                   </a>
                   <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                     <div class="dropdown-item">
                       <div class="d-flex">
-                        <%= render_avatar_partial %>
+                        <%= render AvatarComponent.new(user: current_user) %>
                         <div class="ms-3 lh-1">
                           <h5 class="mb-1"><%= "#{current_user.full_name}" %></h5>
                           <p class="mb-0 text-muted"><%= current_user.email %></p>
