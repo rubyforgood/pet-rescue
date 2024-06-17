@@ -11,7 +11,7 @@ class DashboardPageComponent < ViewComponent::Base
   renders_one :header_title
   renders_one :header_subtitle
   renders_one :action
-  renders_one :nav_tabs
+  renders_many :nav_tabs, "NavTabComponent"
   renders_one :body
 
   def before_render
