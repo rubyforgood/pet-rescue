@@ -1,13 +1,13 @@
 <%= render DashboardPageComponent.new(crumb: :dashboard_pet, crumb_options: [@pet]) do |c| %>
   <% c.with_header_title { @pet.name } %>
-  <% c.with_nav_tabs do %>
-    <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet), text: "Overview", options: { active: :exact } %>
-    <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'tasks'), text: "Tasks", options: { active: :exact } %>
-    <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'applications'), text: "Applications", options: { active: :exact } %>
-    <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'fosters'), text: "Fosters", options: { active: :exact } %>
-    <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'photos'), text: "Photos", options: { active: :exact } %>
-    <%= render "components/dashboard/nav_tab", url: staff_pet_path(@pet, active_tab: 'files'), text: "Files", options: { active: :exact } %>
-  <% end %>
+  <% c.with_nav_tabs([
+    { url: staff_pet_path(@pet, active_tab: 'overview'), text: "Overview" },
+    { url: staff_pet_path(@pet, active_tab: 'tasks'), text: "Tasks" },
+    { url: staff_pet_path(@pet, active_tab: 'applications'), text: "Applications" },
+    { url: staff_pet_path(@pet, active_tab: 'fosters'), text: "Fosters" },
+    { url: staff_pet_path(@pet, active_tab: 'photos'), text: "Photos" },
+    { url: staff_pet_path(@pet, active_tab: 'files'), text: "Files" },
+  ]) %>
 
   <% c.with_body do %>
     <div class="row">
