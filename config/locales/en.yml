@@ -111,6 +111,40 @@ en:
         status: Status
         withdraw_submission: Withdraw Application
         confirm_withdraw: Withdraw your application
+  layouts:
+    shared:
+      footer:
+        title: "Pet Rescue"
+        call: "If you are a pet adoption or foster organization and want a website like this one, for free,"
+        action: "Click Here"
+        company: "Company"
+        rights: "Pet-Rescue, Inc. All Rights Reserved"
+        policy: "Privacy Policy"
+        cookie: "Cookie Notice"
+        terms: "Terms of Use"
+      navbar:
+        sign_up: "Sign Up"
+        log_in: "Log In"
+        log_out: "Log Out"
+        pets: "Pets"
+        contact: "Contact"
+        donate: "Donate"
+        faq: "FAQ"
+        dashboard: "Dashboard"
+        demo: "This is a demo site"
+      no_tenant_footer:
+        title: "Pet Rescue"
+        description: "We provide a platform for Pet Rescues and Animal Service Organizations"
+        title_2: "Company"
+        about: "About Us"
+        partners: "Partners"
+        rights: "Pet-Rescue, Inc. All Rights Reserved"
+        policy: "Privacy Policy"
+        cookie: "Cookie Notice"
+        terms: "Terms of Use"
+      no_tenant_navbar:
+        title: "Pet Rescue"
+        dropdown_title: "Rescues"
   activerecord:
     errors:
       models:
