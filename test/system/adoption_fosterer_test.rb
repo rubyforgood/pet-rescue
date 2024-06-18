@@ -4,7 +4,7 @@ class AdoptionFostererTest < ApplicationSystemTestCase
   setup do
     @user = create(:fosterer, :with_profile)
     @org = @user.organization
-    @page_text = create(:page_text, :with_image, organization: @org)
+    @page_text = create(:page_text, :with_about_us_image, organization: @org)
 
     @pet = create(:pet)
     create(:adopter_application, pet: @pet, adopter_foster_account: @user.adopter_foster_account, organization: @org)
