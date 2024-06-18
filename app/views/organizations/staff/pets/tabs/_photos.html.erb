@@ -1,4 +1,4 @@
 <div class="mb-4">
   <%= render "attachment_form", instance: @pet, title: 'Photos', url: attach_images_staff_pet_path(@pet), attachment_type: 'images' %>
-  <%= render "shared/image_attachment_table", images: @pet.images %>
+  <%= render ImageAttachmentTableComponent.new(images: @pet.images) %>
 </div>
