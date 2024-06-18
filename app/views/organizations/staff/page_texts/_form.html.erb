@@ -51,7 +51,6 @@
     <div class="mt-5">
       <div class="mt-5">
         <div class="mt-5">
-          <% combined_images  = [@page_text.hero_image.attachment, @page_text.about_us_images].flatten.compact%>
-          <%= render partial: "shared/image_attachment_table", locals: { images: combined_images } %>
+          <%= render ImageAttachmentTableComponent.new(images: @page_text.images) %>
         </div>
 <% end %>
