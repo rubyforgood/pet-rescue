@@ -34,4 +34,8 @@ class PageText < ApplicationRecord
   validates :about_us_images, content_type: ["image/png", "image/jpeg"],
     limit: {max: 2},
     size: {less_than: 2.megabytes}
+
+  def images
+    [hero_image.attached? ? hero_image : nil].compact + about_us_images.to_a
+  end
 end
