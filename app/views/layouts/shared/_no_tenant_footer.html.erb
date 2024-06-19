@@ -5,9 +5,9 @@
       <div class="col-lg-4 col-md-6 col-12">
         <!-- about company -->
         <div class="mb-4">
-          <h3> Pet Rescue </h3>
+          <h3><%= t('.title') %></h3>
           <div class="mt-4">
-            <p> We provide a platform for Pet Rescues and Animal Service Organizations </p>
+            <p><%= t('.description') %></p>
             <!-- social media -->
             <div class="fs-4 mt-4">
               <a href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
@@ -20,13 +20,13 @@
       <div class="offset-lg-1 col-lg-2 col-md-3 col-6">
         <div class="mb-4">
           <!-- list -->
-          <h3 class="fw-bold mb-3">Company</h3>
+          <h3 class="fw-bold mb-3"><%= t('.company') %></h3>
           <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
             <li>
-              <%= active_link_to 'About Us', about_us_path, class: 'nav-link' %>
+              <%= active_link_to t('.about'), about_us_path, class: 'nav-link' %>
             </li>
             <li>
-              <%= active_link_to 'Partners', partners_path, class: 'nav-link' %>
+              <%= active_link_to t('.partners'), partners_path, class: 'nav-link' %>
             </li>
           </ul>
         </div>
@@ -40,15 +40,15 @@
           <span id="copyright">
             <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
           </span>
-          Pet-Rescue, Inc. All Rights Reserved
+          <%= t('.rights') %>
         </span>
       </div>
       <!-- Links -->
       <div class="col-12 col-md-7 col-lg-8 d-md-flex justify-content-end">
         <nav class="nav nav-footer">
-          <a class="nav-link ps-0" href="#">Privacy Policy</a>
-          <a class="nav-link px-2 px-md-3" href="#">Cookie Notice  </a>
-          <a class="nav-link" href="#">Terms of Use</a>
+          <a class="nav-link ps-0" href="#"><%= t('.policy') %></a>
+          <a class="nav-link px-2 px-md-3" href="#"><%= t('.cookie') %></a>
+          <a class="nav-link" href="#"><%= t('.terms') %></a>
         </nav>
       </div>
     </div>
