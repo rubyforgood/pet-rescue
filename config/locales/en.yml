@@ -78,12 +78,12 @@ en:
   root:
     index:
       title: "Connecting hearts and homes"
-      title_highlight: "worldwide"
+      worldwide: "worldwide"
       description: "A free application for pet foster and adoption organizations who want to save time and manage their operations in one place."
-      prod_cuality_1: "Easy to use"
-      prod_cuality_2: "No dowload needed"
-      prod_cuality_3: "Manage operations in one place"
-      prod_cuality_4: "Save time and spend it on what matters"
+      easy_to_use: "Easy to use"
+      no_download: "No dowload needed"
+      manage: "Manage operations in one place"
+      save: "Save time and spend it on what matters"
       btn_title: "Request an account"
       subtitle: "Manage your operations"
       subtitle_highlight: "in one place"
@@ -135,7 +135,7 @@ en:
       no_tenant_footer:
         title: "Pet Rescue"
         description: "We provide a platform for Pet Rescues and Animal Service Organizations"
-        title_2: "Company"
+        company: "Company"
         about: "About Us"
         partners: "Partners"
         rights: "Pet-Rescue, Inc. All Rights Reserved"
