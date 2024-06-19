@@ -75,6 +75,31 @@ en:
       status: Status
       withdraw_submission: Withdraw Application
       confirm_withdraw: Withdraw your application
+  root:
+    index:
+      title: "Connecting hearts and homes"
+      worldwide: "worldwide"
+      description: "A free application for pet foster and adoption organizations who want to save time and manage their operations in one place."
+      easy_to_use: "Easy to use"
+      no_download: "No dowload needed"
+      manage: "Manage operations in one place"
+      save: "Save time and spend it on what matters"
+      btn_title: "Request an account"
+      subtitle: "Manage your operations"
+      subtitle_highlight: "in one place"
+      subtitle_description: "No more spreadsheets, no more paper, no more headaches."
+      img_sub: "Manage your operation with ease"
+      logistics: "Logistics"
+      logistics_description: "Keep track of your animals in one place."
+      free: "Free for ever!"
+      free_description: "Our platform is free to use for all rescues, forever."
+      manage: "Manage applications"
+      manage_description: "Receive, review and process adoption and foster applications with ease."
+      support: "Support"
+      support_description: "Our team is here to help you with any questions you may have."
+      header: "Header"
+      call_to_action: "…an awesome sentence or two."
+      btn_call_to_action: "Call to action"
   views:
     dashboard: 
       index: 
@@ -86,6 +111,40 @@ en:
         status: Status
         withdraw_submission: Withdraw Application
         confirm_withdraw: Withdraw your application
+  layouts:
+    shared:
+      footer:
+        title: "Pet Rescue"
+        call: "If you are a pet adoption or foster organization and want a website like this one, for free,"
+        action: "Click Here"
+        company: "Company"
+        rights: "Pet-Rescue, Inc. All Rights Reserved"
+        policy: "Privacy Policy"
+        cookie: "Cookie Notice"
+        terms: "Terms of Use"
+      navbar:
+        sign_up: "Sign Up"
+        log_in: "Log In"
+        log_out: "Log Out"
+        pets: "Pets"
+        contact: "Contact"
+        donate: "Donate"
+        faq: "FAQ"
+        dashboard: "Dashboard"
+        demo: "This is a demo site"
+      no_tenant_footer:
+        title: "Pet Rescue"
+        description: "We provide a platform for Pet Rescues and Animal Service Organizations"
+        company: "Company"
+        about: "About Us"
+        partners: "Partners"
+        rights: "Pet-Rescue, Inc. All Rights Reserved"
+        policy: "Privacy Policy"
+        cookie: "Cookie Notice"
+        terms: "Terms of Use"
+      no_tenant_navbar:
+        title: "Pet Rescue"
+        dropdown_title: "Rescues"
   activerecord:
     errors:
       models:
