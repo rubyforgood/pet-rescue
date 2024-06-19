@@ -29,9 +29,6 @@ class ImageAttachmentTableComponentTest < ViewComponent::TestCase
       assert_selector("a[href*='#{@image.filename}']", text: @image.filename.to_s, count: 1)
     end
 
-    # should "render image of image file" do
-    #   assert_selector("img[src='#{@image.url}']", count: 1)
-    # end
     should "render image of image file" do
       assert_selector("img[src*='#{@image.filename}']", count: 1)
     end
