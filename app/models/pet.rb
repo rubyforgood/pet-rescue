@@ -123,7 +123,11 @@ class Pet < ApplicationRecord
   end
 
   def self.ransackable_scopes(auth_object = nil)
-    [:ransack_birth_date]
+    [:ransack_adopted, :ransack_birth_date]
+  end
+
+  def self.ransack_adopted(boolean)
+    boolean ? adopted : unadopted
   end
 
   def self.ransack_birth_date(date)
