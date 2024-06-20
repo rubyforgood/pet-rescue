@@ -1,12 +1,17 @@
 class Organizations::AdoptablePetsController < Organizations::BaseController
+  include ::Pagy::Backend
   skip_verify_authorized only: %i[index]
   before_action :set_likes, only: %i[index show], if: -> { current_user&.adopter_foster_account }
+  helper_method :get_animals
 
   def index
-    @pets = authorized_scope(
-      Pet.includes(:submissions, images_attachments: :blob),
-      with: Organizations::AdoptablePetPolicy
+    @q = authorized_scope(Pet.includes(:submissions, images_attachments: :blob),
+      with: Organizations::AdoptablePetPolicy).ransack(params[:q])
+    @pagy, paginated_adoptable_pets = pagy(
+      @q.result,
+      items: 9
     )
+    @pets = paginated_adoptable_pets
   end
 
   def show
@@ -27,6 +32,12 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   end
 
   private
+
+  def get_animals
+    Pet.species.keys.to_h do |s|
+      [s, authorized_scope(Pet.where(species: s).distinct.order(:breed), with: Organizations::AdoptablePetPolicy).pluck(:breed)]
+    end
+  end
 
   def set_likes
     @likes = Like.where(adopter_foster_account_id: current_user.adopter_foster_account.id)

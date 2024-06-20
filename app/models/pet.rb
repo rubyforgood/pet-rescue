@@ -115,7 +115,7 @@ class Pet < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name", "sex", "species"]
+    ["name", "sex", "species", "breed"]
   end
 
   def self.ransackable_associations(auth_object = nil)
@@ -123,10 +123,18 @@ class Pet < ApplicationRecord
   end
 
   def self.ransackable_scopes(auth_object = nil)
-    [:ransack_adopted]
+    [:ransack_birth_date]
   end
 
-  def self.ransack_adopted(boolean)
-    boolean ? adopted : unadopted
+  def self.ransack_birth_date(date)
+    start_date, end_date = date.split("/")
+
+    if start_date != "none" && end_date != "none"
+      where("birth_date >= ? AND birth_date <= ?", start_date, end_date)
+    elsif start_date == "none" && end_date != "none"
+      where("birth_date <= ?", end_date)
+    elsif start_date != "none" && end_date == "none"
+      where("birth_date >= ?", start_date)
+    end
   end
 end
