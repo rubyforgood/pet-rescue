@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require "organization_authentication_failure"
+require "authentication_failure_app"
 
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
@@ -367,6 +367,6 @@ Devise.setup do |config|
   config.responder.redirect_status = :see_other
 
   config.warden do |manager|
-    manager.failure_app = OrganizationAuthenticationFailure
+    manager.failure_app =  AuthenticationFailureApp
   end
 end
