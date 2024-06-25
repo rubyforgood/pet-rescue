@@ -71,7 +71,26 @@
       </div>
       <div class="col-lg-6">
         <%= form.text_field :donation_url, label: "Donate", placeholder: "https://example.com", class: 'form-control' %>
-        <%= render partial: 'shared/avatarable_form', locals: { resource: profile, form: form, picture_shape: 'rectangle' } %>
+        <% if profile.avatar.id %>
+          <div class='form-group mt-3'>
+            <label class="form-label">
+              Current picture
+            </label>
+            <div class='d-flex flex-column align-items-center'>
+              <%= image_tag profile.avatar, class: 'rounded-1', style: 'max-height:7.5rem;max-width:100%' %>
+              <%= link_to t('general.delete'),
+                          purge_avatar_path(profile.avatar.id),
+                          data: { turbo_method: "delete" },
+                          class: 'delete-button' %>
+            </div>
+          </div>
+        <% else %>
+          <div class='form-group mt-3'>
+            <%= form.file_field :avatar, 
+                                class: "custom-attachments",
+                                label: 'Attach picture' %>
+          </div>
+        <% end %>
       </div>
 
     </div>
