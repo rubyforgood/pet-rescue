@@ -3,7 +3,40 @@
   <% c.with_body do %>
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <div class="row">
-        <%= render partial:"shared/pet_card", collection: @pets, as: :pet %>
+        <% @pets.each do |pet| %>
+          <div class="col-lg-4 col-md-6 p-0">
+            <%= render CardComponent.new(
+              card_options: {class: "card card-hover m-4"},
+              image_options: {src: pet.images.first, url: adoptable_pet_path(pet)}
+            ) do |c| %>
+              <%= c.with_badge do %>
+                <%= tag.span("Adoption Pending", class: "badge bg-info") if pet.has_adoption_pending?%>
+                <%= tag.span("Adopted", class: "badge bg-warning") if pet.is_adopted?%>
+              <% end %>
+              <%= c.with_body do %>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <%= link_to adoptable_pet_path(pet), class: 'text-decoration-none' do %>
+                      <h3 class="card-title text-secondary mb-0">
+                        <%= pet.name %>
+                      </h3>
+                    <% end %>
+                    <% if current_user&.adopter_foster_account %>
+                      <div class='text-end' id="like_button_pet_<%= pet.id %>">
+                        <%= render partial: 'shared/like_button', locals: { pet: pet, like: @likes&.find { |lp| lp.pet_id == pet.id } } %>
+                      </div>
+                    <% end %>
+                  </li>
+                  <% li_classes = %w[list-group-item text-secondary] %>
+                  <%= tag.li("Age: #{time_ago_in_words(pet.birth_date).titleize}", class: li_classes) %>
+                  <%= tag.li("Breed: #{pet.breed}", class: li_classes) %>
+                  <%= tag.li("Sex: #{pet.sex}", class: li_classes) %>
+                  <%= tag.li("Weight range: #{[pet.weight_from, pet.weight_to].join("-")} kg", class: li_classes) %>
+                </ul>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
