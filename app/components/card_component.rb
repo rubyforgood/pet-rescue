@@ -3,7 +3,6 @@
 class CardComponent < ViewComponent::Base
   attr_reader :card_options, :image_options, :header_options, :body_options
 
-  # image_options: {src:, alt:, url:, default:}
   def initialize(card_options: {}, image_options: {}, header_options: {}, body_options: {})
     @card_options = card_options
     @image_options = image_options
