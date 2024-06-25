@@ -301,8 +301,6 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
-    nice_partials (0.10.0)
-      actionview (>= 4.2.6)
     nio4r (2.7.3)
     nokogiri (1.16.5)
       mini_portile2 (~> 2.8.2)
@@ -538,7 +536,6 @@ DEPENDENCIES
   jbuilder
   letter_opener
   mocha
-  nice_partials
   pagy
   pg (~> 1.5)
   phonelib

@@ -84,9 +84,6 @@ gem "rails-i18n"
 # Provides helper methods to easily add 'active' tag on links
 gem "active_link_to"
 
-# Provides named content areas to Action View through `partial` method
-gem "nice_partials"
-
 # needed for pagination
 gem "pagy"
 
