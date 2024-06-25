@@ -2,17 +2,29 @@
   <% if image_options[:url] %>
     <%= link_to image_options[:url] do %>
       <%= image_tag image_src, class: image_class %>
+      <% if badge? %>
+        <div class="position-absolute top-0 end-0 m-2">
+          <%= badge %>
+        </div>
+      <% end %>
     <% end %>
   <% else %>
     <% if image_src === "" %>      
     <% else %>
       <%= image_tag image_src, class: image_class %>
+      <% if badge? %>
+        <div class="position-absolute top-0 end-0 m-2">
+          <%= badge %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
 
-  <div class="<%= header_class %>">
-    <%= header %>
-  </div>
+  <% if header? %>
+    <div class="<%= header_class %>">
+      <%= header %>
+    </div>
+  <% end %>
 
   <div class="<%= body_class %>">
     <%= body %>
