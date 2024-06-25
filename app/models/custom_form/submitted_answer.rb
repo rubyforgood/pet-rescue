@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: answers
+# Table name: submitted_answers
 #
 #  id                :bigint           not null, primary key
 #  question_snapshot :json             not null
@@ -12,18 +12,20 @@
 #
 # Indexes
 #
-#  index_answers_on_question_id  (question_id)
-#  index_answers_on_user_id      (user_id)
+#  index_submitted_answers_on_question_id  (question_id)
+#  index_submitted_answers_on_user_id      (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (question_id => questions.id)
 #  fk_rails_...  (user_id => users.id)
 #
-class Answer < ApplicationRecord
-  belongs_to :question
-  belongs_to :user
+module CustomForm
+  class SubmittedAnswer < ApplicationRecord
+    belongs_to :question
+    belongs_to :user
 
-  has_one :form, through: :question
-  has_one :organization, through: :form
+    has_one :form, through: :question
+    has_one :organization, through: :form
+  end
 end

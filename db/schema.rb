@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_10_194826) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,17 +92,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_194826) do
     t.index ["adopter_foster_account_id"], name: "index_adopter_foster_profiles_on_adopter_foster_account_id", unique: true
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
     t.index ["organization_id"], name: "index_adopter_foster_profiles_on_organization_id"
-  end
-
-  create_table "answers", force: :cascade do |t|
-    t.json "value", null: false
-    t.json "question_snapshot", null: false
-    t.bigint "question_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_answers_on_question_id"
-    t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
   create_table "default_pet_tasks", force: :cascade do |t|
@@ -299,6 +288,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_194826) do
     t.index ["pet_id"], name: "index_submissions_on_pet_id"
   end
 
+  create_table "submitted_answers", force: :cascade do |t|
+    t.json "value", null: false
+    t.json "question_snapshot", null: false
+    t.bigint "question_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_submitted_answers_on_question_id"
+    t.index ["user_id"], name: "index_submitted_answers_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -355,8 +355,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_194826) do
   add_foreign_key "adopter_foster_accounts", "users"
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
-  add_foreign_key "answers", "questions"
-  add_foreign_key "answers", "users"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "faqs", "organizations"
   add_foreign_key "form_profiles", "forms"
@@ -376,5 +374,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_10_194826) do
   add_foreign_key "staff_accounts", "users"
   add_foreign_key "submissions", "adopter_foster_accounts"
   add_foreign_key "submissions", "pets"
+  add_foreign_key "submitted_answers", "questions"
+  add_foreign_key "submitted_answers", "users"
   add_foreign_key "tasks", "pets"
 end
