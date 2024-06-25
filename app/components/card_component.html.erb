@@ -1,0 +1,20 @@
+<div class="<%= card_class %>">
+  <% if image_options[:url] %>
+    <%= link_to image_options[:url] do %>
+      <%= image_tag image_src, class: image_class %>
+    <% end %>
+  <% else %>
+    <% if image_src === "" %>      
+    <% else %>
+      <%= image_tag image_src, class: image_class %>
+    <% end %>
+  <% end %>
+
+  <div class="<%= header_class %>">
+    <%= header %>
+  </div>
+
+  <div class="<%= body_class %>">
+    <%= body %>
+  </div>
+</div>
