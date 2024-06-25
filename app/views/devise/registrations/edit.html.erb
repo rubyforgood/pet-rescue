@@ -46,7 +46,26 @@
                                     class: 'form-control' %>
                 <i>(we need your current password to confirm your changes)</i><br/>
               </div>
-              <%= render partial: 'shared/avatarable_form', locals: { resource: resource, form: f, picture_shape: 'circle' } %>
+              <% if resource.avatar.id %>
+                <div class='form-group mt-3'>
+                  <label class="form-label">
+                    Current picture
+                  </label>
+                  <div class='d-flex flex-column align-items-center'>
+                    <%= image_tag resource.avatar, class: 'avatar-xxl rounded-circle' %>
+                    <%= link_to t('general.delete'),
+                                purge_avatar_path(resource.avatar.id),
+                                data: { turbo_method: "delete" },
+                                class: 'delete-button' %>
+                  </div>
+                </div>
+              <% else %>
+                <div class='form-group mt-3'>
+                  <%= f.file_field :avatar, 
+                                      class: "custom-attachments",
+                                      label: 'Attach picture' %>
+                </div>
+              <% end %>
               <div class="actions">
                 <%= f.submit "Update", class: 'btn btn-outline-dark mt-3 mb-3',
                                       data: { turbo: false } %>
