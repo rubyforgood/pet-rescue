@@ -28,6 +28,23 @@ class CardComponentTest < ViewComponent::TestCase
     end
   end
 
+  context "with badge slot" do
+    setup do
+      render_inline(CardComponent.new) do |c|
+        c.with_badge { "card badge" }
+        c.with_body { "card body" }
+      end
+    end
+
+    should "render card" do
+      assert_selector("div.card.card-hover", count: 1)
+    end
+
+    should "render badge" do
+      assert_selector("div.position-absolute.top-0.end-0.m-2", text: "card badge", count: 1)
+    end
+  end
+
   context "with custom options" do
     context "with image src and url options" do
       setup do
