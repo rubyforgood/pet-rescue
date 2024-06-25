@@ -23,7 +23,7 @@
                     <% end %>
                     <% if current_user&.adopter_foster_account %>
                       <div class='text-end' id="like_button_pet_<%= pet.id %>">
-                        <%= render partial: 'shared/like_button', locals: { pet: pet, like: @likes&.find { |lp| lp.pet_id == pet.id } } %>
+                        <%= render LikeButtonComponent.new(pet: pet, like: @likes&.find { |lp| lp.pet_id == pet.id }) %>
                       </div>
                     <% end %>
                   </li>

@@ -1,6 +1,6 @@
 <%= turbo_stream.replace "like_button_pet_#{@pet.id}" do %>
   <div id="like_button_pet_<%= @pet.id %>" class="d-flex flex-column align-items-center">
-    <%= render partial: 'shared/like_button', locals: { pet: @pet, like: false } %>
+    <%= render LikeButtonComponent.new(pet: @pet, like: false) %>
   </div>
 <% end %>
 
