@@ -11,7 +11,7 @@ class Organizations::Staff::MatchesController < Organizations::BaseController
 
     if @match.save
       AdoptionMailer.reminder(@match).deliver_later
-      @match.retire_submissions
+      @match.retire_applications
 
       redirect_back_or_to staff_dashboard_index_path, notice: t(".success")
     else
@@ -21,7 +21,7 @@ class Organizations::Staff::MatchesController < Organizations::BaseController
 
   def destroy
     if @match.destroy
-      @match.withdraw_submission
+      @match.withdraw_application
 
       redirect_to staff_pets_path, notice: t(".success")
     else

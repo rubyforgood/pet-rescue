@@ -1,0 +1,7 @@
+<%= turbo_stream.replace "table_adopter_application_#{@application.id}",
+        partial: "organizations/staff/pets/tabs/partials/application_info_table",
+        locals: {app: @application}%>
+<%= turbo_stream.replace "card_adopter_application_#{@application.id}",
+        partial: "organizations/staff/pets/tabs/partials/application_info_card",
+        locals: {app: @application}%>
+<%= turbo_stream.replace "flash", partial: "layouts/shared/flash_messages" %>
