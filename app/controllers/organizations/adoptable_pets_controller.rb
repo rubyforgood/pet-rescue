@@ -5,7 +5,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   helper_method :get_animals
 
   def index
-    @q = authorized_scope(Pet.includes(:submissions, images_attachments: :blob),
+    @q = authorized_scope(Pet.includes(:adopter_applications, images_attachments: :blob),
       with: Organizations::AdoptablePetPolicy).ransack(params[:q])
     @pagy, paginated_adoptable_pets = pagy(
       @q.result,
@@ -20,12 +20,12 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
     authorize! @pet, with: Organizations::AdoptablePetPolicy
 
     if current_user&.adopter_foster_account
-      @submission =
-        CustomForm::Submission.find_by(
+      @adoption_application =
+        AdopterApplication.find_by(
           pet_id: @pet.id,
           adopter_foster_account_id: current_user.adopter_foster_account.id
         ) ||
-        @pet.submissions.build(
+        @pet.adopter_applications.build(
           adopter_foster_account: current_user.adopter_foster_account
         )
     end

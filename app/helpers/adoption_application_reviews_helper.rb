@@ -1,5 +1,5 @@
 module AdoptionApplicationReviewsHelper
-  def submission_status_classes(submission)
+  def application_status_classes(application)
     status_classes = {awaiting_review: "text-white bg-dark-primary",
                       under_review: "text-white bg-dark-info",
                       adoption_pending: "text-black bg-light-warning",
@@ -7,6 +7,6 @@ module AdoptionApplicationReviewsHelper
                       successful_applicant: "text-black bg-light-success",
                       adoption_made: "text-black bg-light-success"}
 
-    status_classes[submission.status.to_sym]
+    status_classes[application.status.to_sym]
   end
 end

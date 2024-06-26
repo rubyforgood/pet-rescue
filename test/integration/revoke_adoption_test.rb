@@ -1,7 +1,7 @@
 require "test_helper"
 
 class RevokeAdoptionTest < ActionDispatch::IntegrationTest
-  test "staff can revoke adoption and pet becomes adoptable and successful submission set to withdrawn" do
+  test "staff can revoke adoption and pet becomes adoptable and successful application set to withdrawn" do
     skip("while new ui is implemented")
     # pet = create(:pet)
     # adopter_foster_account = create(:adopter_foster_account, :with_adopter_foster_profile)

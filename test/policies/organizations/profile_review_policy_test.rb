@@ -53,7 +53,7 @@ class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
         @user = create(:staff)
       end
 
-      context "when submission belongs to a different organization" do
+      context "when application belongs to a different organization" do
         setup do
           ActsAsTenant.with_tenant(create(:organization)) do
             @adopter_foster_profile = create(:adopter_foster_profile)
@@ -65,7 +65,7 @@ class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
         end
       end
 
-      context "when submission belongs to user's organization" do
+      context "when application belongs to user's organization" do
         should "return true" do
           assert_equal true, @action.call
         end
@@ -87,7 +87,7 @@ class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
         @user = create(:staff_admin)
       end
 
-      context "when submission belongs to a different organization" do
+      context "when application belongs to a different organization" do
         setup do
           ActsAsTenant.with_tenant(create(:organization)) do
             @adopter_foster_profile = create(:adopter_foster_profile)
@@ -99,7 +99,7 @@ class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
         end
       end
 
-      context "when submission belongs to user's organization" do
+      context "when application belongs to user's organization" do
         should "return true" do
           assert_equal true, @action.call
         end
