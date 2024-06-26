@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: default_pet_tasks
+# Table name: task_templates
 #
 #  id              :bigint           not null, primary key
 #  description     :string
@@ -13,15 +13,17 @@
 #
 # Indexes
 #
-#  index_default_pet_tasks_on_organization_id  (organization_id)
+#  index_task_templates_on_organization_id  (organization_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (organization_id => organizations.id)
 #
-class DefaultPetTask < ApplicationRecord
-  acts_as_tenant(:organization)
+module Checklist
+  class TaskTemplate < ApplicationRecord
+    acts_as_tenant(:organization)
 
-  validates :name, presence: true
-  validates_numericality_of :due_in_days, only_integer: true, greater_than_or_equal_to: 0, allow_nil: true
+    validates :name, presence: true
+    validates_numericality_of :due_in_days, only_integer: true, greater_than_or_equal_to: 0, allow_nil: true
+  end
 end
