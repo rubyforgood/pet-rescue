@@ -165,6 +165,22 @@ GEM
       devise (>= 4.6)
     docile (1.4.0)
     drb (2.2.1)
+    dry-core (1.0.1)
+      concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-inflector (1.0.0)
+    dry-initializer (3.1.1)
+    dry-logic (1.5.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-types (1.7.2)
+      bigdecimal (~> 3.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0)
+      dry-inflector (~> 1.0)
+      dry-logic (~> 1.4)
+      zeitwerk (~> 2.6)
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
@@ -525,6 +541,8 @@ DEPENDENCIES
   debug
   devise
   devise_invitable (~> 2.0.9)
+  dry-initializer (~> 3.1)
+  dry-types (~> 1.7)
   evil_systems (~> 1.1)
   factory_bot_rails
   faker
