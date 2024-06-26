@@ -23,7 +23,9 @@ Rails.application.routes.draw do
         post "attach_files", on: :member, to: "pets#attach_files"
       end
 
-      resources :default_pet_tasks
+      namespace :checklist do
+        resources :task_templates  # here erin
+      end
       resources :faqs
       resources :dashboard, only: [:index] do
         collection do
