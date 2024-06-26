@@ -12,9 +12,9 @@ class Organizations::AdopterFosterer::ProfilesController < Organizations::BaseCo
 
     respond_to do |format|
       if @adopter_foster_profile.save
-        format.html { redirect_to adopter_fosterer_profile_path, notice: "Profile created" }
+        format.html { redirect_to adopter_fosterer_profile_path, notice: t(".success") }
       else
-        format.html { render :new, status: :unprocessable_entity, alert: "Error" }
+        format.html { render :new, status: :unprocessable_entity, alert: t(".error") }
       end
     end
   end
@@ -28,7 +28,7 @@ class Organizations::AdopterFosterer::ProfilesController < Organizations::BaseCo
   def update
     respond_to do |format|
       if @adopter_foster_profile.update(adopter_foster_profile_params)
-        format.html { redirect_to adopter_fosterer_profile_path, notice: "Profile updated" }
+        format.html { redirect_to adopter_fosterer_profile_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

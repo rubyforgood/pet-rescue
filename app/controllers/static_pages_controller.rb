@@ -11,9 +11,6 @@ class StaticPagesController < ApplicationController
     end
   end
 
-  def account_select
-  end
-
   def about_us
   end
 

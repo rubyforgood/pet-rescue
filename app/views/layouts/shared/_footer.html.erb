@@ -5,11 +5,11 @@
       <div class="col-lg-4 col-md-6 col-12">
         <!-- about company -->
         <div class="mb-4">
-          <h3> Pet Rescue </h3>
+          <h3> <%= t('.title') %> </h3>
           <div class="mt-4">
           <p>
-              If you are a pet adoption or foster organization and want a website like this one, for free,
-              <%= link_to 'Click Here', root_path %>
+              <%= t('.call') %>
+              <%= link_to t('.action'), root_path %>
 
             </p>
           </div>
@@ -18,7 +18,7 @@
       <div class="offset-lg-1 col-lg-2 col-md-3 col-6">
         <div class="mb-4">
           <!-- list -->
-          <h3 class="fw-bold mb-3">Company</h3>
+          <h3 class="fw-bold mb-3"><%= t('.company') %></h3>
           <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
             <% if Current.tenant&.profile.facebook_url.present? || Current.tenant&.profile.instagram_url.present? %>
               <li class="d-flex gap-3">
@@ -86,15 +86,15 @@
           <span id="copyright">
             <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
           </span>
-          Pet-Rescue, Inc. All Rights Reserved
+          <%= t('.rights') %>
         </span>
       </div>
       <!-- Links -->
       <div class="col-12 col-md-7 col-lg-8 d-md-flex justify-content-end">
         <nav class="nav nav-footer">
-          <a class="nav-link ps-0" href="#">Privacy Policy</a>
-          <a class="nav-link px-2 px-md-3" href="#">Cookie Notice  </a>
-          <a class="nav-link" href="#">Terms of Use</a>
+          <a class="nav-link ps-0" href="#"><%= t('.policy') %></a>
+          <a class="nav-link px-2 px-md-3" href="#"><%= t('.cookie') %></a>
+          <a class="nav-link" href="#"><%= t('.terms') %></a>
         </nav>
       </div>
     </div>

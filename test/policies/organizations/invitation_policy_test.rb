@@ -30,7 +30,7 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -40,7 +40,7 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -50,7 +50,7 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -60,7 +60,7 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -70,7 +70,7 @@ class Organizations::InvitationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
   end

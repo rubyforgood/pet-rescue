@@ -25,12 +25,18 @@ Rails.application.routes.draw do
 
       resources :default_pet_tasks
       resources :faqs
-      resources :dashboard, only: [:index]
+      resources :dashboard, only: [:index] do
+        collection do
+          get :incomplete_tasks
+          get :overdue_tasks
+        end
+      end
       resources :matches, only: %i[create destroy]
 
       resources :adoption_application_reviews, only: %i[index edit update]
       resources :manage_fosters, only: %i[new create index edit update destroy]
       resources :fosterers, only: %i[index]
+      resources :adopters, only: %i[index]
       resources :staff do
         post "deactivate", to: "staff#deactivate"
         post "activate", to: "staff#activate"
@@ -52,6 +58,7 @@ Rails.application.routes.draw do
     namespace :adopter_fosterer do
       resource :profile, except: :destroy
       resources :dashboard, only: [:index]
+      resources :likes, only: [:index, :create, :destroy]
       resources :adopter_applications, path: "applications", only: %i[index create update]
     end
   end

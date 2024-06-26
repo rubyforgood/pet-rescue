@@ -9,7 +9,7 @@ class OrganizationProfileTest < ActiveSupport::TestCase
   test "should belong to an organization" do
     organization_profile = build(:organization_profile)
 
-    assert_equal organization_profile.organization.slug, "test"
+    assert_equal "test", organization_profile.organization.slug
   end
 
   context "validations" do

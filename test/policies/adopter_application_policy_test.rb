@@ -33,7 +33,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         should "return only user's applications" do
           expected = @user_applications.map(&:id)
 
-          assert_equal(@scope.call, expected)
+          assert_equal(expected, @scope.call)
         end
       end
 
@@ -43,7 +43,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         end
 
         should "return empty array" do
-          assert_equal(@scope.call, [])
+          assert_equal([], @scope.call)
         end
       end
     end
@@ -63,7 +63,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -73,7 +73,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -83,7 +83,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -93,7 +93,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return true" do
-        assert_equal @action.call, true
+        assert_equal true, @action.call
       end
     end
 
@@ -102,8 +102,8 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         @user = create(:fosterer, :with_profile)
       end
 
-      should "return false" do
-        assert_equal @action.call, false
+      should "return true" do
+        assert_equal true, @action.call
       end
     end
   end
@@ -124,7 +124,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -134,7 +134,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -144,7 +144,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
 
       should "return false" do
-        assert_equal @action.call, false
+        assert_equal false, @action.call
       end
     end
 
@@ -159,7 +159,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -174,14 +174,14 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
           end
 
           should "return false" do
-            assert_equal @action.call, false
+            assert_equal false, @action.call
           end
         end
 
         context "when user has not applied for the pet" do
           should "return true" do
             # debugger
-            assert_equal @action.call, true
+            assert_equal true, @action.call
           end
         end
       end
@@ -192,8 +192,8 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         @user = create(:fosterer, :with_profile)
       end
 
-      should "return false" do
-        assert_equal @action.call, false
+      should "return true" do
+        assert_equal true, @action.call
       end
     end
   end
@@ -217,7 +217,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         end
 
         should "return false" do
-          assert_equal @action.call, false
+          assert_equal false, @action.call
         end
       end
 
@@ -228,7 +228,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
           end
 
           should "return false" do
-            assert_equal @action.call, false
+            assert_equal false, @action.call
           end
         end
 
@@ -238,7 +238,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
           end
 
           should "return false" do
-            assert_equal @action.call, false
+            assert_equal false, @action.call
           end
         end
 
@@ -248,7 +248,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
           end
 
           should "return false" do
-            assert_equal @action.call, false
+            assert_equal false, @action.call
           end
         end
 
@@ -258,7 +258,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
           end
 
           should "return false" do
-            assert_equal @action.call, false
+            assert_equal false, @action.call
           end
         end
       end
@@ -269,7 +269,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
         end
 
         should "return true" do
-          assert_equal @action.call, true
+          assert_equal true, @action.call
         end
       end
     end

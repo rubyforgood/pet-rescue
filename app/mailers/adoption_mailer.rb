@@ -1,4 +1,4 @@
-class MatchMailer < ApplicationMailer
+class AdoptionMailer < ApplicationMailer
   def reminder(match)
     @match = match
 

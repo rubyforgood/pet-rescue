@@ -1,6 +1,6 @@
 require "test_helper"
 
-class AnswerTest < ActiveSupport::TestCase
+class CustomForm::SubmittedAnswerTest < ActiveSupport::TestCase
   context "associations" do
     should belong_to(:question)
     should belong_to(:user)

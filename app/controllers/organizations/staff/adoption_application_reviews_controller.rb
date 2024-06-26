@@ -32,10 +32,10 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
     respond_to do |format|
       if @application.update(application_params)
         format.html { redirect_to staff_dashboard_index_path }
-        format.turbo_stream { flash.now[:notice] = "Application was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.turbo_stream { flash.now[:alert] = "Error updating application" }
+        format.turbo_stream { flash.now[:alert] = t(".error") }
       end
     end
   end

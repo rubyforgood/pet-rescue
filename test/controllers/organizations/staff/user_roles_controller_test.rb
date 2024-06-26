@@ -53,10 +53,10 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       assert_response :redirect
       follow_redirect!
 
-      assert_equal flash.notice, "Account changed to Staff"
+      assert_equal "Account changed to Staff", flash.notice
 
       has_role = @account.has_role?(:staff, ActsAsTenant.current_tenant)
-      assert_equal has_role, true
+      assert_equal true, has_role
     end
 
     should "change role from admin to staff with turbo" do
@@ -66,14 +66,14 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       assert_turbo_stream(action: "replace", count: 2) do
         assert_select "button", text: "Staff"
       end
-      assert_equal flash.notice, "Account changed to Staff"
+      assert_equal "Account changed to Staff", flash.notice
     end
 
     should "not allow user to change own role" do
       post staff_user_to_staff_url(@user), headers: {"HTTP_REFERER" => "http://www.example.com/"}
 
       has_role = @user.has_role?(:staff, ActsAsTenant.current_tenant)
-      assert_equal has_role, false
+      assert_equal false, has_role
     end
 
     should "scope role to organization" do
@@ -81,8 +81,8 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       has_strict_role = @account.has_strict_role?(:staff, ActsAsTenant.current_tenant)
       global_role = @account.has_role?(:staff)
 
-      assert_equal has_strict_role, true
-      assert_equal global_role, false
+      assert_equal true, has_strict_role
+      assert_equal false, global_role
     end
 
     should "receive alert if role is not changed" do
@@ -92,14 +92,14 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       assert_response :redirect
       follow_redirect!
 
-      assert_equal flash.alert, "Error changing role"
+      assert_equal "Error changing role", flash.alert
     end
 
     should "receive alert via turbo if role is not changed" do
       User.any_instance.stubs(:change_role).returns(false)
       post staff_user_to_staff_url(@account), as: :turbo_stream
 
-      assert_equal flash.alert, "Error changing role"
+      assert_equal "Error changing role", flash.alert
     end
   end
 
@@ -116,10 +116,10 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       assert_response :redirect
       follow_redirect!
 
-      assert_equal flash.notice, "Account changed to Admin"
+      assert_equal "Account changed to Admin", flash.notice
 
       has_role = @account.has_role?(:admin, ActsAsTenant.current_tenant)
-      assert_equal has_role, true
+      assert_equal true, has_role
     end
 
     should "change role from staff to admin with turbo" do
@@ -129,7 +129,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       assert_turbo_stream(action: "replace", count: 2) do
         assert_select "button", text: "Admin"
       end
-      assert_equal flash.notice, "Account changed to Admin"
+      assert_equal "Account changed to Admin", flash.notice
     end
 
     should "scope role to organization" do
@@ -137,8 +137,8 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       has_strict_role = @account.has_strict_role?(:admin, ActsAsTenant.current_tenant)
       global_role = @account.has_role?(:admin)
 
-      assert_equal has_strict_role, true
-      assert_equal global_role, false
+      assert_equal true, has_strict_role
+      assert_equal false, global_role
     end
     should "receive alert if role is not changed" do
       User.any_instance.stubs(:change_role).returns(false)
@@ -147,14 +147,14 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       assert_response :redirect
       follow_redirect!
 
-      assert_equal flash.alert, "Error changing role"
+      assert_equal "Error changing role", flash.alert
     end
 
     should "receive alert via turbo if role is not changed" do
       User.any_instance.stubs(:change_role).returns(false)
       post staff_user_to_admin_url(@account), as: :turbo_stream
 
-      assert_equal flash.alert, "Error changing role"
+      assert_equal "Error changing role", flash.alert
     end
   end
 end

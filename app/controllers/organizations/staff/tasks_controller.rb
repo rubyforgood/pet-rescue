@@ -71,7 +71,7 @@ class Organizations::Staff::TasksController < Organizations::BaseController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to staff_pet_path(@pet), notice: "Task was successfully deleted." }
+      format.html { redirect_to staff_pet_path(@pet), notice: t(".success") }
       format.turbo_stream
     end
   rescue ActiveRecord::RecordNotFound
