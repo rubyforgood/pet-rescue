@@ -110,6 +110,12 @@ gem "action_policy", "~> 0.6.9"
 # Use ViewComponent for our presenter pattern framework
 gem "view_component", "~> 3.12"
 
+# Use dry-types for defining types
+gem "dry-types", "~> 1.7"
+
+# Use dry-initializer for defining params and options for instances
+gem "dry-initializer", "~> 3.1"
+
 group :development, :test, :staging do
   gem "faker"
 end
