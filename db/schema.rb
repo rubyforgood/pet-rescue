@@ -9,8 +9,11 @@
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
-ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
-  
+
+ActiveRecord::Schema[7.1].define(version: 2024_07_08_144556) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -378,6 +381,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
   add_foreign_key "adopter_foster_accounts", "users"
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
+  add_foreign_key "custom_pages", "organizations"
+  add_foreign_key "default_pet_tasks", "organizations"
+  add_foreign_key "custom_pages", "organizations"
+  add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "faqs", "organizations"

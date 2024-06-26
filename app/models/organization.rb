@@ -21,7 +21,6 @@ class Organization < ApplicationRecord
   has_many :pets
   has_many :task_templates
   has_many :forms, dependent: :destroy
-  has_many :forms, class_name: "CustomForm::Form", dependent: :destroy
   has_many :faqs
 
   has_one :profile, dependent: :destroy, class_name: "OrganizationProfile", required: true
