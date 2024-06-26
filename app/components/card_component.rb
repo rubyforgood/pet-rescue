@@ -2,25 +2,32 @@
 
 # Renders a card component
 class CardComponent < ApplicationComponent
-  attr_reader :card_options, :image_options, :header_options, :body_options
+  option :card_options,
+    Types::Hash.schema(
+      class?: Types::String
+    ),
+    default: proc { {} }
 
-  # @param card_options [Hash] opts for customizing card
-  # @option card_options [Symbol] :class () CSS classes of card container
-  # @param image_options [Hash] opts for customizing card image
-  # @option image_options [Symbol] :src () Src of image
-  # @option image_options [Symbol] :class () CSS classes of img element
-  # @option image_options [Symbol] :url () Url to wrap an image in
-  # @option image_options [Symbol] :default () Default image src
-  # @param header_options [Hash] opts for customizing card header
-  # @option header_options [Symbol] :class () CSS classes of card header
-  # @param body_options [Hash] opts for customizing card body
-  # @option body_options [Symbol] :class () CSS classes of card body
-  def initialize(card_options: {}, image_options: {}, header_options: {}, body_options: {})
-    @card_options = card_options
-    @image_options = image_options
-    @header_options = header_options
-    @body_options = body_options
-  end
+  option :header_options,
+    Types::Hash.schema(
+      class?: Types::String
+    ),
+    default: proc { {} }
+
+  option :body_options,
+    Types::Hash.schema(
+      class?: Types::String
+    ),
+    default: proc { {} }
+
+  option :image_options,
+    Types::Hash.schema(
+      src?: Types::Nominal::Any,
+      class?: Types::String,
+      url?: Types::String,
+      default?: Types::String
+    ),
+    default: proc { {} }
 
   renders_one :header
   renders_one :body
@@ -30,6 +37,14 @@ class CardComponent < ApplicationComponent
 
   def card_class
     @card_class ||= card_options[:class] || "card card-hover"
+  end
+
+  def header_class
+    @header_class ||= header_options[:class] || "card-header"
+  end
+
+  def body_class
+    @body_class ||= body_options[:class] || "card-body"
   end
 
   def image_src
@@ -42,14 +57,6 @@ class CardComponent < ApplicationComponent
 
   def image_url
     @image_url ||= image_options[:url]
-  end
-
-  def header_class
-    @header_class ||= header_options[:class] || "card-header"
-  end
-
-  def body_class
-    @body_class ||= body_options[:class] || "card-body"
   end
 
   def image_default
