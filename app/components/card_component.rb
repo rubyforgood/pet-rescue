@@ -1,8 +1,20 @@
 # frozen_string_literal: true
 
-class CardComponent < ViewComponent::Base
+# Renders a card component
+class CardComponent < ApplicationComponent
   attr_reader :card_options, :image_options, :header_options, :body_options
 
+  # @param card_options [Hash] opts for customizing card
+  # @option card_options [Symbol] :class () CSS classes of card container
+  # @param image_options [Hash] opts for customizing card image
+  # @option image_options [Symbol] :src () Src of image
+  # @option image_options [Symbol] :class () CSS classes of img element
+  # @option image_options [Symbol] :url () Url to wrap an image in
+  # @option image_options [Symbol] :default () Default image src
+  # @param header_options [Hash] opts for customizing card header
+  # @option header_options [Symbol] :class () CSS classes of card header
+  # @param body_options [Hash] opts for customizing card body
+  # @option body_options [Symbol] :class () CSS classes of card body
   def initialize(card_options: {}, image_options: {}, header_options: {}, body_options: {})
     @card_options = card_options
     @image_options = image_options
