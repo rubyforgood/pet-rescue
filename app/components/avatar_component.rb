@@ -1,23 +1,27 @@
 # frozen_string_literal: true
 
-class AvatarComponent < ViewComponent::Base
+# Renders a User's avatar as image or user's initials
+class AvatarComponent < ApplicationComponent
   VALID_SIZES = %i[md xl].freeze
 
   attr_reader :user, :size
 
+  # @param user [User] user of the avatar
+  # @param size [Symbol] size option, `:md` or `:xl`
   def initialize(user:, size: :md)
     @user = user
     @size = filter_attribute(size, VALID_SIZES, default: :md)
   end
 
-  def filter_attribute(value, allowed_values, default: nil)
-    return default unless value
-    return value if allowed_values.include?(value)
-
-    default
-  end
-
   private
+
+  def avatar
+    if image_url
+      image_tag(url_for(image_url), alt: alt, class: image_classes)
+    else
+      content_tag(:span, initials, class: initials_classes)
+    end
+  end
 
   def image_url
     @user.avatar.attached? ? url_for(@user.avatar) : nil
