@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_08_144556) do
-  # These are extensions that must be enabled in order to support this database
+
+ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -111,6 +111,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_144556) do
     t.index ["organization_id"], name: "index_adopter_foster_profiles_on_organization_id"
   end
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 5328a2a4 (Update Controller and routing changes)
   create_table "custom_pages", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.string "hero"
@@ -132,6 +138,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_144556) do
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
 
+<<<<<<< HEAD
+=======
+>>>>>>> 5d8513ca (819 replace page text with custom page (#854))
+=======
+>>>>>>> eaabd1d2 (Update Controller and routing changes)
+>>>>>>> 5328a2a4 (Update Controller and routing changes)
   create_table "faqs", force: :cascade do |t|
     t.string "question", null: false
     t.text "answer", null: false
@@ -382,10 +394,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_144556) do
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
 >>>>>>> 5d8513ca (819 replace page text with custom page (#854))
+=======
+>>>>>>> eaabd1d2 (Update Controller and routing changes)
   add_foreign_key "faqs", "organizations"
   add_foreign_key "form_profiles", "forms"
   add_foreign_key "form_submissions", "organizations"
