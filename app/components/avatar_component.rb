@@ -2,16 +2,8 @@
 
 # Renders a User's avatar as image or user's initials
 class AvatarComponent < ApplicationComponent
-  VALID_SIZES = %i[md xl].freeze
-
-  attr_reader :user, :size
-
-  # @param user [User] user of the avatar
-  # @param size [Symbol] size option, `:md` or `:xl`
-  def initialize(user:, size: :md)
-    @user = user
-    @size = filter_attribute(size, VALID_SIZES, default: :md)
-  end
+  param :user, Types::Instance(User)
+  option :size, Types::Size, default: -> { :md }
 
   private
 
