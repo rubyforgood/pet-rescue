@@ -1,5 +1,7 @@
 class Organizations::AdoptablePetsController < Organizations::BaseController
   include ::Pagy::Backend
+
+  skip_before_action :authenticate_user!
   skip_verify_authorized only: %i[index]
   before_action :set_likes, only: %i[index show], if: -> { current_user&.adopter_foster_account }
   helper_method :get_animals

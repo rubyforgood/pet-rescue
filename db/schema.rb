@@ -288,21 +288,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
   end
 
-  create_table "submissions", force: :cascade do |t|
-    t.bigint "pet_id", null: false
-    t.bigint "adopter_foster_account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "status", default: 0
-    t.text "notes"
-    t.boolean "profile_show", default: true
-    t.bigint "organization_id", null: false
-    t.index ["adopter_foster_account_id"], name: "index_submissions_on_adopter_foster_account_id"
-    t.index ["organization_id"], name: "index_submissions_on_organization_id"
-    t.index ["pet_id", "adopter_foster_account_id"], name: "index_submissions_on_pet_id_and_adopter_foster_account_id", unique: true
-    t.index ["pet_id"], name: "index_submissions_on_pet_id"
-  end
-
   create_table "submitted_answers", force: :cascade do |t|
     t.json "value", null: false
     t.json "question_snapshot", null: false
@@ -389,8 +374,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
   add_foreign_key "questions", "forms"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
-  add_foreign_key "submissions", "adopter_foster_accounts"
-  add_foreign_key "submissions", "pets"
   add_foreign_key "submitted_answers", "questions"
   add_foreign_key "submitted_answers", "users"
   add_foreign_key "tasks", "pets"

@@ -5,6 +5,7 @@ class Organizations::Staff::StaffControllerTest < ActionDispatch::IntegrationTes
   setup do
     @organization = ActsAsTenant.current_tenant
     @staff = create(:staff_account)
+    sign_in @staff.user
   end
 
   context "authorization" do

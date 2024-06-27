@@ -1,5 +1,4 @@
 class Organizations::AdopterFosterer::AdopterApplicationsController < Organizations::BaseController
-  before_action :authenticate_user!
   before_action :set_application, only: %i[update]
   layout "adopter_foster_dashboard"
 
