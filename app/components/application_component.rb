@@ -15,12 +15,8 @@ class ApplicationComponent < ViewComponent::Base
       Types::Instance(ActiveStorage::Attachment) |
       Types::Instance(ActiveStorage::Attached::One) |
       Types::Instance(ActiveStorage::Attached::Many)
-  end
 
-  def filter_attribute(value, allowed_values, default: nil)
-    return default unless value
-    return value if allowed_values.include?(value)
-
-    default
+    Size =
+      Types::Symbol.enum(:md, :xl)
   end
 end
