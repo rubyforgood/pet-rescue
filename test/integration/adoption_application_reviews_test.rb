@@ -15,6 +15,9 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   context "non-staff" do
     should "not see any applications" do
+      @user = create(:user)
+      sign_in @user
+
       get staff_adoption_application_reviews_path
 
       assert_response :redirect

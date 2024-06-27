@@ -4,6 +4,8 @@ require "action_policy/test_helper"
 class Organizations::Staff::FosterersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = ActsAsTenant.current_tenant
+    @adopter_foster_account = create(:adopter_foster_account)
+    sign_in @adopter_foster_account.user
   end
 
   context "authorization" do

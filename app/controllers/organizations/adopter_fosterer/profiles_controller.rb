@@ -1,5 +1,4 @@
 class Organizations::AdopterFosterer::ProfilesController < Organizations::BaseController
-  before_action :authenticate_user!
   before_action :authorize_with!, only: %i[new create]
   before_action :set_profile, only: %i[show edit update]
 
