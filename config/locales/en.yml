@@ -370,6 +370,7 @@ en:
       index:
         header: "Up for adoption"
       show:
+        application_status: "Application status:"
         adoption_process: "Adoption Process"
         please_read_faq_html: "Please read the %{faq_link} before applying to adopt."
         create_an_account: "Create an account to apply for this pet"

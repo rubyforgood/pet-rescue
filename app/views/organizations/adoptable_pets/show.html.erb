@@ -102,8 +102,8 @@
                 <% else %>
                   <% if AdopterApplication.adoption_exists?(current_user.adopter_foster_account&.id, @pet.id) %>
                     <div class='d-flex align-items-center mt-3'>
-                      <h4 class="me-2">
-                        <%= "#{@adoption_application.human_enum_name(@adoption_application.status) || t('.status.default')}" %>
+                      <h4 class="me-2 mb-0">
+                        <%= "#{t('organizations.adoptable_pets.show.application_status')} #{@adoption_application.human_enum_name(:status) || t('.status.default')}" %>
                       </h4>
                       <% if %w[under_review adoption_pending].include?(@adoption_application.status) %>
                         <%= image_tag('pause.png', height: '21') %>
