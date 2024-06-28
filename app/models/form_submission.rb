@@ -23,5 +23,5 @@ belongs_to :person
 belongs_to :organization
 
 # has_many :adopter_applications
-# has_many :submitted_answers
+has_many :submitted_answers, class_name: "CustomForm::SubmittedAnswer"
 end
