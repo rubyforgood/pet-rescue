@@ -3,7 +3,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
 
   skip_before_action :authenticate_user!
   skip_verify_authorized only: %i[index]
-  before_action :set_likes, only: %i[index show], if: -> { current_user&.adopter_foster_account }
+  before_action :set_likes, only: %i[index show], if: -> { allowed_to?(:index?, Like) }
   helper_method :get_animals
 
   def index
@@ -42,6 +42,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   end
 
   def set_likes
-    @likes = Like.where(adopter_foster_account_id: current_user.adopter_foster_account.id)
+    likes = current_user.adopter_foster_account.likes
+    @likes_by_id = likes.index_by(&:pet_id)
   end
 end
