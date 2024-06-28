@@ -9,7 +9,7 @@ class SubmissionReviewsTest < ActionDispatch::IntegrationTest
     @successful_applicant_sub = create(:submission, status: :successful_applicant)
     @adoption_made_sub = create(:submission, status: :adoption_made)
     @organization = create(:organization)
-    @page_text = create(:page_text, organization: @organization)
+    @custom_page = create(:custom_page, organization: @organization)
     Current.organization = @organization
   end
 

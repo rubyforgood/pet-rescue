@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,6 +92,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
     t.index ["adopter_foster_account_id"], name: "index_adopter_foster_profiles_on_adopter_foster_account_id", unique: true
     t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
     t.index ["organization_id"], name: "index_adopter_foster_profiles_on_organization_id"
+  end
+
+  create_table "custom_pages", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.string "hero"
+    t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "adoptable_pet_info"
+    t.index ["organization_id"], name: "index_custom_pages_on_organization_id"
   end
 
   create_table "default_pet_tasks", force: :cascade do |t|
@@ -192,16 +202,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
-  end
-
-  create_table "page_texts", force: :cascade do |t|
-    t.bigint "organization_id", null: false
-    t.string "hero"
-    t.text "about"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "adoptable_pet_info"
-    t.index ["organization_id"], name: "index_page_texts_on_organization_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -354,6 +354,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
   add_foreign_key "adopter_foster_accounts", "users"
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
+  add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "faqs", "organizations"
   add_foreign_key "form_profiles", "forms"
@@ -365,7 +366,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"
-  add_foreign_key "page_texts", "organizations"
   add_foreign_key "people", "organizations"
   add_foreign_key "pets", "organizations"
   add_foreign_key "questions", "forms"

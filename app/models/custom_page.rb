@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: page_texts
+# Table name: custom_pages
 #
 #  id                 :bigint           not null, primary key
 #  about              :text
@@ -12,13 +12,13 @@
 #
 # Indexes
 #
-#  index_page_texts_on_organization_id  (organization_id)
+#  index_custom_pages_on_organization_id  (organization_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (organization_id => organizations.id)
 #
-class PageText < ApplicationRecord
+class CustomPage < ApplicationRecord
   acts_as_tenant(:organization)
 
   has_one_attached :hero_image

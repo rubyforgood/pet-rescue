@@ -47,7 +47,7 @@ ADMIN_PERMISSIONS = (
     activate_staff
     invite_staff
     manage_organization_profile
-    manage_page_text
+    manage_custom_page
     manage_staff
     change_user_roles
   ]
