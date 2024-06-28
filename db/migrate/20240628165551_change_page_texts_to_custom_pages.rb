@@ -1,5 +1,5 @@
-class ChangeCustomPagesToCustomPages < ActiveRecord::Migration[7.1]
+class ChangePageTextsToCustomPages < ActiveRecord::Migration[7.1]
   def change
-    rename_table :custom_pages, :custom_pages
+    rename_table :page_texts, :custom_pages
   end
 end

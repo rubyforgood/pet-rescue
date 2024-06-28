@@ -104,7 +104,7 @@ class Organizations::CreateService
 
   def create_custom_page
     ActsAsTenant.with_tenant(@organization) do
-      CustomPage.create!
+      PageText.create!
     end
   end
 end
