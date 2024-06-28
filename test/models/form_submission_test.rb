@@ -5,7 +5,7 @@ class FormSubmissionTest < ActiveSupport::TestCase
     should belong_to(:person)
     should belong_to(:organization)
 
-    # should have_many(:adopter_applications)
+    should have_many(:adopter_applications)
     should have_many(:submitted_answers)
   end
 end
