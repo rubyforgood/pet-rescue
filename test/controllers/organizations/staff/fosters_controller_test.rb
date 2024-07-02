@@ -4,10 +4,11 @@ require "action_policy/test_helper"
 class Organizations::Staff::FostersControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
-
     context "context only action" do
       setup do
         @organization = ActsAsTenant.current_tenant
+        @adopter_foster_account = create(:adopter_foster_account)
+        sign_in @adopter_foster_account.user
       end
 
       context "#new" do
@@ -66,6 +67,7 @@ class Organizations::Staff::FostersControllerTest < ActionDispatch::IntegrationT
     context "existing record actions" do
       setup do
         @foster = create(:foster)
+        sign_in @foster.user
       end
 
       context "#edit" do

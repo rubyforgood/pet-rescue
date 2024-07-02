@@ -165,6 +165,22 @@ GEM
       devise (>= 4.6)
     docile (1.4.0)
     drb (2.2.1)
+    dry-core (1.0.1)
+      concurrent-ruby (~> 1.0)
+      zeitwerk (~> 2.6)
+    dry-inflector (1.0.0)
+    dry-initializer (3.1.1)
+    dry-logic (1.5.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0, < 2)
+      zeitwerk (~> 2.6)
+    dry-types (1.7.2)
+      bigdecimal (~> 3.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 1.0)
+      dry-inflector (~> 1.0)
+      dry-logic (~> 1.4)
+      zeitwerk (~> 2.6)
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0)
@@ -301,8 +317,6 @@ GEM
       timeout
     net-smtp (0.5.0)
       net-protocol
-    nice_partials (0.10.0)
-      actionview (>= 4.2.6)
     nio4r (2.7.3)
     nokogiri (1.16.5)
       mini_portile2 (~> 2.8.2)
@@ -480,6 +494,10 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
+    view_component (3.12.1)
+      activesupport (>= 5.2.0, < 8.0)
+      concurrent-ruby (~> 1.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -523,6 +541,8 @@ DEPENDENCIES
   debug
   devise
   devise_invitable (~> 2.0.9)
+  dry-initializer (~> 3.1)
+  dry-types (~> 1.7)
   evil_systems (~> 1.1)
   factory_bot_rails
   faker
@@ -534,7 +554,6 @@ DEPENDENCIES
   jbuilder
   letter_opener
   mocha
-  nice_partials
   pagy
   pg (~> 1.5)
   phonelib
@@ -555,6 +574,7 @@ DEPENDENCIES
   traceroute
   turbo-rails
   tzinfo-data
+  view_component (~> 3.12)
   web-console
 
 RUBY VERSION

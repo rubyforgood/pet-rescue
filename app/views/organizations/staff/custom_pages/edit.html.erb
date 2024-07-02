@@ -1,9 +1,8 @@
-<% breadcrumb :custom_page %>
 
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Custom Page" %>
-  <% p.header_subtitle "Edit your page" %>
-  <% p.content do %>
+<%= render DashboardPageComponent.new(crumb: :page_text) do |c| %>
+  <% c.with_header_title { "Custom Page" } %>
+  <% c.with_header_subtitle { "Edit your page" } %>
+  <% c.with_body do %>
     <section id="account_select">
       <div>
         <div>

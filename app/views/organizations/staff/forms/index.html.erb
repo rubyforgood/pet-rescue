@@ -1,13 +1,9 @@
-<% breadcrumb :forms_index %>
-
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title t(".forms") %>
-
-  <% p.actions do %>
+<%= render DashboardPageComponent.new(crumb: :forms_index) do |c| %>
+  <% c.with_header_title { t(".forms") } %>
+  <% c.with_action do %>
     <%= link_to t(".create_form"), new_staff_form_path, class: "btn btn-primary" %>
   <% end %>
-
-  <% p.content do %>
+  <% c.with_body do %>
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <!-- card -->
       <div class="card">
@@ -23,7 +19,6 @@
               <% end %>
             </tr>
             </thead>
-
             <tbody>
             <% @forms.each do |form| %>
               <tr>

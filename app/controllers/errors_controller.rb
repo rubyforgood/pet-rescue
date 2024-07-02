@@ -1,4 +1,5 @@
 class ErrorsController < ApplicationController
+  skip_before_action :authenticate_user!
   skip_verify_authorized
 
   def not_found

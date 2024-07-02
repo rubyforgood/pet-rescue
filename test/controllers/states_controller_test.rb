@@ -2,7 +2,9 @@ require "test_helper"
 
 class StatesControllerTest < ActionDispatch::IntegrationTest
   test "should return turbo stream with the states in it" do
-    create(:adopter, :with_profile)
+    adopter = create(:adopter, :with_profile)
+    sign_in adopter
+
     name = "adopter[address_attributes][state]"
     target = "adopter_foster_profile_location_attributes_province_state"
 

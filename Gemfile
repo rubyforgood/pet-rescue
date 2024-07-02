@@ -84,11 +84,37 @@ gem "rails-i18n"
 # Provides helper methods to easily add 'active' tag on links
 gem "active_link_to"
 
-# Provides named content areas to Action View through `partial` method
-gem "nice_partials"
-
 # needed for pagination
 gem "pagy"
+
+# Adds location data for cities and states around the world
+gem "city-state", "~> 1.1.0"
+
+# Adds a simple way to fetch with Javascript
+gem "requestjs-rails", "~> 0.0.11"
+
+# Add ability to set user roles
+gem "rolify"
+
+# Add breadcrumb management
+gem "gretel", "~> 5.0"
+
+# Use ransack for searching and filtering records
+gem "ransack"
+
+gem "rails-controller-testing"
+
+# Use Action Policy for authorization framework
+gem "action_policy", "~> 0.6.9"
+
+# Use ViewComponent for our presenter pattern framework
+gem "view_component", "~> 3.12"
+
+# Use dry-types for defining types
+gem "dry-types", "~> 1.7"
+
+# Use dry-initializer for defining params and options for instances
+gem "dry-initializer", "~> 3.1"
 
 group :development, :test, :staging do
   gem "faker"
@@ -152,22 +178,3 @@ group :test do
   # Adds ability to stub out methods in tests easier
   gem "mocha"
 end
-
-# Adds location data for cities and states around the world
-gem "city-state", "~> 1.1.0"
-
-# Adds a simple way to fetch with Javascript
-gem "requestjs-rails", "~> 0.0.11"
-
-# Add ability to set user roles
-gem "rolify"
-
-# Add breadcrumb management
-gem "gretel", "~> 5.0"
-
-gem "ransack"
-
-gem "rails-controller-testing"
-
-# Use Action Policy for authorization framework
-gem "action_policy", "~> 0.6.9"

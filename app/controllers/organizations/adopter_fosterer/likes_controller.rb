@@ -7,7 +7,8 @@ class Organizations::AdopterFosterer::LikesController < Organizations::BaseContr
   def index
     authorize!
 
-    @likes = current_user.adopter_foster_account.likes
+    likes = current_user.adopter_foster_account.likes
+    @likes_by_id = likes.index_by(&:pet_id)
     @pets = current_user.adopter_foster_account.liked_pets
   end
 

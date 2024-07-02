@@ -4,23 +4,23 @@ class AdoptionFostererTest < ApplicationSystemTestCase
   setup do
     @user = create(:fosterer, :with_profile)
     @org = @user.organization
-    @custom_page = create(:custom_page, :with_image, organization: @org)
+    @custom_page = create(:custom_page, :with_about_us_image, organization: @org)
 
     @pet = create(:pet)
-    create(:submission, pet: @pet, adopter_foster_account: @user.adopter_foster_account, organization: @org)
+    create(:adopter_application, pet: @pet, adopter_foster_account: @user.adopter_foster_account, organization: @org)
 
     sign_in @user
   end
 
-  context "submissions" do
-    should "should show list of user's submissions" do
+  context "adoption applications" do
+    should "should show list of user's adoption applications" do
       visit adopter_fosterer_dashboard_index_path
       click_on "Adoption Applications"
       assert_text @pet.name
     end
 
-    should "should let user withdraw and then delete submissions from their list" do
-      visit adopter_fosterer_custom_form_submissions_path
+    should "should let user withdraw and then delete applications from their list" do
+      visit adopter_fosterer_adopter_applications_path
       assert_text @pet.name
       assert_text "Under Review"
       accept_confirm do

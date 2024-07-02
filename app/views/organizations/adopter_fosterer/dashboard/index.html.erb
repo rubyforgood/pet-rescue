@@ -1,7 +1,6 @@
-<!--page heading-->
-<%= render "components/adopter_foster_dashboard/page" do |p| %>
-  <% p.header_title t("dashboard.index.header_title") %>
-  <% p.content do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { t("dashboard.index.header_title") } %>
+  <% c.with_body do %>
     <div class="row">
       <% unless current_user.adopter_foster_account.adopter_foster_profile.present? %>
         <div class="alert alert-warning ">
@@ -11,35 +10,33 @@
       <% end %>
 
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
-        <%= render "components/data_card" do |c| %>
-          <% c.title "Example" %>
-          <% c.icon "users" %>
-          <% c.value '5' %>
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Example" } %>
+          <% card.with_icon_name { "users" } %>
+          <% card.with_value { "5" } %>
         <% end %>
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
-        <%= render "components/data_card" do |c| %>
-          <% c.title "Pets" %>
-          <% c.icon "heart" %>
-          <% c.value @organization.pets.count %>
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Pets" } %>
+          <% card.with_icon_name { "heart" } %>
+          <% card.with_value { @organization.pets.count.to_s } %>
         <% end %>
       </div>
-
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
-         <%= link_to adopter_fosterer_custom_form_submissions_path, class: "card-link" do %>
-          <%= render "components/data_card" do |c| %>
-            <% c.title "Applications" %> #here erin
-            <% c.icon "file-text" %>
-            <% c.value @submission_count %>
-            <% end %>
+         <%= link_to adopter_fosterer_adopter_applications_path, class: "card-link" do %>
+          <%= render DataCardComponent.new do |card| %>
+            <% card.with_title { "Applications" } %>
+            <% card.with_icon_name { "file-text" } %>
+            <% card.with_value { @application_count.to_s } %>
           <% end %>
+        <% end %>
       </div>
-
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
-        <%= render "components/data_card" do |c| %>
-          <% c.title "Rescues" %>
-          <% c.icon "star" %>
-          <% c.value "TBD" %>
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Rescues" } %>
+          <% card.with_icon_name { "star" } %>
+          <% card.with_value { "TBD" } %>
         <% end %>
       </div>
     </div>
