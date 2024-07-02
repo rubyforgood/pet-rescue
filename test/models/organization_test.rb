@@ -10,6 +10,6 @@ class OrganizationTest < ActiveSupport::TestCase
     should have_many(:faqs)
 
     should have_one(:profile).dependent(:destroy).required
-    should have_one(:page_text).dependent(:destroy)
+    should have_one(:custom_page).dependent(:destroy)
   end
 end
