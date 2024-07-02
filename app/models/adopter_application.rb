@@ -28,6 +28,7 @@ class AdopterApplication < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :pet, touch: true
   belongs_to :adopter_foster_account
+  belongs_to :form_submission
 
   broadcasts_refreshes
 

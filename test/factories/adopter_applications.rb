@@ -18,6 +18,7 @@ FactoryBot.define do
     end
 
     pet
+    form_submission
 
     trait :adoption_pending do
       status { 2 }
