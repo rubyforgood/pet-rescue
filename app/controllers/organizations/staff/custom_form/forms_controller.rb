@@ -8,11 +8,11 @@ module Organizations
         layout "dashboard"
 
         def index
-          @forms = authorized_scope(Form.all)
+          @forms = authorized_scope(::CustomForm::Form.all)
         end
 
         def new
-          @form = Form.new
+          @form = ::CustomForm::Form.new
         end
 
         def create
@@ -61,11 +61,11 @@ module Organizations
         end
 
         def form_params
-          params.require(:form).permit(:name, :description, :title, :instructions)
+          params.require(:custom_form_form).permit(:name, :description, :title, :instructions)
         end
 
         def context_authorize!
-          authorize! Form, context: {organization: Current.organization}
+          authorize! ::CustomForm::Form, context: {organization: Current.organization}
         end
       end
     end

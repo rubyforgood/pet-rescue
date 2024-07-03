@@ -19,9 +19,9 @@ module Organizations
           context "#new" do
             should "be authorized" do
               assert_authorized_to(
-                :manage?, Form,
+                :manage?, ::CustomForm::Form,
                 context: {organization: @organization},
-                with: Organizations::FormPolicy
+                with: Organizations::CustomForm::FormPolicy
               ) do
                 get new_staff_custom_form_form_url
               end
@@ -31,15 +31,15 @@ module Organizations
           context "#create" do
             setup do
               @params = {
-                form: attributes_for(:form)
+                custom_form_form: attributes_for(:form)
               }
             end
 
             should "be authorized" do
               assert_authorized_to(
-                :manage?, Form,
+                :manage?, ::CustomForm::Form,
                 context: {organization: @organization},
-                with: Organizations::FormPolicy
+                with: Organizations::CustomForm::FormPolicy
               ) do
                 post staff_custom_form_forms_url, params: @params
               end
@@ -49,9 +49,9 @@ module Organizations
           context "#index" do
             should "be authorized" do
               assert_authorized_to(
-                :manage?, Form,
+                :manage?, ::CustomForm::Form,
                 context: {organization: @organization},
-                with: Organizations::FormPolicy
+                with: Organizations::CustomForm::FormPolicy
               ) do
                 get staff_custom_form_forms_url
               end
@@ -60,7 +60,7 @@ module Organizations
             should "have authorized scope" do
               assert_have_authorized_scope(
                 type: :active_record_relation,
-                with: Organizations::FormPolicy
+                with: Organizations::CustomForm::FormPolicy
               ) do
                 get staff_custom_form_forms_url
               end
@@ -71,7 +71,7 @@ module Organizations
             should "be authorized" do
               assert_authorized_to(
                 :manage?, @form,
-                with: Organizations::FormPolicy
+                with: Organizations::CustomForm::FormPolicy
               ) do
                 get staff_custom_form_form_url(@form)
               end
@@ -82,7 +82,7 @@ module Organizations
             should "be authorized" do
               assert_authorized_to(
                 :manage?, @form,
-                with: Organizations::FormPolicy
+                with: Organizations::CustomForm::FormPolicy
               ) do
                 get edit_staff_custom_form_form_url(@form)
               end
@@ -92,7 +92,7 @@ module Organizations
           context "#update" do
             setup do
               @params = {
-                form: {
+                custom_form_form: {
                   name: "new name"
                 }
               }
@@ -101,7 +101,7 @@ module Organizations
             should "be authorized" do
               assert_authorized_to(
                 :manage?, @form,
-                with: Organizations::FormPolicy
+                with: Organizations::CustomForm::FormPolicy
               ) do
                 patch staff_custom_form_form_url(@form),
                   params: @params
@@ -113,7 +113,7 @@ module Organizations
             should "be authorized" do
               assert_authorized_to(
                 :manage?, @form,
-                with: Organizations::FormPolicy
+                with: Organizations::CustomForm::FormPolicy
               ) do
                 delete staff_custom_form_form_url(@form)
               end
@@ -147,7 +147,7 @@ module Organizations
             should "create new form" do
               assert_difference("@organization.forms.count", 1) do
                 post staff_custom_form_forms_path, params: {
-                  form: attributes_for(:form)
+                  custom_form_form: attributes_for(:form)
                 }
               end
 
@@ -159,7 +159,7 @@ module Organizations
             should "not create new form with missing params" do
               assert_difference("@organization.forms.count", 0) do
                 post staff_custom_form_forms_path, params: {
-                  form: {
+                  custom_form_form: {
                     name: "",
                     title: ""
                   }
@@ -179,7 +179,7 @@ module Organizations
             end
 
             should "not visit show page of non-existent form" do
-              get staff_custom_form_form_path(id: Form.order(:id).last.id + 1)
+              get staff_custom_form_form_path(id: ::CustomForm::Form.order(:id).last.id + 1)
 
               assert_response :redirect
               follow_redirect!
@@ -196,7 +196,7 @@ module Organizations
             end
 
             should "not visit edit page of non-existent task" do
-              get edit_staff_custom_form_form_path(id: Form.order(:id).last.id + 1)
+              get edit_staff_custom_form_form_path(id: ::CustomForm::Form.order(:id).last.id + 1)
 
               assert_response :redirect
               follow_redirect!
@@ -208,7 +208,7 @@ module Organizations
             should "update form" do
               assert_changes "@form.name" do
                 patch staff_custom_form_form_path(@form), params: {
-                  form: {
+                  custom_form_form: {
                     name: Faker::Lorem.sentence
                   }
                 }
@@ -223,7 +223,7 @@ module Organizations
 
             should "not update form with missing param" do
               patch staff_custom_form_form_path(@form), params: {
-                form: {
+                custom_form_form: {
                   name: ""
                 }
               }
