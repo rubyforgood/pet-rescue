@@ -25,5 +25,5 @@ module Organizations
         authorize! @custom_page
       end
     end
-  end    
+  end
 end
