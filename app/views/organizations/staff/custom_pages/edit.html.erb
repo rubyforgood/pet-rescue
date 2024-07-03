@@ -1,11 +1,12 @@
-<%= render DashboardPageComponent.new(crumb: :page_text) do |c| %>
-  <% c.with_header_title { "Page Text" } %>
+
+<%= render DashboardPageComponent.new(crumb: :custom_page) do |c| %>
+  <% c.with_header_title { "Custom Page" } %>
   <% c.with_header_subtitle { "Edit your page" } %>
   <% c.with_body do %>
     <section id="account_select">
       <div>
         <div>
-          <%= render "form", page_text: @page_text %>
+          <%= render "form", custom_page: @custom_page %>
         </div>
       </div>
     </section>
