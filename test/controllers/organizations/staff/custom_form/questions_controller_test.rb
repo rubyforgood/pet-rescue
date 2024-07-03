@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::Staff::QuestionsControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::CustomForm::QuestionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = ActsAsTenant.current_tenant
     @question = create(:question, organization: @organization)
@@ -21,7 +21,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
           context: {organization: @organization},
           with: Organizations::QuestionPolicy
         ) do
-          get new_staff_form_question_url(@form)
+          get new_staff_custom_form_form_question_url(@form)
         end
       end
     end
@@ -39,7 +39,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
           context: {organization: @organization},
           with: Organizations::QuestionPolicy
         ) do
-          post staff_form_questions_url(@form), params: @params
+          post staff_custom_form_form_questions_url(@form), params: @params
         end
       end
     end
@@ -50,7 +50,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
           :manage?, @question,
           with: Organizations::QuestionPolicy
         ) do
-          get edit_staff_form_question_url(@form, @question)
+          get edit_staff_custom_form_form_question_url(@form, @question)
         end
       end
     end
@@ -69,7 +69,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
           :manage?, @question,
           with: Organizations::QuestionPolicy
         ) do
-          patch staff_form_question_url(@form, @question), params: @params
+          patch staff_custom_form_form_question_url(@form, @question), params: @params
         end
       end
     end
@@ -80,14 +80,14 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
           :manage?, @question,
           with: Organizations::QuestionPolicy
         ) do
-          delete staff_form_question_url(@form, @question)
+          delete staff_custom_form_form_question_url(@form, @question)
         end
       end
     end
   end
 
   test "should get new" do
-    get new_staff_form_question_url(@form)
+    get new_staff_custom_form_form_question_url(@form)
 
     assert_response :success
     assert_select "h1", text: "New Question"
@@ -96,7 +96,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
   context "POST #create" do
     should "create new question" do
       assert_difference("@form.questions.count", 1) do
-        post staff_form_questions_url(@form), params: {
+        post staff_custom_form_form_questions_url(@form), params: {
           question: attributes_for(:question)
         }
       end
@@ -108,7 +108,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
     should "not create question with invalid data" do
       assert_no_difference("@form.questions.count") do
-        post staff_form_questions_url(@form), params: {
+        post staff_custom_form_form_questions_url(@form), params: {
           question: {name: ""}
         }
       end
@@ -119,14 +119,14 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
   context "GET #edit" do
     should "visit edit page" do
-      get edit_staff_form_question_url(@form, @question)
+      get edit_staff_custom_form_form_question_url(@form, @question)
 
       assert_response :success
       assert_select "h1", text: "Edit Question"
     end
 
     should "not visit edit page of non-existent form" do
-      get edit_staff_form_question_url(0, @question)
+      get edit_staff_custom_form_form_question_url(0, @question)
 
       assert_response :redirect
       follow_redirect!
@@ -134,7 +134,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
     end
 
     should "not visit edit page of non-existent question" do
-      get edit_staff_form_question_url(@form, id: 0)
+      get edit_staff_custom_form_form_question_url(@form, id: 0)
 
       assert_response :redirect
       follow_redirect!
@@ -145,7 +145,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
       f2 = create(:form, organization: @organization)
       q2 = create(:question, form: f2)
 
-      get edit_staff_form_question_url(@form, q2)
+      get edit_staff_custom_form_form_question_url(@form, q2)
 
       assert_response :redirect
       follow_redirect!
@@ -155,7 +155,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
 
   context "PATCH #update" do
     should "update question" do
-      patch staff_form_question_url(@form, @question), params: {
+      patch staff_custom_form_form_question_url(@form, @question), params: {
         question: {
           name: "new name"
         }
@@ -167,7 +167,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
     end
 
     should "not update question with invalid data" do
-      patch staff_form_question_url(@form, @question), params: {
+      patch staff_custom_form_form_question_url(@form, @question), params: {
         question: {
           name: ""
         }
@@ -180,7 +180,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
       f2 = create(:form, organization: @organization)
       q2 = create(:question, form: f2)
 
-      patch staff_form_question_url(@form, q2), params: {
+      patch staff_custom_form_form_question_url(@form, q2), params: {
         question: {
           name: "new name",
           label: "new label"
@@ -196,7 +196,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
   context "DELETE #destroy" do
     should "destroy a question" do
       assert_difference("@form.questions.count", -1) do
-        delete staff_form_question_url(@form, @question)
+        delete staff_custom_form_form_question_url(@form, @question)
       end
 
       assert_response :redirect
@@ -209,7 +209,7 @@ class Organizations::Staff::QuestionsControllerTest < ActionDispatch::Integratio
       q2 = create(:question, form: f2)
 
       assert_no_difference("Question.count") do
-        delete staff_form_question_url(@form, q2)
+        delete staff_custom_form_form_question_url(@form, q2)
       end
 
       assert_response :redirect

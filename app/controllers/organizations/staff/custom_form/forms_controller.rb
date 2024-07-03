@@ -54,7 +54,7 @@ class Organizations::Staff::CustomForm::FormsController < ApplicationController
     @form = organization.forms.find(params[:id])
     authorize! @form
   rescue ActiveRecord::RecordNotFound
-    redirect_to staff_forms_path, alert: t(".not_found")
+    redirect_to staff_custom_form_forms_path, alert: t(".not_found")
   end
 
   def form_params
