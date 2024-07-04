@@ -26,16 +26,18 @@
 #
 #  fk_rails_...  (form_id => forms.id)
 #
-class Question < ApplicationRecord
-  belongs_to :form, class_name: "CustomForm::Form"
+module CustomForm
+  class Question < ApplicationRecord
+    belongs_to :form, class_name: "CustomForm::Form"
 
-  has_one :organization, through: :form
+    has_one :organization, through: :form
 
-  scope :ordered, -> { order(:sort_order) }
+    scope :ordered, -> { order(:sort_order) }
 
-  validates_presence_of :name, :label
+    validates_presence_of :name, :label
 
-  def snapshot
-    {label:, options:}
+    def snapshot
+      {label:, options:}
+    end
   end
 end

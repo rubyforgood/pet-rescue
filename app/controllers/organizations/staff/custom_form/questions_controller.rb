@@ -68,11 +68,11 @@ module Organizations
         end
 
         def question_params
-          params.require(:question).permit(:name, :description, :label, :help_text, :required, :input_type, :options)
+          params.require(:custom_form_question).permit(:name, :description, :label, :help_text, :required, :input_type, :options)
         end
 
         def context_authorize!
-          authorize! Question, context: {organization: Current.organization}
+          authorize! ::CustomForm::Question, context: {organization: Current.organization}
         end
       end
     end

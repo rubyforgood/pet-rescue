@@ -20,9 +20,9 @@ module Organizations
           context "new" do
             should "be authorized" do
               assert_authorized_to(
-                :manage?, Question,
+                :manage?, ::CustomForm::Question,
                 context: {organization: @organization},
-                with: Organizations::QuestionPolicy
+                with: Organizations::CustomForm::QuestionPolicy
               ) do
                 get new_staff_custom_form_form_question_url(@form)
               end
@@ -32,15 +32,15 @@ module Organizations
           context "create" do
             setup do
               @params = {
-                question: attributes_for(:question)
+                custom_form_question: attributes_for(:question)
               }
             end
 
             should "be authorized" do
               assert_authorized_to(
-                :manage?, Question,
+                :manage?, ::CustomForm::Question,
                 context: {organization: @organization},
-                with: Organizations::QuestionPolicy
+                with: Organizations::CustomForm::QuestionPolicy
               ) do
                 post staff_custom_form_form_questions_url(@form), params: @params
               end
@@ -51,7 +51,7 @@ module Organizations
             should "be authorized" do
               assert_authorized_to(
                 :manage?, @question,
-                with: Organizations::QuestionPolicy
+                with: Organizations::CustomForm::QuestionPolicy
               ) do
                 get edit_staff_custom_form_form_question_url(@form, @question)
               end
@@ -61,7 +61,7 @@ module Organizations
           context "update" do
             setup do
               @params = {
-                question: {
+                custom_form_question: {
                   name: "new name"
                 }
               }
@@ -70,7 +70,7 @@ module Organizations
             should "be authorized" do
               assert_authorized_to(
                 :manage?, @question,
-                with: Organizations::QuestionPolicy
+                with: Organizations::CustomForm::QuestionPolicy
               ) do
                 patch staff_custom_form_form_question_url(@form, @question), params: @params
               end
@@ -81,7 +81,7 @@ module Organizations
             should "be authorized" do
               assert_authorized_to(
                 :manage?, @question,
-                with: Organizations::QuestionPolicy
+                with: Organizations::CustomForm::QuestionPolicy
               ) do
                 delete staff_custom_form_form_question_url(@form, @question)
               end
@@ -100,7 +100,7 @@ module Organizations
           should "create new question" do
             assert_difference("@form.questions.count", 1) do
               post staff_custom_form_form_questions_url(@form), params: {
-                question: attributes_for(:question)
+                custom_form_question: attributes_for(:question)
               }
             end
 
@@ -112,7 +112,7 @@ module Organizations
           should "not create question with invalid data" do
             assert_no_difference("@form.questions.count") do
               post staff_custom_form_form_questions_url(@form), params: {
-                question: {name: ""}
+                custom_form_question: {name: ""}
               }
             end
 
@@ -159,7 +159,7 @@ module Organizations
         context "PATCH #update" do
           should "update question" do
             patch staff_custom_form_form_question_url(@form, @question), params: {
-              question: {
+              custom_form_question: {
                 name: "new name"
               }
             }
@@ -171,7 +171,7 @@ module Organizations
 
           should "not update question with invalid data" do
             patch staff_custom_form_form_question_url(@form, @question), params: {
-              question: {
+              custom_form_question: {
                 name: ""
               }
             }
@@ -184,7 +184,7 @@ module Organizations
             q2 = create(:question, form: f2)
 
             patch staff_custom_form_form_question_url(@form, q2), params: {
-              question: {
+              custom_form_question: {
                 name: "new name",
                 label: "new label"
               }
@@ -211,7 +211,7 @@ module Organizations
             f2 = create(:form, organization: @organization)
             q2 = create(:question, form: f2)
 
-            assert_no_difference("Question.count") do
+            assert_no_difference("::CustomForm::Question.count") do
               delete staff_custom_form_form_question_url(@form, q2)
             end
 

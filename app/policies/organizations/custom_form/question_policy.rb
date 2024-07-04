@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Organizations::QuestionPolicy < ApplicationPolicy
+class Organizations::CustomForm::QuestionPolicy < ApplicationPolicy
   pre_check :verify_organization!
   pre_check :verify_active_staff!
 
