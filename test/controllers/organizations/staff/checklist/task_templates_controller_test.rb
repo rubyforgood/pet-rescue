@@ -1,10 +1,10 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::Checklist::TaskTemplatesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = ActsAsTenant.current_tenant
-    @default_pet_task = create(:default_pet_task)
+    @task_template = create(:task_template)
 
     user = create(:staff)
     sign_in user
@@ -16,11 +16,11 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
     context "new" do
       should "be authorized" do
         assert_authorized_to(
-          :manage?, DefaultPetTask,
+          :manage?, TaskTemplate,
           context: {organization: @organization},
-          with: Organizations::DefaultPetTaskPolicy
+          with: Organizations::TaskTemplatePolicy
         ) do
-          get new_staff_default_pet_task_url
+          get new_staff_checklist_task_template
         end
       end
     end
@@ -28,17 +28,17 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
     context "create" do
       setup do
         @params = {
-          default_pet_task: attributes_for(:default_pet_task)
+          task_template: attributes_for(:task_template)
         }
       end
 
       should "be authorized" do
         assert_authorized_to(
-          :manage?, DefaultPetTask,
+          :manage?, TaskTemplate,
           context: {organization: @organization},
-          with: Organizations::DefaultPetTaskPolicy
+          with: Organizations::TaskTemplatePolicy
         ) do
-          post staff_default_pet_tasks_url, params: @params
+          post staff_checklist_task_templates_url, params: @params
         end
       end
     end
@@ -214,11 +214,11 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
     end
 
     should "not visit edit page of inexistent task" do
-      delete staff_default_pet_task_path(id: DefaultPetTask.order(:id).last.id + 1)
+      delete staff_checklist_task_template_path(id: TaskTemplate.order(:id).last.id + 1)
 
       assert_response :redirect
       follow_redirect!
-      assert_equal "Default Pet Task not found.", flash.alert
+      assert_equal "Task Template not found.", flash.alert
     end
   end
 end

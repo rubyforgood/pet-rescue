@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :default_pet_task do
+  factory :task_template do
     name { "MyString" }
     description { "MyText" }
   end
