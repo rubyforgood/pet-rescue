@@ -111,15 +111,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
     t.index ["organization_id"], name: "index_adopter_foster_profiles_on_organization_id"
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 5328a2a4 (Update Controller and routing changes)
-=======
->>>>>>> 0bc19d58 (Update merge conflict resolved)
   create_table "custom_pages", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.string "hero"
@@ -140,13 +131,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
     t.boolean "recurring", default: false
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
-
-<<<<<<< HEAD
-=======
->>>>>>> 5d8513ca (819 replace page text with custom page (#854))
-=======
->>>>>>> eaabd1d2 (Update Controller and routing changes)
->>>>>>> 5328a2a4 (Update Controller and routing changes)
+  
   create_table "faqs", force: :cascade do |t|
     t.string "question", null: false
     t.text "answer", null: false
