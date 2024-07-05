@@ -19,7 +19,7 @@ class Organization < ApplicationRecord
   has_many :staff_accounts
   has_many :users, through: :staff_accounts
   has_many :pets
-  has_many :default_pet_tasks
+  has_many :task_templates
   has_many :forms, dependent: :destroy
   has_many :faqs
 
