@@ -112,11 +112,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> 5328a2a4 (Update Controller and routing changes)
+=======
+>>>>>>> 0bc19d58 (Update merge conflict resolved)
   create_table "custom_pages", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.string "hero"
@@ -393,14 +396,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
   add_foreign_key "adopter_foster_accounts", "users"
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
->>>>>>> 5d8513ca (819 replace page text with custom page (#854))
-=======
->>>>>>> eaabd1d2 (Update Controller and routing changes)
   add_foreign_key "faqs", "organizations"
   add_foreign_key "form_profiles", "forms"
   add_foreign_key "form_submissions", "organizations"
