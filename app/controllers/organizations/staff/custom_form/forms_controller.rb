@@ -69,5 +69,5 @@ module Organizations
         end
       end
     end
-  end      
+  end
 end
