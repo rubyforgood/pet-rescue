@@ -109,9 +109,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
     t.index ["organization_id"], name: "index_adopter_foster_profiles_on_organization_id"
   end
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   create_table "custom_pages", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.string "hero"
@@ -373,14 +370,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
   add_foreign_key "adopter_foster_accounts", "users"
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
->>>>>>> 5d8513ca (819 replace page text with custom page (#854))
-=======
->>>>>>> eaabd1d2 (Update Controller and routing changes)
   add_foreign_key "faqs", "organizations"
   add_foreign_key "form_profiles", "forms"
   add_foreign_key "forms", "organizations"
