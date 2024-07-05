@@ -130,9 +130,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_165551) do
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
 
->>>>>>> 5d8513ca (819 replace page text with custom page (#854))
-=======
->>>>>>> eaabd1d2 (Update Controller and routing changes)
   create_table "faqs", force: :cascade do |t|
     t.string "question", null: false
     t.text "answer", null: false
