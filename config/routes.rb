@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       end
 
       namespace :checklist do
-        resources :task_templates  # here erin
+        resources :task_templates
       end
       resources :faqs
       resources :dashboard, only: [:index] do
