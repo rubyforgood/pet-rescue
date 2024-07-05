@@ -9,7 +9,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
     @successful_applicant_app = create(:adopter_application, status: :successful_applicant)
     @adoption_made_app = create(:adopter_application, status: :adoption_made)
     @organization = create(:organization)
-    @page_text = create(:page_text, organization: @organization)
+    @custom_page = create(:custom_page, organization: @organization)
     Current.organization = @organization
   end
 
