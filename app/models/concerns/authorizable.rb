@@ -1,8 +1,8 @@
 ADOPTER_PERMISSIONS = %i[
   view_adopter_foster_dashboard
-  create_adopter_submissions
-  view_adopter_submissions
-  withdraw_adopter_submissions
+  create_adopter_applications
+  view_adopter_applications
+  withdraw_adopter_applications
   create_adopter_foster_profiles
   manage_adopter_foster_profiles
   purge_avatar
@@ -20,13 +20,13 @@ STAFF_PERMISSIONS = (
   ADOPTER_PERMISSIONS.excluding(
     %i[
       view_adopter_foster_dashboard
-      create_adopter_submissions
+      create_adopter_applications
       create_adopter_foster_profiles
       manage_adopter_foster_profiles
       manage_likes
     ]
   ) + %i[
-    review_adopter_submissions
+    review_adopter_applications
     view_adopter_foster_accounts
     view_adopter_foster_profiles
     invite_fosterers
@@ -47,7 +47,7 @@ ADMIN_PERMISSIONS = (
     activate_staff
     invite_staff
     manage_organization_profile
-    manage_page_text
+    manage_custom_page
     manage_staff
     change_user_roles
   ]

@@ -68,24 +68,83 @@ en:
   dashboard: 
     index: 
       header_title: Dashboard
-    submissions:
+    applications:
       header_title: Adoption Applications
       name: Name
       created: Created
       status: Status
-      withdraw_submission: Withdraw Application
+      withdraw_application: Withdraw Application
       confirm_withdraw: Withdraw your application
+  root:
+    index:
+      title: "Connecting hearts and homes"
+      worldwide: "worldwide"
+      description: "A free application for pet foster and adoption organizations who want to save time and manage their operations in one place."
+      easy_to_use: "Easy to use"
+      no_download: "No dowload needed"
+      manage: "Manage operations in one place"
+      save: "Save time and spend it on what matters"
+      btn_title: "Request an account"
+      subtitle: "Manage your operations"
+      subtitle_highlight: "in one place"
+      subtitle_description: "No more spreadsheets, no more paper, no more headaches."
+      img_sub: "Manage your operation with ease"
+      logistics: "Logistics"
+      logistics_description: "Keep track of your animals in one place."
+      free: "Free for ever!"
+      free_description: "Our platform is free to use for all rescues, forever."
+      manage: "Manage applications"
+      manage_description: "Receive, review and process adoption and foster applications with ease."
+      support: "Support"
+      support_description: "Our team is here to help you with any questions you may have."
+      header: "Header"
+      call_to_action: "…an awesome sentence or two."
+      btn_call_to_action: "Call to action"
   views:
     dashboard: 
       index: 
         header_title: Dashboard
-      submissions:
+      applications:
         header_title: Adoption Applications
         name: Name
         created: Created
         status: Status
-        withdraw_submission: Withdraw Application
+        withdraw_application: Withdraw Application
         confirm_withdraw: Withdraw your application
+  layouts:
+    shared:
+      footer:
+        title: "Pet Rescue"
+        call: "If you are a pet adoption or foster organization and want a website like this one, for free,"
+        action: "Click Here"
+        company: "Company"
+        rights: "Pet-Rescue, Inc. All Rights Reserved"
+        policy: "Privacy Policy"
+        cookie: "Cookie Notice"
+        terms: "Terms of Use"
+      navbar:
+        sign_up: "Sign Up"
+        log_in: "Log In"
+        log_out: "Log Out"
+        pets: "Pets"
+        contact: "Contact"
+        donate: "Donate"
+        faq: "FAQ"
+        dashboard: "Dashboard"
+        demo: "This is a demo site"
+      no_tenant_footer:
+        title: "Pet Rescue"
+        description: "We provide a platform for Pet Rescues and Animal Service Organizations"
+        company: "Company"
+        about: "About Us"
+        partners: "Partners"
+        rights: "Pet-Rescue, Inc. All Rights Reserved"
+        policy: "Privacy Policy"
+        cookie: "Cookie Notice"
+        terms: "Terms of Use"
+      no_tenant_navbar:
+        title: "Pet Rescue"
+        dropdown_title: "Rescues"
   activerecord:
     errors:
       models:
@@ -288,7 +347,7 @@ en:
         country: Country
         province_state: Province/State
         city_town: City/Town
-      custom_form/submission:
+      adopter_application:
         status:
           awaiting_review: Awaiting Review
           under_review: Under Review
@@ -311,6 +370,7 @@ en:
       index:
         header: "Up for adoption"
       show:
+        application_status: "Application status:"
         adoption_process: "Adoption Process"
         please_read_faq_html: "Please read the %{faq_link} before applying to adopt."
         create_an_account: "Create an account to apply for this pet"
@@ -348,7 +408,7 @@ en:
           complete?: "Show Completed"
         destroy:
           success: "Task was successfully deleted."
-      page_texts:
+      custom_pages:
         update:
           success: "Page text updated successfully!" 
       matches:
@@ -366,7 +426,7 @@ en:
       invitations:
         create:
           success: "Invite sent!" 
-      submission_reviews:
+      adoption_application_reviews:
         update:
           success: "Application was successfully updated."
           error: "Error updating application"
@@ -460,12 +520,12 @@ en:
             paused: "Applications: paused"
         new:
           new_pet_post: "New Pet Post"
-        submissions:
+        applications:
           applicant: "Applicant"
           status: "Status"
           notes: "Notes"
           new_adoption: "New Adoption"
-        submission_status:
+        application_status:
           edit_notes: "Edit notes for"
           awaiting_review: "Awaiting Review"
           under_review: "Under Review"
@@ -588,23 +648,22 @@ en:
           will_you_pick_up_the_pet: "Will you or a friend be in La Ventana in person to pick up the pet?"
           what_dates_will_you_be: "What dates will you be in La Ventana?"
           how_did_you_hear: "How did you find out about Baja Pet Rescue?"
-      custom_form: 
-        submissions:
-          create: 
-            success: "Application submitted! %{message}"
-            error: "Error. Please try again."
-          update:
-            error: "Error"
-          index:
-            adoption_submissions: "Adoption Applications"
-            your_adoption_applications: "Your adoption applications will be listed here."
-            we_will_be_in_contact: "We will be in contact shortly."
-            keep_an_eye_on: "Keep an eye on your"
-            almost_adopted: "This pooch is almost adopted!"
-            found_a_home: "This pooch has found a home!"
-            withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
-            remove: "Remove"
-            withdraw: "Withdraw"
+      adopter_applications:
+        create:
+          success: "Application submitted! %{message}"
+          error: "Error. Please try again."
+        update:
+          error: "Error"
+        index:
+          adoption_applications: "Adoption Applications"
+          your_adoption_applications: "Your adoption applications will be listed here."
+          we_will_be_in_contact: "We will be in contact shortly."
+          keep_an_eye_on: "Keep an eye on your"
+          almost_adopted: "This pooch is almost adopted!"
+          found_a_home: "This pooch has found a home!"
+          withdrew_by_accident_html: "If you withdrew by accident, <a href='/contact'>contact us</a>"
+          remove: "Remove"
+          withdraw: "Withdraw"
       likes:
         index:
           liked_pets: 'Liked Pets'

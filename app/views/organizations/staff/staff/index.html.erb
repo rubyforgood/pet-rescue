@@ -1,8 +1,6 @@
-<% breadcrumb :staff_index %>
-
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Staff" %>
-  <% p.actions do %>
+<%= render DashboardPageComponent.new(crumb: :staff_index) do |c| %>
+  <% c.with_header_title { "Staff" } %>
+  <% c.with_action do %>
     <div class='d-flex align-items-center gap-2'>
       <div class="row">
         <div class="col-lg-12 col-md-12 col-12">
@@ -22,8 +20,7 @@
       <%= link_to "Invite Staff", new_staff_staff_invitation_path, class: "btn btn-primary" %><br>
     </div>
   <% end %>
-
-  <% p.content do %>
+  <% c.with_body do %>
     <div class="row">
       <div class="col-lg-12 col-md-12 col-12">
         <!-- Tab -->
@@ -79,11 +76,9 @@
                     <th scope="col">Joined At</th>
                     <th class="text-center" scope="col">Deactivate</th>
                     <th scope="col">Action</th>
-
                   </tr>
                 </thead>
                 <tbody>
-
                   <% @staff_accounts.each do |staff| %>
                     <tr>
                       <td>
@@ -125,12 +120,10 @@
                   <% end %>
                 </tbody>
               </table>
-
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
 <% end %>

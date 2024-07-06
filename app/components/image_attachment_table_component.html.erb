@@ -1,0 +1,48 @@
+<div class="card">
+  <!-- table -->
+  <div class="table-responsive overflow-y-hidden">
+    <table class="table mb-0 text-nowrap table-hover table-centered">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Filename</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if images.any?  %>
+          <% images.each do |image| %>
+            <% if image.record.persisted? %>
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <div class="icon-shape img-4by3-lg rounded-3">
+                      <%= link_to(image_tag(image, class: "card-img"), rails_blob_path(image, disposition: "attachment")) %>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <%= link_to image.filename.to_s, rails_blob_path(image, disposition: "attachment") %>
+                </td>
+                <td>
+                  <%= link_to t("general.delete"),
+                        staff_purge_attachment_path(image.id),
+                        data: {
+                          turbo_confirm: "Do you want to delete this image?",
+                          turbo_method: "delete" },
+                          class: "btn btn-outline-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        <% else %>
+          <tr>
+            <td colspan="3">
+              No images attached.
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

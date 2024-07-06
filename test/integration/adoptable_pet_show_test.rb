@@ -104,7 +104,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
         assert_response :redirect
       end
 
-      should_eventually "submission sees submission status" do
+      should_eventually "adopter application sees application status" do
         # pet = create(:pet, :adoption_pending)
         # user = create(:adopter, :with_profile, organization: pet.organization)
         # create(:adopter_application, adopter_foster_account: user.adopter_foster_account, pet: pet, status: :awaiting_review)
@@ -116,7 +116,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
         # assert_select "h4.me-2", "Application Awaiting Review"
       end
 
-      should_eventually "pet name shows adoption pending if it has any submissions with that status" do
+      should_eventually "pet name shows adoption pending if it has any applications with that status" do
         # pet = create(:pet, :adoption_pending)
 
         # get "/adoptable_pets/#{pet.id}"
@@ -129,7 +129,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
   context "with adoptable pet information" do
     should "have important information section" do
-      PageText.create(adoptable_pet_info: "some things that should be known")
+      CustomPage.create(adoptable_pet_info: "some things that should be known")
       get adoptable_pet_path(@available_pet)
       assert_select "h3", text: "Important Information", count: 1
     end

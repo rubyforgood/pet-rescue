@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-51-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-52-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to connect shelters with people who are looking to adopt or foster pets.
@@ -9,9 +9,25 @@ The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application
 
 # 🚀 Getting Started
 
-Let's get your machine setup to startup the application!
+Let's get your machine setup to start up the application!
 
-## Prerequisites
+## Docker
+
+Install a containerization app, such as Docker Desktop.
+
+Clone the repo to your local machine and navigate to the directory and run:
+
+`docker-compose build` to build the base image.
+
+`docker-compose up`  to start the containers. You can add the `-d` flag to run silently without logging.
+
+`docker-compose run --rm app bin/setup` to set up and seed the database.
+
+If you need to run migrations at all: `docker-compose run --rm app bin/rails db:migrate`
+
+Visit `localhost:3000` in your browser.
+
+## Local Installation
 
 ⚠️  We assume you already have ruby installed with your preferred version manager. This codebase supports [rbenv](
 https://github.com/rbenv/rbenv) and [asdf](https://github.com/asdf-vm/asdf-ruby).
@@ -292,6 +308,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sevilla"><img src="https://avatars.githubusercontent.com/u/1185489?v=4?s=100" width="100px;" alt="Kristine Sevilla"/><br /><sub><b>Kristine Sevilla</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=sevilla" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://devcaffeine.com/"><img src="https://avatars.githubusercontent.com/u/3754?v=4?s=100" width="100px;" alt="Chris Flipse"/><br /><sub><b>Chris Flipse</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=cflipse" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Trevor-Robinson"><img src="https://avatars.githubusercontent.com/u/72584659?v=4?s=100" width="100px;" alt="Trevor Robinson"/><br /><sub><b>Trevor Robinson</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Trevor-Robinson" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

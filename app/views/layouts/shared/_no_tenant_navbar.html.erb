@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-transparent shadow-none px-2 py-3">
   <div class="container px-0">
     <%= link_to root_path, class: 'navbar-brand' do %>
-      Pet Rescue
+      <%= t('.title') %>
     <% end %>
     <div class="d-flex align-items-center order-lg-3">
       <div>
@@ -23,7 +23,7 @@
 
         <li class="nav-item dropdown">
            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarBrowse" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-display="static">
-             Rescues
+             <%= t('.dropdown_title') %>
            </a>
            <ul class="dropdown-menu dropdown-menu-arrow" aria-labelledby="navbarBrowse">
              <% Organization.all.each do |org| %>

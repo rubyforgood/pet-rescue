@@ -1,7 +1,6 @@
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Edit #{@pet.name}" %>
-  <% p.content do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { "Edit #{@pet.name}" } %>
+  <% c.with_body do %>
     <%= render 'form', pet: @pet %>
   <% end %>
 <% end %>
-

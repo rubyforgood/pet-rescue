@@ -60,7 +60,49 @@
           </div>
         <% end %>
 
-        <%= render partial: "shared/pet_card_bigger", pet: @pet %>
+        <%= render CardComponent.new(image_options: {default: ""}) do |c| %>
+          <%= c.with_header do %>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h4 class="mb-0"><%= "#{t('general.about')} #{@pet.name}" %></h4>
+              </div>
+
+              <% if current_user&.adopter_foster_account %>
+                <div id="like_button_pet_<%= @pet.id %>" class="d-flex flex-column align-items-center">
+                  <%= render LikeButtonComponent.new(pet: @pet, like: @likes_by_id[@pet.id]) %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <%= c.with_body do %>
+            <p><%= @pet.description %></p>
+
+            <ul class="list-group list-group-flush">
+              <% pet_infos = {"Age": time_ago_in_words(@pet.birth_date).titleize,
+                              "Sex": @pet.sex,
+                              "Breed": @pet.breed,
+                              "Weight": "#{@pet.weight_from} to #{@pet.weight_to} #{@pet.weight_unit}"
+              } %>
+              <% pet_infos.each do |pet_info| %>
+              <li class="list-group-item px-0">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="fe fe-book me-2"></i>
+                    <div class="ms-2">
+                      <h5 class="mb-0 text-body"><%= pet_info[0] %></h5>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <p class="text-dark mb-0 fw-semibold"><%= pet_info[1] %></p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
       </div>
 
       <div class=' col-lg-6 ps-3 pe-3 ps-lg-0 pe-lg-0'>
@@ -89,25 +131,25 @@
           <div class='text-center d-flex flex-column align-items-center mt-1'>
             <% unless user_signed_in? && current_user.staff_account %>
               <% if user_signed_in? %>
-                <% if allowed_to?(:create?, with: CustomForm::SubmissionPolicy, context: {pet: @pet, user: current_user}) %>
+                <% if allowed_to?(:create?, with: AdopterApplicationPolicy, context: {pet: @pet, user: current_user}) %>
                   <h4 class="mb-4 mt-3">In love with this pooch?</h4>
-                  <%= form_with model: [:adopter_fosterer, @submission] do |form| %>
-                    <%= form.hidden_field :pet_id, value: @submission.pet_id %>
-                    <%= form.hidden_field :adopter_foster_account_id, value: @submission.adopter_foster_account_id %>
+                  <%= form_with model: [:adopter_fosterer, @adoption_application] do |form| %>
+                    <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
+                    <%= form.hidden_field :adopter_foster_account_id, value: @adoption_application.adopter_foster_account_id %>
                     <%= form.submit t(".apply_to_adopt"),
                       class: "custom-btn-pink",
                       data: {turbo: false}
                     %>
                   <% end %>
                 <% else %>
-                  <% if CustomForm::Submission.adoption_exists?(current_user.adopter_foster_account&.id, @pet.id) %>
+                  <% if AdopterApplication.adoption_exists?(current_user.adopter_foster_account&.id, @pet.id) %>
                     <div class='d-flex align-items-center mt-3'>
-                      <h4 class="me-2">
-                        <%= "#{@submission.human_enum_name(:status) || t('.status.default')}" %>
+                      <h4 class="me-2 mb-0">
+                        <%= "#{t('organizations.adoptable_pets.show.application_status')} #{@adoption_application.human_enum_name(:status) || t('.status.default')}" %>
                       </h4>
-                      <% if %w[under_review adoption_pending].include?(@submission.status) %>
+                      <% if %w[under_review adoption_pending].include?(@adoption_application.status) %>
                         <%= image_tag('pause.png', height: '21') %>
-                      <% elsif 'withdrawn' == @submission.status %>
+                      <% elsif 'withdrawn' == @adoption_application.status %>
                         <%= image_tag('red_no.png', height: '21') %>
                       <% else %>
                         <%= image_tag('green_check.png', height: '21') %>

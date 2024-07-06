@@ -4,7 +4,7 @@ class AdopterFosterAccountTest < ActiveSupport::TestCase
   context "associations" do
     should belong_to(:user)
     should have_one(:adopter_foster_profile).dependent(:destroy)
-    should have_many(:submissions).dependent(:destroy)
+    should have_many(:adopter_applications).dependent(:destroy)
     should have_many(:matches).dependent(:destroy)
     should have_many(:likes).dependent(:destroy)
     should have_many(:liked_pets).through(:likes).source(:pet)

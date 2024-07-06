@@ -9,7 +9,7 @@ orga_location = Location.create!(
   name: "Alta Pet Rescue",
   slug: "alta",
   profile: OrganizationProfile.new(email: "alta@email.com", phone_number: "250 816 8212", location: orga_location),
-  page_text: PageText.new(hero: "Where every paw finds a home", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.")
+  custom_page: CustomPage.new(hero: "Where every paw finds a home", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.")
 )
 
 ActsAsTenant.with_tenant(@organization) do
@@ -402,7 +402,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   10.times do
-    submission = CustomForm::Submission.new(
+    adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..4),
@@ -410,12 +410,12 @@ ActsAsTenant.with_tenant(@organization) do
       pet: Pet.all.sample
     )
 
-    # Prevent duplicate adopter submissions.
-    redo if CustomForm::Submission.where(pet_id: submission.pet_id,
-      adopter_foster_account_id: submission.adopter_foster_account_id).exists?
+    # Prevent duplicate adopter applications.
+    redo if AdopterApplication.where(pet_id: adopter_application.pet_id,
+      adopter_foster_account_id: adopter_application.adopter_foster_account_id).exists?
 
-    if submission.valid?
-      submission.save!
+    if adopter_application.valid?
+      adopter_application.save!
     else
       redo
     end

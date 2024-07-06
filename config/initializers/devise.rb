@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "authentication_failure_app"
+
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -363,4 +365,8 @@ Devise.setup do |config|
 
   config.responder.error_status = :unprocessable_entity
   config.responder.redirect_status = :see_other
+
+  config.warden do |manager|
+    manager.failure_app = AuthenticationFailureApp
+  end
 end
