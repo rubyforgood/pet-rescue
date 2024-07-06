@@ -281,7 +281,7 @@ ActsAsTenant.with_tenant(@organization) do
       weight_unit: Pet::WEIGHT_UNITS.sample,
       breed: Faker::Creature::Dog.breed,
       description: "He just loves a run and a bum scratch at the end of the day",
-      species: 0,
+      species: Pet.species["Dog"],
       placement_type: 1,
       published: true
     )
@@ -315,7 +315,7 @@ ActsAsTenant.with_tenant(@organization) do
       weight_unit: Pet::WEIGHT_UNITS.sample,
       breed: Faker::Creature::Dog.breed,
       description: Faker::Lorem.sentence,
-      species: 0,
+      species: Pet.species["Dog"],
       placement_type: "Fosterable",
       published: true
     )

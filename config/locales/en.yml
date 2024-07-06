@@ -355,6 +355,12 @@ en:
           withdrawn: Withdrawn
           successful_applicant: Successful Applicant
           adoption_made: Adoption Made
+      default_pet_task:
+        species:
+          one: "Species"
+          All: All
+          Dog: Dog
+          Cat: Cat
   errors:
     attributes:
       general:
@@ -442,9 +448,15 @@ en:
           error:  "Default Pet Task not found."
         error: "Default Pet Task not found."
         index:
+          name: "Name"
+          description: "Description"
+          species: "Species"
+          due_after: "Due After"
+          recurring: "Recurring"
           default_pet_tasks: "Default Pet Tasks"
           create_default_task: "Create Default Task"
           are_you_sure_delete: "Are you sure you want to delete this default pet task?"
+
         new:
           new_default_pet_task: "New Default Pet Task"
         edit:
