@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-52-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-53-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to connect shelters with people who are looking to adopt or foster pets.
@@ -309,6 +309,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sevilla"><img src="https://avatars.githubusercontent.com/u/1185489?v=4?s=100" width="100px;" alt="Kristine Sevilla"/><br /><sub><b>Kristine Sevilla</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=sevilla" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="http://devcaffeine.com/"><img src="https://avatars.githubusercontent.com/u/3754?v=4?s=100" width="100px;" alt="Chris Flipse"/><br /><sub><b>Chris Flipse</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=cflipse" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Trevor-Robinson"><img src="https://avatars.githubusercontent.com/u/72584659?v=4?s=100" width="100px;" alt="Trevor Robinson"/><br /><sub><b>Trevor Robinson</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Trevor-Robinson" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/pshong79"><img src="https://avatars.githubusercontent.com/u/1057497?v=4?s=100" width="100px;" alt="pshong79"/><br /><sub><b>pshong79</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=pshong79" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
