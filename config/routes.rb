@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
     namespace :staff do
       resource :organization_profile, only: %i[edit update]
-      resource :page_text, only: %i[edit update]
+      resource :custom_page, only: %i[edit update]
       resources :profile_reviews, only: [:show]
 
       resources :pets do

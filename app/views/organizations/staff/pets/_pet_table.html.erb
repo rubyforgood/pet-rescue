@@ -50,9 +50,6 @@
                     <%= link_to staff_pet_path(pet), class: 'dropdown-item' do %>
                       <i class="fe fe-edit dropdown-item-icon"></i>Edit Details
                     <% end %>
-                    <%= link_to staff_pet_path(pet), class: 'dropdown-item' do %>
-                      <i class="fe fe-link dropdown-item-icon"></i>Copy link
-                    <% end %>
                     <%= button_to [:staff, pet], method: :delete, class: 'dropdown-item', data: { turbo_confirm: t('general.are_you_sure_delete_pet') } do %>
                       <i class="fe fe-trash dropdown-item-icon"></i>Delete
                     <% end %>

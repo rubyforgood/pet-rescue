@@ -408,7 +408,7 @@ en:
           complete?: "Show Completed"
         destroy:
           success: "Task was successfully deleted."
-      page_texts:
+      custom_pages:
         update:
           success: "Page text updated successfully!" 
       matches:

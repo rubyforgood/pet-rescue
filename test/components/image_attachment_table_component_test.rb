@@ -18,9 +18,9 @@ class ImageAttachmentTableComponentTest < ViewComponent::TestCase
     setup do
       ActiveStorage::Current.url_options = {host: "localhost", port: 3000}
 
-      page_text = create(:page_text, :with_about_us_image)
-      @component = ImageAttachmentTableComponent.new(images: page_text.images)
-      @image = page_text.images[0]
+      custom_page = create(:custom_page, :with_about_us_image)
+      @component = ImageAttachmentTableComponent.new(images: custom_page.images)
+      @image = custom_page.images[0]
 
       render_inline(@component)
     end
