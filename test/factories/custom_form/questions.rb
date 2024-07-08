@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :question do
+  factory :question, class: "custom_form/question" do
     name { Faker::Lorem.question }
     description { Faker::Lorem.sentence }
     label { name }
