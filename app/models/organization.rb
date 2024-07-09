@@ -28,5 +28,4 @@ class Organization < ApplicationRecord
   has_one :page_text, dependent: :destroy
   has_one :form_submission, dependent: :destroy
   has_one :custom_page, dependent: :destroy
-
 end
