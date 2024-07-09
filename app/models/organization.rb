@@ -26,4 +26,5 @@ class Organization < ApplicationRecord
   has_one :profile, dependent: :destroy, class_name: "OrganizationProfile", required: true
   has_one :location, through: :profile
   has_one :page_text, dependent: :destroy
+  has_one :form_submission, dependent: :destroy
 end

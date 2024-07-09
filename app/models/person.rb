@@ -23,6 +23,7 @@ class Person < ApplicationRecord
   include Avatarable
 
   acts_as_tenant(:organization)
+  has_one :form_submission, dependent: :destroy
 
   validates :name, presence: true
   validates :email, presence: true,
