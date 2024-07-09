@@ -1,6 +1,9 @@
 <div class="row">
   <div class="col-md-8 mx-auto card p-5 bigger">
-    <%= bootstrap_form_with model: [:staff, form, question] do |f| %>
+    <%= bootstrap_form_with(
+      model: [form, question],
+      url: question.new_record? ? staff_custom_form_form_questions_path(form) : staff_custom_form_form_question_path(form, question)
+    ) do |f| %>
       <div class="form-group">
         <%= f.text_field :name, class: 'form-control' %>
       </div>
@@ -26,7 +29,7 @@
       </div>
 
       <%= f.submit t('general.save'), class: 'btn btn-primary' %>
-      <%= link_to t('general.cancel'), staff_forms_path, class: 'btn btn-secondary' %>
+      <%= link_to t('general.cancel'), staff_custom_form_forms_path, class: 'btn btn-secondary' %>
     <% end %>
   </div>
 </div>

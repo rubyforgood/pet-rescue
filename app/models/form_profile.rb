@@ -17,7 +17,7 @@
 #  fk_rails_...  (form_id => forms.id)
 #
 class FormProfile < ApplicationRecord
-  belongs_to :form
+  belongs_to :form, class_name: "CustomForm::Form"
 
   has_one :organization, through: :form
 end
