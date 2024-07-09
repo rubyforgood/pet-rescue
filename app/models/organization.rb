@@ -24,6 +24,9 @@
 #  fk_rails_...  (location_id => locations.id)
 #
 class Organization < ApplicationRecord
+  include Avatarable
+  include Phoneable
+
   # Rolify resource
   resourcify
 
@@ -41,5 +44,20 @@ class Organization < ApplicationRecord
   belongs_to :location
   accepts_nested_attributes_for :location
   validates_associated :location
+
+  before_save :normalize_phone
+
+  validates :phone_number, phone: {possible: true, allow_blank: true}
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+
+  validates :facebook_url, url: true, allow_blank: true
+  validates :instagram_url, url: true, allow_blank: true
+  validates :donation_url, url: true, allow_blank: true
+
+  private
+
+  def normalize_phone
+    self.phone_number = Phonelib.parse(phone_number).full_e164.presence
+  end
 
 end
