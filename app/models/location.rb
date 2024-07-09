@@ -12,7 +12,7 @@
 #
 class Location < ApplicationRecord
   has_one :adopter_foster_profile
-  has_one :organization_profile
+  has_one :organization
 
   validates :country, presence: true, length: {maximum: 50, message: "50 characters maximum"}
   validates :city_town, presence: true, length: {maximum: 50, message: "50 characters maximum"}

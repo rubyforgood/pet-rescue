@@ -8,7 +8,9 @@ orga_location = Location.create!(
 @organization = Organization.create!(
   name: "Alta Pet Rescue",
   slug: "alta",
-  profile: OrganizationProfile.new(email: "alta@email.com", phone_number: "250 816 8212", location: orga_location),
+  email: "alta@email.com",
+  phone_number: "250 816 8212",
+  location: orga_location,
   custom_page: CustomPage.new(hero: "Where every paw finds a home", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.")
 )
 
