@@ -29,7 +29,7 @@ module CustomForm
     belongs_to :user
     belongs_to :form_submission
 
-    has_one :form, through: :question
+    has_one :form, class_name: "CustomForm::Form", through: :question
     has_one :organization, through: :form
   end
 end

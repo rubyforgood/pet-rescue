@@ -9,7 +9,7 @@ orga_location = Location.create!(
   name: "Alta Pet Rescue",
   slug: "alta",
   profile: OrganizationProfile.new(email: "alta@email.com", phone_number: "250 816 8212", location: orga_location),
-  page_text: PageText.new(hero: "Where every paw finds a home", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.")
+  custom_page: CustomPage.new(hero: "Where every paw finds a home", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.")
 )
 
 ActsAsTenant.with_tenant(@organization) do
@@ -269,7 +269,7 @@ ActsAsTenant.with_tenant(@organization) do
     )
   end
 
-  @lifestyle_form = Form.create!(
+  @lifestyle_form = CustomForm::Form.create!(
     name: "Lifestyle",
     description: "Questions regarding the applicant's lifestyle.",
     title: "Lifestyle",
@@ -283,7 +283,7 @@ ActsAsTenant.with_tenant(@organization) do
     sort_order: 0
   )
 
-  @ideal_pet_question = Question.create!(
+  @ideal_pet_question = CustomForm::Question.create!(
     name: "Ideal pet",
     description: "Brief description of the applicant's ideal pet.",
     label: "Your ideal pet",
@@ -294,7 +294,7 @@ ActsAsTenant.with_tenant(@organization) do
     form: @lifestyle_form
   )
 
-  @lifestyle_question = Question.create!(
+  @lifestyle_question = CustomForm::Question.create!(
     name: "General lifestyle",
     description: "Brief description of the applicant's lifestyle.",
     label: "Your lifestyle",
@@ -305,7 +305,7 @@ ActsAsTenant.with_tenant(@organization) do
     form: @lifestyle_form
   )
 
-  @activities_question = Question.create!(
+  @activities_question = CustomForm::Question.create!(
     name: "Activities",
     description: "Brief description of the applicant's activities.",
     label: "Your activities",

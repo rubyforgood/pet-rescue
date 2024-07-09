@@ -15,8 +15,8 @@ crumb :organization_profile do |organization|
   link "Edit Profile", edit_staff_organization_profile_path(organization)
 end
 
-crumb :page_text do |page_text|
-  link "Edit Page Text", edit_staff_page_text_path(page_text)
+crumb :custom_page do |custom_page|
+  link "Edit Custom Page", edit_staff_custom_page_path(custom_page)
 end
 
 crumb :staff_index do
@@ -28,11 +28,11 @@ crumb :default_pet_tasks_index do
 end
 
 crumb :forms_index do
-  link "Forms", staff_forms_path
+  link "Forms", staff_custom_form_forms_path
 end
 
 crumb :form do |form|
-  link form.name, staff_form_path(form)
+  link form.name, staff_custom_form_form_path(form)
   parent :forms_index
 end
 
