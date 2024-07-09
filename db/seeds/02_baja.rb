@@ -354,7 +354,7 @@ ActsAsTenant.with_tenant(@organization) do
     end_date: upcoming_end_date
   )
 
-  @form_submission = FormSubmission.create!(organization: @organization, person: Person.create!(name: "John Doe", email: "Doe@gmail.com"))
+  @form_submission = FormSubmission.new(organization: @organization, person: Person.new(name: "John Doe", email: "Doe@gmail.com"))
 
   10.times do
     adopter_application = AdopterApplication.new(
