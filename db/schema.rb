@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_09_185643) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_10_171927) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -208,20 +208,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_185643) do
     t.index ["pet_id"], name: "index_matches_on_pet_id"
   end
 
-  create_table "organization_profiles", force: :cascade do |t|
-    t.string "email"
-    t.string "phone_number"
-    t.bigint "location_id", null: false
-    t.bigint "organization_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "facebook_url"
-    t.text "instagram_url"
-    t.text "donation_url"
-    t.index ["location_id"], name: "index_organization_profiles_on_location_id"
-    t.index ["organization_id"], name: "index_organization_profiles_on_organization_id"
-  end
-
   create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -389,8 +375,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_185643) do
   add_foreign_key "likes", "pets"
   add_foreign_key "matches", "adopter_foster_accounts"
   add_foreign_key "matches", "pets"
-  add_foreign_key "organization_profiles", "locations"
-  add_foreign_key "organization_profiles", "organizations"
   add_foreign_key "organizations", "locations"
   add_foreign_key "people", "organizations"
   add_foreign_key "pets", "organizations"
