@@ -37,6 +37,7 @@ class Organization < ApplicationRecord
   has_many :forms, class_name: "CustomForm::Form", dependent: :destroy
   has_many :faqs
   has_one :custom_page, dependent: :destroy
+  has_one :form_submission, dependent: :destroy
 
   belongs_to :location
   accepts_nested_attributes_for :location
