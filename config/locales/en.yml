@@ -262,7 +262,7 @@ en:
               blank: "Adopter account must exist"
             organization_id:
               different_organization: "must belong to same organization as pet"
-        organization_profile:
+        organization:
           attributes:
             location:
               blank: "Location must exist"

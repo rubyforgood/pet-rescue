@@ -1,13 +1,13 @@
 require "test_helper"
 
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
-class Organizations::OrganizationProfilePolicyTest < ActiveSupport::TestCase
+class Organizations::OrganizationPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   setup do
     @organization = ActsAsTenant.current_tenant
     @policy = -> {
-      Organizations::OrganizationProfilePolicy.new(Pet, user: @user,
+      Organizations::OrganizationPolicy.new(Pet, user: @user,
         organization: @organization)
     }
   end

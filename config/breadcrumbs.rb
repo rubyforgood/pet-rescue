@@ -11,8 +11,8 @@ crumb :dashboard_pet do |pet|
   parent :dashboard_pets
 end
 
-crumb :organization_profile do |organization|
-  link "Edit Profile", edit_staff_organization_profile_path(organization)
+crumb :organization do |organization|
+  link "Edit Profile", edit_staff_organization_path(organization)
 end
 
 crumb :custom_page do |custom_page|

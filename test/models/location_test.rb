@@ -3,7 +3,7 @@ require "test_helper"
 class LocationTest < ActiveSupport::TestCase
   context "associations" do
     should have_one(:adopter_foster_profile)
-    should have_one(:organization_profile)
+    should have_one(:organization)
   end
 
   context "validations" do

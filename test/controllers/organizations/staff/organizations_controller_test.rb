@@ -1,13 +1,12 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::Staff::OrganizationProfilesControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::OrganizationsControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      @organization_profile = @organization.profile
 
       user = create(:staff)
       sign_in user
@@ -16,9 +15,9 @@ class Organizations::Staff::OrganizationProfilesControllerTest < ActionDispatch:
     context "#edit" do
       should "be authorized" do
         assert_authorized_to(
-          :manage?, @organization_profile, with: Organizations::OrganizationProfilePolicy
+          :manage?, @organization, with: Organizations::OrganizationPolicy
         ) do
-          get edit_staff_organization_profile_url(@organization_profile)
+          get edit_staff_organization_url(@organization)
         end
       end
     end
@@ -30,9 +29,9 @@ class Organizations::Staff::OrganizationProfilesControllerTest < ActionDispatch:
 
       should "be authorized" do
         assert_authorized_to(
-          :manage?, @organization_profile, with: Organizations::OrganizationProfilePolicy
+          :manage?, @organization, with: Organizations::OrganizationPolicy
         ) do
-          patch staff_organization_profile_url(@organization_profile), params: @params
+          patch staff_organization_url(@organization), params: @params
         end
       end
     end

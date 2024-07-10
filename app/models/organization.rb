@@ -45,7 +45,7 @@ class Organization < ApplicationRecord
   before_save :normalize_phone
 
   validates :phone_number, phone: {possible: true, allow_blank: true}
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, allow_blank: true
 
   validates :facebook_url, url: true, allow_blank: true
   validates :instagram_url, url: true, allow_blank: true
@@ -56,5 +56,4 @@ class Organization < ApplicationRecord
   def normalize_phone
     self.phone_number = Phonelib.parse(phone_number).full_e164.presence
   end
-
 end

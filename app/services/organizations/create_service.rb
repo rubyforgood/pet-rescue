@@ -1,4 +1,4 @@
-# class to create a new location, organization, organization profile, user, and staff account with role admin
+# class to create a new location, organization, user, and staff account with role admin
 # email is sent to admin user if all steps are successful
 # call with Organizations::CreateService.new.signal(args)
 # sample args:
@@ -27,7 +27,7 @@ class Organizations::CreateService
         args[:location][:city_town],
         args[:location][:province_state]
       )
-      create_organization_and_profile(
+      create_organization(
         args[:organization][:name],
         args[:organization][:slug]
       )
@@ -55,13 +55,11 @@ class Organizations::CreateService
     )
   end
 
-  def create_organization_and_profile(name, slug)
+  def create_organization(name, slug)
     @organization = Organization.create!(
       name: name,
       slug: slug,
-      profile: OrganizationProfile.new(
-        location_id: @location.id
-      )
+      location_id: @location.id
     )
   end
 
