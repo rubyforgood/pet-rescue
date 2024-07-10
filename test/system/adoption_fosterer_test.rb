@@ -7,7 +7,7 @@ class AdoptionFostererTest < ApplicationSystemTestCase
     @custom_page = create(:custom_page, :with_about_us_image, organization: @org)
 
     @pet = create(:pet)
-    create(:adopter_application, pet: @pet, adopter_foster_account: @user.adopter_foster_account, organization: @org)
+    create(:adopter_application, pet: @pet, adopter_foster_account: @user.adopter_foster_account, organization: @org, form_submission: create(:form_submission))
 
     sign_in @user
   end
