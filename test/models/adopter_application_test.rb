@@ -2,17 +2,24 @@ require "test_helper"
 
 class AdopterApplicationTest < ActiveSupport::TestCase
   setup do
-    @application = create(:adopter_application)
+    @form_submission = create(:form_submission)
+    @application = create(:adopter_application, form_submission: @form_submission)
+  end
+
+  context "associations" do
+    should belong_to(:pet).touch(true)
+    should belong_to(:adopter_foster_account)
+    should belong_to(:form_submission)
   end
 
   context "self.retire_applications" do
     context "when some applications match pet_id and some do not" do
       setup do
         @selected_applications = Array.new(3) {
-          create(:adopter_application, pet_id: @application.pet_id)
+          create(:adopter_application, pet_id: @application.pet_id, form_submission: @form_submission)
         }
         @unselected_applications = Array.new(2) {
-          create(:adopter_application)
+          create(:adopter_application, form_submission: @form_submission)
         }
       end
 
