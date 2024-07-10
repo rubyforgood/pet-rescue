@@ -36,9 +36,6 @@ class Organization < ApplicationRecord
   has_many :default_pet_tasks
   has_many :forms, class_name: "CustomForm::Form", dependent: :destroy
   has_many :faqs
-
-  # has_one :profile, dependent: :destroy, class_name: "OrganizationProfile", required: true
-  # has_one :location, through: :profile
   has_one :custom_page, dependent: :destroy
 
   belongs_to :location

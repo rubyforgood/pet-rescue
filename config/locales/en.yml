@@ -470,7 +470,7 @@ en:
           edit_faq: "Edit FAQ"
         faq:
           are_you_sure_delete: "Are you sure you want to delete this FAQ?"
-      organization_profiles:
+      organizations:
         update:
           success: "Your profile has been updated!"
         form:

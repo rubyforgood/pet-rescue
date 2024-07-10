@@ -1,5 +1,5 @@
-<%= bootstrap_form_with model: profile, :url => staff_organization_profile_path do |form| %>
-  <% if profile.errors.count > 0 %>
+<%= bootstrap_form_with model: organization, :url => staff_organization_path do |form| %>
+  <% if organization.errors.count > 0 %>
     <div class="alert alert-danger mt-1" role="alert">
       <%= t '.please_fix_the_errors' %>
     </div>
@@ -15,22 +15,20 @@
     <div class="row mt-3">
       <!-- First Column -->
       <div class="col-lg-6">
-        <%= form.fields_for :organization do |org_form| %>
-          <form class="mb-3">
-            <!-- Phone Number -->
-            <div class="form-group">
-              <%= form.telephone_field :phone_number,
-                                      autofocus: true,
-                                      placeholder: "10 digit number",
-                                      class: 'form-control' %>
-            </div>
+        <form class="mb-3">
+          <!-- Phone Number -->
+          <div class="form-group">
+            <%= form.telephone_field :phone_number,
+                                    autofocus: true,
+                                    placeholder: "10 digit number",
+                                    class: 'form-control' %>
+          </div>
 
-            <!-- Email -->
-            <div class="form-group">
-              <%= form.text_field :email, placeholder: "john@email.com", class: 'form-control' %>
-            </div>
-          </form>
-        <% end %>
+          <!-- Email -->
+          <div class="form-group">
+            <%= form.text_field :email, placeholder: "john@email.com", class: 'form-control' %>
+          </div>
+        </form>
       </div>
 
       <!-- Second Column -->
@@ -71,15 +69,15 @@
       </div>
       <div class="col-lg-6">
         <%= form.text_field :donation_url, label: "Donate", placeholder: "https://example.com", class: 'form-control' %>
-        <% if profile.avatar.id %>
+        <% if organization.avatar.id %>
           <div class='form-group mt-3'>
             <label class="form-label">
               Current picture
             </label>
             <div class='d-flex flex-column align-items-center'>
-              <%= image_tag profile.avatar, class: 'rounded-1', style: 'max-height:7.5rem;max-width:100%' %>
+              <%= image_tag organization.avatar, class: 'rounded-1', style: 'max-height:7.5rem;max-width:100%' %>
               <%= link_to t('general.delete'),
-                          purge_avatar_path(profile.avatar.id),
+                          purge_avatar_path(organization.avatar.id),
                           data: { turbo_method: "delete" },
                           class: 'delete-button' %>
             </div>
