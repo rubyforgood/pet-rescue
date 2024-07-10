@@ -401,17 +401,20 @@ ActsAsTenant.with_tenant(@organization) do
     end_date: upcoming_end_date
   )
 
+  @form_submission = FormSubmission.new(organization: @organization, person: Person.new(name: "John Doe", email: "Doe@gmail.com"))
+
   10.times do
     adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..4),
       adopter_foster_account: AdopterFosterAccount.all.sample,
-      pet: Pet.all.sample
+      pet: Pet.all.sample,
+      form_submission: @form_submission
     )
 
     # Prevent duplicate adopter applications.
-    redo if AdopterApplication.where(pet_id: adopter_application.pet_id,
+    redo if AdopterApplication.where(pet_id: adopter_application.pet_id, form_submission_id: adopter_application.form_submission_id,
       adopter_foster_account_id: adopter_application.adopter_foster_account_id).exists?
 
     if adopter_application.valid?
