@@ -256,7 +256,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user is staff admin" do
           setup do
-            @user = create(:staff_admin)
+            @user = create(:super_admin)
           end
 
           should "return false" do

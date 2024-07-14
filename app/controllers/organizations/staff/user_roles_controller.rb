@@ -2,7 +2,7 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
   before_action :set_user
 
   def to_staff
-    if @user.change_role(:admin, :staff)
+    if @user.change_role(:super_admin, :staff)
       respond_to do |format|
         format.html { redirect_to request.referrer, notice: t(".success") }
         format.turbo_stream { flash.now[:notice] = t(".success") }
@@ -15,8 +15,8 @@ class Organizations::Staff::UserRolesController < Organizations::BaseController
     end
   end
 
-  def to_admin
-    if @user.change_role(:staff, :admin)
+  def to_super_admin
+    if @user.change_role(:staff, :super_admin)
       respond_to do |format|
         format.html { redirect_to request.referrer, notice: t(".success") }
         format.turbo_stream { flash.now[:notice] = t(".success") }

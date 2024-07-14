@@ -4,7 +4,7 @@ require "action_policy/test_helper"
 class Organizations::Staff::InvitationsControllerTest < ActionDispatch::IntegrationTest
   context "#create" do
     setup do
-      user = create(:staff_admin)
+      user = create(:super_admin)
       sign_in user
     end
 
@@ -12,13 +12,13 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
       invitation_params = {
         user: attributes_for(:user)
           .except(:password, :encrypted_password, :tos_agreement)
-          .merge(roles: "admin")
+          .merge(roles: "super_admin")
       }
 
       post user_invitation_url, params: invitation_params
 
       persisted_user = User.find_by(email: invitation_params[:user][:email])
-      has_role = persisted_user.has_role?(:admin, ActsAsTenant.current_tenant)
+      has_role = persisted_user.has_role?(:super_admin, ActsAsTenant.current_tenant)
 
       assert_equal true, has_role
     end
@@ -44,7 +44,7 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      user = create(:staff_admin)
+      user = create(:super_admin)
       sign_in user
     end
 
@@ -67,9 +67,9 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
         }
       end
 
-      context "with params including {roles: 'admin'}" do
+      context "with params including {roles: 'super_admin'}" do
         setup do
-          @params[:user][:roles] = "admin"
+          @params[:user][:roles] = "super_admin"
         end
 
         should "be authorized" do

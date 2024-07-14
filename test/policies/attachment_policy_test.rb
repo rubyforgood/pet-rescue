@@ -84,7 +84,7 @@ class ActiveStorage::AttachmentPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:staff_admin)
+          @user = create(:super_admin)
         end
 
         context "when attachment's record's organization matches user's" do

@@ -84,7 +84,7 @@ class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
 
     context "when user is staff admin" do
       setup do
-        @user = create(:staff_admin)
+        @user = create(:super_admin)
       end
 
       context "when application belongs to a different organization" do

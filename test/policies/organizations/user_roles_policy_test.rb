@@ -3,7 +3,7 @@ require "test_helper"
 # See https://actionpolicy.evilmartians.io/#/testing?id=testing-policies
 class Organizations::UserRolesPolicyTest < ActiveSupport::TestCase
   setup do
-    @account = create(:staff_admin)
+    @account = create(:super_admin)
     @policy = -> {
       Organizations::UserRolesPolicy.new(@account, user: @user)
     }
@@ -56,7 +56,7 @@ class Organizations::UserRolesPolicyTest < ActiveSupport::TestCase
 
     context "when user is staff admin" do
       setup do
-        @user = create(:staff_admin)
+        @user = create(:super_admin)
       end
 
       context "when account belongs to a different organization" do

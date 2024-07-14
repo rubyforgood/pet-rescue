@@ -82,7 +82,7 @@ class Organizations::DefaultPetTaskPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:staff_admin)
+          @user = create(:super_admin)
         end
 
         context "when organization context is a different organization" do
@@ -201,7 +201,7 @@ class Organizations::DefaultPetTaskPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:staff_admin)
+          @user = create(:super_admin)
         end
 
         context "when default pet task belongs to a different organization" do

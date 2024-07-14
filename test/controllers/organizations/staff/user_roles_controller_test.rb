@@ -7,7 +7,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      user = create(:staff_admin)
+      user = create(:super_admin)
       sign_in user
       @account = create(:staff)
     end
@@ -24,14 +24,14 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
       end
     end
 
-    context "#to_admin" do
+    context "#to_super_admin" do
       should "be authorized" do
         assert_authorized_to(
           :change_role?, @account,
           context: {organization: @organization},
           with: Organizations::UserRolesPolicy
         ) do
-          post staff_user_to_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
+          post staff_user_to_super_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
         end
       end
     end
@@ -43,8 +43,8 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
   context "#to_staff" do
     setup do
       @organization = ActsAsTenant.current_tenant
-      @user = create(:staff_admin)
-      @account = create(:staff_admin)
+      @user = create(:super_admin)
+      @account = create(:super_admin)
       sign_in @user
     end
 
@@ -103,46 +103,46 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
     end
   end
 
-  context "#to_admin" do
+  context "#to_super_admin" do
     setup do
       @organization = ActsAsTenant.current_tenant
-      @user = create(:staff_admin)
+      @user = create(:super_admin)
       @account = create(:staff)
       sign_in @user
     end
 
     should "change role from staff to admin" do
-      post staff_user_to_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
+      post staff_user_to_super_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
       assert_response :redirect
       follow_redirect!
 
-      assert_equal "Account changed to Admin", flash.notice
+      assert_equal "Account changed to Super Admin", flash.notice
 
-      has_role = @account.has_role?(:admin, ActsAsTenant.current_tenant)
+      has_role = @account.has_role?(:super_admin, ActsAsTenant.current_tenant)
       assert_equal true, has_role
     end
 
     should "change role from staff to admin with turbo" do
-      post staff_user_to_admin_url(@account), as: :turbo_stream
+      post staff_user_to_super_admin_url(@account), as: :turbo_stream
 
       assert_response :success
       assert_turbo_stream(action: "replace", count: 2) do
-        assert_select "button", text: "Admin"
+        assert_select "button", text: "Super_admin"
       end
-      assert_equal "Account changed to Admin", flash.notice
+      assert_equal "Account changed to Super Admin", flash.notice
     end
 
     should "scope role to organization" do
-      post staff_user_to_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
-      has_strict_role = @account.has_strict_role?(:admin, ActsAsTenant.current_tenant)
-      global_role = @account.has_role?(:admin)
+      post staff_user_to_super_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
+      has_strict_role = @account.has_strict_role?(:super_admin, ActsAsTenant.current_tenant)
+      global_role = @account.has_role?(:super_admin)
 
       assert_equal true, has_strict_role
       assert_equal false, global_role
     end
     should "receive alert if role is not changed" do
       User.any_instance.stubs(:change_role).returns(false)
-      post staff_user_to_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
+      post staff_user_to_super_admin_url(@account), headers: {"HTTP_REFERER" => "http://www.example.com/"}
 
       assert_response :redirect
       follow_redirect!
@@ -152,7 +152,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
 
     should "receive alert via turbo if role is not changed" do
       User.any_instance.stubs(:change_role).returns(false)
-      post staff_user_to_admin_url(@account), as: :turbo_stream
+      post staff_user_to_super_admin_url(@account), as: :turbo_stream
 
       assert_equal "Error changing role", flash.alert
     end

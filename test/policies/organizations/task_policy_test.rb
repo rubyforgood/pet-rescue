@@ -72,7 +72,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:staff_admin)
+          @user = create(:super_admin)
         end
 
         should "return true" do
@@ -161,7 +161,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:staff_admin)
+          @user = create(:super_admin)
         end
 
         context "when pet is from a different organization" do

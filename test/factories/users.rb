@@ -66,13 +66,13 @@ FactoryBot.define do
       end
     end
 
-    factory :staff_admin do
+    factory :super_admin do
       staff_account do
         association :staff_account, user: instance
       end
 
       after(:build) do |user, _context|
-        user.add_role(:admin, user.organization)
+        user.add_role(:super_admin, user.organization)
       end
     end
   end

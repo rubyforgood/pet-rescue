@@ -82,7 +82,7 @@ class Organizations::FostererInvitationPolicyTest < ActiveSupport::TestCase
 
     context "when user is staff admin" do
       setup do
-        @user = create(:staff_admin)
+        @user = create(:super_admin)
       end
 
       context "when created staff is for a different organization" do

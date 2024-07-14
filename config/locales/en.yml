@@ -397,8 +397,8 @@ en:
         to_staff:
           success: "Account changed to Staff"
           error: "Error changing role"
-        to_admin:
-          success: "Account changed to Admin"
+        to_super_admin:
+          success: "Account changed to Super Admin"
           error: "Error changing role"
       tasks:
         task:
