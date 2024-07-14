@@ -46,7 +46,7 @@ class Organizations::UserRolesPolicyTest < ActiveSupport::TestCase
 
     context "when user is staff" do
       setup do
-        @user = create(:staff)
+        @user = create(:admin)
       end
 
       should "return false" do
@@ -62,7 +62,7 @@ class Organizations::UserRolesPolicyTest < ActiveSupport::TestCase
       context "when account belongs to a different organization" do
         setup do
           ActsAsTenant.with_tenant(create(:organization)) do
-            @account = create(:staff)
+            @account = create(:admin)
           end
         end
 

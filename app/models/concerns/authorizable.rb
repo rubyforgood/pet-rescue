@@ -45,8 +45,34 @@ module Authorizable
     ]
   ).freeze
 
+  ADMIN_PERMISSIONS = (
+    ADOPTER_PERMISSIONS.excluding(
+      %i[
+        view_adopter_foster_dashboard
+        create_adopter_applications
+        create_adopter_foster_profiles
+        manage_adopter_foster_profiles
+        manage_likes
+      ]
+    ) + %i[
+      review_adopter_applications
+      view_adopter_foster_accounts
+      view_adopter_foster_profiles
+      invite_fosterers
+      purge_attachments
+      manage_default_pet_tasks
+      manage_forms
+      manage_questions
+      manage_matches
+      manage_pets
+      manage_tasks
+      view_organization_dashboard
+      manage_faqs
+    ]
+  ).freeze
+
   SUPER_ADMIN_PERMISSIONS = (
-    STAFF_PERMISSIONS + %i[
+    ADMIN_PERMISSIONS + %i[
       activate_staff
       invite_staff
       manage_organization_profile
@@ -60,6 +86,7 @@ module Authorizable
     adopter: ADOPTER_PERMISSIONS,
     fosterer: FOSTERER_PERMISSIONS,
     staff: STAFF_PERMISSIONS,
+    admin: ADMIN_PERMISSIONS,
     super_admin: SUPER_ADMIN_PERMISSIONS
   }.freeze
 

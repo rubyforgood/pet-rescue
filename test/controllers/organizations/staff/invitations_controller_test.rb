@@ -27,13 +27,13 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
       invitation_params = {
         user: attributes_for(:user)
           .except(:password, :encrypted_password, :tos_agreement)
-          .merge(roles: "staff")
+          .merge(roles: "admin")
       }
 
       post user_invitation_url, params: invitation_params
 
       persisted_user = User.find_by(email: invitation_params[:user][:email])
-      has_role = persisted_user.has_role?(:staff, ActsAsTenant.current_tenant)
+      has_role = persisted_user.has_role?(:admin, ActsAsTenant.current_tenant)
 
       assert_equal true, has_role
     end
@@ -85,7 +85,7 @@ class Organizations::Staff::InvitationsControllerTest < ActionDispatch::Integrat
 
       context "with params including {roles: 'staff'}" do
         setup do
-          @params[:user][:roles] = "staff"
+          @params[:user][:roles] = "admin"
         end
 
         should "be authorized" do

@@ -48,7 +48,7 @@ module Organizations
 
           context "when user is deactivated staff" do
             setup do
-              @user = create(:staff, :deactivated)
+              @user = create(:admin, :deactivated)
             end
 
             should "return false" do
@@ -129,7 +129,7 @@ module Organizations
 
           context "when user is deactivated staff" do
             setup do
-              @user = create(:staff, :deactivated)
+              @user = create(:admin, :deactivated)
             end
 
             should "return false" do

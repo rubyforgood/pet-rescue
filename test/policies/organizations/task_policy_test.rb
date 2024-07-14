@@ -52,7 +52,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
 
       context "when user is deactivated staff" do
         setup do
-          @user = create(:staff, :deactivated)
+          @user = create(:admin, :deactivated)
         end
 
         should "return false" do
@@ -62,7 +62,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
 
       context "when user is active staff" do
         setup do
-          @user = create(:staff)
+          @user = create(:admin)
         end
 
         should "return true" do
@@ -141,7 +141,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
 
       context "when user is deactivated staff" do
         setup do
-          @user = create(:staff, :deactivated)
+          @user = create(:admin, :deactivated)
         end
 
         should "return false" do
@@ -151,7 +151,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
 
       context "when user is active staff" do
         setup do
-          @user = create(:staff)
+          @user = create(:admin)
         end
 
         should "return true" do
@@ -186,7 +186,7 @@ class Organizations::TaskPolicyTest < ActiveSupport::TestCase
 
       context "when user is not allowed to manage pets" do
         setup do
-          @user = create(:staff)
+          @user = create(:admin)
           @user.expects(:permission?).with(:manage_pets).returns(false)
         end
 

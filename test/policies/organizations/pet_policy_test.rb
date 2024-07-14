@@ -50,7 +50,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is deactivated staff" do
         setup do
-          @user = create(:staff, :deactivated)
+          @user = create(:admin, :deactivated)
         end
 
         should "return false" do
@@ -60,7 +60,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is active staff" do
         setup do
-          @user = create(:staff)
+          @user = create(:admin)
         end
 
         should "return true" do
@@ -141,7 +141,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is deactivated staff" do
         setup do
-          @user = create(:staff, :deactivated)
+          @user = create(:admin, :deactivated)
         end
 
         should "return false" do
@@ -151,7 +151,7 @@ class Organizations::PetPolicyTest < ActiveSupport::TestCase
 
       context "when user is active staff" do
         setup do
-          @user = create(:staff)
+          @user = create(:admin)
         end
 
         should "return true" do

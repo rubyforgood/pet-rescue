@@ -394,8 +394,8 @@ en:
         more_questions: "More Questions? Contact us"
     staff:
       user_roles:
-        to_staff:
-          success: "Account changed to Staff"
+        to_admin:
+          success: "Account changed to Admin"
           error: "Error changing role"
         to_super_admin:
           success: "Account changed to Super Admin"

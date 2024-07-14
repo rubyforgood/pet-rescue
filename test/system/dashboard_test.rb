@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class DashboardTest < ApplicationSystemTestCase
   setup do
-    @user = create(:staff)
+    @user = create(:admin)
     @organization = @user.organization
     Current.organization = @organization
     @pets = create_list(:pet, 3, organization: @organization)

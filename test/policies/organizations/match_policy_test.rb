@@ -46,7 +46,7 @@ class Organizations::MatchPolicyTest < ActiveSupport::TestCase
 
     context "when user is activated staff" do
       setup do
-        @user = create(:staff)
+        @user = create(:admin)
       end
 
       context "when organization context is a different organization" do
@@ -68,7 +68,7 @@ class Organizations::MatchPolicyTest < ActiveSupport::TestCase
 
     context "when user is deactivated staff" do
       setup do
-        @user = create(:staff, :deactivated)
+        @user = create(:admin, :deactivated)
       end
 
       should "return false" do
@@ -140,7 +140,7 @@ class Organizations::MatchPolicyTest < ActiveSupport::TestCase
 
     context "when user is activated staff" do
       setup do
-        @user = create(:staff)
+        @user = create(:admin)
       end
 
       context "when match belongs to a different organization" do
@@ -164,7 +164,7 @@ class Organizations::MatchPolicyTest < ActiveSupport::TestCase
 
     context "when user is deactivated staff" do
       setup do
-        @user = create(:staff, :deactivated)
+        @user = create(:admin, :deactivated)
       end
 
       should "return false" do

@@ -50,7 +50,7 @@ FactoryBot.define do
       end
     end
 
-    factory :staff do
+    factory :admin do
       staff_account do
         association :staff_account, user: instance
       end
@@ -62,7 +62,7 @@ FactoryBot.define do
       end
 
       after(:build) do |user, _context|
-        user.add_role(:staff, user.organization)
+        user.add_role(:admin, user.organization)
       end
     end
 
