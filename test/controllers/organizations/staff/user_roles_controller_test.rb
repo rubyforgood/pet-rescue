@@ -127,7 +127,7 @@ class Organizations::Staff::UserRolesControllerTest < ActionDispatch::Integratio
 
       assert_response :success
       assert_turbo_stream(action: "replace", count: 2) do
-        assert_select "button", text: "Super_admin"
+        assert_select "button", text: "Super Admin"
       end
       assert_equal "Account changed to Super Admin", flash.notice
     end
