@@ -45,17 +45,6 @@ module Authorizable
     ]
   ).freeze
 
-  ADMIN_PERMISSIONS = (
-    STAFF_PERMISSIONS + %i[
-      activate_staff
-      invite_staff
-      manage_organization_profile
-      manage_custom_page
-      manage_staff
-      change_user_roles
-    ]
-  ).freeze
-
   SUPER_ADMIN_PERMISSIONS = (
     STAFF_PERMISSIONS + %i[
       activate_staff
@@ -71,7 +60,6 @@ module Authorizable
     adopter: ADOPTER_PERMISSIONS,
     fosterer: FOSTERER_PERMISSIONS,
     staff: STAFF_PERMISSIONS,
-    admin: ADMIN_PERMISSIONS,
     super_admin: SUPER_ADMIN_PERMISSIONS
   }.freeze
 
