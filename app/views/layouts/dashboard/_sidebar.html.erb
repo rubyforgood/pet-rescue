@@ -59,22 +59,36 @@
           <i class="nav-icon fe fe-file-text me-2"></i>FAQs
         <% end %>
       </li>
-      <% if current_user.staff_account && current_user.has_role?(:super_admin, current_user.staff_account.organization) %>
+      <% if allowed_to?(:index?, CustomForm::Form, namespace: Organizations,
+        context: {organization: Current.organization})
+      %>
         <li class="nav-item">
           <%= active_link_to staff_custom_form_forms_path, class: 'nav-link' do %>
             <i class="nav-icon fe fe-clipboard me-2"></i>Forms
           <% end %>
         </li>
+      <% end %>
+      <% if allowed_to?(:edit?, OrganizationProfile, namespace: Organizations,
+        context: {organization: Current.organization})
+      %>
         <li class="nav-item">
           <%= active_link_to edit_staff_organization_profile_path, class: "nav-link" do %>
             <i class="nav-icon fe fe-settings me-2"></i>Settings
           <% end %>
         </li>
+      <% end %>
+      <% if allowed_to?(:edit?, CustomPage, namespace: Organizations,
+        context: {organization: Current.organization}) 
+      %>
         <li class="nav-item">
           <%= active_link_to edit_staff_custom_page_path(@custom_page), class: "nav-link" do %>
             <i class="nav-icon fe fe-file-text me-2"></i>Custom Page
           <% end %>
         </li>
+      <% end %>
+      <% if allowed_to?(:index?, StaffAccount, namespace: Organizations,
+          context: {organization: Current.organization})
+        %>
         <li class="nav-item">
           <%= active_link_to staff_staff_index_path, class: "nav-link" do %>
             <i class="nav-icon fe fe-users me-2"></i>Staff
