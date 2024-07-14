@@ -1,6 +1,14 @@
 module Authorizable
   extend ActiveSupport::Concern
 
+  included do
+    rolify
+  end
+
+  def permission?(name)
+    permissions.include?(name)
+  end
+
   ADOPTER_PERMISSIONS = %i[
     view_adopter_foster_dashboard
     create_adopter_applications
@@ -62,14 +70,6 @@ module Authorizable
     admin: ADMIN_PERMISSIONS,
     super_admin: SUPER_ADMIN_PERMISSIONS
   }.freeze
-
-  included do
-    rolify
-  end
-
-  def permission?(name)
-    permissions.include?(name)
-  end
 
   private
 
