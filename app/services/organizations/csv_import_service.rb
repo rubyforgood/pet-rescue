@@ -7,7 +7,7 @@ module Organizations
       @organization = organization
     end
 
-    def import
+    def call
       CSV.foreach(@file.to_path, headers: true, skip_blanks: true) do |row|
         # Using Google Form headers
         email = row["Email"]
