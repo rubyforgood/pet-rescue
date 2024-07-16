@@ -4,7 +4,7 @@
 # we will have a set of answers belonging to a form submission.
 # This form submission can be valid for a period of time to allow the user to apply to adopt multiple pets.
 # If this time expires, or the person's context changes and they need to update their responses, we now have a new set of answers and a new form submission.
-# 
+#
 # == Schema Information
 #
 # Table name: form_submissions
@@ -24,7 +24,7 @@
 #
 #  fk_rails_...  (organization_id => organizations.id)
 #  fk_rails_...  (person_id => people.id)
-# 
+#
 class FormSubmission < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :person

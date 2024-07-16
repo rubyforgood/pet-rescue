@@ -24,7 +24,6 @@ class Organization < ApplicationRecord
   has_many :faqs
   has_many :form_answer, dependent: :destroy
 
-
   has_one :profile, dependent: :destroy, class_name: "OrganizationProfile", required: true
   has_one :location, through: :profile
   has_one :form_submission, dependent: :destroy
