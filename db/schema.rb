@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_16_194544) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -140,6 +140,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_faqs_on_organization_id"
+  end
+
+  create_table "form_answers", force: :cascade do |t|
+    t.json "value", null: false
+    t.json "question_snapshot", null: false
+    t.bigint "question_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "form_submission_id", null: false
+    t.bigint "organization_id", null: false
+    t.index ["form_submission_id"], name: "index_form_answers_on_form_submission_id"
+    t.index ["organization_id"], name: "index_form_answers_on_organization_id"
+    t.index ["question_id"], name: "index_form_answers_on_question_id"
+    t.index ["user_id"], name: "index_form_answers_on_user_id"
   end
 
   create_table "form_profiles", force: :cascade do |t|
@@ -298,19 +313,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
   end
 
-  create_table "submitted_answers", force: :cascade do |t|
-    t.json "value", null: false
-    t.json "question_snapshot", null: false
-    t.bigint "question_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "form_submission_id", null: false
-    t.index ["form_submission_id"], name: "index_submitted_answers_on_form_submission_id"
-    t.index ["question_id"], name: "index_submitted_answers_on_question_id"
-    t.index ["user_id"], name: "index_submitted_answers_on_user_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -373,6 +375,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
   add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "faqs", "organizations"
+  add_foreign_key "form_answers", "form_submissions"
+  add_foreign_key "form_answers", "organizations"
+  add_foreign_key "form_answers", "questions"
+  add_foreign_key "form_answers", "users"
   add_foreign_key "form_profiles", "forms"
   add_foreign_key "form_submissions", "organizations"
   add_foreign_key "form_submissions", "people"
@@ -389,8 +395,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
   add_foreign_key "questions", "forms"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
-  add_foreign_key "submitted_answers", "form_submissions"
-  add_foreign_key "submitted_answers", "questions"
-  add_foreign_key "submitted_answers", "users"
   add_foreign_key "tasks", "pets"
 end
