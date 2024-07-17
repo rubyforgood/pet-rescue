@@ -1,6 +1,4 @@
-module Organizations
-  module Checklist
-    class TaskTemplatePolicy < ApplicationPolicy
+class Organizations::TaskTemplatePolicy < ApplicationPolicy
       pre_check :verify_organization!
       pre_check :verify_active_staff!
 
@@ -9,6 +7,4 @@ module Organizations
       def manage?
         permission?(:manage_task_templates)
       end
-    end
-  end
 end
