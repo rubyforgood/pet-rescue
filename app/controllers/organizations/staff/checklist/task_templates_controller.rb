@@ -16,6 +16,7 @@ module Organizations
         end
 
         def create
+          binding.pry
           @task = TaskTemplate.new(task_params)
 
           if @task.save
@@ -31,8 +32,7 @@ module Organizations
         end
 
         def update
-
-          if @task.update(task_params)
+          if @task_template.update(task_params)
             binding.pry
             redirect_to staff_checklist_task_templates_path, notice: t(".success")
           else
@@ -51,14 +51,14 @@ module Organizations
         private
 
         def task_params
+          binding.pry
           params.require(:task_template).permit(:name, :description, :due_in_days, :recurring)
         end
 
         def set_task
           # binding.pry
           @task = TaskTemplate.find(params[:id])
-
-          authorize! @task
+          authorize! @task # here
         rescue ActiveRecord::RecordNotFound
           redirect_to staff_checklist_task_templates_path, alert: t(".error")
         end
