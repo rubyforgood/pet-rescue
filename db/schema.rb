@@ -121,17 +121,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_144556) do
     t.index ["organization_id"], name: "index_custom_pages_on_organization_id"
   end
 
-  create_table "default_pet_tasks", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "description"
-    t.bigint "organization_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "due_in_days"
-    t.boolean "recurring", default: false
-    t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
-  end
-  
   create_table "faqs", force: :cascade do |t|
     t.string "question", null: false
     t.text "answer", null: false
@@ -382,11 +371,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_08_144556) do
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "custom_pages", "organizations"
-  add_foreign_key "default_pet_tasks", "organizations"
-  add_foreign_key "custom_pages", "organizations"
-  add_foreign_key "default_pet_tasks", "organizations"
-  add_foreign_key "custom_pages", "organizations"
-  add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "faqs", "organizations"
   add_foreign_key "form_profiles", "forms"
   add_foreign_key "form_submissions", "organizations"

@@ -55,7 +55,7 @@ module Organizations
         end
 
         def set_task
-          binding.pry
+          # binding.pry
           @task = TaskTemplate.find(params[:id])
 
           authorize! @task
