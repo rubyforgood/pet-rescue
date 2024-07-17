@@ -7,7 +7,6 @@ class MergeOrganizationProfilesToOrganizations < ActiveRecord::Migration[7.1]
     add_column :organizations, :instagram_url, :text
     add_reference :organizations, :location, foreign_key: true
 
-    # Migrate existing data
     execute <<-SQL
       UPDATE organizations o
       SET 
@@ -21,7 +20,6 @@ class MergeOrganizationProfilesToOrganizations < ActiveRecord::Migration[7.1]
       WHERE op.organization_id = o.id
     SQL
 
-    # Add NOT NULL constraint
     change_column_null :organizations, :location_id, false
   end
 
