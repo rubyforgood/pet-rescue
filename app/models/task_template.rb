@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: default_pet_tasks
+# Table name: task_templates
 #
 #  id              :bigint           not null, primary key
 #  description     :string
@@ -13,13 +13,13 @@
 #
 # Indexes
 #
-#  index_default_pet_tasks_on_organization_id  (organization_id)
+#  index_task_templates_on_organization_id  (organization_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (organization_id => organizations.id)
 #
-class DefaultPetTask < ApplicationRecord
+class TaskTemplate < ApplicationRecord
   acts_as_tenant(:organization)
 
   validates :name, presence: true
