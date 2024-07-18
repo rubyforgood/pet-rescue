@@ -49,7 +49,8 @@
                       </div>
                       <div class="d-flex justify-content-between pt-2">
                         <span>Deactivate</span>
-                        <%= render "deactivate_toggle", account: fosterer, role: 'fosterer' %>
+                        <%= render DeactivateToggleComponent.new(account: fosterer,
+                        role: 'fosterer') %>
                       </div>
                     </div>
                   </div>
@@ -91,7 +92,8 @@
                         <%= fosterer.created_at.strftime("%d %B, %Y") %>
                       </td>
                       <td>
-                        <%= render "deactivate_toggle", account: fosterer, role: 'fosterer' %>
+                        <%= render DeactivateToggleComponent.new(account: fosterer,
+                        role: 'fosterer') %>
                       </td>
                       <td>
                         <div class="hstack gap-4">
