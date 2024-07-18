@@ -12,16 +12,22 @@ class Organizations::Staff::StaffController < Organizations::BaseController
   def deactivate
     @staff_account.deactivate
     respond_to do |format|
-      format.html { redirect_to staff_staff_index_path, notice: t(".success") }
-      format.turbo_stream { render "organizations/staff/staff/update" }
+      format.html { redirect_to staff_staff_index_path, notice: I18n.t("staff_accounts.status.deactivated") }
+      format.turbo_stream do
+        flash.now[:notice] = I18n.t("staff_accounts.status.deactivated")
+        render "organizations/staff/staff/update"
+      end
     end
   end
 
   def activate
     @staff_account.activate
     respond_to do |format|
-      format.html { redirect_to staff_staff_index_path, notice: t(".success") }
-      format.turbo_stream { render "organizations/staff/staff/update" }
+      format.html { redirect_to staff_staff_index_path, notice: I18n.t("staff_accounts.status.activated") }
+      format.turbo_stream do
+        flash.now[:notice] = I18n.t("staff_accounts.status.activated")
+        render "organizations/staff/staff/update"
+      end
     end
   end
 

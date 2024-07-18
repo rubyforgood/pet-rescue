@@ -597,6 +597,12 @@ en:
         activate:
           success: "Staff account activated."
     adopter_fosterer:
+      adopters:
+        deactivated: "Adopter account deactivated."
+        activated: "Fosterer account activated."
+      fosterers:
+        deactivated: "Fosterer account deactivated."
+        activated: "Fosterer account activated."
       profiles:
         create:
           success: "Profile created"
@@ -683,7 +689,8 @@ en:
     status:
       invitation_sent: "Invitation sent"
       enabled: "Enabled"
-      deactivated: "Deactivated"
+      deactivated: "Staff account deactivated."
+      activated: "Staff account activated."
   contacts:
     create:
       success: "Message sent!"

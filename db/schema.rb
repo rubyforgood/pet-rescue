@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.bigint "organization_id", null: false
+    t.datetime "deactivated_at"
     t.index ["organization_id"], name: "index_adopter_foster_accounts_on_organization_id"
     t.index ["user_id"], name: "index_adopter_foster_accounts_on_user_id"
   end
