@@ -13,9 +13,7 @@ class DeactivateFostererTest < ApplicationSystemTestCase
       assert_not @fosterer.deactivated?
       visit staff_fosterers_path
 
-      within(".deactivate_toggle_#{@fosterer.id}") {
-        click(".form-switch")
-      }
+      within(".deactivate_toggle_#{@fosterer.id}") { click(".form-switch") }
 
       @fosterer.reload
       assert @fosterer.deactivated?
@@ -26,9 +24,7 @@ class DeactivateFostererTest < ApplicationSystemTestCase
       assert @fosterer.deactivated?
       visit staff_fosterers_path
 
-      within(".deactivate_toggle_#{@fosterer.id}") {
-        click(".form-switch")
-      }
+      within(".deactivate_toggle_#{@fosterer.id}") { click(".form-switch") }
 
       @fosterer.reload
       assert_not @fosterer.deactivated?
