@@ -3,7 +3,7 @@
     <div class='form-group d-flex justify-content-center'>
       <div class="form-check form-switch">
         <%= form.check_box :deactivated?, { class: "form-check-input",
-         role: "switch", id: "flexSwitchCheckChecked", onchange: "this.form.requestSubmit()" }, true, false %>
+         role: "switch", disabled: account == helpers.current_user.staff_account, id: "flexSwitchCheckChecked", onchange: "this.form.requestSubmit()" }, true, false %>
       </div>
     </div>
   <% end %>
