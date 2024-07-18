@@ -32,4 +32,36 @@ class AdopterFosterAccountTest < ActiveSupport::TestCase
       end
     end
   end
+
+  context "#deactivate" do
+    should "set deactivated_at" do
+      fosterer = create(:foster_account)
+
+      fosterer.deactivate
+      assert_not_nil(fosterer.deactivated_at)
+    end
+  end
+
+  context "#activate" do
+    should "set deactivated_at to nil" do
+      fosterer = create(:foster_account)
+
+      fosterer.activate
+      assert_nil(fosterer.deactivated_at)
+    end
+  end
+
+  context "#deactivated?" do
+    should "return true if deactivated_at is not nil" do
+      fosterer = create(:foster_account, :deactivated)
+
+      assert(fosterer.deactivated?)
+    end
+
+    should "return false if deactivated_at is nil" do
+      fosterer = create(:foster_account)
+
+      assert_not(fosterer.deactivated?)
+    end
+  end
 end

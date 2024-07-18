@@ -10,6 +10,9 @@ FactoryBot.define do
 
     factory :foster_account do
       user { association :fosterer, adopter_foster_account: instance }
+      trait :deactivated do
+        deactivated_at { DateTime.now }
+      end
     end
   end
 end
