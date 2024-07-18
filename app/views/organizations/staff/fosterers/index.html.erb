@@ -50,7 +50,7 @@
                       <div class="d-flex justify-content-between pt-2">
                         <span>Deactivate</span>
                         <%= render DeactivateToggleComponent.new(account: fosterer,
-                        role: 'fosterer') %>
+                        role: 'fosterer', current_user: current_user) %>
                       </div>
                     </div>
                   </div>
@@ -93,7 +93,7 @@
                       </td>
                       <td>
                         <%= render DeactivateToggleComponent.new(account: fosterer,
-                        role: 'fosterer') %>
+                        role: 'fosterer', current_user: current_user) %>
                       </td>
                       <td>
                         <div class="hstack gap-4">

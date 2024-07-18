@@ -1,4 +1,4 @@
 <%= turbo_stream.replace_all ".deactivate_toggle_#{@staff_account.id}" do %>
-  <%= render DeactivateToggleComponent.new(account: @staff_account, role: 'staff') %>
+  <%= render DeactivateToggleComponent.new(account: @staff_account, role: 'staff', current_user: current_user) %>
 <% end%>
 <%= turbo_stream.replace "flash", partial: "layouts/shared/flash_messages" %>
