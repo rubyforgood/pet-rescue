@@ -52,7 +52,7 @@
                         <span><%= staff.created_at.strftime("%d %B, %Y") %></span>
                       </div>
                       <div class="d-flex justify-content-between pt-2">
-                        <span>Deactivate</span>
+                        <span><%= t('.deactivated') %></span>
                         <%= render DeactivateToggleComponent.new(account: staff,
                         role: 'staff', current_user: current_user) %>
                       </div>
@@ -72,11 +72,11 @@
               <table class="table mb-0 text-nowrap table-hover table-centered">
                 <thead>
                   <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Joined At</th>
-                    <th class="text-center" scope="col">Deactivate</th>
-                    <th scope="col">Action</th>
+                    <th scope="col"><%= t(:name) %></th>
+                    <th scope="col"><%= t('general.role') %></th>
+                    <th scope="col"><%= t(:joined_at) %></th>
+                    <th class="text-center" scope="col"><%= t('.deactivated') %></th>
+                    <th scope="col"><%= t(:action) %></th>
                   </tr>
                 </thead>
                 <tbody>

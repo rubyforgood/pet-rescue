@@ -48,7 +48,7 @@
                         <span><%= fosterer.created_at.strftime("%d %B, %Y") %></span>
                       </div>
                       <div class="d-flex justify-content-between pt-2">
-                        <span>Deactivate</span>
+                        <span><%= t('.deactivated') %></span>
                         <%= render DeactivateToggleComponent.new(account: fosterer,
                         role: 'fosterer', current_user: current_user) %>
                       </div>
@@ -70,7 +70,7 @@
                   <tr>
                     <th scope="col"><%= t(:name) %></th>
                     <th scope="col"><%= t(:joined_at) %></th>
-                    <th class="text-center" scope="col">Deactivate</th>
+                    <th class="text-center" scope="col"><%= t('.deactivated') %></th>
                     <th scope="col"><%= t(:action) %></th>
                   </tr>
                 </thead>
