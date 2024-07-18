@@ -592,6 +592,9 @@ en:
             help_text:
               label: "Label"
               help_text: "help text"
+      fosterers:
+        index:
+          deactivated: "Deactivated"
       staff:
         index:
           deactivated: "Deactivated"
