@@ -192,7 +192,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_18_185019) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "zipcode"
-    t.bigint "organization_id", null: false
+    t.bigint "organization_id"
     t.index ["organization_id"], name: "index_locations_on_organization_id"
   end
 

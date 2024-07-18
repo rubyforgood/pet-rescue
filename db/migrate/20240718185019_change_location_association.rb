@@ -8,8 +8,6 @@ class ChangeLocationAssociation < ActiveRecord::Migration[7.1]
       FROM organization_profiles op
       WHERE locations.id = op.location_id
     SQL
-
-    change_column_null :locations, :organization_id, false
   end
 
   def down
