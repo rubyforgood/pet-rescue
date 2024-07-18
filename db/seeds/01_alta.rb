@@ -1,20 +1,20 @@
-orga_location = Location.create!(
-  country: "US",
-  province_state: "NY",
-  city_town: "AltaCity",
-  zipcode: "12345"
-)
-
 @organization = Organization.create!(
   name: "Alta Pet Rescue",
   slug: "alta",
   email: "alta@email.com",
   phone_number: "250 816 8212",
-  location: orga_location,
   custom_page: CustomPage.new(hero: "Where every paw finds a home", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.")
 )
 
 ActsAsTenant.with_tenant(@organization) do
+
+  orga_location = Location.create!(
+    country: "US",
+    province_state: "NY",
+    city_town: "AltaCity",
+    zipcode: "12345"
+  )
+
   @user_staff_one = User.create!(
     email: "staff@alta.com",
     first_name: "Andy",
@@ -118,7 +118,7 @@ ActsAsTenant.with_tenant(@organization) do
     city_town: "Canmore",
     zipcode: "12345"
   )
-
+  
   user_profile_params = ->(adopter_foster_account) {
     {
       location_id: @location_one.id,

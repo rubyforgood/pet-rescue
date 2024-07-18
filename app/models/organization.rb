@@ -12,16 +12,10 @@
 #  slug          :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  location_id   :bigint           not null
 #
 # Indexes
 #
-#  index_organizations_on_location_id  (location_id)
-#  index_organizations_on_slug         (slug) UNIQUE
-#
-# Foreign Keys
-#
-#  fk_rails_...  (location_id => locations.id)
+#  index_organizations_on_slug  (slug) UNIQUE
 #
 class Organization < ApplicationRecord
   include Avatarable
@@ -39,9 +33,8 @@ class Organization < ApplicationRecord
   has_one :custom_page, dependent: :destroy
   has_one :form_submission, dependent: :destroy
 
-  belongs_to :location
-  accepts_nested_attributes_for :location
-  validates_associated :location
+  has_many :locations
+  accepts_nested_attributes_for :locations
 
   before_save :normalize_phone
 
