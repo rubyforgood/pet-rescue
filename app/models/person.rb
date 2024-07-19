@@ -25,6 +25,8 @@ class Person < ApplicationRecord
   acts_as_tenant(:organization)
   has_one :form_submission, dependent: :destroy
 
+  has_one :user, dependent: :destroy
+
   validates :name, presence: true
   validates :email, presence: true,
     uniqueness: {case_sensitive: false, scope: :organization_id}

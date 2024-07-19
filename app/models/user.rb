@@ -67,7 +67,11 @@ class User < ApplicationRecord
   has_one :staff_account, dependent: :destroy
   has_one :adopter_foster_account, dependent: :destroy
 
+  belongs_to :person
+
   accepts_nested_attributes_for :adopter_foster_account
+
+  before_validation :ensure_person_exists, on: :create
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)
@@ -94,6 +98,18 @@ class User < ApplicationRecord
 
   def inactive_message
     staff_account.deactivated_at ? :deactivated : super
+  end
+
+  def ensure_person_exists
+    return if person.present?
+
+    existing = Person.find_by(organization: organization, email: email)
+
+    if existing
+      self.person = existing
+    else
+      build_person(name: full_name, email:, organization:)
+    end
   end
 
   def full_name(format = :default)
