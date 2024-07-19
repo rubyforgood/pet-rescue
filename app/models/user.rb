@@ -22,6 +22,7 @@
 #  updated_at             :datetime         not null
 #  invited_by_id          :bigint
 #  organization_id        :bigint
+#  person_id              :bigint
 #
 # Indexes
 #
@@ -30,7 +31,12 @@
 #  index_users_on_invited_by            (invited_by_type,invited_by_id)
 #  index_users_on_invited_by_id         (invited_by_id)
 #  index_users_on_organization_id       (organization_id)
+#  index_users_on_person_id             (person_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (person_id => people.id)
 #
 class User < ApplicationRecord
   include Avatarable
