@@ -11,17 +11,18 @@ class Organization::EditTest < ActionDispatch::IntegrationTest
   end
 
   test "all expected fields are present on the edit organization page" do
+
     assert_select "label", text: "Phone number"
     assert_select "input[name='organization[phone_number]'][type='tel']"
 
     assert_select "label", text: "Email"
     assert_select "input[name='organization[email]'][type='text']"
 
-    assert_select "select[name^='organization[locations_attributes]'][name$='[country]']"
-    # assert_select "select[name='organization[location_attributes][province_state]']"
+    assert_select "label", text: "Country"
+    assert_select "select[name='organization[locations_attributes][0][province_state]']"
 
-    # assert_select "label", text: "City/Town"
-    # assert_select "input[name='organization[location_attributes][city_town]'][type='text']"
+    assert_select "label", text: "City/Town"
+    assert_select "input[name='organization[locations_attributes][0][city_town]'][type='text']"
 
     assert_select "label", text: "Attach picture"
     assert_select "input[name='organization[avatar]']"

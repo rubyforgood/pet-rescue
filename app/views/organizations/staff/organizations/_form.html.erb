@@ -36,28 +36,29 @@
 
         <!-- Nested Form for Locations Table -->
         <div class="form-group bigger" data-controller="country-state">
-          <%= form.fields_for :locations do |location| %>
+          <% location = organization.locations.last || organization.locations.build %>
+          <%= form.fields_for :locations, location do |location_form| %>
             <!-- Country Select -->
-            <%= location.select :country,
+            <%= location_form.select :country,
                                 CS.countries.invert,
                                 { prompt: "Please select" },
                                 'data-path': country_states_path(:country),
                                 'data-country-state-target': 'country',
                                 'data-action': 'change->country-state#updateStates',
-                                'data-initial-value': location.object.country,
+                                'data-initial-value': location_form.object.country,
                                 required: true,
                                 class: 'form-control' %>
 
             <!-- Province/State Select -->
-            <%= location.select :province_state,
-                                CS.states(location.object.country).invert,
+            <%= location_form.select :province_state,
+                                CS.states(location_form.object.country).invert,
                                 { prompt: "Please select" },
                                 'data-country-state-target': 'state',
                                 required: true,
                                 class: 'form-control' %>
 
             <!-- City/Town Text Field -->
-            <%= location.text_field :city_town, class: 'form-control' %>
+            <%= location_form.text_field :city_town, class: 'form-control' %>
           <% end %>
         </div>
       </div>
