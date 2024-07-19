@@ -3,8 +3,8 @@
 
   <% c.with_action do %>
     <div class="d-flex gap-2">
-      <%= link_to t('general.edit'), edit_staff_form_path(@form), class: "btn btn-warning" %>
-      <%= link_to t('.create_question'), new_staff_form_question_path(@form), class: "btn btn-primary" %>
+      <%= link_to t('general.edit'), edit_staff_custom_form_form_path(@form), class: "btn btn-warning" %>
+      <%= link_to t('.create_question'), new_staff_custom_form_form_question_path(@form), class: "btn btn-primary" %>
     </div>
   <% end %>
 
@@ -34,8 +34,8 @@
                   <td>
                     <div class="text-right">
                       <div class="d-flex align-items-center justify-content-end">
-                        <%= link_to 'Edit', edit_staff_form_question_path(@form, question), class: 'btn btn-warning m-2' %>
-                        <%= link_to 'Delete', staff_form_question_path(@form, question), class: 'btn btn-danger m-2', data: { turbo_method: 'delete', turbo_confirm: t('.confirm_delete_question') } %>
+                        <%= link_to 'Edit', edit_staff_custom_form_form_question_path(@form, question), class: 'btn btn-warning m-2' %>
+                        <%= link_to 'Delete', staff_custom_form_form_question_path(@form, question), class: 'btn btn-danger m-2', data: { turbo_method: 'delete', turbo_confirm: t('.confirm_delete_question') } %>
                       </div>
                     </div>
                   </td>

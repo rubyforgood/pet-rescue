@@ -22,11 +22,13 @@
 #
 #  fk_rails_...  (organization_id => organizations.id)
 #
-class Form < ApplicationRecord
-  acts_as_tenant(:organization)
+module CustomForm
+  class Form < ApplicationRecord
+    acts_as_tenant(:organization)
 
-  has_many :form_profiles, dependent: :destroy
-  has_many :questions, -> { ordered }, dependent: :destroy
+    has_many :form_profiles, dependent: :destroy
+    has_many :questions, -> { ordered }, dependent: :destroy
 
-  validates_presence_of :name, :title
+    validates_presence_of :name, :title
+  end
 end

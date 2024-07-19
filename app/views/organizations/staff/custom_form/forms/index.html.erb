@@ -1,7 +1,7 @@
 <%= render DashboardPageComponent.new(crumb: :forms_index) do |c| %>
   <% c.with_header_title { t(".forms") } %>
   <% c.with_action do %>
-    <%= link_to t(".create_form"), new_staff_form_path, class: "btn btn-primary" %>
+    <%= link_to t(".create_form"), new_staff_custom_form_form_path, class: "btn btn-primary" %>
   <% end %>
   <% c.with_body do %>
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
@@ -22,14 +22,14 @@
             <tbody>
             <% @forms.each do |form| %>
               <tr>
-                <td><%= link_to form.name, staff_form_path(form) %></td>
+                <td><%= link_to form.name, staff_custom_form_form_path(form) %></td>
                 <td><%= form.description %></td>
                 <% if current_user.staff_account %>
                   <td>
                     <div class="text-right">
                       <div class="d-flex align-items-center justify-content-end">
-                        <%= link_to 'Edit', edit_staff_form_path(form), class: 'btn btn-warning m-2' %>
-                        <%= link_to 'Delete', staff_form_path(form), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.confirm_delete') } %>
+                        <%= link_to 'Edit', edit_staff_custom_form_form_path(form), class: 'btn btn-warning m-2' %>
+                        <%= link_to 'Delete', staff_custom_form_form_path(form), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.confirm_delete') } %>
                       </div>
                     </div>
                   </td>
