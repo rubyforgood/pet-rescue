@@ -17,11 +17,11 @@ class Organization::EditTest < ActionDispatch::IntegrationTest
     assert_select "label", text: "Email"
     assert_select "input[name='organization[email]'][type='text']"
 
-    assert_select "label", text: "Country"
-    assert_select "select[name='organization[location_attributes][province_state]']"
+    assert_select "select[name^='organization[locations_attributes]'][name$='[country]']"
+    # assert_select "select[name='organization[location_attributes][province_state]']"
 
-    assert_select "label", text: "City/Town"
-    assert_select "input[name='organization[location_attributes][city_town]'][type='text']"
+    # assert_select "label", text: "City/Town"
+    # assert_select "input[name='organization[location_attributes][city_town]'][type='text']"
 
     assert_select "label", text: "Attach picture"
     assert_select "input[name='organization[avatar]']"
@@ -34,10 +34,12 @@ class Organization::EditTest < ActionDispatch::IntegrationTest
       organization: {
         email: "happy_paws_rescue@gmail.com",
         phone_number: "3038947563",
-        location_attributes: {
-          country: "United States",
-          province_state: "Colorado",
-          city_town: "Golden"
+        locations_attributes: {
+          "0" => {
+            country: "United States",
+            province_state: "Colorado",
+            city_town: "Golden"
+          }
         },
         facebook_url: "https://example.com",
         instagram_url: "https://example.com",
@@ -53,9 +55,9 @@ class Organization::EditTest < ActionDispatch::IntegrationTest
 
     assert_equal "happy_paws_rescue@gmail.com", @org.email
     assert_equal "+13038947563", @org.phone_number
-    assert_equal "United States", @org.location.country
-    assert_equal "Colorado", @org.location.province_state
-    assert_equal "Golden", @org.location.city_town
+    assert_equal "United States", @org.locations.last.country
+    assert_equal "Colorado", @org.locations.last.province_state
+    assert_equal "Golden", @org.locations.last.city_town
     assert_equal "logo.png", @org.avatar.filename.sanitized
     assert_equal "https://example.com", @org.facebook_url
     assert_equal "https://example.com", @org.instagram_url

@@ -22,14 +22,14 @@
 class Organizations::CreateService
   def signal(args)
     ActiveRecord::Base.transaction do
+      create_organization(
+        args[:organization][:name],
+        args[:organization][:slug]
+      )
       create_location(
         args[:location][:country],
         args[:location][:city_town],
         args[:location][:province_state]
-      )
-      create_organization(
-        args[:organization][:name],
-        args[:organization][:slug]
       )
       create_user(
         args[:user][:email],
@@ -47,20 +47,21 @@ class Organizations::CreateService
 
   private
 
-  def create_location(country, city_town, province_state)
-    @location = Location.create!(
-      country: country,
-      city_town: city_town,
-      province_state: province_state
-    )
-  end
-
   def create_organization(name, slug)
     @organization = Organization.create!(
       name: name,
-      slug: slug,
-      location_id: @location.id
+      slug: slug
     )
+  end
+
+  def create_location(country, city_town, province_state)
+    ActsAsTenant.with_tenant(@organization) do
+      @location = Location.create!(
+        country: country,
+        city_town: city_town,
+        province_state: province_state
+      )
+    end
   end
 
   def create_user(email, first_name, last_name)

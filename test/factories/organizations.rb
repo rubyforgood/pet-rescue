@@ -4,7 +4,6 @@ FactoryBot.define do
     sequence(:slug) { |n| Faker::Internet.domain_word + n.to_s }
     email { Faker::Internet.email }
     phone_number { "0000000000" }
-    location
 
     trait :with_custom_page do
       after(:create) do |organization|

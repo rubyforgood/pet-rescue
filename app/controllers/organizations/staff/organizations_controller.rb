@@ -26,7 +26,7 @@ module Organizations
           :facebook_url,
           :instagram_url,
           :donation_url,
-          location_attributes: %i[city_town country province_state]
+          locations_attributes: %i[city_town country province_state]
         )
       end
 

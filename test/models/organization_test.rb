@@ -14,8 +14,8 @@ class OrganizationTest < ActiveSupport::TestCase
   end
 
   context "associations" do
-    should belong_to(:location)
-    should accept_nested_attributes_for(:location)
+    should have_many(:locations)
+    should accept_nested_attributes_for(:locations)
   end
 
   context "validations" do
