@@ -26,6 +26,8 @@ class Person < ApplicationRecord
   has_one :form_submission, dependent: :destroy
   has_many :form_answers, through: :form_submission
 
+  has_one :user, dependent: :destroy
+
   validates :name, presence: true
   validates :email, presence: true,
     uniqueness: {case_sensitive: false, scope: :organization_id}

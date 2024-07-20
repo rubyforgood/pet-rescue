@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_18_195301) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_19_034910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -345,11 +345,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_18_195301) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.bigint "person_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["organization_id"], name: "index_users_on_organization_id"
+    t.index ["person_id"], name: "index_users_on_person_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -392,4 +394,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_18_195301) do
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
   add_foreign_key "tasks", "pets"
+  add_foreign_key "users", "people"
 end

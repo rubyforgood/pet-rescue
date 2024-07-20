@@ -9,6 +9,7 @@ class OrganizationTest < ActiveSupport::TestCase
     should have_many(:pets)
     should have_many(:faqs)
     should have_many(:form_answers).dependent(:destroy)
+    should have_many(:people)
 
     should have_one(:profile).dependent(:destroy).required
     should have_one(:form_submission).dependent(:destroy)
