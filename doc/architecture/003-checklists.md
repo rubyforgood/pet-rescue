@@ -1,33 +1,15 @@
----
-Date: 2024-06-01T00:00:00.000Z
-Topic: Checklists
-Attendance: 'Ben, Mae, Justin, Chris, Ken'
-Status: incomplete
----
 # Checklists
 
 ## Context
 
-Currently, the application has `Task` and `DefaultPetTask`. The `DefaultPetTask` allow for the organizations to create a template of tasks that will be created for every pet that is added to the system.
+Anything under the `Checklist` namespace is for creating pet tasks, but they could be used for other tasks in the future.
 
-We decided a cleaner naming convention would be to namespace multiple models in `Checklist`. We will have:
+We would like this infrastructure:
 
-- `Checklist::Template`
-- `Checklist::TemplateItem`
-- `Checklist::Assignment`
+- `Checklist::TaskTemplate`: For grouping related tasks
+- `Checklist::TaskItem`: The tasks
+- `Checklist::TaskAssignment`: The link between a task and a Pet or anything that is assignable.
 
-`Template` will serve as a replacement for `DefaultPetTask`, and it can have the ability to serve beyond just pets but any kind of default list of tasks.
+As of 2024-07-21, we have `DefaultPetTask` which serves as both the `Template` and the `TemplateItem`. The `DefaultPetTask` records serve as the "items". They are scoped under `Organizations`,so an organization only has one template currently. There is a PR to add a species column to `DefaultPetTask` which would allow for more templates within an organization, but that would be limited to one per species.
 
-`TemplateItem` will replace `Task`. This is something that requires action to be completed by staff.
-
-`Assignment` will link the `TemplateItem` with a `Person`. The `Assignment` will cache the `TemplateItem` instead of soft linking to it. That way, if the `TemplateItem` is modified, the `Assignment` is unaffected.
-
-These names will also be easier for developers to grok quickly.
-
-## Decision
-
-- Restructure `Task` as `Checklist::TemplateItem`
-- Restructure `DefaultPetTask` as `Checklist::Template`
-
-## Consequences
-
+However, with the checklist infrastructure using `Checklist::Template`, users would be able to specify and create as many templates as they would want. So if they wanted a template for rescued dogs being added that are elderly versus puppies, they could create those separate templates.
