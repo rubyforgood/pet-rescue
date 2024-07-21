@@ -78,7 +78,7 @@
             <div class='d-flex flex-column align-items-center'>
               <%= image_tag organization.avatar, class: 'rounded-1', style: 'max-height:7.5rem;max-width:100%' %>
               <%= link_to t('general.delete'),
-                          purge_avatar_path(organization.avatar.id),
+                          staff_purge_attachment_path(organization.avatar.id),
                           data: { turbo_method: "delete" },
                           class: 'delete-button' %>
             </div>

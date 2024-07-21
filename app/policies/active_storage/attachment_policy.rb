@@ -13,6 +13,6 @@ class ActiveStorage::AttachmentPolicy < ApplicationPolicy
   private
 
   def organization
-    @organization || record.record.organization
+    @organization || record.record
   end
 end
