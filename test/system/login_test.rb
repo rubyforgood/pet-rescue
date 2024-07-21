@@ -2,9 +2,9 @@ require "application_system_test_case"
 
 class LoginTest < ApplicationSystemTestCase
   setup do
-    @user = create(:staff)
+    @user = create(:admin)
     @organization = @user.organization
-    @page_text = create(:page_text, :with_about_us_image, organization: @organization)
+    @custom_page = create(:custom_page, :with_about_us_image, organization: @organization)
     Current.organization = @organization
   end
 
@@ -26,7 +26,7 @@ class LoginTest < ApplicationSystemTestCase
     setup do
       @user = create(:fosterer, :with_profile)
       @organization = @user.organization
-      @page_text = create(:page_text, :with_about_us_image, organization: @organization)
+      @custom_page = create(:custom_page, :with_about_us_image, organization: @organization)
       Current.organization = @organization
     end
 

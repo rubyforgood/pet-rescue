@@ -20,10 +20,12 @@ class Organization < ApplicationRecord
   has_many :users, through: :staff_accounts
   has_many :pets
   has_many :default_pet_tasks
-  has_many :forms, dependent: :destroy
+  has_many :forms, class_name: "CustomForm::Form", dependent: :destroy
   has_many :faqs
+  has_many :people
 
   has_one :profile, dependent: :destroy, class_name: "OrganizationProfile", required: true
   has_one :location, through: :profile
-  has_one :page_text, dependent: :destroy
+  has_one :form_submission, dependent: :destroy
+  has_one :custom_page, dependent: :destroy
 end

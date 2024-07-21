@@ -15,7 +15,7 @@ class Organizations::AdopterFosterAccountPolicyTest < ActiveSupport::TestCase
 
   context "relation_scope" do
     setup do
-      @user = build_stubbed(:staff)
+      @user = build_stubbed(:admin)
       @account1 = create(:adopter_foster_account)
       @account2 = create(:adopter_foster_account)
 
@@ -73,7 +73,7 @@ class Organizations::AdopterFosterAccountPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff" do
         setup do
-          @user = create(:staff)
+          @user = create(:admin)
         end
 
         context "when user's staff account is deactivated" do
@@ -93,7 +93,7 @@ class Organizations::AdopterFosterAccountPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:staff_admin)
+          @user = create(:super_admin)
         end
 
         context "when user's staff account is deactivated" do

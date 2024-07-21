@@ -9,7 +9,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
       @organization = ActsAsTenant.current_tenant
       @pet = create(:pet)
 
-      user = create(:staff)
+      user = create(:admin)
       sign_in user
     end
 
@@ -144,7 +144,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
 
   context "controller" do
     setup do
-      @user = create(:staff)
+      @user = create(:admin)
       @pet = create(:pet)
       @default_pet_tasks = create(:default_pet_task)
       sign_in @user

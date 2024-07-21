@@ -50,7 +50,7 @@ class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
 
     context "when user is activated staff" do
       setup do
-        @user = create(:staff)
+        @user = create(:admin)
       end
 
       context "when application belongs to a different organization" do
@@ -74,7 +74,7 @@ class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
 
     context "when user is deactivated staff" do
       setup do
-        @user = create(:staff, :deactivated)
+        @user = create(:admin, :deactivated)
       end
 
       should "return false" do
@@ -84,7 +84,7 @@ class Organizations::ProfileReviewPolicyTest < ActiveSupport::TestCase
 
     context "when user is staff admin" do
       setup do
-        @user = create(:staff_admin)
+        @user = create(:super_admin)
       end
 
       context "when application belongs to a different organization" do

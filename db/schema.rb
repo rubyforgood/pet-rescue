@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_19_034910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,7 +51,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
     t.text "notes"
     t.boolean "profile_show", default: true
     t.bigint "organization_id", null: false
+    t.bigint "form_submission_id", null: false
     t.index ["adopter_foster_account_id"], name: "index_adopter_applications_on_adopter_foster_account_id"
+    t.index ["form_submission_id"], name: "index_adopter_applications_on_form_submission_id"
     t.index ["organization_id"], name: "index_adopter_applications_on_organization_id"
     t.index ["pet_id", "adopter_foster_account_id"], name: "index_adopter_applications_on_account_and_pet", unique: true
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
@@ -109,6 +111,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
     t.index ["organization_id"], name: "index_adopter_foster_profiles_on_organization_id"
   end
 
+  create_table "custom_pages", force: :cascade do |t|
+    t.bigint "organization_id", null: false
+    t.string "hero"
+    t.text "about"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "adoptable_pet_info"
+    t.index ["organization_id"], name: "index_custom_pages_on_organization_id"
+  end
+
   create_table "default_pet_tasks", force: :cascade do |t|
     t.string "name", null: false
     t.string "description"
@@ -136,6 +148,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
     t.integer "sort_order", default: 0, null: false
     t.index ["form_id", "profile_type"], name: "index_form_profiles_on_form_id_and_profile_type", unique: true
     t.index ["form_id"], name: "index_form_profiles_on_form_id"
+  end
+
+  create_table "form_submissions", force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_form_submissions_on_organization_id"
+    t.index ["person_id"], name: "index_form_submissions_on_person_id"
   end
 
   create_table "forms", force: :cascade do |t|
@@ -207,16 +228,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
     t.datetime "updated_at", null: false
     t.string "slug"
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
-  end
-
-  create_table "page_texts", force: :cascade do |t|
-    t.bigint "organization_id", null: false
-    t.string "hero"
-    t.text "about"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "adoptable_pet_info"
-    t.index ["organization_id"], name: "index_page_texts_on_organization_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -294,6 +305,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "form_submission_id", null: false
+    t.index ["form_submission_id"], name: "index_submitted_answers_on_form_submission_id"
     t.index ["question_id"], name: "index_submitted_answers_on_question_id"
     t.index ["user_id"], name: "index_submitted_answers_on_user_id"
   end
@@ -333,11 +346,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.bigint "person_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["organization_id"], name: "index_users_on_organization_id"
+    t.index ["person_id"], name: "index_users_on_person_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -352,13 +367,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "adopter_applications", "adopter_foster_accounts"
+  add_foreign_key "adopter_applications", "form_submissions"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_foster_accounts", "users"
   add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
   add_foreign_key "adopter_foster_profiles", "locations"
+  add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "faqs", "organizations"
   add_foreign_key "form_profiles", "forms"
+  add_foreign_key "form_submissions", "organizations"
+  add_foreign_key "form_submissions", "people"
   add_foreign_key "forms", "organizations"
   add_foreign_key "likes", "adopter_foster_accounts"
   add_foreign_key "likes", "organizations"
@@ -367,13 +386,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_19_203450) do
   add_foreign_key "matches", "pets"
   add_foreign_key "organization_profiles", "locations"
   add_foreign_key "organization_profiles", "organizations"
-  add_foreign_key "page_texts", "organizations"
   add_foreign_key "people", "organizations"
   add_foreign_key "pets", "organizations"
   add_foreign_key "questions", "forms"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
+  add_foreign_key "submitted_answers", "form_submissions"
   add_foreign_key "submitted_answers", "questions"
   add_foreign_key "submitted_answers", "users"
   add_foreign_key "tasks", "pets"
+  add_foreign_key "users", "people"
 end

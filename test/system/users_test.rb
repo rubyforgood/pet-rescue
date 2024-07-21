@@ -2,9 +2,9 @@ require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
   setup do
-    @user = create(:staff)
+    @user = create(:admin)
     @organization = @user.organization
-    @page_text = create(:page_text, :with_about_us_image, organization: @organization, hero: "Where every paw finds a home")
+    @custom_page = create(:custom_page, :with_about_us_image, organization: @organization, hero: "Where every paw finds a home")
     Current.organization = @organization
   end
 

@@ -51,7 +51,7 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when user is activated staff" do
         setup do
-          @user = create(:staff)
+          @user = create(:admin)
         end
 
         context "when organization context is a different organization" do
@@ -73,7 +73,7 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when user is deactivated staff" do
         setup do
-          @user = create(:staff, :deactivated)
+          @user = create(:admin, :deactivated)
         end
 
         should "return false" do
@@ -83,7 +83,7 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:staff_admin)
+          @user = create(:super_admin)
         end
 
         context "when organization context is a different organization" do
@@ -113,7 +113,8 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
   context "existing record action" do
     setup do
-      @adopter_application = create(:adopter_application)
+      @form_submission = create(:form_submission)
+      @adopter_application = create(:adopter_application, form_submission: @form_submission)
       @policy = -> {
         Organizations::AdopterApplicationPolicy.new(
           @adopter_application, user: @user
@@ -158,13 +159,14 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when user is activated staff" do
         setup do
-          @user = create(:staff)
+          @user = create(:admin)
         end
 
         context "when application belongs to a different organization" do
           setup do
             ActsAsTenant.with_tenant(create(:organization)) do
-              @adopter_application = create(:adopter_application)
+              @form_submission = create(:form_submission)
+              @adopter_application = create(:adopter_application, form_submission: @form_submission)
             end
           end
 
@@ -182,7 +184,7 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when user is deactivated staff" do
         setup do
-          @user = create(:staff, :deactivated)
+          @user = create(:admin, :deactivated)
         end
 
         should "return false" do
@@ -192,13 +194,14 @@ class Organizations::AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when user is staff admin" do
         setup do
-          @user = create(:staff_admin)
+          @user = create(:super_admin)
         end
 
         context "when application belongs to a different organization" do
           setup do
             ActsAsTenant.with_tenant(create(:organization)) do
-              @adopter_application = create(:adopter_application)
+              @form_submission = create(:form_submission)
+              @adopter_application = create(:adopter_application, form_submission: @form_submission)
             end
           end
 

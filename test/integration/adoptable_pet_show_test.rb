@@ -41,9 +41,9 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     end
   end
 
-  context "staff" do
+  context "admin" do
     setup do
-      sign_in create(:staff)
+      sign_in create(:admin)
     end
 
     should "see an available pet" do
@@ -129,7 +129,7 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
   context "with adoptable pet information" do
     should "have important information section" do
-      PageText.create(adoptable_pet_info: "some things that should be known")
+      CustomPage.create(adoptable_pet_info: "some things that should be known")
       get adoptable_pet_path(@available_pet)
       assert_select "h3", text: "Important Information", count: 1
     end

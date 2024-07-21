@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
     namespace :staff do
       resource :organization_profile, only: %i[edit update]
-      resource :page_text, only: %i[edit update]
+      resource :custom_page, only: %i[edit update]
       resources :profile_reviews, only: [:show]
 
       resources :pets do
@@ -46,11 +46,13 @@ Rails.application.routes.draw do
       resources :staff_invitations, only: %i[new]
       resources :fosterer_invitations, only: %i[new]
 
-      resources :forms do
-        resources :questions
+      namespace :custom_form do
+        resources :forms do
+          resources :questions
+        end
       end
-      post "user_roles/:id/to_staff", to: "user_roles#to_staff", as: "user_to_staff"
       post "user_roles/:id/to_admin", to: "user_roles#to_admin", as: "user_to_admin"
+      post "user_roles/:id/to_super_admin", to: "user_roles#to_super_admin", as: "user_to_super_admin"
     end
     delete "staff/attachments/:id/purge", to: "attachments#purge", as: "staff_purge_attachment"
     delete "attachments/:id/purge_avatar", to: "attachments#purge_avatar", as: "purge_avatar"

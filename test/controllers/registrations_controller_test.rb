@@ -13,7 +13,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new with dashboard layout when signed in as staff" do
-    user = create(:staff)
+    user = create(:admin)
     organization = user.staff_account.organization
     sign_in user
 
