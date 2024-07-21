@@ -62,7 +62,7 @@ class Pet < ApplicationRecord
 
   validate :sensible_placement_type
 
-  enum species: ["Dog", "Cat"]
+  enum species: {"Dog" => 1, "Cat" => 2}
   enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
 
   WEIGHT_UNIT_LB = "lb".freeze

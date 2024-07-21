@@ -8,6 +8,12 @@
         <%= f.text_area :description, class: 'form-control', rows: 3 %>
       </div>
       <div class="form-group">
+        <%= f.select :species,
+                      options_for_select(DefaultPetTask.human_enum_names(:species), task.human_enum_name(:species)), 
+                      { prompt: t('general.please_select') },
+                      { class: 'form-control' } %>
+      </div>
+      <div class="form-group">
         <%= f.number_field :due_in_days, class: 'form-control', help: 'The task will be due this number of days after the pet is created.' %>
       </div>
       <div class="form-group">

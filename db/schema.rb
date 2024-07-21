@@ -129,6 +129,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_19_034910) do
     t.datetime "updated_at", null: false
     t.integer "due_in_days"
     t.boolean "recurring", default: false
+    t.integer "species"
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
 
