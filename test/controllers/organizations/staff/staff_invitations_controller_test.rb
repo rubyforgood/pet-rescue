@@ -7,7 +7,7 @@ class Organizations::Staff::StaffInvitationsControllerTest < ActionDispatch::Int
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      user = create(:staff_admin)
+      user = create(:super_admin)
       sign_in user
     end
 

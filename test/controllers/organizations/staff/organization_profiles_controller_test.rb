@@ -9,7 +9,7 @@ class Organizations::Staff::OrganizationProfilesControllerTest < ActionDispatch:
       @organization = ActsAsTenant.current_tenant
       @organization_profile = @organization.profile
 
-      user = create(:staff)
+      user = create(:admin)
       sign_in user
     end
 

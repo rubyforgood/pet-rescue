@@ -2,19 +2,17 @@ require "test_helper"
 
 class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
   setup do
-    user = create(:staff_admin)
-    sign_in user
+    admin = create(:super_admin)
+    sign_in admin
 
     @user_invitation_params = {
       user: {
         first_name: "John",
         last_name: "Doe",
         email: "john@example.com",
-        roles: "admin"
+        roles: "super_admin"
       }
     }
-    admin = create(:staff_admin)
-    sign_in admin
   end
 
   test "staff admin can invite other staffs to the organization" do
@@ -28,7 +26,7 @@ class Organizations::InviteStaffTest < ActionDispatch::IntegrationTest
     invited_user = User.find_by(email: "john@example.com")
 
     assert invited_user.invited_to_sign_up?
-    assert invited_user.has_role?(:admin, invited_user.organization)
+    assert invited_user.has_role?(:super_admin, invited_user.organization)
     assert_not invited_user.staff_account.deactivated?
 
     assert_equal 1, ActionMailer::Base.deliveries.count

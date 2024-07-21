@@ -6,7 +6,7 @@ class Organizations::ProfileReviewsControllerTest < ActionDispatch::IntegrationT
     include ActionPolicy::TestHelper
 
     setup do
-      user = create(:staff)
+      user = create(:admin)
       sign_in user
     end
 

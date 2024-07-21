@@ -51,7 +51,7 @@ class Organizations::DashboardPolicyTest < ActiveSupport::TestCase
 
     context "when user is deactivated staff" do
       setup do
-        @user = create(:staff, :deactivated)
+        @user = create(:admin, :deactivated)
       end
 
       should "return false" do
@@ -61,7 +61,7 @@ class Organizations::DashboardPolicyTest < ActiveSupport::TestCase
 
     context "when user is activated staff" do
       setup do
-        @user = create(:staff)
+        @user = create(:admin)
       end
 
       should "return true" do
@@ -71,7 +71,7 @@ class Organizations::DashboardPolicyTest < ActiveSupport::TestCase
 
     context "when user is staff admin" do
       setup do
-        @user = create(:staff_admin)
+        @user = create(:super_admin)
       end
 
       should "return true" do
