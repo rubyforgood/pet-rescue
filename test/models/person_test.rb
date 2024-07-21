@@ -11,6 +11,11 @@ class PersonTest < ActiveSupport::TestCase
     should_not validate_presence_of(:phone)
   end
 
+  context "associations" do
+    should have_one(:form_submission).dependent(:destroy)
+    should have_many(:form_answers).through(:form_submission)
+  end
+
   context "database validations" do
     subject { create(:person, organization: create(:organization)) }
 

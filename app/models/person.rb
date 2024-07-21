@@ -24,6 +24,7 @@ class Person < ApplicationRecord
 
   acts_as_tenant(:organization)
   has_one :form_submission, dependent: :destroy
+  has_many :form_answers, through: :form_submission
 
   has_one :user, dependent: :destroy
 
