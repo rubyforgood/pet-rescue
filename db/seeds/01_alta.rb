@@ -7,8 +7,7 @@
 )
 
 ActsAsTenant.with_tenant(@organization) do
-
-  orga_location = Location.create!(
+  @orga_location = Location.create!(
     country: "US",
     province_state: "NY",
     city_town: "AltaCity",
@@ -118,7 +117,7 @@ ActsAsTenant.with_tenant(@organization) do
     city_town: "Canmore",
     zipcode: "12345"
   )
-  
+
   user_profile_params = ->(adopter_foster_account) {
     {
       location_id: @location_one.id,

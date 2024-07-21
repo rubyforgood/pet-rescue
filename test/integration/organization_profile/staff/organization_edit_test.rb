@@ -11,7 +11,6 @@ class Organization::EditTest < ActionDispatch::IntegrationTest
   end
 
   test "all expected fields are present on the edit organization page" do
-
     assert_select "label", text: "Phone number"
     assert_select "input[name='organization[phone_number]'][type='tel']"
 
