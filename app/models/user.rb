@@ -22,6 +22,7 @@
 #  updated_at             :datetime         not null
 #  invited_by_id          :bigint
 #  organization_id        :bigint
+#  person_id              :bigint
 #
 # Indexes
 #
@@ -30,7 +31,12 @@
 #  index_users_on_invited_by            (invited_by_type,invited_by_id)
 #  index_users_on_invited_by_id         (invited_by_id)
 #  index_users_on_organization_id       (organization_id)
+#  index_users_on_person_id             (person_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (person_id => people.id)
 #
 class User < ApplicationRecord
   include Avatarable
@@ -61,7 +67,13 @@ class User < ApplicationRecord
   has_one :staff_account, dependent: :destroy
   has_one :adopter_foster_account, dependent: :destroy
 
+  # Once we've migrated the existing data to connect a user to a person,
+  # we should remove the optional: true part
+  belongs_to :person, optional: true
+
   accepts_nested_attributes_for :adopter_foster_account
+
+  before_validation :ensure_person_exists, on: :create
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)
@@ -88,6 +100,18 @@ class User < ApplicationRecord
 
   def inactive_message
     staff_account.deactivated_at ? :deactivated : super
+  end
+
+  def ensure_person_exists
+    return if person.present?
+
+    existing = Person.find_by(organization: organization, email: email)
+
+    if existing
+      self.person = existing
+    else
+      build_person(name: full_name, email:, organization:)
+    end
   end
 
   def full_name(format = :default)

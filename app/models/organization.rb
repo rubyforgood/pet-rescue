@@ -30,8 +30,10 @@ class Organization < ApplicationRecord
   has_many :default_pet_tasks
   has_many :forms, class_name: "CustomForm::Form", dependent: :destroy
   has_many :faqs
-  has_one :custom_page, dependent: :destroy
+  has_many :people
   has_one :form_submission, dependent: :destroy
+  has_one :custom_page, dependent: :destroy
+
 
   has_many :locations
   accepts_nested_attributes_for :locations
