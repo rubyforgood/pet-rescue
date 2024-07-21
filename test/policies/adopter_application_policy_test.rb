@@ -23,11 +23,12 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when there are applications that do not belong to user" do
         setup do
+          @form_submission = create(:form_submission)
           @user_applications = [
-            create(:adopter_application, user: @user),
-            create(:adopter_application, user: @user)
+            create(:adopter_application, user: @user, form_submission: @form_submission),
+            create(:adopter_application, user: @user, form_submission: @form_submission)
           ]
-          @other_application = create(:adopter_application)
+          @other_application = create(:adopter_application, form_submission: @form_submission)
         end
 
         should "return only user's applications" do
@@ -39,7 +40,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when user has no applications" do
         setup do
-          @other_application = create(:adopter_application)
+          @other_application = create(:adopter_application, form_submission: create(:form_submission))
         end
 
         should "return empty array" do
@@ -170,7 +171,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user already has an existing application for the pet" do
           setup do
-            @existing_app = create(:adopter_application, user: @user, pet: @pet)
+            @existing_app = create(:adopter_application, user: @user, pet: @pet, form_submission: create(:form_submission))
           end
 
           should "return false" do
@@ -200,7 +201,8 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
   context "existing record action" do
     setup do
-      @adopter_application = create(:adopter_application)
+      @form_submission = create(:form_submission)
+      @adopter_application = create(:adopter_application, form_submission: @form_submission)
       @policy = -> {
         AdopterApplicationPolicy.new(@adopter_application, user: @user)
       }
@@ -244,7 +246,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user is active staff" do
           setup do
-            @user = create(:staff)
+            @user = create(:admin)
           end
 
           should "return false" do
@@ -254,7 +256,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user is staff admin" do
           setup do
-            @user = create(:staff_admin)
+            @user = create(:super_admin)
           end
 
           should "return false" do

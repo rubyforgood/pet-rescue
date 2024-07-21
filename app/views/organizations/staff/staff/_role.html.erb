@@ -1,15 +1,15 @@
 <div class="dropdown <%= dom_id(staff, :role)%>">
   <button class="btn btn-outline-secondary dropdown-toggle <%= "disabled" if staff == current_user.staff_account %>" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <%= staff.user.roles.pluck(:name).join(", ").capitalize %>
+    <%= staff.user.roles.pluck(:name).map(&:titleize).join(", ").gsub('_', ' ') %>
   </button>
 
   <div class="dropdown-menu"  aria-labelledby="dropdownMenuButton" >
-    <% if staff.user.has_role?(:admin, current_user.organization)%>
-      <%= button_to "Staff", staff_user_to_staff_path(staff.user), class:
+    <% if staff.user.has_role?(:super_admin, current_user.organization)%>
+      <%= button_to "Admin", staff_user_to_admin_path(staff.user), class:
       "dropdown-item" %>
     <% end %>
-    <% if staff.user.has_role?(:staff, current_user.organization)%>
-      <%= button_to "Admin", staff_user_to_admin_path(staff.user), class:
+    <% if staff.user.has_role?(:admin, current_user.organization)%>
+      <%= button_to "Super Admin", staff_user_to_super_admin_path(staff.user), class:
       "dropdown-item"%>
     <% end %>
   </div>

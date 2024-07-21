@@ -12,7 +12,7 @@ class Organizations::AttachmentsControllerTest < ActionDispatch::IntegrationTest
 
     context "#purge" do
       should "be authorized" do
-        user = create(:staff)
+        user = create(:admin)
         sign_in user
         assert_authorized_to(
           :purge?, @attachment,
@@ -54,7 +54,7 @@ class Organizations::AttachmentsControllerTest < ActionDispatch::IntegrationTest
 
     context "#staff_purge_avatar" do
       should "be authorized" do
-        user = create(:staff, :with_avatar)
+        user = create(:admin, :with_avatar)
         sign_in user
         assert_authorized_to(
           :purge_avatar?, user.avatar_attachment,
@@ -73,7 +73,7 @@ class Organizations::AttachmentsControllerTest < ActionDispatch::IntegrationTest
 
   context "DELETE #purge" do
     setup do
-      @user = create(:staff)
+      @user = create(:admin)
       @pet = create(:pet)
 
       sign_in @user

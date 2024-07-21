@@ -9,6 +9,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  adopter_foster_account_id :bigint           not null
+#  form_submission_id        :bigint           not null
 #  organization_id           :bigint           not null
 #  pet_id                    :bigint           not null
 #
@@ -16,18 +17,21 @@
 #
 #  index_adopter_applications_on_account_and_pet            (pet_id,adopter_foster_account_id) UNIQUE
 #  index_adopter_applications_on_adopter_foster_account_id  (adopter_foster_account_id)
+#  index_adopter_applications_on_form_submission_id         (form_submission_id)
 #  index_adopter_applications_on_organization_id            (organization_id)
 #  index_adopter_applications_on_pet_id                     (pet_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (adopter_foster_account_id => adopter_foster_accounts.id)
+#  fk_rails_...  (form_submission_id => form_submissions.id)
 #  fk_rails_...  (pet_id => pets.id)
 #
 class AdopterApplication < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :pet, touch: true
   belongs_to :adopter_foster_account
+  belongs_to :form_submission
 
   broadcasts_refreshes
 

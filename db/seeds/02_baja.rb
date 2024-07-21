@@ -26,7 +26,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_one.id
   )
 
-  @user_staff_one.add_role(:admin, @organization)
+  @user_staff_one.add_role(:super_admin, @organization)
 
   @user_staff_two = User.create!(
     email: "staff2@baja.com",
@@ -41,7 +41,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_two.id
   )
 
-  @user_staff_two.add_role(:admin, @organization)
+  @user_staff_two.add_role(:super_admin, @organization)
 
   @user_adopter_one = User.create!(
     email: "adopter1@baja.com",
@@ -354,13 +354,16 @@ ActsAsTenant.with_tenant(@organization) do
     end_date: upcoming_end_date
   )
 
+  @form_submission = FormSubmission.new(organization: @organization, person: Person.new(name: "John Doe", email: "Doe@gmail.com"))
+
   10.times do
     adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..4),
       adopter_foster_account: AdopterFosterAccount.all.sample,
-      pet: Pet.all.sample
+      pet: Pet.all.sample,
+      form_submission: @form_submission
     )
 
     # Prevent duplicate adopter applications.

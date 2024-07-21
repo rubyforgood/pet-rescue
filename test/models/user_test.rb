@@ -9,6 +9,7 @@ class UserTest < ActiveSupport::TestCase
   context "associations" do
     should have_one(:staff_account).dependent(:destroy)
     should have_one(:adopter_foster_account).dependent(:destroy)
+    should belong_to(:person).required(false)
   end
 
   context "validations" do
@@ -25,9 +26,39 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  context "creation" do
+    should "attach to an existing person" do
+      person = create(:person, email: "adopter@example.com")
+      user = create(:user, email: "adopter@example.com")
+
+      assert_equal person, user.person
+    end
+
+    should "not attach to people in other organizations" do
+      person = nil
+
+      ActsAsTenant.with_mutable_tenant do
+        other = create(:organization)
+        person = create(:person, email: "adopter@example.com", organization: other)
+      end
+
+      assert_equal("adopter@example.com", person.email)
+
+      user = create(:user, email: "adopter@example.com")
+      assert_not_equal person, user.person
+    end
+
+    should "create a person if none exists" do
+      user = create(:user, email: "tester@example.com", first_name: "Jane", last_name: "Smith")
+
+      assert_equal "Jane Smith", user.person.name
+      assert_equal "tester@example.com", user.person.email
+    end
+  end
+
   context ".organization_staff" do
     should "return all users with staff accounts" do
-      user = create(:staff)
+      user = create(:admin)
       organization = user.staff_account.organization
       assert_includes User.organization_staff(organization.id), user
 
@@ -39,7 +70,7 @@ class UserTest < ActiveSupport::TestCase
   context "#full_name" do
     context "format is :default" do
       should "return `First Last`" do
-        user = create(:user, first_name: "First", last_name: "Last")
+        user = build(:user, first_name: "First", last_name: "Last")
 
         assert_equal "First Last", user.full_name
       end
@@ -47,7 +78,7 @@ class UserTest < ActiveSupport::TestCase
 
     context "format is :default" do
       should "return `First Last`" do
-        user = create(:user, first_name: "First", last_name: "Last")
+        user = build(:user, first_name: "First", last_name: "Last")
 
         assert_equal "First Last", user.full_name(:default)
       end
@@ -55,7 +86,7 @@ class UserTest < ActiveSupport::TestCase
 
     context "format is :last_first" do
       should "return `Last, First`" do
-        user = create(:user, first_name: "First", last_name: "Last")
+        user = build(:user, first_name: "First", last_name: "Last")
 
         assert_equal "Last, First", user.full_name(:last_first)
       end
@@ -63,7 +94,7 @@ class UserTest < ActiveSupport::TestCase
 
     context "format is unsupported" do
       should "raise ArgumentError" do
-        user = create(:user, first_name: "First", last_name: "Last")
+        user = build(:user, first_name: "First", last_name: "Last")
 
         assert_raises(ArgumentError) { user.full_name(:foobar) }
       end

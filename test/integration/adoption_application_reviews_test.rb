@@ -2,12 +2,13 @@ require "test_helper"
 
 class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   setup do
-    @awaiting_review_app = create(:adopter_application, status: :awaiting_review)
-    @under_review_app = create(:adopter_application, status: :under_review)
-    @adoption_pending_app = create(:adopter_application, :adoption_pending)
-    @withdrawn_app = create(:adopter_application, :withdrawn)
-    @successful_applicant_app = create(:adopter_application, status: :successful_applicant)
-    @adoption_made_app = create(:adopter_application, status: :adoption_made)
+    @form_submission = create(:form_submission)
+    @awaiting_review_app = create(:adopter_application, status: :awaiting_review, form_submission: @form_submission)
+    @under_review_app = create(:adopter_application, status: :under_review, form_submission: @form_submission)
+    @adoption_pending_app = create(:adopter_application, :adoption_pending, form_submission: @form_submission)
+    @withdrawn_app = create(:adopter_application, :withdrawn, form_submission: @form_submission)
+    @successful_applicant_app = create(:adopter_application, status: :successful_applicant, form_submission: @form_submission)
+    @adoption_made_app = create(:adopter_application, status: :adoption_made, form_submission: @form_submission)
     @organization = create(:organization)
     @custom_page = create(:custom_page, organization: @organization)
     Current.organization = @organization
@@ -29,7 +30,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   context "active staff" do
     setup do
-      sign_in create(:staff)
+      sign_in create(:admin)
     end
 
     should "see all applications" do
