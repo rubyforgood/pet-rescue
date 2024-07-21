@@ -41,9 +41,9 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
     end
   end
 
-  context "staff" do
+  context "admin" do
     setup do
-      sign_in create(:staff)
+      sign_in create(:admin)
     end
 
     should "see an available pet" do

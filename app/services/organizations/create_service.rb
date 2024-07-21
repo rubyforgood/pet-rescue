@@ -37,7 +37,7 @@ class Organizations::CreateService
         args[:user][:last_name]
       )
       create_staff_account
-      add_admin_role_to_staff_account
+      add_super_admin_role_to_staff_account
       send_email
       create_custom_page
     end
@@ -86,11 +86,11 @@ class Organizations::CreateService
     end
   end
 
-  def add_admin_role_to_staff_account
-    @user.add_role(:admin)
+  def add_super_admin_role_to_staff_account
+    @user.add_role(:super_admin)
 
-    if !@user.has_role?(:admin)
-      raise StandardError, "Failed to add admin role"
+    if !@user.has_role?(:super_admin)
+      raise StandardError, "Failed to add super admin role"
     end
   end
 

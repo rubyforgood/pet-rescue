@@ -6,7 +6,7 @@ class Organizations::Staff::FaqsControllerTest < ActionDispatch::IntegrationTest
     @organization = ActsAsTenant.current_tenant
     @faq = create(:faq)
 
-    user = create(:staff)
+    user = create(:admin)
     sign_in user
   end
 
