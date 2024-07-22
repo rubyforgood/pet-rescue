@@ -108,7 +108,7 @@ gem "rails-controller-testing"
 gem "action_policy", "~> 0.7.0"
 
 # Use ViewComponent for our presenter pattern framework
-gem "view_component", "~> 3.12"
+gem "view_component", "~> 3.13"
 
 # Use dry-types for defining types
 gem "dry-types", "~> 1.7"
