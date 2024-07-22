@@ -2,4 +2,4 @@
 
 ## Context
 
-The purpose of this directory currently, is to document architectural decisions discussed for future changes.
+The purpose of this directory currently, is to document architectural decisions discussed for current conditions.
