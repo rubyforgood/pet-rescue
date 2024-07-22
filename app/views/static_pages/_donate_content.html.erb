@@ -1,0 +1,21 @@
+<div class="col-md-8 ps-md-4 bigger pb-5 pb-md-0">
+  <p>
+    <%= t('static_pages.donate.sentence_one', organization_name: Current.tenant.name) %>
+  </p>
+  <p>
+    <%= t('static_pages.donate.sentence_two') %>
+  </p>
+
+  <div class="row text-center mt-5">
+    <div class="col-8 border p-5 shadow-sm rounded bg-white">
+      <h3 class='mb-4'><%= t('static_pages.donate.donate_now_at') %></h3>
+      <div class="text-center mt-2">
+        <% if Current.tenant.profile.donation_url %>
+          <%= link_to Current.tenant.profile.donation_url, Current.tenant.profile.donation_url, target: '_blank'  %>
+        <% else %>
+          <p><%= sanitize(t('static_pages.donate.contact_us_to_donate', href: link_to(t('static_pages.donate.contact_us'), new_contact_path))) %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

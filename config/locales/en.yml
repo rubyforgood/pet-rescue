@@ -687,3 +687,11 @@ en:
   contacts:
     create:
       success: "Message sent!"
+  static_pages:
+    donate:
+      contact_us: "Contact us"
+      contact_us_to_donate: "%{href} to ask how you can donate"
+      donate: "Donate"
+      donate_now_at: "Donate now at:"
+      sentence_one: "%{organization_name} relies heavily on donations from people like you to help keep the program up and running."
+      sentence_two: "Please consider donating today so we can continue giving these pets a chance at a healthier, happier life."
