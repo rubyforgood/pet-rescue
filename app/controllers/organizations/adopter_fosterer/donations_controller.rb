@@ -4,7 +4,8 @@ module Organizations
       skip_verify_authorized only: [:index]
       layout "adopter_foster_dashboard", only: :index
 
-      def index; end
+      def index
+      end
     end
   end
 end
