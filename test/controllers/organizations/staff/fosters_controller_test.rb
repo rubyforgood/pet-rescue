@@ -48,7 +48,7 @@ class Organizations::Staff::FostersControllerTest < ActionDispatch::IntegrationT
 
         context "when user is authorized" do
           setup do
-            user = create(:staff_admin)
+            user = create(:super_admin)
             sign_in user
           end
 

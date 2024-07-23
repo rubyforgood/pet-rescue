@@ -27,7 +27,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_one.id
   )
 
-  @user_staff_one.add_role(:admin, @organization)
+  @user_staff_one.add_role(:super_admin, @organization)
 
   @user_staff_two = User.create!(
     email: "staff2@baja.com",
@@ -42,7 +42,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_two.id
   )
 
-  @user_staff_two.add_role(:admin, @organization)
+  @user_staff_two.add_role(:super_admin, @organization)
 
   @user_adopter_one = User.create!(
     email: "adopter1@baja.com",
@@ -282,7 +282,7 @@ ActsAsTenant.with_tenant(@organization) do
       weight_unit: Pet::WEIGHT_UNITS.sample,
       breed: Faker::Creature::Dog.breed,
       description: "He just loves a run and a bum scratch at the end of the day",
-      species: 0,
+      species: Pet.species["Dog"],
       placement_type: 1,
       published: true
     )
@@ -316,7 +316,7 @@ ActsAsTenant.with_tenant(@organization) do
       weight_unit: Pet::WEIGHT_UNITS.sample,
       breed: Faker::Creature::Dog.breed,
       description: Faker::Lorem.sentence,
-      species: 0,
+      species: Pet.species["Dog"],
       placement_type: "Fosterable",
       published: true
     )

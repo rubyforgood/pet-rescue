@@ -12,7 +12,7 @@ module Organizations
             @organization = ActsAsTenant.current_tenant
             @form = create(:form, organization: @organization)
 
-            user = create(:staff)
+            user = create(:admin)
             sign_in user
           end
 
@@ -125,7 +125,7 @@ module Organizations
           setup do
             @organization = ActsAsTenant.current_tenant
             @form = create(:form)
-            @user = create(:staff)
+            @user = create(:admin)
             sign_in @user
           end
 

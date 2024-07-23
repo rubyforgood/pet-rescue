@@ -105,7 +105,7 @@ gem "ransack"
 gem "rails-controller-testing"
 
 # Use Action Policy for authorization framework
-gem "action_policy", "~> 0.6.9"
+gem "action_policy", "~> 0.7.0"
 
 # Use ViewComponent for our presenter pattern framework
 gem "view_component", "~> 3.12"

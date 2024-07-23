@@ -6,7 +6,7 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
     @organization = ActsAsTenant.current_tenant
     @default_pet_task = create(:default_pet_task)
 
-    user = create(:staff)
+    user = create(:admin)
     sign_in user
   end
 

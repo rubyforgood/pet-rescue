@@ -5,8 +5,8 @@ require "test_helper"
 class Organization::EditTest < ActionDispatch::IntegrationTest
   setup do
     @org = ActsAsTenant.current_tenant
-    admin = create(:staff_admin)
-    sign_in admin
+    super_admin = create(:super_admin)
+    sign_in super_admin
     get edit_staff_organization_path(@org)
   end
 
