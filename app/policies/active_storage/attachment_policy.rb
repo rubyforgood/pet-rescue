@@ -13,6 +13,15 @@ class ActiveStorage::AttachmentPolicy < ApplicationPolicy
   private
 
   def organization
-    @organization || record.record
+    @organization || record_organization
+  end
+
+  # `record` should be an ActiveStorage Attachment which responds to `#record`.
+  def record_organization
+    if record.record.is_a?(Organization)
+      record.record
+    else
+      record.record.organization
+    end
   end
 end
