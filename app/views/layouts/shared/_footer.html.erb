@@ -20,10 +20,10 @@
           <!-- list -->
           <h3 class="fw-bold mb-3"><%= t('.company') %></h3>
           <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
-            <% if Current.tenant&.profile.facebook_url.present? || Current.tenant&.profile.instagram_url.present? %>
+            <% if Current.tenant&.facebook_url.present? || Current.tenant&.instagram_url.present? %>
               <li class="d-flex gap-3">
-                <% if Current.tenant&.profile.facebook_url.present? %>
-                  <%= link_to Current.tenant&.profile.facebook_url, class: 'nav-link', target: '_blank', aria: {label: "Find us on facebook" } do %>
+                <% if Current.tenant&.facebook_url.present? %>
+                  <%= link_to Current.tenant&.facebook_url, class: 'nav-link', target: '_blank', aria: {label: "Find us on facebook" } do %>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                           fill="currentColor" class="bi bi-facebook"
                           viewBox="0 0 16 16">
@@ -35,8 +35,8 @@
                     </svg>
                   <% end %>
                 <% end %>
-                <% if Current.tenant&.profile.instagram_url.present? %>
-                  <%= link_to Current.tenant&.profile.instagram_url, class: 'nav-link', target: '_blank', aria: {label: "Find us on instagram"} do %>
+                <% if Current.tenant&.instagram_url.present? %>
+                  <%= link_to Current.tenant&.instagram_url, class: 'nav-link', target: '_blank', aria: {label: "Find us on instagram"} do %>
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                           fill="currentColor" class="bi bi-instagram"
                           viewBox="0 0 16 16">
@@ -70,10 +70,10 @@
         <!-- contact info -->
         <div class="mb-4">
           <h3 class="fw-bold mb-3">Get in touch</h3>
-          <p><%= Current.tenant.location.city_town %>, <%= Current.tenant.location.province_state %> <%= Current.tenant.location.country %></p>
-          <p class="mb-1">Email: <a href="mailto:<%= Current.tenant.profile.email %>"><%= Current.tenant.profile.email %></a></p>
-          <% if Current.tenant.profile.phone_number.present? %>
-            <p>Phone: <span class="text-dark fw-semibold"><%= Current.tenant.profile.formatted_phone_number %></span></p>
+          <p><%= Current.tenant.locations.last&.city_town %>, <%= Current.tenant.locations.last&.province_state %> <%= Current.tenant.locations.last&.country %></p>
+          <p class="mb-1">Email: <a href="mailto:<%= Current.tenant.email %>"><%= Current.tenant.email %></a></p>
+          <% if Current.tenant.phone_number.present? %>
+            <p>Phone: <span class="text-dark fw-semibold"><%= Current.tenant.formatted_phone_number %></span></p>
           <% end %>
         </div>
       </div>

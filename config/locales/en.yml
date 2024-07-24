@@ -262,7 +262,7 @@ en:
               blank: "Adopter account must exist"
             organization_id:
               different_organization: "must belong to same organization as pet"
-        organization_profile:
+        organization:
           attributes:
             location:
               blank: "Location must exist"
@@ -482,7 +482,7 @@ en:
           edit_faq: "Edit FAQ"
         faq:
           are_you_sure_delete: "Are you sure you want to delete this FAQ?"
-      organization_profiles:
+      organizations:
         update:
           success: "Your profile has been updated!"
         form:

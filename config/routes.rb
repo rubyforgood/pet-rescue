@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :faq, only: [:index]
 
     namespace :staff do
-      resource :organization_profile, only: %i[edit update]
+      resource :organization, only: %i[edit update]
       resource :custom_page, only: %i[edit update]
       resources :profile_reviews, only: [:show]
 
