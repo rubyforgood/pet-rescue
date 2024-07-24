@@ -137,6 +137,9 @@ group :development, :test do
 
   # Creating factory instantiations in tests
   gem "factory_bot_rails"
+
+  # Catch unsafe migrations
+  gem "strong_migrations", "~> 2.0"
 end
 
 group :development do
