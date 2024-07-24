@@ -8,6 +8,12 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
 
     user = create(:admin)
     sign_in user
+
+    DefaultPetTask.class_eval do
+      def self.ransackable_attributes(auth_object = nil)
+        ["created_at", "description", "due_in_days", "id", "id_value", "name", "organization_id", "recurring", "species", "updated_at"]
+      end
+    end
   end
 
   context "authorization" do
@@ -61,6 +67,22 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
         ) do
           get staff_default_pet_tasks_url
         end
+      end
+
+      should "filter by name" do
+        # Create test data
+        task1 = DefaultPetTask.create!(name: "Buddy", species: "Dog", recurring: true)
+        task2 = DefaultPetTask.create!(name: "Max", species: "Cat", recurring: false)
+
+        # Perform the GET request with filtering parameter
+        get staff_default_pet_tasks_url, params: {q: {name_cont: "Buddy"}}
+
+        # Assert the response is successful
+        assert_response :success
+
+        # Assert the filtered results contain the expected task and not the other
+        assert_includes assigns(:default_pet_tasks), task1
+        assert_not_includes assigns(:default_pet_tasks), task2
       end
     end
 

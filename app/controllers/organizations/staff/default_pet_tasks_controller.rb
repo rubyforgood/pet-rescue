@@ -1,11 +1,19 @@
 class Organizations::Staff::DefaultPetTasksController < Organizations::BaseController
   before_action :context_authorize!, only: %i[index new create]
   before_action :set_task, only: %i[edit update destroy]
+  include ::Pagy::Backend
 
   layout "dashboard"
 
   def index
-    @default_pet_tasks = authorized_scope(DefaultPetTask.all).sort_by { |task| task.species }
+    @default_pet_tasks = authorized_scope(DefaultPetTask.all)
+
+    if params[:q].present?
+      @q = @default_pet_tasks.ransack(params[:q])
+      @default_pet_tasks = @q.result
+    end
+
+    @pagy, @default_pet_tasks = pagy(@default_pet_tasks, items: 10)
   end
 
   def new
