@@ -57,7 +57,7 @@ module Authorizable
     ADMIN_PERMISSIONS + %i[
       activate_staff
       invite_staff
-      manage_organization_profile
+      manage_organization
       manage_custom_page
       manage_staff
       change_user_roles
