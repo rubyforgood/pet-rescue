@@ -5,33 +5,37 @@
   <% end %>
   <% c.with_body do %>
   <!-- Ransack Search Form -->
-  <div class="row p-4 border rounded-5 mb-5 bg-white">
-    <div class="col-xl-12">
-      <%= search_form_for @q, url: staff_default_pet_tasks_path do |f| %>
-        <div class="row">
-          <div class="form-group mb-3 col-md-4">
-            <%= f.label :name_cont, "Name" %>
-            <%= f.text_field :name_cont %>
-          </div>
-          <div class="form-group mb-3 col-md-4">
-            <%= f.label :name_cont, "Species" %>
-            <%= f.text_field :name_cont %>
-          </div>
-          <div class="form-group mb-3 col-md-4">
-            <%= f.label :name_cont, "Due After" %>
-            <%= f.text_field :name_cont %>
-          </div>
-          <div class="form-group mb-3 col-md-4">
-            <%= f.label :name_cont, "Recurring" %>
-            <%= f.text_field :name_cont %>
-          </div>
-          <div class="form-group mb-3 col-md-4">
-            <%= f.submit "Search" %>
+   <section class="pb-5">  <%# #maybe %>
+      <div class="container"> <%# #maybe %>
+        <div class="row p-4 border rounded-5 mb-5 bg-white">
+          <div class="col-xl-12">
+            <%= search_form_for @q, url: staff_default_pet_tasks_path do |f| %>
+              <div class="row">
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :name_cont, "Name" %>
+                  <%= f.text_field :name_cont %>
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :name_cont, "Species" %>
+                  <%= f.text_field :name_cont %>
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :name_cont, "Due After" %>
+                  <%= f.text_field :name_cont %>
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :name_cont, "Recurring" %>
+                  <%= f.text_field :name_cont %>
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.submit "Search" %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
-      <% end %>
-    </div>
-  </div>
+    </div> <!-- Container -->
+  </section>
 
     <!-- row -->
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
