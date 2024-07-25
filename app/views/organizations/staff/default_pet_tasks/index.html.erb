@@ -16,12 +16,12 @@
                   <%= f.text_field :name_cont %>
                 </div>
                 <div class="form-group mb-3 col-md-4">
-                  <%= f.label :name_cont, "Species" %>
-                  <%= f.text_field :name_cont %>
+                  <%= f.label :species_eq, "Species" %>
+                  <%= f.select :species_eq, Pet.species.keys.map { |type| [type.titleize, type] }, { include_blank: 'Select Species' }, class: "form-select" %>
                 </div>
                 <div class="form-group mb-3 col-md-4">
-                  <%= f.label :name_cont, "Due After" %>
-                  <%= f.text_field :name_cont %>
+                  <%= f.label :due_in_days, "Due After" %>
+                  <%= number_field_tag :due_in_days, params[:due_in_days], class: "form-control", placeholder: "Due After (Days)" %>
                 </div>
                 <div class="form-group mb-3 col-md-4">
                   <%= f.label :name_cont, "Recurring" %>

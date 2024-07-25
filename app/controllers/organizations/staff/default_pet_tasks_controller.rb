@@ -10,6 +10,10 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
 
     @default_pet_tasks = authorized_scope(DefaultPetTask.all)
 
+    apply_species_filter
+    apply_recurring_filter
+    apply_due_in_days_filter
+
     @q = @default_pet_tasks.ransack(params[:q])
     @default_pet_tasks = @q.result
 
