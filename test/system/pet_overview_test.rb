@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class PetOverviewTest < ApplicationSystemTestCase
   setup do
-    user = create(:staff)
+    user = create(:admin)
     @pet = create(:pet)
     @all_overview_columns = %w[Sex Breed Weight Placement_Type Application_Status Publish_Status].map { |word| word.tr("_", " ") }
     sign_in user

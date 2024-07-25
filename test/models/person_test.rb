@@ -1,10 +1,19 @@
 require "test_helper"
 
 class PersonTest < ActiveSupport::TestCase
+  context "associations" do
+    should have_one(:user).dependent(:destroy)
+  end
+
   context "validations" do
     should validate_presence_of(:name)
     should validate_presence_of(:email)
     should_not validate_presence_of(:phone)
+  end
+
+  context "associations" do
+    should have_one(:form_submission).dependent(:destroy)
+    should have_many(:form_answers).through(:form_submission)
   end
 
   context "database validations" do

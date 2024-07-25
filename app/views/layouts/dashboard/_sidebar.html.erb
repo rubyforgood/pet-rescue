@@ -3,8 +3,8 @@
     <!-- Brand logo -->
     <p class="navbar-brand flex-column">
       <%= link_to home_index_path, class: "nav-link" do %>
-        <% if Current.organization.profile.avatar.attached? %>
-          <%= image_tag Current.organization.profile.avatar, alt: current_organization_name, title: current_organization_name, class: 'rounded-1' %>
+        <% if Current.organization.avatar.attached? %>
+          <%= image_tag Current.organization.avatar, alt: current_organization_name, title: current_organization_name, class: 'rounded-1' %>
         <% else %>
           <%= current_organization_name %>
         <% end %>
@@ -59,22 +59,36 @@
           <i class="nav-icon fe fe-file-text me-2"></i>FAQs
         <% end %>
       </li>
-      <% if current_user.staff_account && current_user.has_role?(:admin, current_user.staff_account.organization) %>
+      <% if allowed_to?(:index?, CustomForm::Form, namespace: Organizations,
+        context: {organization: Current.organization})
+      %>
         <li class="nav-item">
           <%= active_link_to staff_custom_form_forms_path, class: 'nav-link' do %>
             <i class="nav-icon fe fe-clipboard me-2"></i>Forms
           <% end %>
         </li>
+      <% end %>
+      <% if allowed_to?(:edit?, Organization, namespace: Organizations,
+        context: {organization: Current.organization})
+      %>
         <li class="nav-item">
-          <%= active_link_to edit_staff_organization_profile_path, class: "nav-link" do %>
+          <%= active_link_to edit_staff_organization_path, class: "nav-link" do %>
             <i class="nav-icon fe fe-settings me-2"></i>Settings
           <% end %>
         </li>
+      <% end %>
+      <% if allowed_to?(:edit?, CustomPage, namespace: Organizations,
+        context: {organization: Current.organization}) 
+      %>
         <li class="nav-item">
           <%= active_link_to edit_staff_custom_page_path(@custom_page), class: "nav-link" do %>
             <i class="nav-icon fe fe-file-text me-2"></i>Custom Page
           <% end %>
         </li>
+      <% end %>
+      <% if allowed_to?(:index?, StaffAccount, namespace: Organizations,
+          context: {organization: Current.organization})
+        %>
         <li class="nav-item">
           <%= active_link_to staff_staff_index_path, class: "nav-link" do %>
             <i class="nav-icon fe fe-users me-2"></i>Staff

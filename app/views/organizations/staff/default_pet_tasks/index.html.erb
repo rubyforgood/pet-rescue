@@ -13,10 +13,21 @@
           <table class="table mb-0 text-nowrap table-hover table-centered">
             <thead>
               <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Due After</th>
-                <th scope="col">Recurring</th>
+                <th scope="col">
+                  <%= t('.name') %>
+                </th>
+                <th scope="col">
+                  <%= t('.description') %>
+                </th>
+                <th scope="col">
+                  <%= t('.species') %>
+                </th>
+                <th scope="col">
+                  <%= t('.due_after') %>
+                </th>
+                <th scope="col">
+                  <%= t('.recurring') %>
+                </th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -28,6 +39,9 @@
                   </td>
                   <td>
                     <%= task.description %>
+                  </td>
+                  <td>
+                    <%= task.human_enum_name(:species) %>
                   </td>
                   <td>
                     <%= task.due_in_days ? pluralize(task.due_in_days, "day") : "" %>

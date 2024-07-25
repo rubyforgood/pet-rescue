@@ -10,7 +10,7 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
       @form_submission = create(:form_submission)
       @adopter_application = create(:adopter_application, form_submission: @form_submission)
 
-      user = create(:staff)
+      user = create(:admin)
       sign_in user
     end
 
@@ -75,7 +75,7 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
 
   context "Filtering adoption applications" do
     setup do
-      @user = create(:staff)
+      @user = create(:admin)
       sign_in @user
     end
 

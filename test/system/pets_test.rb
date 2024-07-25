@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class PetsTest < ApplicationSystemTestCase
   setup do
-    @user = create(:staff)
+    @user = create(:admin)
     sign_in @user
     @pets = create_list(:pet, 5)
   end

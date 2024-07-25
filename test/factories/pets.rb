@@ -8,7 +8,7 @@ FactoryBot.define do
     placement_type { "Adoptable and Fosterable" }
     published { true }
     sex { Faker::Creature::Dog.gender }
-    species { Faker::Number.within(range: 0..1) }
+    species { Faker::Number.within(range: 1..2) }
     weight_from { 10 }
     weight_to { 20 }
     weight_unit { "lb" }

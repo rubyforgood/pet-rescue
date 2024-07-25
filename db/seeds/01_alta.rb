@@ -1,18 +1,19 @@
-orga_location = Location.create!(
-  country: "US",
-  province_state: "NY",
-  city_town: "AltaCity",
-  zipcode: "12345"
-)
-
 @organization = Organization.create!(
   name: "Alta Pet Rescue",
   slug: "alta",
-  profile: OrganizationProfile.new(email: "alta@email.com", phone_number: "250 816 8212", location: orga_location),
+  email: "alta@email.com",
+  phone_number: "250 816 8212",
   custom_page: CustomPage.new(hero: "Where every paw finds a home", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.")
 )
 
 ActsAsTenant.with_tenant(@organization) do
+  @orga_location = Location.create!(
+    country: "US",
+    province_state: "NY",
+    city_town: "AltaCity",
+    zipcode: "12345"
+  )
+
   @user_staff_one = User.create!(
     email: "staff@alta.com",
     first_name: "Andy",
@@ -26,7 +27,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_one.id
   )
 
-  @user_staff_one.add_role(:admin, @organization)
+  @user_staff_one.add_role(:super_admin, @organization)
 
   @user_staff_two = User.create!(
     email: "staff2@alta.com",
@@ -41,7 +42,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_two.id
   )
 
-  @user_staff_two.add_role(:admin, @organization)
+  @user_staff_two.add_role(:super_admin, @organization)
 
   @user_adopter_one = User.create!(
     email: "adopter1@alta.com",
@@ -328,7 +329,7 @@ ActsAsTenant.with_tenant(@organization) do
       weight_unit: Pet::WEIGHT_UNITS.sample,
       breed: Faker::Creature::Dog.breed,
       description: "He just loves a run and a bum scratch at the end of the day",
-      species: 0,
+      species: Pet.species["Dog"],
       placement_type: 0,
       published: true
     )
@@ -362,7 +363,7 @@ ActsAsTenant.with_tenant(@organization) do
       weight_unit: Pet::WEIGHT_UNITS.sample,
       breed: Faker::Creature::Dog.breed,
       description: Faker::Lorem.sentence,
-      species: 0,
+      species: Pet.species["Dog"],
       placement_type: "Fosterable",
       published: true
     )

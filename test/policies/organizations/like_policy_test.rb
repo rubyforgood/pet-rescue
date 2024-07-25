@@ -42,7 +42,7 @@ class Organizations::LikePolicyTest < ActiveSupport::TestCase
 
     context "when user is staff" do
       setup do
-        @user = create(:staff)
+        @user = create(:admin)
       end
 
       should "return false" do
@@ -87,7 +87,7 @@ class Organizations::LikePolicyTest < ActiveSupport::TestCase
 
     context "when user is staff" do
       setup do
-        @user = create(:staff)
+        @user = create(:admin)
       end
 
       should "return false" do
@@ -168,7 +168,7 @@ class Organizations::LikePolicyTest < ActiveSupport::TestCase
 
     context "when user is staff" do
       setup do
-        @user = create(:staff)
+        @user = create(:admin)
       end
 
       should "return false" do

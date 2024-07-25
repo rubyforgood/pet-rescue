@@ -13,7 +13,7 @@ class Organizations::Staff::InvitationsController < Devise::InvitationsControlle
     # We have different return paths based on the roles provided in the params.
     # If you extend this, make sure new paths have their own authz!
     case user_params[:roles]
-    when "admin", "staff"
+    when "super_admin", "admin"
       authorize! User, context: {organization: Current.organization},
         with: Organizations::StaffInvitationPolicy
 

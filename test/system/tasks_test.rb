@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class TasksTest < ApplicationSystemTestCase
   setup do
-    user = create(:staff)
+    user = create(:admin)
     @pet = create(:pet)
 
     sign_in user
