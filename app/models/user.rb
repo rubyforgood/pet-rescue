@@ -75,6 +75,8 @@ class User < ApplicationRecord
 
   before_validation :ensure_person_exists, on: :create
 
+  before_save :downcase_email
+
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)
     User.includes(:staff_account)
@@ -127,5 +129,11 @@ class User < ApplicationRecord
 
   def name_initials
     full_name.split.map { |part| part[0] }.join.upcase
+  end
+
+  private
+
+  def downcase_email
+    self.email = email.downcase if email.present?
   end
 end
