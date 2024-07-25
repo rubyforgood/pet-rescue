@@ -52,7 +52,10 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: {scope: :organization_id}
+  validates :email, presence: true, uniqueness: { scope: :organization_id }, format: {
+    with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
+    message: "should be a valid email address"
+  }
   # validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
   #   allow_nil: false, on: :create
 
