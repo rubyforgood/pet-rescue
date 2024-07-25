@@ -8,10 +8,8 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
   def index
     @default_pet_tasks = authorized_scope(DefaultPetTask.all)
 
-    if params[:q].present?
-      @q = @default_pet_tasks.ransack(params[:q])
-      @default_pet_tasks = @q.result
-    end
+    @q = @default_pet_tasks.ransack(params[:q])
+    @default_pet_tasks = @q.result
 
     @pagy, @default_pet_tasks = pagy(@default_pet_tasks, items: 10)
   end

@@ -8,12 +8,6 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
 
     user = create(:admin)
     sign_in user
-
-    DefaultPetTask.class_eval do
-      def self.ransackable_attributes(auth_object = nil)
-        ["created_at", "description", "due_in_days", "id", "id_value", "name", "organization_id", "recurring", "species", "updated_at"]
-      end
-    end
   end
 
   context "authorization" do

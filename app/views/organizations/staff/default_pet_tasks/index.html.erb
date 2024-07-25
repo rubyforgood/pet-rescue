@@ -3,6 +3,20 @@
   <% c.with_action do %>
     <%= link_to t('.create_default_task'), new_staff_default_pet_task_path, class: "btn btn-primary" %><br>
   <% end %>
+  <!-- Ransack Search Form -->
+  <div class="row p-4 border rounded-5 mb-5 bg-white">
+    <div class="col-xl-12">
+      <%= search_form_for @q, url: staff_default_pet_tasks_path do |f| %>
+        <div class="row">
+          <div class="form-group mb-3 col-md-4">
+            <%= f.label :name_cont, "Name" %>
+            <%= f.text_field :name_cont %>
+          </div>
+        </div> 
+      <% end %>
+    </div>
+  </div>
+  
   <% c.with_body do %>
     <!-- row -->
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">

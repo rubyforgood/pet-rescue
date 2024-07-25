@@ -27,4 +27,8 @@ class DefaultPetTask < ApplicationRecord
   validates_numericality_of :due_in_days, only_integer: true, greater_than_or_equal_to: 0, allow_nil: true
 
   enum :species, ["All", *Pet.species.keys], default: 0
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name", "species", "due_in_days", "recurring"]
+  end
 end
