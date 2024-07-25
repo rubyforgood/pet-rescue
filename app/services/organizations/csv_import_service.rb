@@ -13,18 +13,13 @@ module Organizations
         email = row["Email"].downcase
         csv_timestamp = Time.parse(row["Timestamp"])
 
-        # Check for matching person in organization
         person = Person.find_by(email:, organization: @organization)
-        next unless person
-
-        # Skip rows that have already been imported
         previous = FormSubmission.where(person:, csv_timestamp:)
-        next unless previous.empty?
+        next unless person && previous.empty?
 
         ActiveRecord::Base.transaction do
           form_submission = FormSubmission.create!(person:, csv_timestamp:)
           row.each do |col|
-            # skip Email and Timestamp col as they are saved on Form Submission
             next if col[0] == "Email" || col[0] == "Timestamp"
 
             FormAnswer.create!(form_submission:,
