@@ -4,11 +4,20 @@ require "csv"
 module Organizations
   class CsvImportServiceTest < ActiveSupport::TestCase
     setup do
-      @person = create(:person)
-      Current.organization = @person.organization
+      person = create(:person)
+      Current.organization = person.organization
 
       @file = Tempfile.new(["test", ".csv"])
       headers = ["Timestamp", "Name", "Email", "Address", "Phone number", *Faker::Lorem.questions]
+
+      @data = [
+        Time.now,
+        person.name,
+        person.email,
+        Faker::Address.full_address,
+        Faker::PhoneNumber.phone_number,
+        *Faker::Lorem.sentences
+      ]
 
       CSV.open(@file.path, "wb") do |csv|
         csv << headers
@@ -21,14 +30,7 @@ module Organizations
 
     should "add row information to database if person exists" do
       CSV.open(@file.path, "ab") do |csv|
-        csv << [
-          Time.now,
-          @person.name,
-          @person.email,
-          Faker::Address.full_address,
-          Faker::PhoneNumber.phone_number,
-          *Faker::Lorem.sentences
-        ]
+        csv << @data
       end
 
       assert_difference "FormSubmission.count" do
@@ -39,15 +41,9 @@ module Organizations
     end
 
     should "skip row if person with email does not exist" do
+      @data[2] = "email@skip.com"
       CSV.open(@file.path, "ab") do |csv|
-        csv << [
-          Time.now,
-          @person.name,
-          "skip@email.com",
-          Faker::Address.full_address,
-          Faker::PhoneNumber.phone_number,
-          *Faker::Lorem.sentences
-        ]
+        csv << @data
       end
 
       assert_no_difference "FormSubmission.count" do
@@ -56,17 +52,9 @@ module Organizations
     end
 
     should "skip if row is already in database" do
-      data = [
-        Time.now,
-        @person.name,
-        @person.email,
-        Faker::Address.full_address,
-        Faker::PhoneNumber.phone_number,
-        *Faker::Lorem.sentences
-      ]
       CSV.open(@file.path, "ab") do |csv|
-        csv << data
-        csv << data
+        csv << @data
+        csv << @data
       end
       assert_difference "FormSubmission.count" do
         Organizations::CsvImportService.new(@file).call
