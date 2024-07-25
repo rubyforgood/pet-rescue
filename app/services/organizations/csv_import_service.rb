@@ -11,7 +11,7 @@ module Organizations
       CSV.foreach(@file.to_path, headers: true, skip_blanks: true) do |row|
         # Using Google Form headers
         email = row["Email"]
-        timestamp = Time.parse(row["Timestamp"])
+        # timestamp = Time.parse(row["Timestamp"])
 
         # Check for matching person in organization
         person = Person.find_by(email:, organization: @organization)
