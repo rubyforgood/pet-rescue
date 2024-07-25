@@ -12,6 +12,7 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
     @default_pet_tasks = @q.result
 
     @pagy, @default_pet_tasks = pagy(@default_pet_tasks, items: 10)
+    @partial_to_render = params[:q].present? ? 'search_results' : 'default_pet_tasks_table'
   end
 
   def new

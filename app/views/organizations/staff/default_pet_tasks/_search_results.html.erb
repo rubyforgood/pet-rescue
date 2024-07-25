@@ -1,63 +1,39 @@
-
-    <!-- row -->
-    <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
-      <!-- card -->
-      <div class="card">
-        <!-- table -->
-        <div class="table-responsive overflow-y-hidden">
-          <table class="table mb-0 text-nowrap table-hover table-centered">
-            <thead>
-              <tr>
-                <th scope="col">
-                  <%= t('.name') %>
-                </th>
-                <th scope="col">
-                  <%= t('.description') %>
-                </th>
-                <th scope="col">
-                  <%= t('.species') %>
-                </th>
-                <th scope="col">
-                  <%= t('.due_after') %>
-                </th>
-                <th scope="col">
-                  <%= t('.recurring') %>
-                </th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @default_pet_tasks.each do |task| %>
-                <tr>
+<div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
+  <div class="card">
+    <div class="table-responsive overflow-y-hidden">
+      <table class="table mb-0 text-nowrap table-hover table-centered">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Species</th>
+            <th scope="col">Due After</th>
+            <th scope="col">Recurring</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @default_pet_tasks.each do |task| %>
+            <tr>
+              <td><%= task.name %></td>
+              <td><%= task.description %></td>
+              <td><%= task.human_enum_name(:species) %></td>
+              <td><%= task.due_in_days ? pluralize(task.due_in_days, "day") : "" %></td>
+              <td><%= task.recurring? ? "Yes" : "No" %></td>
+              <% if current_user.staff_account %>
                   <td>
-                    <%= task.name %>
-                  </td>
-                  <td>
-                    <%= task.description %>
-                  </td>
-                  <td>
-                    <%= task.human_enum_name(:species) %>
-                  </td>
-                  <td>
-                    <%= task.due_in_days ? pluralize(task.due_in_days, "day") : "" %>
-                  </td>
-                  <td>
-                    <%= task.recurring? ? "Yes" : "No" %>
-                  </td>
-                  <% if current_user.staff_account %>
-                    <td>
-                      <div class="text-right">
-                        <div class="d-flex align-items-center justify-content-end">
-                          <%= link_to 'Edit', edit_staff_default_pet_task_path(task), class: 'btn btn-warning m-2' %>
-                          <%= link_to 'Delete', staff_default_pet_task_path(task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.are_you_sure_delete') } %>
-                        </div>
+                    <div class="text-right">
+                      <div class="d-flex align-items-center justify-content-end">
+                        <%= link_to 'Edit', edit_staff_default_pet_task_path(task), class: 'btn btn-warning m-2' %>
+                        <%= link_to 'Delete', staff_default_pet_task_path(task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: ('are_you_sure_delete') } %>
                       </div>
-                    </td>
-                  <% end %>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
+                    </div>
+                  </td>
+                <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
     </div>
+  </div>
+</div>

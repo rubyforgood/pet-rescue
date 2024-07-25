@@ -1,8 +1,8 @@
-<div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
-  <div class="card">
-    <div class="table-responsive overflow-y-hidden">
+<div class=" mb-4 mb-xl-0 gx-3">
+  <div class="card ">
+    <div class="table-responsive  w-100 overflow-y-hidden">
       <table class="table mb-0 text-nowrap table-hover table-centered">
-        <thead>
+          <thead>
           <tr>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
@@ -15,15 +15,27 @@
         <tbody>
           <% @default_pet_tasks.each do |task| %>
             <tr>
-              <td><%= task.name %></td>
-              <td><%= task.description %></td>
-              <td><%= task.due_in_days ? pluralize(task.due_in_days, "day") : "" %></td>
-              <td><%= task.recurring? ? "Yes" : "No" %></td>
+              <td>
+                <%= task.name %>
+              </td>
+              <td>
+                <%= task.description %>
+              </td>
+              <td>
+                <%= task.human_enum_name(:species) %>
+              </td>
+              <td>
+                <%= task.due_in_days ? pluralize(task.due_in_days, "day") : "" %>
+              </td>
+              <td>
+                <%= task.recurring? ? "Yes" : "No" %>
+              </td>
               <% if current_user.staff_account %>
                 <td>
                   <div class="text-right">
                     <div class="d-flex align-items-center justify-content-end">
                       <%= link_to 'Edit', edit_staff_default_pet_task_path(task), class: 'btn btn-warning m-2' %>
+                      <%= link_to 'Delete', staff_default_pet_task_path(task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: ('are_you_sure_delete') } %>
                     </div>
                   </div>
                 </td>
