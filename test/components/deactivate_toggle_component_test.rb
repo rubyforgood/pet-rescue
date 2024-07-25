@@ -5,7 +5,7 @@ require "test_helper"
 class DeactivateToggleComponentTest < ViewComponent::TestCase
   context "Active Account" do
     setup do
-      @current_user = create(:staff)
+      @current_user = create(:admin)
       @account = create(:staff_account)
     end
 
@@ -24,7 +24,7 @@ class DeactivateToggleComponentTest < ViewComponent::TestCase
 
   context "Deactivated Account" do
     setup do
-      current_user = create(:staff)
+      current_user = create(:admin)
       account = create(:staff_account, :deactivated)
 
       render_inline(DeactivateToggleComponent.new(account: account, role: "staff", current_user: current_user))

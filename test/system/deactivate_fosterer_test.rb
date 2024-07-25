@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class DeactivateFostererTest < ApplicationSystemTestCase
   setup do
-    user = create(:staff)
+    user = create(:admin)
     @fosterer = create(:foster_account)
 
     sign_in user
