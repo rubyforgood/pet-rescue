@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_19_183226) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -130,6 +130,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
     t.datetime "updated_at", null: false
     t.integer "due_in_days"
     t.boolean "recurring", default: false
+    t.integer "species"
     t.index ["organization_id"], name: "index_default_pet_tasks_on_organization_id"
   end
 
@@ -141,6 +142,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_faqs_on_organization_id"
+  end
+
+  create_table "form_answers", force: :cascade do |t|
+    t.json "value", null: false
+    t.json "question_snapshot", null: false
+    t.bigint "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "form_submission_id", null: false
+    t.bigint "organization_id", null: false
+    t.index ["form_submission_id"], name: "index_form_answers_on_form_submission_id"
+    t.index ["organization_id"], name: "index_form_answers_on_organization_id"
   end
 
   create_table "form_profiles", force: :cascade do |t|
@@ -193,6 +206,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "zipcode"
+    t.bigint "organization_id"
+    t.index ["organization_id"], name: "index_locations_on_organization_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -209,25 +224,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
     t.index ["pet_id"], name: "index_matches_on_pet_id"
   end
 
-  create_table "organization_profiles", force: :cascade do |t|
-    t.string "email"
-    t.string "phone_number"
-    t.bigint "location_id", null: false
-    t.bigint "organization_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "facebook_url"
-    t.text "instagram_url"
-    t.text "donation_url"
-    t.index ["location_id"], name: "index_organization_profiles_on_location_id"
-    t.index ["organization_id"], name: "index_organization_profiles_on_organization_id"
-  end
-
   create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.string "email"
+    t.string "phone_number"
+    t.text "donation_url"
+    t.text "facebook_url"
+    t.text "instagram_url"
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
   end
 
@@ -299,19 +305,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
     t.index ["user_id"], name: "index_staff_accounts_on_user_id"
   end
 
-  create_table "submitted_answers", force: :cascade do |t|
-    t.json "value", null: false
-    t.json "question_snapshot", null: false
-    t.bigint "question_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "form_submission_id", null: false
-    t.index ["form_submission_id"], name: "index_submitted_answers_on_form_submission_id"
-    t.index ["question_id"], name: "index_submitted_answers_on_question_id"
-    t.index ["user_id"], name: "index_submitted_answers_on_user_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -347,11 +340,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.bigint "person_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
     t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["organization_id"], name: "index_users_on_organization_id"
+    t.index ["person_id"], name: "index_users_on_person_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -374,6 +369,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
   add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "faqs", "organizations"
+  add_foreign_key "form_answers", "form_submissions"
+  add_foreign_key "form_answers", "organizations"
+  add_foreign_key "form_answers", "questions"
   add_foreign_key "form_profiles", "forms"
   add_foreign_key "form_submissions", "organizations"
   add_foreign_key "form_submissions", "people"
@@ -381,17 +379,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_225125) do
   add_foreign_key "likes", "adopter_foster_accounts"
   add_foreign_key "likes", "organizations"
   add_foreign_key "likes", "pets"
+  add_foreign_key "locations", "organizations"
   add_foreign_key "matches", "adopter_foster_accounts"
   add_foreign_key "matches", "pets"
-  add_foreign_key "organization_profiles", "locations"
-  add_foreign_key "organization_profiles", "organizations"
   add_foreign_key "people", "organizations"
   add_foreign_key "pets", "organizations"
   add_foreign_key "questions", "forms"
   add_foreign_key "staff_accounts", "organizations"
   add_foreign_key "staff_accounts", "users"
-  add_foreign_key "submitted_answers", "form_submissions"
-  add_foreign_key "submitted_answers", "questions"
-  add_foreign_key "submitted_answers", "users"
   add_foreign_key "tasks", "pets"
+  add_foreign_key "users", "people"
 end

@@ -30,7 +30,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
 
   context "active staff" do
     setup do
-      sign_in create(:staff)
+      sign_in create(:admin)
     end
 
     should "see all applications" do

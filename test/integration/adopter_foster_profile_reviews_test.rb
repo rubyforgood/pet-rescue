@@ -16,7 +16,7 @@ class AdopterFosterProfileReviewTest < ActionDispatch::IntegrationTest
   end
 
   test "deactivated staff cannot access an adopter profile" do
-    staff_user = create(:staff, :deactivated)
+    staff_user = create(:admin, :deactivated)
     adopter_user = create(:adopter, :with_profile)
     sign_in staff_user
 

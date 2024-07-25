@@ -1,4 +1,4 @@
-# class to create a new location, organization, organization profile, user, and staff account with role admin
+# class to create a new location, organization, user, and staff account with role admin
 # email is sent to admin user if all steps are successful
 # call with Organizations::CreateService.new.signal(args)
 # sample args:
@@ -22,14 +22,14 @@
 class Organizations::CreateService
   def signal(args)
     ActiveRecord::Base.transaction do
+      create_organization(
+        args[:organization][:name],
+        args[:organization][:slug]
+      )
       create_location(
         args[:location][:country],
         args[:location][:city_town],
         args[:location][:province_state]
-      )
-      create_organization_and_profile(
-        args[:organization][:name],
-        args[:organization][:slug]
       )
       create_user(
         args[:user][:email],
@@ -37,7 +37,7 @@ class Organizations::CreateService
         args[:user][:last_name]
       )
       create_staff_account
-      add_admin_role_to_staff_account
+      add_super_admin_role_to_staff_account
       send_email
       create_custom_page
     end
@@ -47,22 +47,21 @@ class Organizations::CreateService
 
   private
 
-  def create_location(country, city_town, province_state)
-    @location = Location.create!(
-      country: country,
-      city_town: city_town,
-      province_state: province_state
+  def create_organization(name, slug)
+    @organization = Organization.create!(
+      name: name,
+      slug: slug
     )
   end
 
-  def create_organization_and_profile(name, slug)
-    @organization = Organization.create!(
-      name: name,
-      slug: slug,
-      profile: OrganizationProfile.new(
-        location_id: @location.id
+  def create_location(country, city_town, province_state)
+    ActsAsTenant.with_tenant(@organization) do
+      @location = Location.create!(
+        country: country,
+        city_town: city_town,
+        province_state: province_state
       )
-    )
+    end
   end
 
   def create_user(email, first_name, last_name)
@@ -86,11 +85,11 @@ class Organizations::CreateService
     end
   end
 
-  def add_admin_role_to_staff_account
-    @user.add_role(:admin)
+  def add_super_admin_role_to_staff_account
+    @user.add_role(:super_admin)
 
-    if !@user.has_role?(:admin)
-      raise StandardError, "Failed to add admin role"
+    if !@user.has_role?(:super_admin)
+      raise StandardError, "Failed to add super admin role"
     end
   end
 

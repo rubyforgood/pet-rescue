@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class AdoptionCreationTest < ApplicationSystemTestCase
   setup do
-    user = create(:staff)
+    user = create(:admin)
     @pet = create(:pet)
     create(:adopter_application, :successful_applicant, pet_id: @pet.id, form_submission: create(:form_submission))
 

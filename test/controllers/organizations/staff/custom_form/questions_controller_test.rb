@@ -10,7 +10,7 @@ module Organizations
           @question = create(:question, organization: @organization)
           @form = @question.form
 
-          user = create(:staff)
+          user = create(:admin)
           sign_in user
         end
 

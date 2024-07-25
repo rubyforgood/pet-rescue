@@ -2,7 +2,8 @@ FactoryBot.define do
   factory :organization do
     name { Faker::Company.name }
     sequence(:slug) { |n| Faker::Internet.domain_word + n.to_s }
-    profile { association :organization_profile, organization: instance }
+    email { Faker::Internet.email }
+    phone_number { "0000000000" }
 
     trait :with_custom_page do
       after(:create) do |organization|

@@ -1,11 +1,11 @@
-<%= render DashboardPageComponent.new(crumb: :organization_profile) do |c| %>
+<%= render DashboardPageComponent.new(crumb: :organization) do |c| %>
   <% c.with_header_title { "Profile Details" } %>
   <% c.with_header_subtitle { "Manage your profile details" } %>
   <% c.with_body do %>
     <section id="account_select">
       <div>
         <div>
-          <%= render "form", profile: @organization_profile %>
+          <%= render "form", organization: @organization %>
         </div>
       </div>
     </section>
