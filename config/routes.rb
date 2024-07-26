@@ -5,8 +5,6 @@ Rails.application.routes.draw do
     invitations: "organizations/staff/invitations"
   }
 
-  resources :donations, only: [:create]
-
   scope module: :organizations do
     resources :home, only: [:index]
     resources :adoptable_pets, only: %i[index show]
@@ -59,6 +57,7 @@ Rails.application.routes.draw do
 
     namespace :adopter_fosterer do
       resource :profile, except: :destroy
+      resources :donations, only: [:index]
       resources :dashboard, only: [:index]
       resources :likes, only: [:index, :create, :destroy]
       resources :adopter_applications, path: "applications", only: %i[index create update]
