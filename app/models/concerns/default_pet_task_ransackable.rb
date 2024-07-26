@@ -33,7 +33,11 @@ module DefaultPetTaskRansackable
 
     def apply_due_in_days_filter(tasks, params)
       if params[:q].present? && params[:q]["due_in_days"].present?
+<<<<<<< HEAD
         tasks = tasks.where("due_in_days = ?", params[:q]["due_in_days"].to_i)
+=======
+        tasks = tasks.where("due_in_days = ?", params[:q]["due_in_days"].to_i) 
+>>>>>>> babe19f3 (Update to Translation file for partial)
       end
       tasks
     end
