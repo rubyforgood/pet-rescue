@@ -5,6 +5,5 @@ FactoryBot.define do
     province_state { Faker::Address.state }
     zipcode { Faker::Address.zip_code }
     organization { ActsAsTenant.current_tenant }
-
   end
 end
