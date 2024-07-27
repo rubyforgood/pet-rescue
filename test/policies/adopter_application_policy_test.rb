@@ -16,9 +16,9 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       }
     end
 
-    context "when user is adopter with profile" do
+    context "when user is adopter" do
       setup do
-        @user = create(:adopter, :with_profile)
+        @user = create(:adopter)
       end
 
       context "when there are applications that do not belong to user" do
@@ -78,19 +78,9 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is adopter without profile" do
+    context "when user is adopter " do
       setup do
         @user = create(:adopter)
-      end
-
-      should "return false" do
-        assert_equal false, @action.call
-      end
-    end
-
-    context "when user is adopter with profile" do
-      setup do
-        @user = create(:adopter, :with_profile)
       end
 
       should "return true" do
@@ -98,9 +88,9 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is fosterer with profile" do
+    context "when user is fosterer " do
       setup do
-        @user = create(:fosterer, :with_profile)
+        @user = create(:fosterer)
       end
 
       should "return true" do
@@ -139,19 +129,9 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is adopter without profile" do
+    context "when user is adopter " do
       setup do
         @user = create(:adopter)
-      end
-
-      should "return false" do
-        assert_equal false, @action.call
-      end
-    end
-
-    context "when user is adopter with profile" do
-      setup do
-        @user = create(:adopter, :with_profile)
       end
 
       context "when pet application is paused" do
@@ -188,9 +168,9 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is fosterer with profile" do
+    context "when user is fosterer " do
       setup do
-        @user = create(:fosterer, :with_profile)
+        @user = create(:fosterer)
       end
 
       should "return true" do

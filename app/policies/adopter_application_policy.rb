@@ -34,7 +34,6 @@ class AdopterApplicationPolicy < ApplicationPolicy
 
   def verify_profile!
     deny! unless user.adopter_foster_account.present?
-    deny! unless user.adopter_foster_account.adopter_foster_profile.present?
   end
 
   def verify_pet_appliable!

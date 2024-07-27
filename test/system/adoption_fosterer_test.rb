@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class AdoptionFostererTest < ApplicationSystemTestCase
   setup do
-    @user = create(:fosterer, :with_profile)
+    @user = create(:fosterer)
     @org = @user.organization
     @custom_page = create(:custom_page, :with_about_us_image, organization: @org)
 

@@ -20,7 +20,6 @@
 class AdopterFosterAccount < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :user
-  has_one :adopter_foster_profile, dependent: :destroy
   has_many :adopter_applications, dependent: :destroy
   has_many :matches, dependent: :destroy
   has_many :likes, dependent: :destroy

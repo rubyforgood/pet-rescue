@@ -24,7 +24,7 @@ class LoginTest < ApplicationSystemTestCase
 
   context "when logging in as a fosterer" do
     setup do
-      @user = create(:fosterer, :with_profile)
+      @user = create(:fosterer)
       @organization = @user.organization
       @custom_page = create(:custom_page, :with_about_us_image, organization: @organization)
       Current.organization = @organization

@@ -21,7 +21,6 @@
 #
 class Location < ApplicationRecord
   acts_as_tenant(:organization)
-  has_one :adopter_foster_profile
 
   validates :country, presence: true, length: {maximum: 50, message: "50 characters maximum"}
   validates :city_town, presence: true, length: {maximum: 50, message: "50 characters maximum"}
