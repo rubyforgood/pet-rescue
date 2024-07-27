@@ -10,8 +10,8 @@
     <div class="col-8 border p-5 shadow-sm rounded bg-white">
       <h3 class='mb-4'><%= t('static_pages.donate.donate_now_at') %></h3>
       <div class="text-center mt-2">
-        <% if Current.tenant.profile.donation_url.present? %>
-          <%= link_to Current.tenant.profile.donation_url, Current.tenant.profile.donation_url, target: '_blank'  %>
+        <% if Current.organization.donation_url.present? %>
+          <%= link_to Current.organization.donation_url, Current.organization.donation_url, target: '_blank'  %>
         <% else %>
           <p><%= sanitize(t('static_pages.donate.contact_us_to_donate', href: link_to(t('static_pages.donate.contact_us'), new_contact_path))) %></p>
         <% end %>
