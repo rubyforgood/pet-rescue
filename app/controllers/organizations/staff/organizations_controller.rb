@@ -26,12 +26,12 @@ module Organizations
           :facebook_url,
           :instagram_url,
           :donation_url,
-          locations_attributes: %i[city_town country province_state]
+          locations_attributes: %i[id city_town country province_state]
         )
       end
 
       def set_organization
-        @organization = Organization.first
+        @organization = Current.organization
 
         authorize! @organization
       end
