@@ -116,6 +116,9 @@ gem "dry-types", "~> 1.7"
 # Use dry-initializer for defining params and options for instances
 gem "dry-initializer", "~> 3.1"
 
+# Catch unsafe migrations
+gem "strong_migrations", "~> 2.0"
+
 group :development, :test, :staging do
   gem "faker"
 end

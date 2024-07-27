@@ -3,8 +3,8 @@
     <!-- Brand logo -->
     <p class="navbar-brand flex-column">
       <%= link_to home_index_path, class: "nav-link" do %>
-        <% if Current.organization.profile.avatar.attached? %>
-          <%= image_tag Current.organization.profile.avatar, alt: current_organization_name, title: current_organization_name, class: 'rounded-1' %>
+        <% if Current.organization.avatar.attached? %>
+          <%= image_tag Current.organization.avatar, alt: current_organization_name, title: current_organization_name, class: 'rounded-1' %>
         <% else %>
           <%= current_organization_name %>
         <% end %>
@@ -68,11 +68,11 @@
           <% end %>
         </li>
       <% end %>
-      <% if allowed_to?(:edit?, OrganizationProfile, namespace: Organizations,
+      <% if allowed_to?(:edit?, Organization, namespace: Organizations,
         context: {organization: Current.organization})
       %>
         <li class="nav-item">
-          <%= active_link_to edit_staff_organization_profile_path, class: "nav-link" do %>
+          <%= active_link_to edit_staff_organization_path, class: "nav-link" do %>
             <i class="nav-icon fe fe-settings me-2"></i>Settings
           <% end %>
         </li>
