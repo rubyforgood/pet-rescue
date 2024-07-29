@@ -6,13 +6,18 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
   layout "dashboard"
 
   def index
-    @default_pet_tasks = authorized_scope(DefaultPetTask.all)
 
-    @q = @default_pet_tasks.ransack(params[:q])
-    @default_pet_tasks = @q.result
+    if params[:q].present? && params[:q]["species_eq"].present?
+      species_filter = params[:q]["species_eq"]
+      params[:q]["species_eq"] = Pet.species[species_filter] if Pet.species.key?(species_filter)
+    end
+      @default_pet_tasks = authorized_scope(DefaultPetTask.all)
 
-    @pagy, @default_pet_tasks = pagy(@default_pet_tasks, items: 10)
-    @partial_to_render = params[:q].present? ? "search_results" : "default_pet_tasks_table"
+      @q = @default_pet_tasks.ransack(params[:q])
+      @default_pet_tasks = @q.result
+  
+      @pagy, @default_pet_tasks = pagy(@default_pet_tasks, items: 10)
+      @partial_to_render = params[:q].present? ? "search_results" : "default_pet_tasks_table"
   end
 
   def new
