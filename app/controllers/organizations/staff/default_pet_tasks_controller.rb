@@ -5,7 +5,7 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
 
   layout "dashboard"
 
-  def index 
+  def index
     ensure_due_in_days_in_q_params
 
     @default_pet_tasks = authorized_scope(DefaultPetTask.all)
