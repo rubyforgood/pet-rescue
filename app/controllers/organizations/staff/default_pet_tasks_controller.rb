@@ -6,22 +6,13 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
   layout "dashboard"
 
   def index
-    if params[:q].present? && params[:q]["species_eq"].present?
-      species_filter = params[:q]["species_eq"]
-      params[:q]["species_eq"] = Pet.species[species_filter] if Pet.species.key?(species_filter)
-    end
-
-    recurring = params[:q].present? && params[:q]["recurring"].present? && params[:q]["recurring"] == "true"
+    ensure_due_in_days_in_q_params
 
     @default_pet_tasks = authorized_scope(DefaultPetTask.all)
 
-    @default_pet_tasks = @default_pet_tasks.where("due_in_days >= ?", params[:due_in_days].to_i) if params[:due_in_days].present?
-
-    if recurring
-      @default_pet_tasks = @default_pet_tasks.where(recurring: true)
-    elsif params[:q].present? && params[:q]["recurring"].present? && params[:q]["recurring"] == "false"
-      @default_pet_tasks = @default_pet_tasks.where(recurring: false)
-    end
+    apply_species_filter
+    apply_recurring_filter
+    apply_due_in_days_filter
 
     @q = @default_pet_tasks.ransack(params[:q])
     @default_pet_tasks = @q.result
@@ -79,5 +70,35 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
   def context_authorize!
     authorize! DefaultPetTask,
       context: {organization: Current.organization}
+  end
+
+  def ensure_due_in_days_in_q_params
+    if params[:due_in_days].present?
+      params[:q] ||= {}
+      params[:q]["due_in_days"] = params[:due_in_days]
+    end
+  end
+
+  def apply_species_filter
+    if params[:q].present? && params[:q]["species_eq"].present?
+      species_filter = params[:q]["species_eq"]
+      params[:q]["species_eq"] = Pet.species[species_filter] if Pet.species.key?(species_filter)
+    end
+  end
+
+  def apply_recurring_filter
+    if params[:q].present? && params[:q]["recurring"].present?
+      if params[:q]["recurring"] == "true"
+        @default_pet_tasks = @default_pet_tasks.where(recurring: true)
+      elsif params[:q]["recurring"] == "false"
+        @default_pet_tasks = @default_pet_tasks.where(recurring: false)
+      end
+    end
+  end
+
+  def apply_due_in_days_filter
+    if params[:q].present? && params[:q]["due_in_days"].present?
+      @default_pet_tasks = @default_pet_tasks.where("due_in_days >= ?", params[:q]["due_in_days"].to_i)
+    end
   end
 end
