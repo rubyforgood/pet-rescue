@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group mb-3 col-md-4">
                   <%= f.label :due_in_days, "Due After" %>
-                  <%= f.date_field  :due_in_days, class: "form-control", placeholder: "Due After" %>
+                  <%= number_field_tag :due_in_days, params[:due_in_days], class: "form-control", placeholder: "Due After (Days)" %>
                 </div>
                 <div class="form-group mb-3 col-md-4">
                   <%= f.label :recurring, "Recurring" %>
