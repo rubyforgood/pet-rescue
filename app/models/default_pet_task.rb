@@ -21,6 +21,7 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class DefaultPetTask < ApplicationRecord
+  include DefaultPetTaskRansackable
   acts_as_tenant(:organization)
 
   validates :name, presence: true
