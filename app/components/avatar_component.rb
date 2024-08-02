@@ -3,6 +3,7 @@
 # Renders a User's avatar as image or user's initials
 class AvatarComponent < ApplicationComponent
   param :user, Types::Instance(User)
+  param :pet, Types::Instance(Pet)
   option :size, Types::Size, default: -> { :md }
 
   private
@@ -10,6 +11,14 @@ class AvatarComponent < ApplicationComponent
   def avatar
     if image_url
       image_tag(url_for(image_url), alt: alt, class: image_classes)
+    else
+      content_tag(:span, initials, class: initials_classes)
+    end
+  end
+
+  def pet_avatar
+    if pet has image
+      pet.images.first
     else
       content_tag(:span, initials, class: initials_classes)
     end
