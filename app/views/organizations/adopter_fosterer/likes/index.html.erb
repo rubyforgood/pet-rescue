@@ -5,7 +5,7 @@
       <div class="row">
         <% @pets.each do |pet| %>
           <div class="col-lg-4 col-md-6 p-0">
-            <%= render AvatarComponent.new(user: current_user, pet: pet, size: :xl) %>
+            <%= render AvatarComponent.new(current_user, pet_avatar, size: :xl) %>
           </div>
         <% end %>
       </div>
