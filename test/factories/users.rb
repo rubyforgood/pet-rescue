@@ -22,12 +22,6 @@ FactoryBot.define do
         association :adopter_foster_account, user: instance
       end
 
-      trait :with_profile do
-        adopter_foster_account do
-          association :adopter_foster_account, :with_profile, user: instance
-        end
-      end
-
       after(:build) do |user, _context|
         user.add_role(:adopter, user.organization)
       end
@@ -36,12 +30,6 @@ FactoryBot.define do
     factory :fosterer do
       adopter_foster_account do
         association :adopter_foster_account, user: instance
-      end
-
-      trait :with_profile do
-        adopter_foster_account do
-          association :adopter_foster_account, :with_profile, user: instance
-        end
       end
 
       after(:build) do |user, _context|

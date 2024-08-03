@@ -6,7 +6,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
     include ActionPolicy::TestHelper
 
     setup do
-      @user = create(:adopter, :with_profile)
+      @user = create(:adopter)
       sign_in @user
     end
 
