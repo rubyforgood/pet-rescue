@@ -1,11 +1,20 @@
 class Organizations::Staff::DefaultPetTasksController < Organizations::BaseController
   before_action :context_authorize!, only: %i[index new create]
   before_action :set_task, only: %i[edit update destroy]
+  include ::Pagy::Backend
 
   layout "dashboard"
 
   def index
-    @default_pet_tasks = authorized_scope(DefaultPetTask.all).sort_by { |task| task.species }
+    ensure_due_in_days_in_q_params
+
+    tasks = authorized_scope(DefaultPetTask.all)
+
+    @q = DefaultPetTask.ransackable_tasks(tasks, params)
+    @default_pet_tasks = @q.result
+
+    @pagy, @default_pet_tasks = pagy(@default_pet_tasks, items: 10)
+    @partial_to_render = params[:q].present? ? "search_results" : "default_pet_tasks_table"
   end
 
   def new
@@ -57,5 +66,12 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
   def context_authorize!
     authorize! DefaultPetTask,
       context: {organization: Current.organization}
+  end
+
+  def ensure_due_in_days_in_q_params
+    if params[:due_in_days].present?
+      params[:q] ||= {}
+      params[:q]["due_in_days"] = params[:due_in_days]
+    end
   end
 end
