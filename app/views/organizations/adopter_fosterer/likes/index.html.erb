@@ -3,12 +3,13 @@
   <% c.with_body do %>
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <div class="row">
-        <% @pets.each do |pet| %>
+          <% @pets.each do |pet| %>
           <div class="col-lg-4 col-md-6 p-0">
-            <%= render AvatarComponent.new(current_user, pet_avatar, size: :xl) %>
+            <%= render AvatarComponent.new(pet: pet, like: @like, size: :xl) %>
           </div>
         <% end %>
       </div>
     </div>
   <% end %>
 <% end %>
+

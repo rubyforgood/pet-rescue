@@ -2,38 +2,22 @@
 
 # Renders a User's avatar as image or user's initials
 class AvatarComponent < ApplicationComponent
-  param :user, Types::Instance(User)
-  param :pet, Types::Instance(Pet)
+  option :pet, Types::Instance(Pet), optional: true
+  option :like, optional: true
   option :size, Types::Size, default: -> { :md }
 
   private
 
   def avatar
-    if image_url
-      image_tag(url_for(image_url), alt: alt, class: image_classes)
+    if pet
+      image_tag(url_for(pet.images.first), alt: pet.name, class: image_classes)
     else
-      content_tag(:span, initials, class: initials_classes)
+      content_tag(:span, pet_initials, class: initials_classes)
     end
   end
 
-  def pet_avatar
-    if pet has image
-      pet.images.first
-    else
-      content_tag(:span, initials, class: initials_classes)
-    end
-  end
-
-  def image_url
-    @user.avatar.attached? ? url_for(@user.avatar) : nil
-  end
-
-  def initials
-    "#{user.first_name[0]}#{user.last_name[0]}".upcase
-  end
-
-  def alt
-    "#{user.first_name.capitalize}'s avatar"
+  def pet_initials
+    "pet"
   end
 
   def container_classes
