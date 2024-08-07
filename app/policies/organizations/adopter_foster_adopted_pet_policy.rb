@@ -8,4 +8,8 @@ class Organizations::AdopterFosterAdoptedPetPolicy < ApplicationPolicy
   def index?
     permission?(:view_adopted_pets)
   end
+
+  def files?
+    permission?(:view_adopted_pets)
+  end
 end

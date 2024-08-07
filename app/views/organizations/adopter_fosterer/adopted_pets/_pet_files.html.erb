@@ -1,0 +1,36 @@
+<div id="pet_files">  
+  <div class="card">
+    <!-- table -->
+    <div class="table-responsive overflow-y-hidden">
+      <table class="table mb-0 text-nowrap table-hover table-centered">
+        <thead>
+        <tr>
+          <th scope="col">Filename</th>
+          <th scope="col">Uploaded</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+          <% if @pet.files.attached? %>
+            <% @pet.files.each do |file| %>
+              <tr>
+                <td>
+                  <%= link_to file.filename, rails_blob_path(file, disposition: 'attachment') %>
+                </td>
+                <td>
+                  <%= file.created_at.strftime("%Y-%m-%d") %>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td colspan="3">
+                No files attached.
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
