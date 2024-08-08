@@ -38,6 +38,10 @@ class ApplicationPolicy < ActionPolicy::Base
     deny! if user.staff_account.deactivated?
   end
 
+  def verify_adopter_foster_account!
+    deny! unless user.adopter_foster_account
+  end
+
   def permission?(name)
     return false unless user
 
