@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_25_225443) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_27_172548) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,49 +66,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_225443) do
     t.bigint "organization_id", null: false
     t.index ["organization_id"], name: "index_adopter_foster_accounts_on_organization_id"
     t.index ["user_id"], name: "index_adopter_foster_accounts_on_user_id"
-  end
-
-  create_table "adopter_foster_profiles", force: :cascade do |t|
-    t.bigint "adopter_foster_account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "phone_number"
-    t.string "contact_method"
-    t.string "country"
-    t.string "province_state"
-    t.string "city_town"
-    t.text "ideal_pet"
-    t.text "lifestyle_fit"
-    t.text "activities"
-    t.integer "alone_weekday"
-    t.integer "alone_weekend"
-    t.text "experience"
-    t.text "contingency_plan"
-    t.boolean "shared_ownership"
-    t.text "shared_owner"
-    t.string "housing_type"
-    t.boolean "fenced_access"
-    t.text "fenced_alternative"
-    t.text "location_day"
-    t.text "location_night"
-    t.boolean "do_you_rent"
-    t.boolean "pets_allowed"
-    t.integer "adults_in_home"
-    t.integer "kids_in_home"
-    t.boolean "other_pets"
-    t.text "describe_pets"
-    t.boolean "checked_shelter"
-    t.boolean "surrendered_pet"
-    t.text "describe_surrender"
-    t.string "annual_cost"
-    t.boolean "visit_laventana"
-    t.text "visit_dates"
-    t.text "referral_source"
-    t.bigint "location_id", null: false
-    t.bigint "organization_id", null: false
-    t.index ["adopter_foster_account_id"], name: "index_adopter_foster_profiles_on_adopter_foster_account_id", unique: true
-    t.index ["location_id"], name: "index_adopter_foster_profiles_on_location_id"
-    t.index ["organization_id"], name: "index_adopter_foster_profiles_on_organization_id"
   end
 
   create_table "custom_pages", force: :cascade do |t|
@@ -364,8 +321,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_25_225443) do
   add_foreign_key "adopter_applications", "form_submissions"
   add_foreign_key "adopter_applications", "pets"
   add_foreign_key "adopter_foster_accounts", "users"
-  add_foreign_key "adopter_foster_profiles", "adopter_foster_accounts"
-  add_foreign_key "adopter_foster_profiles", "locations"
   add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "faqs", "organizations"

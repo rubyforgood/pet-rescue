@@ -1,10 +1,6 @@
 require "test_helper"
 
 class LocationTest < ActiveSupport::TestCase
-  context "associations" do
-    should have_one(:adopter_foster_profile)
-  end
-
   context "validations" do
     should validate_presence_of(:country).with_message("Please enter a country")
     should validate_length_of(:country).is_at_most(50).with_message("50 characters maximum")

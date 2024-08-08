@@ -15,7 +15,7 @@ class Organizations::Staff::MatchesControllerTest < ActionDispatch::IntegrationT
         @organization = ActsAsTenant.current_tenant
 
         pet = create(:pet)
-        adopter_foster_account = create(:adopter_foster_account, :with_profile)
+        adopter_foster_account = create(:adopter_foster_account)
         @params = {
           match: {
             pet_id: pet.id,

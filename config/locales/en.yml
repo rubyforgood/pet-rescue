@@ -158,70 +158,6 @@ en:
               blank: "Pet must exist"
             adopter_foster_account:
               blank: "Adopter account must exist"
-        adopter_foster_profile:
-          attributes:
-            location:
-              blank: "Location must exist"
-            adopter_foster_account:
-              blank: "Adopter account must exist"
-            phone_number:
-              invalid: "Phone number is invalid"
-            contact_method:
-              blank: "Contact method can't be blank"
-            ideal_pet:
-              blank: "Please tell us about your ideal pet"
-            lifestyle_fit:
-              blank: "Please tell us about your lifestyle"
-            activities:
-              blank: "Please tell us about the activities"
-            alone_weekday:
-              blank: "This field cannot be blank"
-            alone_weekend:
-              blank: "This field cannot be blank"
-            experience:
-              blank: "Please tell us about your pet experience"
-            contingency_plan:
-              blank: "Please tell us about your contingencies"
-            shared_ownership:
-              inclusion: "Select one"
-            shared_owner:
-              blank: "Please tell us the alternative"
-            housing_type:
-              blank: "Housing type can't be blank"
-            fenced_access:
-              inclusion: "Select one"
-            fenced_alternative:
-              blank: "Please fill this field"
-            location_day:
-              blank: "Location day can't be blank"
-            location_night:
-              blank: "Location night can't be blank"
-            do_you_rent:
-              inclusion: "Select one"
-            pets_allowed:
-              inclusion: "Select one"
-            adults_in_home:
-              blank: "Adults in home can't be blank"
-            kids_in_home:
-              blank: "Kids in home can't be blank"
-            other_pets:
-              inclusion: "Select one"
-            describe_pets:
-              blank: "Please describe pets"
-            checked_shelter:
-              inclusion: "Select one"
-            surrendered_pet:
-              inclusion: "Select one"
-            describe_surrender:
-              blank: "Please fill in"
-            annual_cost:
-              blank: "Please provide an annual cost estimate"
-            visit_laventana:
-              inclusion: "Select one"
-            visit_dates:
-              blank: "Please fill in"
-            referral_source:
-              blank: "Please tell us how you heard about us"
         contact:
           attributes:
             name:
@@ -609,58 +545,6 @@ en:
         activate:
           success: "Staff account activated."
     adopter_fosterer:
-      profiles:
-        create:
-          success: "Profile created"
-          error: "Error"
-        update: 
-          success: "Profile updated"
-        form:
-          please_fix_the_errors: "Please fix the errors highlighted below."
-          preferred_contact_method: "Preferred contact method"
-        edit:
-          edit_profile: "Edit Profile"
-        new:
-          adopter_foster_profile: "Adopter Foster Profile"
-          help_us_learn_more: "The following questions help us learn more about you so we can match you with the right pooch."
-        show:
-          describe_pets: "Description of pets"
-          adults_in_home: "Number of adults in home (over 18)"
-          children_in_home: "Number of children in home (under 18)"
-          pets_in_home: "¿Do you have pets in your home?"
-          rent_question: "¿Do you rent your home or live on a strata property?"
-          fenced_access_question: "¿Do you have access to a fenced garden?"
-          housing_type: "Housing Type"
-          adopter_foster_profile: "Adopter Foster Profile"
-          edit_profile: "Edit Profile"
-          your_ideal_pet: "Your ideal pet"
-          your_lifestyle: "Your lifestyle"
-          activities: "Activities you will do with your pet"
-          hours_alone_on_weekends: "Hours pet will be alone on weekends"
-          hours_alone_on_weekdays: "Hours pet will be alone on weekdays"
-          pet_care: "Pet Care"
-          your_petcare_experience: "Your pet care experience"
-          petcare_plans_during_emergency_or_vacation: "Pet care plans during emergency or vacation"
-          will_petcare_be_shared: "Will pet care be shared with someone outside household?"
-          details_on_petcare: "Details on shared pet care"
-          household: "Household"
-          phone_number: "Phone Number"
-          contact_method: "Contact Method"
-          country: "Country"
-          province_slash_state: "Province/State"
-          city_slash_town: "City/Town"
-          lifestyle: "Lifestyle"
-          your_plan_to_care: "Your plan to care for the pet without a fenced garden"
-          pets_location_during_the_day: "Pet's location during the day"
-          pets_location_at_night: "Pet's location at night"
-          additional_details: "Additional Details"
-          have_you_checked: "Have you checked your local shelter for adoptable pets?"
-          have_you_had_to_surrender: "Have you ever had to surrender a pet?"
-          details_on_surrender: "Details on surrendering the pet"
-          your_annual_cost: "Your annual cost estimate for pet care"
-          will_you_pick_up_the_pet: "Will you or a friend be in La Ventana in person to pick up the pet?"
-          what_dates_will_you_be: "What dates will you be in La Ventana?"
-          how_did_you_hear: "How did you find out about Baja Pet Rescue?"
       adopter_applications:
         create:
           success: "Application submitted! %{message}"
