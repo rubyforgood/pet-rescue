@@ -6,7 +6,6 @@ class AvatarComponent < ApplicationComponent
   option :like, optional: true
   option :size, Types::Size, default: -> { :md }
 
-
   private
 
   def avatar
