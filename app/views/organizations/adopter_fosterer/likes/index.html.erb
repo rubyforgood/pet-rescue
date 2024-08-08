@@ -1,11 +1,19 @@
-<%= render DashboardPageComponent.new do |c| %> <%# Here erin%>
+<%= render DashboardPageComponent.new do |c| %>
   <% c.with_header_title { t('organizations.adopter_fosterer.likes.index.liked_pets') } %>
   <% c.with_body do %>
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <div class="row">
           <% @pets.each do |pet| %>
-          <div class="col-lg-4 col-md-6 p-0">
-            <%= render AvatarComponent.new(pet: pet, like: @like, size: :xl) %>
+          <div class="col-lg-4 col-md-6 p-2">
+            <div class="pet-box p-3 border rounded bg-white d-flex align-items-center">
+              <%= render AvatarComponent.new(pet: pet, like: @like, size: :xl) %>
+              <div class=" d-flex justify-content-between align-items-center mt-2">
+                <span class="mx-3"><%= pet.name %></span>
+                <div id="like_button_pet_<%= pet.id %>">
+                  <%= render LikeButtonComponent.new(pet: pet, like: @likes_by_id[pet.id]) %>
+                </div>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
