@@ -19,16 +19,16 @@ class AvatarComponent < ApplicationComponent
     end
   end
 
-  def pet_initials
-    "pet"
-  end
-
   def image_url
     @user.avatar.attached? ? url_for(@user.avatar) : nil
   end
 
   def initials
-    "#{user.first_name[0]}#{user.last_name[0]}".upcase
+    if pet
+      pet.name[0, 2].upcase
+    else
+      "#{user.first_name[0]}#{user.last_name[0]}".upcase
+    end
   end
 
   def alt
