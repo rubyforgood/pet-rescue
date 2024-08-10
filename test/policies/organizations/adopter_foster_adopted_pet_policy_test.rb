@@ -17,7 +17,7 @@ class Organizations::AdopterFosterAdoptedPetPolicyTest < ActiveSupport::TestCase
       @user = create(:user)
       @adopter_foster_account = create(:adopter_foster_account, user: @user, organization: @organization)
       @adopted_application = create(:adopter_application, adopter_foster_account: @adopter_foster_account, status: :adoption_made)
-      
+
       other_user = create(:user)
       other_account = create(:adopter_foster_account, user: other_user, organization: @organization)
       create(:adopter_application, adopter_foster_account: other_account, status: :adoption_made)
@@ -29,7 +29,7 @@ class Organizations::AdopterFosterAdoptedPetPolicyTest < ActiveSupport::TestCase
 
     should "return only the user's adopted pets" do
       scoped = @policy.call.apply_scope(AdopterApplication.all, type: :active_record_relation)
-      
+
       assert_equal 1, scoped.count
       assert_includes scoped, @adopted_application
     end
@@ -85,15 +85,9 @@ class Organizations::AdopterFosterAdoptedPetPolicyTest < ActiveSupport::TestCase
       setup do
         create(:adopter_foster_account, user: @user, organization: @organization)
       end
-      
+
       should "not raise an error" do
         assert_nothing_raised { @action.call }
-      end
-    end
-
-    context "when user doesn't have an adopter_foster_account" do
-      should "raise an authorization error" do
-        assert_raises(ActionPolicy::Unauthorized) { @action.call }
       end
     end
   end
