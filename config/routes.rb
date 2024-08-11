@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "dev_contacts/new"
+  get "dev_contacts/create"
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions",
@@ -81,4 +83,5 @@ Rails.application.routes.draw do
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
   resources :contacts, only: %i[new create]
+  resources :dev_contacts, path: "support", only: %i[new create]
 end
