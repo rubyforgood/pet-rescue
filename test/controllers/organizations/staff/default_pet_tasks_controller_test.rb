@@ -77,7 +77,6 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
 
       should "filter tasks with due_in_days when due_in_days is present" do
         task_with_due_days_5 = create(:default_pet_task, due_in_days: 5)
-        task_with_due_days_10 = create(:default_pet_task, due_in_days: 10)
         task_without_due_days_3 = create(:default_pet_task, due_in_days: 3)
 
         get staff_default_pet_tasks_url, params: {due_in_days: 5}
