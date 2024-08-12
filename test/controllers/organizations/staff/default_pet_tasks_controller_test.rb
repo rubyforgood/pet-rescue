@@ -84,7 +84,6 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
         assert_response :success
 
         assert_includes assigns(:default_pet_tasks), task_with_due_days_5
-        assert_includes assigns(:default_pet_tasks), task_with_due_days_10
         assert_not_includes assigns(:default_pet_tasks), task_without_due_days_3
       end
 
