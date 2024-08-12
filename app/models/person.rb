@@ -25,6 +25,9 @@ class Person < ApplicationRecord
   acts_as_tenant(:organization)
   has_one :form_submission, dependent: :destroy
   has_many :form_answers, through: :form_submission
+  # has_many :likes, dependent: :destroy
+  # has_many :liked_pets, through: :likes, source: :pet
+  has_many :matches # , dependent: :destroy
 
   has_one :user, dependent: :destroy
 
