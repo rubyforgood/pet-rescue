@@ -90,7 +90,7 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
         recurring_task = create(:default_pet_task, recurring: true)
         non_recurring_task = create(:default_pet_task, recurring: false)
 
-        get staff_default_pet_tasks_url, params: {q: {recurring: "true"}}
+        get staff_default_pet_tasks_url, params: {q: {recurring_eq: "true"}}
         assert_response :success
 
         assert_includes assigns(:default_pet_tasks), recurring_task

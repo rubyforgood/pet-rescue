@@ -24,8 +24,8 @@
                   <%= number_field_tag :due_in_days, params[:due_in_days], class: "form-control", placeholder: "Due in (Days)" %>
                 </div>
                 <div class="form-group mb-3 col-md-4">
-                  <%= f.label :recurring, t('.recurring') %>
-                  <%= f.select :recurring, options_for_select([['Yes', true], ['No', false]]), { include_blank: 'Select Recurring Status' }, class: "form-select" %>
+                  <%= f.label :recurring_eq, t('.recurring') %>
+                  <%= f.select :recurring_eq, options_for_select([['Yes', true], ['No', false]]), { include_blank: 'Select Recurring Status' }, class: "form-select" %>
                 </div>
               </div>
               <div class="row">

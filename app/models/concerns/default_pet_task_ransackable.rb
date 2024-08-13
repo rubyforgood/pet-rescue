@@ -21,10 +21,10 @@ module DefaultPetTaskRansackable
     end
 
     def apply_recurring_filter(tasks, params)
-      if params[:q].present? && params[:q]["recurring"].present?
-        if params[:q]["recurring"] == "true"
+      if params[:q].present? && params[:q]["recurring_eq"].present?
+        if params[:q]["recurring_eq"] == "true"
           tasks = tasks.where(recurring: true)
-        elsif params[:q]["recurring"] == "false"
+        elsif params[:q]["recurring_eq"] == "false"
           tasks = tasks.where(recurring: false)
         end
       end
