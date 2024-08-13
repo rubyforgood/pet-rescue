@@ -69,9 +69,9 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
   end
 
   def ensure_due_in_days_in_q_params
-    if params[:due_in_days].present?
+    if params[:due_in_days_eq].present?
       params[:q] ||= {}
-      params[:q]["due_in_days"] = params[:due_in_days]
+      params[:q]["due_in_days_eq"] = params[:due_in_days_eq]
     end
   end
 end

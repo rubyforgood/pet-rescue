@@ -79,7 +79,7 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
         task_with_due_days_5 = create(:default_pet_task, due_in_days: 5)
         task_without_due_days_3 = create(:default_pet_task, due_in_days: 3)
 
-        get staff_default_pet_tasks_url, params: {due_in_days: 5}
+        get staff_default_pet_tasks_url, params: {due_in_days_eq: 5}
         assert_response :success
 
         assert_includes assigns(:default_pet_tasks), task_with_due_days_5

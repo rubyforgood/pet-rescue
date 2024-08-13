@@ -20,8 +20,8 @@
                   <%= f.select :species_eq, Pet.species.keys.map { |type| [type.titleize, type] }, { include_blank: 'Select Species' }, class: "form-select" %>
                 </div>
                 <div class="form-group mb-3 col-md-4">
-                  <%= f.label :due_in_days, t('.due_after') %>
-                  <%= number_field_tag :due_in_days, params[:due_in_days], class: "form-control", placeholder: "Due in (Days)" %>
+                  <%= f.label :due_in_days_eq, t('.due_after') %>
+                  <%= number_field_tag :due_in_days_eq, params[:due_in_days_eq], class: "form-control", placeholder: "Due in (Days)" %>
                 </div>
                 <div class="form-group mb-3 col-md-4">
                   <%= f.label :recurring_eq, t('.recurring') %>
