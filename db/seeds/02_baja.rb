@@ -14,7 +14,12 @@ ActsAsTenant.with_tenant(@organization) do
     zipcode: "12346"
   )
 
-  @user_staff_one = User.create!(
+  @staff_one = Person.create!(
+    email: "staff@baja.com",
+    name: "Andy Peters"
+  )
+
+  @user_staff_one = @staff_one.create_user!(
     email: "staff@baja.com",
     first_name: "Andy",
     last_name: "Peters",
@@ -23,13 +28,19 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
+  # FIXME: Delete this after implementing Person
   @staff_account_one = StaffAccount.create!(
     user_id: @user_staff_one.id
   )
 
   @user_staff_one.add_role(:super_admin, @organization)
 
-  @user_staff_two = User.create!(
+  @staff_two = Person.create!(
+    email: "staff2@baja.com",
+    name: "Randy Peterson"
+  )
+
+  @user_staff_two = @staff_two.create_user!(
     email: "staff2@baja.com",
     first_name: "Randy",
     last_name: "Peterson",
@@ -38,13 +49,19 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
+  # FIXME: Delete this after implementing Person
   @staff_account_two = StaffAccount.create!(
     user_id: @user_staff_two.id
   )
 
   @user_staff_two.add_role(:super_admin, @organization)
 
-  @user_adopter_one = User.create!(
+  @adopter_one = Person.create!(
+    email: "adopter1@baja.com",
+    name: "Joe Brando"
+  )
+
+  @user_adopter_one = @adopter_one.create_user!(
     email: "adopter1@baja.com",
     first_name: "Joe",
     last_name: "Brando",
@@ -53,11 +70,17 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
+  # FIXME: Delete this after implementing Person
   @adopter_foster_account_one = AdopterFosterAccount.create!(user_id: @user_adopter_one.id)
 
   @user_adopter_one.add_role(:adopter, @organization)
 
-  @user_adopter_two = User.create!(
+  @adopter_two = Person.create!(
+    email: "adopter2@baja.com",
+    name: "Kamala Lolsworth"
+  )
+
+  @user_adopter_two = @adopter_two.create_user!(
     email: "adopter2@baja.com",
     first_name: "Kamala",
     last_name: "Lolsworth",
@@ -66,11 +89,17 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
+  # FIXME: Delete this after implementing Person
   @adopter_foster_account_two = AdopterFosterAccount.create!(user_id: @user_adopter_two.id)
 
   @user_adopter_two.add_role(:adopter, @organization)
 
-  @user_adopter_three = User.create!(
+  @adopter_three = Person.create!(
+    email: "adopter3@baja.com",
+    name: "Bad Address"
+  )
+
+  @user_adopter_three = @adopter_three.create_user!(
     email: "adopter3@baja.com",
     first_name: "Bad",
     last_name: "Address",
@@ -79,11 +108,17 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
+  # FIXME: Delete this after implementing Person
   @adopter_foster_account_three = AdopterFosterAccount.create!(user_id: @user_adopter_three.id)
 
   @user_adopter_three.add_role(:adopter, @organization)
 
-  @user_fosterer_one = User.create!(
+  @fosterer_one = Person.create!(
+    email: "fosterer1@baja.com",
+    name: "Simon Petrikov"
+  )
+
+  @user_fosterer_one = @fosterer_one.create_user!(
     email: "fosterer1@baja.com",
     first_name: "Simon",
     last_name: "Petrikov",
@@ -92,12 +127,18 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
+  # FIXME: Delete this after implementing Person
   @user_fosterer_one.create_adopter_foster_account!
 
   @user_fosterer_one.add_role(:adopter, @organization)
   @user_fosterer_one.add_role(:fosterer, @organization)
 
-  @user_fosterer_two = User.create!(
+  @fosterer_two = Person.create!(
+    email: "fosterer2@baja.com",
+    name: "Finn Mertens"
+  )
+
+  @user_fosterer_two = @fosterer_two.create_user!(
     email: "fosterer2@baja.com",
     first_name: "Finn",
     last_name: "Mertens",
@@ -106,6 +147,7 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
+  # FIXME: Delete this after implementing Person
   @user_fosterer_two.create_adopter_foster_account!
 
   @user_fosterer_two.add_role(:adopter, @organization)
@@ -149,7 +191,9 @@ ActsAsTenant.with_tenant(@organization) do
 
   Match.create!(
     pet_id: Pet.first.id,
+    # FIXME: Delete this after implementing Person
     adopter_foster_account_id: @adopter_foster_account_one.id,
+    person_id: @adopter_one.id,
     match_type: :adoption
   )
 
@@ -175,7 +219,9 @@ ActsAsTenant.with_tenant(@organization) do
   complete_end_date = complete_start_date + 3.months
   Match.create!(
     pet_id: @fosterable_pets[0].id,
+    # FIXME: Delete this after implementing Person
     adopter_foster_account_id: @user_fosterer_one.adopter_foster_account.id,
+    person_id: @fosterer_one.id,
     match_type: :foster,
     start_date: complete_start_date,
     end_date: complete_end_date
@@ -186,7 +232,9 @@ ActsAsTenant.with_tenant(@organization) do
   current_end_date = current_start_date + 6.months
   Match.create!(
     pet_id: @fosterable_pets[1].id,
+    # FIXME: Delete this after implementing Person
     adopter_foster_account_id: @user_fosterer_one.adopter_foster_account.id,
+    person_id: @fosterer_one.id,
     match_type: :foster,
     start_date: current_start_date,
     end_date: current_end_date
@@ -197,7 +245,9 @@ ActsAsTenant.with_tenant(@organization) do
   upcoming_end_date = upcoming_start_date + 3.months
   Match.create!(
     pet_id: @fosterable_pets[2].id,
+    # FIXME: Delete this after implementing Person
     adopter_foster_account_id: @user_fosterer_two.adopter_foster_account.id,
+    person_id: @fosterer_two.id,
     match_type: :foster,
     start_date: upcoming_start_date,
     end_date: upcoming_end_date
@@ -206,18 +256,23 @@ ActsAsTenant.with_tenant(@organization) do
   @form_submission = FormSubmission.new(organization: @organization, person: Person.new(name: "John Doe", email: "Doe@gmail.com"))
 
   10.times do
+    adopter = Person.adopters.sample
+
     adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..4),
-      adopter_foster_account: AdopterFosterAccount.all.sample,
+      # FIXME: Delete this after implementing Person
+      adopter_foster_account: adopter.user.adopter_foster_account,
       pet: Pet.all.sample,
       form_submission: @form_submission
     )
 
     # Prevent duplicate adopter applications.
-    redo if AdopterApplication.where(pet_id: adopter_application.pet_id,
-      adopter_foster_account_id: adopter_application.adopter_foster_account_id).exists?
+    redo if AdopterApplication.where(
+      pet_id: adopter_application.pet_id,
+      form_submission_id: adopter_application.form_submission_id
+    ).exists?
 
     if adopter_application.valid?
       adopter_application.save!
