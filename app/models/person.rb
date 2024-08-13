@@ -34,4 +34,12 @@ class Person < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true,
     uniqueness: {case_sensitive: false, scope: :organization_id}
+
+  scope :adopters, -> {
+    joins(user: :roles).where(roles: {name: "adopter"})
+  }
+
+  scope :fosterers, -> {
+    joins(user: :roles).where(roles: {name: "fosterer"})
+  }
 end
