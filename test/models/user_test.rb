@@ -37,9 +37,8 @@ class UserTest < ActiveSupport::TestCase
     should "not attach to people in other organizations" do
       person = nil
 
-      ActsAsTenant.with_mutable_tenant do
-        other = create(:organization)
-        person = create(:person, email: "adopter@example.com", organization: other)
+      ActsAsTenant.with_tenant(create(:organization)) do
+        person = create(:person, email: "adopter@example.com")
       end
 
       assert_equal("adopter@example.com", person.email)
