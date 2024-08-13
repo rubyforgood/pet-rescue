@@ -1,13 +1,12 @@
 class Organizations::Staff::DefaultPetTasksController < Organizations::BaseController
   before_action :context_authorize!, only: %i[index new create]
   before_action :set_task, only: %i[edit update destroy]
+  before_action :ensure_due_in_days_in_q_params, only: :index
   include ::Pagy::Backend
 
   layout "dashboard"
 
   def index
-    ensure_due_in_days_in_q_params
-
     tasks = authorized_scope(DefaultPetTask.all)
 
     @q = DefaultPetTask.ransackable_tasks(tasks, params)
