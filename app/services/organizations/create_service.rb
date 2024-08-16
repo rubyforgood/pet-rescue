@@ -24,7 +24,8 @@ class Organizations::CreateService
     ActiveRecord::Base.transaction do
       create_organization(
         args[:organization][:name],
-        args[:organization][:slug]
+        args[:organization][:slug],
+        args[:organization][:email]
       )
       create_location(
         args[:location][:country],
@@ -47,10 +48,11 @@ class Organizations::CreateService
 
   private
 
-  def create_organization(name, slug)
+  def create_organization(name, slug, email)
     @organization = Organization.create!(
       name: name,
-      slug: slug
+      slug: slug,
+      email: email
     )
   end
 

@@ -10,7 +10,8 @@ class Organizations::CreateServiceTest < ActiveSupport::TestCase
       },
       organization: {
         name: "Baja Pet Rescue",
-        slug: "baja"
+        slug: "baja",
+        email: "baja@email.com"
       },
       user: {
         email: "test@test.lol",
