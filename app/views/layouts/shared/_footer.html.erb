@@ -66,7 +66,7 @@
           </ul>
         </div>
       </div>
-      <div class="col-lg-3 col-md-12">
+      <div class="col-lg-3 col-md-6 col-12">
         <!-- contact info -->
         <div class="mb-4">
           <h3 class="fw-bold mb-3">Get in touch</h3>
@@ -75,6 +75,16 @@
           <% if Current.tenant.phone_number.present? %>
             <p>Phone: <span class="text-dark fw-semibold"><%= Current.tenant.formatted_phone_number %></span></p>
           <% end %>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-12">
+        <!-- support -->
+        <div class="mb-4">
+          <h3 class="fw-bold mb-3"><%= t('.feedback') %></h3>
+          <p>
+            <%= link_to t('.action'), new_dev_contact_path %>
+            <%= t('.support') %>
+          </p>
         </div>
       </div>
     </div>

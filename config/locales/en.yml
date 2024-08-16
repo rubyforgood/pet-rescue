@@ -55,6 +55,7 @@ en:
     cancel: "Cancel"
     delete: "Delete"
     please_select: "Please select"
+    please_fix: "Please fix"
     male: "Male"
     female: "Female"
     edit: "Edit"
@@ -122,6 +123,8 @@ en:
         policy: "Privacy Policy"
         cookie: "Cookie Notice"
         terms: "Terms of Use"
+        feedback: "Feedback"
+        support: " to report a bug or request a feature."
       navbar:
         sign_up: "Sign Up"
         log_in: "Log In"
@@ -601,6 +604,11 @@ en:
   contacts:
     create:
       success: "Message sent!"
+  dev_contacts:
+    new:
+      header: "Feedback"
+      description: "Found a bug? Want to request a feature? Contact our dev team with the form below."
+      message_placeholder: "Enter your message..."
   static_pages:
     donate:
       contact_us: "Contact us"
