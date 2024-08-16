@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_27_172548) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_16_013724) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -192,6 +192,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_27_172548) do
     t.text "facebook_url"
     t.text "instagram_url"
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
+    t.check_constraint "email IS NOT NULL", name: "organizations_email_null", validate: false
+    t.check_constraint "name IS NOT NULL", name: "organizations_name_null", validate: false
+    t.check_constraint "slug IS NOT NULL", name: "organizations_slug_null", validate: false
   end
 
   create_table "people", force: :cascade do |t|
