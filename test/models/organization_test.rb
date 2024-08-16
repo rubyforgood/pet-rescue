@@ -25,6 +25,7 @@ class OrganizationTest < ActiveSupport::TestCase
     should allow_value("").for(:phone_number)
     should_not allow_value("invalid_number").for(:phone_number)
 
+    should validate_presence_of(:email)
     should allow_value("i_love_pets365@gmail.com").for(:email)
     should_not allow_value("invalid_email.com").for(:email)
 
@@ -39,6 +40,12 @@ class OrganizationTest < ActiveSupport::TestCase
     should allow_value("https://something.com").for(:donation_url)
     should allow_value("").for(:donation_url)
     should_not allow_value("http://something.com").for(:donation_url)
+
+    should validate_presence_of(:slug)
+    should allow_value("valid-slug").for(:slug)
+    should_not allow_value("invalid/slug").for(:slug)
+
+    should validate_presence_of(:name)
   end
 
   context "callbacks" do

@@ -42,6 +42,9 @@ class Organization < ApplicationRecord
   before_save :normalize_phone
 
   validates :phone_number, phone: {possible: true, allow_blank: true}
+  validates :name, presence: true
+  validates :slug, presence: true, format: {with: /\A[a-zA-Z0-9_-]+\z/, message: "only allows letters, numbers, hyphens, and underscores"}
+  validates :email, presence: true
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, allow_blank: true
 
   validates :facebook_url, url: true, allow_blank: true
