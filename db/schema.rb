@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_18_234916) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_18_235259) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -204,6 +204,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_18_234916) do
     t.string "last_name"
     t.index ["email"], name: "index_people_on_email"
     t.index ["organization_id"], name: "index_people_on_organization_id"
+    t.check_constraint "first_name IS NOT NULL", name: "people_first_name_null", validate: false
+    t.check_constraint "last_name IS NOT NULL", name: "people_last_name_null", validate: false
   end
 
   create_table "pets", force: :cascade do |t|
