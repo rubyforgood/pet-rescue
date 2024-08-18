@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'external_forms/index'
   devise_for :users, controllers: {
     registrations: "registrations",
     sessions: "users/sessions",
@@ -61,6 +62,7 @@ Rails.application.routes.draw do
       resources :dashboard, only: [:index]
       resources :likes, only: [:index, :create, :destroy]
       resources :adopter_applications, path: "applications", only: %i[index create update]
+      resources :external_form, only: %i[index] # MARK: what would be a good pathname for this?
     end
   end
 
