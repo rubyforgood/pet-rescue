@@ -16,7 +16,9 @@ ActsAsTenant.with_tenant(@organization) do
 
   @staff_one = Person.create!(
     email: "staff@alta.com",
-    name: "Andy Peters"
+    name: "Andy Peters",
+    first_name: "Andy",
+    last_name: "Peters"
   )
 
   @user_staff_one = @staff_one.create_user!(
@@ -37,7 +39,9 @@ ActsAsTenant.with_tenant(@organization) do
 
   @staff_two = Person.create!(
     email: "staff2@alta.com",
-    name: "Randy Peterson"
+    name: "Randy Peterson",
+    first_name: "Randy",
+    last_name: "Peterson"
   )
 
   @user_staff_two = @staff_two.create_user!(
@@ -58,7 +62,9 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_one = Person.create!(
     email: "adopter1@alta.com",
-    name: "Joe Brando"
+    name: "Joe Brando",
+    first_name: "Joe",
+    last_name: "Brando"
   )
 
   @user_adopter_one = @adopter_one.create_user!(
@@ -77,7 +83,9 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_two = Person.create!(
     email: "adopter2@alta.com",
-    name: "Kamala Lolsworth"
+    name: "Kamala Lolsworth",
+    first_name: "Kamala",
+    last_name: "Lolsworth"
   )
 
   @user_adopter_two = @adopter_two.create_user!(
@@ -96,7 +104,9 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_three = Person.create!(
     email: "adopter3@alta.com",
-    name: "Bad Address"
+    name: "Bad Address",
+    first_name: "Bad",
+    last_name: "Address"
   )
 
   @user_adopter_three = @adopter_three.create_user!(
@@ -115,7 +125,9 @@ ActsAsTenant.with_tenant(@organization) do
 
   @fosterer_one = Person.create!(
     email: "fosterer1@alta.com",
-    name: "Simon Petrikov"
+    name: "Simon Petrikov",
+    first_name: "Simon",
+    last_name: "Petrikov"
   )
 
   @user_fosterer_one = @fosterer_one.create_user!(
@@ -135,7 +147,9 @@ ActsAsTenant.with_tenant(@organization) do
 
   @fosterer_two = Person.create!(
     email: "fosterer2@alta.com",
-    name: "Finn Mertens"
+    name: "Finn Mertens",
+    first_name: "Finn",
+    last_name: "Mertens"
   )
 
   @user_fosterer_two = @fosterer_two.create_user!(
