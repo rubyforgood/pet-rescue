@@ -9,7 +9,7 @@ class AdoptionMailerTest < ActionMailer::TestCase
       email.deliver_now
     end
 
-    assert_equal [foster.adopter_foster_account.user.email], email.to
+    assert_equal [foster.person.email], email.to
     assert_match(/#{foster.pet.name}/, email.subject)
     assert_match(/#{foster.pet.name}/, email.body.encoded)
   end
