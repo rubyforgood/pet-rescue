@@ -2,27 +2,24 @@
 #
 # Table name: matches
 #
-#  id                        :bigint           not null, primary key
-#  end_date                  :datetime
-#  match_type                :integer          not null
-#  start_date                :datetime
-#  created_at                :datetime         not null
-#  updated_at                :datetime         not null
-#  adopter_foster_account_id :bigint           not null
-#  organization_id           :bigint           not null
-#  person_id                 :bigint           not null
-#  pet_id                    :bigint           not null
+#  id              :bigint           not null, primary key
+#  end_date        :datetime
+#  match_type      :integer          not null
+#  start_date      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  organization_id :bigint           not null
+#  person_id       :bigint           not null
+#  pet_id          :bigint           not null
 #
 # Indexes
 #
-#  index_matches_on_adopter_foster_account_id  (adopter_foster_account_id)
-#  index_matches_on_organization_id            (organization_id)
-#  index_matches_on_person_id                  (person_id)
-#  index_matches_on_pet_id                     (pet_id)
+#  index_matches_on_organization_id  (organization_id)
+#  index_matches_on_person_id        (person_id)
+#  index_matches_on_pet_id           (pet_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (adopter_foster_account_id => adopter_foster_accounts.id)
 #  fk_rails_...  (person_id => people.id)
 #  fk_rails_...  (pet_id => pets.id)
 #
@@ -32,7 +29,6 @@ class Match < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :pet, touch: true
   belongs_to :person
-  belongs_to :adopter_foster_account
 
   has_one :user, through: :adopter_foster_account
 
