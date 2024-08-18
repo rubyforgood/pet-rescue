@@ -24,8 +24,6 @@
 #  fk_rails_...  (pet_id => pets.id)
 #
 class Match < ApplicationRecord
-  self.ignored_columns += ["adopter_foster_account_id"]
-
   acts_as_tenant(:organization)
   belongs_to :pet, touch: true
   belongs_to :person
