@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :person do
-    organization
-
+    # organization assigned by ActsAsTenant
     name { Faker::Name.name }
     email { Faker::Internet.email }
 
