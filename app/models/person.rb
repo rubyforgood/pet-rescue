@@ -4,6 +4,8 @@
 #
 #  id              :bigint           not null, primary key
 #  email           :string           not null
+#  first_name      :string
+#  last_name       :string
 #  name            :string           not null
 #  phone           :string
 #  created_at      :datetime         not null
