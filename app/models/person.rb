@@ -21,8 +21,6 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Person < ApplicationRecord
-  self.ignored_columns += ["name"]
-
   include Avatarable
 
   acts_as_tenant(:organization)
