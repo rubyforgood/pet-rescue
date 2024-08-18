@@ -6,7 +6,8 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   context "validations" do
-    should validate_presence_of(:name)
+    should validate_presence_of(:first_name)
+    should validate_presence_of(:last_name)
     should validate_presence_of(:email)
     should_not validate_presence_of(:phone)
   end

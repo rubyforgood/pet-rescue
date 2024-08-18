@@ -114,7 +114,7 @@ class User < ApplicationRecord
     if existing
       self.person = existing
     else
-      build_person(name: full_name, email:, organization:)
+      build_person(first_name:, last_name:, email:, organization:)
     end
   end
 

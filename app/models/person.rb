@@ -6,7 +6,6 @@
 #  email           :string           not null
 #  first_name      :string
 #  last_name       :string
-#  name            :string           not null
 #  phone           :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -35,7 +34,6 @@ class Person < ApplicationRecord
 
   has_one :user, dependent: :destroy
 
-  validates :name, presence: true
   validates :email, presence: true,
     uniqueness: {case_sensitive: false, scope: :organization_id}
 

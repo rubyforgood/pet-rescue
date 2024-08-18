@@ -50,7 +50,8 @@ class UserTest < ActiveSupport::TestCase
     should "create a person if none exists" do
       user = create(:user, email: "tester@example.com", first_name: "Jane", last_name: "Smith")
 
-      assert_equal "Jane Smith", user.person.name
+      assert_equal "Jane", user.person.first_name
+      assert_equal "Smith", user.person.last_name
       assert_equal "tester@example.com", user.person.email
     end
   end

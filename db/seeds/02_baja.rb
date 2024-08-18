@@ -16,7 +16,6 @@ ActsAsTenant.with_tenant(@organization) do
 
   @staff_one = Person.create!(
     email: "staff@baja.com",
-    name: "Andy Peters",
     first_name: "Andy",
     last_name: "Peters"
   )
@@ -39,7 +38,6 @@ ActsAsTenant.with_tenant(@organization) do
 
   @staff_two = Person.create!(
     email: "staff2@baja.com",
-    name: "Randy Peterson",
     first_name: "Randy",
     last_name: "Peterson"
   )
@@ -62,7 +60,6 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_one = Person.create!(
     email: "adopter1@baja.com",
-    name: "Joe Brando",
     first_name: "Joe",
     last_name: "Brando"
   )
@@ -83,7 +80,6 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_two = Person.create!(
     email: "adopter2@baja.com",
-    name: "Kamala Lolsworth",
     first_name: "Kamala",
     last_name: "Lolsworth"
   )
@@ -104,7 +100,6 @@ ActsAsTenant.with_tenant(@organization) do
 
   @adopter_three = Person.create!(
     email: "adopter3@baja.com",
-    name: "Bad Address",
     first_name: "Bad",
     last_name: "Address"
   )
@@ -125,7 +120,6 @@ ActsAsTenant.with_tenant(@organization) do
 
   @fosterer_one = Person.create!(
     email: "fosterer1@baja.com",
-    name: "Simon Petrikov",
     first_name: "Simon",
     last_name: "Petrikov"
   )
@@ -147,7 +141,6 @@ ActsAsTenant.with_tenant(@organization) do
 
   @fosterer_two = Person.create!(
     email: "fosterer2@baja.com",
-    name: "Finn Mertens",
     first_name: "Finn",
     last_name: "Mertens"
   )
@@ -205,8 +198,6 @@ ActsAsTenant.with_tenant(@organization) do
 
   Match.create!(
     pet_id: Pet.first.id,
-    # FIXME: Delete this after implementing Person
-    adopter_foster_account_id: @adopter_foster_account_one.id,
     person_id: @adopter_one.id,
     match_type: :adoption
   )
@@ -233,8 +224,6 @@ ActsAsTenant.with_tenant(@organization) do
   complete_end_date = complete_start_date + 3.months
   Match.create!(
     pet_id: @fosterable_pets[0].id,
-    # FIXME: Delete this after implementing Person
-    adopter_foster_account_id: @user_fosterer_one.adopter_foster_account.id,
     person_id: @fosterer_one.id,
     match_type: :foster,
     start_date: complete_start_date,
@@ -246,8 +235,6 @@ ActsAsTenant.with_tenant(@organization) do
   current_end_date = current_start_date + 6.months
   Match.create!(
     pet_id: @fosterable_pets[1].id,
-    # FIXME: Delete this after implementing Person
-    adopter_foster_account_id: @user_fosterer_one.adopter_foster_account.id,
     person_id: @fosterer_one.id,
     match_type: :foster,
     start_date: current_start_date,
@@ -259,15 +246,13 @@ ActsAsTenant.with_tenant(@organization) do
   upcoming_end_date = upcoming_start_date + 3.months
   Match.create!(
     pet_id: @fosterable_pets[2].id,
-    # FIXME: Delete this after implementing Person
-    adopter_foster_account_id: @user_fosterer_two.adopter_foster_account.id,
     person_id: @fosterer_two.id,
     match_type: :foster,
     start_date: upcoming_start_date,
     end_date: upcoming_end_date
   )
 
-  @form_submission = FormSubmission.new(organization: @organization, person: Person.new(name: "John Doe", email: "Doe@gmail.com"))
+  @form_submission = FormSubmission.new(organization: @organization, person: Person.new(first_name: "John", last_name: "Doe", email: "Doe@gmail.com"))
 
   10.times do
     adopter = Person.adopters.sample
