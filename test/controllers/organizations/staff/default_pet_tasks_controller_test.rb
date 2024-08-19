@@ -62,6 +62,52 @@ class Organizations::Staff::DefaultPetTasksControllerTest < ActionDispatch::Inte
           get staff_default_pet_tasks_url
         end
       end
+
+      should "filter by name" do
+        task1 = DefaultPetTask.create!(name: "Buddy", species: "Dog", recurring: true)
+        task2 = DefaultPetTask.create!(name: "Max", species: "Cat", recurring: false)
+
+        get staff_default_pet_tasks_url, params: {q: {name_cont: "Buddy"}}
+
+        assert_response :success
+
+        assert_includes assigns(:default_pet_tasks), task1
+        assert_not_includes assigns(:default_pet_tasks), task2
+      end
+
+      should "filter tasks with due_in_days when due_in_days is present" do
+        task_with_due_days_5 = create(:default_pet_task, due_in_days: 5)
+        task_without_due_days_3 = create(:default_pet_task, due_in_days: 3)
+
+        get staff_default_pet_tasks_url, params: {due_in_days_eq: 5}
+        assert_response :success
+
+        assert_includes assigns(:default_pet_tasks), task_with_due_days_5
+        assert_not_includes assigns(:default_pet_tasks), task_without_due_days_3
+      end
+
+      should "filter tasks with recurring true when recurring is present" do
+        recurring_task = create(:default_pet_task, recurring: true)
+        non_recurring_task = create(:default_pet_task, recurring: false)
+
+        get staff_default_pet_tasks_url, params: {q: {recurring_eq: "true"}}
+        assert_response :success
+
+        assert_includes assigns(:default_pet_tasks), recurring_task
+
+        assert_not_includes assigns(:default_pet_tasks), non_recurring_task
+      end
+
+      should "filter tasks by species when species_eq is present" do
+        dog_task = create(:default_pet_task, species: "Dog")
+        cat_task = create(:default_pet_task, species: "Cat")
+
+        get staff_default_pet_tasks_url, params: {q: {species_eq: "Dog"}}
+        assert_response :success
+
+        assert_includes assigns(:default_pet_tasks), dog_task
+        assert_not_includes assigns(:default_pet_tasks), cat_task
+      end
     end
 
     context "#edit" do
