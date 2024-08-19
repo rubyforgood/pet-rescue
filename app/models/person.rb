@@ -4,8 +4,8 @@
 #
 #  id              :bigint           not null, primary key
 #  email           :string           not null
-#  first_name      :string
-#  last_name       :string
+#  first_name      :string           not null
+#  last_name       :string           not null
 #  phone           :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -32,6 +32,8 @@ class Person < ApplicationRecord
 
   has_one :user, dependent: :destroy
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :email, presence: true,
     uniqueness: {case_sensitive: false, scope: :organization_id}
 
