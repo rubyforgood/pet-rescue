@@ -29,6 +29,15 @@ class AvatarComponentTest < ViewComponent::TestCase
         @pet_without_image = create(:pet)
       end
 
+      should "have an image" do
+        @component = AvatarComponent.new(pet: @pet_with_image)
+        url = "/example.png"
+        stub(:url_for, url) do
+          render_inline(@component)
+          assert_selector("img[src='#{url_for(@pet_with_image.images.first)}']", count: 1)
+        end
+      end
+
       should "has and image" do
         url = "/example.png"
         stub(:url_for, url) do
@@ -45,6 +54,24 @@ class AvatarComponentTest < ViewComponent::TestCase
           assert_selector(@pet_without_image.name[0, 2].upcase)
         end
       end
+    end
+  end
+
+  context "initials method for user" do
+    setup do
+      @component = AvatarComponent.new(@user)
+    end
+
+    should "return user's initials" do
+      render_inline(@component)
+      assert_text("#{@user.first_name[0]}#{@user.last_name[0]}".upcase)
+    end
+  end
+
+  context "initials method for pet" do
+    setup do
+      @pet = create(:pet)
+      @component = AvatarComponent.new(pet: @pet)
     end
   end
 
