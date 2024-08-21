@@ -6,7 +6,7 @@
           <% @pets.each do |pet| %>
           <div class="col-lg-4 col-md-6 p-2">
             <div class="pet-box p-3 border rounded bg-white d-flex align-items-center">
-              <%= render AvatarComponent.new(pet: pet, like: @like, size: :xl) %>
+              <%= render PetAvatarComponent.new(pet: pet, like: @like, size: :xl) %>
               <div class=" d-flex justify-content-between align-items-center mt-2">
                 <span class="mx-3"><%= pet.name %></span>
                 <div id="like_button_pet_<%= pet.id %>">
