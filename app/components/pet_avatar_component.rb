@@ -9,9 +9,9 @@ class PetAvatarComponent < ApplicationComponent
 
   def pet_avatar
     if pet
-      image_tag(url_for(pet.images.first), alt: pet.name, class: image_classes)
+      image_tag(url_for(pet.images.first), alt: pet.name, class: image_class)
     else
-      content_tag(:span, initials, class: initials_classes)
+      content_tag(:span, initials, class: initials_class)
     end
   end
 
@@ -21,15 +21,15 @@ class PetAvatarComponent < ApplicationComponent
     end
   end
 
-  def image_classes
+  def image_class
     "rounded-circle"
   end
 
-  def initials_classes
+  def initials_class
     "avatar-initials rounded-circle fs-2"
   end
 
-  def container_classes
+  def container_class
     "avatar avatar-xl avatar-primary rounded-circle border border-4 border-white"
   end
 end
