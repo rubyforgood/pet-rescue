@@ -9,16 +9,22 @@ class PetAvatarComponent < ApplicationComponent
 
   def pet_avatar
     if pet
-      image_tag(url_for(pet.images.first), alt: pet.name, class: image_class)
+      pet_image
     else
-      content_tag(:span, initials, class: initials_class)
+      pet_initials_span
     end
   end
 
-  def initials
-    if pet
-      pet.name[0].upcase
-    end
+  def pet_image
+    image_tag(url_for(pet.images.first), alt: pet.name, class: image_class)
+  end
+
+  def pet_initials_span
+    content_tag(:span, pet_initials, class: initials_class)
+  end
+
+  def pet_initials
+    pet.name[0].upcase
   end
 
   def image_class
