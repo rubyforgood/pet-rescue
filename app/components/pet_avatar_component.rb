@@ -1,26 +1,26 @@
 # frozen_string_literal: true
 
-# Renders a User's avatar as image or user's initials
+# Renders a Pet's image and the Heart like button
 class PetAvatarComponent < ApplicationComponent
-  option :pet, Types::Instance(Pet), optional: true
+  param :pet, Types::Instance(Pet)
   option :like, optional: true
 
   private
 
   def pet_avatar
-    if pet
-      pet_image
-    else
-      pet_initials_span
-    end
+    pet_image || pet_initials_span
   end
 
   def pet_image
-    image_tag(url_for(pet.images.first), alt: pet.name, class: image_class)
+    if pet.images.present? && pet.images.first.present?
+      image_tag(url_for(pet.images.first), alt: pet.name, class: image_class)
+    end
   end
 
   def pet_initials_span
-    content_tag(:span, pet_initials, class: initials_class)
+    if pet.name.present?
+      content_tag(:span, pet_initials, class: initials_class)
+    end
   end
 
   def pet_initials
