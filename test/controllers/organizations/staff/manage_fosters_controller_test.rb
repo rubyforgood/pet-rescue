@@ -1,7 +1,7 @@
 require "test_helper"
 require "action_policy/test_helper"
 
-class Organizations::Staff::FostersControllerTest < ActionDispatch::IntegrationTest
+class Organizations::Staff::ManageFostersControllerTest < ActionDispatch::IntegrationTest
   context "authorization" do
     include ActionPolicy::TestHelper
     context "context only action" do
@@ -66,7 +66,8 @@ class Organizations::Staff::FostersControllerTest < ActionDispatch::IntegrationT
 
     context "existing record actions" do
       setup do
-        @foster = create(:foster)
+        fosterer = create(:fosterer)
+        @foster = create(:foster, person: fosterer.person)
         sign_in @foster.user
       end
 
