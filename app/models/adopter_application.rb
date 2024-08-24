@@ -33,6 +33,8 @@ class AdopterApplication < ApplicationRecord
   belongs_to :adopter_foster_account
   belongs_to :form_submission
 
+  has_one :person, through: :form_submission
+
   broadcasts_refreshes
 
   enum :status, [:awaiting_review,
