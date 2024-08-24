@@ -28,7 +28,7 @@ class Match < ApplicationRecord
   belongs_to :pet, touch: true
   belongs_to :person
 
-  has_one :user, through: :adopter_foster_account
+  has_one :user, through: :person # TODO: Remove this association
 
   validates :start_date,
     presence: {if: -> { match_type == "foster" }}
@@ -57,7 +57,7 @@ class Match < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[pet user]
+    %w[pet user person]
   end
 
   def fosterer_name(format = :default)
@@ -95,7 +95,7 @@ class Match < ApplicationRecord
   end
 
   def adopter_application
-    AdopterApplication.find_by(pet:, adopter_foster_account:)
+    AdopterApplication.includes(:form_submission).find_by(pet:, form_submission: {person:})
   end
 
   ransacker :status do
