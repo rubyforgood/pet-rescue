@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_27_172548) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_25_155349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -191,6 +191,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_27_172548) do
     t.text "donation_url"
     t.text "facebook_url"
     t.text "instagram_url"
+    t.text "external_form_url"
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
   end
 
