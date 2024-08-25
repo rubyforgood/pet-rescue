@@ -28,9 +28,8 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
       end
 
       should "count the total number of applications" do
-        organization = ActsAsTenant.current_tenant
-        form_submission = create(:form_submission)
-        adopter_foster_account = create(:adopter_foster_account, user: @user, organization: organization)
+        form_submission = create(:form_submission, person: @user.person)
+        adopter_foster_account = create(:adopter_foster_account, user: @user)
         create_list(:adopter_application, 2, adopter_foster_account: adopter_foster_account, form_submission: form_submission)
 
         get adopter_fosterer_dashboard_index_path

@@ -3,7 +3,6 @@ require "test_helper"
 class AdopterFosterAccountTest < ActiveSupport::TestCase
   context "associations" do
     should belong_to(:user)
-    should have_many(:adopter_applications).dependent(:destroy)
     should have_many(:likes).dependent(:destroy)
     should have_many(:liked_pets).through(:likes).source(:pet)
   end
