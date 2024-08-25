@@ -56,7 +56,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    current_user&.adopter_foster_account ? adopter_fosterer_dashboard_index_path : root_path
+    if Current.organization.external_form_url
+      adopter_fosterer_external_form_index_path
+    else
+      adopter_fosterer_dashboard_index_path
+    end
   end
 
   # check for id (i.e., record saved) and send mail
