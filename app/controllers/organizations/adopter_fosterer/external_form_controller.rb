@@ -4,9 +4,8 @@ module Organizations
       skip_verify_authorized # MARK: what should the auth policy look like for this action?
 
       def index
+        @form_url = Current.organization.external_form_url
       end
     end
   end
 end
-
-# TODO: need stimulus controller to make request to create empty form submission for current_user
