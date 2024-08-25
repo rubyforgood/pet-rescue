@@ -1,7 +1,7 @@
 class AdopterApplicationPolicy < ApplicationPolicy
   authorize :pet, optional: true
 
-  pre_check :verify_form_submission!
+  pre_check :verify_form_submission!, except: %i[index?]
   pre_check :verify_pet_appliable!, only: %i[create?]
 
   relation_scope do |relation|
