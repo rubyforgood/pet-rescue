@@ -155,12 +155,15 @@
                         <%= image_tag('green_check.png', height: '21') %>
                       <% end %>
                     </div>
-                  <% elsif allowed_to?(:create?, with: Organizations::AdopterFosterProfilePolicy, context: {user: current_user}) %>
-                    <h4 class='mb-4 mt-3'>
-                      <%= t('.complete_your_profile') %>
-                    </h4>
-                    <%= link_to t('.complete_my_profile'), new_adopter_fosterer_profile_path,
-                                class: 'custom-btn-pink' %>
+                  <%# FIXME: This section was missed during the remove of AdopterFosterProfile but I think it requires FormSubmission to be ready to refactor %>
+                  <% if false %>
+                    <% elsif allowed_to?(:create?, with: Organizations::AdopterFosterProfilePolicy, context: {user: current_user}) %>
+                      <h4 class='mb-4 mt-3'>
+                        <%= t('.complete_your_profile') %>
+                      </h4>
+                      <%= link_to t('.complete_my_profile'), new_adopter_fosterer_profile_path,
+                                  class: 'custom-btn-pink' %>
+                  <% end %>
                   <% end %>
                 <% end %>
               <% else %>
