@@ -256,6 +256,7 @@ en:
             email: 
               blank: "Email can't be blank"
               taken: "Email is already registered"
+              invalid: "Invalid email"
             password: 
               blank: "Password can't be blank"
             first_name: 
