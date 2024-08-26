@@ -1,0 +1,44 @@
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { t("dashboard.index.header_title") } %>
+  <% c.with_body do %>
+    <div class="row">
+      <% unless current_user.adopter_foster_account.present? %>
+        <div class="alert alert-warning ">
+          <%= link_to t('organizations.adoptable_pets.show.complete_my_profile'), new_adopter_fosterer_profile_path,
+                            class: 'custom-btn-pink' %>
+        </div>
+      <% end %>
+
+      <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Example" } %>
+          <% card.with_icon_name { "users" } %>
+          <% card.with_value { "5" } %>
+        <% end %>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Pets" } %>
+          <% card.with_icon_name { "heart" } %>
+          <% card.with_value { @organization.pets.count.to_s } %>
+        <% end %>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+         <%= link_to adopter_fosterer_adopter_applications_path, class: "card-link" do %>
+          <%= render DataCardComponent.new do |card| %>
+            <% card.with_title { "Applications" } %>
+            <% card.with_icon_name { "file-text" } %>
+            <% card.with_value { @application_count.to_s } %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-xl-3 col-lg-6 col-md-12 col-12">
+        <%= render DataCardComponent.new do |card| %>
+          <% card.with_title { "Rescues" } %>
+          <% card.with_icon_name { "star" } %>
+          <% card.with_value { "TBD" } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

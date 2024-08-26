@@ -1,11 +1,46 @@
 /**
 * Custom Styling
 * -----------------------------------------------------------------------------
-* [NOTE] Please avoid writing custom css if you can help it! 
+* [NOTE] Please avoid writing custom css if you can help it!
 * Prefer to use the Bootstrap utility classes to override styles or follow
 * the theme.
 * -----------------------------------------------------------------------------
 */
 label.required:after {
   content: " *";
+}
+
+// This class is intended to be used in conjunction with dropdown_controller.js
+// to avoid theme default dropdown behaviors (hover-open in desktop view).
+.aria-dropdown-menu {
+  display: block;
+  background-color: white;
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: var(--geeks-dropdown-shadow);
+  color: var(--geeks-gray-800);
+  font-size: 0.875rem;
+  line-height: 1.2rem;
+  margin: 1.125rem 0;
+  min-width: 12rem;
+  padding: 1rem 0;
+  top: 28px;
+}
+
+// Custom styling for the Featured Pets cards
+.featured-pets {
+  img {
+    border-radius: var(--geeks-card-inner-border-radius) var(--geeks-card-inner-border-radius) 0 0;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+
+    > p.card-text {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
 }

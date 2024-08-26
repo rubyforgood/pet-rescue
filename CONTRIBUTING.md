@@ -1,7 +1,7 @@
 # Contributing
 [code of conduct]: https://github.com/rubyforgood/code-of-conduct
 [open issue]: https://github.com/rubyforgood/pet-rescue/issues?q=is%3Aissue+is%3Aopen+no%3Aassignee
-[set up instructions]: https://github.com/rubyforgood/pet-rescue#local-setup
+[set up instructions]: https://github.com/rubyforgood/pet-rescue#install--setup
 
 We ♥ contributors! By participating in this project, you agree to abide by the
 Ruby for Good [code of conduct].

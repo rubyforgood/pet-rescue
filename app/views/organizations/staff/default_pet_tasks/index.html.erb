@@ -1,0 +1,47 @@
+<%= render DashboardPageComponent.new(crumb: :default_pet_tasks_index) do |c| %>
+  <% c.with_header_title { t(".default_pet_tasks") } %>
+  <% c.with_action do %>
+    <%= link_to t('.create_default_task'), new_staff_default_pet_task_path, class: "btn btn-primary" %><br>
+  <% end %>
+  <% c.with_body do %>
+  <!-- Ransack Search Form -->
+   <section class="pb-5">
+      <div class="container">
+        <div class="row p-4 border rounded-5 mb-5 bg-white">
+          <div class="col-xl-12">
+            <%= search_form_for @q, url: staff_default_pet_tasks_path do |f| %>
+              <div class="row">
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :name_cont, t('.name') %>
+                  <%= f.text_field :name_cont, class: "form-control", placeholder: "Enter Pet Name" %>
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :species_eq, t('.species') %>
+                  <%= f.select :species_eq, Pet.species.keys.map { |type| [type.titleize, type] }, { include_blank: 'Select Species' }, class: "form-select" %>
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :due_in_days_eq, t('.due_after') %>
+                  <%= number_field_tag :due_in_days_eq, params[:due_in_days_eq], class: "form-control", placeholder: "Due in (Days)" %>
+                </div>
+                <div class="form-group mb-3 col-md-4">
+                  <%= f.label :recurring_eq, t('.recurring') %>
+                  <%= f.select :recurring_eq, options_for_select([['Yes', true], ['No', false]]), { include_blank: 'Select Recurring Status' }, class: "form-select" %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 text-right">
+                  <%= f.submit "Search", class: "btn btn-primary" %>
+                  <%= link_to "Clear filters", staff_default_pet_tasks_path, class: "btn btn-default" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="d-flex justify-content-center align-items-center mt-2">
+          <%== pagy_bootstrap_nav(@pagy)  if @pagy.pages > 1 %>
+        </div>
+    </div>
+  </section>
+  <% end %>
+<% end %>
+<%= render "default_pet_tasks_table" %>

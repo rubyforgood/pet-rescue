@@ -1,0 +1,15 @@
+<%= render DashboardPageComponent.new(crumb: :faqs_index) do |c| %>
+  <% c.with_header_title { t(".faqs") } %>
+  <% c.with_action do %>
+    <%= link_to t('.create_faq'), new_staff_faq_path, class: "btn btn-primary" %><br>
+  <% end %>
+  <% c.with_body do %>
+    <!-- row -->
+    <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
+      <!-- card -->
+      <div class="card">
+        <%= render @faqs %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

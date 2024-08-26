@@ -30,16 +30,13 @@ Rails.application.configure do
   config.cache_store = :null_store
 
   # Raise exceptions instead of rendering exception templates.
-  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.show_exceptions = :none
 
   # Disable request forgery protection in test environment.
   config.action_controller.allow_forgery_protection = false
 
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
-
-  # Allow image uploads to be appended rather than delete all existing on a new upload
-  config.active_storage.replace_on_assign_to_many = true
 
   config.action_mailer.perform_caching = false
 
@@ -60,7 +57,7 @@ Rails.application.configure do
   config.active_support.disallowed_deprecation_warnings = []
 
   # Raises error for missing translations.
-  # config.i18n.raise_on_missing_translations = true
+  config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
@@ -77,4 +74,9 @@ Rails.application.configure do
 
   # Handle ActsAsTenant.test_tenant properly in request specs
   config.middleware.use ActsAsTenant::TestTenantMiddleware
+
+  # Default queue adapter is :async which sometimes causes tests to hang
+  # This fixes hanging
+  # https://github.com/rails/rails/issues/48468
+  config.active_job.queue_adapter = :test
 end

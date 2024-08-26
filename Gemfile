@@ -1,10 +1,10 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.1.4"
+ruby "3.3.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.3"
+gem "rails", "~> 7.1.3.4"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -13,10 +13,10 @@ gem "sprockets-rails"
 gem "figaro"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.6"
+gem "puma", "~> 6.4.1"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -49,14 +49,15 @@ gem "bootsnap", require: false
 gem "bootstrap"
 
 # add bootstrap_form gem
-gem "bootstrap_form", "~> 5.3"
+gem "bootstrap_form", "~> 5.4"
 
 # Devise Authentication
 gem "devise"
 
-gem "devise_invitable", "~> 2.0.0"
+gem "devise_invitable", "~> 2.0.9"
 
 # Use Sass to process CSS
+gem "dartsass-sprockets"
 gem "dartsass-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -82,7 +83,41 @@ gem "rails-i18n"
 
 # Provides helper methods to easily add 'active' tag on links
 gem "active_link_to"
-gem "nice_partials"
+
+# needed for pagination
+gem "pagy"
+
+# Adds location data for cities and states around the world
+gem "city-state", "~> 1.1.0"
+
+# Adds a simple way to fetch with Javascript
+gem "requestjs-rails", "~> 0.0.11"
+
+# Add ability to set user roles
+gem "rolify"
+
+# Add breadcrumb management
+gem "gretel", "~> 5.0"
+
+# Use ransack for searching and filtering records
+gem "ransack"
+
+gem "rails-controller-testing"
+
+# Use Action Policy for authorization framework
+gem "action_policy", "~> 0.7.0"
+
+# Use ViewComponent for our presenter pattern framework
+gem "view_component", "~> 3.12"
+
+# Use dry-types for defining types
+gem "dry-types", "~> 1.7"
+
+# Use dry-initializer for defining params and options for instances
+gem "dry-initializer", "~> 3.1"
+
+# Catch unsafe migrations
+gem "strong_migrations", "~> 2.0"
 
 group :development, :test, :staging do
   gem "faker"
@@ -146,21 +181,3 @@ group :test do
   # Adds ability to stub out methods in tests easier
   gem "mocha"
 end
-
-# Add chartkick for charts generation
-gem "chartkick", "~> 5.0"
-
-# Adds location data for cities and states around the world
-gem "city-state", "~> 1.1.0"
-
-# Adds a simple way to fetch with Javascript
-gem "requestjs-rails", "~> 0.0.10"
-
-# Add ability to set user roles
-gem "rolify"
-
-gem "gretel", "~> 4.5"
-
-gem "ransack"
-
-gem "rails-controller-testing"

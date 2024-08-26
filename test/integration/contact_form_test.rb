@@ -3,7 +3,7 @@ require "test_helper"
 class ContactFormTest < ActionDispatch::IntegrationTest
   test "All errors and custom messages appear on blank form submission" do
     skip("while new ui is implemented")
-    # user = create(:user, :adopter_without_profile)
+    # user = create(:adopter)
     # sign_in user
 
     # get(
@@ -24,7 +24,7 @@ class ContactFormTest < ActionDispatch::IntegrationTest
 
   test "should successfully submit form" do
     skip("while new ui is implemented")
-    # user = create(:user, :adopter_without_profile)
+    # user = create(:adopter)
     # sign_in user
 
     # assert_emails 1 do
@@ -43,6 +43,6 @@ class ContactFormTest < ActionDispatch::IntegrationTest
     # follow_redirect!
     # assert_response :success
 
-    # assert_equal flash[:notice], "Message sent!"
+    # assert_equal flash[:notice], I18n.t('.success', scope: 'contacts.create')
   end
 end

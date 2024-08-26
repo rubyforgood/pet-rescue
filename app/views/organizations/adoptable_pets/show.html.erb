@@ -1,0 +1,184 @@
+<header class="pt-5 pb-5">
+  <div class="row align-items-center">
+    <!-- Pet Info -->
+    <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+      <div class="pt-16 rounded-top-md bg-gray-200"></div>
+      <div class="d-flex align-items-center justify-content-between bg-white px-4 pt-2 pb-4 rounded-none rounded-bottom-md shadow-sm">
+        <div class="d-flex align-items-center">
+          <div class="me-2 position-relative d-flex justify-content-end align-items-end mt-n5">
+            <% if @pet.images.attached? %>
+              <%= image_tag @pet.images.first, class: 'avatar-xl rounded-circle border border-4 border-white' %>
+            <% end %>
+          </div>
+          <div class="lh-1">
+            <h2 class="mb-0"><%= @pet.name %></h2>
+            <%= content_tag(:span, t('general.adoption_pending'), class: "badge bg-info") if @pet.has_adoption_pending? %>
+          </div>
+        </div>
+        <div>
+          <% unless current_user %>
+            <%= link_to t('general.become_an_adopter'), new_user_registration_path, class: 'btn btn-primary btn-sm d-none d-md-block' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!--pet tile-->
+<section class="pb-5" id="adoptable_pets_show">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <!--pet images-->
+        <% if @pet.images.attached? %>
+          <div id="carouselExampleIndicators" class="carousel slide mb-5" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <% @pet.images.each_with_index do |image, index| %>
+                <button type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="<%= index %>" class="<%= index == 0 ? 'active' : '' %>"
+                        aria-current="true" aria-label="Slide <%= index %>"></button>
+              <% end %>
+            </div>
+            <div class="carousel-inner">
+              <% @pet.images.each_with_index do |image, index| %>
+                <div class="carousel-item <%= index == 0 ? 'active' : '' %>">
+                  <%= image_tag image, class: 'd-block w-100' %>
+                </div>
+              <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button"
+                    data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button"
+                    data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        <% end %>
+
+        <%= render CardComponent.new(image_options: {default: ""}) do |c| %>
+          <%= c.with_header do %>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h4 class="mb-0"><%= "#{t('general.about')} #{@pet.name}" %></h4>
+              </div>
+
+              <% if current_user&.adopter_foster_account %>
+                <div id="like_button_pet_<%= @pet.id %>" class="d-flex flex-column align-items-center">
+                  <%= render LikeButtonComponent.new(pet: @pet, like: @likes_by_id[@pet.id]) %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+          <%= c.with_body do %>
+            <p><%= @pet.description %></p>
+
+            <ul class="list-group list-group-flush">
+              <% pet_infos = {"Age": time_ago_in_words(@pet.birth_date).titleize,
+                              "Sex": @pet.sex,
+                              "Breed": @pet.breed,
+                              "Weight": "#{@pet.weight_from} to #{@pet.weight_to} #{@pet.weight_unit}"
+              } %>
+              <% pet_infos.each do |pet_info| %>
+              <li class="list-group-item px-0">
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <i class="fe fe-book me-2"></i>
+                    <div class="ms-2">
+                      <h5 class="mb-0 text-body"><%= pet_info[0] %></h5>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <p class="text-dark mb-0 fw-semibold"><%= pet_info[1] %></p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class=' col-lg-6 ps-3 pe-3 ps-lg-0 pe-lg-0'>
+        <div class=' border p-5 rounded d-flex flex-column justify-content-between'>
+          <div>
+            <div class="row">
+              <!-- heading -->
+              <span class="text-uppercase text-primary fw-semibold ls-md"><%= t('.adoption_process') %></span>
+              <!-- para -->
+              <p class="fs-3  mb-5"><%= t('.please_read_faq_html', faq_link: link_to('FAQ', faq_index_path)) %></p>
+            </div>
+
+            <% if @adoptable_pet_info.present? %>
+              <div class="row align-items-center">
+                <div class="mb-6">
+                  <h3 class="mb-3 fw-bold"><%= t('.important_info') %></h3>
+                  <p class="mb-0 fs-4 ">
+                    <%= @adoptable_pet_info %>
+                  </p>
+                </div>
+              </div>
+            <% end %>
+
+          </div>
+
+          <div class='text-center d-flex flex-column align-items-center mt-1'>
+            <% unless user_signed_in? && current_user.staff_account %>
+              <% if user_signed_in? %>
+                <% if allowed_to?(:create?, with: AdopterApplicationPolicy, context: {pet: @pet, user: current_user}) %>
+                  <h4 class="mb-4 mt-3">In love with this pooch?</h4>
+                  <%= form_with model: [:adopter_fosterer, @adoption_application] do |form| %>
+                    <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
+                    <%= form.hidden_field :adopter_foster_account_id, value: @adoption_application.adopter_foster_account_id %>
+                    <%= form.submit t(".apply_to_adopt"),
+                      class: "custom-btn-pink",
+                      data: {turbo: false}
+                    %>
+                  <% end %>
+                <% else %>
+                  <% if AdopterApplication.adoption_exists?(current_user.adopter_foster_account&.id, @pet.id) %>
+                    <div class='d-flex align-items-center mt-3'>
+                      <h4 class="me-2 mb-0">
+                        <%= "#{t('organizations.adoptable_pets.show.application_status')} #{@adoption_application.human_enum_name(:status) || t('.status.default')}" %>
+                      </h4>
+                      <% if %w[under_review adoption_pending].include?(@adoption_application.status) %>
+                        <%= image_tag('pause.png', height: '21') %>
+                      <% elsif 'withdrawn' == @adoption_application.status %>
+                        <%= image_tag('red_no.png', height: '21') %>
+                      <% else %>
+                        <%= image_tag('green_check.png', height: '21') %>
+                      <% end %>
+                    </div>
+                  <% elsif allowed_to?(:create?, with: Organizations::AdopterFosterProfilePolicy, context: {user: current_user}) %>
+                    <h4 class='mb-4 mt-3'>
+                      <%= t('.complete_your_profile') %>
+                    </h4>
+                    <%= link_to t('.complete_my_profile'), new_adopter_fosterer_profile_path,
+                                class: 'custom-btn-pink' %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <h4 class="mb-4 mt-3">
+                  <%= t('.create_an_account') %>
+                </h4>
+                <%= link_to t('.adopt'), new_user_registration_path,
+                            class: 'custom-btn-pink mb-2' %>
+                <p>
+                  <%= link_to t('.login'), new_user_session_path %>
+                </p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+ <!-- row -->
+  </div>
+ <!-- container -->
+</section>

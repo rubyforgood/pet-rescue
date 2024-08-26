@@ -4,9 +4,9 @@ class RevokeAdoptionTest < ActionDispatch::IntegrationTest
   test "staff can revoke adoption and pet becomes adoptable and successful application set to withdrawn" do
     skip("while new ui is implemented")
     # pet = create(:pet)
-    # adopter_account = create(:adopter_account, :with_adopter_profile)
-    # adopter_application = create(:adopter_application, adopter_account: adopter_account, pet: pet)
-    # create(:match, pet: pet, adopter_account: adopter_account, organization: pet.organization)
+    # adopter_foster_account = create(:adopter_foster_account, :with_adopter_foster_profile)
+    # adopter_application = create(:adopter_application, adopter_foster_account: adopter_foster_account, pet: pet)
+    # create(:match, pet: pet, adopter_foster_account: adopter_foster_account, organization: pet.organization)
     # staff_account = create(:staff_account, organization: pet.organization)
     # user = create(:user, :verified_staff, staff_account: staff_account)
     # sign_in user

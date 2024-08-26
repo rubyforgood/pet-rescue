@@ -22,6 +22,7 @@
 #  updated_at             :datetime         not null
 #  invited_by_id          :bigint
 #  organization_id        :bigint
+#  person_id              :bigint
 #
 # Indexes
 #
@@ -30,10 +31,17 @@
 #  index_users_on_invited_by            (invited_by_type,invited_by_id)
 #  index_users_on_invited_by_id         (invited_by_id)
 #  index_users_on_organization_id       (organization_id)
+#  index_users_on_person_id             (person_id)
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (person_id => people.id)
 #
 class User < ApplicationRecord
   include Avatarable
+  include Authorizable
+  include RoleChangeable
 
   acts_as_tenant(:organization)
   default_scope do
@@ -59,14 +67,30 @@ class User < ApplicationRecord
   #   allow_nil: false, on: :create
 
   has_one :staff_account, dependent: :destroy
-  has_one :adopter_account, dependent: :destroy
+  has_one :adopter_foster_account, dependent: :destroy
 
-  accepts_nested_attributes_for :adopter_account, :staff_account
+  # Once we've migrated the existing data to connect a user to a person,
+  # we should remove the optional: true part
+  belongs_to :person, optional: true
+
+  accepts_nested_attributes_for :adopter_foster_account
+
+  before_validation :ensure_person_exists, on: :create
+
+  before_save :downcase_email
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)
     User.includes(:staff_account)
       .where(staff_account: {organization_id: org_id})
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[first_name last_name]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[matches]
   end
 
   # used in views to show only the custom error msg without leading attribute
@@ -80,5 +104,38 @@ class User < ApplicationRecord
 
   def inactive_message
     staff_account.deactivated_at ? :deactivated : super
+  end
+
+  def ensure_person_exists
+    return if person.present?
+
+    existing = Person.find_by(organization: organization, email: email)
+
+    if existing
+      self.person = existing
+    else
+      build_person(name: full_name, email:, organization:)
+    end
+  end
+
+  def full_name(format = :default)
+    case format
+    when :default
+      "#{first_name} #{last_name}"
+    when :last_first
+      "#{last_name}, #{first_name}"
+    else
+      raise ArgumentError, "Unsupported format: #{format}"
+    end
+  end
+
+  def name_initials
+    full_name.split.map { |part| part[0] }.join.upcase
+  end
+
+  private
+
+  def downcase_email
+    self.email = email.downcase if email.present?
   end
 end

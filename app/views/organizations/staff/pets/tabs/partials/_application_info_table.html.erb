@@ -1,0 +1,19 @@
+<div class="row pt-3" id="<%= dom_id(app, :table) %>">
+  <!-- applicant -->
+  <div class="align-middle col">
+    <%= link_to "PLACEHOLDER FOR FORM ANSWERS", nil,
+                                class: "link-underline link-underline-opacity-0"  %>
+  </div>
+  <!-- status -->
+  <div class="align-middle col text-nowrap" style="min-width: 220px;">
+    <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
+  </div>
+  <!-- create -->
+  <div class="align-middle text-center col">
+    <%= render 'organizations/staff/pets/tabs/partials/application_create_button', app: app %>
+  </div>
+  <!-- notes -->
+  <div class="align-middle col text-nowrap">
+    <%= render 'organizations/staff/pets/tabs/partials/application_notes', app: app, modal_id: 'table' %>
+  </div>
+</div>

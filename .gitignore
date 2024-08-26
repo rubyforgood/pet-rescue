@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore bundle folder in vendor
+/vendor/bundle/*
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -44,6 +47,7 @@
 # IDE
 .idea
 .vscode
+/.env
 
 # OS
 .DS_Store

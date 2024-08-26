@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-8 mx-auto card p-5 bigger">
+    <%= bootstrap_form_with model: [:staff, faq] do |f| %>
+      <div class="form-group">
+        <%= f.text_field :question, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.text_area :answer, class: 'form-control', rows: 3 %>
+      </div>
+      <%= f.submit t('general.save'), class: 'btn btn-primary' %>
+      <%= link_to t('general.cancel'), staff_faqs_path, class: 'btn btn-secondary' %>
+    <% end %>
+  </div>
+</div>

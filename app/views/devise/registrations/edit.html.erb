@@ -1,28 +1,24 @@
-<%= render "components/dashboard/page" do |p| %>
-  <% p.header_title "Edit my user settings" %>
-
-  <% p.content do %>
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { "Edit my user settings" } %>
+  <% c.with_body do %>
     <!--main section-->
     <!--form-->
     <section class="pb-5" id="registration_new">
       <div class="container">
         <div class="row">
-          <div class="col-md-6 mx-auto card p-5">
+          <div class="col-md-12 mx-auto card p-5">
             <%= bootstrap_form_for(resource, as: resource_name,
                                   url: registration_path(resource_name),
                                   html: { method: :put }) do |f| %>
-
               <div class="form-group mb-3">
                 <%= f.email_field :email, autofocus: true, autocomplete: "email",
                                   class: 'form-control' %>
               </div>
-
               <% if devise_mapping.confirmable? &&
                     resource.pending_reconfirmation? %>
                 <div>Currently waiting confirmation for:
                     <%= resource.unconfirmed_email %></div>
               <% end %>
-
               <div class="form-group mb-3">
                 <%= f.password_field :password, autocomplete: "new-password",
                                       class: 'form-control', label: 'New password' %>
@@ -31,32 +27,45 @@
                   <em><%= @minimum_password_length %> characters minimum</em>
                 <% end %>
               </div>
-
               <div class="form-group mb-3">
                 <%= f.password_field :password_confirmation, autocomplete: "new-password",
                                       class: 'form-control', label: 'Confirm new password' %>
               </div>
-
               <div class="form-group mb-3">
                 <%= f.text_field :first_name,
                                   class: 'form-control' %>
               </div>
-
               <div class="form-group mb-3">
                 <%= f.text_field :last_name,
                                   class: 'form-control' %>
               </div>
-
               <div class="form-group mb-3">
                 <%= f.password_field :current_password,
                                     autocomplete: "current-password",
                                     required: true,
                                     class: 'form-control' %>
-                <i>(we need your current password to confirm your changes)</i><br />
+                <i>(we need your current password to confirm your changes)</i><br/>
               </div>
-
-              <%= render partial: 'partials/avatarable_form', locals: { resource: resource, form: f, picture_shape: 'circle' } %>
-
+              <% if resource.avatar.id %>
+                <div class='form-group mt-3'>
+                  <label class="form-label">
+                    Current picture
+                  </label>
+                  <div class='d-flex flex-column align-items-center'>
+                    <%= image_tag resource.avatar, class: 'avatar-xxl rounded-circle' %>
+                    <%= link_to t('general.delete'),
+                                purge_avatar_path(resource.avatar.id),
+                                data: { turbo_method: "delete" },
+                                class: 'delete-button' %>
+                  </div>
+                </div>
+              <% else %>
+                <div class='form-group mt-3'>
+                  <%= f.file_field :avatar, 
+                                      class: "custom-attachments",
+                                      label: 'Attach picture' %>
+                </div>
+              <% end %>
               <div class="actions">
                 <%= f.submit "Update", class: 'btn btn-outline-dark mt-3 mb-3',
                                       data: { turbo: false } %>
@@ -64,33 +73,7 @@
             <% end %>
           </div> <!--col-->
         </div> <!--row-->
-
-        <!--cancel my account section-->
-        <div class="row mt-5">
-          <div class="col-md-6 mx-auto">
-            <h4 class="mb-2">Unhappy?</h4>
-            <p>Type 'goodbye' below then click the button to permanently delete your account.</p>
-
-            <div data-controller="delete">
-              <input type="text" data-action="input->delete#showButton"
-                    data-delete-target="input" class="form-control mt-2">
-
-              <%= button_to "Delete my account", registration_path(resource_name),
-                          class: 'btn custom-btn-pink mt-3 mb-3',
-                          data: { confirm: 'Are you sure?',
-                                  turbo: 'false',
-                                  delete_target: 'button' },
-                          method: 'delete',
-                          disabled: true %>
-            </div>
-          </div>
-        </div> <!--row-->
-
       </div><!--container-->
     </section>
   <% end %>
 <% end %>
-
-
-
-

@@ -1,17 +1,19 @@
-orga_location = Location.create!(
-  country: "USA",
-  province_state: "Nevada",
-  city_town: "BajaCity",
-  zipcode: "12346"
-)
-
 @organization = Organization.create!(
   name: "Baja",
   slug: "baja",
-  profile: OrganizationProfile.new(email: "baja@email.com", phone_number: "123 456 7891", location: orga_location, about_us: "We help pets find their forever homes!")
+  email: "baja@email.com",
+  phone_number: "250 816 8212",
+  custom_page: CustomPage.new(hero: "hero text", about: "about us text")
 )
 
 ActsAsTenant.with_tenant(@organization) do
+  @orga_location = Location.create!(
+    country: "US",
+    province_state: "NV",
+    city_town: "BajaCity",
+    zipcode: "12346"
+  )
+
   @user_staff_one = User.create!(
     email: "staff@baja.com",
     first_name: "Andy",
@@ -25,7 +27,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_one.id
   )
 
-  @staff_account_one.add_role(:admin, @organizaton)
+  @user_staff_one.add_role(:super_admin, @organization)
 
   @user_staff_two = User.create!(
     email: "staff2@baja.com",
@@ -40,7 +42,7 @@ ActsAsTenant.with_tenant(@organization) do
     user_id: @user_staff_two.id
   )
 
-  @staff_account_two.add_role(:admin, @organizaton)
+  @user_staff_two.add_role(:super_admin, @organization)
 
   @user_adopter_one = User.create!(
     email: "adopter1@baja.com",
@@ -51,7 +53,9 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_one = AdopterAccount.create!(user_id: @user_adopter_one.id)
+  @adopter_foster_account_one = AdopterFosterAccount.create!(user_id: @user_adopter_one.id)
+
+  @user_adopter_one.add_role(:adopter, @organization)
 
   @user_adopter_two = User.create!(
     email: "adopter2@baja.com",
@@ -62,7 +66,9 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_two = AdopterAccount.create!(user_id: @user_adopter_two.id)
+  @adopter_foster_account_two = AdopterFosterAccount.create!(user_id: @user_adopter_two.id)
+
+  @user_adopter_two.add_role(:adopter, @organization)
 
   @user_adopter_three = User.create!(
     email: "adopter3@baja.com",
@@ -73,145 +79,37 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  @adopter_account_three = AdopterAccount.create!(user_id: @user_adopter_three.id)
+  @adopter_foster_account_three = AdopterFosterAccount.create!(user_id: @user_adopter_three.id)
 
-  @location_one = Location.create!(
-    country: "Canada",
-    province_state: "Alberta",
-    city_town: "Canmore",
-    zipcode: "12345"
+  @user_adopter_three.add_role(:adopter, @organization)
+
+  @user_fosterer_one = User.create!(
+    email: "fosterer1@baja.com",
+    first_name: "Simon",
+    last_name: "Petrikov",
+    password: "123456",
+    password_confirmation: "123456",
+    tos_agreement: 1
   )
 
-  @adopter_profile_one = AdopterProfile.create!(
-    location_id: @location_one.id,
-    adopter_account_id: @adopter_account_one.id,
-    phone_number: "250 548 7721",
-    contact_method: "phone",
-    ideal_pet: 'I love a pet with energy and a gentle spirit.
-              One that snuggles on the couch in the evening.',
-    lifestyle_fit: 'I work from home during the week and am always
-                  at home. On weekends I do a lot of hiking.',
-    activities: 'We will go to the pet park, daily walks x 2, and
-              see friends with pets regularly',
-    alone_weekday: 2,
-    alone_weekend: 1,
-    experience: 'I have owned many pets an currently have three rescue
-              pets and one foster pet',
-    contingency_plan: 'My neighbour is a good friend and has looked after
-                    my pets multiple times and they get along very well',
-    shared_ownership: true,
-    shared_owner: 'My brother is often taking my pets when his kids are over
-                for the weekend as they just love the pets',
-    housing_type: "Detached",
-    fenced_access: true,
-    location_day: "In the house",
-    location_night: "In the house",
-    do_you_rent: false,
-    adults_in_home: 2,
-    kids_in_home: 1,
-    other_pets: true,
-    describe_pets: "I have one cat that does not mind pets at all",
-    checked_shelter: true,
-    surrendered_pet: true,
-    describe_surrender: "I had to surrender a cat when I was 19 because of university",
-    annual_cost: "$2,000",
-    visit_laventana: false,
-    referral_source: "my friends friend"
+  @user_fosterer_one.create_adopter_foster_account!
+
+  @user_fosterer_one.add_role(:adopter, @organization)
+  @user_fosterer_one.add_role(:fosterer, @organization)
+
+  @user_fosterer_two = User.create!(
+    email: "fosterer2@baja.com",
+    first_name: "Finn",
+    last_name: "Mertens",
+    password: "123456",
+    password_confirmation: "123456",
+    tos_agreement: 1
   )
 
-  @location_two = Location.create!(
-    country: "USA",
-    province_state: "Nevada",
-    city_town: "Reno",
-    zipcode: "12345"
-  )
+  @user_fosterer_two.create_adopter_foster_account!
 
-  @adopter_profile_two = AdopterProfile.create!(
-    location_id: @location_two.id,
-    adopter_account_id: @adopter_account_two.id,
-    phone_number: "250 548 7721",
-    contact_method: "phone",
-    ideal_pet: 'I love a pet with energy and a gentle spirit.
-              One that snuggles on the couch in the evening.',
-    lifestyle_fit: 'I work from home during the week and am always
-                  at home. On weekends I do a lot of hiking.',
-    activities: 'We will go to the pet park, daily walks x 2, and
-              see friends with pets regularly',
-    alone_weekday: 2,
-    alone_weekend: 1,
-    experience: 'I have owned many pets an currently have three rescue
-              pets and one foster pet',
-    contingency_plan: 'My neighbour is a good friend and has looked after
-                    my pets multiple times and they get along very well',
-    shared_ownership: true,
-    shared_owner: 'My brother is often taking my pets when his kids are over
-                for the weekend as they just love the pets',
-    housing_type: "Detached",
-    fenced_access: false,
-    fenced_alternative: "I plan to always be outside with my pet and walk them at the local park",
-    location_day: "In the house",
-    location_night: "In the house",
-    do_you_rent: true,
-    pets_allowed: true,
-    adults_in_home: 2,
-    kids_in_home: 1,
-    other_pets: true,
-    describe_pets: "I have one cat that does not mind pets at all",
-    checked_shelter: true,
-    surrendered_pet: true,
-    describe_surrender: "I had to surrender a cat when I was 19 because of university",
-    annual_cost: "$2,000",
-    visit_laventana: true,
-    visit_dates: "April 2 to May 7 2023",
-    referral_source: "my friends friend"
-  )
-
-  @location_three = Location.create!(
-    country: "Nonsense",
-    province_state: "Nonsense",
-    city_town: "Nonsense",
-    zipcode: "12345"
-  )
-
-  @adopter_profile_three = AdopterProfile.create!(
-    location_id: @location_three.id,
-    adopter_account_id: @adopter_account_three.id,
-    phone_number: "250 548 7721",
-    contact_method: "phone",
-    ideal_pet: 'I love a pet with energy and a gentle spirit.
-              One that snuggles on the couch in the evening.',
-    lifestyle_fit: 'I work from home during the week and am always
-                  at home. On weekends I do a lot of hiking.',
-    activities: 'We will go to the pet park, daily walks x 2, and
-              see friends with pets regularly',
-    alone_weekday: 2,
-    alone_weekend: 1,
-    experience: 'I have owned many pets an currently have three rescue
-              pets and one foster pet',
-    contingency_plan: 'My neighbour is a good friend and has looked after
-                    my pets multiple times and they get along very well',
-    shared_ownership: true,
-    shared_owner: 'My brother is often taking my pets when his kids are over
-                for the weekend as they just love the pets',
-    housing_type: "Detached",
-    fenced_access: false,
-    fenced_alternative: "I plan to always be outside with my pet and walk them at the local park",
-    location_day: "In the house",
-    location_night: "In the house",
-    do_you_rent: true,
-    pets_allowed: true,
-    adults_in_home: 2,
-    kids_in_home: 1,
-    other_pets: true,
-    describe_pets: "I have one cat that does not mind pets at all",
-    checked_shelter: true,
-    surrendered_pet: true,
-    describe_surrender: "I had to surrender a cat when I was 19 because of university",
-    annual_cost: "$2,000",
-    visit_laventana: true,
-    visit_dates: "April 2 to May 7 2023",
-    referral_source: "my friends friend"
-  )
+  @user_fosterer_two.add_role(:adopter, @organization)
+  @user_fosterer_two.add_role(:fosterer, @organization)
 
   5.times do
     DefaultPetTask.create!(
@@ -221,7 +119,7 @@ ActsAsTenant.with_tenant(@organization) do
   end
 
   path = Rails.root.join("app", "assets", "images", "hero.jpg")
-  10.times do
+  25.times do
     from_weight = [5, 10, 20, 30, 40, 50, 60].sample
     pet = Pet.create!(
       name: Faker::Creature::Dog.name,
@@ -232,7 +130,7 @@ ActsAsTenant.with_tenant(@organization) do
       weight_unit: Pet::WEIGHT_UNITS.sample,
       breed: Faker::Creature::Dog.breed,
       description: "He just loves a run and a bum scratch at the end of the day",
-      species: 0,
+      species: Pet.species["Dog"],
       placement_type: 1,
       published: true
     )
@@ -249,34 +147,89 @@ ActsAsTenant.with_tenant(@organization) do
     end
   end
 
-  @match = Match.create!(
+  Match.create!(
     pet_id: Pet.first.id,
-    adopter_account_id: @adopter_account_one.id
+    adopter_foster_account_id: @adopter_foster_account_one.id,
+    match_type: :adoption
   )
+
+  @fosterable_pets = Array.new(3) do
+    from_weight = [5, 10, 20, 30, 40, 50, 60].sample
+    Pet.create!(
+      name: Faker::Creature::Dog.name,
+      birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
+      sex: Faker::Creature::Dog.gender,
+      weight_from: from_weight,
+      weight_to: from_weight + 15,
+      weight_unit: Pet::WEIGHT_UNITS.sample,
+      breed: Faker::Creature::Dog.breed,
+      description: Faker::Lorem.sentence,
+      species: Pet.species["Dog"],
+      placement_type: "Fosterable",
+      published: true
+    )
+  end
+
+  # Complete foster
+  complete_start_date = Time.now - 4.months
+  complete_end_date = complete_start_date + 3.months
+  Match.create!(
+    pet_id: @fosterable_pets[0].id,
+    adopter_foster_account_id: @user_fosterer_one.adopter_foster_account.id,
+    match_type: :foster,
+    start_date: complete_start_date,
+    end_date: complete_end_date
+  )
+
+  # Current foster
+  current_start_date = Time.now - 2.months
+  current_end_date = current_start_date + 6.months
+  Match.create!(
+    pet_id: @fosterable_pets[1].id,
+    adopter_foster_account_id: @user_fosterer_one.adopter_foster_account.id,
+    match_type: :foster,
+    start_date: current_start_date,
+    end_date: current_end_date
+  )
+
+  # Upcoming foster
+  upcoming_start_date = Time.now + 1.week
+  upcoming_end_date = upcoming_start_date + 3.months
+  Match.create!(
+    pet_id: @fosterable_pets[2].id,
+    adopter_foster_account_id: @user_fosterer_two.adopter_foster_account.id,
+    match_type: :foster,
+    start_date: upcoming_start_date,
+    end_date: upcoming_end_date
+  )
+
+  @form_submission = FormSubmission.new(organization: @organization, person: Person.new(name: "John Doe", email: "Doe@gmail.com"))
 
   10.times do
-    AdopterApplication.create!(
+    adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
-      status: rand(0..5),
-      adopter_account: AdopterAccount.joins(:user).where(users: {organization_id: @organization.id}).sample,
-      pet: Pet.all.sample
+      status: rand(0..4),
+      adopter_foster_account: AdopterFosterAccount.all.sample,
+      pet: Pet.all.sample,
+      form_submission: @form_submission
     )
-  end
 
-  @checklist_template = ChecklistTemplate.create!(
-    name: "vaccinations",
-    description: "Get your dog vaccinated"
-  )
+    # Prevent duplicate adopter applications.
+    redo if AdopterApplication.where(pet_id: adopter_application.pet_id,
+      adopter_foster_account_id: adopter_application.adopter_foster_account_id).exists?
+
+    if adopter_application.valid?
+      adopter_application.save!
+    else
+      redo
+    end
+  end
 
   5.times do
-    @checklist_template.items.create!(
-      name: Faker::Verb.base,
-      description: Faker::Quote.famous_last_words,
-      expected_duration_days: rand(1..10),
-      required: [true, false].sample
+    Faq.create!(
+      question: Faker::Lorem.question(word_count: 4, random_words_to_add: 10),
+      answer: Faker::Lorem.sentence(word_count: 1, random_words_to_add: 50)
     )
   end
-
-  @match.assign_checklist_template(@checklist_template)
 end

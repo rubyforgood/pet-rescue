@@ -2,3 +2,11 @@ en:
   dashboard: 
     index: 
       header_title: Dashboard
+    applications:
+      header_title: Adoption Applications
+      name: Name
+      created: Created
+      status: Status
+      withdraw_application: Withdraw Application
+      confirm_withdraw: Withdraw your application for %{pet_name}?
+      confirm_delete: This will permanently remove this application from your dashboard.

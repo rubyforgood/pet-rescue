@@ -1,0 +1,8 @@
+<%= render DashboardPageComponent.new do |c| %>
+  <% c.with_header_title { t('static_pages.donate.donate') } %>
+  <% c.with_body do %>
+    <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
+      <%= render "static_pages/donate_content" %>
+    </div>
+  <% end %>
+<% end %>

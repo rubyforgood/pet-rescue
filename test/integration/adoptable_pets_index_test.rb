@@ -2,25 +2,24 @@ require "test_helper"
 
 class AdoptablePetsIndexTest < ActionDispatch::IntegrationTest
   setup do
-    @match = create(:adopter_application, :adoption_pending)
-    @pet = @match.pet
-    set_organization(@pet.organization)
-    @pet_count = Pet.unadopted.published.count
+    @available_pet = create(:pet)
+    @pet_in_draft = create(:pet, published: false)
+    @pet_pending_adoption = create(:pet, :adoption_pending)
+    @adopted_pet = create(:pet, :adopted)
+  end
+
+  teardown do
+    check_messages
   end
 
   test "unauthenticated user can access adoptable pets index" do
-    get "/#{@pet.organization.slug}/adoptable_pets"
-    check_messages
+    get adoptable_pets_path
+
     assert_select "h1", "Up for adoption"
-  end
-
-  test "all unadopted, published pets show on the pet_index page" do
-    get "/#{@pet.organization.slug}/adoptable_pets"
-    assert_select "img.card-img-top", {count: @pet_count}
-  end
-
-  test "pet name shows adoption pending if it has any applications with that status" do
-    get "/#{@pet.organization.slug}/adoptable_pets"
-    assert_select "#adoption-status", "Adoption Pending"
+    assert_response :success
+    assert_select "a[href$='adoptable_pets/#{@available_pet.id}']", 2
+    assert_select "a[href$='adoptable_pets/#{@pet_in_draft.id}']", 0
+    assert_select "a[href$='adoptable_pets/#{@pet_pending_adoption.id}']", 2
+    assert_select "a[href$='adoptable_pets/#{@adopted_pet.id}']", 0
   end
 end

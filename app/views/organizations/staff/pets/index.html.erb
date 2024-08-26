@@ -1,0 +1,56 @@
+<%= render DashboardPageComponent.new(crumb: :dashboard_pets) do |c| %>
+  <% c.with_header_title { t(".our_pets") } %>
+  <% c.with_action do %>
+    <%= link_to t('.create_pet'), new_staff_pet_path, class: "btn btn-primary" %><br>
+  <% end %>
+  <% c.with_body do %>
+    <!--filter section-->
+    <div>
+      <div>
+        <%= search_form_for [:staff, @q] do |f| %>
+          <div class='d-flex justify-content-between align-items-center flex-wrap mb-3'>
+            <div class="d-flex gap-3 flex-wrap mb-3">
+              <div class="form-group">
+                <%= f.label :name_i_cont, "Name" %>
+                <%= f.text_field :name_i_cont, class: "form-control", placeholder: "Enter a few characters" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :sex_eq, "Sex" %>
+                <%= f.select :sex_eq, ["Male", "Female"], {include_blank: 'All'}, class: "form-select" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :species_eq, "Species" %>
+                <%= f.select :species_eq, Pet.species, {include_blank: 'All'}, class: "form-select" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :ransack_adopted, "Status" %>
+                <%= f.select :ransack_adopted, [['Adopted', true], ['Unadopted', false]], {include_blank: 'All'}, class: "form-select" %>
+              </div>
+            </div>
+            <div class='d-flex flex-column w-100 w-md-auto flex-md-row gap-2'>
+              <%= f.submit class: "btn btn-primary" %>
+              <%= link_to "Clear filters", staff_pets_path, class: "btn btn-default"%>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-2">
+      <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+    </div>
+    <!-- row -->
+    <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
+      <!-- Table layout -->
+      <div class="d-none d-xl-block">
+        <%= render partial: "pet_table", locals: { pets: @pets} %>
+      </div>          
+      <!-- Card-based layout -->
+      <div class="d-xl-none d-flex flex-wrap">
+        <%= render partial:"pet_cards", collection: @pets, as: :pet %>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center mt-2">
+      <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+    </div>
+  <% end %>
+<% end %>
