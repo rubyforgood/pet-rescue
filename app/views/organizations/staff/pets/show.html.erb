@@ -19,7 +19,9 @@
 
   <% c.with_body do %>
     <div class="row">
+      <div class = "col-12">
         <%= render partial: "organizations/staff/pets/tabs/#{@active_tab}", locals: { applications: @pet.adopter_applications, pet: @pet, fosters: @pet.matches.fosters } %>
+      </div>
     </div>
   <% end %>
 <% end %>
