@@ -1,12 +1,7 @@
 <%= render DashboardPageComponent.new(crumb: :dashboard_pet, crumb_options: [@pet]) do |c| %>
   <% c.with_header_title do %>
-     <div class="d-flex align-items-center">
-          <%= image_tag(@pet.images.attached? ? @pet.images.first :
-          'coming_soon.jpg', class: 'rounded-circle border border-3 border-primary me-3', style: "height: 40px; width: 40px; object-fit: cover;") %>
-            <h4 class="mb-0">
-              <%= @pet.name%>
-            </h4>
-      </div>
+    <%= render PetAvatarComponent.new(@pet)%>
+    <%= @pet.name%>
   <% end %>
   <% c.with_nav_tabs([
     { url: staff_pet_path(@pet, active_tab: 'overview'), text: "Overview" },
