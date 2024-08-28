@@ -4,6 +4,7 @@
 class PetAvatarComponent < ApplicationComponent
   param :pet, Types::Instance(Pet)
   option :like, optional: true
+  option :size, Types::Size, default: -> { :md }
 
   private
 
@@ -32,10 +33,20 @@ class PetAvatarComponent < ApplicationComponent
   end
 
   def initials_class
-    "avatar-initials rounded-circle fs-2"
+    case size
+    when :md
+      "avatar-initials rounded-circle"
+    when :xl
+      "avatar-initials rounded-circle fs-2"
+    end
   end
 
   def container_class
-    "avatar avatar-xl avatar-primary rounded-circle border border-4 border-white"
+    case size
+    when :md
+      "avatar avatar-md avatar-primary rounded-circle border border-1 border-primary"
+    when :xl
+      "avatar avatar-xl avatar-primary rounded-circle border border-4 border-white"
+    end
   end
 end
