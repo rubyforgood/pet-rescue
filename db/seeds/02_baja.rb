@@ -78,6 +78,8 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_one.add_role(:adopter, @organization)
 
+  @adopter_one.create_form_submission!
+
   @adopter_two = Person.create!(
     email: "adopter2@baja.com",
     first_name: "Kamala",
@@ -98,6 +100,8 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_two.add_role(:adopter, @organization)
 
+  @adopter_two.create_form_submission!
+
   @adopter_three = Person.create!(
     email: "adopter3@baja.com",
     first_name: "Bad",
@@ -117,6 +121,8 @@ ActsAsTenant.with_tenant(@organization) do
   @adopter_foster_account_three = AdopterFosterAccount.create!(user_id: @user_adopter_three.id)
 
   @user_adopter_three.add_role(:adopter, @organization)
+
+  @adopter_three.create_form_submission!
 
   @fosterer_one = Person.create!(
     email: "fosterer1@baja.com",
@@ -252,8 +258,6 @@ ActsAsTenant.with_tenant(@organization) do
     end_date: upcoming_end_date
   )
 
-  @form_submission = FormSubmission.new(organization: @organization, person: Person.new(first_name: "John", last_name: "Doe", email: "Doe@gmail.com"))
-
   10.times do
     adopter = Person.adopters.sample
 
@@ -264,7 +268,7 @@ ActsAsTenant.with_tenant(@organization) do
       # FIXME: Delete this after implementing Person
       adopter_foster_account: adopter.user.adopter_foster_account,
       pet: Pet.all.sample,
-      form_submission: @form_submission
+      form_submission: FormSubmission.all.sample
     )
 
     # Prevent duplicate adopter applications.
