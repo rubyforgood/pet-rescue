@@ -6,7 +6,6 @@ class PetAvatarComponent < ApplicationComponent
   option :like, optional: true
   option :size, Types::Size, default: -> { :md }
 
-
   private
 
   def pet_avatar
@@ -50,5 +49,4 @@ class PetAvatarComponent < ApplicationComponent
       "avatar avatar-xl avatar-primary rounded-circle border border-4 border-white"
     end
   end
-
 end
