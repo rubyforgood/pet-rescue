@@ -16,7 +16,7 @@ module Organizations
           format.turbo_stream do
             render turbo_stream: turbo_stream.replace(
               "pet_files",
-              partial: "pet_files",
+              partial: "organizations/shared/file_attachment_table",
               locals: {pet: @pet}
             )
           end
