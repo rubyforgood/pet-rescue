@@ -1,0 +1,105 @@
+<%= bootstrap_form_with model: organization, :url => staff_organization_path do |form| %>
+  <% if organization.errors.count > 0 %>
+    <div class="alert alert-danger mt-1" role="alert">
+      <%= t '.please_fix_the_errors' %>
+    </div>
+  <% end %>
+
+  <div class='card-body'>
+    <div class="d-lg-flex align-items-center justify-content-between">
+      <h3 class="mb-1">Organization Details</h3>
+        <p class="text-muted mb-3" style="font-size: 12px;">Edit your organization's information.<p>
+    </div>
+
+    <!-- Administrative details section -->
+    <div class="row mt-3">
+      <!-- First Column -->
+      <div class="col-lg-6">
+        <form class="mb-3">
+          <!-- Phone Number -->
+          <div class="form-group">
+            <%= form.telephone_field :phone_number,
+                                    autofocus: true,
+                                    placeholder: "10 digit number",
+                                    class: 'form-control' %>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <%= form.text_field :email, placeholder: "john@email.com", class: 'form-control' %>
+          </div>
+        </form>
+      </div>
+
+      <!-- Second Column -->
+      <div class="col-lg-6">
+
+        <!-- Nested Form for Locations Table -->
+        <div class="form-group bigger" data-controller="country-state">
+          <% location = organization.locations.last || organization.locations.build %>
+          <%= form.fields_for :locations, location do |location_form| %>
+            <!-- Country Select -->
+            <%= location_form.select :country,
+                                CS.countries.invert,
+                                { prompt: "Please select" },
+                                'data-path': country_states_path(:country),
+                                'data-country-state-target': 'country',
+                                'data-action': 'change->country-state#updateStates',
+                                'data-initial-value': location_form.object.country,
+                                required: true,
+                                class: 'form-control' %>
+
+            <!-- Province/State Select -->
+            <%= location_form.select :province_state,
+                                CS.states(location_form.object.country).invert,
+                                { prompt: "Please select" },
+                                'data-country-state-target': 'state',
+                                required: true,
+                                class: 'form-control' %>
+
+            <!-- City/Town Text Field -->
+            <%= location_form.text_field :city_town, class: 'form-control' %>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Third Column -->
+      <div class="col-lg-6">
+        <%= form.text_field :facebook_url, label: "Facebook", placeholder: "https://example.com", class: 'form-control' %>
+        <%= form.text_field :instagram_url, label: "Instagram", placeholder: "https://example.com", class: 'form-control' %>
+      </div>
+      <div class="col-lg-6">
+        <%= form.text_field :donation_url, label: "Donate", placeholder: "https://example.com", class: 'form-control' %>
+        <% if organization.avatar.id %>
+          <div class='form-group mt-3'>
+            <label class="form-label">
+              Current picture
+            </label>
+            <div class='d-flex flex-column align-items-center'>
+              <%= image_tag organization.avatar, class: 'rounded-1', style: 'max-height:7.5rem;max-width:100%' %>
+              <%= link_to t('general.delete'),
+                          staff_purge_attachment_path(organization.avatar.id),
+                          data: { turbo_method: "delete" },
+                          class: 'delete-button' %>
+            </div>
+          </div>
+        <% else %>
+          <div class='form-group mt-3'>
+            <%= form.file_field :avatar, 
+                                class: "custom-attachments",
+                                label: 'Attach picture' %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-lg-12">
+        <%= form.submit 'Save profile', class: 'btn btn-primary' %>
+        <%= link_to t('general.cancel'), :back, class: 'btn btn-outline-secondary' %>
+      </div>
+    </div>
+  </div> <!-- End of Card Body -->
+<% end %>
+

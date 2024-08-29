@@ -60,7 +60,9 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true
   validates :last_name, presence: true
-  validates :email, presence: true, uniqueness: {scope: :organization_id}
+  validates :email, presence: true, uniqueness: {scope: :organization_id}, format: {
+    with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  }
   # validates :tos_agreement, acceptance: {message: "Please accept the Terms and Conditions"},
   #   allow_nil: false, on: :create
 
@@ -74,6 +76,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :adopter_foster_account
 
   before_validation :ensure_person_exists, on: :create
+
+  before_save :downcase_email
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)
@@ -127,5 +131,11 @@ class User < ApplicationRecord
 
   def name_initials
     full_name.split.map { |part| part[0] }.join.upcase
+  end
+
+  private
+
+  def downcase_email
+    self.email = email.downcase if email.present?
   end
 end

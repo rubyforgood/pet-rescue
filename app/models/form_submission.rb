@@ -10,6 +10,7 @@
 # Table name: form_submissions
 #
 #  id              :bigint           not null, primary key
+#  csv_timestamp   :datetime
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :bigint           not null

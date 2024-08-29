@@ -1,11 +1,3 @@
-<%# set header to ensure full page reload to enable PayPal SDK to work properly %>
-<%# see: https://turbo.hotwired.dev/handbook/drive#ensuring-specific-pages-trigger-a-full-reload %>
-<% content_for :head do %>
-  <meta name="turbo-visit-control" content="reload">
-<% end %>
-
-<script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-
 <section class="pt-5 pb-5" id="donate">
 	<div class="container mb-md-5 mt-md-5">
 
@@ -21,51 +13,8 @@
 			<div class="col-md-4 mb-4 mb-md-0">
 				<%= image_tag('about1.jpg', alt: 'Pet in Mexico', class: 'card-img-top rounded') %>
 			</div>
-			<div class="col-md-8 ps-md-4 bigger pb-5 pb-md-0">
-				<p>
-					Baja Pet Rescue relies heavily on donations to keep the program up and running. Even though things are generally cheaper in Mexico, the cost of rescuing each pet mounts up quickly.
-				</p>
-				<br/>
-				<p>
-					Please consider donating to Danielle today so she can continue giving these pets a chance at a healthier, happier life.
-				</p>	
-				<div class="row text-center mt-5">
-					<div class="col-8 offset-2 border p-5 shadow-sm 
-											rounded bg-white">
-						<h3 class='mb-4'>Donate now via Paypal</h3>
 
-						<div id="paypal-donate-button-container" class="text-center mt-2">
-							<script>
-								const business_id = '<%= ENV['PAYPAL_BUSINESS'] %>';
-								
-								PayPal.Donation.Button({
-									env: 'production',
-									business: business_id,
-									image: {
-										src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
-										title: 'Donate to Baja Pet Rescue via Paypal.',
-										alt: 'Donate with PayPal button'
-									},
-									onComplete: function (params) {
-										params["source"] = "Paypal"
-										const csrfToken = document.querySelector('[name="csrf-token"]').content
-
-										fetch('https://www.bajapetrescue.com/donations', {
-											method: 'POST',
-											headers: {
-												'Content-Type': 'application/json',
-												'Accept': 'application/json',
-												'X-CSRF-Token': csrfToken
-											},
-											body: JSON.stringify(params)
-										});
-									},
-								}).render('#paypal-donate-button-container');
-							</script>
-						</div>
-					</div>
-				</div>
-			</div>
+			<%= render "donate_content" %>
 		</div> <!--row-->
 	</div> <!--container-->
 </section>

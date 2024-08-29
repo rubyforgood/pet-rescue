@@ -4,9 +4,6 @@ FactoryBot.define do
     sequence(:country) { |n| "Country#{n}" }
     province_state { Faker::Address.state }
     zipcode { Faker::Address.zip_code }
-
-    trait :with_profile do
-      adopter_foster_profile
-    end
+    organization { ActsAsTenant.current_tenant }
   end
 end

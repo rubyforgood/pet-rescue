@@ -5,15 +5,13 @@ Rails.application.routes.draw do
     invitations: "organizations/staff/invitations"
   }
 
-  resources :donations, only: [:create]
-
   scope module: :organizations do
     resources :home, only: [:index]
     resources :adoptable_pets, only: %i[index show]
     resources :faq, only: [:index]
 
     namespace :staff do
-      resource :organization_profile, only: %i[edit update]
+      resource :organization, only: %i[edit update]
       resource :custom_page, only: %i[edit update]
       resources :profile_reviews, only: [:show]
 
@@ -59,6 +57,7 @@ Rails.application.routes.draw do
 
     namespace :adopter_fosterer do
       resource :profile, except: :destroy
+      resources :donations, only: [:index]
       resources :dashboard, only: [:index]
       resources :likes, only: [:index, :create, :destroy]
       resources :adopter_applications, path: "applications", only: %i[index create update]
@@ -82,4 +81,5 @@ Rails.application.routes.draw do
   get "/cookie_policy", to: "static_pages#cookie_policy"
 
   resources :contacts, only: %i[new create]
+  resources :dev_contacts, path: "feedback", only: %i[new create]
 end
