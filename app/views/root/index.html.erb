@@ -1,162 +1,315 @@
-<section class="py-lg-16 py-5 my-5">
+<section class="bg-light py-lg-16 py-5 my-5 ">
   <div class="container">
-    <div class="row d-flex align-items-center">
+    <div class="row d-flex align-items-center justify-content-center">
       <div class="col-xxl-5  col-xl-6 col-lg-6 col-12">
-        <div>
-          <h1 class="display-2 fw-bold mb-3"><%= t('.title') + " " %><u class="text-warning"><span class="text-primary"><%= t('.worldwide') %></span></u></h1>
-          <p class="lead mb-4"><%= t('.description') %></p>
-          <ul class="list-unstyled mb-5">
-            <li class="mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--geeks-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </svg>
-              <span class="ms-2"><%= t('.easy_to_use') %></span>
-            </li>
-            <li class="mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--geeks-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </svg>
-              <span class="ms-2"><%= t('.no_download') %></span>
-            </li>
-            <li class="mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--geeks-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </svg>
-              <span class="ms-2"><%= t('.manage') %></span>
-            </li>
-            <li class="mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--geeks-success)" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"></path>
-              </svg>
-              <span class="ms-2"><%= t('.save') %></span>
-            </li>
-          </ul>
-          <a href="#!" class="btn btn-dark btn-lg mb-2"><%= t('.btn_title') %></a>
+      <div class="row d-flex align-items-center justify-content-center">
+      <div class="col-9">
+        <h1 class="display-2 fw-bold mb-3 text-center text-sm-start", style= 'color: #000000;'>
+          <%= t('.title') + " " %><span class="text-primary"><%= t('.pet') %></span>
+        </h1>
+        <p class="lead mb-8 w-100 text-center text-sm-start mx-auto mx-sm-0">
+          <%= t('.description') %>
+        </p>
+        <div class="text-center">
+          <a href="#!" class="btn btn-primary btn-lg mb-2 px-8"><%= t('.btn_title') %></a>
+          <small class = "d-block" style="color: #585858;"><%= t('.btn_subtitle')%></small>
         </div>
       </div>
-      <div class="col-xxl-5 offset-xxl-1 col-xl-6 col-lg-6 col-12 d-lg-flex justify-content-end">
-        <div class="mt-12 mt-lg-0 position-relative">
-          <div class="position-absolute top-0 start-0 translate-middle  d-none d-md-block">
-            <%= image_tag "svg/graphics-2.svg", alt: "graphics-2" %>
-          </div>
-          <%= image_tag "hero.jpg", alt: "hero", class: "img-fluid rounded-4 w-100 z-1 position-relative" %>
-          <div class="position-absolute top-100 start-100 translate-middle  d-none d-md-block">
-            <%= image_tag "svg/graphics-1.svg", alt: "graphics-1" %>
-          </div>
+    </div>
+      </div>
+      <div class="col-xxl-5  col-xl-6 col-lg-6 col-12">
+        <div class="mt-12 mt-lg-0 d-flex justify-content-center align-items-center">
+          <%= image_tag "hero_2.png", alt: "hero", class: "img-fluid w-100"%>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="pb-lg-14 pb-6" id='about'>
-  <div class="container">
-    <div class="row">
-      <div class="col-xl-6 offset-xl-3 col-md-12 col-12">
-        <div class="text-center mb-lg-10 mb-6">
-          <h2 class="h1 fw-bold">
-            <%= t('.subtitle') %><u class="text-warning"><span class="text-primary"> <%= t('.subtitle_highlight') %></span></u></h2>
-          <p class="lead mb-4"><%= t('.subtitle_description') %></p>
+<section class="bg-white py-4 shadow-sm">
+    <div class="container">
+        <div class="row pb-6">
+            <div class="col-lg-4 col-12">
+                <div class="d-flex">
+                    <div class="mb-4 ms-4">
+                        <h2 class="mb-2 h1 fw-semibold text-center text-dark"><%= t('.free')%></h3>
+                        <p class="mb-0 text-center" style = "color: #373737;"><%= t('.free_description')%></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="d-flex">
+                    <div class="mb-4 ms-4">
+                        <h2 class="mb-2 h1 fw-semibold text-center text-dark"><%= t('.easy')%></h3>
+                        <p class="mb-0 text-center" style = "color: #373737;"><%= t('.easy_description')%></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-12">
+                <div class="d-flex">
+                    <div class="mb-4 ms-4">
+                        <h2 class="mb-2 h1 fw-semibold text-center text-dark"><%= t('.personalized')%></h3>
+                        <p class="mb-0 text-center" style = "color: #373737;"><%= t('.personalized_description')%></p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    <div class="row align-items-center">
-      <div class="col-xl-5 col-lg-6 col-md-12 col-12">
-        <div class="mb-6 mb-lg-0">
-          <div class="mb-2">
-            <%= image_tag "education/edu-img-2.jpg", class: 'rounded-4 align-items-center' %>
-          </div>
-          <div class="d-flex">
-            <span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="var(--geeks-primary)" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
-                <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"></path>
-              </svg>
-            </span><span class="ms-2 mb-4"><%= t('.img_sub') %></span>
-          </div>
+</section>
+
+<section class="bg-white pb-lg-12 py-5 shadow-sm">
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-12 px-lg-8 mb-8 mt-6">
+                <h3 class="fs-2 fw-bold mt-3 mb-2 text-center text-dark"><%= t('.website')%></h2>
+                <p class="fs-3 text-center text-dark"><%= t('.website_description')%></p>
+            </div>
+            <div class="col-12">
+                <div class="mt-12 mt-lg-0 d-flex justify-content-center align-items-center">
+                    <%= image_tag "website.png", alt: "website_image", class: "img-fluid w-100" %>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="col-xl-6 offset-xl-1  col-lg-6 col-md-12 col-12">
-        <div class="row row-cols-2">
-          <div class="col">
-            <div class="mb-4 mb-xl-6">
-              <div class="mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--geeks-primary)" class="bi bi-trophy" viewBox="0 0 16 16">
-                  <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5c0 .538-.012 1.05-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33.076 33.076 0 0 1 2.5.5zm.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935zm10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935zM3.504 1c.007.517.026 1.006.056 1.469.13 2.028.457 3.546.87 4.667C5.294 9.48 6.484 10 7 10a.5.5 0 0 1 .5.5v2.61a1 1 0 0 1-.757.97l-1.426.356a.5.5 0 0 0-.179.085L4.5 15h7l-.638-.479a.501.501 0 0 0-.18-.085l-1.425-.356a1 1 0 0 1-.757-.97V10.5A.5.5 0 0 1 9 10c.516 0 1.706-.52 2.57-2.864.413-1.12.74-2.64.87-4.667.03-.463.049-.952.056-1.469H3.504z"></path>
-                </svg>
-              </div>
-              <div>
-                <h4><%= t('.logistics') %></h4>
-                <p><%= t('.logistics_description') %></p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-lg-6 mb-4">
-              <div class="mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--geeks-primary)" class="bi bi-star" viewBox="0 0 16 16">
-                  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"></path>
-                </svg>
-              </div>
-              <div>
-                <h4><%= t('.free') %></h4>
-                <p><%= t('.free_description') %></p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="mb-4 mb-md-0">
-              <div class="mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--geeks-primary)" class="bi bi-shield-lock" viewBox="0 0 16 16">
-                  <path d="M5.338 1.59a61.44 61.44 0 0 0-2.837.856.481.481 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.725 10.725 0 0 0 2.287 2.233c.346.244.652.42.893.533.12.057.218.095.293.118a.55.55 0 0 0 .101.025.615.615 0 0 0 .1-.025c.076-.023.174-.061.294-.118.24-.113.547-.29.893-.533a10.726 10.726 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.775 11.775 0 0 1-2.517 2.453 7.159 7.159 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7.158 7.158 0 0 1-1.048-.625 11.777 11.777 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 62.456 62.456 0 0 1 5.072.56z"></path>
-                  <path d="M9.5 6.5a1.5 1.5 0 0 1-1 1.415l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99a1.5 1.5 0 1 1 2-1.415z"></path>
-                </svg>
-              </div>
-              <div>
-                <h4><%= t('.manage') %></h4>
-                <p><%= t('.manage_description') %></p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div>
-              <div class="mb-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="var(--geeks-primary)" class="bi bi-nut" viewBox="0 0 16 16">
-                  <path d="m11.42 2 3.428 6-3.428 6H4.58L1.152 8 4.58 2h6.84zM4.58 1a1 1 0 0 0-.868.504l-3.428 6a1 1 0 0 0 0 .992l3.428 6A1 1 0 0 0 4.58 15h6.84a1 1 0 0 0 .868-.504l3.429-6a1 1 0 0 0 0-.992l-3.429-6A1 1 0 0 0 11.42 1H4.58z"></path>
-                  <path d="M6.848 5.933a2.5 2.5 0 1 0 2.5 4.33 2.5 2.5 0 0 0-2.5-4.33zm-1.78 3.915a3.5 3.5 0 1 1 6.061-3.5 3.5 3.5 0 0 1-6.062 3.5z"></path>
-                </svg>
-              </div>
-              <div>
-                <h4><%= t('.support') %></h4>
-                <p><%= t('.support_description') %></p>
-              </div>
-            </div>
-          </div>
+    </div>
+</section>
+
+<section class="bg-light py-lg-8">
+  <div class="container">
+    <div class = "row d-flex align-items-center justify-content-center">
+        <h3 class="fs-2 fw-bold mt-3 mb-2 text-center text-dark"><%= t('.keep_track')%></h2>
+        <p class="fs-3 text-center text-dark"><%= t('.common_description')%></p>
+    </div>
+    <div class = "mt-10 column d-flex align-items-center justify-content-center">
+        <div class = "col-5" style="padding-left: 130px;" >
+            <ul class="list-unstyled">
+                <li class="d-flex mb-4 ">
+                    <div class="vr me-3" style="color: black;"></div>
+                    <div>
+                        <h4 class="fs-5 mb-0" style = "color: #373737;"><%= t('.easily_set')%></h4>
+                    </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5" style = "color: #373737;"><%= t('.add_notes')%></h4>
+                    <p class="mb-0" style = "color: #373737;"><%= t('.add_notes_description')%></p>
+                </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5 mb-0" style = "color: #373737;"><%= t('.filter')%></h4>
+                </div>
+                </li>
+            </ul>
         </div>
-      </div>
+        <div class = "col-5" style="padding-right: 130px;">
+            <%= image_tag "layout_graphic.png", alt: "screen_1", class: "img-fluid w-100 h-25 "%>
+        </div>
     </div>
   </div>
 </section>
 
-<section class="pb-lg-10 my-5">
+
+<section class="bg-light py-lg-8">
   <div class="container">
-    <div class="row">
-      <div class="col-xl-10 offset-xl-1 col-md-12 col-12">
-        <div class="bg-primary px-4 rounded-4 ">
-          <div class="row align-items-center">
-            <div class="offset-xl-1 col-xl-5 col-md-6 col-12">
-              <div>
-                <h2 class="h1 text-white mb-3"><%= t('.header') %></h2>
-                <p class="text-white pb-2 fs-4"><%= t('.call_to_action') %></p>
-                <button class="btn btn-dark"><%= t('.btn_call_to_action') %></button>
-              </div>
-            </div>
-            <div class="col-xl-6 col-md-6 col-12">
-              <div class="text-center">
-                <%= image_tag "education/course.png", class: "img-fluid" %>
-              </div>
-            </div>
-          </div>
+    <div class = "row d-flex align-items-center justify-content-center">
+        <h3 class="fs-2 fw-bold mt-3 mb-2 text-center text-dark"><%= t('.handle_adoption')%></h2>
+        <p class="fs-3 text-center text-dark"><%= t('.common_description')%></p>
+    </div>
+    <div class = "mt-10 column d-flex align-items-center justify-content-center">
+        <div class = "col-5" style="padding-left: 130px;">
+            <%= image_tag "layout_graphic_2.png", alt: "screen_2", class: "img-fluid w-100 h-25"%>
         </div>
-      </div>
+        <div class = "col-5" style="padding-right: 130px;" >
+            <ul class="list-unstyled">
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5 mb-0" style = "color: #373737;"><%= t('.easily_set')%></h4>
+                </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5" style = "color: #373737;"><%= t('.add_notes')%></h4>
+                    <p class="mb-0" style = "color: #373737;"><%= t('.add_notes_description')%></p>
+                </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5 mb-0" style = "color: #373737;"><%= t('.filter')%></h4>
+                </div>
+                </li>
+            </ul>
+        </div>
     </div>
   </div>
+</section>
+
+
+<section class="bg-light py-lg-8">
+  <div class="container">
+    <div class = "row d-flex align-items-center justify-content-center">
+        <h3 class="fs-2 fw-bold mt-3 mb-2 text-center text-dark"><%= t('.take_complexity')%></h2>
+        <p class="fs-3 text-center text-dark"><%= t('.common_description')%></p>
+    </div>
+    <div class = "mt-10 column d-flex align-items-center justify-content-center">
+        <div class = "col-5" style="padding-left: 130px;" >
+            <ul class="list-unstyled">
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5 mb-0" style = "color: #373737;"><%=t('.see_status')%></h4>
+                </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5" style = "color: #373737;"><%= t('.easily_edit')%></h4>
+                    <p class="mb-0" style = "color: #373737;"><%= t('.add_notes_description') %></p>
+                </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5 mb-0" style = "color: #373737;"><%= t('.quickly_search')%></h4>
+                </div>
+                </li>
+            </ul>
+        </div>
+        <div class = "col-5" style="padding-right: 130px;">
+            <%= image_tag "layout_graphic_3.png", alt: "screen_3", class: "img-fluid w-100 h-25"%>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-light py-lg-8">
+  <div class="container">
+    <div class = "row d-flex align-items-center justify-content-center">
+        <h3 class="fs-2 fw-bold mt-3 mb-2 text-center text-dark"><%= t('.manage_adoster')%></h2>
+        <p class="fs-3 text-center text-dark"><%= t('.manage_adoster_description')%></p>
+    </div>
+    <div class = "mt-10 column d-flex align-items-center justify-content-center">
+        <div class = "col-5" style="padding-left: 130px;">
+            <%= image_tag "layout_graphic_2.png", alt: "hero", class: "img-fluid w-100 h-25"%>
+        </div>
+        <div class = "col-5" style="padding-right: 130px;" >
+            <ul class="list-unstyled">
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5 mb-0" style = "color: #373737;"><%= t('.easily_set')%></h4>
+                </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5" style = "color: #373737;"><%= t('.add_notes')%></h4>
+                    <p class="mb-0" style = "color: #373737;"><%= t('.add_notes_description')%></p>
+                </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5 mb-0" style = "color: #373737;"><%= t('.filter')%></h4>
+                </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-light py-lg-8">
+  <div class="container">
+    <div class = "row d-flex align-items-center justify-content-center">
+        <h3 class="fs-2 fw-bold mt-3 mb-2 text-center text-dark"><%= t('.create_account')%></h2>
+        <p class="fs-3 text-center text-dark"><%= t('.create_account_description')%></p>
+    </div>
+    <div class = "mt-10 column d-flex align-items-center justify-content-center">
+        <div class = "col-5" style="padding-left: 130px;" >
+            <ul class="list-unstyled">
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5 mb-0" style = "color: #373737;"><%= t('.see_status')%></h4>
+                </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5" style = "color: #373737;"><%= t('.easily_edit')%></h4>
+                    <p class="mb-0" style = "color: #373737;"><%= t('.add_notes_description')%></p>
+                </div>
+                </li>
+                <li class="d-flex mb-4">
+                <div class="vr me-3" style="color: black;"></div>
+                <div>
+                    <h4 class="fs-5 mb-0" style = "color: #373737;"><%= t('.quickly_search') %></h4>
+                </div>
+                </li>
+            </ul>
+        </div>
+        <div class = "col-5" style="padding-right: 130px;">
+            <%= image_tag "layout_graphic_3.png", alt: "screen_3", class: "img-fluid w-100 h-25"%>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-light py-lg-8">
+  <div class="container">
+    <div class = "row d-flex align-items-center justify-content-center">
+        <h3 class="fs-2 fw-bold mt-3 mb-2 text-center text-dark"><%= t('.give_ur_furr_ball')%></h2>
+        <p class="fs-3 text-center text-dark" style="padding-left: 290px; padding-right: 290px;"><%= t('.give_ur_furr_ball_description')%></p>
+    </div>
+    <div class = "mt-10 column d-flex flex-column align-items-center justify-content-center">
+        <div class = "col-7">
+            <%= image_tag "layout_graphic_5.png", alt: "screen_4", class: "img-fluid rounded shadow-lg bg-body w-100 h-25"%>
+        </div>
+        <div class = "col-5 text-center mt-5">
+            <a href="#!" class="btn btn-primary btn-lg px-6"><%= t('.btn_title') %></a>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-light py-lg-8">
+    <div class = "container">
+        <div class = "row d-flex align-items-center justify-content-center">
+            <h3 class="fs-2 fw-bold mt-3 mb-2 text-center text-dark"><%= t('.learn_more_about')%></h2>
+            <p class="fs-3 text-center text-dark" style="padding-left: 290px; padding-right: 290px;"><%= t('.learn_more_about_description')%></p>
+        </div>  
+        <div class="container-fluid">
+            <div class="row justify-content-between align-items-center mt-4 flex-nowrap overflow-auto">
+                <div class="col-auto">
+                <%= image_tag "icon_1.png", alt: "Human Essentials", class: "img-fluid", style: "max-width: 75px;" %>
+                </div>
+                <div class="col-auto">
+                <%= image_tag "icon_2.png", alt: "Human Essentials app", class: "img-fluid", style: "max-width: 170px;" %>
+                </div>
+                <div class="col-auto">
+                <%= image_tag "icon_3.png", alt: "Casa Volunteer Tracking", class: "img-fluid", style: "max-width: 170px;" %>
+                </div>
+                <div class="col-auto">
+                <%= image_tag "icon_4.png", alt: "Heart icon", class: "img-fluid", style: "max-width: 75px;" %>
+                </div>
+                <div class="col-auto">
+                <%= image_tag "icon_5.png", alt: "Refuge Restrooms", class: "img-fluid", style: "max-width: 125px;" %>
+                </div>
+                <div class="col-auto">
+                <%= image_tag "icon_6.png", alt: "Tree icon", class: "img-fluid", style: "max-width: 75px;" %>
+                </div>
+                <div class="col-auto">
+                <%= image_tag "icon_7.png", alt: "Tool Library", class: "img-fluid", style: "max-width: 75px;" %>
+                </div>
+            </div>
+        </div>
+        <div class = "mt-5 column d-flex flex-column align-items-center justify-content-center">
+            <a href="#!" class="btn btn-outline-secondary px-8 mb-2 text-primary"><%= t('.learn_more_about')%></a>
+        </div>
+    </div>
 </section>
