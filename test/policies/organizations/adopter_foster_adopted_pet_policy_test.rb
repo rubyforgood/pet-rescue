@@ -66,13 +66,6 @@ class Organizations::AdopterFosterAdoptedPetPolicyTest < ActiveSupport::TestCase
         end
       end
     end
-
-    context "#files?" do
-      should "return the same result as index?" do
-        policy = @policy.call
-        assert_equal policy.index?, policy.files?
-      end
-    end
   end
 
   context "pre_check" do

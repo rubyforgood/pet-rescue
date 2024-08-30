@@ -9,20 +9,6 @@ module Organizations
         .where(status: :adoption_made, profile_show: true), with: Organizations::AdopterFosterAdoptedPetPolicy)
       end
 
-      def files
-        @pet = Pet.find(params[:id])
-        respond_to do |format|
-          format.html # Regular HTML response
-          format.turbo_stream do
-            render turbo_stream: turbo_stream.replace(
-              "pet_files",
-              partial: "organizations/shared/file_attachment_table",
-              locals: {pet: @pet}
-            )
-          end
-        end
-      end
-
       private
 
       def context_authorize!

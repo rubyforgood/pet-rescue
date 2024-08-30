@@ -18,7 +18,7 @@ class Organizations::AdopterFosterer::AdoptedPetTest < ActionDispatch::Integrati
   test "files action should render the pet files partial" do
     assert @pet.files.attached?
 
-    get files_adopter_fosterer_adopted_pet_path(@pet), as: :turbo_stream
+    get adopter_fosterer_adopted_pet_files_path(@pet), as: :turbo_stream
     assert_response :success
 
     assert_select 'turbo-stream[action="replace"][target="pet_files"]' do
@@ -33,7 +33,7 @@ class Organizations::AdopterFosterer::AdoptedPetTest < ActionDispatch::Integrati
 
   test "files action should return an empty table if no files are attached" do
     @pet.files.purge
-    get files_adopter_fosterer_adopted_pet_path(@pet), as: :turbo_stream
+    get adopter_fosterer_adopted_pet_files_path(@pet), as: :turbo_stream
     assert_response :success
     assert_select "table" do
       assert_select "tbody tr", count: 1
