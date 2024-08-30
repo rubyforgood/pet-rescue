@@ -1,5 +1,6 @@
 class Organizations::Staff::DashboardController < Organizations::BaseController
   before_action :context_authorize!, only: %i[index incomplete_tasks overdue_tasks]
+  before_action :calculate_overdue_tasks, only: %i[index overdue_tasks]
   include Pagy::Backend
   layout "dashboard"
 
@@ -22,15 +23,32 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
       items: 5
     )
     @column_name = "Incomplete Tasks"
+    @header_title = 'Incomplete Table'
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks", locals: {column_name: @column_name})
+        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks")
       end
-      format.html { render :tasks, locals: {column_name: @column_name} }
+      format.html { render :tasks}
     end
   end
 
   def overdue_tasks
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks")
+      end
+      format.html { render :tasks }
+    end
+  end
+
+  private
+
+  def context_authorize!
+    authorize! :dashboard,
+      context: {organization: Current.organization}
+  end
+
+  def calculate_overdue_tasks
     @pagy, @pets = pagy(
       Pet
       .left_joins(:tasks)
@@ -40,19 +58,7 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
       .group("pets.id"),
       items: 5
     )
-    @column_name = "Overdue Tasks"
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks", locals: {column_name: @column_name})
-      end
-      format.html { render :tasks, locals: {column_name: @column_name} }
-    end
-  end
-
-  private
-
-  def context_authorize!
-    authorize! :dashboard,
-      context: {organization: Current.organization}
+    @column_name = "Count"
+    @header_title = 'Overdue Table'
   end
 end
