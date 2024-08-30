@@ -28,6 +28,8 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Pet < ApplicationRecord
+  include PetTaskable
+
   acts_as_tenant(:organization)
 
   has_many :adopter_applications, dependent: :destroy
