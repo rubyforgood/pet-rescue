@@ -23,12 +23,12 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
       items: 5
     )
     @column_name = "Incomplete Tasks"
-    @header_title = 'Incomplete Table'
+    @header_title = "Incomplete Table"
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks")
       end
-      format.html { render :tasks}
+      format.html { render :tasks }
     end
   end
 
@@ -59,6 +59,6 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
       items: 5
     )
     @column_name = "Count"
-    @header_title = 'Overdue Table'
+    @header_title = "Overdue Table"
   end
 end
