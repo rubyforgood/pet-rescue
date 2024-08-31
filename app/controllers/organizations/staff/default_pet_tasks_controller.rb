@@ -12,7 +12,7 @@ class Organizations::Staff::DefaultPetTasksController < Organizations::BaseContr
     @q = DefaultPetTask.ransackable_tasks(tasks, params)
     @default_pet_tasks = @q.result
 
-    @pagy, @default_pet_tasks = pagy(@default_pet_tasks, items: 10)
+    @pagy, @default_pet_tasks = pagy(@default_pet_tasks, limit: 10)
   end
 
   def new
