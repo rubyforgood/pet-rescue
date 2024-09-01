@@ -1,10 +1,9 @@
 <%= render DashboardPageComponent.new do |c| %>
   <% c.with_header_title { "Applications" } %>
   <% c.with_body do %>
-    <section class="pb-5" id="about_us">
-      <div class="container">
+    <section class="pb-5 " id="about_us">
         <!-- Ransack Search Form -->
-        <div class="row p-4 border rounded-5 mb-5 bg-white">
+        <div class="mx-1 row p-4 border rounded-5 mb-5 bg-white">
           <div class="col-xl-12">
             <%= search_form_for @q, url: staff_adoption_application_reviews_path do |f| %>
               <div class="row">
@@ -38,7 +37,6 @@
         <!-- Search Results -->
         <%= render 'search_results' %>
 
-      </div> <!-- Container -->
     </section>
     <div class="d-flex justify-content-center align-items-center mt-2">
       <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
