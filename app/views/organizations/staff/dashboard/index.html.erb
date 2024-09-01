@@ -26,16 +26,16 @@
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
-          <% card.with_title { "Pets" } %>
-          <% card.with_icon_name { "heart" } %>
-          <% card.with_value { @organization.pets.count.to_s } %>
+          <% card.with_title { "Applications" } %>
+          <% card.with_icon_name { "file-text" } %>
+          <% card.with_value { "TBD" } %>
         <% end %>
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
-          <% card.with_title { "Applications" } %>
-          <% card.with_icon_name { "file-text" } %>
-          <% card.with_value { "TBD" } %>
+          <% card.with_title { "Pets" } %>
+          <% card.with_icon_name { "heart" } %>
+          <% card.with_value { @organization.pets.count.to_s } %>
         <% end %>
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
