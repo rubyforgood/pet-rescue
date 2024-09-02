@@ -21,14 +21,14 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
     @pet = Pet.find(params[:id])
     authorize! @pet, with: Organizations::AdoptablePetPolicy
 
-    if current_user&.adopter_foster_account
+    if current_user&.form_submission
       @adoption_application =
         AdopterApplication.find_by(
           pet_id: @pet.id,
-          adopter_foster_account_id: current_user.adopter_foster_account.id
+          form_submission_id: current_user.form_submission.id
         ) ||
-        @pet.adopter_applications.build(
-          adopter_foster_account: current_user.adopter_foster_account
+        @pet.adopter_applications.build( # MARK: why?
+          form_submission: current_user.form_submission
         )
     end
   end
