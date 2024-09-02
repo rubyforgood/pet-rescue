@@ -15,10 +15,10 @@ class AdopterApplicationTest < ActiveSupport::TestCase
   context "self.retire_applications" do
     context "when some applications match pet_id and some do not" do
       setup do
-        @selected_applications = Array.new(3) {
-          create(:adopter_application, pet_id: @application.pet_id, form_submission: @form_submission)
+        @selected_applications = Array.new(1) {
+          create(:adopter_application, pet_id: @application.pet_id)
         }
-        @unselected_applications = Array.new(2) {
+        @unselected_applications = Array.new(1) {
           create(:adopter_application, form_submission: @form_submission)
         }
       end

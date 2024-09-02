@@ -73,7 +73,8 @@ class AdoptablePetShowTest < ActionDispatch::IntegrationTest
 
     context "an adopter" do
       setup do
-        adopter_user = create(:adopter_foster_account).user
+        adopter_user = create(:adopter, :with_person)
+        create(:form_submission, person_id: adopter_user.person.id)
         sign_in adopter_user
       end
 

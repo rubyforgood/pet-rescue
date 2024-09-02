@@ -17,9 +17,15 @@ FactoryBot.define do
       end
     end
 
+    trait :with_person do
+      person
+    end
+
     factory :adopter do
       adopter_foster_account do
-        association :adopter_foster_account, user: instance
+        association :adopter_foster_account, user: instance # MARK: can I remove this yet?
+
+        # create a form submission
       end
 
       after(:build) do |user, _context|
@@ -29,7 +35,7 @@ FactoryBot.define do
 
     factory :fosterer do
       adopter_foster_account do
-        association :adopter_foster_account, user: instance
+        association :adopter_foster_account, user: instance # MARK: can I remove this yet?
       end
 
       after(:build) do |user, _context|

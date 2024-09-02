@@ -158,7 +158,7 @@ class Organizations::LikePolicyTest < ActiveSupport::TestCase
 
     context "when user is adopter" do
       setup do
-        @user = create(:adopter)
+        @user = create(:adopter) 
       end
 
       should "return true" do

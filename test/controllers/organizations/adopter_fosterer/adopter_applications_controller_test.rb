@@ -6,7 +6,8 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
     include ActionPolicy::TestHelper
 
     setup do
-      @user = create(:adopter)
+      @user = create(:adopter, :with_person)
+      @form_submission = create(:form_submission, person_id: @user.person_id)
       sign_in @user
     end
 
@@ -69,8 +70,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
 
     context "#update" do
       setup do
-        @form_submission = create(:form_submission)
-        @adopter_application = create(:adopter_application, user: @user, form_submission: @form_submission)
+        @adopter_application = create(:adopter_application, form_submission: @form_submission)
         @params = {adopter_application: {
           status: "withdrawn"
         }}
