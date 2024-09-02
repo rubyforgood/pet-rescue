@@ -6,6 +6,7 @@ class Organizations::AdopterFosterer::AdoptedPetTest < ActionDispatch::Integrati
     @adopter_foster_account = create(:adopter_foster_account)
     @pet = create(:pet, :with_files)
     @adoption_application = create(:adopter_application, status: :adoption_made, pet: @pet, adopter_foster_account: @adopter_foster_account)
+    @match = create(:match, adopter_foster_account: @adopter_foster_account, pet: @pet, match_type: :adoption)
     sign_in @adopter_foster_account.user
   end
 
