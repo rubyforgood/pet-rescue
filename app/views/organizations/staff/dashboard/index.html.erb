@@ -26,16 +26,29 @@
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
-          <% card.with_title { "Pets" } %>
-          <% card.with_icon_name { "heart" } %>
-          <% card.with_value { @organization.pets.count.to_s } %>
+          <% card.with_title { "Applications" } %>
+          <% card.with_icon_name { "file-text" } %>
+          <% card.with_value do %>
+            <div>
+              <div>
+                <%= link_to "#{@awaiting_review_count} Awaiting Review",
+                staff_adoption_application_reviews_path(q: { adopter_applications_status_eq: "awaiting_review" })
+                %>
+              </div>
+              <div>
+                <%= link_to "#{@under_review_count} Under Review",
+                staff_adoption_application_reviews_path(q: { adopter_applications_status_eq: "under_review" })
+                %>
+              </div>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
-          <% card.with_title { "Applications" } %>
-          <% card.with_icon_name { "file-text" } %>
-          <% card.with_value { "TBD" } %>
+          <% card.with_title { "Pets" } %>
+          <% card.with_icon_name { "heart" } %>
+          <% card.with_value { @organization.pets.count.to_s } %>
         <% end %>
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">

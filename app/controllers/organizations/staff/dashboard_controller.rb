@@ -9,6 +9,9 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
     @hide_footer = true
     @not_completed_not_overdue_tasks_count = Task.is_not_completed.not_overdue.count
     @not_completed_overdue_tasks_count = Task.is_not_completed.overdue.count
+
+    @awaiting_review_count = Pet.filter_by_application_status("awaiting_review").count
+    @under_review_count = Pet.filter_by_application_status("under_review").count
   end
 
   def incomplete_tasks
