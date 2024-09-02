@@ -483,6 +483,7 @@ en:
           adoption_pending: "Adoption Pending"
           withdrawn: "Withdrawn"
           successful_applicant: "Successful Applicant"
+          awaiting_data: "Awaiting Data"
         tabs:
           overview:
             status:
