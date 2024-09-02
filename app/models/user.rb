@@ -66,6 +66,7 @@ class User < ApplicationRecord
 
   has_one :staff_account, dependent: :destroy
   has_one :adopter_foster_account, dependent: :destroy
+  belongs_to :person
 
   # Once we've migrated the existing data to connect a user to a person,
   # we should remove the optional: true part
@@ -76,6 +77,8 @@ class User < ApplicationRecord
   before_validation :ensure_person_exists, on: :create
 
   before_save :downcase_email
+
+  delegate :form_submission, to: :person
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)
