@@ -8,18 +8,16 @@
 #  status                    :integer          default("awaiting_review")
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
-#  adopter_foster_account_id :bigint           not null
+#  adopter_foster_account_id :bigint
 #  form_submission_id        :bigint           not null
 #  organization_id           :bigint           not null
 #  pet_id                    :bigint           not null
 #
 # Indexes
 #
-#  index_adopter_applications_on_account_and_pet            (pet_id,adopter_foster_account_id) UNIQUE
-#  index_adopter_applications_on_adopter_foster_account_id  (adopter_foster_account_id)
-#  index_adopter_applications_on_form_submission_id         (form_submission_id)
-#  index_adopter_applications_on_organization_id            (organization_id)
-#  index_adopter_applications_on_pet_id                     (pet_id)
+#  index_adopter_applications_on_form_submission_id  (form_submission_id)
+#  index_adopter_applications_on_organization_id     (organization_id)
+#  index_adopter_applications_on_pet_id              (pet_id)
 #
 # Foreign Keys
 #
@@ -40,9 +38,10 @@ class AdopterApplication < ApplicationRecord
     :adoption_pending,
     :withdrawn,
     :successful_applicant,
-    :adoption_made]
+    :adoption_made,
+    :awaiting_data]
 
-  validates :adopter_foster_account,
+  validates :form_submission,
     uniqueness: {
       scope: :pet,
       message: "has already applied for this pet."
@@ -57,14 +56,14 @@ class AdopterApplication < ApplicationRecord
   end
 
   # check if an adopter has applied to adopt a pet
-  def self.adoption_exists?(adopter_foster_account_id, pet_id)
-    AdopterApplication.where(adopter_foster_account_id: adopter_foster_account_id,
+  def self.adoption_exists?(form_submission_id_id, pet_id)
+    AdopterApplication.where(form_submission_id: form_submission_id_id,
       pet_id: pet_id).exists?
   end
 
   # check if any applications are set to profile_show: true
-  def self.any_applications_profile_show_true?(adopter_foster_account_id)
-    applications = AdopterApplication.where(adopter_foster_account_id: adopter_foster_account_id)
+  def self.any_applications_profile_show_true?(form_submission_id)
+    applications = AdopterApplication.where(form_submission_id: form_submission_id)
     applications.any? { |app| app.profile_show == true }
   end
 
@@ -75,7 +74,7 @@ class AdopterApplication < ApplicationRecord
   end
 
   def applicant_name
-    adopter_foster_account.user.full_name.to_s
+    adopter_foster_account.user.full_name.to_s # TODO: change this out
   end
 
   def withdraw
