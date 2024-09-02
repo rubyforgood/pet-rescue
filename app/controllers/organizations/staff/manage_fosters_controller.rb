@@ -32,7 +32,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
       @q.result
         .includes(:pet, :user)
         .order("pets.updated_at DESC"),
-      items: 10
+      limit: 10
     )
     @foster_pets = paginated_fosters.group_by(&:pet)
   end

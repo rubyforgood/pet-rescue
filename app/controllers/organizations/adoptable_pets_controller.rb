@@ -11,7 +11,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
       with: Organizations::AdoptablePetPolicy).ransack(params[:q])
     @pagy, paginated_adoptable_pets = pagy(
       @q.result,
-      items: 9
+      limit: 9
     )
     @pets = paginated_adoptable_pets
   end
