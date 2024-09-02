@@ -5,8 +5,7 @@ module Organizations
       layout "adopter_foster_dashboard"
 
       def index
-        @adopted_pets = authorized_scope(AdopterApplication.joins(:pet)
-        .where(status: :adoption_made, profile_show: true), with: Organizations::AdopterFosterAdoptedPetPolicy)
+        @adopted_pets = authorized_scope(Match.adoptions, with: Organizations::AdopterFosterAdoptedPetPolicy)
       end
 
       private
