@@ -623,6 +623,8 @@ en:
       message_placeholder: "Enter your message..."
   static_pages:
     donate:
+      give: "Give"
+      give_sentence: "them a chance to be loved"
       contact_us: "Contact us"
       contact_us_to_donate: "%{href} to ask how you can donate"
       donate: "Donate"
