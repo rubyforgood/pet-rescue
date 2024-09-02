@@ -23,7 +23,7 @@ class AdopterApplicationPolicy < ApplicationPolicy
   private
 
   def applicant?
-    user.id == record.form_submission.user_id
+    user.id == record.form_submission.user.id
   end
 
   def already_applied?
