@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_25_155349) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_02_115121) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_155349) do
 
   create_table "adopter_applications", force: :cascade do |t|
     t.bigint "pet_id", null: false
-    t.bigint "adopter_foster_account_id", null: false
+    t.bigint "adopter_foster_account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
@@ -52,10 +52,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_155349) do
     t.boolean "profile_show", default: true
     t.bigint "organization_id", null: false
     t.bigint "form_submission_id", null: false
-    t.index ["adopter_foster_account_id"], name: "index_adopter_applications_on_adopter_foster_account_id"
     t.index ["form_submission_id"], name: "index_adopter_applications_on_form_submission_id"
     t.index ["organization_id"], name: "index_adopter_applications_on_organization_id"
-    t.index ["pet_id", "adopter_foster_account_id"], name: "index_adopter_applications_on_account_and_pet", unique: true
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
