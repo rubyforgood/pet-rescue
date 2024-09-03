@@ -626,7 +626,7 @@ en:
       give: "Give"
       give_sentence: "them a chance to be loved"
       contact_us: "Contact us"
-      contact_us_to_donate: "%{href} to ask how you can donate"
+      contact_us_to_donate: "to ask how you can donate"
       donate: "Donate"
       donate_now_at: "Donate now at:"
       sentence_one: "%{organization_name} relies heavily on donations from people like you to help keep the program up and running."
