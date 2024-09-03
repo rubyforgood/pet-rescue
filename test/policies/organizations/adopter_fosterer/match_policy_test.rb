@@ -26,7 +26,6 @@ class Organizations::AdopterFosterer::MatchPolicyTest < ActiveSupport::TestCase
       create(:adopter_application, adopter_foster_account: @other_account, pet: @other_pet, status: :adoption_made)
       @other_match = create(:match, adopter_foster_account: @other_account, pet: @other_pet, match_type: :adoption)
 
-
       ActsAsTenant.with_tenant(create(:organization)) do
         create(:match, adopter_foster_account: @adopter_foster_account, match_type: :adoption)
       end
