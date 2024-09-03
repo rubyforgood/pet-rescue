@@ -19,8 +19,7 @@ class DashboardTest < ApplicationSystemTestCase
   test "viewing incomplete tasks" do
     click_link "Incomplete"
     assert_selector "table"
-    assert_text "Incomplete Tasks"
-
+    assert_text "Incomplete Pet Tasks"
     within "table" do
       @pets.each do |pet|
         assert_text pet.name
@@ -32,7 +31,7 @@ class DashboardTest < ApplicationSystemTestCase
   test "viewing overdue tasks" do
     click_link "Overdue"
     assert_selector "table"
-    assert_text "Overdue Tasks"
+    assert_text "Overdue Pet Tasks"
 
     within "table" do
       @pets.each do |pet|

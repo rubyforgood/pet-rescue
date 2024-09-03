@@ -25,8 +25,8 @@ Rails.application.routes.draw do
       resources :faqs
       resources :dashboard, only: [:index] do
         collection do
-          get :incomplete_tasks
-          get :overdue_tasks
+          get :pets_with_incomplete_tasks
+          get :pets_with_overdue_tasks
         end
       end
       resources :matches, only: %i[create destroy]
