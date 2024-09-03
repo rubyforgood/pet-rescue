@@ -78,29 +78,39 @@ en:
       confirm_withdraw: Withdraw your application
   root:
     index:
-      title: "Connecting hearts and homes"
-      worldwide: "worldwide"
-      description: "A free application for pet foster and adoption organizations who want to save time and manage their operations in one place."
-      easy_to_use: "Easy to use"
-      no_download: "No dowload needed"
-      manage: "Manage operations in one place"
-      save: "Save time and spend it on what matters"
-      btn_title: "Request an account"
-      subtitle: "Manage your operations"
-      subtitle_highlight: "in one place"
-      subtitle_description: "No more spreadsheets, no more paper, no more headaches."
+      title: "Manage"
+      pet: "Pets"
+      description: "Bring your operations to the digital age. Handle everything from staffing, foster scheduling, and adoptions, all from one free website."
+      btn_title: "Get started"
+      btn_subtitle: "Free for all rescues, forever."
       img_sub: "Manage your operation with ease"
-      logistics: "Logistics"
-      logistics_description: "Keep track of your animals in one place."
-      free: "Free for ever!"
-      free_description: "Our platform is free to use for all rescues, forever."
-      manage: "Manage applications"
-      manage_description: "Receive, review and process adoption and foster applications with ease."
-      support: "Support"
-      support_description: "Our team is here to help you with any questions you may have."
-      header: "Header"
-      call_to_action: "…an awesome sentence or two."
-      btn_call_to_action: "Call to action"
+      free: "Free"
+      free_description: "Use our app for your organization at no cost."
+      easy: "Easy"
+      easy_description: "Manage staff profiles, tasks, adoption and foster scheduling in a single app."
+      personalized: "Personalized"
+      personalized_description: "Add default tasks, create your own forms, and more."
+      website: 'A website that’s ready to go'
+      website_description: 'Have a public facing website up and running in minutes.'
+      keep_track: 'Keep track of your pets'
+      common_description: 'See your pet applications in one place with rich features to help you stay organized.'
+      easily_set: 'Easily set or change the status of an applicant'
+      add_notes: 'Add notes to each applicant'
+      add_notes_description: 'Your staff has full flexibility to write, edit, and delete notes as needed'
+      filter: 'Filter your applicants by date or name'
+      handle_adoption: 'Handle adoptions with ease'
+      take_complexity: 'Take the complexity out of fostering'
+      see_status: 'See status at a glance'
+      easily_edit: 'Easily edit dates'
+      quickly_search: 'Quickly search by filters'
+      manage_adoster: 'Manage adopter applications'
+      manage_adoster_description: 'See your adopter applications in one place with rich features to help you stay organized.'
+      create_account: 'Create accounts and manage staff'
+      create_account_description: 'Manage your staff directly in the app.'
+      give_ur_furr_ball: 'Give your fur balls what they deserve'
+      give_ur_furr_ball_description: 'As a Ruby For Good open source project, this app will always be 100% free and volunteer supported'
+      learn_more_about: 'Learn more about Ruby For Good'
+      learn_more_about_description: 'Ruby for Good is a skills-based volunteer organization focused on is to delivering specialized software development solutions to non-profit organizations to bolster their critical missions, build an inclusive technology community, and provide technology-focused educational opportunities to underserved communities.'
   views:
     dashboard: 
       index: 
@@ -136,18 +146,19 @@ en:
         dashboard: "Dashboard"
         demo: "This is a demo site"
       no_tenant_footer:
-        title: "Pet Rescue"
-        description: "We provide a platform for Pet Rescues and Animal Service Organizations"
-        company: "Company"
+        title: "Open Pet Rescue"
         about: "About Us"
-        partners: "Partners"
+        rescues: 'Rescues'
+        ruby_for_good: 'Ruby For Good'
         rights: "Pet-Rescue, Inc. All Rights Reserved"
         policy: "Privacy Policy"
         cookie: "Cookie Notice"
         terms: "Terms of Use"
       no_tenant_navbar:
-        title: "Pet Rescue"
+        title: "Open Pet Rescue"
+        sub_title: "A Ruby For Good project"
         dropdown_title: "Rescues"
+        btn_title: "Get started"
   activerecord:
     errors:
       models:

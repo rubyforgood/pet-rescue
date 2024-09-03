@@ -17,7 +17,7 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
     # Combining these into a single chained statement does not yield the same result due to how Ransack processes parameters.
     if params[:q].present? && params[:q]["adopter_applications_status_eq"].present?
       status_filter = params[:q]["adopter_applications_status_eq"]
-      @pets_with_applications = filter_by_application_status(@pets_with_applications, status_filter)
+      @pets_with_applications = @pets_with_applications.filter_by_application_status(status_filter)
     end
 
     @pagy, @pets_with_applications = pagy(@pets_with_applications, limit: 10)
@@ -49,9 +49,5 @@ class Organizations::Staff::AdoptionApplicationReviewsController < Organizations
   def set_adopter_application
     @application = AdopterApplication.find(params[:id])
     authorize! @application
-  end
-
-  def filter_by_application_status(pets_relation, status_filter)
-    pets_relation.joins(:adopter_applications).where(adopter_applications: {status: status_filter})
   end
 end
