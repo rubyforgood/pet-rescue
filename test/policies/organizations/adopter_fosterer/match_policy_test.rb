@@ -1,13 +1,13 @@
 require "test_helper"
 
-class Organizations::AdopterFosterAdoptedPetPolicyTest < ActiveSupport::TestCase
+class Organizations::AdopterFosterer::MatchPolicyTest < ActiveSupport::TestCase
   include PetRescue::PolicyAssertions
 
   setup do
     @organization = ActsAsTenant.current_tenant
     @policy = -> {
-      Organizations::AdopterFosterAdoptedPetPolicy.new(
-        AdopterApplication, user: @user, organization: @organization
+      Organizations::AdopterFosterer::MatchPolicy.new(
+        Match, user: @user, organization: @organization
       )
     }
   end
@@ -16,22 +16,27 @@ class Organizations::AdopterFosterAdoptedPetPolicyTest < ActiveSupport::TestCase
     setup do
       @user = create(:user)
       @adopter_foster_account = create(:adopter_foster_account, user: @user, organization: @organization)
-      @adopted_application = create(:adopter_application, adopter_foster_account: @adopter_foster_account, status: :adoption_made)
+      @pet = create(:pet)
+      @adopted_application = create(:adopter_application, adopter_foster_account: @adopter_foster_account, pet: @pet, status: :adoption_made)
+      @match = create(:match, adopter_foster_account: @adopter_foster_account, pet: @pet, match_type: :adoption)
 
-      other_user = create(:user)
-      other_account = create(:adopter_foster_account, user: other_user, organization: @organization)
-      create(:adopter_application, adopter_foster_account: other_account, status: :adoption_made)
+      @other_user = create(:user)
+      @other_account = create(:adopter_foster_account, user: @other_user, organization: @organization)
+      @other_pet = create(:pet)
+      create(:adopter_application, adopter_foster_account: @other_account, pet: @other_pet, status: :adoption_made)
+      @other_match = create(:match, adopter_foster_account: @other_account, pet: @other_pet, match_type: :adoption)
+
 
       ActsAsTenant.with_tenant(create(:organization)) do
-        create(:adopter_application, status: :adoption_made)
+        create(:match, adopter_foster_account: @adopter_foster_account, match_type: :adoption)
       end
     end
 
     should "return only the user's adopted pets" do
-      scoped = @policy.call.apply_scope(AdopterApplication.all, type: :active_record_relation)
+      scoped = @policy.call.apply_scope(Match.all, type: :active_record_relation)
 
       assert_equal 1, scoped.count
-      assert_includes scoped, @adopted_application
+      assert_includes scoped, @match
     end
   end
 
