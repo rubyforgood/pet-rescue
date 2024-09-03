@@ -6,11 +6,11 @@ class Organizations::DashboardPolicy < ApplicationPolicy
     permission?(:view_organization_dashboard)
   end
 
-  def incomplete_tasks?
+  def pets_with_incomplete_tasks?
     permission?(:view_organization_dashboard)
   end
 
-  def overdue_tasks?
+  def pets_with_overdue_tasks?
     permission?(:view_organization_dashboard)
   end
 end

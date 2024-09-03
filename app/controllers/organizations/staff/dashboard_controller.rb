@@ -1,7 +1,7 @@
 class Organizations::Staff::DashboardController < Organizations::BaseController
-  before_action :context_authorize!, only: %i[index incomplete_tasks overdue_tasks]
-  before_action :set_overdue_tasks, only: %i[index overdue_tasks]
-  before_action :set_incomplete_tasks, only: :incomplete_tasks
+  before_action :context_authorize!, only: %i[index pets_with_incomplete_tasks pets_with_overdue_tasks]
+  before_action :set_pets_with_overdue_tasks, only: %i[index pets_with_overdue_tasks]
+  before_action :set_pets_with_incomplete_tasks, only: :pets_with_incomplete_tasks
   include Pagy::Backend
   layout "dashboard"
 
@@ -13,19 +13,19 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
     @not_completed_overdue_tasks_count = Task.is_not_completed.overdue.count
   end
 
-  def incomplete_tasks
+  def pets_with_incomplete_tasks
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks")
+        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/pets_with_incomplete_or_overdue_tasks")
       end
       format.html { render :tasks }
     end
   end
 
-  def overdue_tasks
+  def pets_with_overdue_tasks
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/tasks")
+        render turbo_stream: turbo_stream.replace("tasks-frame", partial: "organizations/staff/dashboard/pets_with_incomplete_or_overdue_tasks")
       end
       format.html { render :tasks }
     end
@@ -38,13 +38,13 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
       context: {organization: Current.organization}
   end
 
-  def set_overdue_tasks
+  def set_pets_with_overdue_tasks
     @pagy, @pets = pagy(Pet.with_overdue_tasks, limit: 5)
     @column_name = "Count"
     @header_title = "Overdue Pet Tasks"
   end
 
-  def set_incomplete_tasks
+  def set_pets_with_incomplete_tasks
     @pagy, @pets = pagy(Pet.with_incomplete_tasks, limit: 5)
     @column_name = "Incomplete Tasks"
     @header_title = "Incomplete Pet Tasks"
