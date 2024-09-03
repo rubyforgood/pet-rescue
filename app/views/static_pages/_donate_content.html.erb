@@ -7,7 +7,7 @@
           <% if Current.organization.donation_url.present? %>
             <%= link_to t('static_pages.donate.donate'), Current.organization.donation_url, target: '_blank', class: 'btn btn-primary btn-lg px-5'  %>
           <% else %>
-            <%= link_to(t('static_pages.donate.contact_us'), new_contact_path, class: 'btn btn-primary btn-lg px-5 mb-1') %><small class="d-block"><%= t('static_pages.donate.contact_us_to_donate') %></small>
+            <%= link_to(t('static_pages.donate.contact_us'), new_contact_path, class: 'btn btn-primary btn-lg px-5 mb-1') %>
           <% end %>
         </div>
       </div>
