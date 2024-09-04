@@ -19,11 +19,11 @@ class Organizations::AdopterFosterer::AdoptedPetsControllerTest < ActionDispatch
           get adopter_fosterer_adopted_pets_url
         end
       end
-     
+
       should "have authorized scope" do
         ActsAsTenant.with_tenant(@organization) do
           assert_have_authorized_scope(
-            type: :active_record_relation, 
+            type: :active_record_relation,
             with: Organizations::AdopterFosterer::MatchPolicy
           ) do
             get adopter_fosterer_adopted_pets_url
