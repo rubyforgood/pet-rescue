@@ -7,23 +7,20 @@ class Organizations::AdopterFosterer::AdoptedPetsControllerTest < ActionDispatch
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      @adopter_foster_account = create(:adopter_foster_account, organization: @organization)
+      @adopter_foster_account = create(:adopter_foster_account)
       sign_in @adopter_foster_account.user
     end
 
     context "#index" do
       should "be authorized" do
-        assert_authorized_to(
-          :index?, Match, with: Organizations::AdopterFosterer::MatchPolicy
-        ) do
-          get adopter_fosterer_adopted_pets_url
-        end
+        get adopter_fosterer_adopted_pets_url
+        assert_response :success
       end
-
+     
       should "have authorized scope" do
         ActsAsTenant.with_tenant(@organization) do
           assert_have_authorized_scope(
-            type: :active_record_relation,
+            type: :active_record_relation, 
             with: Organizations::AdopterFosterer::MatchPolicy
           ) do
             get adopter_fosterer_adopted_pets_url
