@@ -3,7 +3,6 @@
 # Renders a Pet's image and the Heart like button
 class PetAvatarComponent < ApplicationComponent
   param :pet, Types::Instance(Pet)
-  option :like, optional: true
   option :size, Types::Size, default: -> { :md }
 
   private
