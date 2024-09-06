@@ -57,6 +57,7 @@ Rails.application.routes.draw do
 
     namespace :adopter_fosterer do
       resource :profile, except: :destroy
+      resources :faq, only: [:index]
       resources :donations, only: [:index]
       resources :dashboard, only: [:index]
       resources :likes, only: [:index, :create, :destroy]
