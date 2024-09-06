@@ -1,0 +1,26 @@
+<header class="pt-5 pb-5" >
+  <div class="container">
+    <div class="text-center">
+      <h1 class="section-heading text-uppercase underline">
+        <%= t('static_pages.faq.header') %>
+      </h1>
+    </div>
+  </div> <!--container-->
+</header>
+
+<section class="pb-5" id="public_faq">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 col-12">
+        <div class="accordion accordion-flush" id="accordion-public-faq">
+          <% @faqs.each do |faq| %>
+            <%= render "/organizations/faq/question_and_answer", faq: faq %>
+          <% end %>
+        </div>
+        <div class="mt-8 text-center">
+          <%= link_to t('static_pages.faq.more_questions'), new_contact_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    </div>
+  </div> <!--container-->
+</section>
