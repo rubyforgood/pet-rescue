@@ -1,21 +1,20 @@
-<div class="col-md-8 ps-md-4 bigger pb-5 pb-md-0">
-  <p>
-    <%= t('static_pages.donate.sentence_one', organization_name: Current.tenant.name) %>
-  </p>
-  <p>
-    <%= t('static_pages.donate.sentence_two') %>
-  </p>
-
-  <div class="row text-center mt-5">
-    <div class="col-8 border p-5 shadow-sm rounded bg-white">
-      <h3 class='mb-4'><%= t('static_pages.donate.donate_now_at') %></h3>
-      <div class="text-center mt-2">
-        <% if Current.organization.donation_url.present? %>
-          <%= link_to Current.organization.donation_url, Current.organization.donation_url, target: '_blank'  %>
-        <% else %>
-          <p><%= sanitize(t('static_pages.donate.contact_us_to_donate', href: link_to(t('static_pages.donate.contact_us'), new_contact_path))) %></p>
-        <% end %>
+<div class="container">
+    <div class="row d-flex align-items-center">
+      <div class=" col-xxl-5  col-xl-6 col-lg-6 col-12">
+        <div>
+          <h1 class="display-2 fw-bold mb-3"><span class="text-primary"><%= t('static_pages.donate.give') %></span> <%= t('static_pages.donate.give_sentence') %></h1>
+          <p class="lead mb-4"><%= t('static_pages.donate.sentence_one', organization_name: Current.tenant.name) %> <%= t('static_pages.donate.sentence_two') %></p>
+          <% if Current.organization.donation_url.present? %>
+            <%= link_to t('static_pages.donate.donate'), Current.organization.donation_url, target: '_blank', class: 'btn btn-primary btn-lg px-5'  %>
+          <% else %>
+            <%= link_to(t('static_pages.donate.contact_us'), new_contact_path, class: 'btn btn-primary btn-lg px-5 mb-1') %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-xxl-5 offset-xxl-1 col-xl-6 col-lg-6 col-12 d-lg-flex justify-content-end">
+        <div class="mt-12 mt-lg-0 position-relative">
+          <%= image_tag 'donate_new.jpeg', alt: 'pet_image', class: 'img-fluid rounded-4 w-100 z-1 position-relative' %>
+        </div>
       </div>
     </div>
-  </div>
 </div>

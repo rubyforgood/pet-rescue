@@ -27,16 +27,16 @@ class Organizations::Staff::DashboardControllerTest < ActionDispatch::Integratio
     context "#incomplete_tasks" do
       should "be authorized" do
         assert_authorized_to(
-          :incomplete_tasks?, :dashboard,
+          :pets_with_incomplete_tasks?, :dashboard,
           context: {organization: @organization},
           with: Organizations::DashboardPolicy
         ) do
-          get incomplete_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
+          get pets_with_incomplete_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
         end
       end
 
       should "return turbo_stream response" do
-        get incomplete_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
+        get pets_with_incomplete_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
         assert_response :success
         assert_match "tasks-frame", response.body
       end
@@ -45,16 +45,16 @@ class Organizations::Staff::DashboardControllerTest < ActionDispatch::Integratio
     context "#overdue_tasks" do
       should "be authorized" do
         assert_authorized_to(
-          :overdue_tasks?, :dashboard,
+          :pets_with_overdue_tasks?, :dashboard,
           context: {organization: @organization},
           with: Organizations::DashboardPolicy
         ) do
-          get overdue_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
+          get pets_with_overdue_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
         end
       end
 
       should "return turbo_stream response" do
-        get overdue_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
+        get pets_with_overdue_tasks_staff_dashboard_index_url, headers: {"Turbo-Frame" => "tasks-frame"}
         assert_response :success
         assert_match "tasks-frame", response.body
       end

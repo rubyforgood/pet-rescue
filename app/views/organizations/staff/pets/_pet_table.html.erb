@@ -16,13 +16,7 @@
           <tr>
             <td>
               <div class="d-flex align-items-center">
-                <div class="icon-shape icon-lg rounded-3 border">
-                  <% if pet.images.attached? %>
-                    <%= image_tag pet.images.first, class: 'card-img' %>
-                  <% else %>
-                    <%= image_tag('coming_soon.jpg', class: 'card-img') %>
-                  <% end %>
-                </div>
+                <%= render PetAvatarComponent.new(pet)%>
                 <div class="ms-3">
                   <h4 class="mb-0">
                     <%= link_to pet.name, staff_pet_path(pet), class: 'text-inherit' %>

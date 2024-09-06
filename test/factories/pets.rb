@@ -31,5 +31,15 @@ FactoryBot.define do
         )
       end
     end
+
+    trait :with_files do
+      after(:build) do |pet|
+        pet.files.attach(
+          io: File.open(Rails.root.join("test", "fixtures", "files", "test2.png")),
+          filename: "test2.png",
+          content_type: "image/png"
+        )
+      end
+    end
   end
 end

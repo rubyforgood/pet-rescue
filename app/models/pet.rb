@@ -28,6 +28,8 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Pet < ApplicationRecord
+  include PetTaskable
+
   acts_as_tenant(:organization)
 
   has_many :adopter_applications, dependent: :destroy
@@ -81,6 +83,9 @@ class Pet < ApplicationRecord
     where(placement_type: ["Fosterable", "Adoptable and Fosterable"])
   }
   scope :with_photo, -> { where.associated(:images_attachments) }
+  scope :filter_by_application_status, ->(status_filter) {
+    joins(:adopter_applications).where(adopter_applications: {status: status_filter})
+  }
 
   attr_writer :toggle
 
