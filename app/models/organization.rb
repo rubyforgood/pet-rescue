@@ -4,12 +4,12 @@
 #
 #  id            :bigint           not null, primary key
 #  donation_url  :text
-#  email         :string
+#  email         :string           not null
 #  facebook_url  :text
 #  instagram_url :text
-#  name          :string
+#  name          :string           not null
 #  phone_number  :string
-#  slug          :string
+#  slug          :string           not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
@@ -45,7 +45,7 @@ class Organization < ApplicationRecord
   validates :name, presence: true
   validates :slug, presence: true, format: {with: /\A[a-zA-Z0-9_-]+\z/, message: "only allows letters, numbers, hyphens, and underscores"}
   validates :email, presence: true
-  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, allow_blank: true
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 
   validates :facebook_url, url: true, allow_blank: true
   validates :instagram_url, url: true, allow_blank: true
