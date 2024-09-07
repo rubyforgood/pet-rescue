@@ -18,7 +18,7 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <div class="navbar-heading">Pets</div>
+        <div class="navbar-heading text-white">Pets</div>
       </li>
       <li class="nav-item">
         <%= active_link_to staff_pets_path, class: "nav-link" do %>
@@ -44,7 +44,7 @@
         <div class="nav-divider"></div>
       </li>
       <li class="nav-item">
-        <div class="navbar-heading">People</div>
+        <div class="navbar-heading text-white">People</div>
       </li>
       <li class="nav-item">
         <%= active_link_to staff_fosterers_path, class: "nav-link" do %>
@@ -67,7 +67,7 @@
         <div class="nav-divider"></div>
       </li>
       <li class="nav-item">
-        <div class="navbar-heading">Admin</div>
+        <div class="navbar-heading text-white">Admin</div>
       </li>
       <li class="nav-item">
         <%= active_link_to staff_faqs_path, class: "nav-link" do %>
@@ -78,7 +78,7 @@
         context: {organization: Current.organization})
       %>
         <li class="nav-item">
-          <%= active_link_to staff_custom_form_forms_path, class: 'nav-link' do %>
+          <%= active_link_to '#', class_active: 'disabled', class: 'nav-link disabled' do %>
             <i class="nav-icon fe fe-clipboard me-2"></i>Forms
           <% end %>
         </li>
