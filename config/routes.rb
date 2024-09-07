@@ -62,7 +62,6 @@ Rails.application.routes.draw do
       resources :likes, only: [:index, :create, :destroy]
       resources :adopter_applications, path: "applications", only: %i[index create update]
       resources :external_form, only: %i[index]
-      resources :form_submissions, only: %i[create]
     end
   end
 
