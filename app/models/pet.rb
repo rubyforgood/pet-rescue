@@ -110,8 +110,8 @@ class Pet < ApplicationRecord
   end
 
   def self.org_pets_with_apps(staff_org_id)
-    org_pets(staff_org_id).includes(adopter_applications: [adopter_foster_account: [:user]]).where
-      .not(adopter_applications: {id: nil}).references(:users)
+    org_pets(staff_org_id).includes(adopter_applications: [form_submission: [:person]]).where
+      .not(adopter_applications: {id: nil}).references(:persons)
   end
 
   def self.ransackable_attributes(auth_object = nil)

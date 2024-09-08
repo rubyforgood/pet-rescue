@@ -27,7 +27,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
           pet_id: @pet.id,
           form_submission_id: current_user.form_submission.id
         ) ||
-        @pet.adopter_applications.build( # MARK: why?
+        @pet.adopter_applications.build(
           form_submission: current_user.form_submission
         )
     end

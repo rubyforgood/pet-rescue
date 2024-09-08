@@ -73,15 +73,15 @@ class AdopterApplication < ApplicationRecord
   end
 
   def applicant_name
-    form_submission.user.full_name.to_s # TODO: change this out
+    form_submission.person.name
   end
 
   def withdraw
     update!(status: :withdrawn)
   end
 
-  ransacker :applicant_name do
-    Arel.sql("CONCAT(users.last_name, ', ', users.first_name)")
+  ransacker :applicant_name do 
+    Arel.sql("people.name")
   end
 
   ransacker :status, formatter: proc { |v| statuses[v] } do |parent|
