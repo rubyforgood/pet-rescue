@@ -55,6 +55,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @adopter_foster_account_one = AdopterFosterAccount.create!(user_id: @user_adopter_one.id)
+  FormSubmission.create!(person_id: @user_adopter_one.person_id, organization_id: @user_adopter_one.organization_id)
 
   @user_adopter_one.add_role(:adopter, @organization)
 
@@ -68,6 +69,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @adopter_foster_account_two = AdopterFosterAccount.create!(user_id: @user_adopter_two.id)
+  FormSubmission.create!(person_id: @user_adopter_two.person_id, organization_id: @user_adopter_two.organization_id)
 
   @user_adopter_two.add_role(:adopter, @organization)
 
@@ -81,6 +83,7 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   @adopter_foster_account_three = AdopterFosterAccount.create!(user_id: @user_adopter_three.id)
+  FormSubmission.create!(person_id: @user_adopter_three.person_id, organization_id: @user_adopter_three.organization_id)
 
   @user_adopter_three.add_role(:adopter, @organization)
 
@@ -251,21 +254,17 @@ ActsAsTenant.with_tenant(@organization) do
     end_date: upcoming_end_date
   )
 
-  @form_submission = FormSubmission.new(organization: @organization, person: Person.new(name: "John Doe", email: "Doe@gmail.com"))
-
   10.times do
     adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..4),
-      adopter_foster_account: AdopterFosterAccount.all.sample,
-      pet: Pet.all.sample,
-      form_submission: @form_submission
+      form_submission: FormSubmission.all.sample,
+      pet: Pet.all.sample
     )
 
     # Prevent duplicate adopter applications.
-    redo if AdopterApplication.where(pet_id: adopter_application.pet_id, form_submission_id: adopter_application.form_submission_id,
-      adopter_foster_account_id: adopter_application.adopter_foster_account_id).exists?
+    redo if AdopterApplication.where(pet_id: adopter_application.pet_id, form_submission_id: adopter_application.form_submission_id).exists?
 
     if adopter_application.valid?
       adopter_application.save!
