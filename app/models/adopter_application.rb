@@ -28,7 +28,6 @@
 class AdopterApplication < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :pet, touch: true
-  belongs_to :adopter_foster_account
   belongs_to :form_submission
 
   broadcasts_refreshes
@@ -56,8 +55,8 @@ class AdopterApplication < ApplicationRecord
   end
 
   # check if an adopter has applied to adopt a pet
-  def self.adoption_exists?(form_submission_id_id, pet_id)
-    AdopterApplication.where(form_submission_id: form_submission_id_id,
+  def self.adoption_exists?(form_submission_id, pet_id)
+    AdopterApplication.where(form_submission_id: form_submission_id,
       pet_id: pet_id).exists?
   end
 
@@ -74,7 +73,7 @@ class AdopterApplication < ApplicationRecord
   end
 
   def applicant_name
-    adopter_foster_account.user.full_name.to_s # TODO: change this out
+    form_submission.user.full_name.to_s # TODO: change this out
   end
 
   def withdraw

@@ -135,7 +135,7 @@
                   <h4 class="mb-4 mt-3">In love with this pooch?</h4>
                   <%= form_with model: [:adopter_fosterer, @adoption_application] do |form| %>
                     <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
-                    <%= form.hidden_field :adopter_foster_account_id, value: @adoption_application.adopter_foster_account_id %>
+                    <%= form.hidden_field :form_submission_id, value: @current_user.form_submission.id %>
                     <%= form.submit t(".apply_to_adopt"),
                       class: "custom-btn-pink",
                       data: {turbo: false}

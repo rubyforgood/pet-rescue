@@ -8,15 +8,6 @@ FactoryBot.define do
       user { nil }
     end
 
-    adopter_foster_account do
-      if user
-        user.adopter_foster_account ||
-          association(:adopter_foster_account, user: user)
-      else
-        association :adopter_foster_account
-      end
-    end
-
     pet
 
     form_submission do
