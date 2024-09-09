@@ -7,8 +7,8 @@ class Organizations::AdopterFosterer::AdoptedPetsControllerTest < ActionDispatch
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      @adopter_foster_account = create(:adopter_foster_account)
-      sign_in @adopter_foster_account.user
+      @adopter = create(:adopter)
+      sign_in @adopter
     end
 
     context "#index" do
@@ -28,9 +28,9 @@ class Organizations::AdopterFosterer::AdoptedPetsControllerTest < ActionDispatch
         end
       end
 
-      should "return only adoption matches for the user's adopter_fosterer_account" do
+      should "return only adoption matches for the person" do
         ActsAsTenant.with_tenant(@organization) do
-          user_adoption_match = create(:match, :adoption, adopter_foster_account: @adopter_foster_account, organization: @organization)
+          user_adoption_match = create(:match, :adoption, person: @adopter.person, organization: @organization)
           other_account_adoption_match = create(:match, :adoption, organization: @organization)
           other_org_adoption_match = create(:match, :adoption)
 

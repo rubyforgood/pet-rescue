@@ -6,7 +6,7 @@ module Organizations
       end
 
       def index?
-        permission?(:view_adopted_pets)
+        permission?(:view_adopter_foster_matches)
       end
     end
   end
