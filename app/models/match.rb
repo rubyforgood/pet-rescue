@@ -28,7 +28,7 @@ class Match < ApplicationRecord
   belongs_to :pet, touch: true
   belongs_to :person
 
-  has_one :user, through: :person # TODO: Remove this association
+  has_one :user, through: :person # TODO: Remove this association and use person for all logic instead
 
   validates :start_date,
     presence: {if: -> { match_type == "foster" }}

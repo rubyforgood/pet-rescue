@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_25_235914) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_09_041952) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -147,9 +147,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_235914) do
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "person_id", null: false
     t.index ["adopter_foster_account_id", "pet_id"], name: "index_likes_on_adopter_foster_account_id_and_pet_id", unique: true
     t.index ["adopter_foster_account_id"], name: "index_likes_on_adopter_foster_account_id"
     t.index ["organization_id"], name: "index_likes_on_organization_id"
+    t.index ["person_id"], name: "index_likes_on_person_id"
     t.index ["pet_id"], name: "index_likes_on_pet_id"
   end
 
@@ -330,6 +332,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_25_235914) do
   add_foreign_key "forms", "organizations"
   add_foreign_key "likes", "adopter_foster_accounts"
   add_foreign_key "likes", "organizations"
+  add_foreign_key "likes", "people"
   add_foreign_key "likes", "pets"
   add_foreign_key "locations", "organizations"
   add_foreign_key "matches", "people"
