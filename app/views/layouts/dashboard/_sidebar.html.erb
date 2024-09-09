@@ -74,15 +74,6 @@
           <i class="nav-icon fe fe-file-text me-2"></i>FAQs
         <% end %>
       </li>
-      <% if allowed_to?(:index?, CustomForm::Form, namespace: Organizations,
-        context: {organization: Current.organization})
-      %>
-        <li class="nav-item">
-          <%= active_link_to '#', class_active: 'disabled', class: 'nav-link' do %>
-            <i class="nav-icon fe fe-clipboard me-2"></i>Forms
-          <% end %>
-        </li>
-      <% end %>
       <% if allowed_to?(:edit?, Organization, namespace: Organizations,
         context: {organization: Current.organization})
       %>
