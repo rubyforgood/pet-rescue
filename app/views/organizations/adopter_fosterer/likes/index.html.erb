@@ -3,6 +3,7 @@
   <% c.with_body do %>
     <div class="justify-content-md-between mb-4 mb-xl-0 gx-3">
       <div class="row">
+          <% if @pets.present? %>
           <% @pets.each do |pet| %>
           <div class="col-lg-4 col-md-6 p-2">
             <div class="pet-box p-3 border rounded bg-white d-flex align-items-center">
@@ -16,6 +17,9 @@
             </div>
           </div>
         <% end %>
+        <% else %>
+        <p class = "text-center"><%= t('organizations.adopter_fosterer.likes.index.no_pets')%></p>
+        <%end %>
       </div>
     </div>
   <% end %>
