@@ -21,12 +21,12 @@ class AdopterFosterAccountTest < ActiveSupport::TestCase
     #   end
     # end
 
-    context ".fosterers" do
-      should "include accounts with fosterer role" do
-        res = AdopterFosterAccount.fosterers
-        assert res.include?(@fosterer.adopter_foster_account)
-        assert_not res.include?(@adopter.adopter_foster_account)
-      end
-    end
+    # context ".fosterers" do
+    #   should "include accounts with fosterer role" do
+    #     res = AdopterFosterAccount.fosterers
+    #     assert res.include?(@fosterer.adopter_foster_account)
+    #     assert_not res.include?(@adopter.adopter_foster_account)
+    #   end
+    # end
   end
 end

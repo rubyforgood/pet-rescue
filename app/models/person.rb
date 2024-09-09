@@ -28,8 +28,8 @@ class Person < ApplicationRecord
   has_one :form_submission, dependent: :destroy
   has_many :form_answers, through: :form_submission
   has_many :adopter_applications, through: :form_submission
-  # has_many :likes, dependent: :destroy
-  # has_many :liked_pets, through: :likes, source: :pet
+  has_many :likes, dependent: :destroy
+  has_many :liked_pets, through: :likes, source: :pet
   has_many :matches # , dependent: :destroy
 
   has_one :user, dependent: :destroy

@@ -43,7 +43,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   end
 
   def set_likes
-    likes = current_user.adopter_foster_account.likes
+    likes = current_user.person.likes
     @likes_by_id = likes.index_by(&:pet_id)
   end
 end
