@@ -11,13 +11,13 @@
       </thead>
       <tbody>
         <% @pets.each do |pet| %>
-          <tr>
+          <tr data-controller="click-row" data-click-row-url-value="<%= staff_pet_path(pet, active_tab: 'tasks') %>" class="cursor-pointer">
             <td>
               <div class="d-flex align-items-center">
                 <%= render PetAvatarComponent.new(pet)%>
                 <div class="ms-3">
                   <h4 class="mb-0">
-                    <%= link_to pet.name, staff_pet_path(pet), class: 'text-inherit', data: { turbo: false } %>
+                    <%= pet.name %>
                   </h4>
                 </div>
               </div>
@@ -29,7 +29,7 @@
             </td>
             <td>
               <div class="d-flex justify-content-center">
-                <%= link_to pet.incomplete_tasks_count, staff_pet_path(pet, active_tab: 'tasks'), class: 'text-inherit', data: { turbo: false } %>
+                <%= pet.incomplete_tasks_count %>
               </div>
             </td>
           </tr>

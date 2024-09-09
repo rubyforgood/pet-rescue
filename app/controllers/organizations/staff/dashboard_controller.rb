@@ -43,7 +43,7 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
 
   def set_pets_with_overdue_tasks
     @pagy, @pets = pagy(Pet.with_overdue_tasks, limit: 5)
-    @column_name = "Count"
+    @column_name = "Overdue Tasks"
     @header_title = "Overdue Pet Tasks"
   end
 
