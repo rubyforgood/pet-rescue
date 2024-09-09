@@ -73,9 +73,6 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  # FIXME: Delete this after implementing Person
-  @adopter_foster_account_one = AdopterFosterAccount.create!(user_id: @user_adopter_one.id)
-
   @user_adopter_one.add_role(:adopter, @organization)
 
   @adopter_one.create_form_submission!
@@ -94,9 +91,6 @@ ActsAsTenant.with_tenant(@organization) do
     password_confirmation: "123456",
     tos_agreement: 1
   )
-
-  # FIXME: Delete this after implementing Person
-  @adopter_foster_account_two = AdopterFosterAccount.create!(user_id: @user_adopter_two.id)
 
   @user_adopter_two.add_role(:adopter, @organization)
 
@@ -117,9 +111,6 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  # FIXME: Delete this after implementing Person
-  @adopter_foster_account_three = AdopterFosterAccount.create!(user_id: @user_adopter_three.id)
-
   @user_adopter_three.add_role(:adopter, @organization)
 
   @adopter_three.create_form_submission!
@@ -139,9 +130,6 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  # FIXME: Delete this after implementing Person
-  @user_fosterer_one.create_adopter_foster_account!
-
   @user_fosterer_one.add_role(:adopter, @organization)
   @user_fosterer_one.add_role(:fosterer, @organization)
 
@@ -159,9 +147,6 @@ ActsAsTenant.with_tenant(@organization) do
     password_confirmation: "123456",
     tos_agreement: 1
   )
-
-  # FIXME: Delete this after implementing Person
-  @user_fosterer_two.create_adopter_foster_account!
 
   @user_fosterer_two.add_role(:adopter, @organization)
   @user_fosterer_two.add_role(:fosterer, @organization)
@@ -259,14 +244,10 @@ ActsAsTenant.with_tenant(@organization) do
   )
 
   10.times do
-    adopter = Person.adopters.sample
-
     adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..4),
-      # FIXME: Delete this after implementing Person
-      adopter_foster_account: adopter.user.adopter_foster_account,
       pet: Pet.all.sample,
       form_submission: FormSubmission.all.sample
     )

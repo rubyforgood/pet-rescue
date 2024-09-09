@@ -73,10 +73,9 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  # FIXME: Delete this after implementing Person
-  @adopter_foster_account_one = AdopterFosterAccount.create!(user_id: @user_adopter_one.id)
-
   @user_adopter_one.add_role(:adopter, @organization)
+
+  @adopter_one.create_form_submission!
 
   @adopter_two = Person.create!(
     email: "adopter2@alta.com",
@@ -93,10 +92,9 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  # FIXME: Delete this after implementing Person
-  @adopter_foster_account_two = AdopterFosterAccount.create!(user_id: @user_adopter_two.id)
-
   @user_adopter_two.add_role(:adopter, @organization)
+
+  @adopter_two.create_form_submission!
 
   @adopter_three = Person.create!(
     email: "adopter3@alta.com",
@@ -113,10 +111,9 @@ ActsAsTenant.with_tenant(@organization) do
     tos_agreement: 1
   )
 
-  # FIXME: Delete this after implementing Person
-  @adopter_foster_account_three = AdopterFosterAccount.create!(user_id: @user_adopter_three.id)
-
   @user_adopter_three.add_role(:adopter, @organization)
+
+  @adopter_three.create_form_submission!
 
   @fosterer_one = Person.create!(
     email: "fosterer1@alta.com",
@@ -132,9 +129,6 @@ ActsAsTenant.with_tenant(@organization) do
     password_confirmation: "123456",
     tos_agreement: 1
   )
-
-  # FIXME: Delete this after implementing Person
-  @user_fosterer_one.create_adopter_foster_account!
 
   @user_fosterer_one.add_role(:adopter, @organization)
   @user_fosterer_one.add_role(:fosterer, @organization)
@@ -153,9 +147,6 @@ ActsAsTenant.with_tenant(@organization) do
     password_confirmation: "123456",
     tos_agreement: 1
   )
-
-  # FIXME: Delete this after implementing Person
-  @user_fosterer_two.create_adopter_foster_account!
 
   @user_fosterer_two.add_role(:adopter, @organization)
   @user_fosterer_two.add_role(:fosterer, @organization)
@@ -299,19 +290,13 @@ ActsAsTenant.with_tenant(@organization) do
     end_date: upcoming_end_date
   )
 
-  @form_submission = FormSubmission.new(organization: @organization, person: Person.new(first_name: "John", last_name: "Doe", email: "Doe@gmail.com"))
-
   10.times do
-    adopter = Person.adopters.sample
-
     adopter_application = AdopterApplication.new(
       notes: Faker::Lorem.paragraph,
       profile_show: true,
       status: rand(0..4),
-      # FIXME: Delete this after implementing Person
-      adopter_foster_account: adopter.user.adopter_foster_account,
       pet: Pet.all.sample,
-      form_submission: @form_submission
+      form_submission: FormSubmission.all.sample
     )
 
     # Prevent duplicate adopter applications.
