@@ -1,10 +1,8 @@
 module Organizations
   module AdopterFosterer
     class MatchPolicy < ApplicationPolicy
-      pre_check :verify_adopter_foster_account!
-
       relation_scope do |relation|
-        relation.where(adopter_foster_account_id: user.adopter_foster_account.id)
+        relation.where(person_id: user.person.id)
       end
 
       def index?
