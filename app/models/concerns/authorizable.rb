@@ -33,7 +33,6 @@ module Authorizable
       ]
     ) + %i[
       review_adopter_applications
-      view_adopter_foster_accounts
       invite_fosterers
       purge_attachments
       manage_default_pet_tasks
@@ -43,6 +42,7 @@ module Authorizable
       manage_pets
       manage_tasks
       view_organization_dashboard
+      view_people
       manage_faqs
     ]
   ).freeze

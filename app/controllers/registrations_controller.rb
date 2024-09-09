@@ -25,7 +25,7 @@ class RegistrationsController < Devise::RegistrationsController
   def set_layout
     if current_user&.staff_account
       "dashboard"
-    elsif current_user&.adopter_foster_account
+    elsif allowed_to?(:index?, with: Organizations::AdopterFosterDashboardPolicy, context: {organization: Current.organization})
       "adopter_foster_dashboard"
     else
       "application"
@@ -56,7 +56,8 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
-    current_user&.adopter_foster_account ? adopter_fosterer_dashboard_index_path : root_path
+    allowed_to?(:index?, with: Organizations::AdopterFosterDashboardPolicy, context: {organization: Current.organization}) ?
+      adopter_fosterer_dashboard_index_path : root_path
   end
 
   # check for id (i.e., record saved) and send mail

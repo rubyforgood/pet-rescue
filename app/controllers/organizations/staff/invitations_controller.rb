@@ -38,7 +38,6 @@ class Organizations::Staff::InvitationsController < Devise::InvitationsControlle
       )
       @user.add_role("adopter", Current.organization)
       @user.add_role("fosterer", Current.organization)
-      @user.build_adopter_foster_account
 
       if @user.save
         @user.invite!(current_user)

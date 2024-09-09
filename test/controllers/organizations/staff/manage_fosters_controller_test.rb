@@ -7,8 +7,8 @@ class Organizations::Staff::ManageFostersControllerTest < ActionDispatch::Integr
     context "context only action" do
       setup do
         @organization = ActsAsTenant.current_tenant
-        @adopter_foster_account = create(:adopter_foster_account)
-        sign_in @adopter_foster_account.user
+        @adopter = create(:adopter)
+        sign_in @adopter
       end
 
       context "#new" do
