@@ -17,14 +17,14 @@
                 <%= render PetAvatarComponent.new(pet)%>
                 <div class="ms-3">
                   <h4 class="mb-0">
-                    <%= link_to pet.name, staff_pet_path(pet), class: 'text-inherit', data: { turbo: false } %>
+                    <%= link_to pet.name, staff_pet_path(pet, active_tab: 'tasks'), class: 'text-inherit', data: { turbo: false } %>
                   </h4>
                 </div>
               </div>
             </td>
              <td>
               <div class="d-flex justify-content-center">
-                <%= pet.sex %>
+               <%= link_to pet.sex, staff_pet_path(pet, active_tab: 'tasks'), class: 'text-inherit', data: { turbo: false } %>
               </div>
             </td>
             <td>
