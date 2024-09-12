@@ -1,0 +1,49 @@
+<div class="card">
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table mb-0 text-nowrap table-hover table-centered">
+      <thead>
+        <tr>
+          <th scope="col"><%= t(:name) %></th>
+          <th scope="col"><%= t(:joined_at) %></th>
+          <th scope="col"><%= t(:action) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% adopter_accounts.each do |adopter| %>
+          <tr>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="position-relative">
+                  <%= image_tag "danielle_3.jpg", alt: "", class: "rounded-circle avatar-md me-2" %>
+                  <a href="#" class="position-absolute mt-5 ms-n4">
+                    <span class="status bg-success"></span>
+                  </a>
+                </div>
+                <h5 class="mb-0"><%= "#{adopter.user.full_name}" %></h5>
+              </div>
+            </td>
+            <td>
+              <%= adopter.created_at.strftime("%d %B, %Y") %>
+            </td>
+            <td>
+              <div class="hstack gap-4">
+                <a href="#" class="fe fe-mail text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Message" data-bs-original-title="Message"></a>
+                <a href="#" class="text-muted" data-bs-toggle="tooltip" data-placement="top" aria-label="Delete" data-bs-original-title="Delete"><i class="fe fe-trash"></i></a>
+                <span class="dropdown dropstart">
+                  <a class="btn-icon btn btn-ghost btn-sm rounded-circle" href="#" role="button" data-bs-toggle="dropdown" data-bs-offset="-20,20" aria-expanded="false">
+                    <i class="fe fe-more-vertical"></i>
+                  </a>
+                  <span class="dropdown-menu">
+                    <span class="dropdown-header"><%=t(:settings) %></span>
+                    <a class="dropdown-item" href="#"><i class="fe fe-edit dropdown-item-icon"></i> Edit</a>
+                  </span>
+                </span>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
