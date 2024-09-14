@@ -46,6 +46,8 @@ class Match < ApplicationRecord
   scope :adoptions, -> { where(match_type: :adoption) }
   scope :fosters, -> { where(match_type: :foster) }
 
+  scope :in_foster, -> { fosters.where("? between start_date and end_date", Time.zone.now) }
+
   def self.foster_statuses
     ["complete", "upcoming", "current"]
   end
