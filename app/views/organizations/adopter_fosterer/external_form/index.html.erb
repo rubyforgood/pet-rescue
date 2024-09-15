@@ -1,9 +1,11 @@
 <div class="d-flex flex-column align-items-center mb-4">
-  <iframe id="external-form" 
+  <div class="my-4 mx-8">
+    <p><%= @form_instructions %></p>
+    <%= link_to 'View pets', adoptable_pets_path, class: "btn btn-primary float-end" %>
+  </div>
+  <iframe id="external-form"
     src=<%= @form_url%>
-    width="640" 
+    width="90%" 
     height="645"
     >Loading…</iframe>
-
-  <%= link_to 'View pets', adoptable_pets_path, class: "my-2" %>
 </div>
