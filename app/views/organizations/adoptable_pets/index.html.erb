@@ -51,7 +51,7 @@
     <div class="d-flex justify-content-center align-items-center mt-2">
       <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
     </div>
-  
+
     <div class="row">
       <% @pets.each do |pet| %>
         <div class="col-lg-4 col-md-6 p-0">
@@ -60,7 +60,8 @@
             image_options: {src: pet.images.first, url: adoptable_pet_path(pet)}
           ) do |c| %>
             <%= c.with_badge do %>
-              <%= status_badge(pet) %>
+              <%= render BadgeComponent.new("Adoption Pending", class: "badge bg-info", when: pet.has_adoption_pending?) %>
+              <%= render BadgeComponent.new("Adopted", class: "badge bg-warning", when: pet.is_adopted?) %>
             <% end %>
             <%= c.with_body do %>
               <ul class="list-group list-group-flush">
