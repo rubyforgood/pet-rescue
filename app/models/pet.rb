@@ -132,7 +132,7 @@ class Pet < ApplicationRecord
   end
 
   def self.ransack_adopted(boolean)
-    boolean ? adopted : unadopted
+    boolean ? adopted : Pet.where.not(id: Pet.adopted)
   end
 
   def self.ransack_birth_date(date)
