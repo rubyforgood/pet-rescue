@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_16_012336) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_16_132430) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -176,6 +176,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_16_012336) do
     t.integer "match_type", null: false
     t.datetime "start_date"
     t.datetime "end_date"
+    t.integer "status"
     t.index ["adopter_foster_account_id"], name: "index_matches_on_adopter_foster_account_id"
     t.index ["organization_id"], name: "index_matches_on_organization_id"
     t.index ["pet_id"], name: "index_matches_on_pet_id"

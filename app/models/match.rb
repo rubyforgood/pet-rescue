@@ -11,6 +11,7 @@
 #  adopter_foster_account_id :bigint           not null
 #  organization_id           :bigint           not null
 #  pet_id                    :bigint           not null
+#  status                    :integer
 #
 # Indexes
 #
@@ -42,12 +43,13 @@ class Match < ApplicationRecord
   validate :belongs_to_same_organization_as_pet, if: -> { pet.present? }
 
   enum :match_type, [:adoption, :foster]
+  enum :status, [:not_applicable, :current, :upcoming, :completed]
 
   scope :adoptions, -> { where(match_type: :adoption) }
   scope :fosters, -> { where(match_type: :foster) }
-  scope :completed, -> { where('end_date < ?', Time.current) }
-  scope :upcoming, -> { where('start_date > ?', Time.current) }
-  scope :current, -> { where('start_date <= ? AND end_date >= ?', Time.current, Time.current) }
+  scope :current, -> { where(status: :current) }
+  scope :upcoming, -> { where(status: :upcoming) }
+  scope :completed, -> { where(status: :completed) }
 
   def self.foster_statuses
     ["complete", "upcoming", "current"]

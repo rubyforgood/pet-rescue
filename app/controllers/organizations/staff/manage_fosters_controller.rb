@@ -31,7 +31,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
     @pagy, paginated_fosters = pagy(
       @q.result
         .includes(:pet, :user)
-        .order("pets.updated_at DESC"),
+        .order("matches.status ASC, matches.start_date ASC, matches.end_date ASC"),
       limit: 10
     )
     @foster_pets = paginated_fosters.group_by(&:pet)
