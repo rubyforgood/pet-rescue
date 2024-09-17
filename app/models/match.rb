@@ -49,6 +49,23 @@ class Match < ApplicationRecord
   scope :upcoming, -> { where('start_date > ?', Time.current) }
   scope :current, -> { where('start_date <= ? AND end_date >= ?', Time.current, Time.current) }
 
+  scope :ordered_by_status_and_date, -> {
+    current_time = Time.current.to_s
+    order(
+      Arel.sql(
+        <<-SQL
+          CASE
+            WHEN start_date <= '#{current_time}' AND end_date >= '#{current_time}' THEN 1
+            WHEN start_date > '#{current_time}' THEN 2
+            ELSE 3
+          END
+        SQL
+      ),
+      start_date: :asc,
+      end_date: :asc
+    )
+  }
+
   def self.foster_statuses
     ["complete", "upcoming", "current"]
   end
