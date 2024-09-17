@@ -1,6 +1,6 @@
 # Pet Rescue Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-55-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-56-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to connect shelters with people who are looking to adopt or foster pets.
@@ -312,6 +312,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/pshong79"><img src="https://avatars.githubusercontent.com/u/1057497?v=4?s=100" width="100px;" alt="pshong79"/><br /><sub><b>pshong79</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=pshong79" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Aaryanpal"><img src="https://avatars.githubusercontent.com/u/53212802?v=4?s=100" width="100px;" alt="Aaryan"/><br /><sub><b>Aaryan</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=Aaryanpal" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/italomatos"><img src="https://avatars.githubusercontent.com/u/836472?v=4?s=100" width="100px;" alt="Ítalo Matos"/><br /><sub><b>Ítalo Matos</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=italomatos" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://kocha.club/"><img src="https://avatars.githubusercontent.com/u/42182755?v=4?s=100" width="100px;" alt="Basil Gray"/><br /><sub><b>Basil Gray</b></sub></a><br /><a href="https://github.com/rubyforgood/pet-rescue/commits?author=basil-gray" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
