@@ -7,7 +7,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      @pet = create(:pet)
+      @pet = create(:pet, sex: "Female", species: "Dog")
 
       user = create(:admin)
       sign_in user
@@ -30,6 +30,42 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         ) do
           get staff_pets_url
         end
+      end
+
+      should "filter by status" do 
+        pet_2 = create(:pet, :adopted, name: "Cutie")
+        pet_3 = create(:pet, :adoption_pending, name: "Pie")
+
+        get staff_pets_url, params: {q: {ransack_adopted: "false"}}
+        assert_response :success
+
+        assert_equal 2, assigns[:pets].count
+        assert_equal "Cutie", assigns[:pets].first.name
+        assert_not_includes "Cutie", assigns[:pets].map { |pet| pet.name }
+      end
+
+      should "filter by sex" do 
+        pet_2 = create(:pet, sex: "Female")
+        pet_3 = create(:pet, sex: "Male")
+        pet_4 = create(:pet, sex: "Female")
+
+        get staff_pets_url, params: {q: {sex_eq: "Male"}}
+        assert_response :success
+
+        assert_equal 1, assigns[:pets].count
+        assert_equal 1, assigns[:pets].select { |pet| pet.sex == "Male" }.count
+      end
+
+      should "filter by species" do 
+        pet_2 = create(:pet, species: "Cat")
+        pet_3 = create(:pet, species: "Dog")
+        pet_4 = create(:pet, species: "Cat")
+
+        get staff_pets_url, params: {q: {species_eq: "2"}}
+        assert_response :success
+
+        assert_equal 2, assigns[:pets].count
+        assert_equal 2, assigns[:pets].select { |pet| pet.species == "Cat" }.count
       end
     end
 
