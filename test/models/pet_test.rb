@@ -126,4 +126,22 @@ class PetTest < ActiveSupport::TestCase
       assert_not pet.is_adopted?
     end
   end
+
+  context "#ransack_adopted" do
+    setup do
+      create(:pet)
+      create(:pet)
+      create(:pet, :adopted)
+    end
+
+    should "return adopted pets" do
+      adopted_pets = Pet.ransack_adopted(true)
+      assert_equal 1, adopted_pets.count
+    end
+
+    should "return unadopted pets" do
+      unadopted_pets = Pet.ransack_adopted(false)
+      assert_equal 2, unadopted_pets.count
+    end
+  end
 end
