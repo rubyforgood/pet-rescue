@@ -40,7 +40,6 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
 
         assert_equal 2, assigns[:pets].count
-        assert_equal "Cutie", assigns[:pets].first.name
         assert_not_includes "Cutie", assigns[:pets].map { |pet| pet.name }
       end
 
