@@ -1,7 +1,7 @@
 <%= render DashboardPageComponent.new(crumb: :dashboard_pet, crumb_options: [@pet]) do |c| %>
   <% c.with_header_title do %>
-    <%= render PetAvatarComponent.new(@pet)%>
-    <%= @pet.name%>
+    <%= render PetAvatarComponent.new(@pet) %>
+    <%= @pet.name%>&nbsp;<%= status_badge(@pet) %>
   <% end %>
   <% c.with_nav_tabs([
     { url: staff_pet_path(@pet, active_tab: 'overview'), text: "Overview" },

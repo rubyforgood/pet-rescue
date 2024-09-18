@@ -12,15 +12,15 @@ class PetAvatarComponent < ApplicationComponent
   end
 
   def pet_image
-    if pet.images.present? && pet.images.first.present?
-      image_tag(url_for(pet.images.first), alt: pet.name, class: image_class)
-    end
+    return unless pet.images.present? && pet.images.first.present?
+
+    image_tag(url_for(pet.images.first), alt: pet.name, class: image_class)
   end
 
   def pet_initials_span
-    if pet.name.present?
-      content_tag(:span, pet_initials, class: initials_class)
-    end
+    return unless pet.name.present?
+
+    content_tag(:span, pet_initials, class: initials_class)
   end
 
   def pet_initials
@@ -43,7 +43,7 @@ class PetAvatarComponent < ApplicationComponent
   def container_class
     case size
     when :md
-      "avatar avatar-md avatar-primary rounded-circle border border-1 border-primary"
+      "avatar avatar-md avatar-primary rounded-circle border border-1 border-white"
     when :xl
       "avatar avatar-xl avatar-primary rounded-circle border border-4 border-white"
     end

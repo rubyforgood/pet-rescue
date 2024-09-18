@@ -5,6 +5,7 @@
       <thead>
         <tr>
           <th scope="col">Name</th>
+          <th scope="col">Status</th>
           <th scope="col">Sex</th>
           <th class="text-center" scope="col">Pause Applications</th>
           <th class="text-center" scope="col">Published</th>
@@ -23,6 +24,9 @@
                   </h4>
                 </div>
               </div>
+            </td>
+            <td>
+              <%= status_badge(pet) %>
             </td>
             <td>
               <%= pet.sex %>
