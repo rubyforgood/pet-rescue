@@ -148,14 +148,15 @@ class PetTest < ActiveSupport::TestCase
     should "should return adopted pets via Pet.ransack" do
       adopted_pets = Pet.ransack({"ransack_adopted"=>"true"})
 
-      assert_equal Pet.ransack_adopted(true).to_sql, Pet.ransack({"ransack_adopted"=>"true"}).result.to_sql
+      assert_equal Pet.ransack_adopted(true).to_sql, adopted_pets.result.to_sql
       assert_equal 1, adopted_pets.result.count
     end
 
+    # Fails. SQL isn't what we'd expect?
     should "should return unadopted pets via Pet.ransack" do
-      unadopted_pets = Pet.ransack({"ransack_adopted"=>false})
+      unadopted_pets = Pet.ransack({"ransack_adopted"=>"false"})
 
-      assert_equal Pet.ransack_adopted(false).to_sql, Pet.ransack({"ransack_adopted"=>"false"}).result.to_sql
+      assert_equal Pet.ransack_adopted(false).to_sql, unadopted_pets.result.to_sql
       assert_equal 2, unadopted_pets.result.count
     end
   end
