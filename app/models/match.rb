@@ -45,9 +45,9 @@ class Match < ApplicationRecord
 
   scope :adoptions, -> { where(match_type: :adoption) }
   scope :fosters, -> { where(match_type: :foster) }
-  scope :completed, -> { where('end_date < ?', Time.current) }
-  scope :upcoming, -> { where('start_date > ?', Time.current) }
-  scope :current, -> { where('start_date <= ? AND end_date >= ?', Time.current, Time.current) }
+  scope :completed, -> { where("end_date < ?", Time.current) }
+  scope :upcoming, -> { where("start_date > ?", Time.current) }
+  scope :current, -> { where("start_date <= ? AND end_date >= ?", Time.current, Time.current) }
 
   scope :ordered_by_status_and_date, -> {
     current_time = Time.current.to_s
