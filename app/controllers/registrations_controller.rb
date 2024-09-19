@@ -8,7 +8,6 @@ class RegistrationsController < Devise::RegistrationsController
   # no attributes need to be accepted, just create new account with user_id reference
   def new
     build_resource({})
-    resource.build_adopter_foster_account
     respond_with resource
   end
 
