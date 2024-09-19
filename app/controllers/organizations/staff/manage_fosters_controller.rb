@@ -8,7 +8,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
 
   def new
     @pets = Pet.fosterable.order(:name)
-    @accounts = AdopterFosterAccount.fosterers.order(:last_name)
+    @fosterers = Person.fosterers.order(:last_name)
     @foster = Match.new
   end
 
@@ -20,7 +20,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
       redirect_to action: :index
     else
       @pets = Pet.fosterable.order(:name)
-      @accounts = AdopterFosterAccount.fosterers.order(:last_name)
+      @fosterers = Person.fosterers.order(:last_name)
 
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
     @q = authorized_scope(Match.fosters).joins(:pet).ransack(params[:q])
     @pagy, paginated_fosters = pagy(
       @q.result
-        .includes(:pet, :user)
+        .includes(:pet, :person)
         .order("pets.updated_at DESC"),
       limit: 10
     )
@@ -53,7 +53,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
 
   def update
     if @foster.update(match_params)
-      flash[:success] = t(".success", @foster.pet.name)
+      flash[:success] = t(".success", name: @foster.pet.name)
       redirect_to action: :index
     else
       render :edit, status: :unprocessable_entity
@@ -71,7 +71,7 @@ class Organizations::Staff::ManageFostersController < Organizations::BaseControl
   def match_params
     params.require(:match).permit(
       :pet_id,
-      :adopter_foster_account_id,
+      :person_id,
       :start_date,
       :end_date
     )

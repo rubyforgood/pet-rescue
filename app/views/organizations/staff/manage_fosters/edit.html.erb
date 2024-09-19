@@ -1,6 +1,6 @@
 <%= render DashboardPageComponent.new(crumb: :edit_foster, crumb_options: [@foster]) do |c| %>
   <% c.with_header_title { "Edit Foster" } %>
   <% c.with_body do %>
-    <%= render "form", {foster: @foster, pets: @pets, accounts: @accounts} %>
+    <%= render "form", {foster: @foster, pets: @pets, fosterers: @fosterers} %>
   <% end %>
 <% end %>

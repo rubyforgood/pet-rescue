@@ -48,7 +48,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsController < Organizati
   def application_params
     params.require(:adopter_application).permit(
       :pet_id,
-      :adopter_foster_account_id,
+      :form_submission_id,
       :status,
       :profile_show
     )

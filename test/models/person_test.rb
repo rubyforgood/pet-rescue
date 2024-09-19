@@ -6,7 +6,8 @@ class PersonTest < ActiveSupport::TestCase
   end
 
   context "validations" do
-    should validate_presence_of(:name)
+    should validate_presence_of(:first_name)
+    should validate_presence_of(:last_name)
     should validate_presence_of(:email)
     should_not validate_presence_of(:phone)
   end
@@ -64,6 +65,40 @@ class PersonTest < ActiveSupport::TestCase
 
         refute subject.valid?
         assert_includes subject.errors[:avatar], "must be PNG or JPEG"
+      end
+    end
+  end
+
+  context "#full_name" do
+    context "format is :default" do
+      should "return `First Last`" do
+        person = build(:user, first_name: "First", last_name: "Last")
+
+        assert_equal "First Last", person.full_name
+      end
+    end
+
+    context "format is :default" do
+      should "return `First Last`" do
+        person = build(:user, first_name: "First", last_name: "Last")
+
+        assert_equal "First Last", person.full_name(:default)
+      end
+    end
+
+    context "format is :last_first" do
+      should "return `Last, First`" do
+        person = build(:user, first_name: "First", last_name: "Last")
+
+        assert_equal "Last, First", person.full_name(:last_first)
+      end
+    end
+
+    context "format is unsupported" do
+      should "raise ArgumentError" do
+        person = build(:user, first_name: "First", last_name: "Last")
+
+        assert_raises(ArgumentError) { person.full_name(:foobar) }
       end
     end
   end

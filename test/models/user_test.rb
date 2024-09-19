@@ -8,7 +8,6 @@ class UserTest < ActiveSupport::TestCase
 
   context "associations" do
     should have_one(:staff_account).dependent(:destroy)
-    should have_one(:adopter_foster_account).dependent(:destroy)
     should belong_to(:person).required(false)
   end
 
@@ -37,9 +36,8 @@ class UserTest < ActiveSupport::TestCase
     should "not attach to people in other organizations" do
       person = nil
 
-      ActsAsTenant.with_mutable_tenant do
-        other = create(:organization)
-        person = create(:person, email: "adopter@example.com", organization: other)
+      ActsAsTenant.with_tenant(create(:organization)) do
+        person = create(:person, email: "adopter@example.com")
       end
 
       assert_equal("adopter@example.com", person.email)
@@ -51,7 +49,8 @@ class UserTest < ActiveSupport::TestCase
     should "create a person if none exists" do
       user = create(:user, email: "tester@example.com", first_name: "Jane", last_name: "Smith")
 
-      assert_equal "Jane Smith", user.person.name
+      assert_equal "Jane", user.person.first_name
+      assert_equal "Smith", user.person.last_name
       assert_equal "tester@example.com", user.person.email
     end
   end

@@ -3,7 +3,8 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
 
   skip_before_action :authenticate_user!
   skip_verify_authorized only: %i[index]
-  before_action :set_likes, only: %i[index show], if: -> { allowed_to?(:index?, Like) }
+  before_action :set_likes, only: %i[index show],
+    if: -> { allowed_to?(:index?, Like) }
   helper_method :get_animals
 
   def index
@@ -21,14 +22,14 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
     @pet = Pet.find(params[:id])
     authorize! @pet, with: Organizations::AdoptablePetPolicy
 
-    if current_user&.adopter_foster_account
+    if current_user
       @adoption_application =
         AdopterApplication.find_by(
-          pet_id: @pet.id,
-          adopter_foster_account_id: current_user.adopter_foster_account.id
+          pet: @pet,
+          form_submission: current_user.person.form_submission
         ) ||
         @pet.adopter_applications.build(
-          adopter_foster_account: current_user.adopter_foster_account
+          form_submission: current_user.person.form_submission
         )
     end
   end
@@ -42,7 +43,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   end
 
   def set_likes
-    likes = current_user.adopter_foster_account.likes
+    likes = current_user.person.likes
     @likes_by_id = likes.index_by(&:pet_id)
   end
 end

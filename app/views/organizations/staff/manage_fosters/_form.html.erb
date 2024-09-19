@@ -31,11 +31,11 @@
         <% if foster.persisted? %>
           <div class="form-label text-secondary">Fosterer</div>
           <div class="form-select">
-            <%= foster.user.full_name %> 
+            <%= foster.person.full_name %> 
           </div>
         <% else %>
-          <%= form.select :adopter_foster_account_id,
-            accounts.map { |account| [account.user.full_name, account.id]},
+          <%= form.select :person_id,
+            fosterers.map { |fosterer| [fosterer.full_name, fosterer.id]},
             label: "Fosterer",
             class: "form-select"
           %>
