@@ -8,7 +8,6 @@ class AdopterApplicationTest < ActiveSupport::TestCase
 
   context "associations" do
     should belong_to(:pet).touch(true)
-    should belong_to(:adopter_foster_account)
     should belong_to(:form_submission)
   end
 
