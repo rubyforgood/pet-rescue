@@ -46,9 +46,20 @@
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
-          <% card.with_title { "Pets" } %>
+          <% card.with_title { "Fosters" } %>
           <% card.with_icon_name { "heart" } %>
-          <% card.with_value { @organization.pets.count.to_s } %>
+          <% card.with_value do %>
+            <div>
+                <%= link_to "#{@current_foster_count} Current",
+                staff_manage_fosters_path(q: { status_eq: "current" })
+                %>
+            </div>
+            <div>
+                <%= link_to "#{@upcoming_foster_count} Upcoming",
+                staff_manage_fosters_path(q: { status_eq: "upcoming" })
+                %>
+            </div>
+          <% end %>
         <% end %>
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">

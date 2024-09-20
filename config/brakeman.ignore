@@ -1,6 +1,29 @@
 {
   "ignored_warnings": [
     {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "17874ea84def1a69bb75559579cfc48b5c919ff383a346380fd0aff268a6c9a4",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/match.rb",
+      "line": 58,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Arel.sql(\"          CASE\\n            WHEN start_date <= '#{Time.current.to_s}' AND end_date >= '#{Time.current.to_s}' THEN 1\\n            WHEN start_date > '#{Time.current.to_s}' THEN 2\\n            ELSE 3\\n          END\\n\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Match",
+        "method": null
+      },
+      "user_input": "Time.current",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": "low risk - query doesn't accept any external input"
+    },
+    {
       "warning_type": "Mass Assignment",
       "warning_code": 105,
       "fingerprint": "69dfad14e6dd3e7c6f23c6b93562ba94cded6f127752e7c7ec75c7956f6fb2ae",
@@ -24,6 +47,6 @@
       "note": ""
     }
   ],
-  "updated": "2023-10-02 13:57:59 -0500",
-  "brakeman_version": "6.0.1"
+  "updated": "2024-09-18 10:18:04 +0900",
+  "brakeman_version": "6.1.2"
 }
