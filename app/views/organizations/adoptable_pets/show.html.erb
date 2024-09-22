@@ -67,7 +67,7 @@
                 <h4 class="mb-0"><%= "#{t('general.about')} #{@pet.name}" %></h4>
               </div>
 
-              <% if current_user&.adopter_foster_account %>
+              <% if allowed_to?(:create?, Like, context: {pet: @pet}) %>
                 <div id="like_button_pet_<%= @pet.id %>" class="d-flex flex-column align-items-center">
                   <%= render LikeButtonComponent.new(pet: @pet, like: @likes_by_id[@pet.id]) %>
                 </div>
@@ -129,20 +129,22 @@
           </div>
 
           <div class='text-center d-flex flex-column align-items-center mt-1'>
+            <%# FIXME: I think this should be rewritten as these nested conditionals are confusing to follow. %>
+            <%# Not a fan of using unless with logic operators %>
             <% unless user_signed_in? && current_user.staff_account %>
               <% if user_signed_in? %>
                 <% if allowed_to?(:create?, with: AdopterApplicationPolicy, context: {pet: @pet, user: current_user}) %>
                   <h4 class="mb-4 mt-3">In love with this pooch?</h4>
                   <%= form_with model: [:adopter_fosterer, @adoption_application] do |form| %>
                     <%= form.hidden_field :pet_id, value: @adoption_application.pet_id %>
-                    <%= form.hidden_field :form_submission_id, value: @current_user.form_submission.id %>
+                    <%= form.hidden_field :form_submission_id, value: @adoption_application.form_submission_id %>
                     <%= form.submit t(".apply_to_adopt"),
                       class: "custom-btn-pink",
                       data: {turbo: false}
                     %>
                   <% end %>
                 <% else %>
-                  <% if AdopterApplication.adoption_exists?(current_user.adopter_foster_account&.id, @pet.id) %>
+                  <% if AdopterApplication.exists?(form_submission: current_user.person.form_submission, pet: @pet) %>
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2 mb-0">
                         <%= "#{t('organizations.adoptable_pets.show.application_status')} #{@adoption_application.human_enum_name(:status) || t('.status.default')}" %>

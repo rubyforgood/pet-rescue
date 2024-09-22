@@ -484,6 +484,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Aaryanpal",
+      "name": "Aaryan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53212802?v=4",
+      "profile": "https://github.com/Aaryanpal",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "italomatos",
+      "name": "Ítalo Matos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/836472?v=4",
+      "profile": "https://github.com/italomatos",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "basil-gray",
+      "name": "Basil Gray",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42182755?v=4",
+      "profile": "https://kocha.club/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

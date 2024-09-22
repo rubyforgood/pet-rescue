@@ -9,9 +9,14 @@
     <%= render 'organizations/staff/pets/tabs/partials/application_status', app: app %>
   </div>
   <!-- create -->
+  <% unless app.status == 'adoption_made' %>
   <div class="align-middle text-center col">
     <%= render 'organizations/staff/pets/tabs/partials/application_create_button', app: app %>
   </div>
+  <% else %>
+  <div class="align-middle text-center col">
+  </div>
+  <% end %>
   <!-- notes -->
   <div class="align-middle col text-nowrap">
     <%= render 'organizations/staff/pets/tabs/partials/application_notes', app: app, modal_id: 'table' %>

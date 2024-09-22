@@ -2,13 +2,11 @@ require "application_system_test_case"
 
 class AdoptionFostererTest < ApplicationSystemTestCase
   setup do
-    @user = create(:fosterer, :with_person)
-    @form_submission = create(:form_submission, person: @user.person, organization: @user.organization)
-    @org = @user.organization
-    @custom_page = create(:custom_page, :with_about_us_image, organization: @org)
+    @user = create(:adopter_fosterer)
+    @custom_page = create(:custom_page, :with_about_us_image)
 
     @pet = create(:pet)
-    create(:adopter_application, pet: @pet, form_submission: @form_submission, organization: @org)
+    create(:adopter_application, pet: @pet, form_submission: @user.person.form_submission || @user.person.create_form_submission)
 
     sign_in @user
   end

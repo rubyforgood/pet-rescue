@@ -85,10 +85,10 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
 
     context "by pet name" do
       setup do
-        @pet1 = create(:pet, name: "Pango")
-        @pet2 = create(:pet, name: "Tycho")
-        create(:adopter_application, pet: @pet1, form_submission: create(:form_submission))
-        create(:adopter_application, pet: @pet2, form_submission: create(:form_submission))
+        pet1 = create(:pet, name: "Pango")
+        pet2 = create(:pet, name: "Tycho")
+        create(:adopter_application, pet: pet1, form_submission: create(:form_submission))
+        create(:adopter_application, pet: pet2, form_submission: create(:form_submission))
       end
 
       should "return applications for a specific pet name" do
@@ -102,6 +102,9 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
     context "by applicant name" do
       setup do
         @pet = create(:pet)
+        create(:form_submission, person: create(:person, first_name: "David", last_name: "Attenborough"))
+        create(:form_submission, person: create(:person, first_name: "Jane", last_name: "Goodall"))
+
         create(:adopter_application, pet: @pet, form_submission: create(:form_submission))
         create(:adopter_application, pet: @pet, form_submission: create(:form_submission))
       end

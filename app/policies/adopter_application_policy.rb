@@ -1,10 +1,12 @@
 class AdopterApplicationPolicy < ApplicationPolicy
   authorize :pet, optional: true
 
-  pre_check :verify_form_submission!
+  pre_check :verify_form_submission!, except: %i[index?]
   pre_check :verify_pet_appliable!, only: %i[create?]
 
   relation_scope do |relation|
+    return relation.none unless user.form_submission
+
     relation.where(form_submission_id: user.form_submission.id)
   end
 
@@ -23,11 +25,11 @@ class AdopterApplicationPolicy < ApplicationPolicy
   private
 
   def applicant?
-    user.id == record.form_submission.user.id
+    user.person_id == record.person.id
   end
 
   def already_applied?
-    user.form_submission.adopter_applications.any? do |application|
+    user.person.adopter_applications.any? do |application|
       application.pet_id == pet.id
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_02_115121) do
+ActiveRecord::Schema[7.1].define(version: 2024_09_09_043422) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_115121) do
 
   create_table "adopter_applications", force: :cascade do |t|
     t.bigint "pet_id", null: false
-    t.bigint "adopter_foster_account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
@@ -55,15 +54,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_115121) do
     t.index ["form_submission_id"], name: "index_adopter_applications_on_form_submission_id"
     t.index ["organization_id"], name: "index_adopter_applications_on_organization_id"
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
-  end
-
-  create_table "adopter_foster_accounts", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
-    t.bigint "organization_id", null: false
-    t.index ["organization_id"], name: "index_adopter_foster_accounts_on_organization_id"
-    t.index ["user_id"], name: "index_adopter_foster_accounts_on_user_id"
   end
 
   create_table "custom_pages", force: :cascade do |t|
@@ -143,14 +133,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_115121) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.bigint "adopter_foster_account_id", null: false
     t.bigint "pet_id", null: false
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["adopter_foster_account_id", "pet_id"], name: "index_likes_on_adopter_foster_account_id_and_pet_id", unique: true
-    t.index ["adopter_foster_account_id"], name: "index_likes_on_adopter_foster_account_id"
+    t.bigint "person_id", null: false
     t.index ["organization_id"], name: "index_likes_on_organization_id"
+    t.index ["person_id"], name: "index_likes_on_person_id"
     t.index ["pet_id"], name: "index_likes_on_pet_id"
   end
 
@@ -169,22 +158,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_115121) do
     t.bigint "pet_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "adopter_foster_account_id", null: false
     t.bigint "organization_id", null: false
     t.integer "match_type", null: false
     t.datetime "start_date"
     t.datetime "end_date"
-    t.index ["adopter_foster_account_id"], name: "index_matches_on_adopter_foster_account_id"
+    t.bigint "person_id", null: false
     t.index ["organization_id"], name: "index_matches_on_organization_id"
+    t.index ["person_id"], name: "index_matches_on_person_id"
     t.index ["pet_id"], name: "index_matches_on_pet_id"
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
-    t.string "email"
+    t.string "slug", null: false
+    t.string "email", null: false
     t.string "phone_number"
     t.text "donation_url"
     t.text "facebook_url"
@@ -195,11 +184,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_115121) do
 
   create_table "people", force: :cascade do |t|
     t.bigint "organization_id", null: false
-    t.string "name", null: false
     t.string "email", null: false
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
     t.index ["email"], name: "index_people_on_email"
     t.index ["organization_id"], name: "index_people_on_organization_id"
   end
@@ -316,10 +306,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_115121) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "adopter_applications", "adopter_foster_accounts"
   add_foreign_key "adopter_applications", "form_submissions"
   add_foreign_key "adopter_applications", "pets"
-  add_foreign_key "adopter_foster_accounts", "users"
   add_foreign_key "custom_pages", "organizations"
   add_foreign_key "default_pet_tasks", "organizations"
   add_foreign_key "faqs", "organizations"
@@ -330,11 +318,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_02_115121) do
   add_foreign_key "form_submissions", "organizations"
   add_foreign_key "form_submissions", "people"
   add_foreign_key "forms", "organizations"
-  add_foreign_key "likes", "adopter_foster_accounts"
   add_foreign_key "likes", "organizations"
+  add_foreign_key "likes", "people"
   add_foreign_key "likes", "pets"
   add_foreign_key "locations", "organizations"
-  add_foreign_key "matches", "adopter_foster_accounts"
+  add_foreign_key "matches", "people"
   add_foreign_key "matches", "pets"
   add_foreign_key "people", "organizations"
   add_foreign_key "pets", "organizations"

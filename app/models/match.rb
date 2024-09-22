@@ -2,33 +2,33 @@
 #
 # Table name: matches
 #
-#  id                        :bigint           not null, primary key
-#  end_date                  :datetime
-#  match_type                :integer          not null
-#  start_date                :datetime
-#  created_at                :datetime         not null
-#  updated_at                :datetime         not null
-#  adopter_foster_account_id :bigint           not null
-#  organization_id           :bigint           not null
-#  pet_id                    :bigint           not null
+#  id              :bigint           not null, primary key
+#  end_date        :datetime
+#  match_type      :integer          not null
+#  start_date      :datetime
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  organization_id :bigint           not null
+#  person_id       :bigint           not null
+#  pet_id          :bigint           not null
 #
 # Indexes
 #
-#  index_matches_on_adopter_foster_account_id  (adopter_foster_account_id)
-#  index_matches_on_organization_id            (organization_id)
-#  index_matches_on_pet_id                     (pet_id)
+#  index_matches_on_organization_id  (organization_id)
+#  index_matches_on_person_id        (person_id)
+#  index_matches_on_pet_id           (pet_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (adopter_foster_account_id => adopter_foster_accounts.id)
+#  fk_rails_...  (person_id => people.id)
 #  fk_rails_...  (pet_id => pets.id)
 #
 class Match < ApplicationRecord
   acts_as_tenant(:organization)
   belongs_to :pet, touch: true
-  belongs_to :adopter_foster_account
+  belongs_to :person
 
-  has_one :user, through: :adopter_foster_account
+  has_one :user, through: :person # TODO: Remove this association and use person for all logic instead
 
   validates :start_date,
     presence: {if: -> { match_type == "foster" }}
@@ -45,6 +45,28 @@ class Match < ApplicationRecord
 
   scope :adoptions, -> { where(match_type: :adoption) }
   scope :fosters, -> { where(match_type: :foster) }
+  scope :completed, -> { where("end_date < ?", Time.current) }
+  scope :upcoming, -> { where("start_date > ?", Time.current) }
+  scope :current, -> { where("start_date <= ? AND end_date >= ?", Time.current, Time.current) }
+
+  scope :ordered_by_status_and_date, -> {
+    current_time = Time.current.to_s
+    order(
+      Arel.sql(
+        <<-SQL
+          CASE
+            WHEN start_date <= '#{current_time}' AND end_date >= '#{current_time}' THEN 1
+            WHEN start_date > '#{current_time}' THEN 2
+            ELSE 3
+          END
+        SQL
+      ),
+      start_date: :asc,
+      end_date: :asc
+    )
+  }
+
+  scope :in_foster, -> { fosters.where("? between start_date and end_date", Time.zone.now) }
 
   def self.foster_statuses
     ["complete", "upcoming", "current"]
@@ -55,7 +77,7 @@ class Match < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    %w[pet user]
+    %w[pet user person]
   end
 
   def fosterer_name(format = :default)
@@ -93,7 +115,7 @@ class Match < ApplicationRecord
   end
 
   def adopter_application
-    AdopterApplication.find_by(pet:, adopter_foster_account:)
+    AdopterApplication.includes(:form_submission).find_by(pet:, form_submission: {person:})
   end
 
   ransacker :status do

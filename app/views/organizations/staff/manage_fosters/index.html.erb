@@ -9,9 +9,8 @@
   <% end %>
   <% c.with_body do %>
     <section class="pb-5" id="about_us">
-      <div class="container">
         <!-- Ransack Search Form -->
-        <div class="row p-4 border rounded-5 mb-5 bg-white">
+        <div class="mx-1 row p-4 border rounded-5 mb-5 bg-white">
           <div class="col-xl-12">
             <%= search_form_for @q, url: staff_manage_fosters_path do |f| %>
               <div class="row">
@@ -23,8 +22,8 @@
                   %>
                 </div>
                 <div class="form-group mb-3 col-md-4">
-                  <%= f.label :user_first_name_or_user_last_name_cont, "Fosterer Name" %>
-                  <%= f.search_field :user_first_name_or_user_last_name_cont,
+                  <%= f.label :person_first_name_or_person_last_name_cont, "Fosterer Name" %>
+                  <%= f.search_field :person_first_name_or_person_last_name_cont,
                     class: "form-control",
                     placeholder: "Enter Fosterer Name"
                   %>
@@ -61,7 +60,6 @@
         <div class="d-xl-none d-flex flex-wrap">
           <%= render "foster_cards", foster_pets: @foster_pets %>
         </div>
-      </div>
     </section>
     <div class="d-flex justify-content-center align-items-center mt-2">
       <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>

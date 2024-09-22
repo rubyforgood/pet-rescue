@@ -1,6 +1,6 @@
 <%= render DashboardPageComponent.new do |c| %>
   <% c.with_header_title do %>
-    <%= @application.applicant_name %>'s application for
+    <%= @application.person.full_name %>'s application for
     <%= @application.pet.name %>
   <% end %>
 

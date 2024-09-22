@@ -22,25 +22,21 @@ FactoryBot.define do
     end
 
     factory :adopter do
-      adopter_foster_account do
-        association :adopter_foster_account, user: instance # MARK: can I remove this yet?
-
-        # create a form submission
-      end
-
       after(:build) do |user, _context|
         user.add_role(:adopter, user.organization)
       end
     end
 
     factory :fosterer do
-      adopter_foster_account do
-        association :adopter_foster_account, user: instance # MARK: can I remove this yet?
-      end
-
       after(:build) do |user, _context|
         user.add_role(:fosterer, user.organization)
+      end
+    end
+
+    factory :adopter_fosterer do
+      after(:build) do |user, _context|
         user.add_role(:adopter, user.organization)
+        user.add_role(:fosterer, user.organization)
       end
     end
 

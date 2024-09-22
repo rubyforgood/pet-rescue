@@ -35,8 +35,8 @@ class Organizations::LikePolicyTest < ActiveSupport::TestCase
         @user = create(:fosterer)
       end
 
-      should "return true" do
-        assert_equal true, @action.call
+      should "return false" do
+        assert_equal false, @action.call
       end
     end
 

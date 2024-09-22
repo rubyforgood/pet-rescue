@@ -9,15 +9,7 @@ FactoryBot.define do
     end
 
     pet
-
-    form_submission do
-      if user
-        user.person.form_submission ||
-          association(:form_submission, person: user.person)
-      else
-        association :form_submission
-      end
-    end
+    form_submission
 
     trait :adoption_pending do
       status { 2 }

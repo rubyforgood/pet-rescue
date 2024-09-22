@@ -1,56 +1,39 @@
 <!-- footer -->
 <footer class="pt-lg-10 pt-5 footer bg-white">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-4 col-md-6 col-12">
-        <!-- about company -->
-        <div class="mb-4">
-          <h3><%= t('.title') %></h3>
-          <div class="mt-4">
-            <p><%= t('.description') %></p>
-            <!-- social media -->
-            <div class="fs-4 mt-4">
-              <a href="#" class="mdi mdi-facebook fs-4 text-muted me-2"></a>
-              <a href="#" class="mdi mdi-twitter text-muted me-2"></a>
-              <a href="#" class="mdi mdi-instagram text-muted "></a>
-            </div>
-          </div>
+    <div class="row align-items-center">
+        <div class="col-12 col-sm-auto px-3">
+          <h3 class="fw-bold" style="color: #000000;"><%= t('.title') %></h3>
         </div>
-      </div>
-      <div class="offset-lg-1 col-lg-2 col-md-3 col-6">
-        <div class="mb-4">
-          <!-- list -->
-          <h3 class="fw-bold mb-3"><%= t('.company') %></h3>
-          <ul class="list-unstyled nav nav-footer flex-column nav-x-0">
-            <li>
-              <%= active_link_to t('.about'), about_us_path, class: 'nav-link' %>
+        <div class="col-12 col-md col-sm ms-sm-2 ms-2">
+          <ul class="list-unstyled d-flex flex-column flex-sm-row justify-content-start mb-0">
+            <li class="mb-2 mb-sm-0 mx-sm-3">
+              <%= active_link_to t('.about'), about_us_path, class: 'nav-link p-0', style: "color: #000000;" %>
             </li>
-            <li>
-              <%= active_link_to t('.partners'), partners_path, class: 'nav-link' %>
+            <li class="mb-2 mb-sm-0 mx-sm-3">
+              <%= active_link_to t('.rescues'), '#', class: 'nav-link p-0', style: "color: #000000;" %>
+            </li>
+            <li class="mb-2 mb-sm-0 mx-sm-3">
+              <%= active_link_to t('.ruby_for_good'), "https://rubyforgood.org/", class: 'nav-link p-0', style: "color: #000000;" %>
             </li>
           </ul>
         </div>
-      </div>
     </div>
-    <div class="row align-items-center g-0 border-top py-2 mt-6">
-      <!-- Desc -->
-      <div class="col-lg-4 col-md-5 col-12">
-        <span>
-          ©
-          <span id="copyright">
-            <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
-          </span>
-          <%= t('.rights') %>
-        </span>
+    <div class="row align-items-center g-0 border-top py-2">
+             <!-- Desc -->
+             <div class="col-md-6 col-12 text-center text-md-start">
+                 <span>© <span id="copyright">
+                     <script>document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))</script>
+                 </span><%= t('.rights') %></span>
+             </div>
+               <!-- Links -->
+             <div class="col-12 col-md-6">
+                 <nav class="nav nav-footer justify-content-center justify-content-md-end">
+                     <a class="nav-link" href="#"><%= t('.policy') %></a>
+                     <a class="nav-link" href="#"><%= t('.cookie') %></a>
+                     <a class="nav-link" href="#"><%= t('.terms') %></a>
+                 </nav>
+             </div>
       </div>
-      <!-- Links -->
-      <div class="col-12 col-md-7 col-lg-8 d-md-flex justify-content-end">
-        <nav class="nav nav-footer">
-          <a class="nav-link ps-0" href="#"><%= t('.policy') %></a>
-          <a class="nav-link px-2 px-md-3" href="#"><%= t('.cookie') %></a>
-          <a class="nav-link" href="#"><%= t('.terms') %></a>
-        </nav>
-      </div>
-    </div>
   </div>
 </footer>

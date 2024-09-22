@@ -13,13 +13,16 @@ module Authorizable
     view_adopter_foster_dashboard
     create_adopter_applications
     view_adopter_applications
+    view_adopter_foster_matches
     withdraw_adopter_applications
     purge_avatar
     manage_likes
+    view_adopted_pets
   ].freeze
 
   FOSTERER_PERMISSIONS = %i[
     view_adopter_foster_dashboard
+    view_adopter_foster_matches
     purge_avatar
   ].freeze
 
@@ -27,12 +30,12 @@ module Authorizable
     ADOPTER_PERMISSIONS.excluding(
       %i[
         view_adopter_foster_dashboard
+        view_adopter_foster_matches
         create_adopter_applications
         manage_likes
       ]
     ) + %i[
       review_adopter_applications
-      view_adopter_foster_accounts
       invite_fosterers
       purge_attachments
       manage_default_pet_tasks
@@ -42,6 +45,7 @@ module Authorizable
       manage_pets
       manage_tasks
       view_organization_dashboard
+      view_people
       manage_faqs
     ]
   ).freeze

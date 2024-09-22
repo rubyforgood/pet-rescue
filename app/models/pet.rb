@@ -28,6 +28,8 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Pet < ApplicationRecord
+  include PetTaskable
+
   acts_as_tenant(:organization)
 
   has_many :adopter_applications, dependent: :destroy
@@ -81,6 +83,9 @@ class Pet < ApplicationRecord
     where(placement_type: ["Fosterable", "Adoptable and Fosterable"])
   }
   scope :with_photo, -> { where.associated(:images_attachments) }
+  scope :filter_by_application_status, ->(status_filter) {
+    joins(:adopter_applications).where(adopter_applications: {status: status_filter})
+  }
 
   attr_writer :toggle
 
@@ -93,6 +98,14 @@ class Pet < ApplicationRecord
     adopter_applications.any? { |app| app.status == "adoption_made" }
   end
 
+  def in_foster?
+    matches.in_foster.exists?
+  end
+
+  def open?
+    !is_adopted? && !in_foster?
+  end
+
   # active storage: using.attach for appending images per rails guide
   def append_images=(attachables)
     images.attach(attachables)
@@ -102,16 +115,6 @@ class Pet < ApplicationRecord
     if matches.where(end_date: DateTime.now..).exists? && placement_type == "Adoptable"
       errors.add(:placement_type, I18n.t("activerecord.errors.models.pet.attributes.placement_type.sensible"))
     end
-  end
-
-  # all pets under an organization
-  def self.org_pets(staff_org_id)
-    Pet.where(organization_id: staff_org_id)
-  end
-
-  def self.org_pets_with_apps(staff_org_id)
-    org_pets(staff_org_id).includes(adopter_applications: [form_submission: [:person]]).where
-      .not(adopter_applications: {id: nil}).references(:persons)
   end
 
   def self.ransackable_attributes(auth_object = nil)

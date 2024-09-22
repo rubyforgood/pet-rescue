@@ -8,7 +8,6 @@ class RegistrationsController < Devise::RegistrationsController
   # no attributes need to be accepted, just create new account with user_id reference
   def new
     build_resource({})
-    resource.build_adopter_foster_account
     respond_with resource
   end
 
@@ -27,7 +26,7 @@ class RegistrationsController < Devise::RegistrationsController
   def set_layout
     if current_user&.staff_account
       "dashboard"
-    elsif current_user&.adopter_foster_account
+    elsif allowed_to?(:index?, with: Organizations::AdopterFosterDashboardPolicy, context: {organization: Current.organization})
       "adopter_foster_dashboard"
     else
       "application"
@@ -58,6 +57,8 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def after_sign_up_path_for(resource)
+    return root_path unless allowed_to?(:index?, with: Organizations::AdopterFosterDashboardPolicy, context: {organization: Current.organization})
+
     if Current.organization.external_form_url
       adopter_fosterer_external_form_index_path
     else

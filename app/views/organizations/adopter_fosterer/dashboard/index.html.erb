@@ -2,13 +2,6 @@
   <% c.with_header_title { t("dashboard.index.header_title") } %>
   <% c.with_body do %>
     <div class="row">
-      <% unless current_user.adopter_foster_account.present? %>
-        <div class="alert alert-warning ">
-          <%= link_to t('organizations.adoptable_pets.show.complete_my_profile'), new_adopter_fosterer_profile_path,
-                            class: 'custom-btn-pink' %>
-        </div>
-      <% end %>
-
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
           <% card.with_title { "Example" } %>

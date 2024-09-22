@@ -51,7 +51,7 @@
     <div class="d-flex justify-content-center align-items-center mt-2">
       <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
     </div>
-  
+
     <div class="row">
       <% @pets.each do |pet| %>
         <div class="col-lg-4 col-md-6 p-0">
@@ -71,7 +71,7 @@
                       <%= pet.name %>
                     </h3>
                   <% end %>
-                  <% if current_user&.adopter_foster_account %>
+                  <% if allowed_to?(:create?, Like, context: {pet: pet}) %>
                     <div class='text-end' id="like_button_pet_<%= pet.id %>">
                       <%= render LikeButtonComponent.new(pet: pet, like: @likes_by_id[pet.id]) %>
                     </div>

@@ -29,8 +29,8 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
       end
 
       should "count the total number of applications" do
-        organization = ActsAsTenant.current_tenant
-        create_list(:adopter_application, 2, form_submission: @form_submission)
+        form_submission = create(:form_submission, person: @user.person)
+        create_list(:adopter_application, 2, form_submission: form_submission)
 
         get adopter_fosterer_dashboard_index_path
 
@@ -38,8 +38,6 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
       end
 
       should "return zero when the total number of adopter applications is nil" do
-        organization = ActsAsTenant.current_tenant
-
         get adopter_fosterer_dashboard_index_path
         assert_equal 0, assigns(:application_count)
       end
@@ -48,6 +46,7 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
     context "#create" do
       setup do
         @pet = create(:pet)
+        @form_submission = create(:form_submission, person: @user.person)
         @params = {adopter_application: {
           pet_id: @pet.id,
           form_submission_id: @form_submission.id

@@ -67,6 +67,12 @@
                           <i class="fe fe-heart nav-icon"></i> Liked Pets
                         <% end %>
                       </li>
+                       <!-- Nav item -->
+                      <li class="nav-item">
+                        <%= active_link_to adopter_fosterer_adopted_pets_path, class: "nav-link" do %>
+                          <i class="fe fe-star nav-icon"></i> Adopted Pets
+                        <% end %>
+                      </li>
                       <!-- Nav item -->
                       <li class="nav-item">
                         <%= active_link_to adopter_fosterer_donations_path, class: "nav-link" do %>
@@ -75,7 +81,7 @@
                       </li>
                       <!-- Nav item -->
                       <li class="nav-item">
-                        <%= active_link_to faq_index_path, class: "nav-link" do %>
+                        <%= active_link_to adopter_fosterer_faq_index_path, class: "nav-link" do %>
                           <i class="fe fe-help-circle nav-icon"></i> FAQ
                         <% end %>
                       </li>
@@ -86,6 +92,11 @@
                         <% end %>
                       </li>
                       <% end %>
+                      <li class="nav-item">
+                        <%= active_link_to new_dev_contact_path, class: "nav-link" do %>
+                          <i class="nav-icon fe fe-message-circle me-2"></i> Feedback
+                        <% end %>
+                      </li>
                     </ul>
                     <!-- Navbar header -->
                     <span class="navbar-header">Account Settings</span>
