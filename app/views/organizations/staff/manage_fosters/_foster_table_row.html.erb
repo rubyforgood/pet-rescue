@@ -33,7 +33,7 @@
   <!-- buttons -->
   <td class="w-20 align-middle">
     <div class="d-flex justify-content-end">
-      <%= button_to "Delete",
+      <%= button_to t('general.delete'),
         staff_manage_foster_path(foster, page: params[:page]),
         method: :delete,
         class: "btn btn-outline-danger",
