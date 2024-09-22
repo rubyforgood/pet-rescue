@@ -22,7 +22,7 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
     @pet = Pet.find(params[:id])
     authorize! @pet, with: Organizations::AdoptablePetPolicy
 
-    if current_user
+    if current_user&.form_submission
       @adoption_application =
         AdopterApplication.find_by(
           pet_id: @pet.id,
