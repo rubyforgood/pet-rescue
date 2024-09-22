@@ -511,6 +511,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "noahdurbin",
+      "name": "Noah Durbin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13364668?v=4",
+      "profile": "http://noahdurbin.github.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
