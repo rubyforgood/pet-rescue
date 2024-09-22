@@ -13,15 +13,15 @@
         <h4 class="mb-0"><%= "#{staff.user.full_name}" %></h4>
       </div>
       <div class="d-flex justify-content-between border-bottom py-2 mt-4">
-        <span>Role</span>
+        <span><%= t(:role) %></span>
         <%= render "role", staff: staff %>
       </div>
       <div class="d-flex justify-content-between border-bottom py-2">
-        <span>Joined</span>
+        <span><%= t(:joined) %></span>
         <span><%= staff.created_at.strftime("%d %B, %Y") %></span>
       </div>
       <div class="d-flex justify-content-between pt-2">
-        <span>Deactivate</span>
+        <span><%= t(:deactivate) %></span>
         <%= render "deactivate_toggle", staff: staff %>
       </div>
     </div>
