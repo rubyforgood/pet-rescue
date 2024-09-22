@@ -12,12 +12,12 @@ class RegistrationsController < Devise::RegistrationsController
     respond_with resource
   end
 
+  # MARK: only adopters are created through this route. Adopters need both the adoper role and a form submission to attach their applications to
   def create
     super do |resource|
       if resource.persisted?
         resource.add_role(:adopter, Current.organization)
-        # add form submission service
-        ::Organizations::FormSubmissionService.new(resource).create
+        FormSubmission.create!(person_id: resource.person_id)
       end
     end
   end
