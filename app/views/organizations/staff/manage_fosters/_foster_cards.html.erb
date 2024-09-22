@@ -55,7 +55,7 @@
                 <% end %>
               </li>
               <li class="list-group-item d-flex justify-content-end">
-                <%= button_to "Delete",
+                <%= button_to t('general.delete'),
                   staff_manage_foster_path(foster, page: params[:page]),
                   method: :delete,
                   class: "btn btn-outline-danger",

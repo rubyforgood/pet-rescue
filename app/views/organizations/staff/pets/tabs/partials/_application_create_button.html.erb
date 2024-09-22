@@ -2,7 +2,7 @@
   <!--create adoption button-->
   <%= button_to "New Adoption", staff_matches_path, method: :post,
         params: {match:
-          {pet_id: app.pet_id, 
+          {pet_id: app.pet_id,
            person_id: app.form_submission.person_id,
            match_type: :adoption}
         },

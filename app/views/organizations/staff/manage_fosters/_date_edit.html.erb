@@ -8,8 +8,8 @@
       class: "form-control"
     %>
     <div class="d-flex gap-2 flex-wrap">
-      <%= form.submit "Save", class: "btn btn-primary" %>
-      <%= link_to "Cancel", staff_manage_fosters_path(page: params[:page]),
+      <%= form.submit t('general.save'), class: "btn btn-primary" %>
+      <%= link_to t('general.cancel'), staff_manage_fosters_path(page: params[:page]),
         class: "btn btn-secondary"
       %>
     </div>

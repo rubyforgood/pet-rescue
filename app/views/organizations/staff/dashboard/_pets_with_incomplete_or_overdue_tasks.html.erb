@@ -1,11 +1,11 @@
 <turbo-frame id="tasks-frame">
-<h3 class = "text-capitalize"><%= @header_title%></h3>
+<h3 class = "text-capitalize"><%= @header_title %></h3>
   <div class="card">
     <table class="table mb-0 text-nowrap table-hover table-centered">
       <thead>
         <tr>
-          <th scope="col">Name</th>
-          <th class="text-center" scope="col">Sex</th>
+          <th scope="col"><%= t('name') %></th>
+          <th class="text-center" scope="col"><%= t('general.sex') %></th>
           <th class="text-center" scope="col"><%= @column_name %></th>
         </tr>
       </thead>

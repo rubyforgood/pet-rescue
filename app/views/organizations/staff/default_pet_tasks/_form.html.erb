@@ -14,11 +14,11 @@
                       { class: 'form-control' } %>
       </div>
       <div class="form-group">
-        <%= f.number_field :due_in_days, class: 'form-control', help: 'The task will be due this number of days after the pet is created.' %>
+        <%= f.number_field :due_in_days, class: 'form-control', help: t('.help_due_in_days') %>
       </div>
       <div class="form-group">
-        <%= f.check_box :recurring, 
-                      { class: "form-check-input",  
+        <%= f.check_box :recurring,
+                      { class: "form-check-input",
                         id: "recur"} %>
       </div>
       <%= f.submit t('general.save'), class: 'btn btn-primary' %>

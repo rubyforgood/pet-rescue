@@ -31,20 +31,29 @@
 
 en:
   adopters: "Adopters"
+  fosters: "Fosters"
+  fosterer: "Fosterer"
+  rescues: "Rescues"
+  staff: "Staff"
   action: "Action"
   hello: "Hello world"
   joined_at: "Joined At"
   joined: "Joined"
   name: "Name"
+  role: "Role"
+  deactivate: "Deactivate"
   settings: "Settings"
-  invite_foster: "Invite Foster"
+  invite_fosterer: "Invite Fosterer"
+  invite_staff: "Invite Staff"
   general:
     attach: "Attach"
     adoption_pending: "(Adoption Pending)"
     age: "Age"
     become_an_adopter: "Become an adopter"
     breed: "Breed"
+    clear_filters: "Clear Filters"
     application: "Application"
+    pet: "Pet"
     sex: "Sex"
     weight: "Weight"
     about: "About"
@@ -59,6 +68,8 @@ en:
     male: "Male"
     female: "Female"
     edit: "Edit"
+    search: "Search"
+    send_invite: "Send Invite"
     submit: "Submit"
     status: "Status"
     back: "Back"
@@ -66,8 +77,8 @@ en:
     not_found: "Not Found"
     are_you_sure_delete_pet: "Are you sure you want to delete this pet?"
     organization_not_found: "Organization not found."
-  dashboard: 
-    index: 
+  dashboard:
+    index:
       header_title: Dashboard
     applications:
       header_title: Adoption Applications
@@ -113,8 +124,8 @@ en:
       learn_more_about: 'Learn more about Ruby For Good'
       learn_more_about_description: 'Ruby for Good is a skills-based volunteer organization focused on is to delivering specialized software development solutions to non-profit organizations to bolster their critical missions, build an inclusive technology community, and provide technology-focused educational opportunities to underserved communities.'
   views:
-    dashboard: 
-      index: 
+    dashboard:
+      index:
         header_title: Dashboard
       applications:
         header_title: Adoption Applications
@@ -357,14 +368,18 @@ en:
       tasks:
         task:
           recurring: "Recurring"
+          due_date: "Due Date - %{date}"
+          confirm_delete: "Are you sure you want to delete this task?"
         index:
           new_task: "Add New Task"
           complete?: "Show Completed"
         destroy:
           success: "Task was successfully deleted."
+        form:
+          next_due_date_in_days: "Next due date in (days)"
       custom_pages:
         update:
-          success: "Page text updated successfully!" 
+          success: "Page text updated successfully!"
       matches:
         create:
           success: "Pet successfully adopted."
@@ -379,7 +394,7 @@ en:
           success: "Foster for %{name} deleted."
       invitations:
         create:
-          success: "Invite sent!" 
+          success: "Invite sent!"
       adoption_application_reviews:
         update:
           success: "Application was successfully updated."
@@ -395,12 +410,18 @@ en:
         set_task:
           error:  "Default Pet Task not found."
         error: "Default Pet Task not found."
+        form:
+          help_due_in_days: "The task will be due this number of days after the pet is created."
         index:
           name: "Name"
+          name_placeholder: "Enter Pet Name"
           description: "Description"
           species: "Species"
+          species_placeholder: "Select Species"
+          due_in_days_placeholder: "Due in (Days)"
           due_after: "Due in"
           recurring: "Recurring"
+          recurring_placeholder: "Select Recurring Status"
           default_pet_tasks: "Default Pet Tasks"
           create_default_task: "Create Default Task"
           are_you_sure_delete: "Are you sure you want to delete this default pet task?"

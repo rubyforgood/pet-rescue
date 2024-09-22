@@ -9,17 +9,17 @@
           <p class='mb-0'> <%= task.description %> </p>
           <div class='d-flex'>
             <% if task.due_date %>
-              <% if task.due_date.to_date == Date.today %>
+              <% if task.due_date.today? %>
                 <div class='text-warning'>
-                  <i class="fe fe-clock"></i> Due Date - Today
+                  <i class="fe fe-clock"></i> <%= t('.due_date', date: 'Today') %>
                 </div>
-              <% elsif task.due_date.to_date > Date.today %>
+              <% elsif task.due_date.future? %>
                 <div class='text-warning'>
-                  <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
+                  <i class="fe fe-clock"></i> <%= t('.due_date', date: task.due_date.strftime("%d %b")) %>
                 </div>
-              <% elsif task.due_date.to_date < Date.today %>
+              <% elsif task.due_date.past? %>
                 <div class='text-danger'>
-                  <i class="fe fe-clock"></i> Due Date - <%= task.due_date.strftime("%d %b") %>
+                  <i class="fe fe-clock"></i> <%= t('.due_date', date: task.due_date.strftime("%d %b")) %>
                 </div>
               <% end %>
               <% if task.recurring %>
@@ -35,8 +35,8 @@
       <!-- Right side: Completion status and action buttons -->
       <div class="text-right">
         <div class="d-flex align-items-center justify-content-end">
-          <%= link_to 'Edit', edit_staff_pet_task_path(task.pet, task), class: 'btn btn-warning m-2' %>
-          <%= link_to 'Delete', staff_pet_task_path(task.pet, task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: 'Are you sure?' } %>
+          <%= link_to t('general.edit'), edit_staff_pet_task_path(task.pet, task), class: 'btn btn-warning m-2' %>
+          <%= link_to t('general.delete'), staff_pet_task_path(task.pet, task), class: 'btn btn-danger m-2', data: { turbo_method: "delete", turbo_confirm: t('.confirm_delete') } %>
         </div>
       </div>
     </div>
