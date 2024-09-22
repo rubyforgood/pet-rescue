@@ -4,7 +4,7 @@ module Organizations
       skip_verify_authorized # MARK: what should the auth policy look like for this action?
 
       before_action :form_instructions
-      
+
       layout :form_layout
 
       def index
@@ -15,15 +15,15 @@ module Organizations
 
       def form_layout
         return "adopter_foster_dashboard" if params[:dashboard]
-          
+
         "application"
       end
 
       def form_instructions
-        if params[:dashboard]
-          @form_instructions = t('organizations.adopter_fosterer.form_instructions.dashboard')
+        @form_instructions = if params[:dashboard]
+          t("organizations.adopter_fosterer.form_instructions.dashboard")
         else
-          @form_instructions = t('organizations.adopter_fosterer.form_instructions.index', organization_name: Current.tenant.name)
+          t("organizations.adopter_fosterer.form_instructions.index", organization_name: Current.tenant.name)
         end
       end
     end
