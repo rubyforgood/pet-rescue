@@ -46,7 +46,7 @@
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
-          <% card.with_title { "Fosters" } %>
+          <% card.with_title { t(:fosters) } %>
           <% card.with_icon_name { "heart" } %>
           <% card.with_value do %>
             <div>
@@ -64,7 +64,7 @@
       </div>
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <%= render DataCardComponent.new do |card| %>
-          <% card.with_title { "Rescues" } %>
+          <% card.with_title { t(:rescues) } %>
           <% card.with_icon_name { "star" } %>
           <% card.with_value { "TBD" } %>
         <% end %>
