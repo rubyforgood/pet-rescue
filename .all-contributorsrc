@@ -520,6 +520,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "khiga8",
+      "name": "Kate Higa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16447748?v=4",
+      "profile": "http://katehiga.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
