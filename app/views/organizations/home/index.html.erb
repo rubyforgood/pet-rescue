@@ -10,11 +10,10 @@
             <p class="lead mb-4 text-black"><%= Current.organization.custom_page&.hero || "Where every paw finds a home" %></p>
           </div>
           <div class="d-flex justify-content-center">
-            <%= link_to '#', class: "btn btn-dark btn-lg rounded-1 me-2" do %>
-              Volunteer
-            <% end %>
-            <%= link_to adoptable_pets_path, class: "btn btn-primary btn-lg rounded-1 ms-2" do %>
-              Donate
+            <% if user_signed_in? %>
+              <%= link_to "Browse Pets", adoptable_pets_path, class: "btn btn-primary btn-lg rounded-1 ms-2" %>
+            <% else %>
+              <%= link_to "Become an Adopter", new_user_registration_path, class: "btn btn-primary btn-lg rounded-1 ms-2" %>
             <% end %>
           </div>
         </div>
