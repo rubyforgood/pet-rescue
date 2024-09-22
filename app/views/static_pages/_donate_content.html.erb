@@ -1,9 +1,9 @@
 <div class="container">
-    <div class="row d-flex align-items-center">
-      <div class=" col-xxl-5  col-xl-6 col-lg-6 col-12">
+    <div class="row d-flex">
+      <div class=" col-xxl-5 col-xl-6 col-lg-6 col-12">
         <div>
-          <h1 class="display-2 fw-bold mb-3"><span class="text-primary"><%= t('static_pages.donate.give') %></span> <%= t('static_pages.donate.give_sentence') %></h1>
-          <p class="lead mb-4"><%= t('static_pages.donate.sentence_one', organization_name: Current.tenant.name) %> <%= t('static_pages.donate.sentence_two') %></p>
+          <h1 class="fw-bold"><span class="text-primary"><%= t('static_pages.donate.give') %></span> <%= t('static_pages.donate.give_sentence') %></h1>
+          <p class="fs-4 mb-4"><%= t('static_pages.donate.sentence_one', organization_name: Current.tenant.name) %> <%= t('static_pages.donate.sentence_two') %></p>
           <% if Current.organization.donation_url.present? %>
             <%= link_to t('static_pages.donate.donate'), Current.organization.donation_url, target: '_blank', class: 'btn btn-primary btn-lg px-5'  %>
           <% else %>
