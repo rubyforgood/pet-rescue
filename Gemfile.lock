@@ -340,7 +340,7 @@ GEM
     parser (3.3.4.2)
       ast (~> 2.4.1)
       racc
-    pg (1.5.6)
+    pg (1.5.8)
     phonelib (0.9.2)
     popper_js (2.11.8)
     pry (0.14.2)
