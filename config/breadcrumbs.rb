@@ -66,6 +66,9 @@ crumb :edit_foster do |foster|
   parent :fosters
 end
 
+crumb :applications do |foster|
+  link "Applications", staff_adoption_application_reviews_path
+end
 # crumb :projects do
 #   link "Projects", projects_path
 # end

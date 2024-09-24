@@ -1,6 +1,5 @@
 class Organizations::LikePolicy < ApplicationPolicy
   authorize :pet, optional: true
-  pre_check :verify_adopter_foster_account!
   pre_check :verify_pet_likable!, only: %i[create? destroy?]
 
   def index?
@@ -19,10 +18,6 @@ class Organizations::LikePolicy < ApplicationPolicy
 
   def verify_pet_likable!
     deny! if pet.organization_id != user.organization_id
-  end
-
-  def verify_adopter_foster_account!
-    deny! unless user.adopter_foster_account.present?
   end
 
   def pet

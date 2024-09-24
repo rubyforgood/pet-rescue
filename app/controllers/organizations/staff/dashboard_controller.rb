@@ -14,6 +14,9 @@ class Organizations::Staff::DashboardController < Organizations::BaseController
 
     @awaiting_review_count = Pet.filter_by_application_status("awaiting_review").count
     @under_review_count = Pet.filter_by_application_status("under_review").count
+
+    @current_foster_count = Match.fosters.current.count
+    @upcoming_foster_count = Match.fosters.upcoming.count
   end
 
   def pets_with_incomplete_tasks

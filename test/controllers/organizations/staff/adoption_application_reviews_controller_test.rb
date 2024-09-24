@@ -85,12 +85,10 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
 
     context "by pet name" do
       setup do
-        @pet1 = create(:pet, name: "Pango")
-        @pet2 = create(:pet, name: "Tycho")
-        adopter_foster_account1 = create(:adopter_foster_account)
-        adopter_foster_account2 = create(:adopter_foster_account)
-        create(:adopter_application, pet: @pet1, adopter_foster_account: adopter_foster_account1, form_submission: create(:form_submission))
-        create(:adopter_application, pet: @pet2, adopter_foster_account: adopter_foster_account2, form_submission: create(:form_submission))
+        pet1 = create(:pet, name: "Pango")
+        pet2 = create(:pet, name: "Tycho")
+        create(:adopter_application, pet: pet1, form_submission: create(:form_submission))
+        create(:adopter_application, pet: pet2, form_submission: create(:form_submission))
       end
 
       should "return applications for a specific pet name" do
@@ -104,12 +102,15 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
     context "by applicant name" do
       setup do
         @pet = create(:pet)
-        adopter_foster_account1 = create(:adopter_foster_account,
-          user: create(:user, first_name: "David", last_name: "Attenborough"))
-        adopter_foster_account2 = create(:adopter_foster_account,
-          user: create(:user, first_name: "Jane", last_name: "Goodall"))
-        create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account1, form_submission: create(:form_submission))
-        create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account2, form_submission: create(:form_submission))
+        create(:form_submission, person: create(:person, first_name: "David", last_name: "Attenborough"))
+        create(:form_submission, person: create(:person, first_name: "Jane", last_name: "Goodall"))
+        # adopter_foster_account1 = create(:adopter_foster_account,
+        #   user: create(:user, first_name: "David", last_name: "Attenborough"))
+        # adopter_foster_account2 = create(:adopter_foster_account,
+        #   user: create(:user, first_name: "Jane", last_name: "Goodall"))
+
+        create(:adopter_application, pet: @pet, form_submission: create(:form_submission))
+        create(:adopter_application, pet: @pet, form_submission: create(:form_submission))
       end
 
       should "return applications for a specific applicant name" do
@@ -123,10 +124,8 @@ class Organizations::Staff::AdoptionApplicationReviewsControllerTest < ActionDis
     context "Filtering by application status" do
       setup do
         @pet = create(:pet)
-        adopter_foster_account1 = create(:adopter_foster_account)
-        adopter_foster_account2 = create(:adopter_foster_account)
-        @application_under_review = create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account1, status: :under_review, form_submission: create(:form_submission))
-        @application_awaiting_review = create(:adopter_application, pet: @pet, adopter_foster_account: adopter_foster_account2, status: :awaiting_review, form_submission: create(:form_submission))
+        @application_under_review = create(:adopter_application, pet: @pet, status: :under_review, form_submission: create(:form_submission))
+        @application_awaiting_review = create(:adopter_application, pet: @pet, status: :awaiting_review, form_submission: create(:form_submission))
       end
 
       should "return pets only with applications of the specified status" do

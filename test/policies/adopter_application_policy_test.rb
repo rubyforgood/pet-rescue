@@ -16,19 +16,29 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       }
     end
 
-    context "when user is adopter" do
+    context "when user is adopter without form submission" do
       setup do
         @user = create(:adopter)
       end
 
+      should "return empty array" do
+        assert_equal([], @scope.call)
+      end
+    end
+
+    context "when user is adopter with form submission" do
+      setup do
+        @user = create(:adopter)
+        @form_submission = create(:form_submission, person: @user.person)
+      end
+
       context "when there are applications that do not belong to user" do
         setup do
-          @form_submission = create(:form_submission)
           @user_applications = [
             create(:adopter_application, user: @user, form_submission: @form_submission),
             create(:adopter_application, user: @user, form_submission: @form_submission)
           ]
-          @other_application = create(:adopter_application, form_submission: @form_submission)
+          @other_application = create(:adopter_application, form_submission: create(:form_submission))
         end
 
         should "return only user's applications" do
@@ -68,7 +78,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user not associated with adopter account" do
+    context "when user has no form submission" do
       setup do
         @user = create(:user)
       end
@@ -78,9 +88,10 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is adopter " do
+    context "when user is adopter with form submission" do
       setup do
         @user = create(:adopter)
+        create(:form_submission, person: @user.person)
       end
 
       should "return true" do
@@ -88,13 +99,13 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is fosterer " do
+    context "when user is fosterer" do
       setup do
         @user = create(:fosterer)
       end
 
-      should "return true" do
-        assert_equal true, @action.call
+      should "return false" do
+        assert_equal false, @action.call
       end
     end
   end
@@ -119,7 +130,7 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user not associated with adopter account" do
+    context "when user has no form submission" do
       setup do
         @user = create(:user)
       end
@@ -129,9 +140,10 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
       end
     end
 
-    context "when user is adopter " do
+    context "when user is adopter with form submission" do
       setup do
         @user = create(:adopter)
+        @form_submission = create(:form_submission, person: @user.person)
       end
 
       context "when pet application is paused" do
@@ -151,7 +163,9 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user already has an existing application for the pet" do
           setup do
-            @existing_app = create(:adopter_application, user: @user, pet: @pet, form_submission: create(:form_submission))
+            _existing_app = create(:adopter_application,
+              pet: @pet,
+              form_submission: @form_submission)
           end
 
           should "return false" do
@@ -161,28 +175,27 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
         context "when user has not applied for the pet" do
           should "return true" do
-            # debugger
             assert_equal true, @action.call
           end
         end
       end
     end
 
-    context "when user is fosterer " do
+    context "when user is fosterer" do
       setup do
         @user = create(:fosterer)
       end
 
-      should "return true" do
-        assert_equal true, @action.call
+      should "return false" do
+        assert_equal false, @action.call
       end
     end
   end
 
   context "existing record action" do
     setup do
-      @form_submission = create(:form_submission)
-      @adopter_application = create(:adopter_application, form_submission: @form_submission)
+      form_submission = create(:form_submission)
+      @adopter_application = create(:adopter_application, form_submission:)
       @policy = -> {
         AdopterApplicationPolicy.new(@adopter_application, user: @user)
       }
@@ -247,7 +260,9 @@ class AdopterApplicationPolicyTest < ActiveSupport::TestCase
 
       context "when adopter account belongs to user" do
         setup do
-          @user = @adopter_application.adopter_foster_account.user
+          @user = create(:adopter)
+          form_submission = create(:form_submission, person: @user.person)
+          @adopter_application = create(:adopter_application, form_submission:)
         end
 
         should "return true" do

@@ -8,11 +8,12 @@ module Organizations
       Current.organization = person.organization
 
       @file = Tempfile.new(["test", ".csv"])
-      headers = ["Timestamp", "Name", "Email", "Address", "Phone number", *Faker::Lorem.questions]
+      headers = ["Timestamp", "First name", "Last name", "Email", "Address", "Phone number", *Faker::Lorem.questions]
 
       @data = [
         Time.now,
-        person.name,
+        person.first_name,
+        person.last_name,
         person.email,
         Faker::Address.full_address,
         Faker::PhoneNumber.phone_number,
@@ -34,14 +35,14 @@ module Organizations
       end
 
       assert_difference "FormSubmission.count" do
-        assert_difference("FormAnswer.count", + 6) do
+        assert_difference("FormAnswer.count", + 7) do
           Organizations::CsvImportService.new(@file).call
         end
       end
     end
 
     should "skip row if person with email does not exist" do
-      @data[2] = "email@skip.com"
+      @data[3] = "email@skip.com"
       CSV.open(@file.path, "ab") do |csv|
         csv << @data
       end

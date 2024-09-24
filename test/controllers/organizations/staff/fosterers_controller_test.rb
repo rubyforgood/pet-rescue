@@ -4,8 +4,8 @@ require "action_policy/test_helper"
 class Organizations::Staff::FosterersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @organization = ActsAsTenant.current_tenant
-    @adopter_foster_account = create(:adopter_foster_account)
-    sign_in @adopter_foster_account.user
+    @admin = create(:admin)
+    sign_in @admin
   end
 
   context "authorization" do
@@ -14,9 +14,9 @@ class Organizations::Staff::FosterersControllerTest < ActionDispatch::Integratio
     context "#index" do
       should "be authorized" do
         assert_authorized_to(
-          :index?, AdopterFosterAccount,
+          :index?, Person,
           context: {organization: @organization},
-          with: Organizations::AdopterFosterAccountPolicy
+          with: Organizations::PersonPolicy
         ) do
           get staff_fosterers_url
         end
@@ -31,7 +31,7 @@ class Organizations::Staff::FosterersControllerTest < ActionDispatch::Integratio
         should "have authorized scope" do
           assert_have_authorized_scope(
             type: :active_record_relation,
-            with: Organizations::AdopterFosterAccountPolicy
+            with: Organizations::PersonPolicy
           ) do
             get staff_fosterers_url
           end

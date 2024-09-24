@@ -16,9 +16,9 @@
       <% end %>
       <div class="mb-3 col-12 col-md-4">
         <% if foster.persisted? %>
-          <div class="form-label text-secondary">Pet</div>
+          <div class="form-label text-secondary"><%= t('general.pet') %></div>
           <div class="form-select">
-            <%= foster.pet.name %> 
+            <%= foster.pet.name %>
           </div>
         <% else %>
           <%= form.select :pet_id,
@@ -29,13 +29,13 @@
       </div>
       <div class="mb-3 col-12 col-md-4">
         <% if foster.persisted? %>
-          <div class="form-label text-secondary">Fosterer</div>
+          <div class="form-label text-secondary"><%= t(:fosterer) %></div>
           <div class="form-select">
-            <%= foster.user.full_name %> 
+            <%= foster.person.full_name %>
           </div>
         <% else %>
-          <%= form.select :adopter_foster_account_id,
-            accounts.map { |account| [account.user.full_name, account.id]},
+          <%= form.select :person_id,
+            fosterers.map { |fosterer| [fosterer.full_name, fosterer.id]},
             label: "Fosterer",
             class: "form-select"
           %>
@@ -54,8 +54,8 @@
         %>
       </div>
       <div>
-        <%= form.submit "Save", class: "btn btn-primary" %>
-        <%= link_to "Cancel", staff_manage_fosters_path(page: params[:page]),
+        <%= form.submit t('general.save'), class: "btn btn-primary" %>
+        <%= link_to t('general.cancel'), staff_manage_fosters_path(page: params[:page]),
           class: "btn btn-secondary"
         %>
       </div>

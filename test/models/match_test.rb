@@ -9,7 +9,7 @@ class MatchTest < ActiveSupport::TestCase
 
   context "associations" do
     should belong_to(:pet)
-    should belong_to(:adopter_foster_account)
+    should belong_to(:person)
   end
 
   context "validations" do
@@ -38,6 +38,24 @@ class MatchTest < ActiveSupport::TestCase
       @application_class.expects(:retire_applications).with(pet_id: @match.pet_id)
 
       @match.retire_applications(application_class: @application_class)
+    end
+  end
+
+  context "scopes" do
+    context ".ordered_by_status_and_date" do
+      should "return matches ordered by status first, start date second, end date third" do
+        current = create(:match, start_date: 1.day.ago, end_date: 1.day.from_now) # current
+        upcoming = create(:match, start_date: 3.days.from_now, end_date: 5.days.from_now) # upcoming
+        completed_earlier = create(:match, start_date: 5.days.ago, end_date: 2.days.ago) # complete
+        upcoming_earlier = create(:match, start_date: 2.days.from_now, end_date: 4.days.from_now) # upcoming (earlier than match2)
+        completed = create(:match, start_date: 1.day.ago, end_date: 1.day.ago) # complete (same end_date as match3)
+
+        # Fetch ordered results
+        ordered_matches = Match.ordered_by_status_and_date
+
+        # Assert the order of the matches by their ids
+        assert_equal [current.id, upcoming_earlier.id, upcoming.id, completed_earlier.id, completed.id], ordered_matches.pluck(:id)
+      end
     end
   end
 

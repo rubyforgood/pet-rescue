@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :custom_page do
+    # organization assigned by ActsAsTenant
     hero { "MyString" }
     about { Faker::Lorem.sentence }
-    association :organization, factory: :organization
 
     trait :with_hero_image do
       after(:create) do |custom_page|

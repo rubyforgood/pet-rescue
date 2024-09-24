@@ -1,11 +1,13 @@
 class AdopterApplicationPolicy < ApplicationPolicy
   authorize :pet, optional: true
 
-  pre_check :verify_profile!
+  pre_check :verify_form_submission!, except: %i[index?]
   pre_check :verify_pet_appliable!, only: %i[create?]
 
   relation_scope do |relation|
-    relation.where(adopter_foster_account_id: user.adopter_foster_account.id)
+    return relation.none unless user.person.form_submission
+
+    relation.where(form_submission_id: user.person.form_submission.id)
   end
 
   def update?
@@ -23,17 +25,17 @@ class AdopterApplicationPolicy < ApplicationPolicy
   private
 
   def applicant?
-    user.id == record.adopter_foster_account.user_id
+    user.person_id == record.person.id
   end
 
   def already_applied?
-    user.adopter_foster_account.adopter_applications.any? do |application|
+    user.person.adopter_applications.any? do |application|
       application.pet_id == pet.id
     end
   end
 
-  def verify_profile!
-    deny! unless user.adopter_foster_account.present? # UPDATE THIS TO CHECK FOR FORMSUBMISSION INSTEAD OF PROFILE
+  def verify_form_submission!
+    deny! unless user.person.form_submission.present?
   end
 
   def verify_pet_appliable!

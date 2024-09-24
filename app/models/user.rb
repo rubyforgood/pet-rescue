@@ -67,13 +67,10 @@ class User < ApplicationRecord
   #   allow_nil: false, on: :create
 
   has_one :staff_account, dependent: :destroy
-  has_one :adopter_foster_account, dependent: :destroy
 
   # Once we've migrated the existing data to connect a user to a person,
   # we should remove the optional: true part
   belongs_to :person, optional: true
-
-  accepts_nested_attributes_for :adopter_foster_account
 
   before_validation :ensure_person_exists, on: :create
 
@@ -114,7 +111,7 @@ class User < ApplicationRecord
     if existing
       self.person = existing
     else
-      build_person(name: full_name, email:, organization:)
+      build_person(first_name:, last_name:, email:, organization:)
     end
   end
 
