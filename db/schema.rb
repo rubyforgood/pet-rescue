@@ -56,6 +56,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_09_043422) do
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
+  create_table "adopter_foster_accounts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "organization_id", null: false
+    t.index ["organization_id"], name: "index_adopter_foster_accounts_on_organization_id"
+    t.index ["user_id"], name: "index_adopter_foster_accounts_on_user_id"
+  end
+
   create_table "custom_pages", force: :cascade do |t|
     t.bigint "organization_id", null: false
     t.string "hero"
