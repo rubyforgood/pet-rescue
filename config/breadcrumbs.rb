@@ -1,9 +1,9 @@
 crumb :root do
-  link 'Home', staff_dashboard_index_path
+  link "Home", staff_dashboard_index_path
 end
 
 crumb :dashboard_pets do
-  link 'Pets', staff_pets_path
+  link "Pets", staff_pets_path
 end
 
 crumb :dashboard_pet do |pet|
@@ -12,23 +12,23 @@ crumb :dashboard_pet do |pet|
 end
 
 crumb :organization do |organization|
-  link 'Edit Profile', edit_staff_organization_path(organization)
+  link "Edit Profile", edit_staff_organization_path(organization)
 end
 
 crumb :custom_page do |custom_page|
-  link 'Edit Custom Page', edit_staff_custom_page_path(custom_page)
+  link "Edit Custom Page", edit_staff_custom_page_path(custom_page)
 end
 
 crumb :staff_index do
-  link 'Staff', staff_staff_index_path
+  link "Staff", staff_staff_index_path
 end
 
 crumb :default_pet_tasks_index do
-  link 'Default Pet Tasks', staff_default_pet_tasks_path
+  link "Default Pet Tasks", staff_default_pet_tasks_path
 end
 
 crumb :forms_index do
-  link 'Forms', staff_custom_form_forms_path
+  link "Forms", staff_custom_form_forms_path
 end
 
 crumb :form do |form|
@@ -37,32 +37,28 @@ crumb :form do |form|
 end
 
 crumb :faqs_index do
-  link 'FAQs', staff_faqs_path
+  link "FAQs", staff_faqs_path
 end
 
 crumb :fosterers do
-  link 'Fosterers', staff_fosterers_path
-end
-
-crumb :adopter_applications do
-  link 'Adoption Applications', staff_adoption_application_reviews_path
+  link "Fosterers", staff_fosterers_path
 end
 
 crumb :adopters do
-  link 'Adopters', staff_adopters_path
+  link "Adopters", staff_adopters_path
 end
 
 crumb :fosters do
-  link 'Fosters', staff_manage_fosters_path
+  link "Fosters", staff_manage_fosters_path
 end
 
 crumb :new_foster do
-  link 'New Foster', new_staff_manage_foster_path
+  link "New Foster", new_staff_manage_foster_path
   parent :fosters
 end
 
 crumb :edit_foster do |foster|
-  link 'Edit Foster', edit_staff_manage_foster_path(foster.id)
+  link "Edit Foster", edit_staff_manage_foster_path(foster.id)
   parent :fosters
 end
 
