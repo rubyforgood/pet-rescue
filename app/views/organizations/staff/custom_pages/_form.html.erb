@@ -1,4 +1,31 @@
 <%= bootstrap_form_with model: custom_page, :url => staff_custom_page_path(@custom_page), method: :patch do |form| %>
+ <style>
+  @media (max-width: 768px) {
+  .col-lg-6 {
+    order: 1;
+    width: 100%; /* Ensure form takes full width */
+  }
+  .row.mt-3 .col-lg-12 {
+    order: 2;
+    width: 100%; /* Ensure buttons take full width */
+  }
+  .mt-5 {
+    order: 3;
+    width: 100%; /* Ensure ImageAttachmentTable takes full width */
+    clear: both; /* Prevent floating issues */
+    margin-top: 2rem !important;
+  }
+  .col-lg-6.col-12 {
+    order: 4;
+    width: 100%; /* Ensure images take full width */
+    clear: both; /* Prevent floating issues */
+  }
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+  }
+}
+</style>
   <div class='card-body'>
     <div class="d-lg-flex align-items-center justify-content-between">
       <h3 class="mb-1">Landing page details</h3>
@@ -41,14 +68,14 @@
         <% end %>
         </div>
       </div>
-      <div class="col-lg-6" style="position: relative; height: 300px;">
-  <div class="image-wrapper">
-    <%= image_tag('full-image3.png', class: "mx-auto d-block shadow-lg", style: "height: 450px; width: 70%;" ) %>
-  </div>
-  <div class="image-wrapper mt-3">
-    <%= image_tag('puppy2.png', class: "mx-auto d-block shadow-lg", style: "height: 225px; width: 70%;" ) %>
-  </div>
-</div>
+      <div class="col-lg-6 col-12" style="position: relative; height: 300px;">
+        <div class="image-wrapper">
+          <%= image_tag('full-image3.png', class: "mx-auto d-block shadow-lg", style: "height: 450px; width: 70%;" ) %>
+        </div>
+          <div class="image-wrapper mt-3">
+            <%= image_tag('puppy2.png', class: "mx-auto d-block shadow-lg", style: "height: 225px; width: 70%;" ) %>
+          </div>
+      </div>
       <div class="row mt-3">
         <div class="col-lg-12">
           <%= form.submit 'Save', class: 'btn btn-primary' %>
@@ -61,4 +88,5 @@
         <div class="mt-5">
           <%= render ImageAttachmentTableComponent.new(images: @custom_page.images) %>
         </div>
+      </div>
 <% end %>
