@@ -22,7 +22,7 @@
                           <%= pet.name %>
                         </h3>
                       <% end %>
-                      <% if allowed_to?(:create?, Like, pet: pet) %>
+                      <% if allowed_to?(:create?, Like, context: {pet: pet}) %>
                         <div class='text-end' id="like_button_pet_<%= pet.id %>">
                           <%= render LikeButtonComponent.new(pet: pet, like: @likes_by_id[pet.id]) %>
                         </div>
