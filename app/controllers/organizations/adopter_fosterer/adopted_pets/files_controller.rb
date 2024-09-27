@@ -8,7 +8,6 @@ module Organizations
           @pet = Pet.find(params[:adopted_pet_id])
           respond_to do |format|
             format.html
-            format.turbo_stream
           end
         end
       end

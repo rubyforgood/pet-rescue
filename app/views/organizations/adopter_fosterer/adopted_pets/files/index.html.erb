@@ -6,8 +6,8 @@
     <li class="nav-item" role="presentation">
       <button class="nav-link" id="pills-tasks-tab" data-bs-toggle="pill" data-bs-target="#pills-tasks" type="button" role="tab" aria-controls="pills-tasks" aria-selected="false">Tasks</button>
     </li>
-    
   </ul>
+
   <div class="tab-content" id="pills-tabContent">
     <div class="tab-pane fade show active" id="pills-files" role="tabpanel" aria-labelledby="pills-files-tab">
       <%= render "organizations/shared/file_attachment_table",
@@ -17,6 +17,4 @@
       <%= turbo_frame_tag "pet_tasks", src: adopter_fosterer_adopted_pet_tasks_path(@pet) %>
     </div>
   </div>
-
 </turbo-frame>
-   
