@@ -14,7 +14,7 @@
                   locals: {pet: @pet} %>
     </div>
     <div class="tab-pane fade" id="pills-tasks" role="tabpanel" aria-labelledby="pills-tasks-tab">
-      <%= turbo_frame_tag "pet_tasks", src: adopter_fosterer_adopted_pet_tasks_path(@pet) %>
+      <%= turbo_frame_tag "pet_tasks", src: adopter_fosterer_adopted_pet_tasks_path(@pet), loading: :lazy %>
     </div>
   </div>
 </turbo-frame>
