@@ -1,13 +1,11 @@
 module Organizations
   module AdopterFosterer
     class ExternalFormController < ApplicationController
-      skip_verify_authorized # MARK: what should the auth policy look like for this action?
-
-      before_action :form_instructions
-
       layout :form_layout
 
       def index
+        authorize! with: ExternalFormPolicy
+
         @form_url = Current.organization.external_form_url
       end
 
@@ -17,14 +15,6 @@ module Organizations
         return "adopter_foster_dashboard" if params[:dashboard]
 
         "application"
-      end
-
-      def form_instructions
-        @form_instructions = if params[:dashboard]
-          t("organizations.adopter_fosterer.form_instructions.dashboard")
-        else
-          t("organizations.adopter_fosterer.form_instructions.index", organization_name: Current.tenant.name)
-        end
       end
     end
   end

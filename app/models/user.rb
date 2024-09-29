@@ -76,7 +76,7 @@ class User < ApplicationRecord
 
   before_save :downcase_email
 
-  delegate :form_submission, to: :person
+  delegate :latest_form_submission, to: :person
 
   # get user accounts for staff in a given organization
   def self.organization_staff(org_id)

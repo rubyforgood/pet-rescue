@@ -144,7 +144,7 @@
                     %>
                   <% end %>
                 <% else %>
-                  <% if AdopterApplication.exists?(form_submission: current_user.person.form_submission, pet: @pet) %>
+                  <% if AdopterApplication.exists?(form_submission: current_user.latest_form_submission, pet: @pet) %>
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2 mb-0">
                         <%= "#{t('organizations.adoptable_pets.show.application_status')} #{@adoption_application.human_enum_name(:status) || t('.status.default')}" %>
