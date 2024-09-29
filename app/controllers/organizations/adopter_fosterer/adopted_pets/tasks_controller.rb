@@ -6,11 +6,7 @@ module Organizations
 
         def index
           @pet = Pet.find(params[:adopted_pet_id])
-          @tasks = @pet.tasks.where(completed: false)
-
-          respond_to do |format|
-            format.html
-          end
+          @tasks = @pet.tasks.is_not_completed
         end
 
         private

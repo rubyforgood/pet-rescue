@@ -6,9 +6,6 @@ module Organizations
 
         def index
           @pet = Pet.find(params[:adopted_pet_id])
-          respond_to do |format|
-            format.html
-          end
         end
       end
     end
