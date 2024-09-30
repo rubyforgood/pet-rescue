@@ -1,0 +1,51 @@
+<div class="card">
+  <!-- table -->
+  <div class="table-responsive overflow-y-hidden">
+    <table class="table mb-0 text-nowrap table-hover table-centered">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Due Date</th>
+      </tr>
+      </thead>
+      <tbody>
+        <% if @tasks.any? %>
+          <% @tasks.each do |task| %>
+            <tr>
+              <td>
+                <%= task.name %>
+              </td>
+              <td>
+                <%= task.description %>
+              </td>
+              <td>
+                <% if task.due_date %>
+              <% if task.due_date.today? %>
+                <div class='text-warning'>
+                  <i class="fe fe-clock"></i> <%=  'Today' %>
+                </div>
+              <% elsif task.due_date.future? %>
+                <div class='text-warning'>
+                  <i class="fe fe-clock"></i> <%= task.due_date.strftime("%d %b") %>
+                </div>
+              <% elsif task.due_date.past? %>
+                <div class='text-danger'>
+                  <i class="fe fe-clock"></i> <%= task.due_date.strftime("%d %b") %>
+                </div>
+              <% end %>
+            <% end %>
+              </td>
+            </tr>
+            <% end%>
+        <% else %>
+          <tr>
+            <td colspan="3">
+              No Pending Tasks
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

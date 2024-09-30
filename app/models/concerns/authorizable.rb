@@ -18,6 +18,7 @@ module Authorizable
     purge_avatar
     manage_likes
     view_adopted_pets
+    read_pet_tasks
   ].freeze
 
   FOSTERER_PERMISSIONS = %i[

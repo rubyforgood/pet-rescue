@@ -64,6 +64,7 @@ Rails.application.routes.draw do
       resources :adopter_applications, path: "applications", only: %i[index create update]
       resources :adopted_pets, only: [:index] do
         resources :files, only: [:index], module: :adopted_pets
+        resources :tasks, only: [:index], module: :adopted_pets
       end
     end
   end
