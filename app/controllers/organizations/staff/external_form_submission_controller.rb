@@ -1,6 +1,6 @@
 class Organizations::Staff::ExternalFormSubmissionController < Organizations::BaseController
   layout "dashboard"
   def index
-    authorize! Person, context: {organization: Current.organization}
+    authorize! StaffAccount, context: {organization: Current.organization}
   end
 end
