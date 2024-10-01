@@ -5,7 +5,7 @@
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
         <% @adopted_pets.each_with_index do |adopted_pet, index| %>
           <div class="col">
-            <%= link_to adopter_fosterer_adopted_pet_files_path(adopted_pet.pet), data: { turbo_stream: true, action: "click->card#selectCard" } do %>
+            <%= link_to adopter_fosterer_adopted_pet_files_path(adopted_pet.pet), data: { turbo_frame: "pet_files", action: "click->card#selectCard" } do %>
               <div class="card h-100 bg-white border-0 shadow-sm" data-card-target="card">
                 <div class="card-body d-flex align-items-center">
                   <div class="me-3 flex-shrink-0" style="width: 50px; height: 50px;">
@@ -21,8 +21,8 @@
         <% end %>
       </div>
     </div>
-    <div id="pet_files">
+    <turbo-frame id="pet_files">
       <!-- This will be replaced with the pet files table when a pet is clicked -->
-    </div>
+    </turbo-frame>
   <% end %>
 <% end %>
