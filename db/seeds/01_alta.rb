@@ -234,11 +234,18 @@ ActsAsTenant.with_tenant(@organization) do
     end
   end
 
+  match_application = AdopterApplication.create!(
+    pet_id: Pet.first.id,
+    form_submission_id: @adopter_one.form_submission.id,
+    status: :successful_applicant
+  )
+
   Match.create!(
     pet_id: Pet.first.id,
     person_id: @adopter_one.id,
     match_type: :adoption
   )
+  match_application.update!(status: :adoption_made)
 
   @fosterable_pets = Array.new(3) do
     from_weight = [5, 10, 20, 30, 40, 50, 60].sample
