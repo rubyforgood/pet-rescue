@@ -20,7 +20,7 @@ crumb :custom_page do |custom_page|
 end
 
 crumb :external_form do |external_form|
-  link "External Form Submission", staff_external_form_submission_index_path
+  link "External Form Submission", staff_external_form_upload_index_path
 end
 
 crumb :staff_index do
