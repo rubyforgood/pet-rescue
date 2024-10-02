@@ -529,6 +529,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "coalest",
+      "name": "Cory Streiff",
+      "avatar_url": "https://avatars.githubusercontent.com/u/90390502?v=4",
+      "profile": "http://corystreiff.com",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
