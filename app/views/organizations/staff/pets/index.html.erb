@@ -24,7 +24,7 @@
               </div>
               <div class="form-group">
                 <%= f.label :ransack_adopted, "Status" %>
-                <%= f.select :ransack_adopted, [['Adopted', true], ['Unadopted', false]], {include_blank: 'All'}, class: "form-select" %>
+                <%= f.select :ransack_adopted, [['Adopted', 'adopted'], ['Unadopted', 'unadopted']], {include_blank: 'All'}, class: "form-select" %>
               </div>
             </div>
             <div class='d-flex flex-column w-100 w-md-auto flex-md-row gap-2'>

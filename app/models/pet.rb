@@ -131,8 +131,13 @@ class Pet < ApplicationRecord
     [:ransack_adopted, :ransack_birth_date]
   end
 
-  def self.ransack_adopted(boolean)
-    boolean ? adopted : Pet.where.not(id: Pet.adopted)
+  # Using string values to get around a known ransack bug: https://github.com/activerecord-hackery/ransack/issues/1375
+  def self.ransack_adopted(adoption_state)
+    if adoption_state == "adopted"
+      adopted
+    else
+      Pet.where.not(id: Pet.adopted)
+    end
   end
 
   def self.ransack_birth_date(date)

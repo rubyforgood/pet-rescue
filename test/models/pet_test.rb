@@ -135,41 +135,25 @@ class PetTest < ActiveSupport::TestCase
     end
 
     should "should return adopted pets" do
-      adopted_pets = Pet.ransack_adopted(true)
+      adopted_pets = Pet.ransack_adopted("adopted")
       assert_equal 1, adopted_pets.count
     end
 
     should "should return unadopted pets" do
-      unadopted_pets = Pet.ransack_adopted(false)
+      unadopted_pets = Pet.ransack_adopted("unadopted")
       assert_equal 2, unadopted_pets.count
     end
 
-    # Passes.
     should "should return adopted pets via Pet.ransack" do
-      adopted_pets = Pet.ransack({"ransack_adopted"=>"true"})
+      adopted_pets = Pet.ransack({"ransack_adopted"=>"adopted"})
       assert_equal 1, adopted_pets.result.count
     end
 
-    # Fails
     should "should return unadopted pets via Pet.ransack" do
-      unadopted_pets = Pet.ransack({"ransack_adopted"=>"false"})
+      unadopted_pets = Pet.ransack({"ransack_adopted"=>"unadopted"})
 
       assert_equal Pet.ransack_adopted(false).to_sql, unadopted_pets.result.to_sql
       assert_equal 2, unadopted_pets.result.count
-    end
-
-    # For debugging purposes
-    # Passes
-    should "should return equivalent SQL for adopted" do
-      adopted_pets = Pet.ransack({"ransack_adopted"=>"true"})
-      assert_equal Pet.ransack_adopted(true).to_sql, adopted_pets.result.to_sql
-    end
-
-    # For debugging purposes
-    # Fails
-    should "should return equivalent SQL for unadopted" do
-      adopted_pets = Pet.ransack({"ransack_adopted"=>"false"})
-      assert_equal Pet.ransack_adopted(false).to_sql, adopted_pets.result.to_sql
     end
   end
 end

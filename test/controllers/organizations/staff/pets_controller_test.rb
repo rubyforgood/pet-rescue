@@ -7,7 +7,7 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
 
     setup do
       @organization = ActsAsTenant.current_tenant
-      @pet = create(:pet, sex: "Female", species: "Dog")
+      @pet = create(:pet, :adoption_pending, sex: "Female", species: "Dog")
 
       user = create(:admin)
       sign_in user
@@ -32,15 +32,25 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         end
       end
 
-      should "filter by status" do 
+      should "filter by adopted status" do 
         pet_2 = create(:pet, :adopted, name: "Cutie")
         pet_3 = create(:pet, :adoption_pending, name: "Pie")
 
-        get staff_pets_url, params: {q: {ransack_adopted: "false"}}
+        get staff_pets_url, params: {q: {ransack_adopted: "adopted"}}
+        assert_response :success
+
+        assert_equal 1, assigns[:pets].count
+      end
+
+      should "filter by unadopted status" do
+        pet_2 = create(:pet, :adopted, name: "Cutie")
+        pet_3 = create(:pet, :adoption_pending, name: "Pie")
+
+        get staff_pets_url, params: {q: {ransack_adopted: "unadopted"}}
         assert_response :success
 
         assert_equal 2, assigns[:pets].count
-        assert_not_includes "Cutie", assigns[:pets].map { |pet| pet.name }
+        assert_not_includes assigns[:pets].map { |pet| pet.name }, "Cutie"
       end
 
       should "filter by sex" do 
