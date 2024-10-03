@@ -32,9 +32,9 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         end
       end
 
-      should "filter by adopted status" do 
-        pet_2 = create(:pet, :adopted, name: "Cutie")
-        pet_3 = create(:pet, :adoption_pending, name: "Pie")
+      should "filter by adopted status" do
+        create(:pet, :adopted, name: "Cutie")
+        create(:pet, :adoption_pending, name: "Pie")
 
         get staff_pets_url, params: {q: {ransack_adopted: "adopted"}}
         assert_response :success
@@ -43,8 +43,8 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
       end
 
       should "filter by unadopted status" do
-        pet_2 = create(:pet, :adopted, name: "Cutie")
-        pet_3 = create(:pet, :adoption_pending, name: "Pie")
+        create(:pet, :adopted, name: "Cutie")
+        create(:pet, :adoption_pending, name: "Pie")
 
         get staff_pets_url, params: {q: {ransack_adopted: "unadopted"}}
         assert_response :success
@@ -53,28 +53,28 @@ class Organizations::PetsControllerTest < ActionDispatch::IntegrationTest
         assert_not_includes assigns[:pets].map { |pet| pet.name }, "Cutie"
       end
 
-      should "filter by sex" do 
-        pet_2 = create(:pet, sex: "Female")
-        pet_3 = create(:pet, sex: "Male")
-        pet_4 = create(:pet, sex: "Female")
+      should "filter by sex" do
+        create(:pet, sex: "Female")
+        create(:pet, sex: "Male")
+        create(:pet, sex: "Female")
 
         get staff_pets_url, params: {q: {sex_eq: "Male"}}
         assert_response :success
 
         assert_equal 1, assigns[:pets].count
-        assert_equal 1, assigns[:pets].select { |pet| pet.sex == "Male" }.count
+        assert_equal 1, assigns[:pets].count { |pet| pet.sex == "Male" }
       end
 
-      should "filter by species" do 
-        pet_2 = create(:pet, species: "Cat")
-        pet_3 = create(:pet, species: "Dog")
-        pet_4 = create(:pet, species: "Cat")
+      should "filter by species" do
+        create(:pet, species: "Cat")
+        create(:pet, species: "Dog")
+        create(:pet, species: "Cat")
 
         get staff_pets_url, params: {q: {species_eq: "2"}}
         assert_response :success
 
         assert_equal 2, assigns[:pets].count
-        assert_equal 2, assigns[:pets].select { |pet| pet.species == "Cat" }.count
+        assert_equal 2, assigns[:pets].count { |pet| pet.species == "Cat" }
       end
     end
 

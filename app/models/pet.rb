@@ -134,7 +134,7 @@ class Pet < ApplicationRecord
 
   # Using string values to get around ransack bug: https://github.com/activerecord-hackery/ransack/issues/1375
   def self.ransack_adopted(adoption_state)
-    adoption_state == "adopted" ? adopted : unadopted
+    (adoption_state == "adopted") ? adopted : unadopted
   end
 
   def self.ransack_birth_date(date)
