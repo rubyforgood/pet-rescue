@@ -76,6 +76,7 @@ class Pet < ApplicationRecord
   ]
 
   scope :adopted, -> { joins(:matches).merge(Match.adoptions) }
+  scope :unadopted, -> { where.not(id: Pet.adopted) }
   scope :unmatched, -> { includes(:matches).where(matches: {id: nil}) }
   scope :published, -> { where(published: true) }
   scope :fostered, -> { joins(:matches).merge(Match.fosters) }
@@ -129,8 +130,9 @@ class Pet < ApplicationRecord
     [:ransack_adopted, :ransack_birth_date]
   end
 
-  def self.ransack_adopted(boolean)
-    boolean ? adopted : unadopted
+  # Using string values to get around ransack bug: https://github.com/activerecord-hackery/ransack/issues/1375
+  def self.ransack_adopted(adoption_state)
+    (adoption_state == "adopted") ? adopted : unadopted
   end
 
   def self.ransack_birth_date(date)
