@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_09_09_043422) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_04_082759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_09_043422) do
     t.bigint "form_submission_id", null: false
     t.index ["form_submission_id"], name: "index_adopter_applications_on_form_submission_id"
     t.index ["organization_id"], name: "index_adopter_applications_on_organization_id"
+    t.index ["pet_id", "form_submission_id"], name: "index_adopter_applications_on_pet_id_and_form_submission_id", unique: true
     t.index ["pet_id"], name: "index_adopter_applications_on_pet_id"
   end
 
