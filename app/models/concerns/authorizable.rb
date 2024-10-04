@@ -18,6 +18,7 @@ module Authorizable
     purge_avatar
     manage_likes
     view_adopted_pets
+    read_pet_tasks
     view_external_form
   ].freeze
 
@@ -41,6 +42,7 @@ module Authorizable
       purge_attachments
       manage_default_pet_tasks
       manage_forms
+      manage_external_form_uploads
       manage_questions
       manage_matches
       manage_pets

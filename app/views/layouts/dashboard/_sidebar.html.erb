@@ -88,10 +88,15 @@
       %>
         <li class="nav-item">
           <%= active_link_to edit_staff_custom_page_path(@custom_page), class: "nav-link" do %>
-            <i class="nav-icon fe fe-file-text me-2"></i>Custom Page
+            <i class="nav-icon fe fe-layout me-2"></i>Custom Page
           <% end %>
         </li>
       <% end %>
+      <li class="nav-item">
+          <%= active_link_to staff_external_form_upload_index_path, class: "nav-link" do %>
+            <i class="nav-icon fe fe-file-text me-2"></i>External Form Upload
+          <% end %>
+      </li>
       <li class="nav-item">
         <%= active_link_to new_dev_contact_path, class: "nav-link" do %>
           <i class="nav-icon fe fe-message-circle me-2"></i>Feedback

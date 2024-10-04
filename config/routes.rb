@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resource :organization, only: %i[edit update]
       resource :custom_page, only: %i[edit update]
       resources :profile_reviews, only: [:show]
+      resources :external_form_upload, only: [:index]
 
       resources :pets do
         resources :tasks
@@ -64,6 +65,7 @@ Rails.application.routes.draw do
       resources :adopter_applications, path: "applications", only: %i[index create update]
       resources :adopted_pets, only: [:index] do
         resources :files, only: [:index], module: :adopted_pets
+        resources :tasks, only: [:index], module: :adopted_pets
       end
       resources :external_form, only: %i[index]
     end
