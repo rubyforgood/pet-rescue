@@ -13,7 +13,7 @@ class AdopterApplicationTest < ActiveSupport::TestCase
 
   context "validations" do
     should validate_uniqueness_of(:pet_id).scoped_to(:form_submission_id)
-     .with_message("Only one application per pet per person is allowed")
+      .with_message("Only one application per pet per person is allowed")
   end
 
   context "self.retire_applications" do
