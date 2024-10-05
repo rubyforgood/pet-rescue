@@ -77,6 +77,8 @@ en:
     not_found: "Not Found"
     are_you_sure_delete_pet: "Are you sure you want to delete this pet?"
     organization_not_found: "Organization not found."
+    files: "Files"
+    tasks: "Tasks"
   dashboard:
     index:
       header_title: Dashboard
