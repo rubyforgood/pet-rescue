@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       resource :organization, only: %i[edit update]
       resource :custom_page, only: %i[edit update]
       resources :profile_reviews, only: [:show]
-      resources :external_form_upload, only: [:index]
+      resources :external_form_upload, only: %i[index create]
 
       resources :pets do
         resources :tasks
