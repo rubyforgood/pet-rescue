@@ -624,6 +624,9 @@ en:
         destroy:
           success: "%{name} removed from your liked pets."
           failed: "Error, %{name} not removed from your liked pets."
+      adopted_pets:
+        index:
+          header_title: "Adopted pets"
     attachments:
       purge:
         success: "Attachment removed"
