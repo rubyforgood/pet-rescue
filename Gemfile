@@ -91,7 +91,7 @@ gem "pagy"
 gem "city-state", "~> 1.1.0"
 
 # Adds a simple way to fetch with Javascript
-gem "requestjs-rails", "~> 0.0.11"
+gem "requestjs-rails", "~> 0.0.12"
 
 # Add ability to set user roles
 gem "rolify"
