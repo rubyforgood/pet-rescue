@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3.4"
+gem "rails", "~> 7.2.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -91,7 +91,7 @@ gem "pagy"
 gem "city-state", "~> 1.1.0"
 
 # Adds a simple way to fetch with Javascript
-gem "requestjs-rails", "~> 0.0.11"
+gem "requestjs-rails", "~> 0.0.12"
 
 # Add ability to set user roles
 gem "rolify"

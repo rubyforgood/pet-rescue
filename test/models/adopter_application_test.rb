@@ -11,12 +11,18 @@ class AdopterApplicationTest < ActiveSupport::TestCase
     should belong_to(:form_submission)
   end
 
+  context "validations" do
+    should validate_uniqueness_of(:pet_id).scoped_to(:form_submission_id)
+      .with_message("Only one application per pet per person is allowed")
+  end
+
   context "self.retire_applications" do
     context "when some applications match pet_id and some do not" do
       setup do
-        @selected_applications = Array.new(3) {
-          create(:adopter_application, pet_id: @application.pet_id, form_submission: @form_submission)
-        }
+        @form_submissions = create_list(:form_submission, 3)
+        @selected_applications = 3.times.map do |i|
+          create(:adopter_application, pet_id: @application.pet_id, form_submission: @form_submissions[i])
+        end
         @unselected_applications = Array.new(2) {
           create(:adopter_application, form_submission: @form_submission)
         }

@@ -538,6 +538,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "wuletawwonte",
+      "name": "Wuletaw Wonte",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12524453?v=4",
+      "profile": "https://wuletawwonte.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

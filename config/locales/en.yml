@@ -174,6 +174,10 @@ en:
   activerecord:
     errors:
       models:
+        adopter_application:
+          attributes:
+            pet_id:
+              taken: "Only one application per pet per person is allowed"
         adopter_foster_account:
           attributes:
             user:
