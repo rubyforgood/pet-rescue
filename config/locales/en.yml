@@ -627,6 +627,12 @@ en:
       adopted_pets:
         index:
           header_title: "Adopted pets"
+      dashboard:
+        index:
+          example: Example
+          pets: Pets
+          applications: Applications
+          rescues: Rescues
     attachments:
       purge:
         success: "Attachment removed"
