@@ -616,7 +616,7 @@ en:
           withdraw: "Withdraw"
       likes:
         index:
-          liked_pets: 'Liked Pets'
+          header_title: 'Liked Pets'
           no_pets: 'You do not have any liked pets'
         create:
           success: "%{name} added to your liked pets."
