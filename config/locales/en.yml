@@ -48,6 +48,7 @@ en:
   general:
     attach: "Attach"
     adoption_pending: "(Adoption Pending)"
+    adopted: Adopted
     age: "Age"
     become_an_adopter: "Become an adopter"
     breed: "Breed"

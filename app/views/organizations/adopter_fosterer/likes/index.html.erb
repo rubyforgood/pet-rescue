@@ -11,8 +11,8 @@
                 image_options: {src: pet.images.first, url: adoptable_pet_path(pet)}
               ) do |c| %>
                 <%= c.with_badge do %>
-                  <%= render BadgeComponent.new("Adoption Pending", class: "badge bg-info", when: pet.has_adoption_pending?) %>
-                  <%= render BadgeComponent.new("Adopted", class: "badge bg-warning", when: pet.is_adopted?) %>
+                  <%= render BadgeComponent.new(t("general.adoption_pending"), class: "badge bg-info", when: pet.has_adoption_pending?) %>
+                  <%= render BadgeComponent.new(t("general.adopted"), class: "badge bg-warning", when: pet.is_adopted?) %>
                 <% end %>
                 <%= c.with_body do %>
                   <ul class="list-group list-group-flush">
