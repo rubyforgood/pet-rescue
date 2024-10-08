@@ -3,7 +3,7 @@
 # Table name: pets
 #
 #  id                 :bigint           not null, primary key
-#  application_paused :boolean          default(FALSE)
+#  application_paused :boolean          default(FALSE), not null
 #  birth_date         :datetime         not null
 #  breed              :string
 #  description        :text
