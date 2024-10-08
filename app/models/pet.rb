@@ -64,8 +64,8 @@ class Pet < ApplicationRecord
 
   validate :sensible_placement_type
 
-  enum species: {"Dog" => 1, "Cat" => 2}
-  enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
+  enum :species, {"Dog" => 1, "Cat" => 2}
+  enum :placement_type, ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
 
   WEIGHT_UNIT_LB = "lb".freeze
   WEIGHT_UNIT_KG = "kg".freeze
@@ -119,7 +119,7 @@ class Pet < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name", "sex", "species", "breed"]
+    %w[name sex species breed placement_type application_paused published]
   end
 
   def self.ransackable_associations(auth_object = nil)
