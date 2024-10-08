@@ -6,8 +6,8 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
     include ActionPolicy::TestHelper
 
     setup do
-      @user = create(:adopter, :with_person)
-      @form_submission = create(:form_submission, person_id: @user.person_id)
+      @user = create(:adopter)
+      @form_submission = @user.person.latest_form_submission
       sign_in @user
     end
 
@@ -46,7 +46,6 @@ class Organizations::AdopterFosterer::AdopterApplicationsControllerTest < Action
     context "#create" do
       setup do
         @pet = create(:pet)
-        @form_submission = create(:form_submission, person: @user.person)
         @params = {adopter_application: {
           pet_id: @pet.id,
           form_submission_id: @form_submission.id

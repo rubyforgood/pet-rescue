@@ -22,8 +22,10 @@ FactoryBot.define do
     end
 
     factory :adopter do
+      person
       after(:build) do |user, _context|
         user.add_role(:adopter, user.organization)
+        create(:form_submission, person: user.person)
       end
     end
 
