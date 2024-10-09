@@ -24,6 +24,12 @@ class FeedbackController < ApplicationController
   end
 
   def set_layout
-    current_user&.staff_account ? "dashboard" : "adopter_foster_dashboard"
+    if current_user.nil?
+      "application"
+    elsif current_user.staff_account
+      "dashboard"
+    else
+      "adopter_foster_dashboard"
+    end
   end
 end
