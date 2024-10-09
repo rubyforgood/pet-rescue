@@ -14,9 +14,10 @@
 #
 # Indexes
 #
-#  index_adopter_applications_on_form_submission_id  (form_submission_id)
-#  index_adopter_applications_on_organization_id     (organization_id)
-#  index_adopter_applications_on_pet_id              (pet_id)
+#  index_adopter_applications_on_form_submission_id             (form_submission_id)
+#  index_adopter_applications_on_organization_id                (organization_id)
+#  index_adopter_applications_on_pet_id                         (pet_id)
+#  index_adopter_applications_on_pet_id_and_form_submission_id  (pet_id,form_submission_id) UNIQUE
 #
 # Foreign Keys
 #
@@ -29,6 +30,8 @@ class AdopterApplication < ApplicationRecord
   belongs_to :form_submission
 
   has_one :person, through: :form_submission
+
+  validates :pet_id, uniqueness: {scope: :form_submission_id}
 
   broadcasts_refreshes
 
