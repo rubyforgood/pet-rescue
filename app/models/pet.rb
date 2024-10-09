@@ -28,6 +28,7 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class Pet < ApplicationRecord
+  include PetRansackable
   include PetTaskable
 
   acts_as_tenant(:organization)
@@ -64,8 +65,8 @@ class Pet < ApplicationRecord
 
   validate :sensible_placement_type
 
-  enum species: {"Dog" => 1, "Cat" => 2}
-  enum placement_type: ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
+  enum :species, {"Dog" => 1, "Cat" => 2}
+  enum :placement_type, ["Adoptable", "Fosterable", "Adoptable and Fosterable"]
 
   WEIGHT_UNIT_LB = "lb".freeze
   WEIGHT_UNIT_KG = "kg".freeze
@@ -115,35 +116,6 @@ class Pet < ApplicationRecord
   def sensible_placement_type
     if matches.where(end_date: DateTime.now..).exists? && placement_type == "Adoptable"
       errors.add(:placement_type, I18n.t("activerecord.errors.models.pet.attributes.placement_type.sensible"))
-    end
-  end
-
-  def self.ransackable_attributes(auth_object = nil)
-    ["name", "sex", "species", "breed"]
-  end
-
-  def self.ransackable_associations(auth_object = nil)
-    ["adopter_applications"]
-  end
-
-  def self.ransackable_scopes(auth_object = nil)
-    [:ransack_adopted, :ransack_birth_date]
-  end
-
-  # Using string values to get around ransack bug: https://github.com/activerecord-hackery/ransack/issues/1375
-  def self.ransack_adopted(adoption_state)
-    (adoption_state == "adopted") ? adopted : unadopted
-  end
-
-  def self.ransack_birth_date(date)
-    start_date, end_date = date.split("/")
-
-    if start_date != "none" && end_date != "none"
-      where("birth_date >= ? AND birth_date <= ?", start_date, end_date)
-    elsif start_date == "none" && end_date != "none"
-      where("birth_date <= ?", end_date)
-    elsif start_date != "none" && end_date == "none"
-      where("birth_date >= ?", start_date)
     end
   end
 end

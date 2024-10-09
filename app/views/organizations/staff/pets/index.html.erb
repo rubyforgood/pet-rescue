@@ -23,8 +23,20 @@
                 <%= f.select :species_eq, Pet.species, {include_blank: 'All'}, class: "form-select" %>
               </div>
               <div class="form-group">
-                <%= f.label :ransack_adopted, "Status" %>
-                <%= f.select :ransack_adopted, [['Adopted', 'adopted'], ['Unadopted', 'unadopted']], {include_blank: 'All'}, class: "form-select" %>
+                <%= f.label :ransack_adopted, "Adoption Status" %>
+                <%= f.select :ransack_adopted, [['Adopted', 'adopted'], ['Not adopted', 'unadopted']], {include_blank: 'All'}, class: "form-select" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :placement_type_eq, "Placement type" %>
+                <%= f.select :placement_type_eq, Pet.placement_types, {include_blank: 'All'}, class: "form-select" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :application_paused_eq, "Paused" %>
+                <%= f.select :application_paused_eq, [['Yes', true], ['No', false]], {include_blank: 'All'}, class: "form-select" %>
+              </div>
+              <div class="form-group">
+                <%= f.label :published_eq, "Published" %>
+                <%= f.select :published_eq, [['Yes', true], ['No', false]], {include_blank: 'All'}, class: "form-select" %>
               </div>
             </div>
             <div class='d-flex flex-column w-100 w-md-auto flex-md-row gap-2'>
