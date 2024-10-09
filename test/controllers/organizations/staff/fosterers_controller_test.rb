@@ -80,4 +80,13 @@ class Organizations::Staff::FosterersControllerTest < ActionDispatch::Integratio
     assert_response :redirect
     assert_equal '1234567890', @fosterer.reload.phone
   end
+
+  test "#update fails" do
+    user = create(:super_admin)
+    sign_in user
+
+    patch staff_fosterer_url(@fosterer), params: { person: { first_name: "" } }
+
+    assert_response :unprocessable_entity
+  end
 end
