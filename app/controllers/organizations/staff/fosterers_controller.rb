@@ -32,7 +32,7 @@ class Organizations::Staff::FosterersController < Organizations::BaseController
   end
 
   def authorize_user
-    authorize! Person, context: { organization: Current.organization },
-                       with: Organizations::FostererInvitationPolicy
+    authorize! Person, context: {organization: Current.organization},
+      with: Organizations::FostererInvitationPolicy
   end
 end

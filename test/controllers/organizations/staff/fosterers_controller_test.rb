@@ -46,14 +46,14 @@ class Organizations::Staff::FosterersControllerTest < ActionDispatch::Integratio
       assert_authorized_to(
         :edit?,
         Person,
-        context: { organization: @organization },
+        context: {organization: @organization},
         with: Organizations::FostererInvitationPolicy
       ) do
         get edit_staff_fosterer_url(@fosterer)
       end
     end
 
-    should 'render the edit form' do
+    should "render the edit form" do
       get edit_staff_fosterer_path(@fosterer)
 
       assert_response :success
@@ -65,23 +65,23 @@ class Organizations::Staff::FosterersControllerTest < ActionDispatch::Integratio
       assert_authorized_to(
         :update?,
         Person,
-        context: { organization: @organization },
+        context: {organization: @organization},
         with: Organizations::FostererInvitationPolicy
       ) do
-        patch staff_fosterer_url(@fosterer), params: { person: { phone: "1234567890" } }
+        patch staff_fosterer_url(@fosterer), params: {person: {phone: "1234567890"}}
       end
     end
 
     should "update fosterer" do
-      patch staff_fosterer_url(@fosterer), params: { person: { phone: "1234567890" } }
-  
+      patch staff_fosterer_url(@fosterer), params: {person: {phone: "1234567890"}}
+
       assert_response :redirect
-      assert_equal '1234567890', @fosterer.reload.phone
+      assert_equal "1234567890", @fosterer.reload.phone
     end
-  
+
     should "fail update" do
-      patch staff_fosterer_url(@fosterer), params: { person: { first_name: "" } }
-  
+      patch staff_fosterer_url(@fosterer), params: {person: {first_name: ""}}
+
       assert_response :unprocessable_entity
     end
   end
