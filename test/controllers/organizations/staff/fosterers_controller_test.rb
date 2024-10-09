@@ -3,8 +3,9 @@ require "action_policy/test_helper"
 
 class Organizations::Staff::FosterersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @organization = ActsAsTenant.current_tenant
+    @organization =  ActsAsTenant.current_tenant
     @admin = create(:admin)
+    @fosterer = create(:person)
     sign_in @admin
   end
 
@@ -38,5 +39,45 @@ class Organizations::Staff::FosterersControllerTest < ActionDispatch::Integratio
         end
       end
     end
+  end
+
+
+  context "#edit" do
+    should "be authorized" do
+      assert_authorized_to(
+        :manage?, @organization, with: Organizations::OrganizationPolicy
+      ) do
+        get edit_staff_fosterer_url(@fosterer)
+      end
+    end
+  end
+
+  context "#update" do
+    should "be authorized" do
+      assert_authorized_to(
+        :manage?, @organization, with: Organizations::OrganizationPolicy
+      ) do
+        patch staff_fosterer_url(@fosterer), params: { person: { phone: "1234567890" } }
+      end
+    end
+  end
+
+  test "#edit" do
+    user = create(:super_admin)
+    sign_in user
+
+    get edit_staff_fosterer_path(@fosterer)
+
+    assert_response :success
+  end
+
+  test "#update" do
+    user = create(:super_admin)
+    sign_in user
+
+    patch staff_fosterer_url(@fosterer), params: { person: { phone: "1234567890" } }
+
+    assert_response :redirect
+    assert_equal '1234567890', @fosterer.reload.phone
   end
 end

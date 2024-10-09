@@ -1,0 +1,58 @@
+<%= render DashboardPageComponent.new(crumb: :edit_fosterer, crumb_options: [@fosterer]) do |c| %>
+  <% c.with_header_title { t(".edit_fosterer", fosterer: @fosterer.full_name) } %>
+  <% c.with_body do %>
+    <ul class="card mb-4">
+      <div class="card-body">
+        <%= bootstrap_form_with model: @fosterer,
+          url: staff_fosterer_path(@fosterer) do |f|
+        %>
+      
+          <div class="row">
+            <div class="mb-3 col-12 col-md-6">
+              <%= f.text_field :first_name,
+                id: :first_name,
+                autofocus: true, 
+                class: 'form-control'
+              %>
+            </div>
+
+            <div class="mb-3 col-12 col-md-6">
+              <%= f.text_field :last_name,
+                id: :last_name,
+                autofocus: true, 
+                class: 'form-control'
+              %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="mb-3 col-12 col-md-6">
+              <%= f.email_field :email,
+                autofocus: true, 
+                class: 'form-control'
+              %>
+            </div>
+
+            <div class="mb-3 col-12 col-md-6">
+              <%= f.telephone_field :phone,
+                autofocus: true,
+                placeholder: "10 digit number",
+                class: 'form-control'
+              %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <%= f.submit t('general.save'), class: "btn btn-primary" %>
+              <%= link_to t('general.cancel'), staff_fosterers_path(page: params[:page]),
+                class: "btn btn-secondary"
+              %>
+            </div>
+          </div>
+
+        <% end %>
+      </div>
+    </ul>
+  <% end %>
+<% end %>

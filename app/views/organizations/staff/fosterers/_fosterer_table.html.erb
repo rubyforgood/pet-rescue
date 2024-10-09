@@ -6,6 +6,8 @@
       <thead>
         <tr>
           <th scope="col"><%= t(:name) %></th>
+          <th scope="col"><%= t(:email) %></th>
+          <th scope="col"><%= t(:phone) %></th>
           <th scope="col"><%= t(:action) %></th>
         </tr>
       </thead>
@@ -20,8 +22,14 @@
                     <span class="status bg-success"></span>
                   </a>
                 </div>
-                <h5 class="mb-0 ms-3"><%= "#{fosterer.user.full_name}" %></h5>
+                <h5 class="mb-0 ms-3"><%= "#{fosterer.full_name}" %></h5>
               </div>
+            </td>
+            <td>
+              <%= fosterer.email %>
+            </td>
+            <td>
+              <%= fosterer.phone %>
             </td>
             <td>
               <%= link_to 'Edit', edit_staff_fosterer_url(fosterer) %>
