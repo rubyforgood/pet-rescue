@@ -144,7 +144,7 @@
                     %>
                   <% end %>
                 <% else %>
-                  <% if AdopterApplication.exists?(form_submission: current_user.person.form_submission, pet: @pet) %>
+                  <% if AdopterApplication.exists?(form_submission: current_user.latest_form_submission, pet: @pet) %>
                     <div class='d-flex align-items-center mt-3'>
                       <h4 class="me-2 mb-0">
                         <%= "#{t('organizations.adoptable_pets.show.application_status')} #{@adoption_application.human_enum_name(:status) || t('.status.default')}" %>
@@ -157,14 +157,6 @@
                         <%= image_tag('green_check.png', height: '21') %>
                       <% end %>
                     </div>
-                    <% elsif %>
-                    <%# FIXME: This section was missed during the remove of AdopterFosterProfile but I think it requires FormSubmission to be ready to refactor %>
-                    <%# Once the form_submission CRUD and policy are created, should use conditional like the below  %>
-                    <%# elsif allowed_to?(:create?, FormSubmission) %>
-                      <h4 class='mb-4 mt-3'>
-                        <%= t('.complete_your_profile') %>
-                      </h4>
-                      <%= link_to t('.complete_my_profile'), "#", class: 'custom-btn-pink' %>
                   <% end %>
                 <% end %>
               <% else %>

@@ -80,9 +80,7 @@ class AdoptionApplicationReviewsTest < ActionDispatch::IntegrationTest
   end
 
   def verify_application_elements(application)
-    assert_select "div[id='table_adopter_application_#{application.id}']" do
-      # adopter = application.adopter_foster_account.user
-      # assert_select "a", text: "#{adopter.first_name} #{adopter.last_name}" re-instate this assertion once the Person and FormSubmission models are in place.
+    assert_select "tr[id='table_row_adopter_application_#{application.id}']" do
       assert_select "button", text: application.status.titleize
     end
   end

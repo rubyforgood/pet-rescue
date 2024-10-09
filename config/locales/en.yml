@@ -43,6 +43,8 @@ en:
   role: "Role"
   email: "Email"
   phone: "Phone"
+  description: "Description"
+  due_date: "Due Date"
   deactivate: "Deactivate"
   settings: "Settings"
   invite_fosterer: "Invite Fosterer"
@@ -50,6 +52,7 @@ en:
   general:
     attach: "Attach"
     adoption_pending: "(Adoption Pending)"
+    adopted: Adopted
     age: "Age"
     become_an_adopter: "Become an adopter"
     breed: "Breed"
@@ -58,6 +61,7 @@ en:
     pet: "Pet"
     sex: "Sex"
     weight: "Weight"
+    weight_range: "Weight range"
     about: "About"
     "yes": "Yes"
     "no": "No"
@@ -79,6 +83,8 @@ en:
     not_found: "Not Found"
     are_you_sure_delete_pet: "Are you sure you want to delete this pet?"
     organization_not_found: "Organization not found."
+    files: "Files"
+    tasks: "Tasks"
   dashboard:
     index:
       header_title: Dashboard
@@ -541,6 +547,7 @@ en:
           adoption_pending: "Adoption Pending"
           withdrawn: "Withdrawn"
           successful_applicant: "Successful Applicant"
+          awaiting_data: "Awaiting Data"
         tabs:
           overview:
             status:
@@ -624,7 +631,7 @@ en:
           withdraw: "Withdraw"
       likes:
         index:
-          liked_pets: 'Liked Pets'
+          header_title: 'Liked Pets'
           no_pets: 'You do not have any liked pets'
         create:
           success: "%{name} added to your liked pets."
@@ -632,6 +639,18 @@ en:
         destroy:
           success: "%{name} removed from your liked pets."
           failed: "Error, %{name} not removed from your liked pets."
+      adopted_pets:
+        index:
+          header_title: "Adopted pets"
+      dashboard:
+        index:
+          example: Example
+          pets: Pets
+          applications: Applications
+          rescues: Rescues
+      form_instructions:
+        index: "Please complete this form. %{organization_name} needs this information in order to process your application(s)."
+        dashboard: If you need to update your information, you can do so by filling out a new copy of this form. Please only submit a new copy if there has been a change. Unnecessary submissions may delay the processing of your application(s).
     attachments:
       purge:
         success: "Attachment removed"
