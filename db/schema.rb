@@ -179,6 +179,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_08_095758) do
     t.text "donation_url"
     t.text "facebook_url"
     t.text "instagram_url"
+    t.text "external_form_url"
     t.index ["slug"], name: "index_organizations_on_slug", unique: true
   end
 

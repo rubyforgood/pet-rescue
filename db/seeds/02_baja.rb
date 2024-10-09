@@ -75,7 +75,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_one.add_role(:adopter, @organization)
 
-  @adopter_one.create_form_submission!
+  @adopter_one.form_submissions.create!
 
   @adopter_two = Person.create!(
     email: "adopter2@baja.com",
@@ -94,7 +94,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_two.add_role(:adopter, @organization)
 
-  @adopter_two.create_form_submission!
+  @adopter_two.form_submissions.create!
 
   @adopter_three = Person.create!(
     email: "adopter3@baja.com",
@@ -113,7 +113,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_three.add_role(:adopter, @organization)
 
-  @adopter_three.create_form_submission!
+  @adopter_three.form_submissions.create!
 
   @fosterer_one = Person.create!(
     email: "fosterer1@baja.com",
@@ -189,7 +189,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   match_application = AdopterApplication.create!(
     pet_id: Pet.first.id,
-    form_submission_id: @adopter_one.form_submission.id,
+    form_submission_id: @adopter_one.form_submissions.first.id,
     status: :successful_applicant
   )
 

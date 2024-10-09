@@ -535,6 +535,7 @@ en:
           adoption_pending: "Adoption Pending"
           withdrawn: "Withdrawn"
           successful_applicant: "Successful Applicant"
+          awaiting_data: "Awaiting Data"
         tabs:
           overview:
             status:
@@ -626,6 +627,9 @@ en:
         destroy:
           success: "%{name} removed from your liked pets."
           failed: "Error, %{name} not removed from your liked pets."
+      form_instructions:
+        index: "Please complete this form. %{organization_name} needs this information in order to process your application(s)."
+        dashboard: If you need to update your information, you can do so by filling out a new copy of this form. Please only submit a new copy if there has been a change. Unnecessary submissions may delay the processing of your application(s).
     attachments:
       purge:
         success: "Attachment removed"
