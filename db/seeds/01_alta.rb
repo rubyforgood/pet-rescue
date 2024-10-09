@@ -3,7 +3,8 @@
   slug: "alta",
   email: "alta@email.com",
   phone_number: "250 816 8212",
-  custom_page: CustomPage.new(hero: "Where every paw finds a home", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations.")
+  custom_page: CustomPage.new(hero: "Where every paw finds a home", about: "Alta was founded by an incredible group of ladies in April of 2020. Our initial goal was to have both a rescue and a spay/neuter clinic, however, we quickly realized that it would be more efficient to separate into two organizations."),
+  external_form_url: "https://docs.google.com/forms/d/e/1FAIpQLSf9bI-kboxyQQB5I1W5pt0R25u9pHoXI7o3jQHKu1P4K-61mA/viewform?embedded=true"
 )
 
 ActsAsTenant.with_tenant(@organization) do
@@ -75,7 +76,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_one.add_role(:adopter, @organization)
 
-  @adopter_one.create_form_submission!
+  @adopter_one.form_submissions.create!
 
   @adopter_two = Person.create!(
     email: "adopter2@alta.com",
@@ -94,7 +95,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_two.add_role(:adopter, @organization)
 
-  @adopter_two.create_form_submission!
+  @adopter_two.form_submissions.create!
 
   @adopter_three = Person.create!(
     email: "adopter3@alta.com",
@@ -113,7 +114,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_three.add_role(:adopter, @organization)
 
-  @adopter_three.create_form_submission!
+  @adopter_three.form_submissions.create!
 
   @fosterer_one = Person.create!(
     email: "fosterer1@alta.com",
@@ -236,7 +237,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   match_application = AdopterApplication.create!(
     pet_id: Pet.first.id,
-    form_submission_id: @adopter_one.form_submission.id,
+    form_submission_id: @adopter_one.form_submissions.first.id,
     status: :successful_applicant
   )
 
