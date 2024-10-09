@@ -1,7 +1,7 @@
 class Organizations::Staff::FosterersController < Organizations::BaseController
   layout "dashboard"
 
-  before_action :set_organization, only: %i[edit update]
+  before_action :authorize_user, only: %i[edit update]
 
   def index
     authorize! Person, context: {organization: Current.organization}
@@ -31,9 +31,8 @@ class Organizations::Staff::FosterersController < Organizations::BaseController
       .permit(:first_name, :last_name, :email, :phone)
   end
 
-  def set_organization
-    @organization = Current.organization
-
-    authorize! @organization
+  def authorize_user
+    authorize! Person, context: { organization: Current.organization },
+                       with: Organizations::FostererInvitationPolicy
   end
 end

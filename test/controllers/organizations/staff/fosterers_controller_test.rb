@@ -3,7 +3,7 @@ require "action_policy/test_helper"
 
 class Organizations::Staff::FosterersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @organization =  ActsAsTenant.current_tenant
+    @organization = ActsAsTenant.current_tenant
     @admin = create(:admin)
     @fosterer = create(:person)
     sign_in @admin
@@ -41,52 +41,48 @@ class Organizations::Staff::FosterersControllerTest < ActionDispatch::Integratio
     end
   end
 
-
   context "#edit" do
     should "be authorized" do
       assert_authorized_to(
-        :manage?, @organization, with: Organizations::OrganizationPolicy
+        :edit?,
+        Person,
+        context: { organization: @organization },
+        with: Organizations::FostererInvitationPolicy
       ) do
         get edit_staff_fosterer_url(@fosterer)
       end
+    end
+
+    should 'render the edit form' do
+      get edit_staff_fosterer_path(@fosterer)
+
+      assert_response :success
     end
   end
 
   context "#update" do
     should "be authorized" do
       assert_authorized_to(
-        :manage?, @organization, with: Organizations::OrganizationPolicy
+        :update?,
+        Person,
+        context: { organization: @organization },
+        with: Organizations::FostererInvitationPolicy
       ) do
         patch staff_fosterer_url(@fosterer), params: { person: { phone: "1234567890" } }
       end
     end
-  end
 
-  test "#edit" do
-    user = create(:super_admin)
-    sign_in user
-
-    get edit_staff_fosterer_path(@fosterer)
-
-    assert_response :success
-  end
-
-  test "#update" do
-    user = create(:super_admin)
-    sign_in user
-
-    patch staff_fosterer_url(@fosterer), params: { person: { phone: "1234567890" } }
-
-    assert_response :redirect
-    assert_equal '1234567890', @fosterer.reload.phone
-  end
-
-  test "#update fails" do
-    user = create(:super_admin)
-    sign_in user
-
-    patch staff_fosterer_url(@fosterer), params: { person: { first_name: "" } }
-
-    assert_response :unprocessable_entity
+    should "update fosterer" do
+      patch staff_fosterer_url(@fosterer), params: { person: { phone: "1234567890" } }
+  
+      assert_response :redirect
+      assert_equal '1234567890', @fosterer.reload.phone
+    end
+  
+    should "fail update" do
+      patch staff_fosterer_url(@fosterer), params: { person: { first_name: "" } }
+  
+      assert_response :unprocessable_entity
+    end
   end
 end

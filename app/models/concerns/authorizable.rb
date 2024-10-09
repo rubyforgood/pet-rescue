@@ -38,6 +38,7 @@ module Authorizable
     ) + %i[
       review_adopter_applications
       invite_fosterers
+      update_fosterers
       purge_attachments
       manage_default_pet_tasks
       manage_forms
