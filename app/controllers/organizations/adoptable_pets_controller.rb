@@ -8,10 +8,9 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   helper_method :get_animals
 
   def index
-    @q = authorized_scope(Pet.includes(:adopter_applications, images_attachments: :blob),
-      with: Organizations::AdoptablePetPolicy).ransack(params[:q])
+    @q = authorized_scope(Pet.all, with: Organizations::AdoptablePetPolicy).ransack(params[:q])
     @pagy, paginated_adoptable_pets = pagy(
-      @q.result,
+      @q.result.includes(:adopter_applications, :matches, images_attachments: :blob),
       limit: 9
     )
     @pets = paginated_adoptable_pets
