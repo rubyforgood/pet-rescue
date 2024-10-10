@@ -99,12 +99,23 @@ class PetTest < ActiveSupport::TestCase
 
   context "#is_adopted?" do
     should "return true if there is a match with 'adoption' match_type" do
-      pet = Pet.new
-      match = pet.matches.new(match_type: "adoption")
+      pet = create(:pet)
+      match = create(:match, :adoption, pet:)
       assert pet.is_adopted?
 
-      match.match_type = "foster"
+      match.update(match_type: "foster")
       assert_not pet.is_adopted?
+    end
+  end
+
+  context "#in_foster?" do
+    should "return true if there is a match with 'foster' match_type" do
+      pet = create(:pet)
+      match = create(:foster, pet:, start_date: 1.month.ago, end_date: 1.day.from_now)
+      assert pet.in_foster?
+
+      match.update(match_type: "adoption")
+      assert_not pet.in_foster?
     end
   end
 

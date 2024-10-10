@@ -8,7 +8,10 @@ class Organizations::Staff::PetsController < Organizations::BaseController
     authorize! Pet, context: {organization: Current.organization}
 
     @q = Pet.ransack(params[:q])
-    @pagy, @pets = pagy(authorized_scope(@q.result), limit: 10)
+    @pagy, @pets = pagy(
+      authorized_scope(@q.result.includes(:matches, :adopter_applications).with_attached_images),
+      limit: 10
+    )
   end
 
   def new
