@@ -1,3 +1,4 @@
+<% can_edit_person = allowed_to?(:edit?, Person, context: { organization: Current.organization }, with: Organizations::FostererInvitationPolicy) %>
 
 <div class="card">
   <!-- Table -->
@@ -8,7 +9,9 @@
           <th scope="col"><%= t(:name) %></th>
           <th scope="col"><%= t(:email) %></th>
           <th scope="col"><%= t(:phone) %></th>
-          <th scope="col"><%= t(:action) %></th>
+          <% if can_edit_person %>
+            <th scope="col"><%= t(:action) %></th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
@@ -32,7 +35,9 @@
               <%= fosterer.phone %>
             </td>
             <td>
-              <%= link_to 'Edit', edit_staff_fosterer_url(fosterer) %>
+              <% if can_edit_person %>
+                <%= link_to 'Edit', edit_staff_fosterer_url(fosterer), class: 'btn btn-warning m-2' %>
+              <% end %>
             </td>
           </tr>
         <% end %>
