@@ -97,7 +97,7 @@ class Pet < ApplicationRecord
   end
 
   def is_adopted?
-    adopter_applications.any? { |app| app.status == "adoption_made" }
+    matches.any? { |match| match.match_type == "adoption" }
   end
 
   def in_foster?

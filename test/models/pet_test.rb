@@ -98,13 +98,12 @@ class PetTest < ActiveSupport::TestCase
   end
 
   context "#is_adopted?" do
-    should "return true if there is an adopter application with 'adoption_pending' status" do
+    should "return true if there is a match with 'adoption' match_type" do
       pet = Pet.new
-      adopter_application = pet.adopter_applications.new
-      adopter_application.status = "adoption_made"
+      match = pet.matches.new(match_type: "adoption")
       assert pet.is_adopted?
 
-      adopter_application.status = "awaiting_review"
+      match.match_type = "foster"
       assert_not pet.is_adopted?
     end
   end
