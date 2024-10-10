@@ -36,7 +36,7 @@ module Organizations
 
       assert_difference "FormSubmission.count" do
         assert_difference("FormAnswer.count", + 7) do
-          Organizations::CsvImportService.new(@file).call
+          Organizations::Importers::GoogleCsvImportService.new(@file).call
         end
       end
     end
@@ -48,7 +48,7 @@ module Organizations
       end
 
       assert_no_difference "FormSubmission.count" do
-        Organizations::CsvImportService.new(@file).call
+        Organizations::Importers::GoogleCsvImportService.new(@file).call
       end
     end
 
@@ -58,7 +58,7 @@ module Organizations
         csv << @data
       end
       assert_difference "FormSubmission.count" do
-        Organizations::CsvImportService.new(@file).call
+        Organizations::Importers::GoogleCsvImportService.new(@file).call
       end
     end
   end
