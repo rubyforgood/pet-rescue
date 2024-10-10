@@ -97,11 +97,19 @@ class Pet < ApplicationRecord
   end
 
   def is_adopted?
-    adopter_applications.any? { |app| app.status == "adoption_made" }
+    if matches.loaded?
+      matches.any? { |m| m.match_type == "adoption" }
+    else
+      matches.adoption.any?
+    end
   end
 
   def in_foster?
-    matches.in_foster.exists?
+    if matches.loaded?
+      matches.any? { |m| m.match_type == "foster" && (m.start_date..m.end_date).cover?(Time.now.utc) }
+    else
+      matches.in_foster.any?
+    end
   end
 
   def open?
