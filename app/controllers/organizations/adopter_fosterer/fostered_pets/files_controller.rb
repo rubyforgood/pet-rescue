@@ -1,12 +1,7 @@
 module Organizations
   module AdopterFosterer
     module FosteredPets
-      class FilesController < Organizations::BaseController
-        skip_verify_authorized only: %i[index]
-
-        def index
-          @pet = Pet.find(params[:fostered_pet_id])
-        end
+      class FilesController < Organizations::AdopterFosterer::FilesBaseController
       end
     end
   end
