@@ -16,6 +16,16 @@ class Organizations::AdoptablePetsControllerTest < ActionDispatch::IntegrationTe
         get adoptable_pets_url
       end
     end
+
+    should "assign only unadopted pets" do
+      adopted_pet = create(:pet, :adopted)
+
+      get adoptable_pets_url
+
+      assert_response :success
+      assert_equal 1, assigns[:pets].count
+      assert assigns[:pets].pluck(:id).exclude?(adopted_pet.id)
+    end
   end
 
   context "#show" do
