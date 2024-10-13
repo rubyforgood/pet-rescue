@@ -159,8 +159,12 @@ ActsAsTenant.with_tenant(@organization) do
   end
 
   path = Rails.root.join("app", "assets", "images", "hero.jpg")
+  from_weight = [5, 10, 20, 30, 40, 50, 60].sample
+
   25.times do
-    from_weight = [5, 10, 20, 30, 40, 50, 60].sample
+    species = Pet.species.keys.sample
+    breed = "Faker::Creature::#{species.classify}".constantize.breed
+
     pet = Pet.create!(
       name: Faker::Creature::Dog.name,
       birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
@@ -168,9 +172,9 @@ ActsAsTenant.with_tenant(@organization) do
       weight_from: from_weight,
       weight_to: from_weight + 15,
       weight_unit: Pet::WEIGHT_UNITS.sample,
-      breed: Faker::Creature::Dog.breed,
+      breed: breed,
       description: "He just loves a run and a bum scratch at the end of the day",
-      species: Pet.species.values.sample,
+      species: species,
       placement_type: Pet.placement_types.values.sample,
       published: true
     )
