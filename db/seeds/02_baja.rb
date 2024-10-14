@@ -75,7 +75,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_one.add_role(:adopter, @organization)
 
-  @adopter_one.create_form_submission!
+  @adopter_one.form_submissions.create!
 
   @adopter_two = Person.create!(
     email: "adopter2@baja.com",
@@ -94,7 +94,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_two.add_role(:adopter, @organization)
 
-  @adopter_two.create_form_submission!
+  @adopter_two.form_submissions.create!
 
   @adopter_three = Person.create!(
     email: "adopter3@baja.com",
@@ -113,7 +113,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   @user_adopter_three.add_role(:adopter, @organization)
 
-  @adopter_three.create_form_submission!
+  @adopter_three.form_submissions.create!
 
   @fosterer_one = Person.create!(
     email: "fosterer1@baja.com",
@@ -159,8 +159,12 @@ ActsAsTenant.with_tenant(@organization) do
   end
 
   path = Rails.root.join("app", "assets", "images", "hero.jpg")
+  from_weight = [5, 10, 20, 30, 40, 50, 60].sample
+
   25.times do
-    from_weight = [5, 10, 20, 30, 40, 50, 60].sample
+    species = Pet.species.keys.sample
+    breed = "Faker::Creature::#{species.classify}".constantize.breed
+
     pet = Pet.create!(
       name: Faker::Creature::Dog.name,
       birth_date: Faker::Date.birthday(min_age: 0, max_age: 3),
@@ -168,10 +172,10 @@ ActsAsTenant.with_tenant(@organization) do
       weight_from: from_weight,
       weight_to: from_weight + 15,
       weight_unit: Pet::WEIGHT_UNITS.sample,
-      breed: Faker::Creature::Dog.breed,
+      breed: breed,
       description: "He just loves a run and a bum scratch at the end of the day",
-      species: Pet.species["Dog"],
-      placement_type: 1,
+      species: species,
+      placement_type: Pet.placement_types.values.sample,
       published: true
     )
     pet.images.attach(io: File.open(path), filename: "hero.jpg")
@@ -189,7 +193,7 @@ ActsAsTenant.with_tenant(@organization) do
 
   match_application = AdopterApplication.create!(
     pet_id: Pet.first.id,
-    form_submission_id: @adopter_one.form_submission.id,
+    form_submission_id: @adopter_one.form_submissions.first.id,
     status: :successful_applicant
   )
 

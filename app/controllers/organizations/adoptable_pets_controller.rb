@@ -8,10 +8,9 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
   helper_method :get_animals
 
   def index
-    @q = authorized_scope(Pet.includes(:adopter_applications, images_attachments: :blob),
-      with: Organizations::AdoptablePetPolicy).ransack(params[:q])
+    @q = authorized_scope(Pet.unadopted, with: Organizations::AdoptablePetPolicy).ransack(params[:q])
     @pagy, paginated_adoptable_pets = pagy(
-      @q.result,
+      @q.result.includes(:adopter_applications, :matches, images_attachments: :blob),
       limit: 9
     )
     @pets = paginated_adoptable_pets
@@ -22,14 +21,14 @@ class Organizations::AdoptablePetsController < Organizations::BaseController
     @pet = Pet.find(params[:id])
     authorize! @pet, with: Organizations::AdoptablePetPolicy
 
-    if current_user
+    if current_user&.latest_form_submission
       @adoption_application =
         AdopterApplication.find_by(
-          pet: @pet,
-          form_submission: current_user.person.form_submission
+          pet_id: @pet.id,
+          form_submission_id: current_user.latest_form_submission.id
         ) ||
         @pet.adopter_applications.build(
-          form_submission: current_user.person.form_submission
+          form_submission: current_user.latest_form_submission
         )
     end
   end

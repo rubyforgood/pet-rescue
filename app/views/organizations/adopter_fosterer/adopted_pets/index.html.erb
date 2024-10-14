@@ -1,5 +1,5 @@
 <%= render DashboardPageComponent.new do |c| %>
-  <% c.with_header_title { "Adopted Pets" } %>
+  <% c.with_header_title { t(".header_title") } %>
   <% c.with_body do %>
     <div data-controller="card">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">

@@ -19,6 +19,7 @@ module Authorizable
     manage_likes
     view_adopted_pets
     read_pet_tasks
+    view_external_form
   ].freeze
 
   FOSTERER_PERMISSIONS = %i[

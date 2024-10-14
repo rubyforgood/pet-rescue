@@ -1,0 +1,15 @@
+<div class="d-flex flex-column align-items-center mb-4">
+  <div class="my-4 mx-8">
+    <% if params[:dashboard] %>
+      <p><%= t("organizations.adopter_fosterer.form_instructions.dashboard") %></p>
+    <% else %>
+      <p><%= t("organizations.adopter_fosterer.form_instructions.index", organization_name: Current.tenant.name) %></p>
+    <% end %>
+    <%= link_to 'View pets', adoptable_pets_path, class: "btn btn-primary float-end" %>
+  </div>
+  <iframe id="external-form"
+    src=<%= @form_url%>
+    width="90%" 
+    height="645"
+    >Loading…</iframe>
+</div>
