@@ -3,7 +3,15 @@
     <%= bootstrap_form_with model: fosterer,
       url: staff_fosterer_path(fosterer) do |f|
     %>
-      <%= render 'partials/form_errors', resource: fosterer %>
+      <% if fosterer.errors.any? %>
+        <ul class="list-group mb-3 col-12 col-md-4">
+          <% fosterer.errors.full_messages.each do |message| %>
+            <li class="list-group-item list-group-item-danger">
+              <%= message %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
       <div class="row">
         <div class="mb-3 col-12 col-md-6">
           <%= f.text_field :first_name,

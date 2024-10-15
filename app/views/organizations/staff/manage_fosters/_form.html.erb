@@ -5,7 +5,15 @@
     <%= bootstrap_form_with model: foster,
       url: foster.persisted? ? staff_manage_foster_path(foster) : staff_manage_fosters_path do |form|
     %>
-      <%= render 'partials/form_errors', resource: foster %>
+       <% if foster.errors.any? %>
+        <ul class="list-group mb-3 col-12 col-md-4">
+          <% foster.errors.full_messages.each do |message| %>
+            <li class="list-group-item list-group-item-danger">
+              <%= message %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
       <div class="mb-3 col-12 col-md-4">
         <% if foster.persisted? %>
           <div class="form-label text-secondary"><%= t('general.pet') %></div>
