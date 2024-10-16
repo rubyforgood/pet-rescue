@@ -15,6 +15,9 @@ module Organizations
           csv_timestamp = Time.parse(row["Timestamp"])
 
           person = Person.find_by(email:, organization: @organization)
+          previous = FormSubmission.where(person:, csv_timestamp:)
+          next unless person && previous.empty?
+
           latest_form_submission = person.latest_form_submission
 
           if latest_form_submission.form_answers.empty?
@@ -28,10 +31,6 @@ module Organizations
               end
             end
           else
-            existing_submission = FormSubmission.find_by(person:, csv_timestamp:)
-
-            next if existing_submission
-
             ActiveRecord::Base.transaction do
               form_submission = FormSubmission.create!(person:, csv_timestamp:)
               row.each do |col|
