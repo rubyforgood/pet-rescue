@@ -99,5 +99,5 @@ test:
 production:
   <<: *default
   database: pet_rescue_production
-  username: <%= ENV['database_username'] %>
-  password: <%= ENV['database_password'] %>
+  username: user
+  password: password
