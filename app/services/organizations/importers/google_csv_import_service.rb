@@ -21,25 +21,22 @@ module Organizations
           latest_form_submission = person.latest_form_submission
 
           if latest_form_submission.form_answers.empty?
-            ActiveRecord::Base.transaction do
-              form_submission = latest_form_submission
-              row.each do |col|
-                next if col[0] == "Email" || col[0] == "Timestamp"
-
-                FormAnswer.create!(form_submission:,
-                  question_snapshot: col[0], value: col[1])
-              end
-            end
+            create_form_answers(latest_form_submission, row)
           else
-            ActiveRecord::Base.transaction do
-              form_submission = FormSubmission.create!(person:, csv_timestamp:)
-              row.each do |col|
-                next if col[0] == "Email" || col[0] == "Timestamp"
+            create_form_answers(FormSubmission.create!(person:, csv_timestamp:), row)
+          end
+        end
+      end
 
-                FormAnswer.create!(form_submission:,
-                  question_snapshot: col[0], value: col[1])
-              end
-            end
+      private
+
+      def create_form_answers(form_submission, row)
+        ActiveRecord::Base.transaction do
+          row.each do |col|
+            next if col[0] == "Email" || col[0] == "Timestamp"
+
+            FormAnswer.create!(form_submission:,
+              question_snapshot: col[0], value: col[1])
           end
         end
       end
