@@ -6,10 +6,10 @@ module Organizations
       setup do
         file = fixture_file_upload("google_form_sample.csv", "text/csv")
         @params = {files: [file]}
-        user = create(:admin)
+        admin = create(:admin)
         @adopter = create(:adopter, email: "adopter1111@alta.com")
         @adopter2 = create(:adopter, email: "no_answer_will_be_created@alta.com")
-        sign_in user
+        sign_in admin
       end
 
       test "Creates form answers for adopter in its latest form submission" do
