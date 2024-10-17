@@ -1,9 +1,9 @@
-# Pet Rescue Adoption Application
+# Homeward Tails Adoption Application
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-60-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-The Pet Rescue app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Pet Rescue is an application that makes it easy to connect shelters with people who are looking to adopt or foster pets.
+The Homeward Tails app is derived from the [Baja Pet Rescue Dog Adoption Application](https://github.com/kasugaijin/baja-pet-rescue/tree/main) created by @kasugaijin who wanted to give back to the grassroots organization from where he adopted his dog in Mexico by building them a web application. Homeward Tails is an application that makes it easy to connect shelters with people who are looking to adopt or foster pets.
 
 ---
 
@@ -162,7 +162,7 @@ rails standard:fix
 
 # Authorization
 
-If you find yourself writing a conditional checking the question, "Is the user **allowed** to view/do this?" that is an authorization concern. Pet Rescue utilizes the gem [Action Policy](https://github.com/palkan/action_policy) as our authorization framework. If you are familiar with Pundit, you will see many similarities. If you want to learn more about authorization or have questions about how Action Policy works, [their documentation](https://actionpolicy.evilmartians.io/#/) is excellent. If you would like a quick onboarding to how Action Policy is used in Pet Rescue, see [our wiki page on authorization](https://github.com/rubyforgood/pet-rescue/wiki/Authorization).
+If you find yourself writing a conditional checking the question, "Is the user **allowed** to view/do this?" that is an authorization concern. Homeward Tails utilizes the gem [Action Policy](https://github.com/palkan/action_policy) as our authorization framework. If you are familiar with Pundit, you will see many similarities. If you want to learn more about authorization or have questions about how Action Policy works, [their documentation](https://actionpolicy.evilmartians.io/#/) is excellent. If you would like a quick onboarding to how Action Policy is used in Homeward Tails, see [our wiki page on authorization](https://github.com/rubyforgood/pet-rescue/wiki/Authorization).
 
 # 🔨 Tools
 
@@ -199,13 +199,13 @@ To contribute:
 # 📖 About
 
 ## Ruby for Good
-Pet Rescue is one of many projects initiated and run by Ruby for Good. You can find out more about Ruby for Good at https://rubyforgood.org
+Homeward Tails is one of many projects initiated and run by Ruby for Good. You can find out more about Ruby for Good at https://rubyforgood.org
 
 # 🌟 Core Values
 While vision is the destination, and strategy is how we'll get there, core values are what we'll use to handle times of change or uncertainty (both of which are expected, guaranteed to happen, and positive signs of growth!).
 
 We are committed to promoting positive culture and outcomes for all, from coders and maintainers and leads
-to pet rescue and adoption administrators -- and animals everywhere.
+to Homeward Tails and adoption administrators -- and animals everywhere.
 
 We will lean on the following as guiding principles when interacting with others -- stakeholders, as well as current and future maintainers, leads, and collaborators -- and we ask that anyone engaging with this project in any capacity to do the same. Know that we do want to know how and when (not if) we can improve upon these values and/or the way in which we live by and act in accordance with them, so please comment here and in PRs when you have ideas.
 
