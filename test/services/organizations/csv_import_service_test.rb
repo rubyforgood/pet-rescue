@@ -4,23 +4,23 @@ require "csv"
 module Organizations
   class CsvImportServiceTest < ActiveSupport::TestCase
     setup do
-      person = create(:adopter)
-      Current.organization = person.organization
+      adopter = create(:adopter)
+      Current.organization = adopter.organization
 
       @file = Tempfile.new(["test", ".csv"])
       headers = ["Timestamp", "First name", "Last name", "Email", "Address", "Phone number", *Faker::Lorem.questions]
 
       @data = [
         "2024-10-02 12:45:37.000000000 +0000",
-        person.first_name,
-        person.last_name,
-        person.email,
+        adopter.first_name,
+        adopter.last_name,
+        adopter.email,
         Faker::Address.full_address,
         Faker::PhoneNumber.phone_number,
         *Faker::Lorem.sentences
       ]
 
-      @person = person
+      @adopter = adopter
 
       CSV.open(@file.path, "wb") do |csv|
         csv << headers
@@ -31,7 +31,7 @@ module Organizations
       @file.unlink
     end
 
-    should "add row information to database if person exists" do
+    should "add row information to database if adopter exists" do
       CSV.open(@file.path, "ab") do |csv|
         csv << @data
       end
@@ -43,7 +43,7 @@ module Organizations
       end
     end
 
-    should "skip row if person with email does not exist" do
+    should "skip row if adopter with email does not exist" do
       @data[3] = "email@skip.com"
       CSV.open(@file.path, "ab") do |csv|
         csv << @data
@@ -68,9 +68,9 @@ module Organizations
       CSV.open(@file.path, "ab") do |csv|
         csv << @data
       end
-      @person.latest_form_submission.update(csv_timestamp: @data[0])
+      @adopter.latest_form_submission.update(csv_timestamp: @data[0])
 
-      assert_no_difference -> { @person.latest_form_submission.form_answers.count } do
+      assert_no_difference -> { @adopter.latest_form_submission.form_answers.count } do
         Organizations::Importers::GoogleCsvImportService.new(@file).call
       end
     end
@@ -80,10 +80,10 @@ module Organizations
         csv << @data
       end
       Organizations::Importers::GoogleCsvImportService.new(@file).call
-      @person.latest_form_submission.update(csv_timestamp: "2024-10-03 12:45:37.000000000 +0000")
+      @adopter.latest_form_submission.update(csv_timestamp: "2024-10-03 12:45:37.000000000 +0000")
 
-      assert_difference -> { @person.person.form_submissions.count } do
-        assert_difference -> { @person.person.form_answers.count }, 7 do
+      assert_difference -> { @adopter.person.form_submissions.count } do
+        assert_difference -> { @adopter.person.form_answers.count }, 7 do
           Organizations::Importers::GoogleCsvImportService.new(@file).call
         end
       end
