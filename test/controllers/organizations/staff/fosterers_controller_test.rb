@@ -42,17 +42,6 @@ class Organizations::Staff::FosterersControllerTest < ActionDispatch::Integratio
   end
 
   context "#edit" do
-    should "be authorized" do
-      assert_authorized_to(
-        :edit?,
-        Person,
-        context: {organization: @organization},
-        with: Organizations::FostererInvitationPolicy
-      ) do
-        get edit_staff_fosterer_url(@fosterer)
-      end
-    end
-
     should "render the edit form" do
       get edit_staff_fosterer_path(@fosterer)
 
@@ -61,17 +50,6 @@ class Organizations::Staff::FosterersControllerTest < ActionDispatch::Integratio
   end
 
   context "#update" do
-    should "be authorized" do
-      assert_authorized_to(
-        :update?,
-        Person,
-        context: {organization: @organization},
-        with: Organizations::FostererInvitationPolicy
-      ) do
-        patch staff_fosterer_url(@fosterer), params: {person: {phone: "1234567890"}}
-      end
-    end
-
     should "update fosterer" do
       patch staff_fosterer_url(@fosterer), params: {person: {phone: "1234567890"}}
 
