@@ -28,7 +28,7 @@ class DataCardComponent < ViewComponent::Base
     when :large
       "fs-3" # Equivalent to h1
     else
-      "fs-4" # Default to medium  
+      "fs-4" # Default to medium
     end
   end
 end
