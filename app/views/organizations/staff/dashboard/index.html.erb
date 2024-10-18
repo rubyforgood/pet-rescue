@@ -4,7 +4,7 @@
     <div class="row g-4">
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <div class="task-card">
-          <%= render DataCardComponent.new do |card| %>
+          <%= render DataCardComponent.new(title_size: :medium, icon_color: "text-primary") do |card| %>
             <% card.with_title { "Tasks" } %>
             <% card.with_icon_name { "list" } %>
             <% card.with_value do %>
@@ -33,7 +33,7 @@
 
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <div class="application-card">
-          <%= render DataCardComponent.new do |card| %>
+          <%= render DataCardComponent.new(title_size: :medium, icon_color: "text-success") do |card| %>
             <% card.with_title { "Applications" } %>
             <% card.with_icon_name { "file-text" } %>
             <% card.with_value do %>
@@ -60,7 +60,7 @@
 
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <div class="foster-card">
-          <%= render DataCardComponent.new do |card| %>
+          <%= render DataCardComponent.new(title_size: :medium, icon_color: "text-warning") do |card| %>
             <% card.with_title { t(:fosters) } %>
             <% card.with_icon_name { "heart" } %>
             <% card.with_value do %>
@@ -87,7 +87,7 @@
 
       <div class="col-xl-3 col-lg-6 col-md-12 col-12">
         <div class="rescue-card">
-          <%= render DataCardComponent.new do |card| %>
+          <%= render DataCardComponent.new(title_size: :medium, icon_color: "text-gray-500") do |card| %>
             <% card.with_title { t(:rescues) } %>
             <% card.with_icon_name { "star" } %>
             <% card.with_value do %>
