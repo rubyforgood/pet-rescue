@@ -7,17 +7,23 @@
     <% end %>
   </title>
 
-  <%= favicon_link_tag asset_path('favicon.png') %>
+  <%= favicon_link_tag asset_path("favicon.png") %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
+  <!-- Stylesheets -->
   <%= stylesheet_link_tag "feather.css", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  <%= stylesheet_link_tag "theme.min.css", "data-turbo-track": "reload" %>
 
+  <!-- JavaScript -->
   <%= javascript_importmap_tags %>
-  <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+
+  <!-- External libraries -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/simplebar@latest/dist/simplebar.css"
+  />
   <script src="https://unpkg.com/simplebar@latest/dist/simplebar.min.js"></script>
 
   <% if content_for?(:head) %>
